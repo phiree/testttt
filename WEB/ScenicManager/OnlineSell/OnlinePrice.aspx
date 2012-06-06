@@ -4,6 +4,20 @@
 <%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
     <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        function Pricepd() {
+            var price = $("[id$='tbxPrice']").val();
+            var orderprice = $("[id$='tbxPreOrder']").val();
+            var payonline = $("[id$='tbxPayOnline']").val();
+            if (parseInt(price) > parseInt(orderprice) && parseInt(orderprice) > parseInt(payonline)) {
+                return true;
+            }
+            else {
+                alert("填写的价格有误，请重新填写!");
+                return false;
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <p class="fuctitle">
@@ -19,7 +33,7 @@
                 <li>优惠价:网上支付的价格</li>
             </ul>
         </div>
-        <hr style="border: 1px solid Gray; width: 97%;" />
+        <hr style="border:0px none;border-top: 1px solid Gray; width: 95%;" />
         <table class="tableprice">
             <tr>
                 <td>
@@ -47,7 +61,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Button runat="server" ID="btnOK"  OnClick="btnOK_Click" CssClass="btnokprice" />
+                    <asp:Button runat="server" ID="btnOK"  OnClick="btnOK_Click" CssClass="btnokprice" OnClientClick="return Pricepd()" />
                 </td>
             </tr>
         </table>
