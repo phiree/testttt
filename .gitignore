@@ -1,6 +1,5 @@
 bin
 Bin
 obj
-WEB/config/connectionStrings.config
+connectionStrings.config
 *.suo
-
