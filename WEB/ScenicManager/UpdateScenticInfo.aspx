@@ -175,6 +175,59 @@
             }
             map.addContextMenu(contextMenu);
         });
+
+        window.onresize = function () {
+            var map = new BMap.Map("container");            // 创建Map实例
+            var position = $.cookie("unitposition");
+            var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
+            map.centerAndZoom(point, 15);                     // 初始化地图,设置中心点坐标和地图级别。
+            if (position != "120.159033,30.28376") {
+                $("[id$='hfposition']").val(position);
+                var marker = new BMap.Marker(new BMap.Point(position.split(",")[0], position.split(",")[1]));  // 创建标注
+                map.addOverlay(marker);              // 将标注添加到地图中
+                map.enableScrollWheelZoom(true);
+            }
+            map.addEventListener("click", function (e) {
+                //alert(e.point.lng + ", " + e.point.lat);
+
+            });
+            map.addControl(new BMap.NavigationControl());
+
+
+            function search(obj) {
+                var local = new BMap.LocalSearch("浙江省", {
+                    renderOptions: {
+                        map: map,
+                        autoViewport: true,
+                        selectFirstResult: false
+                    }
+                });
+                local.search(obj.value);
+            }
+
+            var contextMenu = new BMap.ContextMenu();
+            var txtMenuItem = [
+                      {
+                          text: '在此添加景区位置',
+                          callback: function (p) {
+                              map.clearOverlays();
+                              var marker = new BMap.Marker(p), px = map.pointToPixel(p);
+                              //alert(p.lat+','+p.lng);
+                              map.addOverlay(marker);
+                              $("[id$='hfposition']").val(p.lng + ',' + p.lat);
+                              $.cookie("unitposition", p.lng + ',' + p.lat);
+                              //alert(p.lng + ',' + p.lat);
+                          }
+                      }
+                     ];
+            for (var i = 0; i < txtMenuItem.length; i++) {
+                contextMenu.addItem(new BMap.MenuItem(txtMenuItem[i].text, txtMenuItem[i].callback, 100));
+                if (i == 1 || i == 3) {
+                    contextMenu.addSeparator();
+                }
+            }
+            map.addContextMenu(contextMenu);
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
