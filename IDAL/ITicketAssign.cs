@@ -27,7 +27,7 @@ namespace IDAL
         IList<TicketAssign> Getolnotusedticketassign(string idcard, Scenic scenic, int type);
         List<TicketAssign> GetUsedRecord(string idcard);
         int GetUsedCount(string idcard, DateTime dt);
-        int GetUsedCount(string idcard);
+        int GetUnusedCount(string idcard);
         int GetDdCount(string idcard);
 
         List<TicketAssign> GetYwCount(string idcard);

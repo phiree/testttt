@@ -74,9 +74,9 @@ namespace BLL
             return Iticketassign.GetUsedCount(idcard, dt);
         }
 
-        public int GetUsedCount(string idcard)
+        public int GetUnusedCount(string idcard)
         {
-            return Iticketassign.GetUsedCount(idcard);
+            return Iticketassign.GetUnusedCount(idcard);
         }
         public int GetDdCount(string idcard)
         {
