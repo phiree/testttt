@@ -7,9 +7,9 @@ namespace CommonLibrary
 {
     public class MakeAccount
     {
-        public string automakeaccount(int scenicid)
+        public string automakeaccount(string seoname)
         {
-            return "admin" + scenicid.ToString();
+            return seoname + "_admin";
         }
     }
 }

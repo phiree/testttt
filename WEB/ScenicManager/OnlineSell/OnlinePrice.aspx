@@ -29,8 +29,8 @@
             门票价格介绍
             <ul>
                 <li>门市价:正常销售价格</li>
-                <li>预定价:网上预定价格,游客在进入景区时付款</li>
-                <li>优惠价:网上支付的价格</li>
+                <li>景区现付价:网上预定价格,游客在进入景区时付款</li>
+                <li>网上订购价:网上支付的价格</li>
             </ul>
         </div>
         <hr style="border:0px none;border-top: 1px solid Gray; width: 95%;" />
@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <td>
-                    预订价:
+                    景区现付价:
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="tbxPreOrder"></asp:TextBox>
@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <td>
-                    优惠价:
+                    网上订购价:
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="tbxPayOnline"></asp:TextBox>

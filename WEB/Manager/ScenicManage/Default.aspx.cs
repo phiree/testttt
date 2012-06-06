@@ -89,11 +89,14 @@ public partial class Manager_ScenicinList : System.Web.UI.Page
             ScenicAdmin sa = new ScenicAdmin();
             sa.AdminType = ScenicAdminType.景区资料员|ScenicAdminType.检票员|ScenicAdminType.景区财务;
             sa.Scenic = bllScenic.GetScenicById(scid);
-            string loginname=new MakeAccount().automakeaccount(scid);
-            new BLL.BLLMembership().CreateUser("", "", "","", loginname, "123456");
-            TourMembership tour = new BLL.BLLMembership().GetMember(loginname);
-            sa.Membership = tour;
-            bllscenicadmin.SaveOrUpdate(sa);
+            if (!string.IsNullOrEmpty(sa.Scenic.SeoName))
+            {
+                string loginname = new MakeAccount().automakeaccount(sa.Scenic.SeoName);
+                new BLL.BLLMembership().CreateUser("", "", "", "", loginname, "123456");
+                TourMembership tour = new BLL.BLLMembership().GetMember(loginname);
+                sa.Membership = tour;
+                bllscenicadmin.SaveOrUpdate(sa);
+            }
         }
         if (e.CommandName == "reset")
         {
