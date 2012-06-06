@@ -3,3 +3,8 @@ D:\workspace\touronline\source\CommonLibrary\bin\Debug\CommonLibrary.pdb
 D:\workspace\touronline\source\CommonLibrary\obj\Debug\ResolveAssemblyReference.cache
 D:\workspace\touronline\source\CommonLibrary\obj\Debug\CommonLibrary.dll
 D:\workspace\touronline\source\CommonLibrary\obj\Debug\CommonLibrary.pdb
+E:\我的prj\TO\CommonLibrary\bin\Debug\CommonLibrary.dll
+E:\我的prj\TO\CommonLibrary\bin\Debug\CommonLibrary.pdb
+E:\我的prj\TO\CommonLibrary\obj\Debug\ResolveAssemblyReference.cache
+E:\我的prj\TO\CommonLibrary\obj\Debug\CommonLibrary.dll
+E:\我的prj\TO\CommonLibrary\obj\Debug\CommonLibrary.pdb

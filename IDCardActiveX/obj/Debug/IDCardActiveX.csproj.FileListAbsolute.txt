@@ -8,3 +8,13 @@ D:\workspace\touronline\source\IDCardActiveX\obj\Debug\IDCardActiveX.dll
 D:\workspace\touronline\source\IDCardActiveX\obj\Debug\IDCardActiveX.pdb
 D:\workspace\touronline\source\IDCardActiveX\obj\Debug\GenerateResource-ResGen.read.1.tlog
 D:\workspace\touronline\source\IDCardActiveX\obj\Debug\GenerateResource-ResGen.write.1.tlog
+E:\我的prj\TO\IDCardActiveX\bin\Debug\IDCardActiveX.dll
+E:\我的prj\TO\IDCardActiveX\bin\Debug\IDCardActiveX.pdb
+E:\我的prj\TO\IDCardActiveX\bin\Debug\IDCardActiveX.tlb
+E:\我的prj\TO\IDCardActiveX\obj\Debug\ResolveAssemblyReference.cache
+E:\我的prj\TO\IDCardActiveX\obj\Debug\IDCardActiveX.Properties.Resources.resources
+E:\我的prj\TO\IDCardActiveX\obj\Debug\IDCardActiveX.UserControl1.resources
+E:\我的prj\TO\IDCardActiveX\obj\Debug\GenerateResource-ResGen.read.1.tlog
+E:\我的prj\TO\IDCardActiveX\obj\Debug\GenerateResource-ResGen.write.1.tlog
+E:\我的prj\TO\IDCardActiveX\obj\Debug\IDCardActiveX.dll
+E:\我的prj\TO\IDCardActiveX\obj\Debug\IDCardActiveX.pdb
