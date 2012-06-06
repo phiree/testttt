@@ -46,6 +46,12 @@ namespace BLL
         {
             string encryptedPwd = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(
                 new Random().Next(100000, 999999999).ToString(), "MD5");
+            TourMembership tm = GetMember(nickname);
+            while (tm != null)
+            {
+                nickname += nickname + "0";
+                tm = GetMember(nickname);
+            }
             Model.User user = new Model.User()
             {
                 RealName = "",
