@@ -1,0 +1,179 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="VoteHot.aspx.cs" Inherits="Voting_VoteHot" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../Styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <style type="text/css">
+        body
+        {
+            padding-top: 60px;
+            padding-bottom: 40px;
+            font-family: 微软雅黑,Tahoma;
+        }
+    </style>
+    <script type="text/javascript">
+        function postToWb() {
+            var _url = encodeURIComponent(document.location + "?promid=" + "<%=MemberId %>&&urlfrom=" + "<%=Urlfrom%>");
+            var _assname = encodeURI("125158082"); //你注册的帐号，不是昵称
+            var _appkey = encodeURI("12a31cffbe8fff2182b2863bb066b7fc"); //你从腾讯获得的appkey
+            var _pic = encodeURI(''); //（例如：var _pic='图片url1|图片url2|图片url3....）
+            var _t = "浙江省最受欢迎的景区评选"; //$('.container hero-unit h1').valueOf(); //标题和描述信息
+            var metainfo = document.getElementsByTagName("meta");
+            for (var metai = 0; metai < metainfo.length; metai++) {
+                if ((new RegExp('description', 'gi')).test(metainfo[metai].getAttribute("name"))) {
+                    _t = metainfo[metai].attributes["content"].value;
+                }
+            }
+            //_t = $("#herodiv h1").html() + _t; //请在这里添加你自定义的分享内容
+            if (_t.length > 120) {
+                _t = _t.substr(0, 117) + '...';
+            }
+            _t = encodeURI(_t);
+            var _u = 'http://share.v.t.qq.com/index.php?c=share&a=index&url=' + _url + '&appkey=' + _appkey + '&pic=' + _pic + '&assname=' + _assname + '&title=' + _t;
+            window.open(_u, '', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');
+        }
+        $(document).ready(function () {
+            $(".scenicLink").hover(function () {
+                var divid = $(this).attr("scid");
+                $(".item").removeClass("active");
+                $("#" + divid).addClass("active");
+            })
+        });
+    </script>
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </a><a class="brand" href="Default.aspx">投票专区</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="active"><a>
+                            <asp:LoginName ID="LoginName1" runat="server" />
+                        </a></li>
+                        <li>
+                            <asp:LoginStatus CssClass="active" ID="LoginStatus1" runat="server" />
+                        </li>
+                        <li class="active pull-right" style="float: right"><a class="" href="../usercenter/MyVote.aspx">
+                            我的投票</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Main hero unit for a primary marketing message or call to action -->
+        <div class="hero-unit" id="herodiv">
+            <h1>
+                浙江省最受欢迎的景区评选</h1>
+            <hr />
+            <p>
+                浙江旅游资源非常丰富，素有"鱼米之乡、丝茶之府、文物之邦、旅游胜地"之称。全省有重要地貌景观800多处、 水域景观200多处、生物景观100多处。人文景观100多处，自然风光与人文景观交相辉映，特色明显，知名度高。</p>
+            <p>
+                <a href="javascript:void(0)" onclick="postToWb();return false;" class="tmblog">
+                    <img src="http://v.t.qq.com/share/images/s/b32.png"></a></p>
+        </div>
+        <!--                                                                                                       -->
+        <div class="row">
+            <div class="span3 columns">
+                <h3 class="active">
+                    排行</h3>
+                <asp:Repeater ID="rptHot10" runat="server" OnItemCommand="rptHot10_ItemCommand">
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <span class="badge badge-warning">
+                                    <%#Eval("Rank") %></span>
+                            </td>
+                            <td>
+                                <a class="scenicLink" scid='<%#Eval("ScenicId")%>'  href='/Scenic/?id=<%#Eval("ScenicId")%>'><%#Eval("ScenicName")%></a>
+                            </td>
+                            <td>
+                                <%#Eval("Num")%>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                    <HeaderTemplate>
+                        <table class=" table table-bordered">
+                            <tr>
+                                <td>
+                                    名次
+                                </td>
+                                <td>
+                                    景区
+                                </td>
+                                <td>
+                                    票数
+                                </td>
+                            </tr>
+                    </HeaderTemplate>
+                    <FooterTemplate>
+                        </table>
+                    </FooterTemplate>
+                </asp:Repeater>
+            </div>
+            <div class="span9 columns">
+                <h2>
+                    热门景区</h2>
+                <p>
+                    bula.bula.bula.bula.bula.bula.</p>
+                <div id="myCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <asp:Repeater ID="rptHotPhoto" runat="server">
+                            <ItemTemplate>
+                                <div class="item" id='<%#Eval("ScenicId") %>'>
+                                    <img src="<%#Eval("Photo","/ScenicImg/{0}") %>" alt="" />
+                                    <div class="carousel-caption">
+                                        <h4>
+                                            <%#Eval("ScenicName")%></h4>
+                                        <p>
+                                            <%#Eval("Description")%></p>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <%--<div class="item">
+                            <img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-02.jpg"
+                                alt="">
+                            <div class="carousel-caption">
+                                <h4>
+                                    Second Thumbnail label</h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
+                                    porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="http://twitter.github.com/bootstrap/assets/img/bootstrap-mdo-sfmoma-03.jpg"
+                                alt="">
+                            <div class="carousel-caption">
+                                <h4>
+                                    Third Thumbnail label</h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
+                                    porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            </div>
+                        </div>--%>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    <!-- 将脚本放在底部, 使页面加载更快 -->
+    <!-- bootstrap框架需要jquery.js配合其他的js脚本 -->
+    <%--transition和carouse是并存的,不然没有滑动效果,有时间再看js实现代码--%>
+    <script src="../Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="../Scripts/bootstrap-transition.js" type="text/javascript"></script>
+    <script src="../Scripts/bootstrap.js" type="text/javascript"></script>
+</body>
+</html>

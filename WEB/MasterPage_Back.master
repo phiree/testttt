@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage_Back.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>旅游在线</title>
+    <link href="/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div id="header">
+            <h1 id="sitename">
+                <a href="/">中国旅游在线</a>
+            </h1>
+            <div class="login">
+                <asp:LoginView runat="server">
+                    <AnonymousTemplate>
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        欢迎您,
+                        <asp:LoginName ID="LoginName1" runat="server" />
+                        | <a href="/usercenter/">个人中心</a> |
+                    </LoggedInTemplate>
+                    <AnonymousTemplate>
+                        <a href="/account/register.aspx">注册</a>
+                    </AnonymousTemplate>
+                </asp:LoginView>
+                <asp:LoginStatus ID="LoginStatus1" LogoutAction="Redirect" LogoutPageUrl="/account/logout.aspx"
+                    runat="server" />
+                |<a href="/DiscountCode.aspx">优惠码注册</a>
+            </div>
+        </div>
+        <div id="mc">
+        <asp:ContentPlaceHolder ID="cphmain" runat="server">
+        </asp:ContentPlaceHolder>
+        </div>
+        <div id="footer">
+            旅游在线版权所有<a runat="server" id="hrefScenicAdmin" href="/ScenicManager/" visible="false">
+                |景区管理员</a><a id="hrefSiteAdmin" runat="server" visible="false" href="/Manager/">|管理员</a>
+        
+        </div>
+    </div>
+    </form>
+</body>
+</html>

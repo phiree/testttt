@@ -1,0 +1,55 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+    CodeFile="MasterPage.master.cs" Inherits="About_MasterPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="/Styles/DefaultCss.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <link href="/Styles/About.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function focuss(obj) {
+            mainback = obj.style.backgroundColor;
+            color = $(obj).find("a").css("color");
+            obj.style.backgroundColor = "#BDD2F1";
+            $(obj).find("a").css("color", "#ffffff");
+        }
+        function blurr(obj) {
+            obj.style.backgroundColor = "";
+            $(obj).find("a").css("color", "#CE5135");
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
+    <div style="height:500px;">
+        <div id="aboutleft">
+            <ul>
+                <li>
+                    <div onmouseover="focuss(this);" onmouseout=" blurr(this);">
+                        <a>关于旅游云</a></div>
+                </li>
+                <li>
+                    <div onmouseover="focuss(this);" onmouseout="blurr(this);">
+                        <a>联系我们</a></div>
+                </li>
+                <li>
+                    <div onmouseover="focuss(this);" onmouseout="blurr(this);">
+                        <a>工作机会</a></div>
+                </li>
+                <li>
+                    <div onmouseover="focuss(this);" onmouseout="blurr(this);">
+                        <a>网站地图</a></div>
+                </li>
+                <li>
+                    <div onmouseover="focuss(this);" onmouseout="blurr(this);">
+                        <a>景区登录</a></div>
+                </li>
+            </ul>
+        </div>
+        <div id="aboutright">
+            <asp:ContentPlaceHolder ID="cc" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+</asp:Content>

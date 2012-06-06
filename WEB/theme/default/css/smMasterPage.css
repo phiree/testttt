@@ -1,0 +1,283 @@
+﻿body
+{
+    display:block;
+    width:960px;
+    margin:0px auto;
+}
+#top
+{
+    width:100%;
+    height:45px;
+    background:url("/theme/default/image/smtopbg.png");
+    background-repeat:repeat-x;
+    overflow:hidden;
+}
+.peoicon
+{
+    height:45px;
+    margin-left:18px;
+    background:url("/theme/default/image/smpeoicon.png");
+    width:18px;
+    display:block;
+    float:left;
+}
+.title
+{
+    display:block;
+    font-size:18px;
+    font-family:黑体;
+    color:White;
+    width:270px;
+    margin-left:130px;
+    line-height:45px;
+    float:left;
+}
+.czy
+{
+    margin-left:5px;
+    color:#9DB6CC;
+    float:left;
+    display:block;
+    line-height:48px;
+}
+.czyupinfo a:link,.czyupinfo a:active,.czyupinfo a:visited
+{
+    margin-left:5px;
+    color:#9DB6CC;
+    float:left;
+    display:block;
+    line-height:48px;
+    text-decoration:none;
+}
+.czyupinfo a:hover
+{
+    margin-left:5px;
+    color:#9DB6CC;
+    float:left;
+    display:block;
+    line-height:48px;
+    text-decoration:underline;
+}
+.czyname
+{
+    margin-left:10px;
+    font-family:黑体;
+    display:block;
+    line-height:45px;
+    float:left;
+    color:White;
+    font-size:12px;
+}
+.upinfo
+{
+     width:19px;
+     height:45px;
+     background:url("/theme/default/image/upinfoicon.png");
+     display:block;
+     float:left;
+     margin-left:20px;
+}
+.seper
+{
+    margin-left:20px;
+    display:block;
+    float:left;
+    line-height:45px;
+    color:#657B90;
+    font-size:18px;
+}
+.btnout
+{
+    width:53px;
+    height:24px;
+    background:url("/theme/default/image/btnexit.png");
+    margin-top:9px;
+    border:0px none White;
+    margin-left:250px;
+    cursor:pointer;
+    float:left;
+}
+#tool
+{
+    height:30px;
+    background:url("/theme/default/image/smtoolbg.png");
+    background-repeat:repeat-x;
+    width:960px;
+    padding:0px;
+    margin:0px;
+    clear:both;
+}
+.spantime
+{
+    display:block;
+    float:left;
+    padding:0px;
+    margin:0px 0px 0px 10px;
+    background:url("/theme/default/image/timepic.png");
+    width:16px;
+    height:30px;
+    float:left;
+}
+#showtime
+{
+    color:White;
+    float:left;
+    display:block;
+    line-height:30px;
+    margin-left:10px;
+}
+#tool a:link,#tool a:hover,#tool a:visited,#tool a:active
+{
+    color:White;
+    line-height:30px;
+    margin-left:10px;
+    text-decoration:none;
+    float:left;
+}
+#main
+{
+    display:block;
+    width:960px;
+    overflow:hidden;
+}
+#left
+{
+    display:block;
+    width:260px;
+    border-right:1px solid #CDCDCD;
+    border-bottom:1px solid #CDCDCD;
+    height:700px;
+    float:left;
+    _overflow:hidden;
+}
+#right
+{
+    width:699px;
+    display:block;
+    min-height:700px;
+    float:left;
+    background-color:#F3F3F3;
+    _overflow:hidden;
+}
+.scname
+{
+    width:100%;
+    height:106px;
+    border-bottom:1px solid #CDCDCD;
+}
+.jtscname
+{
+    margin:40px 0px 0px 15px;
+    font-family:黑体;
+    color:#5784AA;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:700;
+    width:150px;
+}
+.nav 
+{
+    width:100%;
+    list-style-type:none;
+}
+.nav li
+{
+    margin-left:-17px;
+    width:100%;
+    border-bottom:1px solid #CDCDCD;
+    list-style:none;
+}
+.nav li span
+{
+    display:inline-block;
+    width:219px;
+    height:40px;
+    background-color:#DDEEF8;
+    color:#2A6591;
+    font-size:14px;
+    line-height:40px;
+    padding-left:40px;
+    font-weight:700;
+}
+.nav li a:link,.nav li a:active,.nav li a:visited
+{
+    line-height:30px;
+    margin-left:40px;
+    height:30px;
+    width:100%;
+    text-decoration:none;
+    color:#666666;
+}
+.nav li a:hover
+{
+    line-height:30px;
+    margin-left:40px;
+    height:30px;
+    width:100%;
+    text-decoration:underline;
+    color:#666666;
+}
+.about
+{
+    clear:both;
+    height:24px;
+    width:100%;
+    
+    background:url("/theme/default/image/aboutbg.png");
+    background-repeat:repeat-x;
+    display:block;
+    margin-top:-18px;
+    padding:0px;
+    background-color:Black;
+}
+.about span
+{
+    display:block;
+    float:left;
+    line-height:24px;
+    margin-left:10px;
+}
+.aboutinfo
+{
+    margin:0px;
+    padding:0px;
+    margin-top:0px;
+    color:#555555;
+}
+.tel
+{
+    margin-top:5px;
+}
+.icon
+{
+    color:#FF9900;
+    font-size:10px;
+    margin-left:30px;
+}
+.aboutinfo hr
+{
+    display:block;
+    BORDER-BOTTOM-STYLE:dashed; BORDER-LEFT-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none;
+    border-color: #CDCDCD;
+    width:180px;
+    margin:0px auto;
+}
+
+#footer
+{
+    height:40px;
+    width=960px;
+    background-color:#434343;
+    color:White;
+    text-align:center;
+    line-height:40px;
+    font-family:黑体;
+    font-weight:700;
+    font-size:16px;
+}
+.highLightLink
+{
+    background-color:#ECECEC;
+    border-right:1px solid #CDCDCD;
+}

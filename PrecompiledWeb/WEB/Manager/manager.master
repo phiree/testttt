@@ -1,0 +1,19 @@
+﻿<%@ master language="C#" autoeventwireup="true" masterpagefile="~/MasterPage.master" inherits="Manager_manager, App_Web_2ia5fl0f" %>
+
+<asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server" ID="AdminContent">
+<div id="ucNav">
+        <ul>
+            <li><a href="/manager">管理中心</a></li>
+            <li><a href="/manager/PromAudit.aspx">推广链接管理</a></li>
+            <li><a href="/manager/ScenicinfoCheck.aspx">景区资料审核</a></li>
+             <li><a href="/manager/AccountManager.aspx">帐号管理</a></li>
+         
+          
+        </ul>
+    </div>
+      <div id="ucMain">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        </div>
+</asp:Content>

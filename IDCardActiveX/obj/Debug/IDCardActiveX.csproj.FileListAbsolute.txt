@@ -1,0 +1,10 @@
+D:\workspace\touronline\source\IDCardActiveX\bin\Debug\IDCardActiveX.dll
+D:\workspace\touronline\source\IDCardActiveX\bin\Debug\IDCardActiveX.pdb
+D:\workspace\touronline\source\IDCardActiveX\bin\Debug\IDCardActiveX.tlb
+D:\workspace\touronline\source\IDCardActiveX\obj\Debug\ResolveAssemblyReference.cache
+D:\workspace\touronline\source\IDCardActiveX\obj\Debug\IDCardActiveX.Properties.Resources.resources
+D:\workspace\touronline\source\IDCardActiveX\obj\Debug\IDCardActiveX.UserControl1.resources
+D:\workspace\touronline\source\IDCardActiveX\obj\Debug\IDCardActiveX.dll
+D:\workspace\touronline\source\IDCardActiveX\obj\Debug\IDCardActiveX.pdb
+D:\workspace\touronline\source\IDCardActiveX\obj\Debug\GenerateResource-ResGen.read.1.tlog
+D:\workspace\touronline\source\IDCardActiveX\obj\Debug\GenerateResource-ResGen.write.1.tlog

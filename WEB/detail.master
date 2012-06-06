@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+    CodeFile="detail.master.cs" Inherits="detail" %>
+
+<asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
+    <link href="/theme/default/css/detail.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="main" ContentPlaceHolderID="cphmain" runat="Server">
+    <div id="backpage">
+        <div id="floatpage" class="push-1 span-22">
+            <div id="fhead">
+                <asp:ContentPlaceHolder ID="fhead" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="fbodyframe">
+                <div id="fbody">
+                    <asp:ContentPlaceHolder ID="fbody" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</asp:Content>

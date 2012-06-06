@@ -1,0 +1,176 @@
+﻿/**************UserCenter*****************/
+#ucNav
+{
+    float: left;
+    width: 140px;
+    text-align: center;
+   /* background-color: #fdc481;
+
+
+*/
+
+}
+#ucNav span
+{
+    background-color: #fff;
+    padding: 3px 5px;
+    position: relative;
+    left: -15px;
+    width: 100%;
+    display: block;
+}
+#ucBody
+{
+}
+#ucNav ul
+{
+    z-index:1;
+    }
+#ucNav ul li
+{
+    font-size:14px;
+    width:125px;
+    text-align: left;
+    list-style-type: none;
+    padding: 13px 0 13px 35px;
+    margin-top: 4px;
+    background-color: #feebc0;
+  
+}
+#ucNav ul li a
+{
+   
+    color: #ff6b01;
+}
+.highLightLink
+{
+    background: url("/img/highlightbg.png") left top no-repeat;
+  
+   background-color:transparent !important;
+    position:relative;
+    z-index:99;
+    width:138px !important;
+    overflow:inherit !important;
+  
+}
+.highLightLink a,.highLightLink a:hover
+{
+   
+    color:White !important;
+   
+}
+#ucNav ul li a:hover
+{
+    text-decoration: underline;
+    font-weight: 900;
+}
+#ucMain
+{
+    float: left;
+    width: 720px;
+    margin-left:20px;
+    padding:20px 0 0 40px;
+    background-color:#eee;
+    min-height:400px;
+    display:inline;
+    z-index:2;
+}
+#ucNav .area
+{
+    font-size: 17px;
+    font-weight: bold;
+}
+#ucNav .areatour
+{
+    margin-top: 15px;
+}
+
+#ucNav .areatour a
+{
+    margin-right: 10px;
+    cursor: pointer;
+    float: left;
+}
+#tourcontent
+{
+    margin: 0px;
+}
+#tourcontent p
+{
+    font-size: 20px;
+}
+#tourcontent img
+{
+    width: 210px;
+    height: 180px;
+}
+
+#Trans
+{
+    width: 80%;
+    margin: 10px auto;
+}
+
+#scimg
+{
+    width: 350px;
+    height: 300px;
+    margin: 15px 0px 0px 20px;
+    float: left;
+}
+#scdetial
+{
+    margin: 15px 0px 0px 30px;
+}
+
+#adminleft
+{
+    width: 200px;
+    float: left;
+}
+
+#adminright
+{
+    width: 700px;
+    margin: 10px 0px 0px 20px;
+}
+
+/****后台管理 列表风格****/
+.tblist
+{
+    width: 100%;
+    text-align: left;
+}
+.tblist thead
+{
+    background-color: #666699;
+    color: White;
+    padding: 3px;
+}
+.tblist thead tr td
+{
+    padding: 5px 3px;
+    border: solid 1px #cccccc;
+}
+.tblist tbody tr:hover
+{
+    background-color: #cccccc;
+}
+.tblist tbody tr th
+{
+    font-weight: 700;
+}
+
+.tbaction
+{
+    background: #eee;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.info
+{
+    background-color: #ddd;
+}
+
+
+

@@ -1,0 +1,138 @@
+﻿#fbody
+{
+    border: 0;
+}
+#contactlist
+{
+    display: none;
+    position: absolute;
+    z-index: 999;
+    background-color: #fff;
+    border: 2px solid #999;
+    padding: 5px;
+    width:150px;
+    
+}
+#contactHead
+{
+     margin-bottom:4px;
+    }
+#contactlist #contactBody
+{
+    padding-top:10px;
+     background:url(../image/contactsheaderbg.png) top left no-repeat;
+     
+    }
+    .assignitem
+    {
+        display:block;
+        float:left;
+         margin:5px 10px;
+         
+        }
+#itemlist
+{
+    margin-bottom: 1.4em;
+    border: 1px solid #999;
+}
+#ilh
+{
+    padding: 3px 25px;
+    background-color: #82974C;
+    color: White;
+}
+#sceniclist
+{
+    width:100%;
+    margin: 0;
+}
+#tilist
+{
+     background-color:#FAF6ED;
+     width:100%;
+    }
+
+#sceniclist thead
+{
+    background-color: #FEFADF;
+}
+#sceniclist tfoot
+{
+    background-color: #FFF5A0;
+    font-style:normal;
+}
+
+.tihead
+{
+    background-color: #F0832E;
+    padding: 4px 25px;
+    color: White;
+}
+#tourinfo
+{
+    border: 1px solid #999;
+    margin-bottom:5px;
+}
+    #payinfo
+    {
+       border:7px solid #aaa; 
+        }
+
+#payinfo span
+{
+     display:block;
+     float:left;
+   
+}
+.pricedesc
+{
+  
+    background:url(../image/pricebg.png) top left no-repeat;
+    padding-left:30px;
+    line-height:76px;
+    
+    }
+    .pricedesc:hover
+    {
+           
+        }
+    #payonline
+    {
+         border-bottom:2px solid #aaa;
+        }
+.price
+{
+   
+     width:150px;
+     padding-left:30px;
+     line-height:76px;
+    }
+    .priceselection
+    {
+         cursor:pointer;
+         }
+           .priceselection:hover
+           {
+                background-color:#FFFFCC;
+               }
+.price em
+{
+     font-size:1.4em;
+     font-weight:500;
+     font-style:normal;
+    }
+#tourinfo input
+{
+     height:25px;
+     line-height:25px;
+    }
+    .assignIdcard
+{
+     width:200px;
+    }
+    #payaction
+    {
+         margin:20px 0;
+         text-align:center;
+         
+        }

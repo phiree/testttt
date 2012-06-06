@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9D0253F0-B0A7-4D66-BE57-7C32C4953340}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\lib\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonUser.cs" />
+    <Compile Include="ContractImg.cs" />
+    <Compile Include="ContractScenicPrice.cs" />
+    <Compile Include="DiscountCode.cs" />
+    <Compile Include="map.cs" />
+    <Compile Include="Mapping\CommonUserMap.cs" />
+    <Compile Include="Mapping\ContractImgMap.cs" />
+    <Compile Include="Mapping\ContractScenicPriceMap.cs" />
+    <Compile Include="Mapping\DiscountCodeMap.cs" />
+    <Compile Include="Mapping\Order\OrderDetailMap.cs" />
+    <Compile Include="Mapping\Order\OrderMap.cs" />
+    <Compile Include="Mapping\Order\TicketAssignMap.cs" />
+    <Compile Include="Mapping\PaymentMap.cs" />
+    <Compile Include="Mapping\ScenicAdminMap.cs" />
+    <Compile Include="Mapping\SeoDescriptionMap.cs" />
+    <Compile Include="Mapping\SiteAdminMap.cs" />
+    <Compile Include="Mapping\TicketCountMap.cs" />
+    <Compile Include="Mapping\TicketPriceMap.cs" />
+    <Compile Include="Mapping\UserVoteAmount.cs" />
+    <Compile Include="Mapping\RoleMap.cs" />
+    <Compile Include="Order\Cart.cs" />
+    <Compile Include="Order\Order.cs" />
+    <Compile Include="Order\OrderDetail.cs" />
+    <Compile Include="Order\TicketAssign.cs" />
+    <Compile Include="Payment\Payment.cs" />
+    <Compile Include="Qweiboinfo.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="ScenicTicket.cs" />
+    <Compile Include="SeoDescription.cs" />
+    <Compile Include="Ticket.cs" />
+    <Compile Include="TicketCount.cs" />
+    <Compile Include="TicketPrice.cs" />
+    <Compile Include="Area.cs" />
+    <Compile Include="SiteAdmin.cs" />
+    <Compile Include="ScenicAdmin.cs" />
+    <Compile Include="Lottery.cs" />
+    <Compile Include="LottryResult.cs" />
+    <Compile Include="Mapping\AreaMap.cs" />
+    <Compile Include="Mapping\LotteryMap.cs" />
+    <Compile Include="Mapping\LottryResultMap.cs" />
+    <Compile Include="Mapping\TourMembershipMap.cs" />
+    <Compile Include="Mapping\PreferentialCodeMap.cs" />
+    <Compile Include="Mapping\PromotionStaticMap.cs" />
+    <Compile Include="Mapping\ScenicMap.cs" />
+    <Compile Include="Mapping\TicketMap.cs" />
+    <Compile Include="Mapping\UseRecordMap.cs" />
+    <Compile Include="Mapping\UserMap.cs" />
+    <Compile Include="Mapping\VoteMap.cs" />
+    <Compile Include="TourMembership.cs" />
+    <Compile Include="PreferentialCode.cs" />
+    <Compile Include="PromotionStatic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenic.cs" />
+    <Compile Include="TransSatatis.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UseRecord.cs" />
+    <Compile Include="MemberRole.cs" />
+    <Compile Include="UserRole.cs" />
+    <Compile Include="UserVoteAmount.cs" />
+    <Compile Include="Vote.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Check\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

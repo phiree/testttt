@@ -1,0 +1,16 @@
+D:\workspace\touronline\source\IDAL\bin\Debug\IDAL.dll
+D:\workspace\touronline\source\IDAL\bin\Debug\IDAL.pdb
+D:\workspace\touronline\source\IDAL\bin\Debug\Model.dll
+D:\workspace\touronline\source\IDAL\bin\Debug\FluentNHibernate.dll
+D:\workspace\touronline\source\IDAL\bin\Debug\NHibernate.dll
+D:\workspace\touronline\source\IDAL\bin\Debug\Iesi.Collections.dll
+D:\workspace\touronline\source\IDAL\bin\Debug\Model.pdb
+D:\workspace\touronline\source\IDAL\bin\Debug\FluentNHibernate.pdb
+D:\workspace\touronline\source\IDAL\bin\Debug\FluentNHibernate.xml
+D:\workspace\touronline\source\IDAL\bin\Debug\NHibernate.pdb
+D:\workspace\touronline\source\IDAL\bin\Debug\NHibernate.xml
+D:\workspace\touronline\source\IDAL\bin\Debug\Iesi.Collections.pdb
+D:\workspace\touronline\source\IDAL\bin\Debug\Iesi.Collections.xml
+D:\workspace\touronline\source\IDAL\obj\Debug\ResolveAssemblyReference.cache
+D:\workspace\touronline\source\IDAL\obj\Debug\IDAL.dll
+D:\workspace\touronline\source\IDAL\obj\Debug\IDAL.pdb

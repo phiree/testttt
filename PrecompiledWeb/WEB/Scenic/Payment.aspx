@@ -1,0 +1,28 @@
+﻿<%@ page title="" language="C#" masterpagefile="~/MasterPage.master" autoeventwireup="true" inherits="Scenic_Payment, App_Web_remc5n2p" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="../Styles/Site.css" rel="stylesheet" type="text/css" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div class="page">
+        <table id="Trans" cellpadding="5px">
+            <tr><td>订单名称</td><td>数量</td><td>单价</td><td>订单价格</td></tr>
+            <asp:Repeater ID="Repeater1" runat="server">
+                <ItemTemplate>
+                    <tr>
+                        <td><%# Eval("Ticket.Name")%></td>
+                        <td><%# Eval("TotalNum") %></td>
+                        <td><%# Eval("Price") %></td>
+                        <td><%# Eval("TotalPrice") %></td>
+                    </tr>
+                </ItemTemplate>
+            </asp:Repeater>
+            <tr>
+                <td colspan="4" style=" text-align:center;">
+                    <asp:Button ID="Button1" runat="server" Text="支付宝支付" /><asp:Button ID="Button2"
+                        runat="server" Text="网银支付" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</asp:Content>

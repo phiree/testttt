@@ -1,0 +1,309 @@
+﻿/*首页*/
+#nav
+{
+    background: url(../image/navbg.png) top right repeat-y;
+}
+#navtop
+{
+    font-size:14px;
+    padding-top:31px;
+    height: 31px;
+   background: url(../image/navtopbg.png) top right no-repeat;
+    background-color:#fff;
+     _background-image: none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/theme/default/image/navtopbg.png,sizingMethod='scale');
+}
+#navtop span
+{
+    line-height: 29px;
+    margin: 4px 0 0 20px;
+    font-weight: 600;
+    color: #5a5c5b;
+}
+#navlevel
+{
+    
+    padding: 20px 0 20px 10px;
+}
+#navlevel a
+{
+    margin:0 3px;
+}
+#ptAreaAll
+{
+     float:left;
+     margin:8px 0 0 10px;
+    }
+.dvareaitem
+{
+    
+    }
+.areaname a
+{
+    display: block;
+    height: 23px; /*  background: url(areanamebg.gif) top right no-repeat; */
+    color: #5a5c5b;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 8px 0 5px 45px;
+}
+
+.ulitemlist
+{
+    margin-top: 6px;
+    list-style-type: none;
+}
+.hla,.hlv,.hla:link,.hlv:link,.hla:visited,.hla:visited
+{
+    color:#566932;
+     font-weight: 700;
+     
+    }
+.hla
+{
+    background: url(../image/areanamebg.gif) top right no-repeat;
+}
+.hlv
+{
+    background-color:#C3D0A2;
+    padding:2px 5px;
+}
+#toprecomm
+{
+   
+}
+/*
+div:246
+  img:236
+*/
+
+#items
+{
+    width: 760px;
+ position:relative;
+ left:-1px;
+ top:-5px;
+    padding-top: 17px;
+    background: url(../image/scenicstopbg.png) top left no-repeat;
+   
+    z-index:101;
+}
+#itemstop
+{
+     border-left:1px solid #ccc;
+     border-right:1px solid #ccc;
+    }
+#itemstopcontainer
+{
+   
+   margin-left:11px;
+   margin-right:11px;
+    height: 39px;
+    background: url(../image/itemstopbg.png) top left repeat-x;
+    border:1px solid #ccc;
+    
+}
+#itemstop span
+{
+    line-height:39px;
+    width: 750px;
+    margin-left: 5px;
+    padding-left:15px;
+    margin-top: 10px;
+    font-weight:600;
+    color:#5A5C5B;
+    font-size:1.2em;
+   
+}
+#itemsbody
+{
+    border-left: 1px solid #dfdfdf;
+      border-right: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom:10px;
+   width:758px;
+    float:left;
+   
+}
+.noresult
+{
+     margin:30px 0 0 60px;
+    display:inline-block;
+    }
+.scenicdesc
+{
+    margin-top: 15px;
+    margin-left: 5px;
+    border: solid 1px #ddd;
+    width: 245px;
+    float: left;
+    display: inline;
+    position: relative;
+}
+.scenicdescimg
+{
+    width: 233px;
+    height: 140px;
+    margin: 5px 5px 10px 5px;
+    border: 1px solid #ccc;
+    display: block;
+}
+.dvprice, .divOrder
+{
+    float: left;
+    padding-left: 5px;
+    width: 240px;
+}
+
+.dvprice em
+{
+    margin: 0 4px;
+}
+.dvprice .normalpr em
+{
+    text-decoration: line-through;
+    color: #888;
+}
+.dvprice .onlinepr em
+{
+    font-size: 16pt;
+    color: red;
+    font-style:normal;
+}
+.scenicname
+{
+    left: 12px;
+    top: 116px;
+    width: 235px;
+      padding-left:10px;
+      line-height:30px;
+}
+.scenicname a
+{
+    position: relative;
+}
+.dvOrder
+{
+    padding-top: 5px;
+    text-align: right;
+    margin-right: 5px;
+}
+.transparentBar
+{
+    font-size: 14px;
+   
+    background-color: #fff;
+    filter: alpha(opacity=80);
+    opacity: 0.7;
+    position: absolute;
+    left: 0;
+  
+}
+.linkorder
+{
+     float:right;
+     margin-right:5px;
+    }
+/*
+ 图片切换
+*/
+     #imgPlay
+        {
+            position: relative;
+            width: 950px;
+            height: 338px;
+          
+            overflow: hidden;
+            z-index: 100;
+        }
+        #imgPlay ul
+        {
+             margin:0;
+             padding:0;
+            }
+        #imgPlay .imgs li
+        {
+            float: left;
+            position: relative;
+            list-style-type:none;
+        }
+        #imgPlay .imgs img
+        {
+            width: 950px;
+           /* padding: 1px;
+            border: 1px solid #DBDBDB;*/
+        }
+        #imgPlay .num
+        {
+            position: absolute;
+            display: inline;
+            top: 300px;
+            left: 400px;
+            height: 19px;
+        }
+        #imgPlay .num .lc, #imgPlay .num .mc, #imgPlay .num .rc
+        {
+            float: left;
+            width: 13px;
+            height: 16px;
+            padding: 3px 0 0 0;
+            background: url(/theme/default/image/lc.png) no-repeat;
+        }
+        
+        #imgPlay .num .lc, #imgPlay .num .mc, #imgPlay .num .rc
+        {
+            float: left;
+            width: 13px;
+            height: 16px;
+            padding: 3px 0 0 0;
+            background: url(/theme/default/image/lc.png) no-repeat;
+        }
+        #imgPlay .num .mc
+        {
+            background: url(/theme/default/image/mc.png) repeat-x;
+        }
+        #imgPlay .num .rc
+        {
+            background: url(/theme/default/image/rc.png) no-repeat;
+        }
+        
+        #imgPlay .prev, #imgPlay .next
+        {
+            position: absolute;
+            top: 91px;
+            left: 1px;
+            width: 46px;
+            height: 81px;
+            background: url(/theme/default/image/imgPlayer.png) 0 0 no-repeat;
+            text-indent: -9999px;
+            cursor: pointer;
+        }
+        #imgPlay .next
+        {
+            left: auto;
+            right: 1px;
+            background-position: right 0;
+        }
+        #imgPlay .num span
+        {
+            display: inline-block;
+            width: 14px;
+            height: 13px;
+            margin: 0 2px 0;
+            background: url(/theme/default/image/imgPlayer.png) -19px -83px no-repeat;
+            cursor: pointer;
+            overflow: hidden;
+            line-height: 0;
+        }
+        #imgPlay #numInner
+        {
+            position: absolute;
+             top: 300px;
+            background: none;
+            padding: 3px 0 0 0;
+            text-align: center;
+        }
+        #imgPlay .num span.on
+        {
+            background-position: 1px -83px;
+        }

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F6166241-9344-49CC-8787-36FA08000B34}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommonLibrary</RootNamespace>
+    <AssemblyName>CommonLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EnumHelper.cs" />
+    <Compile Include="HttpContextHelper.cs" />
+    <Compile Include="JosnHelper.cs" />
+    <Compile Include="MakeAccount.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QweiboSDK\OAuth.cs" />
+    <Compile Include="QweiboSDK\OauthKey.cs" />
+    <Compile Include="QweiboSDK\Parameter.cs" />
+    <Compile Include="UrlParamHelper.cs" />
+    <Compile Include="ValidateHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="docs\Questions.txt" />
+    <Content Include="docs\ToDoList.txt" />
+    <Content Include="docs\测试驱动开发--景区审核.txt" />
+    <Content Include="docs\测试驱动开发.txt" />
+    <Content Include="docs\测试驱动开发--网上支付.txt" />
+    <Content Include="docs\测试驱动开发--角色功能.txt" />
+    <Content Include="docs\测试用数据.txt" />
+    <Content Include="docs\页面分配.txt" />
+    <Content Include="PDesigner\area.sql" />
+    <Content Include="PDesigner\初始化脚本.sql" />
+    <Content Include="PDesigner\景区图片.sql" />
+    <Content Include="PDesigner\景区脚本.sql" />
+    <Content Include="PDesigner\门票价格.sql" />
+    <Content Include="PDesigner\门票初始化.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="docs\2012年浙江省A级旅游景区汇总统计表.xls" />
+    <None Include="docs\全国省市名称%28附代码%29-excel.xls" />
+    <None Include="PDesigner\Business Process_1.bpm" />
+    <None Include="PDesigner\ObjectOrientedModel_2.oom" />
+    <None Include="PDesigner\ObjectOrientedModel_UserCase.oom" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

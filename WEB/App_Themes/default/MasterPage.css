@@ -1,0 +1,198 @@
+﻿
+/*override blueprint*/
+body
+{
+ 
+    padding-top:10px;
+    background: url("/img/bg.jpg") top left repeat-x;
+}
+a:link, a:visited, a:active
+{
+   color:Black;
+    border:0;
+    text-decoration: none;
+}
+a:hover
+{
+    text-decoration: underline;
+}
+/*master*/
+#container
+{
+   width:950px;
+    margin:0 auto;
+    padding:0;
+    }
+/*网站头*/
+#logo
+{
+    
+    height: 140px;
+    float: left;
+
+    background: url("/img/logoboxleft.png") top left no-repeat;
+  
+ 
+}
+#logotitle
+{
+    font-size:40pt;
+    font-weight:600;
+    font-family:微软雅黑;
+  
+   
+    float: left;
+    height: 110px;
+    padding-top: 30px;
+    background: url("/img/logoboxright.png") top right no-repeat;
+}
+#logotitle a
+{
+    color: #CE5135 ; 
+    }
+#logotitle a:hover
+{
+    text-decoration:none;
+    }
+#logotitle img
+{
+}
+#logoright
+{
+
+}
+#logotab
+{
+    
+ 
+    margin: 22px 0 0 0;
+    float: left;
+    border-bottom: solid 1px #ddd; display:inline;
+}
+#logotab a
+{
+    color:White;
+    }
+#logotab div
+{
+    float: left;
+}
+#imgIcon
+{
+    width:16px;
+    height:16px;
+    }
+.lt
+{
+    padding-left: 22px;
+}
+.lt a,.lt span,#imgIcon
+{
+   
+    padding-top: 6px;
+    float:left;
+   
+    
+}
+.lt span
+{
+     color:White;
+    margin-right:6px;
+    }
+
+#logotab1
+{
+    height:27px;
+    background: url("/img/toptableft1.png") top left no-repeat;
+    background-color: #007E8C;
+    margin-left: 300px;
+    display:inline;
+}
+
+
+
+#logotab1 .loginstatus
+{
+    display:inline;
+    margin-left: 16px;
+    padding-right: 22px;
+    background: url("/img/toptableft2.png") top right no-repeat;
+}
+
+
+#logotab2
+{ height:27px;
+    margin-left: 20px;
+    background: url("/img/toptabright1.png") top left no-repeat;
+    background-color: #F8A61C;
+}
+#logotab2 a
+{
+    display: block;
+    padding-right: 22px;
+    background: url("/img/toptabright2.png") top right no-repeat;
+}
+#logosearch
+{
+    padding: 28px 22px 31px 170px;
+    float: left;
+    background: url("/img/searchcorner.png") top right no-repeat;
+    background-color: #fff;
+    width:448px;
+   
+}
+
+#logosearch #tbxKeywords
+{
+    
+    float: left;
+    border-style: none;
+    width: 335px;
+    height: 31px;
+    padding-left: 15px;
+    *padding-top:9px;/*ie7 hack*/
+    *height:22px;
+
+    vertical-align:middle;
+    background: url("/img/searchtext.png") repeat-x;
+}
+
+
+#logosearch #btnSearch
+{
+    cursor:pointer;
+    width: 96px;
+    height: 31px;
+    float: left;
+    border: 0;
+    background: url("/img/searchbtn.png");
+}
+
+#footer
+{
+    float: none;
+    width: 100%;
+    height: 90px;
+    clear: left;
+    text-align: center;
+}
+#footerlink
+{
+    background-color: #2A1F1B;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+}
+#footerlink a
+{
+    font-size: 12px;
+    color: White;
+    text-decoration: none;
+    line-height: 30px;
+    margin-left: 15px;
+}
+#footer p
+{
+    font-size: 12px;
+    color: #D1D1D1;
+}

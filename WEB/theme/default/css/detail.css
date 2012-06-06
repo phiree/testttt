@@ -1,0 +1,51 @@
+﻿#backpage
+{
+}
+#orderstep span
+{
+    color: #7F7F7F;
+    margin-right: 20px;
+}
+#orderstep .stepcurrent
+{
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+}
+#floatpage
+{
+    position: relative;
+    top: -10px;
+    background: url(../image/scenictopbg.png) top left no-repeat;
+    padding-top: 10px;
+    display: inline;
+}
+#fhead
+{
+    background: url(../image/itemstopbg.png) top left repeat-x;
+    height: 29px;
+    padding: 10px 0 0 15px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    font-size:14px;
+    font-weight:600;
+}
+#fbodyframe
+{
+    background-color: White;
+    border: 1px solid #999;
+    border-top: 0;
+    min-height: 280px;
+    width:868px;
+    _overflow:hidden;
+}
+#fbody
+{
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    
+}
+#login
+{
+    padding: 3px;
+}

@@ -1,0 +1,5 @@
+D:\workspace\touronline\source\CommonLibrary\bin\Release\CommonLibrary.dll
+D:\workspace\touronline\source\CommonLibrary\bin\Release\CommonLibrary.pdb
+D:\workspace\touronline\source\CommonLibrary\obj\Release\ResolveAssemblyReference.cache
+D:\workspace\touronline\source\CommonLibrary\obj\Release\CommonLibrary.dll
+D:\workspace\touronline\source\CommonLibrary\obj\Release\CommonLibrary.pdb

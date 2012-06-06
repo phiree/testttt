@@ -1,0 +1,524 @@
+﻿#mainbody
+{
+   margin:0 10px;
+    padding-top:10px;
+    _overflow:hidden;
+}
+#mainscenic
+{
+    width:848px;
+   _overflow:hidden;
+}
+.leftimg
+{
+    padding:3px;
+    float:left;
+    width:500px;
+    margin-right:20px;
+    display:inline;
+      border:1px solid #999;
+}
+.mainscenicimg
+{
+    display:block;
+    width:500px;
+    height:340px;
+  
+}
+.sceincdesc
+{
+    width:500px;
+   
+}
+.spandesc
+{
+    margin:15px 0px 0px 15px;
+    background-color:#1F6D45;
+    color:White;
+    width:55px;
+}
+.jtdesc
+{
+    color:#007D8B;
+    margin:10px 0px 0px 30px;
+}
+#rightprice
+{
+    float:left;
+    width:320px;
+}
+#rightprice .price
+{
+     margin:20px 0;
+    }
+#mxprice
+{
+    background-color:#E8FFE8;
+    height:100px;
+    margin-right:25px;
+}
+.mxpicon
+{
+    float:right;
+    margin-top:4px;
+}
+#mxprice p
+{
+    clear:both;
+    font-size:14px;
+    margin-left:25px;
+    margin-bottom:25px;
+    margin-top:0px;
+}
+.ydprice
+{
+    font-size:14px;
+    padding:15px 0px 0px 20px;
+    float:left;
+  
+}
+.ydprice span
+{
+    font-size:24px;
+    font-weight:500;
+}
+.yyprice
+{
+    color:#949494;
+ 
+    margin:15px 0px 0px 20px;
+}
+.goyuding
+{
+   
+   
+    font-size:14px;
+}
+.goyuding a
+{
+   
+    background-color:#FFE9C0;
+    text-decoration:none;
+}
+.zxprice
+{
+    clear:both;
+    font-size:14px;
+    padding:15px 0px 0px 20px;
+}
+.zxprice span
+{
+    color:#D05037;
+    font-size:28px;
+}
+.paytype
+{
+    clear:both;
+    padding:5px 0px 0px 20px;
+    font-size:14px;
+    color:#999;
+}
+.paycount
+{
+    padding:30px 0px 0px 20px;
+    font-size:14px;
+}
+.ticketcount
+{
+    margin:0 !important;
+      padding:0;
+    width:40px;
+ 
+    height:16px;
+    line-height:16px;
+   text-align:center;
+  
+}
+
+
+.btncount
+{
+  
+    width:13px;
+}
+.btnpay
+{
+    clear:both;
+   
+    padding:20px 0px 0px 20px;
+}
+.btnimgpay
+{
+   background-color:#ff3464;
+   padding:5px,15px;
+   border:1px solid #ddd;
+}
+#zbscenic
+{
+    margin-top:10px;
+    height:35px;
+    background-color:#F8A61C;
+    padding-top:5px;
+}
+#zbscenic div
+{
+    clear:both;
+    font-size:20px;
+    color:#664206;
+    margin:0px 0px 0px 20px;
+    padding-top:0px;
+    line-height:29px;
+}
+#zbscenicimg
+{
+  
+    margin:10px auto;
+}
+.firstimg
+{
+    width:328px;
+    height:203px;
+    float:left;
+    overflow:hidden;
+}
+.fwenzi
+{
+    background: #000;
+    filter: alpha(opacity=50);
+    opacity: 0.4;
+    height:35px;
+    width:100%;
+    position:relative;
+    top:-36.5px;
+    color:White;
+    *top:-38.5px;
+    _top:-45.5px;
+    top:-38.5px \0;
+    top:-38.5px \9\0;
+}
+.fwenzi font,.swenzi font
+{
+    line-height:40px;
+    margin-left:5px;
+    
+}
+.fwenzi a:visited,.fwenzi a:link,.fwenzi a:active
+{
+    font-size:18px;
+    margin-left:10px; 
+    padding-top:-5px; 
+    margin-top:0px; 
+    line-height:40px;
+    padding-bottom:10px;
+    position:relative;
+    top:-2px;
+    color:White;
+    text-decoration:none;
+}
+.rightscenicimg
+{
+    float:left;
+    padding-left:20px;
+}
+.secdiv
+{
+    height:90px;
+    width:160px;
+    float:left;
+    margin-bottom:20px;
+    overflow:hidden;
+    border-bottom:10px none White;
+}
+.swenzi
+{
+    background: #000;
+    filter: alpha(opacity=50);
+    opacity: 0.4;
+    height:35px;
+    width:100%;
+    position:relative;
+    top:-36.5px;
+    color:White;
+    overflow:hidden;
+    _top:-38.5px;
+    *top:-38.5px;
+    top:-38.5px \0;
+    top:-38.5px \9\0;
+}
+.swenzi a:visited,.swenzi a:link,.swenzi a:active
+{
+    font-size:16px;
+    margin-left:10px; 
+    padding-top:-5px; 
+    margin-top:0px; 
+    line-height:40px;
+    padding-bottom:10px;
+    position:relative;
+    top:-2px;
+    color:White;
+    text-decoration:none;
+}
+.thdiv
+{
+    margin-left:20px;
+    float:left;
+    height:90px;
+    width:160px;
+    overflow:hidden;
+    border-bottom:1px none White;
+}
+.ttdiv
+{
+    height:90px;
+    width:160px;
+    float:left;
+    overflow:hidden;
+}
+.fidiv
+{
+    float:left;
+    height:90px;
+    margin-left:20px;
+    width:160px;
+    overflow:hidden;
+}
+
+.btnjian2
+{
+    background:url("/Img/btnjian2.jpg");
+    width:18px;
+    height:18px;
+    border:0;
+    outline:none;
+    position:relative;
+    left:4px;
+   
+}
+
+.btnadd2
+{
+    background:url("/Img/btnadd2.jpg");
+    width:18px;
+    height:18px;
+    border:0px none White;
+    padding-left:0px;
+    margin-left:0px;
+    outline:none;
+    position:relative;
+    left:-4px;
+}
+/*第二版样式*/
+#maintitle
+{
+    margin-right:25px;
+    height:60px;
+    display:inline-block;
+}
+#maintitle h2
+{
+    font-size:18px;
+    font-family:微软雅黑;
+    margin:30px 0px 0px 20px;
+}
+#scdescinfo
+{
+    width:838px;
+    height:320px;
+    display:inline-block;
+    background-color:#FAF6ED;
+}
+.scdescription
+{
+    margin:20px 0px 0px 10px;
+    width:275px;
+    line-height:30px;
+    float:left;
+}
+.scftshow
+{
+    float:left;
+    width:510px;
+    margin:25px 0px 0px 25px;
+    height:300px;
+}
+.sconeft
+{
+    width:170px;
+    float:left;
+    height:130px;
+    display:block;
+}
+.imgft
+{
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:0px;
+    margin-bottom:0px;
+    width:150px;
+    height:100px;
+}
+.sconeft p
+{
+    height:20px;
+    text-align:right;
+    padding-right:10px;
+}
+#zbscdiv
+{
+    display: inline-block;
+    background-color:#B4B8BB;
+    margin:0px;
+    padding:0px;
+    height:380px;
+    width:838px;
+}
+.zbsctitle
+{
+    display:block;
+    width:87px;
+    height:34px;
+    margin-top:17px;
+    margin-left:17px;
+    background-color:White;
+    text-align:center;
+    line-height:34px;
+}
+.zbscinfo
+{
+    background-color:White;
+    margin:0px 0px 0px 17px;
+    display:block;
+    height:310px;
+    width:802px;
+}
+.zbscpic
+{
+    width:540px;
+    margin:10px 0px 0px 10px;
+    float:left;
+    height:280px;
+    display:block;
+}
+.zbscone
+{
+    margin-top:10px;
+    height:130px;
+    display:block;
+    width:180px;
+    float:left;
+}
+.imgzb
+{
+    width:160px;
+    margin:0px 10px 0px 10px;
+    height:110px;
+}
+.zbscone p
+{
+    text-align:left;
+    padding-left:10px;
+    height:20px;
+    line-height:20px;
+}
+.scmappos
+{
+    float:left;
+    width:245px;
+    height:250px;
+    margin:20px 0px 0px 0px;
+    display:block;
+    _width:240px;
+    _height:270px;
+}
+.scmappos p
+{
+    height:30px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:5px;
+    margin-left:10px;
+    margin-top:5px;   
+}
+#containtermap
+{
+    width:100%;
+    height:210px;
+}
+#visitedsc
+{
+    width:838px;
+    margin-top:100px;
+}
+#visitedsc p
+{
+    margin:0px 0px 0px 10px;
+    font-weight:700;
+}
+#visitedsc hr
+{
+    display:block;
+    border:0px none;
+    border-top:1px dashed #CDCDCD;
+    margin-top:10px;
+    width:800px;
+}
+.visitedinfo
+{
+    width:800px;
+    padding-left:20px;
+}
+.visiteddiv
+{
+    border:1px solid #CDCDCD;
+    width:175px;
+    height:135px;
+    margin-right:25px;
+    float:left;
+}
+.visiteddiv img
+{
+    width:165px;
+    margin:5px 5px 0px 5px;
+    height:105px;
+}
+.visiteddiv p
+{
+    height:30px;
+    line-height:30px;
+    font-weight:700;
+    text-align:center;
+}
+.priceintro
+{
+    display:block;
+    width:95px;
+    height:22px;
+    background:url("/theme/default/image/priceintro.png");
+    float:right;
+    margin:-30px 50px 0px 0px;
+    _margin-right:25px;
+}
+#priceintrodiv
+{
+    width:188px;
+    height:155px;
+    position:absolute;
+    z-index:500;
+    border:2px solid #B4B4B4;
+    background-color:#FAF6ED;
+}
+#priceintrodiv ul li
+{
+    margin:10px 0px 20px 10px;
+    color:#B4B4B4;
+}
+#priceintrodiv ul li span
+{
+    color:#B4B4B4;
+}
+#priceintrodiv ul li p
+{
+    width:110%;
+    color:Black;
+    margin:10px 0px 10px 0px;
+}

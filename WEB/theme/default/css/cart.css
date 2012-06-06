@@ -1,0 +1,70 @@
+﻿.qtyBtn
+{
+    display: block;
+    height: 16px;
+    width: 13px;
+    float: left;
+    border: 1px solid #ccc;
+    padding: 2px 0 0 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.qtyBtn:hover
+{
+    background-color: Yellow;
+}
+.qtyModify
+{
+    float: left;
+    margin: 0 !important;
+    margin-left: 5px !important;
+    width: 40px;
+}
+.delete
+{
+    cursor: pointer;
+}
+#itemlist
+{
+}
+.orderlist
+{
+    width:100%;
+    margin-bottom: 0;
+}
+.orderlist tr
+{
+    height: 35px;
+}
+.orderlist thead tr
+{
+    background-color: #82974C;
+    color: White;
+}
+.orderlist tfoot
+{
+    background-color: #FFF5A0;
+    font-style: normal;
+    color: #AF4A1C;
+}
+.orderlist tfoot tr
+{
+    height: 25px;
+}
+.orderlist tfoot div
+{
+    float: right;
+    margin-right: 30px;
+}
+#payaction
+{
+    float: right;
+    margin-right: 80px;
+    margin-top: 30px;
+}
+#payaction a
+{
+    margin-left: 40px;
+}
+
+

@@ -1,0 +1,14 @@
+D:\workspace\touronline\source\MODEL\bin\Debug\Model.dll
+D:\workspace\touronline\source\MODEL\bin\Debug\Model.pdb
+D:\workspace\touronline\source\MODEL\bin\Debug\FluentNHibernate.dll
+D:\workspace\touronline\source\MODEL\bin\Debug\NHibernate.dll
+D:\workspace\touronline\source\MODEL\bin\Debug\Iesi.Collections.dll
+D:\workspace\touronline\source\MODEL\bin\Debug\FluentNHibernate.pdb
+D:\workspace\touronline\source\MODEL\bin\Debug\FluentNHibernate.xml
+D:\workspace\touronline\source\MODEL\bin\Debug\NHibernate.pdb
+D:\workspace\touronline\source\MODEL\bin\Debug\NHibernate.xml
+D:\workspace\touronline\source\MODEL\bin\Debug\Iesi.Collections.pdb
+D:\workspace\touronline\source\MODEL\bin\Debug\Iesi.Collections.xml
+D:\workspace\touronline\source\MODEL\obj\Debug\ResolveAssemblyReference.cache
+D:\workspace\touronline\source\MODEL\obj\Debug\Model.dll
+D:\workspace\touronline\source\MODEL\obj\Debug\Model.pdb

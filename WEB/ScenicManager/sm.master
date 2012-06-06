@@ -1,0 +1,107 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="sm.master.cs" Inherits="ScenicManager_sm" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script src="/Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
+    <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="/theme/default/css/smMasterPage.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/ScenicManager.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            startshowtime();
+            //$("#btnscroll").attr("style", "display:block");
+            //$("#btnscroll2").attr("style", "display:none");
+            $(".nav li a").HighLightLink();
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="smHeader" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="top">
+        <span class="peoicon"></span><span class="czy">操作员 </span><span class="czyname">
+            <asp:Literal runat="server" ID="liUserName"></asp:Literal>
+        </span><span class="upinfo"></span><span class="czyupinfo"><a href="/ScenicManager/UploadAdminInfo.aspx">修改信息</a></span><span class="seper">▏ </span><span class="title">中国旅游在线&nbsp;景区后台管理系统</span>
+        <asp:LoginStatus LogoutText="" LogoutPageUrl="/ScenicManager/Login.aspx" LogoutAction="Redirect"
+                        runat="server" ID="loginstatus"  CssClass="btnout"  />
+    </div>
+    <div id="tool">
+        <span class="spantime"></span><span id="showtime"></span>
+        <img src="/theme/default/image/returndefault.png" height="30px" width="13px" style="margin-left: 570px;
+            float: left;" />
+        <a href="/Default.aspx">网站首页</a>
+        <img src="/theme/default/image/help.png" width="24px" height="30px" style="margin-left: 10px;
+            float: left;" />
+    </div>
+    <div id="main">
+        <div id="left">
+            <div class="scname">
+                <img runat="server" id="imgScenic" src="" style="width: 75px; height: 75px; float: left;
+                    margin: 15px 0px 0px 15px;" />
+                <%--<input id="btnscroll" type="button" onclick="scollleft()" class="scrollbtn" />
+                <input id="btnscroll2" type="button" onclick="scollright()" class="scrollbtn2" />--%>
+                <span class="jtscname">
+                    <asp:Literal runat="server" ID="liScenicName"></asp:Literal>
+                </span>
+            </div>
+            <ul class="nav">
+                <div id="adminBlock" runat="server">
+                    <li><span>景区管理</span></li>
+                    <li><a href="/scenicmanager/UpdateScenticInfo.aspx">景区资料</a></li>
+                    <li><a href="/scenicmanager/onlinesell/Pricesetting.aspx">景区门票信息</a></li>
+                    <li><a href="/scenicmanager/ScenicPictureShow.aspx">景区图片管理</a></li>
+                    <li><span>人员管理</span></li>
+                    <li><a href="/ScenicManager/WorkerList.aspx">工作人员列表</a></li>
+                    <li><a href="/ScenicManager/WorderAdd.aspx">增加工作人员</a></li>
+                </div>
+                <div id="accountBlock" runat="server">
+                    <li><span>账目管理</span></li>
+                    <li><a href="/ScenicManager/BillUnPaid.aspx">售票查询</a></li>
+                    <li><a href="/ScenicManager/StatisInfo.aspx">账单管理</a></li>
+                </div>
+                <div id="checkBlock" runat="server">
+                    <li><span>景区验票</span></li>
+                    <li><a href="/ScenicManager/CheckTicket.aspx">景区验票</a></li>
+                </div>
+            </ul>
+            <div class="about">
+                <img src="/theme/default/image/abouticon.png" width="10px" height="11px" style="margin-left: 30px;
+                    margin-top: 6px; float: left;" />
+                <span>技术支持</span>
+            </div>
+            <div class="aboutinfo">
+                <div class="tel">
+                    <span class="icon">▶</span><span style="margin-left: 30px">Tel:&nbsp;0571-86933134</span>
+                </div>
+                <div class="tel">
+                    <span style="margin-left: 66px">Mo:&nbsp;13868130983</span>
+                </div>
+                <hr />
+                <div class="tel">
+                    <span class="icon">▶</span><span style="margin-left: 30px">QQ:&nbsp;364819046</span>
+                </div>
+                <div class="tel">
+                    <span style="margin-left: 89px">858580604</span>
+                </div>
+                <hr />
+                <div class="tel">
+                    <span class="icon">▶</span><span style="margin-left: 30px">E-Mail:&nbsp;lzq@tourol.cn</span>
+                </div>
+            </div>
+        </div>
+        <div id="right">
+        <asp:ContentPlaceHolder ID="cphmain" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </div>
+    <div id="footer">
+        中国旅游在线
+    </div>
+    </form>
+</body>
+</html>

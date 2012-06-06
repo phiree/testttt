@@ -1,0 +1,51 @@
+﻿/*亮色按钮*/
+
+.btn
+{
+    width: 130px;
+    height: 25px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 5px;
+    font-weight:600;
+    font-family: 微软雅黑;
+    cursor: pointer;
+}
+.btn:focus
+{
+ border:1px solid #000;
+ 
+    }
+.btnlight, .btnlight:link, .btnlight:visited
+{   color: White;
+    background: url(../image/btnlight.png) top left repeat-x;
+    border: 1px solid #F18642;
+}
+.btnlight:hover
+{   
+    background: url(../image/btnlighthover.png) top left repeat-x;
+}
+/*暗色按钮*/
+.btndark, .btndark:link, .btndark:visited
+{  color: White;
+    background: url(../image/btndark.png) top left repeat-x;
+    border: 1px solid #6C7C3D;
+}
+.btndark:hover
+{
+    background: url(../image/btndarkhover.png) top left repeat-x;
+}
+
+.btngray, .btngray:link, .btngray:visited
+{
+     color: White;
+    background: url(../image/btngray.png) top left repeat-x;
+    border: 1px solid #6C7C3D;
+    }
+    .btngray:hover
+{
+    
+    background: url(../image/btngrayhover.png) top left repeat-x;
+   
+    }

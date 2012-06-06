@@ -1,0 +1,209 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using NHibernate;
+using Model;
+using System.Data;
+ 
+namespace DAL
+{
+    public class DALTicketAssign:DalBase,IDAL.ITicketAssign
+    {
+        public void SaveOrUpdate(TicketAssign ticketassign)
+        {
+            using (var x=session.Transaction)
+            {
+                x.Begin();
+                session.SaveOrUpdate(ticketassign);
+                x.Commit();
+            }
+        }
+
+        public TicketAssign GetTicketAssignByID(Guid assignID)
+        {
+            string sql = "select ta from TicketAssign ta where ta.Id='" + assignID + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().First();
+        }
+
+        public IList<TicketAssign> GetTicketAssignByUserId(Guid userid)
+        {
+            string sql = "select ta from TicketAssign ta where ta.OrderDetail.Order.MemberId='" + userid + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
+        }
+        public IList<TicketAssign> GetTicketAssignByUserId(Guid userid,bool isUsed)
+        {
+            string sql = "select ta from TicketAssign ta where ta.OrderDetail.Order.MemberId='" + userid + "'";
+            sql += " and ta.IsUsed=" + isUsed;
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
+        }
+
+        public IList<TicketAssign> GetIsUsedCountByAsodid(int odid)
+        {
+            string sql = "select ta  from TicketAssign ta where ta.OrderDetail.Id=" + odid + " and IsUsed=false";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
+        }
+
+
+
+        public IList<TicketAssign> GetByodid(int odid)
+        {
+            string sql = "select ta from TicketAssign ta where ta.OrderDetail.Id=" + odid + "";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
+        }
+
+
+        public IList<DataTable> GetTicketAssignBynameandidcard(string name, string idcard, Scenic scenic)
+        {
+            string sql = "select ta.Name,ta.OrderDetail.Quantity,ta.OrderDetail.TicketPrice.Price,OrderDetail.Order.BuyTime from TicketAssign ta where ta.Name like '%" + name + "%' and ta.IdCard like '%" + idcard + "%' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.OrderDetail.TicketPrice.PriceType=2 group by ta.Name,ta.OrderDetail.Quantity,ta.OrderDetail.TicketPrice.Price,OrderDetail.Order.BuyTime";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<DataTable>().ToList<DataTable>();
+        }
+
+
+        public List<TicketAssign> GetIdcardandname(string name, string idcard, Scenic scenic)
+        {
+            string sql = "select ta.Name,ta.IdCard from TicketAssign ta where ta.Name like '%" + name + "%' and ta.IdCard like '%" + idcard + "%' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + "  group by ta.Name,ta.IdCard";
+            IQuery query = session.CreateQuery(sql);
+            IList<Object[]> list;
+            list = query.List<object[]>();
+            List<TicketAssign> listticket = new List<TicketAssign>();
+            foreach (object[] item in list)
+            {
+                TicketAssign ta = new TicketAssign();
+                ta.Name = item[0].ToString();
+                ta.IdCard = item[1].ToString();
+                listticket.Add(ta);
+            }
+            return listticket;
+        }
+
+
+        public void GetTicketInfoByIdCard(string idcard, Scenic scenic, out int ydcount, out int usedcount,int type)
+        {
+            string sqlyd = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.OrderDetail.TicketPrice.PriceType="+type+"";
+            IQuery queryyd = session.CreateQuery(sqlyd);
+            ydcount =(int)queryyd.FutureValue<long>().Value;
+            string sqlused = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=true and ta.OrderDetail.TicketPrice.PriceType=" + type + "";
+            IQuery queryused = session.CreateQuery(sqlused);
+            usedcount = (int)queryused.FutureValue<long>().Value;
+        }
+
+
+        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, Scenic scenic,int type)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=false and ta.OrderDetail.TicketPrice.PriceType=" + type + "";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
+        }
+
+
+        public TicketAssign GetLasetRecordByidcard(string idcard, Scenic scenic,int type)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.OrderDetail.TicketPrice.PriceType=" + type + " order by ta.Id desc";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<TicketAssign>().Value;
+        }
+
+
+        public void GetOlTicketInfoByIdcard(string idcard, Scenic scenic, out int olcount, out int usedolcount, int type)
+        {
+            string sqlyd = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.OrderDetail.TicketPrice.PriceType=" + type + " and ta.OrderDetail.Order.IsPaid=true";
+            IQuery queryyd = session.CreateQuery(sqlyd);
+            olcount = (int)queryyd.FutureValue<long>().Value;
+            string sqlused = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=true and ta.OrderDetail.TicketPrice.PriceType=" + type + "";
+            IQuery queryused = session.CreateQuery(sqlused);
+            usedolcount = (int)queryused.FutureValue<long>().Value;
+        }
+
+        public IList<TicketAssign> Getolnotusedticketassign(string idcard, Scenic scenic, int type)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=false and ta.OrderDetail.TicketPrice.PriceType=" + type + " and ta.OrderDetail.Order.IsPaid=true ";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
+        }
+
+        public List<TicketAssign> GetUsedRecord(string idcard)
+        {
+            StringBuilder sql=new StringBuilder();
+            sql.Append("select ta.Name,ta.UsedTime,ta.OrderDetail.TicketPrice.Ticket.Scenic.Name,ta.OrderDetail.TicketPrice.PriceType,");
+            sql.Append("ta.OrderDetail.TicketPrice.Price,ta.OrderDetail.Id from TicketAssign ta where ta.IsUsed=true and ta.IdCard='"+idcard+"'");
+            sql.Append(" group by ta.Name,ta.UsedTime,ta.OrderDetail.TicketPrice.Ticket.Scenic.Name,ta.OrderDetail.TicketPrice.PriceType,");
+            sql.Append("ta.OrderDetail.TicketPrice.Price,ta.OrderDetail.Id");
+            IQuery query = session.CreateQuery(sql.ToString());
+            IList<Object[]> list;
+            list = query.List<object[]>();
+            List<TicketAssign> listticket = new List<TicketAssign>();
+            foreach (object[] item in list)
+            {
+                TicketAssign ta = new TicketAssign();
+                ta.Name = item[0].ToString();
+                ta.UsedTime = DateTime.Parse(item[1].ToString());
+                OrderDetail od = new OrderDetail();
+                TicketPrice tp = new TicketPrice();
+                tp.PriceType = (PriceType)int.Parse(item[3].ToString());
+                tp.Price = decimal.Parse(item[4].ToString());
+                Ticket t = new Ticket();
+                Scenic s = new Scenic();
+                s.Name = item[2].ToString();
+                t.Scenic = s;
+                tp.Ticket = t;
+                od.TicketPrice = tp;
+                ta.OrderDetail = od;
+                listticket.Add(ta);
+            }
+            return listticket;
+        }
+
+        public int GetUsedCount(string idcard, DateTime dt)
+        {
+            string sql = "select count(* from TicketAssign ta where ta.UsedTime='" + dt + "' and ta.IsUsed=true and ta.IdCard='" + idcard + "'";
+            IQuery query = session.CreateQuery(sql);
+            return (int)query.FutureValue<long>().Value;
+        }
+
+        public int GetUsedCount(string idcard)
+        {
+            string sql = "select count(*) from TicketAssign ta where ta.IsUsed=false and ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.PriceType=3";
+            IQuery query = session.CreateQuery(sql);
+            return (int)query.FutureValue<long>().Value;
+        }
+
+        public int GetDdCount(string idcard)
+        {
+            string sql = "select count(*) from TicketAssign ta where  ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.PriceType=2";
+            IQuery query = session.CreateQuery(sql);
+            return (int)query.FutureValue<long>().Value;
+        }
+
+
+        public List<TicketAssign> GetYwCount(string idcard)
+        {
+            string sql = "select ta.UsedTime from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.IsUsed=true group by ta.UsedTime";
+            IQuery query = session.CreateQuery(sql);
+            IList<object> list;
+            list = query.List<object>();
+            List<TicketAssign> listticket = new List<TicketAssign>();
+            foreach (object item in list)
+            {
+                TicketAssign ta = new TicketAssign();
+                ta.UsedTime = DateTime.Parse(item.ToString());
+                listticket.Add(ta);
+            }
+            return listticket;
+        }
+
+
+        public IList<TicketAssign> GetTaByIdCard(string idcard)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
+        }
+    }
+}

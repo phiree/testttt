@@ -1,0 +1,2 @@
+﻿sqlserver2008:
+ sa:P@ssw0rd

@@ -1,0 +1,148 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true"
+    CodeFile="CheckTicket.aspx.cs" Inherits="ScenicManager_CheckTicket" %>
+
+<%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
+    <%--<script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <script src="../Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
+    <script src="../Scripts/jqueryplugin/jquery.autoRedirect.js" type="text/javascript"></script>--%>
+    <script src="/Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery.autocomplete.js" type="text/javascript"></script>
+    <link href="../theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
+    <script src="../Scripts/CheckTicket.js" type="text/javascript"></script>
+    <script src="../Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery.cookie.js" type="text/javascript"></script>
+     <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d025"></object>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
+    <asp:HiddenField ID="hfscid" runat="server" />
+    <p class="fuctitle">
+        景区验票</p>
+    <hr />
+    <div id="tpmain">
+        <div runat="server" id="tp_nav" class="tp_nav">
+            <div id="txinfo" runat="server" class="centerbig">
+                <div class="divtxtinfo"><asp:TextBox ID="txtinfo" CssClass="txtinfo" runat="server" Style="border: 0px none White;"></asp:TextBox></div>
+            </div>
+            <span id="yklistt"><span style="margin-left:0px; padding-left:0px; float:left;">游客列表&nbsp;&nbsp;</span><img onclick="showyklist()" height="15px" width="10px"
+                src="../theme/default/image/downicon.png" style="margin-top:7px; display:block; float:left;
+                cursor: pointer;" /></span>
+            <%--<asp:Button ID="btnsearch" runat="server" Text="查询全部信息" OnClick="btnsearch_Click" />--%>
+        </div>
+        <div runat="server" id="detailinfo" class="detailinfo">
+            <h3 id="username" runat="server">
+                王小莉</h3>
+            <p id="useridcard" runat="server" class="idcard">
+                身份证号码:&nbsp;330203198909253615</p>
+            <div class="onlinebuy" runat="server" id="idcardol">
+                在线支付购票&nbsp;<span id="olgpcount" class="num"><%= totalolcount %></span>&nbsp;张&nbsp;&nbsp;已使用了&nbsp;<span
+                    class="num" id="olgpusedcount"><%= useolcount %></span>&nbsp;张&nbsp;&nbsp;现用
+                <asp:TextBox ID="txtolusecount" runat="server" CssClass="bottom" Width="60px" onkeyup="return changeolcount(this)"></asp:TextBox>&nbsp;张
+            </div>
+            <div class="ydbuy" runat="server" id="idcardyuding">
+                预定门票&nbsp;<span id="ydmpcount" class="num"><%= totalyudingcount%></span>&nbsp;张&nbsp;&nbsp;已使用了&nbsp;<span
+                    class="num" id="ydmpusedcount"><%= usedyudingcount %></span>&nbsp;张&nbsp;&nbsp;现用
+                <asp:TextBox ID="txtUseCount" runat="server" Width="60px" CssClass="bottom" onkeyup="changesumprice()"></asp:TextBox>&nbsp;张&nbsp;&nbsp;预订单价为&nbsp;<span
+                    id="yddj" class="num"><%= yddj %>元</span> <img src="/theme/default/image/moneyicon.png" width="15px" height="20px" style=" position:relative; top:4px;">需要支付&nbsp;<span id="sumprice" class="num">0元</span>
+            </div>
+            <div class="jxyd">
+                
+            </div>
+            <div class="yptg">
+                <asp:Button ID="Btnckpass" runat="server" CssClass="btnckpass" 
+                    onclick="Btnckpass_Click" />
+            </div>
+            <div style="display: none">
+                <div>
+                    <h5>
+                        此身份证的预定信息
+                    </h5>
+                    <p>
+                        您总共预定了<span class="num"><%= totalyudingcount%></span>张，已使用了<span class="num"><%= usedyudingcount %></span>张，本次使用，<asp:Button
+                            ID="btnpay" runat="server" Text="支付" OnClick="btnpay_Click" OnClientClick="return querenpay();" /></p>
+                </div>
+            </div>
+        </div>
+        <div runat="server" id="ywdiv" class="ywdiv" >
+            <span id="ywspan"><span style=" display:block; float:left; padding:0px; margin:0px">游玩记录&nbsp;&nbsp;</span><img onclick="showywrecord()" height="15px" width="10px"
+                src="../theme/default/image/downicon.png" style=" display:block; float:left; margin-top: 3px;
+                cursor: pointer;" />
+            </span>
+        </div>
+        <div style="display: none">
+            <asp:Button ID="btnbind" runat="server" Text="Button" OnClick="btnbind_Click" />
+            <asp:HiddenField ID="hfdata" runat="server" />
+            <asp:Button ID="btnselect" runat="server" Text="Button" OnClick="btnselect_Click" />
+            <asp:HiddenField ID="hfselectname" runat="server" />
+            <asp:HiddenField ID="hfselectidcard" runat="server" />
+            <asp:Button ID="btnauto" runat="server" Text="Button" onclick="btnauto_Click" />
+            <asp:HiddenField ID="hfautoidcard" runat="server" />
+        </div>
+    </div>
+    <div id="listname" class="yklist" style="display: none;">
+        <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom:0px; width:200px;">
+            <tr style="background-color: #E9E9E9">
+                <td style=" width:50px;">
+                    <span style="display:block;width:50px;">姓名</span>
+                </td>
+                <td>
+                    <span style="display:block;width:150px;">身份证号</span>
+                </td>
+            </tr>
+        </table>
+            <asp:Repeater ID="rptpeopleinfo" runat="server" OnItemCommand="rptpeopleinfo_ItemCommand">
+                <HeaderTemplate>
+                    <table cellpadding="0" cellspacing="0" style="margin:0px auto; margin-bottom:0px; width:200px; max-height:300px; border-top:0px none; overflow:scroll;">
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td style=" background-color: #F7F7F7">
+                            <span style=" display:block; width:50px;"><a class="selectname" onclick="btnselectname(this);">
+                                <%# Eval("Name") %></a></span>
+                        </td>
+                        <td style="  background-color: #F7F7F7">
+                            <span style=" display:block;width:150px"><%# Eval("IdCard") %></span>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </table>
+                </FooterTemplate>
+            </asp:Repeater>
+    </div>
+    <div id="listyw" class="ywrecord" style="display:none; ">
+        <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom:0px; width:200px; table-layout:fixed">
+            <tr style=" width:150px; background-color:#E9E9E9">
+                <td style=" padding:0px; padding-right:0px; padding-left:0px; padding-right:0px;">
+                    <span style="display:block; width:140px; margin:0px; margin-left:0px; margin-right:0px;">游玩时间</span>
+                </td>
+                <td style="width: 60px; padding-left:0px; padding-right:0px;">
+                    <span style="display:block; width:60px">游玩人数</span>
+                </td>
+            </tr>
+        </table>
+        <div style="margin-right:10px; padding:0px; height:150px; width:220px;overflow-x:hidden; overflow-y:auto;">
+            <asp:Repeater ID="rptywrecord" runat="server" 
+                onitemdatabound="rptywrecord_ItemDataBound">
+            <HeaderTemplate>
+                <table cellpadding="0" cellspacing="0" style=" display:block; margin-bottom:0px; border-top:0px none; width:200px; table-layout:fixed">
+            </HeaderTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td  style=" width:140px;background-color:#F7F7F7; padding-left:0px; padding-right:0px; margin-left:0px; margin-right:0px;">
+                            <span  style="display:block; width:125px; margin-left:0px; padding-left:0px; padding-right:0px; margin-right:0px;"><%# Eval("UsedTime","{0:yyyy-MM-dd}") %></span>
+                        </td>
+                        <td style="width:60px; background-color: #F7F7F7; padding:0px;">
+                            <span runat="server" id="ywtime" style="display:block; width:60px"><%# Eval("UsedTime") %></span>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </table>
+                </FooterTemplate>
+            </asp:Repeater>
+        </div>
+    </div>
+</asp:Content>
