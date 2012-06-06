@@ -167,7 +167,7 @@ namespace DAL
             return (int)query.FutureValue<long>().Value;
         }
 
-        public int GetUsedCount(string idcard)
+        public int GetUnusedCount(string idcard)
         {
             string sql = "select count(*) from TicketAssign ta where ta.IsUsed=false and ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.PriceType=3";
             IQuery query = session.CreateQuery(sql);

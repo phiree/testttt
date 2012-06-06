@@ -29,6 +29,6 @@ public partial class UserCenter_Default :  basepage
         visitedrecord.InnerHtml="有"+ bllticketassign.GetUsedRecord(user.IdCard).Count+"条游玩记录";
 
         dpinfo.InnerHtml = "有" + bllticketassign.GetDdCount(user.IdCard) + "张订票信息";
-        notusedtp.InnerHtml = bllticketassign.GetUsedCount(user.IdCard) + "张门票未使用";
+        notusedtp.InnerHtml = bllticketassign.GetUnusedCount(user.IdCard) + "张门票未使用";
     }
 }
