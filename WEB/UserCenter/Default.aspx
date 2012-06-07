@@ -11,7 +11,7 @@
         </a>
         <div class="dorderinfo">
             <a runat="server" id="dpinfo" class="ddpcount" href="Order.aspx">有3张订票信息</a>
-            <a runat="server" id="notusedtp" class="dgpcount" href="Order.aspx">1张门票未使用</a>
+            <%--<a runat="server" id="notusedtp" class="dgpcount" href="Order.aspx">1张门票未使用</a>--%>
         </div>
         <a class="dorder" href="MyVisited.aspx" mce_href=”#1″ hidefocus=”true”>
             游玩记录
