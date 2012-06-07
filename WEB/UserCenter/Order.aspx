@@ -22,7 +22,7 @@
                         <asp:Repeater ID="rptod" runat="server">
                             <ItemTemplate>
                                 <span class="odname">
-                                    <%# Eval("TicketPrice.Ticket.Scenic.Name")%>
+                                    <a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'><%# Eval("TicketPrice.Ticket.Scenic.Name")%></a>
                                 </span>
                             </ItemTemplate>
                         </asp:Repeater>
