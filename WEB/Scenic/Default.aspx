@@ -115,7 +115,17 @@
             <div id="scdescription" runat="server" class="scdescription">
             </div>
             <div class="scftshow">
-                <div class="sconeft">
+                <asp:Repeater runat="server" ID="rptft">
+                    <ItemTemplate>
+                        <div class="sconeft">
+                                <img class="imgft" alt='<%# Eval("Description") %>' src='<%# Eval("Name","/ScenicImg/{0}") %>' />
+                            <p runat="server" id="fttitle1">
+                                <%# Eval("Title")%>
+                            </p>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+                <%--<div class="sconeft">
                     <asp:Image ID="Imgft1" runat="server" CssClass="imgft" />
                     <p runat="server" id="fttitle1">
                         </p>
@@ -144,7 +154,7 @@
                     <asp:Image ID="Imgft6" runat="server" CssClass="imgft" />
                     <p runat="server" id="fttitle6">
                         </p>
-                </div>
+                </div>--%>
             </div>
         </div>
         <div id="zbscdiv">
@@ -153,7 +163,19 @@
             </div>
             <div class="zbscinfo">
                 <div class="zbscpic">
-                    <div class="zbscone">
+                    <asp:Repeater runat="server" ID="rptzbsc">
+                        <ItemTemplate>
+                            <div class="zbscone">
+                                <a runat="server" id="aImgzb1" href='<%# ResolveUrl(string.Format("/{0}/{1}.html", Eval("Scenic.Area.SeoName"),Eval("Scenic.SeoName"))) %>'>
+                                    <img alt="<%# Eval("Description") %>" class="imgzb" src='<%# Eval("Name","/ScenicImg/{0}") %>' />
+                                </a>
+                                <p runat="server" id="zbname1">
+                                    <%# Eval("Scenic.Name") %>
+                                </p>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <%--<div class="zbscone">
                         <a runat="server" id="aImgzb1"><asp:Image ID="Imgzb1" runat="server" CssClass="imgzb" /></a>
                         <p runat="server" id="zbname1">
                             </p>
@@ -182,7 +204,7 @@
                         <a runat="server" id="aImgzb6"><asp:Image ID="Imgzb6" runat="server" CssClass="imgzb" /></a>
                         <p runat="server" id="zbname6">
                             </p>
-                    </div>
+                    </div>--%>
                 </div>
                 <div class="scmappos">
                     <p>
@@ -192,6 +214,8 @@
                 </div>
             </div>
         </div>
+        <div class="clear">
+        </div>
         <div id="visitedsc">
             <p>
                 最近浏览过的景区</p>
@@ -200,7 +224,9 @@
                 <asp:Repeater ID="rptvisited" runat="server">
                     <ItemTemplate>
                         <div class="visiteddiv">
-                            <img src='<%# Eval("Name","/ScenicImg/{0}") %>' />
+                            <a href='<%# ResolveUrl(string.Format("/{0}/{1}.html", Eval("Scenic.Area.SeoName"),Eval("Scenic.SeoName"))) %>'>
+                            <img src='<%# Eval("Name","/ScenicImg/{0}") %>' alt='<%# Eval("Description") %>' />
+                            </a>
                             <p><%# Eval("Scenic.Name") %></p>
                         </div>
                     </ItemTemplate>

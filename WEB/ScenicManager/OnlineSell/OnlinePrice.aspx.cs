@@ -41,6 +41,10 @@ public partial class ScenticManager_OnlineSell_OnlinePrice : bpScenicManager
 
         Model.Ticket ticket = bllTicket.GetTicketByscId(CurrentScenic.Id)[0];
 
+        //更新该景区票状态为锁，无法显示在首页上
+        ticket.Lock = true;
+        bllTicket.SaveOrUpdateTicket(ticket);
+
         TicketPrice tpNormal = new TicketPrice();
         tpNormal.PriceType = PriceType.Normal;
         tpNormal.Price = Convert.ToDecimal(tbxPrice.Text.Trim());

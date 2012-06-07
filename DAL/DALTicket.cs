@@ -28,7 +28,7 @@ namespace DAL
         public IList<Model.Ticket> GetTicketByAreaIdAndLevel(int areaId, int level,int pageIndex,int pageSize ,out int totalRecord)
         {
 
-            string where = " where  1=1 ";
+            string where = " where  1=1 and Lock=false ";
             if (areaId > 0)
             {
                 where += " and  t.Scenic.Area=" + areaId;

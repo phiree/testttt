@@ -3,3 +3,4 @@ Bin
 obj
 connectionStrings.config
 *.suo
+WEB/config/connectionStrings.config

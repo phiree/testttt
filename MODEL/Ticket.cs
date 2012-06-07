@@ -19,7 +19,7 @@ namespace Model
         public virtual string Name { get; set; }
         //public virtual TicketsType TicketsType { get; set; }
         public virtual Scenic Scenic { get; set; }
-
+        public virtual bool Lock { get; set; }
         
         public virtual IList<TicketPrice> TicketPrice { get; set; }
         /// <summary>

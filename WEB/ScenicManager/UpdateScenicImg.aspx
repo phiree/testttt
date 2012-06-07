@@ -8,7 +8,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("[id$='FileUpload1']").uploadify({
-                'uploader': '../Scripts/uploadify.swf',
+                'uploader': 'uploadify.swf',
                 'script': 'Upload.ashx?mark=upload',
                 'cancelImg': '/Scripts/uploadify-cancel.png',
                 'folder': 'Upload',

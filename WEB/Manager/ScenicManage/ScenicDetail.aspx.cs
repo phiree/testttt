@@ -59,9 +59,14 @@ public partial class Manager_ScenicDetail : basepage
     /// <param name="e"></param>
     protected void btnPass_Click(object sender, EventArgs e)
     {
+
         UpdateStatus(CheckStatus.Pass, ScenicModule.SellOnLine);
         checkprogress = bllScenic.GetStatus(scenic.Id, ScenicModule.SellOnLine);
         LoadOnLineCheck();
+        //更改该景区票的状态为释放
+        Ticket ticket = new BLLTicket().GetTicketByscId(scenic.Id)[0];
+        ticket.Lock = false;
+        new BLLTicket().SaveOrUpdateTicket(ticket);
         //Response.Redirect("ScenicPrice.aspx?id=" + Request["id"] + "");
     }
     protected void btnNoPass_Click(object sender, EventArgs e)
