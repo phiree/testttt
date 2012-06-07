@@ -79,7 +79,10 @@ namespace BLL.SEO
             {
                 title += string.Format("(第{0}页)",pageIndex);
             }
-
+            if (pageIndex > 0)
+            {
+                title += string.Format("(第{0}页)", pageIndex);
+            }
             seoData.KeyWord = keyword;
             seoData.Title = title;
 
