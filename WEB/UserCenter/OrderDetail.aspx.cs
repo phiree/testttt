@@ -184,6 +184,7 @@ public partial class UserCenter_MyOrder : basepage
                 bllticketassign.SaveOrUpdate(ta);
             }
         }
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功!');", true);
     }
     protected void rptbind_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {

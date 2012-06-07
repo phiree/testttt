@@ -109,7 +109,7 @@
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;">
                     <span class="oscfirst">
-                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></span><span class="oscsecond" runat="server"
+                        <a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'><%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span><span class="oscsecond" runat="server"
                             id="buytype"></span><span class="oscthird" runat="server" id="tp"><%# Eval("TicketPrice.Price","{0:0}")%></span><span
                                 class="oscfour" runat="server" id="qua"><%# Eval("Quantity")%></span><span class="oscfifth"><span
                                     id="sumprice" runat="server"></span>元</span><span class="oscsix"><span id="usedstate"
@@ -131,7 +131,7 @@
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;">
                     <span class="oscfirst" style=" margin:0px;">
-                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></span>
+                        <a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'><%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span>
                      <span class="oscsecond" runat="server" id="ydprice" style="margin-left:5px" ><%# Eval("TicketPrice.Price","{0:0}")%></span>
                      <span class="oscthird" runat="server" id="usedcount" style="width:100px"></span>
                      <span class="oscfour" runat="server" id="notusedcount" style="width:100px"></span>
@@ -153,7 +153,7 @@
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;">
                     <span class="oscfirst">
-                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></span>
+                        <a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'><%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span>
                     <span class="oscsecond" runat="server" id="onlineprice" style="margin-left:5px;"><%# Eval("TicketPrice.Price","{0:0}")%></span>
                     <span class="oscthird" runat="server" id="tp"><%# Eval("Quantity")%></span>
                     <span class="oscfour" runat="server" id="sumprice"></span>
