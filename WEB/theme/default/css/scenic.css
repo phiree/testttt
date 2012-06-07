@@ -448,6 +448,8 @@
 {
     width:838px;
     margin-top:100px;
+    margin-bottom:15px;
+    min-height:180px;
 }
 #visitedsc p
 {
@@ -474,6 +476,7 @@
     height:135px;
     margin-right:25px;
     float:left;
+    margin-bottom:10px;
 }
 .visiteddiv img
 {

@@ -65,8 +65,22 @@ public partial class Scenic_Default : System.Web.UI.Page
             scdescription.InnerHtml = scenic.Desec;
         }
         //添加辅图
-        rptft.DataSource = bllscenicimg.GetSiByType(scenic, 2);
-        rptft.DataBind();
+        IList<ScenicImg> ilist=bllscenicimg.GetSiByType(scenic, 2);
+        if (ilist.Count <= 6)
+        {
+            rptft.DataSource = ilist;
+            rptft.DataBind();
+        }
+        else
+        {
+            List<ScenicImg> ftlist = new List<ScenicImg>();
+            for (int i = 0; i < 6; i++)
+            {
+                ftlist.Add(ilist[i]);
+            }
+            rptft.DataSource = ftlist;
+            rptft.DataBind();
+        }
 
 
         ydhtprice.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 2).Price.ToString("0");

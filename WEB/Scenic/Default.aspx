@@ -214,6 +214,8 @@
                 </div>
             </div>
         </div>
+        <div class="clear">
+        </div>
         <div id="visitedsc">
             <p>
                 最近浏览过的景区</p>
@@ -222,7 +224,9 @@
                 <asp:Repeater ID="rptvisited" runat="server">
                     <ItemTemplate>
                         <div class="visiteddiv">
-                            <img src='<%# Eval("Name","/ScenicImg/{0}") %>' />
+                            <a href='<%# ResolveUrl(string.Format("/{0}/{1}.html", Eval("Scenic.Area.SeoName"),Eval("Scenic.SeoName"))) %>'>
+                            <img src='<%# Eval("Name","/ScenicImg/{0}") %>' alt='<%# Eval("Description") %>' />
+                            </a>
                             <p><%# Eval("Scenic.Name") %></p>
                         </div>
                     </ItemTemplate>
