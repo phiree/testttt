@@ -309,7 +309,7 @@
 .ofifth
 {
     margin-left:10px;
-    width:80px;
+    width:130px;
 }
 .osix
 {
@@ -352,7 +352,7 @@
 .oscdptop
 {
     display:block;
-    background-color:#82974C;
+    /*background-color:#82974C;*/
     height:30px;
     line-height:30px;
     padding-left:20px;
@@ -411,11 +411,11 @@
 }
 .oscupdatetop
 {
-    background-color:#F0832E;
+    /*background-color:#F0832E;*/
     height:35px;
     line-height:35px;
     padding-left:15px;
-    color:White;
+    /*color:White;*/
 }
 .oscupdatesearch
 {
@@ -493,9 +493,9 @@
 }
 .oscbtnupdate
 {
-    width:98px;
-    height:26px;
-    background-image:url("/theme/default/image/btnupdate.png");
+    width:86px;
+    height:28px;
+    background-image:url("/theme/default/image/changepwdbtn.png");
     border:0px none White;
     cursor:pointer;
 }
@@ -520,15 +520,15 @@
 }
 .state3
 {
-    padding-left:350px;
+    padding-left:300px;
     padding-bottom:20px;
     padding-top:10px;
 }
 .btnyd
 {
-    background:url("/theme/default/image/btnyd.png");
-    width:60px;
-    height:24px;
+    background:url("/theme/default/image/scxf.png");
+    width:101px;
+    height:30px;
     border:0px none White;
     vertical-align:middle;
     cursor:pointer;

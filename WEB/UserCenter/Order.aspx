@@ -11,7 +11,7 @@
             onitemdatabound="rptOrder_ItemDataBound" >
             <HeaderTemplate>
                 <div class="otitlename">
-                    <span class="ofirst">订票时间</span><span class="osecond">订票内容</span><span class="othird">订票方式</span><span class="ofour">订票状态</span><span class="ofifth">订单详情</span><span class="osix">订单号</span>
+                    <span class="ofirst">订票时间</span><span class="osecond">订票内容</span><span class="othird">订票方式</span><span class="ofour">订票状态</span><span class="ofifth">订单详情</span>
                 </div>
             </HeaderTemplate>
             <ItemTemplate>
@@ -31,8 +31,7 @@
                         <%# Eval("OrderDetail[0].TicketPrice.PriceType").ToString() == "PayOnline"?"在线购买":"网上预订"%>
                     </span>
                     <span runat="server" id="paystate" class="ofour"></span>
-                    <span class="ofifth" style="margin-left:5px;"><a href='/UserCenter/Orderdetail.aspx?orderid=<%#Eval("Id")%>'>使用详情</a></span>
-                    <span class="osix" style="margin-left:0px" ><%# Eval("Id") %></span>
+                    <span class="ofifth" style="margin-left:5px;"><a href='/UserCenter/Orderdetail.aspx?orderid=<%#Eval("Id")%>'><%# Eval("Id") %>使用详情</a></span>
                 </div>
             </ItemTemplate>
             <AlternatingItemTemplate>
@@ -42,7 +41,7 @@
                     <span class="osecond"><asp:Repeater ID="rptod" runat="server">
                             <ItemTemplate>
                                 <span class="odname">
-                                <%# Eval("TicketPrice.Ticket.Scenic.Name")%>
+                                <a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'><%# Eval("TicketPrice.Ticket.Scenic.Name")%></a>
                                 </span>
                             </ItemTemplate>
                         </asp:Repeater></span>
@@ -50,8 +49,8 @@
                         <%# Eval("OrderDetail[0].TicketPrice.PriceType").ToString() == "PayOnline"?"在线购买":"网上预订"%>
                     </span>
                     <span runat="server" id="paystate" class="ofour"></span>
-                    <span class="ofifth" style="margin-left:5px;"><a href='/UserCenter/Orderdetail.aspx?orderid=<%#Eval("Id")%>'>使用详情</a></span>
-                    <span class="osix" runat="server" id="odid"  style="margin-left:0px"><%# Eval("Id") %></span>
+                    <span class="ofifth" style="margin-left:5px;"><a href='/UserCenter/Orderdetail.aspx?orderid=<%#Eval("Id")%>'><%# Eval("Id") %>使用详情</a></a></span>
+                    
                 </div>
             </AlternatingItemTemplate>
         </asp:Repeater>
