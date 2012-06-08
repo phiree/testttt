@@ -61,6 +61,8 @@ public class map : IHttpHandler {
                 m.level = item.Scenic.Level;
                 m.price = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(item.Scenic.Id, 3).Price.ToString("0") + "元";
                         //string.Format("{0:f2}", new BLL.BLLTicketPrice().GetTicketPriceByScenicId(item.Id)[1].Price);
+                m.scseoname = item.Scenic.SeoName;
+                m.areaseoname = item.Scenic.Area.SeoName;
                 list2.Add(m);
             }
         //}

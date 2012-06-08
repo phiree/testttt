@@ -27,6 +27,8 @@ public class mapscenic : IHttpHandler {
             m.address = item.Scenic.Address;
             m.position = item.Scenic.Position;
             m.price = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(item.Scenic.Id, 3).Price.ToString("0") + "元";
+            m.scseoname = item.Scenic.SeoName;
+            m.areaseoname = item.Scenic.Area.SeoName;
             list2.Add(m);
         }
         string JSON = new JavaScriptSerializer().Serialize(list2);//把list转换为JSON格式的字符串

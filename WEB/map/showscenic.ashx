@@ -32,6 +32,8 @@ public class qiehuan : IHttpHandler {
                 m.desc = item.Scenic.Desec;
                 m.address = item.Scenic.Address;
                 m.position = item.Scenic.Position;
+                m.scseoname = item.Scenic.SeoName;
+                m.areaseoname = item.Scenic.Area.SeoName;
                 list2.Add(m);
             }
         }
