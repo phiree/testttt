@@ -1,39 +1,63 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master"
-    CodeFile="manager.master.cs" Inherits="Manager_manager" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="manager.master.cs" Inherits="Manager_manager" %>
 
-    <asp:Content ContentPlaceHolderID="head" runat="server">
-        <link href="/Styles/adminmaster.css" rel="stylesheet" type="text/css" />
-        <link href="/Styles/pager.css" rel="stylesheet" type="text/css" />
-        <script src="/Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
-        <script language="javascript" type="text/javascript">
-            $(function () {
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-               $("#ucNav ul li a").HighLightLink();
-
-             });
-           
-        </script>
-    </asp:Content>
-<asp:Content ContentPlaceHolderID="cphmain" runat="server" ID="AdminContent">
-    <div id="ucNav">
-        <ul>
-            <li><span>景区管理</span></li>
-            <li><a href="/manager/ScenicManage/">景区资料审核</a></li>
-            <li><a href="/manager/ScenicAdminSetting.aspx">景区帐号管理</a></li>
-            <li><span>用户管理</span></li>
-            <li><a href="/manager/AccountManager.aspx">帐号管理</a></li>
-            <li><a href="/manager/RoleManage.aspx">角色管理</a></li>
-            <li><span>帐目管理</span></li>
-            <li><a href="/manager/BillAll.aspx">当前账单</a></li>
-            <li><a href="/manager/BillCheck.aspx">已结账单</a></li>
-            <li><span>数据管理</span></li>
-            <li><a href="/manager/ScenicimgInit.aspx">导入Excel数据</a></li>
-            <li><a href="/manager/SeoInit.aspx">Seo数据</a></li>
-            <li><a href="/manager/ScenicMapPoint.aspx">地图坐标初始化</a></li>
-        </ul>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script src="/Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
+    <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="/Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
+    <script src="/Scripts/Manager.js" type="text/javascript"></script>
+    <link href="/theme/default/css/ManagerMasterPage.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="top">
+        <span class="toptitle">
+            中国旅游在线
+        </span>
+        <span class="toptitle2">后台管理</span>
     </div>
-    <div id="ucMain">
-        <asp:ContentPlaceHolder ID="cphmain" runat="server">
-        </asp:ContentPlaceHolder>
+    <div id="tool">
+        <span class="timeicon"></span>
+        <span id="showtime"></span>
+        <span class="returnicon"></span>
+        <span class="default">
+            <a href="/Default.aspx">网站首页</a>
+        </span>
     </div>
-</asp:Content>
+    <div id="main">
+        <div id="left">
+            <div class="loginname">
+                <span>
+                    <asp:LoginName ID="LoginName" runat="server" />
+                </span>
+                <asp:Button ID="btnquit" runat="server" CssClass="btnquit" />
+            </div>
+            <div class="list">
+                <ul>
+                    <li><a href="/Manager/ScenicManage/">景区资料审核</a></li>
+                    <li><a href="/Manager/ScenicAdminSetting.aspx">景区账号管理</a></li>
+                    <li><a href="/Manager/AccountManager.aspx">用户账号管理</a></li>
+                    <li><a href="/Manager/RoleManage.aspx">用户角色管理</a></li>
+                    <li><a href="/Manager/BillCheck.aspx">当前账单管理</a></li>
+                    <li><a href="/Manager/BillAll.aspx">已结账单管理</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="right">
+            <asp:ContentPlaceHolder id="cphmain" runat="server">
+            
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    <div id="footer">
+        中国旅游在线&nbsp;网站后台管理
+    </div>
+    </form>
+</body>
+</html>

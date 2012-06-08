@@ -10,20 +10,23 @@ using System.Web.Security;
 public partial class Manager_AdminLogin : System.Web.UI.Page
 {
     BLLMembership bllMember = new BLLMembership();
+    TourMembershipProvider tourmembership = new TourMembershipProvider();
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
     protected void Login1_LoggedIn(object sender, EventArgs e)
     {
-        TourMembership member = bllMember.GetMemberById((Guid) Membership.GetUser().ProviderUserKey);
-        if (Roles.IsUserInRole(member.Name, "SiteAdmin"))
+        MembershipUser member = (tourmembership.GetUser(Login1.UserName, true));
+        if (Roles.IsUserInRole(member.UserName, "SiteAdmin"))
         {
             Response.Redirect("/Manager/");
         }
-        else {
-            ErrHandler.Redirect(ErrType.AccessDenied);
-        }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或密码错误');", true);
+
+
+
+        
         
     }
 }
