@@ -127,6 +127,7 @@ namespace ExcelOplib
                 {
                     Name = guidname,
                     Scenic = scenic,
+                    Title=NextFile.Name.Replace(NextFile.Extension,""),
                     ImgType = firstone ? Model.ImgType.主图 : Model.ImgType.辅图
                 });
                 firstone = false;
