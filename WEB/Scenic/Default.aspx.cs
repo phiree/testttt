@@ -93,7 +93,11 @@ public partial class Scenic_Default : System.Web.UI.Page
         bindimg(list, scenic);
         rptzbsc.DataSource = sclist;
         rptzbsc.DataBind();
-
+        searchbigmap.HRef = "/map/Default.aspx?scenicid="+scenic.Id;
+        foreach (ScenicImg item in sclist)
+        {
+            searchbigmap.HRef += ","+item.Scenic.Id;
+        }
 
         List<ScenicImg> listsc = new List<ScenicImg>();
         if (Request.Cookies["visitedscenic"] != null)

@@ -15,5 +15,7 @@ namespace Model
         public string position { get; set; }
         public string level {get;set; }
         public string price { get; set; }
+        public string areaseoname { get; set; }
+        public string scseoname { get; set; }
     }
 }

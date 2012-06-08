@@ -208,7 +208,7 @@
                 </div>
                 <div class="scmappos">
                     <p>
-                        地图</p>
+                        地图&nbsp;&nbsp;&nbsp;&nbsp;<a runat="server" id="searchbigmap" style="font-weight:normal;" href="/map/Default.aspx">[查看大图]</a></p>
                     <div id="containtermap">
                     </div>
                 </div>
