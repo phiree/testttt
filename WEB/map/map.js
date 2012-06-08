@@ -39,6 +39,17 @@ function check2() {
     xmlhttprequest.send();
 }
 
+//为了便于查看大图使用
+function check3(obj) {
+    var url = "/map/SearchBigMap.ashx?scenicid=" + obj;
+    xmlhttprequest = createXMLRequest();
+    xmlhttprequest.onreadystatechange = ReadyDo;  //ReadyDo是回调函数
+    xmlhttprequest.open("GET", url, true);
+    xmlhttprequest.send();
+}
+
+
+
 function findallpoint() {
     var randomParam = new Date().toString();
     var url = "/map/map.ashx?tP=" + randomParam;
@@ -376,9 +387,16 @@ $(document).ready(function () {
     if (strUrl.areaid != undefined) {
         $.cookie("strurlareaid", strUrl.areaid);
     }
-    else
+    else {
         $.cookie("strurlareaid", "");
-    check2();
+    }
+    if (strUrl.scenicid != undefined) {
+        check3(strUrl.scenicid);
+    }
+    else {
+        check2();
+    }
+
 });
 
 
@@ -404,9 +422,9 @@ function show() {
         }
     }
 }
-function ResumeError() {
-    return true;
-}
+//function ResumeError() {
+//    return true;
+//}
 //window.onerror = ResumeError;
 
 
@@ -449,3 +467,5 @@ function btnshowinfo() {
     }
     $("#resultscenic").html(loadstr);
 }
+
+
