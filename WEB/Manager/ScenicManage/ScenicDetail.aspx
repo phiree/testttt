@@ -1,9 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Manager/manager.master"
     CodeFile="ScenicDetail.aspx.cs" EnableEventValidation="false" Inherits="Manager_ScenicDetail" %>
 
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
+    <link href="/theme/default/css/Managerdefault.css" rel="stylesheet" type="text/css" />
+</asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="cphmain">
     <!--景区详细信息-->
-    <table class="tblist">
+    <table class="tdetailtable">
         <tr>
             <th>
                 名称

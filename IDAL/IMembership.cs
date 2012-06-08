@@ -38,6 +38,7 @@ namespace IDAL
 
         Model.ScenicAdmin GetScenicAdmin(Guid id);
         IList<Model.ScenicAdmin> GetScenicAdmin(int scenicid);
+        IList<Model.ScenicAdmin> GetScenicAdmin(int scenicid,string code);
         void DeleteScenicAdmin(Model.ScenicAdmin sa);
         
         //更改密码

@@ -158,6 +158,10 @@ namespace BLL
         {
             return dal.GetScenicAdmin(scenicid);
         }
+        public IList<Model.ScenicAdmin> GetScenicAdmin(int scenicid,string code)
+        {
+            return dal.GetScenicAdmin(scenicid,code);
+        }
         public void DeleteScenicAdmin(Model.ScenicAdmin sa)
         {
             dal.DeleteScenicAdmin(sa);
