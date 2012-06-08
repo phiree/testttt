@@ -1,9 +1,16 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Manager/manager.master"
     CodeFile="Default.aspx.cs" EnableEventValidation="false" Inherits="Manager_ScenicinList" %>
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
+    <link href="/theme/default/css/Managerdefault.css" rel="stylesheet" type="text/css" />
+</asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="cphmain">
+    <div id="selectdiv">
+        <span>筛选:</span>
+    </div>
+    
     <div class="tbaction">
-        筛选:
+        
         <asp:DropDownList runat="server" ID="ddlArea">
         </asp:DropDownList>
         <asp:Button runat="server" ID="btnSearch" Text="确定" OnClick="btnSearch_Click" />

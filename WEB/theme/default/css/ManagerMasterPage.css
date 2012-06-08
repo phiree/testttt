@@ -1,0 +1,168 @@
+﻿body
+{
+    display:block;
+    width:960px;
+    margin:0px auto;
+}
+#top
+{
+    height:90px;
+    width:100%;
+    background-color:#545454;
+}
+.toptitle
+{
+    font-family:微软雅黑;
+    font-size:30px;
+    color:White;
+    letter-spacing:10px;
+    width:200px;
+    line-height:90px;
+    padding-left:30px;
+}
+.toptitle2
+{
+    font-family:微软雅黑;
+    font-size:14px;
+    color:White;
+    margin-left:10px;
+    letter-spacing:5px;
+}
+#tool
+{
+    background:url("/theme/default/image/toolbg.png");
+    background-repeat:repeat-x;
+    height:26px;
+    width:100%;
+}
+.timeicon
+{
+    background:url("/theme/default/image/timepic2.png");
+    margin-left:15px;
+    width:16px;
+    height:26px;
+    display:block;
+    float:left;
+}
+#showtime
+{
+    float:left;
+    display:block;
+    line-height:26px;
+    margin-left:10px;
+}
+.returnicon
+{
+    display:block;
+    margin-left:600px;
+    height:26px;
+    width:13px;
+    background:url("/theme/default/image/returndefault2.png");
+    float:left;
+}
+.default
+{
+    display:block;
+    float:left;
+    margin-left:15px;
+}
+.default a:link,.default a:active,.default a:visited
+{
+    line-height:26px;
+    color:Black;
+    text-decoration:none;
+}
+.default a:hover
+{
+    line-height:26px;
+    color:Black;
+    text-decoration:underline;
+}
+#main
+{
+    display:block;
+    width:960px;
+    min-height:100px;
+}
+#left
+{
+    width:214px;
+    display:block;
+    float:left;
+    
+    min-height:200px;
+}
+#right
+{
+    width:745px;
+    display:block;
+    float:left;
+    min-height:300px;
+    border-left:1px solid #CDCDCD;
+    
+}
+#footer
+{
+    clear:both;
+    height:33px;
+    background:url("/theme/default/image/footerbg2.png");
+    background-repeat:repeat-x;
+    width:100%;
+    display:block;
+    text-align:center;
+    font-family:微软雅黑;
+    color:White;
+    line-height:33px;
+}
+.loginname
+{
+    height:85px;
+    width:100%;
+}
+.loginname span
+{
+    display:block;
+    width:100%;
+    text-align:center;
+    margin-top:10px;
+}
+.btnquit
+{
+    background:url("/theme/default/image/quit.png");
+    border:0px none;
+    cursor:pointer;
+    width:49px;
+    height:20px;
+    margin-left:80px;
+    margin-top:10px;
+}
+.list
+{
+    margin:0px;
+    
+}
+.list ul li
+{
+    list-style-type:none;
+    display:block;
+    width:103%;
+    height:30px;
+    border:1px solid #CDCDCD;
+    text-align:center;
+    margin-bottom:5px;
+    background:url("/theme/default/image/managerlibg.png");
+}
+.list ul li a:link,.list ul li a:active,.list ul li a:visited
+{
+    font-weight:700;
+    line-height:30px;
+    text-decoration:none;
+    color:Black;
+}
+.list ul li a:hover
+{
+    font-weight:700;
+    line-height:30px;
+    text-decoration:underline;
+    color:Black;
+}

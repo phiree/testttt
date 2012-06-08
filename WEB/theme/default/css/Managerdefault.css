@@ -1,0 +1,11 @@
+﻿/*景区资料审核*/
+#selectdiv
+{
+    width:100%;
+    height:20px;
+}
+
+#selectdiv span
+{
+    font-weight:700;
+}
