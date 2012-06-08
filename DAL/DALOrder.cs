@@ -37,7 +37,22 @@ namespace DAL
                 }
                 return query.Future<Model.OrderDetail>().ToList<Model.OrderDetail>();
             }
-            return null;
+            else
+            {
+                if (orderID != 0)
+                {
+                    sql = " select od from OrderDetail od where od.Order.Id=:orderID ";
+                    query = session.CreateQuery(sql);
+                    query.SetParameter("orderID", orderID);
+                }
+                else
+                {
+                    sql = " select od from OrderDetail od where od.TicketPrice.Ticket.Scenic.Id=:scenicID ";
+                    query = session.CreateQuery(sql);
+                    query.SetParameter("scenicID", scenicID);
+                }
+                return query.Future<Model.OrderDetail>().ToList<Model.OrderDetail>();
+            }
         }
 
         public IList<Model.OrderDetail> GetListForUser(int orderID, int scenicID, bool? isPaid, string dbegin, string dend)
