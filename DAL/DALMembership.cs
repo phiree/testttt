@@ -84,6 +84,7 @@ namespace DAL
             return sa.Value;
         }
 
+
         public IList<Model.ScenicAdmin> GetScenicAdmin(int scenicid)
         {
             string sqlQuery="select sa from ScenicAdmin sa ";
@@ -91,6 +92,15 @@ namespace DAL
                 sqlQuery += " where sa.Scenic.Id=" + scenicid;
             IQuery query = session.CreateQuery(sqlQuery);
             return query.Future<Model.ScenicAdmin>().ToList<Model.ScenicAdmin>() ;
+        }
+
+        public IList<Model.ScenicAdmin> GetScenicAdmin(int scenicid, string code)
+        {
+            string sqlQuery = "select sa from ScenicAdmin sa where sa.Scenic.Area.Code='"+code+"'";
+            if (scenicid > 0)
+                sqlQuery += " and sa.Scenic.Id=" + scenicid;
+            IQuery query = session.CreateQuery(sqlQuery);
+            return query.Future<Model.ScenicAdmin>().ToList<Model.ScenicAdmin>();
         }
 
        public void DeleteScenicAdmin(Model.ScenicAdmin sa)
