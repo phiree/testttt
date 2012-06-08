@@ -61,20 +61,20 @@ public partial class Manager_ScenicinList : System.Web.UI.Page
                 rpt_CheckProgress.DataBind();
             }
 
-            if (bllscenicadmin.GetScenicAdminByScidandtype(Scenic.Id, 7) == null)
-            {
-                (e.Item.FindControl("btnmake") as Button).Visible = true;
-                (e.Item.FindControl("lblaccount") as Label).Visible = false;
-                (e.Item.FindControl("btncz") as Button).Visible = false;
-            }
-            else
-            {
-                (e.Item.FindControl("btnmake") as Button).Visible = false;
-                (e.Item.FindControl("lblaccount") as Label).Visible = true;
-                (e.Item.FindControl("btncz") as Button).Visible = true;
-                string account=bllscenicadmin.GetScenicAdminByScidandtype(Scenic.Id, 7).Membership.Name;
-                (e.Item.FindControl("lblaccount") as Label).Text = "帐号名" + account;
-            }
+            //if (bllscenicadmin.GetScenicAdminByScidandtype(Scenic.Id, 7) == null)
+            //{
+            //    (e.Item.FindControl("btnmake") as Button).Visible = true;
+            //    (e.Item.FindControl("lblaccount") as Label).Visible = false;
+            //    (e.Item.FindControl("btncz") as Button).Visible = false;
+            //}
+            //else
+            //{
+            //    (e.Item.FindControl("btnmake") as Button).Visible = false;
+            //    (e.Item.FindControl("lblaccount") as Label).Visible = true;
+            //    (e.Item.FindControl("btncz") as Button).Visible = true;
+            //    string account=bllscenicadmin.GetScenicAdminByScidandtype(Scenic.Id, 7).Membership.Name;
+            //    (e.Item.FindControl("lblaccount") as Label).Text = "帐号名" + account;
+            //}
         }
     }
     protected void btnSearch_Click(object sender, EventArgs e)

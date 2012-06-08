@@ -6,51 +6,42 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="cphmain">
     <div id="selectdiv">
-        <span>筛选:</span>
+        <span>筛选:&nbsp;&nbsp;</span>
+        <asp:DropDownList runat="server" ID="ddlArea">
+        </asp:DropDownList>&nbsp;
+        <asp:Button runat="server" ID="btnSearch" OnClick="btnSearch_Click" CssClass="btnok" />
     </div>
     
-    <div class="tbaction">
-        
-        <asp:DropDownList runat="server" ID="ddlArea">
-        </asp:DropDownList>
-        <asp:Button runat="server" ID="btnSearch" Text="确定" OnClick="btnSearch_Click" />
-    </div>
     <asp:Repeater runat="server" ID="rptScenic" OnItemDataBound="rpt_ItemDataBound" 
         onitemcommand="rptScenic_ItemCommand">
         <HeaderTemplate>
             <table class="tblist" cellpadding="0" cellspacing="0" border="0">
-                <thead>
-                    <tr>
-                        <td>
+                    <tr class="thead">
+                        <td style="width:200px">
                             名称
                         </td>
-                        <td>
+                        <td style="width:200px">
                             地址
                         </td>
-                        <td>
-                            A级
+                        <td style="width:30px">
+                            等级
                         </td>
-                        <td>
-                            图片
-                        </td>
-                        <td>
+                        <td style="width:200px">
                             审核状态
                         </td>
-                        <td>
+                        <td style="width:50px">
                             操作
                         </td>
-                        <td>
+                       <%-- <td>
                             生成账号
                         </td>
                         <td>
                             账号操作
-                        </td>
+                        </td>--%>
                     </tr>
-                </thead>
-                <tbody>
         </HeaderTemplate>
         <FooterTemplate>
-            </tbody> </table></FooterTemplate>
+                 </table></FooterTemplate>
         <ItemTemplate>
             <tr>
                 <td>
@@ -59,11 +50,8 @@
                 <td>
                     <%#Eval("Address") %>
                 </td>
-                <td>
+                <td style="text-align:center">
                     <%#Eval("Level") %>
-                </td>
-                <td>
-                    <%#Eval("Photo") %>
                 </td>
                 <td>
                     <asp:Repeater runat="server" ID="rpt_CheckProgress">
@@ -73,17 +61,48 @@
                         </ItemTemplate>
                     </asp:Repeater>
                 </td>
-                <td>
+                <td style="text-align:center">
                     <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a>
                 </td>
-                <td>
+                <%--<td >
                     <asp:Button ID="btnmake" runat="server" Text="生成" CommandName="make" CommandArgument='<%#Eval("Id") %>' />
                     <asp:Label ID="lblaccount" runat="server"></asp:Label>
                 </td>
                 <td>
                     <asp:Button ID="btncz" runat="server" Text="重置密码" CommandName="reset" CommandArgument='<%#Eval("Id") %>' />
-                </td>
+                </td>--%>
             </tr>
         </ItemTemplate>
+        <AlternatingItemTemplate>
+            <tr style="background-color:#F2F2F2">
+                <td>
+                    <%#Eval("Name") %>
+                </td>
+                <td>
+                    <%#Eval("Address") %>
+                </td>
+                <td style="text-align:center">
+                    <%#Eval("Level") %>
+                </td>
+                <td>
+                    <asp:Repeater runat="server" ID="rpt_CheckProgress">
+                        <ItemTemplate>
+                            <div>
+                                模块:<%#Eval("Module") %>,状态:<%#Eval("CheckStatus")%></div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </td>
+                <td style="text-align:center">
+                    <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a>
+                </td>
+                <%--<td >
+                    <asp:Button ID="btnmake" runat="server" Text="生成" CommandName="make" CommandArgument='<%#Eval("Id") %>' />
+                    <asp:Label ID="lblaccount" runat="server"></asp:Label>
+                </td>
+                <td>
+                    <asp:Button ID="btncz" runat="server" Text="重置密码" CommandName="reset" CommandArgument='<%#Eval("Id") %>' />
+                </td>--%>
+            </tr>
+        </AlternatingItemTemplate>
     </asp:Repeater>
 </asp:Content>
