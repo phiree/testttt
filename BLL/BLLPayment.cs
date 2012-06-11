@@ -51,9 +51,6 @@ namespace BLL
         /// <returns></returns>
         public string  Pay()
         {
-
-             
-
             //请与贵网站订单系统中的唯一订单号匹配
             string out_trade_no = order.Id.ToString();
             //订单名称，显示在支付宝收银台里的“商品名称”里，显示在支付宝的交易管理的“商品名称”的列表里。
@@ -62,10 +59,6 @@ namespace BLL
             string body = order.Description;
             //订单总金额，显示在支付宝收银台里的“应付总额”里
             decimal total_fee =decimal.Parse( order.TotalPrice.ToString("0.00"));
-            
-
-
-
        //扩展功能参数——默认支付方式//
 
             //默认支付方式，代码见“即时到帐接口”技术文档
@@ -112,11 +105,6 @@ namespace BLL
             //royalty_type = "10";
             //royalty_parameters = "111@126.com^0.01^分润备注一|222@126.com^0.01^分润备注二";
 
-            ////////////////////////////////////////////////////////////////////////////////////////////////
-
-           
-
-
             //把请求参数打包成数组
             SortedDictionary<string, string> sParaTemp = new SortedDictionary<string, string>();
             sParaTemp.Add("payment_type", "1");
@@ -155,12 +143,15 @@ namespace BLL
         }
 
 
+        /// <summary>
+        /// 保存返回结果.
+        /// </summary>
+        /// <param name="receivedMsg"></param>
         public void Received(string receivedMsg) {
 
             try
             {
                 Payment payment = IDalPayment.GetByOrder(order.Id);
-
                 payment.ReceivedStringFromPay = receivedMsg;
                 payment.EndPay = DateTime.Now;
                 IDalPayment.Save(payment);

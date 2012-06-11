@@ -118,6 +118,9 @@ public partial class notify_url : System.Web.UI.Page
             order.IsPaid = true;
             order.PayTime = DateTime.Now;
             bllOrder.SaveOrUpdateOrder(order);
+            //更新payment日志
+            BLLPayment bllP = new BLLPayment(order);
+            bllP.Received(Request.Url.Query);
         }
         else
         {
