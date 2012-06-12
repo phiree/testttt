@@ -142,6 +142,55 @@ namespace BLL
             return sHtmlText;
         }
 
+        /// <summary>
+        /// 退款/退订
+        /// </summary>
+        /// <returns></returns>
+        public string PayBack()
+        {
+            //卖家用户ID
+            //string seller_user_id = Seller_user_id.Text.Trim();
+            ////卖家支付宝账号对应的支付宝唯一用户号。以2088开头的纯16位数字。
+
+            ////退款批次号
+            //tring batch_no = Batch_no.Text.Trim();
+
+            ////格式为：退款日期（8位当天日期）+流水号（3～24位，不能接受“000”，但是可以接受英文字符）。
+
+            ////退款请求时间
+            //string refund_date = Refund_date.Text.Trim();
+
+            ////退款请求的当前时间。格式为：yyyy-MM-dd hh:mm:ss
+
+            ////退款总笔数
+            //string batch_num = Batch_num.Text.Trim();
+            ////即参数detail_data的值中，“#”字符出现的数量加1，最大支持1000笔（即“#”字符出现的最大数量999个）。
+
+
+            ////单笔数据集
+            //string detail_data = Detail_data.Text.Trim();
+            ////退款请求的明细数据。格式详见“4.3 单笔数据集参数说明”。
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+
+            ////把请求参数打包成数组
+            //SortedDictionary<string, string> sParaTemp = new SortedDictionary<string, string>();
+
+            //sParaTemp.Add("seller_user_id", seller_user_id);
+            //sParaTemp.Add("batch_no", batch_no);
+            //sParaTemp.Add("refund_date", refund_date);
+            //sParaTemp.Add("batch_num", batch_num);
+            //sParaTemp.Add("detail_data", detail_data);
+
+
+
+
+
+            ////构造即时到账批量退款有密接口表单提交HTML数据，无需修改
+            //Service ali = new Service();
+            //string sHtmlText = ali.Refund_fastpay_by_platform_pwd(sParaTemp);
+            return string.Empty;
+        }
 
         /// <summary>
         /// 保存返回结果.

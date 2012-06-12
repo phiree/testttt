@@ -42,7 +42,28 @@ namespace Model
                 {
                     totalPrice += od.Quantity * (od.TicketPrice.Price);
                 }
-                return  totalPrice;
+                return totalPrice;
+            }
+            set { totalPrice = value; }
+        }
+        public virtual decimal TotalReturnAmount
+        {
+            get
+            {
+                totalPrice = 0;
+                foreach (OrderDetail od in OrderDetail)
+                {
+                    foreach (TicketAssign ta in od.TicketAssignList)
+                    {
+                        if (!ta.IsUsed)
+                        {
+                            totalPrice += od.TicketPrice.Price;
+                        }
+                    }
+
+
+                }
+                return totalPrice;
             }
             set { totalPrice = value; }
         }

@@ -48,6 +48,7 @@ namespace Com.Alipay
             seller_email = "bill@tourol.cn";
 
             //页面跳转同步返回页面文件路径 要用 http://格式的完整路径，不允许加?id=123这类自定义参数
+            //退款接口不需要此参数
             return_url = (CommonLibrary.HttpContextHelper.FullVirtualPath + "payment/return_url.aspx").ToLower();
 
             //服务器通知的页面文件路径 要用 http://格式的完整路径，不允许加?id=123这类自定义参数
