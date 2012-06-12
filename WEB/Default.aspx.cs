@@ -129,7 +129,7 @@ public partial class _Default : basepage
             Literal liPriceNormal = e.Item.FindControl("liPriceNormal") as Literal;
             Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
             liPriceNormal.Text = priceNormal.ToString("0");
-            liPriceOnline.Text = priceOnline.ToString("n");
+            liPriceOnline.Text = priceOnline.ToString("0");
         }
         if (e.Item.ItemType == ListItemType.Footer)
         {
