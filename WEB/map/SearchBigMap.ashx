@@ -21,7 +21,7 @@ public class SearchBigMap : IHttpHandler {
         List<Model.map> list = new List<Model.map>();
         foreach (string scid in scids)
         {
-            map m = new map();
+            Model.map m = new Model.map();
             Scenic scenic = bllscenic.GetScenicById(int.Parse(scid));
             ScenicImg si= bllscenicimg.GetSiByType(scenic, 1)[0];
             m.address = si.Scenic.Address;
