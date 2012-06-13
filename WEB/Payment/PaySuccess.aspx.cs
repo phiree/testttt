@@ -13,10 +13,10 @@ public partial class Payment_PaySuccess : System.Web.UI.Page
     {
         Uri reffer = Request.UrlReferrer;
 
-        if (reffer == null )
-        {
-            ErrHandler.Redirect(ErrType.SourceIllegal);
-        }
+        //if (reffer == null )
+        //{
+        //    ErrHandler.Redirect(ErrType.SourceIllegal);
+        //}
 
         OrderId = Request["orderid"];
 

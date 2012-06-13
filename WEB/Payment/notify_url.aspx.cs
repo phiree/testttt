@@ -64,6 +64,7 @@ public partial class notify_url : System.Web.UI.Page
 
                 int orderId = int.Parse(order_no);
                 Order order = bllOrder.GetOrderByOrderid(orderId);
+                order.TradeNo = trade_no;
                 if (Request.Form["trade_status"] == "TRADE_FINISHED")
                 {
                     UpdateOrder(order);

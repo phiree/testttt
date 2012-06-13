@@ -22,5 +22,6 @@ namespace BLL
        ,ParamIllegal //参数非法
        ,QQOAuth
        ,SourceIllegal//来路不正
+       ,ObjectIsNull//对象为空
     }
 }

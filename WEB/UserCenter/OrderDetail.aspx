@@ -171,9 +171,9 @@
             </div>
         <div id="state3" runat="server" class="state3">
             <span runat="server" id="wfcount"></span>张门票&nbsp;&nbsp;合计<span runat="server" id="wfttprice"></span>元
-            <asp:Button ID="Button2" runat="server" CssClass="payonline" 
+            <asp:Button ID="Button2" ValidationGroup="none"  runat="server" CssClass="payonline" 
                 onclick="Button2_Click" />&nbsp;&nbsp;你也可以选择<asp:Button
-                ID="Button3" runat="server" CssClass="btnyd" onclick="Button3_Click" />合计&nbsp;<span runat="server" id="zbttprice"></span>元
+                ID="Button3" ValidationGroup="none" runat="server" CssClass="btnyd" onclick="Button3_Click" />合计&nbsp;<span runat="server" id="zbttprice"></span>元
         </div>
     </div>
     <div id="oscupdateinfo">

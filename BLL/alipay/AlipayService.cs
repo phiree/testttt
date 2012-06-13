@@ -87,11 +87,11 @@ namespace Com.Alipay
         {
             //增加基本配置
             sParaTemp.Add("service", "refund_fastpay_by_platform_pwd");
-            sParaTemp.Add("partner", _partner);
+          
             sParaTemp.Add("_input_charset", _input_charset);
             sParaTemp.Add("seller_email", _seller_email);
             sParaTemp.Add("notify_url", _notify_url);
-
+          
 
 
             //确认按钮显示文字

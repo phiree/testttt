@@ -44,6 +44,7 @@ public partial class err : System.Web.UI.Page
             case ErrType.SourceIllegal:
                 errMsg = "来源不明";
                 break;
+            case ErrType.ObjectIsNull: errMsg = "目标对象不存在"; break;
         }
         lblMsg.Text = errMsg;
         

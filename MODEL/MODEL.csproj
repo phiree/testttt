@@ -59,7 +59,8 @@
     <Compile Include="ContractImg.cs" />
     <Compile Include="ContractScenicPrice.cs" />
     <Compile Include="DiscountCode.cs" />
-    <Compile Include="map.cs" />
+    <Compile Include="Mapping\Order\RefundMap.cs" />
+    <Compile Include="ScenicMap.cs" />
     <Compile Include="Mapping\CommonUserMap.cs" />
     <Compile Include="Mapping\ContractImgMap.cs" />
     <Compile Include="Mapping\ContractScenicPriceMap.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Mapping\TicketPriceMap.cs" />
     <Compile Include="Mapping\UserVoteAmount.cs" />
     <Compile Include="Mapping\RoleMap.cs" />
+    <Compile Include="Mapping\FormatSerialNoMap.cs" />
     <Compile Include="Order\Cart.cs" />
     <Compile Include="Order\Order.cs" />
     <Compile Include="Order\OrderDetail.cs" />
@@ -115,6 +117,8 @@
     <Compile Include="UserRole.cs" />
     <Compile Include="UserVoteAmount.cs" />
     <Compile Include="Vote.cs" />
+    <Compile Include="FormatSerialNo.cs" />
+    <Compile Include="Refund.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Check\" />

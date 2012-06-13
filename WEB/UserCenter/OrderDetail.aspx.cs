@@ -15,17 +15,18 @@ public partial class UserCenter_MyOrder : basepage
     BLLOrder bllorder = new BLLOrder();
     BLLMembership bllMember = new BLLMembership();
     BLLCommonUser bllcommonuser = new BLLCommonUser();
+    Order order;
     protected void Page_Load(object sender, EventArgs e)
     {
         bind();
         int orderid = int.Parse(Request.QueryString["orderid"]);
 
 
-        Order order = bllorder.GetOrderByOrderid(orderid);
-        btnRefurb.Visible = order.TotalReturnAmount > 0;
-        if (order.State==1)
+        order = bllorder.GetOrderByOrderid(orderid);
+        btnRefurb.Visible = order.IsPaid && !order.GetUsedState;
+        if (order.State == 1)
         {
-            
+
             paystate.InnerHtml = "订票方式:在线支付&nbsp;&nbsp;已付";
             rptOrderDetail.Visible = true;
             rptOrderDetail2.Visible = false;
@@ -56,10 +57,11 @@ public partial class UserCenter_MyOrder : basepage
         }
     }
 
-    protected void btnRefurb_Click(object sender,EventArgs e)
-    { 
-    
-        }
+    protected void btnRefurb_Click(object sender, EventArgs e)
+    {
+        string html = new BLLRefund(CurrentMember, order.Id.ToString()).ApplyRefund();
+        Response.Write(html);
+    }
     private void bind()
     {
         int orderid = int.Parse(Request.QueryString["orderid"]);
@@ -102,7 +104,7 @@ public partial class UserCenter_MyOrder : basepage
         int cj = 0;
         foreach (RepeaterItem item in rptOrderDetail2.Items)
         {
-            OrderDetail od=bllorderdetail.GetOrderDetailByodid(int.Parse((item.FindControl("hfid") as HiddenField).Value));
+            OrderDetail od = bllorderdetail.GetOrderDetailByodid(int.Parse((item.FindControl("hfid") as HiddenField).Value));
             decimal yhprice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(od.TicketPrice.Ticket.Scenic.Id, 3).Price;
             decimal ydprice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(od.TicketPrice.Ticket.Scenic.Id, 2).Price;
             ydcountt += int.Parse((item.FindControl("notusedcount") as HtmlContainerControl).InnerHtml);
@@ -122,7 +124,7 @@ public partial class UserCenter_MyOrder : basepage
             decimal ydprice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(od.TicketPrice.Ticket.Scenic.Id, 2).Price;
             wfcountt += int.Parse((item.FindControl("tp") as HtmlContainerControl).InnerHtml);
             ttwf += int.Parse((item.FindControl("sumprice") as HtmlContainerControl).InnerHtml);
-            ttwfyd +=(int)(int.Parse((item.FindControl("tp") as HtmlContainerControl).InnerHtml)*ydprice);
+            ttwfyd += (int)(int.Parse((item.FindControl("tp") as HtmlContainerControl).InnerHtml) * ydprice);
         }
         wfcount.InnerHtml = wfcountt.ToString();
         wfttprice.InnerHtml = ttwf.ToString();
@@ -249,7 +251,8 @@ public partial class UserCenter_MyOrder : basepage
     }
     protected void Button2_Click(object sender, EventArgs e)
     {
-        Response.Redirect("/Payment/?transid=" + int.Parse(Request.QueryString["orderid"]) + "");
+        Response.Write(new BLLPayment(order).Pay());
+        // Response.Redirect("/Payment/?transid=" + int.Parse(Request.QueryString["orderid"]) + "");
     }
     protected void Button3_Click(object sender, EventArgs e)
     {

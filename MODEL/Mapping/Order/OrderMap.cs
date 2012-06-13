@@ -17,6 +17,7 @@ namespace Model.Mapping
             Map(x => x.IsPaid);
             Map(x => x.BuyTime);
             Map(x => x.PayTime);
+            Map(x => x.TradeNo);
             HasMany<OrderDetail>(x => x.OrderDetail).Cascade.All();
         }
     }

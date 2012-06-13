@@ -17,7 +17,8 @@ namespace Model
        public virtual PayType PayType { get; set; }
        //支付总额
        public virtual decimal PayAmount { get; set; }
-
+    
+      
        public virtual DateTime BeginPay { get; set; }
       
        public virtual string RequestStringToPay

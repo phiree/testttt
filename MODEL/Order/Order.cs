@@ -46,33 +46,17 @@ namespace Model
             }
             set { totalPrice = value; }
         }
-        public virtual decimal TotalReturnAmount
-        {
-            get
-            {
-                totalPrice = 0;
-                foreach (OrderDetail od in OrderDetail)
-                {
-                    foreach (TicketAssign ta in od.TicketAssignList)
-                    {
-                        if (!ta.IsUsed)
-                        {
-                            totalPrice += od.TicketPrice.Price;
-                        }
-                    }
-
-
-                }
-                return totalPrice;
-            }
-            set { totalPrice = value; }
-        }
+      
         public virtual bool IsPaid { get; set; }
         /// <summary>
         /// pricet
         /// </summary>
         public virtual PriceType PriceType { get; set; }
         public virtual DateTime BuyTime { get; set; }
+        /// <summary>
+        ///  平台返回的支付交易号
+        /// </summary>
+        public virtual string TradeNo { get; set; }
         public virtual DateTime? PayTime { get; set; }
         public virtual IList<OrderDetail> OrderDetail { get; set; }
         public virtual bool GetUsedState

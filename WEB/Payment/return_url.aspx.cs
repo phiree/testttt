@@ -32,23 +32,28 @@ public partial class return_url : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         BLL.BLLOrder bllOrder = new BLL.BLLOrder();
-            BLL.BLLPayment bllPayment;
-            Model.Order order=new Model.Order();
+        BLL.BLLPayment bllPayment;
+        Model.Order order = new Model.Order();
         int orderId = int.Parse(Request["out_trade_no"]);
+        string tradeNo = Request["trade_no"];
         if (orderId > 0)
         {
 
             order = bllOrder.GetOrderByOrderid(orderId);
+            order.TradeNo = tradeNo;
+            bllOrder.SaveOrUpdateOrder(order);
+            //
             bllPayment = new BLL.BLLPayment(order);
-            bllPayment.Received(Request.Url.Query);
+            bllPayment.Received( Request.Url.Query);
         }
-        else { 
-            
+        else
+        {
+            BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
         }
         SortedDictionary<string, string> sPara = GetRequestGet();
 
-       
-      
+
+
         if (sPara.Count > 0)//判断是否有带返回参数
         {
             Notify aliNotify = new Notify();
@@ -78,8 +83,8 @@ public partial class return_url : System.Web.UI.Page
                     order.IsPaid = true;
                     order.PayTime = DateTime.Now;
                     bllOrder.SaveOrUpdateOrder(order);
-                    
-                    Response.Redirect("/payment/paysuccess.aspx?orderid="+orderId);
+
+                    Response.Redirect("/payment/paysuccess.aspx?orderid=" + orderId);
 
                 }
                 else

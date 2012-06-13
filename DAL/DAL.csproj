@@ -100,6 +100,7 @@
     <Compile Include="DALScenicAdmin.cs" />
     <Compile Include="DALScenicImg.cs" />
     <Compile Include="DALSeoDescription.cs" />
+    <Compile Include="DALFormatSerialNo.cs" />
     <Compile Include="DALTicket.cs" />
     <Compile Include="DALTicketAssign.cs" />
     <Compile Include="DALTicketCount.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="DALVistor.cs" />
     <Compile Include="DALUserVoteAmount.cs" />
     <Compile Include="DALRole.cs" />
+    <Compile Include="DALRefund.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IDAL\IDAL.csproj">
