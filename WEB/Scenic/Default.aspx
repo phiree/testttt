@@ -151,7 +151,7 @@
             var map = new BMap.Map("containtermap");            // 创建Map实例
             var position = "<%=scpoint %>";
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
-            map.centerAndZoom(point, 15);                     // 初始化地图,设置中心点坐标和地图级别。
+            map.centerAndZoom(point, 8);                     // 初始化地图,设置中心点坐标和地图级别。
             var txt = "<%=scbindname %>";
             var myCompOverlay1 = new ComplexCustomOverlay1(point, txt, 0);
             map.addOverlay(myCompOverlay1);
@@ -160,7 +160,6 @@
 //                map.addOverlay(marker);              // 将标注添加到地图中
             //            }
             for (var i = 0; i < parseInt("<%=imgcount %>"); i++) {
-                debugger;
                 var positions = "<%=bindimglist %>".split(":")[i];
                 var point2 = new BMap.Point(positions.split(",")[0], positions.split(",")[1]);
                 var myCompOverlay2 = new ComplexCustomOverlay2(point2, "", 0);
