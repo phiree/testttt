@@ -44,16 +44,130 @@
             $("#priceintrodiv").css("display", "none");
         }
 
-         function showmap() {
+        function showmap() {
+            ////////////////////////////////////////////////复杂覆盖物
+            // 复杂的自定义覆盖物1
+            function ComplexCustomOverlay1(point, text, id) {
+                this._point = point;
+                this._text = text;
+                this._id = id;
+                this._name = text;
+            }
+            ComplexCustomOverlay1.prototype = new BMap.Overlay();
+            ComplexCustomOverlay1.prototype.initialize = function (mapp) {
+                this._map = mapp;
+                var div = this._div = document.createElement("div");
+                div.style.position = "absolute";
+                div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+                div.className = "divicon";
+                div.style.MozUserSelect = "none";
+                div.style.fontSize = "12px";
+                div.id = this._div;
+                div.name = this._name;
+
+                var span = this._span = document.createElement("span");
+                //div.appendChild(span);
+                span.style.height = "15px";
+                div.style.cursor = "pointer";
+                span.style.display = "inline-block";
+                span.style.color = "Black";
+                span.style.margin = "0px 5px 2px 3px";
+                span.appendChild(document.createTextNode(this._id));
+                var that = this;
+
+                var spanscenic = this._span = document.createElement("span");
+                div.appendChild(spanscenic);
+                spanscenic.height = "15px";
+                spanscenic.style.position = "relative";
+                spanscenic.style.top = "-2px \0";
+                spanscenic.style.display = "inline-block";
+                spanscenic.style.lineHeight = "15px";
+                spanscenic.style.color = "White";
+                spanscenic.appendChild(document.createTextNode(this._text))
+
+
+                var arrow = this._arrow = document.createElement("div");
+                arrow.style.background = "url('/Img/yuansu/largeicon2.gif') no-repeat";
+                arrow.style.position = "absolute";
+                arrow.style.width = "14px";
+                arrow.style.height = "15px";
+                arrow.style.top = "19px";
+                arrow.style.left = "10px";
+                arrow.style.overflow = "hidden";
+                div.appendChild(arrow);
+
+                map.getPanes().labelPane.appendChild(div);
+
+                return div;
+            }
+            ComplexCustomOverlay1.prototype.draw = function () {
+                var map = this._map;
+                var pixel = map.pointToOverlayPixel(this._point);
+                this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+                this._div.style.top = pixel.y - 30 + "px";
+            }
+            ////////////////////////////////////////////////
+
+            ////////////////////////////////////////////////复杂覆盖物
+            // 复杂的自定义覆盖物2
+            // 复杂的自定义覆盖物
+            function ComplexCustomOverlay2(point, text, mouseoverText) {
+                this._point = point;
+                this._text = text;
+                this._overText = mouseoverText;
+            }
+            ComplexCustomOverlay2.prototype = new BMap.Overlay();
+            ComplexCustomOverlay2.prototype.initialize = function (map) {
+                this._map = map;
+                var div = this._div = document.createElement("div");
+                div.style.position = "absolute";
+                div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+                div.style.background = "url('/Img/yuansu/smallicon6.gif') no-repeat";
+                //div.style.border = "1px solid #BC3B3A";
+                div.style.color = "white";
+                div.style.height = "13px";
+                div.style._height = "16px";
+                div.style.width = "8px";
+                div.style.padding = "2px";
+                div.style.fontSize = "12px";
+                div.style.cursor = "pointer";
+                div.style.whiteSpace = "nowrap";
+                div.style.MozUserSelect = "none";
+                div.name = this._text;
+
+                map.getPanes().labelPane.appendChild(div);
+
+                return div;
+            }
+            ComplexCustomOverlay2.prototype.draw = function () {
+                var map = this._map;
+                var pixel = map.pointToOverlayPixel(this._point);
+                this._div.style.left = pixel.x - 3 + "px";
+                this._div.style.top = pixel.y - 16 + "px";
+            }
+            ////////////////////////////////////
+
+
             var map = new BMap.Map("containtermap");            // 创建Map实例
             var position = "<%=scpoint %>";
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
             map.centerAndZoom(point, 15);                     // 初始化地图,设置中心点坐标和地图级别。
-            if (position != "120.159033,30.28376") {
-                var marker = new BMap.Marker(new BMap.Point(position.split(",")[0], position.split(",")[1]));  // 创建标注
-                map.addOverlay(marker);              // 将标注添加到地图中
+            var txt = "<%=scbindname %>";
+            var myCompOverlay1 = new ComplexCustomOverlay1(point, txt, 0);
+            map.addOverlay(myCompOverlay1);
+//            if (position != "120.159033,30.28376") {
+//                var marker = new BMap.Marker(new BMap.Point(position.split(",")[0], position.split(",")[1]));  // 创建标注
+//                map.addOverlay(marker);              // 将标注添加到地图中
+            //            }
+            for (var i = 0; i < parseInt("<%=imgcount %>"); i++) {
+                debugger;
+                var positions = "<%=bindimglist %>".split(":")[i];
+                var point2 = new BMap.Point(positions.split(",")[0], positions.split(",")[1]);
+                var myCompOverlay2 = new ComplexCustomOverlay2(point2, "", 0);
+                map.addOverlay(myCompOverlay2);
             }
             map.addControl(new BMap.NavigationControl());
+            map.enableScrollWheelZoom(true);
         }   
     </script>
 

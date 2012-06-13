@@ -24,7 +24,6 @@ namespace IDCardActiveX
         string SignGov = string.Empty;
         string StartDate = string.Empty;
         string EndDate = string.Empty;
-
         public UserControl1()
         {
             InitializeComponent();

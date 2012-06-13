@@ -531,3 +531,17 @@
     color:Black;
     margin:10px 0px 10px 0px;
 }
+
+.divicon
+{
+    position:absolute;
+    background-color:#0978AD;
+    border:1px solid White;
+    color:White;
+    height:15px;
+    line-height:15px;
+    white-space:nowrap;
+    font-size:12px;
+    padding:2px;
+    _padding:1px;
+}
