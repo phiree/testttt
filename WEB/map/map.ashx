@@ -41,7 +41,7 @@ public class map : IHttpHandler {
             //else if(scname!="")
             list = new BLLScenic().GetScenicByScenicName(scname, context.Request.Cookies["level"].Value, areaid);
         }
-        List<Model.map> list2 = new List<Model.map>();
+        List<Model.ScenicMap> list2 = new List<Model.ScenicMap>();
         context.Response.Cookies.Add(new HttpCookie("numcount",list.Count.ToString()));
         if (list.Count%15!=0)
             context.Response.Cookies.Add(new HttpCookie("resultcount",((list.Count/15)+1).ToString()));
@@ -51,7 +51,7 @@ public class map : IHttpHandler {
         //{
             foreach (Ticket item in list)
             {
-                Model.map m = new Model.map();
+                Model.ScenicMap m = new Model.ScenicMap();
                 m.id = item.Scenic.Id;
                 m.name = item.Scenic.Name;
                 m.img = item.Scenic.Photo;

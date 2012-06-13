@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Model
 {
-   public class map
+   public class ScenicMap
     {
        public int id { get; set; }
         public string name { get; set; }

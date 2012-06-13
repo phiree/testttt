@@ -18,10 +18,10 @@ public class SearchBigMap : IHttpHandler {
         context.Response.ContentType = "text/plain";
         string scenicid = context.Request.QueryString["scenicid"];
         string[] scids = scenicid.Split(',');
-        List<Model.map> list = new List<Model.map>();
+        List<Model.ScenicMap> list = new List<Model.ScenicMap>();
         foreach (string scid in scids)
         {
-            map m = new map();
+            ScenicMap m = new ScenicMap();
             Scenic scenic = bllscenic.GetScenicById(int.Parse(scid));
             ScenicImg si= bllscenicimg.GetSiByType(scenic, 1)[0];
             m.address = si.Scenic.Address;

@@ -15,10 +15,10 @@ public class allpoint : IHttpHandler {
         context.Response.ContentType = "text/plain";
         IList<Ticket> list = null;
         list = new BLLScenic().GetScenicByScenicName("", "", 0);
-        List<Model.map> list2 = new List<Model.map>();
+        List<Model.ScenicMap> list2 = new List<Model.ScenicMap>();
         foreach (Ticket item in list)
         {
-            Model.map m = new Model.map();
+            Model.ScenicMap m = new Model.ScenicMap();
             m.id = item.Scenic.Id;
             m.name = item.Scenic.Name;
             m.img = item.Scenic.Photo;

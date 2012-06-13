@@ -20,12 +20,12 @@ public class qiehuan : IHttpHandler {
                 list = new BLLScenic().GetScenicByScenicName(scname, level,0);
             else if (scname != "")
                 list = new BLLScenic().GetScenicByScenicName(scname, "",0);
-        List<Model.map> list2 = new List<Model.map>();
+        List<Model.ScenicMap> list2 = new List<Model.ScenicMap>();
         if (list != null)
         {
             foreach (Ticket item in list)
             {
-                Model.map m = new Model.map();
+                Model.ScenicMap m = new Model.ScenicMap();
                 m.id = item.Scenic.Id;
                 m.name = item.Scenic.Name;
                 m.img = item.Scenic.Photo;

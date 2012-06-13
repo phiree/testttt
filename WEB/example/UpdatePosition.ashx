@@ -17,10 +17,10 @@ public class UpdatePosition : IHttpHandler {
         context.Response.ContentType = "text/plain";
         BLLScenic bllscenic = new BLLScenic();
         IList<Scenic> list = bllscenic.GetScenic();
-        List<map> list2 = new List<map>();
+        List<ScenicMap> list2 = new List<ScenicMap>();
         foreach (Scenic item in list)
         {
-            map map = new map();
+            ScenicMap map = new ScenicMap();
             map.name = item.Name;
             list2.Add(map);
         }
