@@ -380,7 +380,7 @@ function QueryString() {
 $(document).ready(function () {
     $.cookie("pageindex", "")
     $.cookie("scname", "");
-    $.cookie("level", "");
+    $.cookie("level", "5A");
     $.cookie("pager_currPage", "1");
     var strUrl = new QueryString();
     //findallpoint();

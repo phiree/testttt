@@ -446,10 +446,12 @@
 }
 #visitedsc
 {
+    clear:both;
+    display:block;
     width:838px;
     margin-top:100px;
     margin-bottom:15px;
-    min-height:180px;
+    min-height:10px;
 }
 #visitedsc p
 {
@@ -466,8 +468,12 @@
 }
 .visitedinfo
 {
-    width:800px;
+    clear:both;
+    width:808px;
     padding-left:20px;
+    min-height:10px;
+    display:block;
+    overflow:auto;
 }
 .visiteddiv
 {
@@ -524,4 +530,18 @@
     width:110%;
     color:Black;
     margin:10px 0px 10px 0px;
+}
+
+.divicon
+{
+    position:absolute;
+    background-color:#0978AD;
+    border:1px solid White;
+    color:White;
+    height:15px;
+    line-height:15px;
+    white-space:nowrap;
+    font-size:12px;
+    padding:2px;
+    _padding:1px;
 }

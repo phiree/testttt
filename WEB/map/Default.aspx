@@ -196,7 +196,7 @@
                 <div class="level">
                     <a class="aareatitle">地区:</a>
                     <div class="sceniclevel">
-                        <a style=" background:#8BB06D; display:block; float:left; font-size:12px;" onclick="btnarea(this)">全部</a><a onclick="btnarea(this)">5A</a><a onclick="btnarea(this)">4A</a><a onclick="btnarea(this)">3A</a>
+                        <a onclick="btnarea(this)">全部</a><a style=" background:#8BB06D; font-size:12px;" onclick="btnarea(this)">5A</a><a onclick="btnarea(this)">4A</a><a onclick="btnarea(this)">3A</a>
                     </div>
                 </div>
             </div>

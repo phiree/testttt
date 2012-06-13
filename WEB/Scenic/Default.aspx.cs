@@ -18,6 +18,9 @@ public partial class Scenic_Default : System.Web.UI.Page
     BLLScenicImg bllscenicimg = new BLLScenicImg();
     public int TicketId = 0;
     public string scpoint = "";
+    public string scbindname = "";
+    public string bindimglist = "";
+    public int imgcount;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -52,6 +55,7 @@ public partial class Scenic_Default : System.Web.UI.Page
         Scenic scenic = t.Scenic;
         maintitlett.InnerHtml = scenic.Name;
         scpoint = scenic.Position;
+        scbindname = scenic.Name;
         int scid = scenic.Id;
         areaname.HRef = "../Default.aspx?area=" + scenic.Area.Id;
         areaname.InnerHtml = scenic.Area.Name.Substring(3, scenic.Area.Name.Length - 3);
@@ -68,6 +72,7 @@ public partial class Scenic_Default : System.Web.UI.Page
         IList<ScenicImg> ilist=bllscenicimg.GetSiByType(scenic, 2);
         if (ilist.Count <= 6)
         {
+            imgcount = ilist.Count;
             rptft.DataSource = ilist;
             rptft.DataBind();
         }
@@ -78,6 +83,8 @@ public partial class Scenic_Default : System.Web.UI.Page
             {
                 ftlist.Add(ilist[i]);
             }
+            
+            imgcount = 6;
             rptft.DataSource = ftlist;
             rptft.DataBind();
         }
@@ -91,6 +98,10 @@ public partial class Scenic_Default : System.Web.UI.Page
         Dictionary<Scenic, double> places = new Dictionary<Scenic, double>();
         List<double> listdistance = new List<double>();
         bindimg(list, scenic);
+        foreach (ScenicImg item in sclist)
+        {
+            bindimglist += item.Scenic.Position + ":";
+        }
         rptzbsc.DataSource = sclist;
         rptzbsc.DataBind();
         searchbigmap.HRef = "/map/Default.aspx?scenicid="+scenic.Id;
