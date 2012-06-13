@@ -51,9 +51,6 @@ namespace BLL
         /// <returns></returns>
         public string  Pay()
         {
-
-             
-
             //请与贵网站订单系统中的唯一订单号匹配
             string out_trade_no = order.Id.ToString();
             //订单名称，显示在支付宝收银台里的“商品名称”里，显示在支付宝的交易管理的“商品名称”的列表里。
@@ -62,10 +59,6 @@ namespace BLL
             string body = order.Description;
             //订单总金额，显示在支付宝收银台里的“应付总额”里
             decimal total_fee =decimal.Parse( order.TotalPrice.ToString("0.00"));
-            
-
-
-
        //扩展功能参数——默认支付方式//
 
             //默认支付方式，代码见“即时到帐接口”技术文档
@@ -112,11 +105,6 @@ namespace BLL
             //royalty_type = "10";
             //royalty_parameters = "111@126.com^0.01^分润备注一|222@126.com^0.01^分润备注二";
 
-            ////////////////////////////////////////////////////////////////////////////////////////////////
-
-           
-
-
             //把请求参数打包成数组
             SortedDictionary<string, string> sParaTemp = new SortedDictionary<string, string>();
             sParaTemp.Add("payment_type", "1");
@@ -154,13 +142,65 @@ namespace BLL
             return sHtmlText;
         }
 
+        /// <summary>
+        /// 退款/退订
+        /// </summary>
+        /// <returns></returns>
+        public string PayBack()
+        {
+            //卖家用户ID
+            //string seller_user_id = Seller_user_id.Text.Trim();
+            ////卖家支付宝账号对应的支付宝唯一用户号。以2088开头的纯16位数字。
 
+            ////退款批次号
+            //tring batch_no = Batch_no.Text.Trim();
+
+            ////格式为：退款日期（8位当天日期）+流水号（3～24位，不能接受“000”，但是可以接受英文字符）。
+
+            ////退款请求时间
+            //string refund_date = Refund_date.Text.Trim();
+
+            ////退款请求的当前时间。格式为：yyyy-MM-dd hh:mm:ss
+
+            ////退款总笔数
+            //string batch_num = Batch_num.Text.Trim();
+            ////即参数detail_data的值中，“#”字符出现的数量加1，最大支持1000笔（即“#”字符出现的最大数量999个）。
+
+
+            ////单笔数据集
+            //string detail_data = Detail_data.Text.Trim();
+            ////退款请求的明细数据。格式详见“4.3 单笔数据集参数说明”。
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+
+            ////把请求参数打包成数组
+            //SortedDictionary<string, string> sParaTemp = new SortedDictionary<string, string>();
+
+            //sParaTemp.Add("seller_user_id", seller_user_id);
+            //sParaTemp.Add("batch_no", batch_no);
+            //sParaTemp.Add("refund_date", refund_date);
+            //sParaTemp.Add("batch_num", batch_num);
+            //sParaTemp.Add("detail_data", detail_data);
+
+
+
+
+
+            ////构造即时到账批量退款有密接口表单提交HTML数据，无需修改
+            //Service ali = new Service();
+            //string sHtmlText = ali.Refund_fastpay_by_platform_pwd(sParaTemp);
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// 保存返回结果.
+        /// </summary>
+        /// <param name="receivedMsg"></param>
         public void Received(string receivedMsg) {
 
             try
             {
                 Payment payment = IDalPayment.GetByOrder(order.Id);
-
                 payment.ReceivedStringFromPay = receivedMsg;
                 payment.EndPay = DateTime.Now;
                 IDalPayment.Save(payment);

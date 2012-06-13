@@ -77,6 +77,35 @@ namespace Com.Alipay
             return strHtml;
         }
 
+
+        /// <summary>
+        /// 构造即时到账批量退款有密接口
+        /// </summary>
+        /// <param name="sParaTemp">请求参数集合</param>
+        /// <returns>表单提交HTML数据</returns>
+        public string Refund_fastpay_by_platform_pwd(SortedDictionary<string, string> sParaTemp)
+        {
+            //增加基本配置
+            sParaTemp.Add("service", "refund_fastpay_by_platform_pwd");
+            sParaTemp.Add("partner", _partner);
+            sParaTemp.Add("_input_charset", _input_charset);
+            sParaTemp.Add("seller_email", _seller_email);
+            sParaTemp.Add("notify_url", _notify_url);
+
+
+
+            //确认按钮显示文字
+            string strButtonValue = "确认";
+            //表单提交HTML数据
+            string strHtml = "";
+
+            //构造表单提交HTML数据
+            strHtml = Submit.BuildFormHtml(sParaTemp, GATEWAY_NEW, "get", strButtonValue);
+
+            return strHtml;
+        }
+
+
         /// <summary>
         /// 用于防钓鱼，调用接口query_timestamp来获取时间戳的处理函数
         /// 注意：远程解析XML出错，与IIS服务器配置有关
@@ -84,7 +113,7 @@ namespace Com.Alipay
         /// <returns>时间戳字符串</returns>
         public string Query_timestamp()
         {
-            string url = GATEWAY_NEW + "service=query_timestamp&partner=" + Config.Partner;
+            string url = GATEWAY_NEW + "service=query_timestamp&partner=" + _partner;
             string encrypt_key = "";
 
             XmlTextReader Reader = new XmlTextReader(url);

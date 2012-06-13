@@ -20,7 +20,9 @@ public partial class UserCenter_MyOrder : basepage
         bind();
         int orderid = int.Parse(Request.QueryString["orderid"]);
 
+
         Order order = bllorder.GetOrderByOrderid(orderid);
+        btnRefurb.Visible = order.TotalReturnAmount > 0;
         if (order.State==1)
         {
             
@@ -54,6 +56,10 @@ public partial class UserCenter_MyOrder : basepage
         }
     }
 
+    protected void btnRefurb_Click(object sender,EventArgs e)
+    { 
+    
+        }
     private void bind()
     {
         int orderid = int.Parse(Request.QueryString["orderid"]);
