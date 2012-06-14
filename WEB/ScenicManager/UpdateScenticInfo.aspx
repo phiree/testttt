@@ -344,7 +344,7 @@
 
     
 
-    <div id="divbigmap" style="">
+    <div id="divbigmap" style="display:none;">
         <p style="width:100%;height:15px;color:Red; text-align:right;margin:0px;padding:0px; background-color:#E5E5E5; line-height:15px;"><a style="text-decoration:none; cursor:pointer; color:Red" onclick="closebigmap()">关闭</a></p>
         <div id="bigmap" style="width:100%;height:435px; display:block;">
             

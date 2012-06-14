@@ -55,6 +55,7 @@
 {
     display:block;
     margin-left:600px;
+    _margin-left:420px;
     height:26px;
     width:13px;
     background:url("/theme/default/image/returndefault2.png");
@@ -91,6 +92,7 @@
     float:left;
     
     min-height:200px;
+    _overflow:hidden;
 }
 #right
 {
@@ -99,6 +101,7 @@
     float:left;
     min-height:300px;
     border-left:1px solid #CDCDCD;
+    _overflow:hidden;
     
 }
 #footer
