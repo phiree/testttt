@@ -21,9 +21,8 @@ public partial class Order_RefundApply :AuthPage
     private void Apply()
     { 
          Refund refund = new Refund();
-        BLLRefund bllRefund = new BLLRefund();
-        bllRefund.Member = CurrentMember;
-        bllRefund.OrderIdstring = Request["orderid"];
+        BLLRefund bllRefund = new BLLRefund(CurrentMember,Request["orderid"]);
+       
         bllRefund.ApplyRefund();
     }
 
