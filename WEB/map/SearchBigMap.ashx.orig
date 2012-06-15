@@ -25,7 +25,7 @@ public class SearchBigMap : IHttpHandler {
             ScenicMap m = new ScenicMap();
 =======
             Model.map m = new Model.map();
->>>>>>> 26f4928c9cc167bc768f49e5a6aa87e5d3834852
+>>>>>>> 5bc749f033035af573e6133673c9fc22f2308356
             Scenic scenic = bllscenic.GetScenicById(int.Parse(scid));
             ScenicImg si= bllscenicimg.GetSiByType(scenic, 1)[0];
             m.address = si.Scenic.Address;

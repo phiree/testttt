@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage2" %>
-
+<%@ Register TagPrefix="url" Namespace="Intelligencia.UrlRewriter"
+Assembly="Intelligencia.UrlRewriter" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -24,6 +25,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    
     <div id="header">
         <div class="container">
             <div class="span-24 last" id="logo">

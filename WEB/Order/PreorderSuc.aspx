@@ -10,7 +10,7 @@
         <div style="font-size: 18px; font-weight: 600; color: #78A240;">
             预定成功!</div>
         <div  style="margin:20px 0;">
-            <a href="/UserCenter/Orderdetail.aspx?orderid">进入 我的订单</a>
+            <a href="/UserCenter/Orderdetail.aspx?orderid=">进入 我的订单</a>
         </div>
         <div style="padding-top:10px; min-height:60px;
             background:url(/theme/default/image/greenflag.png) top left no-repeat;

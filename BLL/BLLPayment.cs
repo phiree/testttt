@@ -169,9 +169,9 @@ namespace BLL
 
 
             //单笔数据集
-            string detail_data = "";//Detail_data.Text.Trim();
+            string detail_data = refund.Order.TradeNo + "^" +refund.TotalReturnAmount +"^" + "退款旅游" ;
             //退款请求的明细数据。格式详见“4.3 单笔数据集参数说明”。
-
+            
             ////////////////////////////////////////////////////////////////////////////////////////////////
 
             //把请求参数打包成数组

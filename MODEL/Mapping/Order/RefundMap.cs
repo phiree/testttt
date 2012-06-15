@@ -12,10 +12,13 @@ namespace Model.Mapping
         {
             Id(x => x.Id);
             Map(x => x.RefundPrice);
+            Map(x => x.RefundSerialNo);
             Map(x => x.ReturnTime);
             Map(x => x.TotalReturnAmount);
             References<TourMembership>(x => x.Member);
             References<Model.Order>(x => x.Order);
+            Map(x => x.TargetTradeNo);
+            Map(x => x.RefundTradeNo);
             
         }
     }
