@@ -5,9 +5,12 @@
     width: 13px;
     float: left;
     border: 1px solid #ccc;
-    padding: 2px 0 0 5px;
+    padding: 2px;
+    padding-left:3px;
+    padding-right:3px;
     cursor: pointer;
     margin-left: 5px;
+    line-height:16px;
 }
 .qtyBtn:hover
 {
@@ -20,6 +23,8 @@
     margin-left: 5px !important;
     width: 40px;
     text-align:center;
+    height:18px;
+    _height:16px;
 }
 .delete
 {
@@ -66,6 +71,7 @@
     float: right;
     margin-right: 80px;
     margin-top: 30px;
+    _margin-right:40px;
 }
 #payaction a
 {

@@ -79,7 +79,7 @@
                                 </span>
                             </td>
                             <td style="width:200px">
-                                <span class="qtyCut qtyBtn" style="margin-left:60px">-</span><input class="qtyModify" runat="server" id="inputQty"
+                                <span class="qtyCut qtyBtn" style="margin-left:60px;_margin-left:30px;">-</span><input class="qtyModify" runat="server" id="inputQty"
                                     type="text" /><span class="qtyAdd qtyBtn">+</span>
                             </td>
                             <td>

@@ -43,7 +43,10 @@
 {
     margin: 0 10px;
     border: 1px solid #ccc;
-    
+    _margin:0 10px;
+    _width:848px;
+    _height:auto;
+    _overflow:hidden;
 }
 #login
 {

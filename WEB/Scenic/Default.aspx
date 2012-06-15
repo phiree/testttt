@@ -87,13 +87,14 @@
 
 
                 var arrow = this._arrow = document.createElement("div");
-                arrow.style.background = "url('/Img/yuansu/largeicon2.gif') no-repeat";
-                arrow.style.position = "absolute";
-                arrow.style.width = "14px";
-                arrow.style.height = "15px";
-                arrow.style.top = "19px";
+//                arrow.style.background = "url('/Img/yuansu/largeicon2.gif') no-repeat";
+//                arrow.style.position = "absolute";
+//                arrow.style.width = "14px";
+//                arrow.style.height = "15px";
+//                arrow.style.top = "19px";
+                arrow.className = "jiancss";
                 arrow.style.left = "10px";
-                arrow.style.overflow = "hidden";
+//                arrow.style.overflow = "hidden";
                 div.appendChild(arrow);
 
                 map.getPanes().labelPane.appendChild(div);
