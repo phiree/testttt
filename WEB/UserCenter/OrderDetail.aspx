@@ -92,7 +92,7 @@
         <a href="Order.aspx" style=" margin-right:15px;color:#C9C9C9">我的订单</a><a style=" margin-right:15px; color:#C9C9C9">></a><a runat="server" id="oredernum" style="text-decoration:none">订单3</a></div>
     <div id="oscdpinfo">
         <div class="oscdptop">
-            <span runat="server" id="paystate" style=" color: Black;"></span><asp:Button runat="server" OnClick="btnRefurb_Click" ID="btnRefurb" Text="退订/退款" />
+            <span runat="server" id="paystate" style=" color: Black;"></span><asp:Button runat="server" Visible="false" OnClick="btnRefurb_Click" ID="btnRefurb" Text="退订/退款" />
         </div>
         <div style="display: none">
             <asp:HiddenField ID="hfodid" runat="server" />
