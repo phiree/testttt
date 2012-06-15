@@ -15,6 +15,7 @@ public partial class MasterPage2 : System.Web.UI.MasterPage
    public string inlineTip = "输入景区或景点名称";
     protected void Page_Load(object sender, EventArgs e)
     {
+        form1.Action = Request.RawUrl;
         
         if (Page.User.Identity.IsAuthenticated)
         {
@@ -57,7 +58,7 @@ public partial class MasterPage2 : System.Web.UI.MasterPage
     {
         string q=tbxKeywords.Text;
         if (!(string.IsNullOrWhiteSpace(q)||q.Contains(inlineTip))) {
-            Response.Redirect("/search/?q=" + q);
+            Response.Redirect("/search/default.aspx?q=" + q,true);
         }
 
     }

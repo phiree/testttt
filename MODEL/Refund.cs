@@ -12,6 +12,8 @@ namespace Model
     {
         public virtual Guid Id { get; set; }
         public virtual string RefundSerialNo { get; set; }
+        public virtual string RefundTradeNo { get; set; }
+        public virtual string TargetTradeNo { get; set; }
         public virtual TourMembership Member { get; set; }
         public virtual Order Order { get; set; }
        
