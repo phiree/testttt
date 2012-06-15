@@ -332,6 +332,7 @@ h3
     margin:40px auto;
     width:650px;
     display:block;
+    _overflow:hidden;
 }
 .scinfolist
 {
@@ -367,6 +368,12 @@ h3
 #divbigmap
 {
     position:fixed;
+    bottom:20px;
+    _position:absolute;
+    _bottom:auto;
+    left:auto;
+    right:auto;
+	_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
     width:750px;
     height:450px;
     border:2px solid #CDCDCD;

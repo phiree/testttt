@@ -254,9 +254,9 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     }
     protected void Btnckpass_Click(object sender, EventArgs e)
     {
+        CurrentScenic = Master.Scenic;
         if (txtUseCount.Text != "")
         {
-            CurrentScenic = Master.Scenic;
             int wtusecount = int.Parse(txtUseCount.Text);
             bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
             if (wtusecount > totalyudingcount - usedyudingcount)

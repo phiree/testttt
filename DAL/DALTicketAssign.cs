@@ -162,7 +162,7 @@ namespace DAL
 
         public int GetUsedCount(string idcard, DateTime dt)
         {
-            string sql = "select count(* from TicketAssign ta where ta.UsedTime='" + dt + "' and ta.IsUsed=true and ta.IdCard='" + idcard + "'";
+            string sql = "select count(*) from TicketAssign ta where ta.UsedTime='" + dt + "' and ta.IsUsed=true and ta.IdCard='" + idcard + "'";
             IQuery query = session.CreateQuery(sql);
             return (int)query.FutureValue<long>().Value;
         }
