@@ -19,6 +19,7 @@
     margin: 0 !important;
     margin-left: 5px !important;
     width: 40px;
+    text-align:center;
 }
 .delete
 {
@@ -36,16 +37,20 @@
 {
     height: 35px;
 }
+.orderlist td
+{
+    text-align:center;
+}
 .orderlist thead tr
 {
-    background-color: #82974C;
-    color: White;
+    background-color: #E6E6E6;
+    color: Black;
 }
 .orderlist tfoot
 {
-    background-color: #FFF5A0;
+    background-color: #82974C;
     font-style: normal;
-    color: #AF4A1C;
+    color: White;
 }
 .orderlist tfoot tr
 {

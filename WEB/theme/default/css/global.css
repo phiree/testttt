@@ -20,7 +20,7 @@
 .btnlight, .btnlight:link, .btnlight:visited
 {   color: White;
     background: url(../image/btnlight.png) top left repeat-x;
-    border: 1px solid #F18642;
+    border: 1px solid #8A9D57;
 }
 .btnlight:hover
 {   
@@ -41,7 +41,7 @@
 {
      color: White;
     background: url(../image/btngray.png) top left repeat-x;
-    border: 1px solid #6C7C3D;
+    border: 1px solid #8A9D57;
     }
     .btngray:hover
 {

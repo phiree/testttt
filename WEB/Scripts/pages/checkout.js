@@ -74,17 +74,16 @@
     var assign = new Array();
 
     $(".assignitem").click(function () {
-
         var that = this;
         var ticketid = $("#contactlist").attr("tid");
 
         var nameinput = ".assignName[tid='" + ticketid + "']";
         var idcardinput = ".assignIdcard[tid='" + ticketid + "']";
-        if ($(that).attr("all") != undefined) {
+        //if ($(that).attr("all") != undefined) {
             nameinput = ".assignName";
             idcardinput = ".assignIdcard";
-            that = $(that).prev();
-        }
+            //that = $(that).prev();
+       // }
         var commuserId = $(that).attr("cid");
         var name = $(that).text().trim();
         var idcard = $(that).attr("idcard").trim();
@@ -121,16 +120,16 @@
         };
 
         //assign data
-        $.get("/order/checkout.ashx?pricetype=" + pricetype + "&a=" + b, function (data) {
+        $.get("/order/checkout.ashx?pricetype=" + pricetype + "&a=" + escape(b), function (data) {
 
             document.write(data);
         });
         $(this).text("正在提交.............");
         $(this).attr("disabled", "disabled");
-        
+
         $(this).css({
             color: "#ddd",
-            cursor:"none"
+            cursor: "none"
         });
     });
     var errmsg;

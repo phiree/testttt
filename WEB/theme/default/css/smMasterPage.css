@@ -93,9 +93,9 @@
     background:url("/theme/default/image/btnexit.png");
     margin-top:9px;
     border:0px none White;
-    margin-left:250px;
+    margin-right:20px;
     cursor:pointer;
-    float:left;
+    float:right;
 }
 #tool
 {

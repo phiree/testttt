@@ -18,7 +18,11 @@ public partial class UserCenter_MyOrder : basepage
     Order order;
     protected void Page_Load(object sender, EventArgs e)
     {
-        bind();
+        if (!IsPostBack)
+        {
+            bind();
+        }
+        
         int orderid = int.Parse(Request.QueryString["orderid"]);
 
 
@@ -190,8 +194,13 @@ public partial class UserCenter_MyOrder : basepage
                 ta.Name = (item.FindControl("txtdetailname") as TextBox).Text.Trim();
                 ta.IdCard = (item.FindControl("txtdetailidcard") as TextBox).Text.Trim();
                 bllticketassign.SaveOrUpdate(ta);
+                if (bllcommonuser.GetCommonUserByUserIdandidcard((Guid)CurrentUser.ProviderUserKey, ta.IdCard) == null&&ta.IdCard!=bllMember.GetUserByUserId((Guid)CurrentUser.ProviderUserKey).IdCard)
+                {
+                    bllcommonuser.Save((Guid)CurrentUser.ProviderUserKey, ta.Name, ta.IdCard);
+                }
             }
         }
+
         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功!');", true);
     }
     protected void rptbind_ItemDataBound(object sender, RepeaterItemEventArgs e)

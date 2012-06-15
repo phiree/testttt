@@ -474,6 +474,10 @@
     min-height:10px;
     display:block;
     overflow:auto;
+    _overflow:hidden;
+    *overflow:hidden;
+    overflow:hidden \0;
+    overflow:hidden \9\0;
 }
 .visiteddiv
 {

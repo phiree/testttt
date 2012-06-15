@@ -44,7 +44,7 @@
 
                 var nameinput = ".aa[tid='" + ticketid + "']";
                 var idcardinput = ".bb[tid='" + ticketid + "']";
-                if ($(that).attr("all") == "") {
+                if ($(that).attr("all") != undefined) {
                     nameinput = ".aa";
                     idcardinput = ".bb";
                     that = $(that).prev();

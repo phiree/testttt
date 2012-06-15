@@ -35,7 +35,8 @@
                 <span>
                     <asp:LoginName ID="LoginName" runat="server" />
                 </span>
-                <asp:Button ID="btnquit" runat="server" CssClass="btnquit" />
+                <asp:LoginStatus LogoutText="" LogoutPageUrl="/Manager/Login.aspx" LogoutAction="Redirect"
+                        runat="server" ID="loginstatus"  CssClass="btnquit"  />
             </div>
             <div class="list">
                 <ul>

@@ -52,7 +52,7 @@
                 <tr>
                             <td>
                                 <input type="hidden" class="hdId" value='<%#Eval("Id") %>' />
-                                <a href='/scenic/?tid=<%#Eval("Id") %>'>
+                                <a href='<%# "/"+Eval("Scenic.Area.SeoName")+"/"+Eval("Scenic.SeoName")+".html"%>'>
                                     <%#Eval("Scenic.Name") %></a>
                             </td>
                              <td>
@@ -76,7 +76,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="4">
-                              <div>
+                              <div style="color:#E5BF4C">
                                         <span>共<strong id="cticketsSum"></strong>张门票</span> <span>在线支付价:<strong id="totalonline"></strong>
                                         </span><span>预订价:<strong id="totalpreorder"></strong> </span>
                                     </div>
@@ -119,10 +119,10 @@
                         <%#Eval("Scenic.Name") %>
                     </td>
                     <td>
-                        游览者姓名:<input type="text" tid='<%#Eval("Id") %>' class="assignName" />
+                        游览者姓名:<input type="text" tid='<%#Eval("Id") %>' class="assignName" style="vertical-align:middle" />
                     </td>
                     <td>
-                        身份证号:<input type="text"  tid='<%#Eval("Id")%>' class="assignIdcard" />
+                        身份证号:<input type="text"  tid='<%#Eval("Id")%>' class="assignIdcard" style="vertical-align:middle" />
                     </td>
                 </tr>
             </ItemTemplate>
@@ -134,14 +134,14 @@
         <div id="payonline" pricetype="3" class="priceselection">
             <span class="price">
                 <input type="radio"  name="price" />
-                在线支付:<em id="bpriceonline">123</em>元</span><span class="pricedesc">通过支付宝支付,享受最优惠价格.</span>
+                在线支付:<em id="bpricepreorder">123</em>元</span><span class="pricedesc">通过支付宝支付,享受最优惠价格.</span>
             <div class="clear">
             </div>
         </div>
         <div id="preorder" pricetype="2" class="priceselection">
             <span class="price">
                 <input type="radio" name="price" />
-                预订总价:<em id="bpricepreorder">234</em>元</span><span class="pricedesc">预订门票,无需立即支付,鼠标一点,实惠又方便</span>
+                预订总价:<em id="bpriceonline">234</em>元</span><span class="pricedesc">预订门票,无需立即支付,鼠标一点,实惠又方便</span>
             <div class="clear">
             </div>
         </div>
