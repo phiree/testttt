@@ -56,6 +56,7 @@
                                         购买数量
                                     </td>
                                     <td>
+                                        操作
                                     </td>
                                 </tr>
                             </thead>
@@ -77,8 +78,8 @@
                                     <asp:Literal runat="server" ID="liPriceOnline"></asp:Literal>
                                 </span>
                             </td>
-                            <td>
-                                <span class="qtyCut qtyBtn">-</span><input class="qtyModify" runat="server" id="inputQty"
+                            <td style="width:200px">
+                                <span class="qtyCut qtyBtn" style="margin-left:60px">-</span><input class="qtyModify" runat="server" id="inputQty"
                                     type="text" /><span class="qtyAdd qtyBtn">+</span>
                             </td>
                             <td>

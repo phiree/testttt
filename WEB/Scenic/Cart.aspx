@@ -53,7 +53,7 @@
                             <asp:Literal runat="server" ID="liPriceOnline"></asp:Literal>
                         </td>
                         <td>
-                            <span class="qtyCut qtyBtn">-</span><input class="qtyModify" runat="server" id="inputQty"
+                            <span class="qtyCut qtyBtn" style="margin-left:30px">-</span><input class="qtyModify" runat="server" id="inputQty"
                                 type="text" /><span class="qtyAdd qtyBtn">+</span>
                         </td>
                         <td>

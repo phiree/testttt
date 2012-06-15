@@ -19,6 +19,7 @@
     margin: 0 !important;
     margin-left: 5px !important;
     width: 40px;
+    text-align:center;
 }
 .delete
 {
@@ -35,6 +36,10 @@
 .orderlist tr
 {
     height: 35px;
+}
+.orderlist td
+{
+    text-align:center;
 }
 .orderlist thead tr
 {

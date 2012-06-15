@@ -22,5 +22,12 @@ public partial class Manager_manager : System.Web.UI.MasterPage
         {
             Response.Redirect("/Manager/Login.aspx");
         }
+        else
+        {
+            if (!Roles.IsUserInRole(mu.UserName, "SiteAdmin"))
+            {
+                Response.Redirect("/Manager/Login.aspx");
+            }
+        }
     }
 }
