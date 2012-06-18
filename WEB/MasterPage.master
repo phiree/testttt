@@ -113,8 +113,8 @@ Assembly="Intelligencia.UrlRewriter" %>
         <div class="container">
             <div class="clear span-24 last block">
                 <div id="footerlink">
-                    <a>关于中国旅游在线</a>
-                    <a>联系我们</a>
+                    <a href="/About/Default.aspx">关于中国旅游在线</a>
+                    <a href="/About/Default.aspx">联系我们</a>
                     <a href="/ScenicManager/Login.aspx">景区登录</a>
                 </div>
                               <p>

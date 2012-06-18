@@ -29,6 +29,8 @@ background-color:#fff !important;
 #main
 {
     background-image: url(../image/Grey-BG.gif);
+    position:relative;
+    z-index:3;
 }
 #main .container
 {
@@ -234,4 +236,9 @@ background-color:#fff !important;
 {
     font-size: 12px;
    
+}
+#header
+{
+    position:relative;
+    z-index:998;
 }
