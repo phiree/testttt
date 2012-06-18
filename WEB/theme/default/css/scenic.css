@@ -132,6 +132,7 @@
     height:16px;
     line-height:16px;
    text-align:center;
+   _height:14px;
   
 }
 
@@ -390,6 +391,7 @@
     display:block;
     height:310px;
     width:802px;
+    _overflow:hidden;
 }
 .zbscpic
 {
@@ -406,6 +408,7 @@
     display:block;
     width:180px;
     float:left;
+    _overflow:hidden;
 }
 .imgzb
 {
@@ -455,7 +458,7 @@
 }
 #visitedsc p
 {
-    margin:0px 0px 0px 10px;
+    margin:0px 5px 0px 5px;
     font-weight:700;
 }
 #visitedsc hr
@@ -548,4 +551,16 @@
     font-size:12px;
     padding:2px;
     _padding:1px;
+}
+.jiancss
+{
+    top:10px;
+    position:absolute;
+    background:url('/Img/yuansu/largeicon2.gif') no-repeat;
+    width:14px;
+    height:15px;
+    top:19px;
+    _top:17px;
+    left:10px;
+    overflow:hidden;
 }

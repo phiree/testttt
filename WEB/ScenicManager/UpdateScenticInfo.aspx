@@ -65,9 +65,9 @@
                 }
                 map.addContextMenu(contextMenu);
                     
-            var xwidth = document.body.clientWidth;
-            var xheight = window.screen.height;   
-            $("#divbigmap").css({ top:  (xheight-450)/2+ "px", left: (window.screen.availWidth - 750) / 2 + "px" });
+//            var xwidth = document.body.clientWidth;
+//            var xheight = window.screen.height;
+//            $("#divbigmap").css({ top: (xheight - 450) / 2 + "px", left: (window.screen.availWidth - 750) / 2 + "px" });
         }
         function closebigmap() {
             $("#divbigmap").css("display", "none");
@@ -340,14 +340,14 @@
         <div style="margin-left:60px; margin-top:20px; margin-bottom:20px;"><asp:Button ID="BtnUpdateScenicInfo" CssClass="btnsave" runat="server" OnClientClick="BtnUpdateScenicInfo();" OnClick="btnOK_Click" /></div>
     </div>
     
-
-
-    
-
     <div id="divbigmap" style="display:none;">
         <p style="width:100%;height:15px;color:Red; text-align:right;margin:0px;padding:0px; background-color:#E5E5E5; line-height:15px;"><a style="text-decoration:none; cursor:pointer; color:Red" onclick="closebigmap()">关闭</a></p>
         <div id="bigmap" style="width:100%;height:435px; display:block;">
             
         </div>
     </div>
+
+    
+
+    
 </asp:Content>

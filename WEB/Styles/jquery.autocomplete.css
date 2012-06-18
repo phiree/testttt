@@ -4,14 +4,28 @@
 	background-color: white;
 	overflow: hidden;
 	z-index: 99999;
+	_margin-right: -15px;  
+    _margin-bottom: -15px;  
+    _width:200px;
+    
 }
 
-.ac_results ul {
+.ac_results ul 
+{
+    display:block;
 	width: 100%;
 	list-style-position: outside;
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	_height:200px;
+	overflow-x:hideen;
+	overflow-y:auto;
+	_overflow:auto;
+	_overflow-x:hidden;
+	max-height:180px;
+	_height: expression_r( this.scrollHeight > 180 ? "180px" : "auto" );
+	_height:180px;
 }
 
 .ac_results li {
@@ -32,6 +46,8 @@
 	*/
 	line-height: 16px;
 	overflow: hidden;
+	_margin-bottom:-10px;
+	_padding:0px;
 }
 
 .ac_loading {

@@ -115,14 +115,14 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td>
+                    <td style="padding-left:20px;">
                         <%#Eval("Scenic.Name") %>
                     </td>
                     <td>
-                        游览者姓名:<input type="text" tid='<%#Eval("Id") %>' class="assignName" style="vertical-align:middle" />
+                        游览者姓名:&nbsp;<input type="text" tid='<%#Eval("Id") %>' class="assignName" style="vertical-align:middle" />
                     </td>
                     <td>
-                        身份证号:<input type="text"  tid='<%#Eval("Id")%>' class="assignIdcard" style="vertical-align:middle" />
+                        身份证号:&nbsp;<input type="text"  tid='<%#Eval("Id")%>' class="assignIdcard" style="vertical-align:middle" />
                     </td>
                 </tr>
             </ItemTemplate>

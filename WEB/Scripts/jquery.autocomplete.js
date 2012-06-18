@@ -729,8 +729,9 @@ $.Autocompleter.Select = function (options, input, select, config) {
             if(options.scroll) {
                 list.scrollTop(0);
                 list.css({
-					maxHeight: options.scrollHeight,
-					overflow: 'auto'
+				//	maxHeight: options.scrollHeight
+//					overflow: 'auto',
+//                    _overflow: 'hidden'
 				});
 				
                 if($.browser.msie && typeof document.body.style.maxHeight === "undefined") {
