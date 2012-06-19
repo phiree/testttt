@@ -1,38 +1,45 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager/manager.master" AutoEventWireup="true"
     CodeFile="BillAll.aspx.cs" Inherits="Manager_BillAll" %>
 
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
+    <link href="/theme/default/css/Managerdefault.css" rel="stylesheet" type="text/css" />
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
-    <asp:DropDownList ID="ddlCity" runat="server" OnTextChanged="ddlCity_TextChanged"
+    <div id="selectdiv">
+        <span>筛选:&nbsp;&nbsp;</span>
+        <asp:DropDownList ID="ddlCity" runat="server" OnTextChanged="ddlCity_TextChanged"
         AutoPostBack="True">
     </asp:DropDownList>
     <asp:DropDownList ID="ddlScenics" runat="server" AutoPostBack="True" OnTextChanged="ddlScenics_TextChanged">
     </asp:DropDownList>
+    </div>
+    
     <asp:Repeater ID="rptStatis" runat="server">
         <HeaderTemplate>
-            <table>
-                <tr>
-                    <td>
+            <table class="tblist" cellpadding="0" cellspacing="0" border="0">
+                <tr class="thead">
+                    <td style="width:200px">
                         订单号
                     </td>
-                    <td>
+                    <td style="width:200px">
                         名称
                     </td>
-                    <td>
+                    <td style="width:200px">
                         类型
                     </td>
-                    <td>
+                    <td style="width:200px">
                         票数
                     </td>
-                    <td>
+                    <td style="width:200px">
                         单价
                     </td>
-                    <td>
+                    <td style="width:200px">
                         总价
                     </td>
-                    <td>
+                    <td style="width:200px">
                         订单时间
                     </td>
-                    <td>
+                    <td style="width:200px">
                         是否结算
                     </td>
                 </tr>
