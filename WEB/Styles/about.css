@@ -2,13 +2,13 @@
 #aboutleft
 {
     float:left;
-    width:30%;
+    width:20%;
 }
 #aboutleft ul
 {
     list-style-type:none;
     font-weight:600;
-    margin:30px 0px 20px 120px;
+    margin:50px 0px 20px 50px;
 }
 #aboutleft ul li
 {
@@ -16,34 +16,32 @@
     width:150px;
     height:30px;
     text-align:center;
-    padding-top:13px;
+    padding-top:10px;
     background-color:inherit;
     display:block;
     
 }
-#aboutleft ul li div
-{
-    width:140px;
-    height:30px;
-    text-align:center;
-    padding-top:15px;
-    background-color:inherit;
-    display:block;
-}
-#aboutleft ul li  a
+
+.normala a,.normala a:hover,.normala a:visited,.normala a:active
 {
     margin:7px auto;
     color:#CE5135;
+    display:block;
+    width:140px;
+    height:30px;
+    line-height:25px;
+    text-align:center;
 }
+
 #aboutright
 {
     float:right;
-    width:70%;
+    width:80%;
 }
 #maintitle
 {
     font-weight:800;
-    margin:20px 0px 10px 20px;
+    margin:20px 0px 10px 30px;
     font-size:12px;
 }
 #wenzi
