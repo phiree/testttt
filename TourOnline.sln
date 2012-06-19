@@ -77,6 +77,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDCardActiveX", "IDCardActi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelOplib", "ExcelOplib\ExcelOplib.csproj", "{86A9D97C-AB59-4C06-93B5-7724675CD97A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "selenium", "selenium", "{101E8ED4-BF2E-40F7-81E5-E9585858BE03}"
+	ProjectSection(SolutionItems) = preProject
+		lib\selenium\Ionic.Zip.dll = lib\selenium\Ionic.Zip.dll
+		lib\selenium\Selenium.WebDriverBackedSelenium.dll = lib\selenium\Selenium.WebDriverBackedSelenium.dll
+		lib\selenium\ThoughtWorks.Selenium.Core.dll = lib\selenium\ThoughtWorks.Selenium.Core.dll
+		lib\selenium\WebDriver.dll = lib\selenium\WebDriver.dll
+		lib\selenium\WebDriver.Support.dll = lib\selenium\WebDriver.Support.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -122,5 +131,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{101E8ED4-BF2E-40F7-81E5-E9585858BE03} = {3A2FC873-64DA-4096-91A0-4123A08B2DF4}
 	EndGlobalSection
 EndGlobal

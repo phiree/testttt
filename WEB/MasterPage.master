@@ -37,9 +37,9 @@ Assembly="Intelligencia.UrlRewriter" %>
                 <div id="logoright" class="span-16 last">
                     <div id="logosearch">
                         <a href="/map" id="maplink">[去地图版看看]</a>
-                        <asp:TextBox CssClass="span-9" runat="server" ID="tbxKeywords">
+                        <asp:TextBox CssClass="span-9" runat="server" ClientIDMode="Static" ID="tbxKeywords">
                         </asp:TextBox>
-                        <asp:Button runat="server" ID="btnSearch" OnClick="btnSearch_Click" />
+                        <asp:Button runat="server" ID="btnSearch" ClientIDMode="Static" OnClick="btnSearch_Click" />
                     </div>
                 </div>
             </div>

@@ -54,7 +54,11 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\lib\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\lib\selenium\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
@@ -77,6 +81,9 @@
     <Reference Include="Rhino.Mocks">
       <HintPath>..\lib\Rhino.Mocks.dll</HintPath>
     </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\lib\selenium\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -86,6 +93,15 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="ThoughtWorks.Selenium.Core">
+      <HintPath>..\lib\selenium\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\lib\selenium\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\lib\selenium\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AreaTest.cs" />
@@ -104,6 +120,7 @@
     <Compile Include="TestData.cs" />
     <Compile Include="TestTicketCount.cs" />
     <Compile Include="VoteTest.cs" />
+    <Compile Include="webtest\pageobjects\default.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -133,6 +150,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="IEDriverServer.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TDD\order\todo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
