@@ -57,9 +57,9 @@ public partial class Scenic_Default : System.Web.UI.Page
         scpoint = scenic.Position;
         scbindname = scenic.Name;
         int scid = scenic.Id;
-        areaname.HRef = "../Default.aspx?area=" + scenic.Area.Id;
+        areaname.HRef = "/" + scenic.Area.SeoName+".html";
         areaname.InnerHtml = scenic.Area.Name.Substring(3, scenic.Area.Name.Length - 3);
-        scenicname.HRef = "Default.aspx?id=" + scenic.Id;
+        scenicname.HRef = "/" + scenic.Area.SeoName + "/" + scenic.SeoName+".html";
         scenicname.InnerHtml = scenic.Name;
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
