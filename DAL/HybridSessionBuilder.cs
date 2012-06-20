@@ -41,15 +41,24 @@ namespace DAL
             {
                 //IAutomappingConfiguration cfg = new MyAutoMappingCfg();
 
+                MsSqlConfiguration msconfg = MsSqlConfiguration.MsSql2008.ShowSql();
+                if (HttpContext.Current == null)
+                {
+                    msconfg = msconfg.ConnectionString(s => s.Server(".\\DbServer,7788")
+                            .Database("TourOnline")
+                            .Username("sa")
+                            .Password("admin"));
+
+                }
+                else
+                {
+                    msconfg = msconfg.ConnectionString(s => s.FromConnectionStringWithKey("TourOnlineConn"));
+                }
+
+
+
                 _sessionFactory = Fluently.Configure()
-                .Database(
-                         MsSqlConfiguration
-                        .MsSql2008
-                        .ShowSql()                      //显示SQL选项
-                        .ConnectionString(c => c
-                            //从配置文件获取, 不用配置的方式s => s.Server(".").Database("MyNHibernate").TrustedConnection()
-                        .FromConnectionStringWithKey("TourOnlineConn"))
-                        )
+                .Database(msconfg)
                 .Mappings(
                     //  m =>m.FluentMappings.Add(AssemblyOf<Model.Area>(cfg)))
                     m => m.FluentMappings.AddFromAssemblyOf<Model.User>())

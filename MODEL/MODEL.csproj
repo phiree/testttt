@@ -77,7 +77,6 @@
     <Compile Include="Mapping\UserVoteAmount.cs" />
     <Compile Include="Mapping\RoleMap.cs" />
     <Compile Include="Mapping\FormatSerialNoMap.cs" />
-    <Compile Include="Order\Cart.cs" />
     <Compile Include="Order\Order.cs" />
     <Compile Include="Order\OrderDetail.cs" />
     <Compile Include="Order\TicketAssign.cs" />

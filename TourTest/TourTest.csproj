@@ -121,6 +121,7 @@
     <Compile Include="TestTicketCount.cs" />
     <Compile Include="VoteTest.cs" />
     <Compile Include="webtest\pageobjects\default.cs" />
+    <Compile Include="webtest\pageobjects\login.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

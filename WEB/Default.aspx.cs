@@ -256,7 +256,7 @@ public partial class _Default : basepage
     private void SetSeo()
     {
         
-     SeoData seodata = SeoHandler.GetSeoData_Home(area, level, pageIndex);
+     BatchSeoData seodata = SeoHandler.GetSeoData_Home(area, level, pageIndex);
      this.Title = seodata.Title;
      this.MetaKeywords = seodata.KeyWord;
     }

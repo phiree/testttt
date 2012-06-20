@@ -6,12 +6,15 @@ using DAL;
 using Model;
 namespace BLL.SEO
 {
-
-    public class SeoData
+    /// <summary>
+    /// 批量设置title 和 keyworld.
+    /// (descriptiong需要单独设置.)
+    /// </summary>
+    public class BatchSeoData
     {
         public string Title { get; set; }
         public string KeyWord { get; set; }
-        public string Description { get; set; }
+     
     }
     /// <summary>
     /// title的seo优化
@@ -30,10 +33,10 @@ namespace BLL.SEO
         const string HomeTitle = "中国旅游在线_浙江旅游景点门票预订官网";
         const string HomeKeyword = "景点门票，门票预订，门票价格，旅游景点门票推荐";
         //区域--级别页面
-        public static SeoData GetSeoData_Home(Area area, int level, int pageIndex)
+        public static BatchSeoData GetSeoData_Home(Area area, int level, int pageIndex)
         {
             int areaId = area == null ? 0 : area.Id;
-            SeoData seoData = new SeoData();
+            BatchSeoData seoData = new BatchSeoData();
             TemplateType tt = TemplateType.Home;
             if (areaId > 0)
             {
