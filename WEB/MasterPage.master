@@ -61,7 +61,32 @@ Assembly="Intelligencia.UrlRewriter" %>
                         <img src="/theme/default/image/cart.png" alt="购物车" /><span id="cartsumwrap"><em id="cartsum"></em>
                         </span><span><a href="/order/cart.aspx">我的购物车</a></span>
                     </div>
-                    <div id="popcart" style="display: none">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="container">
+            <asp:ContentPlaceHolder ID="cphmain" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <div class="clear span-24 last block">
+                <div id="footerlink">
+                    <a href="/About/Default.aspx">关于中国旅游在线</a>
+                    <a href="/About/Default.aspx">联系我们</a>
+                    <a href="/ScenicManager/Login.aspx">景区登录</a>
+                </div>
+                              <p>
+                    杭州笨牛信息技术有限公司版权所有 &nbsp;&nbsp;<a rel="nofollow" href="http://www.miibeian.gov.cn/" target="_blank">浙ICP备12017395号</a>
+</p>
+                         </div>
+        </div>
+    </div>
+    <div id="popcart" style="display: none">
                         <div id="pchead">
                             <span>购物车</span></div>
                         <div id="pcbody">
@@ -99,30 +124,6 @@ Assembly="Intelligencia.UrlRewriter" %>
                             </asp:Panel>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="main">
-        <div class="container">
-            <asp:ContentPlaceHolder ID="cphmain" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-    </div>
-    <div id="footer">
-        <div class="container">
-            <div class="clear span-24 last block">
-                <div id="footerlink">
-                    <a href="/About/Default.aspx">关于中国旅游在线</a>
-                    <a href="/About/Default.aspx">联系我们</a>
-                    <a href="/ScenicManager/Login.aspx">景区登录</a>
-                </div>
-                              <p>
-                    杭州笨牛信息技术有限公司版权所有 &nbsp;&nbsp;<a rel="nofollow" href="http://www.miibeian.gov.cn/" target="_blank">浙ICP备12017395号</a>
-</p>
-                         </div>
-        </div>
-    </div>
     </form>
 </body>
 </html>

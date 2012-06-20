@@ -30,7 +30,7 @@ background-color:#fff !important;
 {
     background-image: url(../image/Grey-BG.gif);
     position:relative;
-    z-index:3;
+    z-index:1000;
 }
 #main .container
 {
@@ -112,6 +112,7 @@ background-color:#fff !important;
     position: relative;
     height: 37px;
     background: url(../image/barbg.png) top left repeat-x;
+    z-index:1000;
 }
 #login
 {

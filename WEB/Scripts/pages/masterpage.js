@@ -33,4 +33,8 @@ $(function () {
     //购物车内的统计数据
     $("#ticketsSum").text(cart.TotalQty);
     $("#scenicSum").text(cart.CartItems.length);
+
+    var pleft = $("#cart").position().left;
+    var ptop = $("#cart").position().top;
+    $("#popcart").css({ left: pleft+70 + "px", top: ptop+180 + "px" });
 });

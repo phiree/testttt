@@ -1,5 +1,7 @@
 ﻿#backpage
 {
+    position:relative;
+    z-index:1002;
 }
 #orderstep span
 {
@@ -14,11 +16,16 @@
 }
 #floatpage
 {
-    position: relative;
+    position:relative;
     top: -10px;
     background: url(../image/scenictopbg.png) top left no-repeat;
     padding-top: 10px;
     display: inline;
+    left:40px \0;
+    left:40px \0\9;
+    *left:40px;
+    _left:0px;
+    z-index:1004;
 }
 #fhead
 {
