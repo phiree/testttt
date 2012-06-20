@@ -90,5 +90,9 @@ namespace BLL
         {
             return Iticketassign.GetTaByIdCard(idcard);
         }
+        public IList<TicketAssign> GetTaByIdcardandscenic(string idcard, Scenic scenic)
+        {
+            return Iticketassign.GetTaByIdcardandscenic(idcard, scenic);
+        }
     }
 }

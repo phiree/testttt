@@ -145,4 +145,11 @@
             </asp:Repeater>
         </div>
     </div>
+    <%--<input type="button" onclick="sss();" value="ceshi" />
+    <script type="text/javascript">
+        function sss() {
+            $("[id$='hfautoidcard']").val("1232143243453");
+            $("[id$='btnauto']").click();
+        }
+    </script>--%>
 </asp:Content>

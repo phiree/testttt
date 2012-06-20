@@ -32,5 +32,6 @@ namespace IDAL
 
         List<TicketAssign> GetYwCount(string idcard);
         IList<TicketAssign> GetTaByIdCard(string idcard);
+        IList<TicketAssign> GetTaByIdcardandscenic(string idcard, Scenic scenic);
     }
 }

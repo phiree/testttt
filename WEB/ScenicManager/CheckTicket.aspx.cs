@@ -320,10 +320,19 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     }
     protected void btnauto_Click(object sender, EventArgs e)
     {
+        CurrentScenic = Master.Scenic;
         string idcard = hfautoidcard.Value;
-        IList<TicketAssign> list = bllticketassign.GetTaByIdCard(idcard);
+        IList<TicketAssign> list = bllticketassign.GetTaByIdcardandscenic(idcard, CurrentScenic);
         if (list.Count == 0)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息');", true);
+            tp_nav.Attributes.Add("style", "");
+            //txinfo.Attributes.Remove("class");
+            //list.Visible = true;
+            detailinfo.Visible = false;
+            ywdiv.Visible = false;
             return;
+        }
         else
         {
             string name = bllticketassign.GetTaByIdCard(idcard)[0].Name;
