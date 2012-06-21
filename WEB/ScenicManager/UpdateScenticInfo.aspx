@@ -265,7 +265,7 @@
                     地址
                 </td>
                 <td>
-                    <asp:TextBox ID="Address" runat="server" onblur="show();" Width="245px"></asp:TextBox><font style="color:Red">*</font>
+                    <asp:TextBox ID="Address" runat="server" Width="245px"></asp:TextBox><font style="color:Red">*</font>
                 </td>
             </tr>
         </table>
