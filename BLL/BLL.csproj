@@ -72,6 +72,7 @@
     <Compile Include="BLLContractScenicPrice.cs" />
     <Compile Include="BLLDiscountCode.cs" />
     <Compile Include="BLLFactory.cs" />
+    <Compile Include="BLLForTDD\BLLMember.cs" />
     <Compile Include="BLLLog.cs" />
     <Compile Include="BLLOrder.cs" />
     <Compile Include="BLLOrderDetail.cs" />
