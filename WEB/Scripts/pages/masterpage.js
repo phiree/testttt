@@ -12,11 +12,18 @@ $(function () {
                 }
             }
             );
-    $("#cart").hover(function () {
-        $("#popcart").toggle();
+    $("#cart").mouseover(function () {
+        $("#popcart").show();
     });
-
-
+    $("#cart").mouseout(function () {
+        $("#popcart").hide();
+        $("#popcart").mouseover(function () {
+            $("#popcart").show();
+        });
+        $("#popcart").mouseout(function () {
+            $("#popcart").hide();
+        });
+    });
 
     var cart = new Cart();
     $(".cartdelete").click(function () {
