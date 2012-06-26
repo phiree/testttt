@@ -43,5 +43,10 @@ $(function () {
 
     var pleft = $("#cart").position().left;
     var ptop = $("#cart").position().top;
-    $("#popcart").css({ left: pleft+70 + "px", top: ptop+180 + "px" });
+    $("#popcart").css({ left: pleft -90+ "px", top: ptop+50 + "px" });
 });
+window.onresize = function () {
+    var pleft = $("#cart").position().left;
+    var ptop = $("#cart").position().top;
+    $("#popcart").css({ left: pleft -90+ "px", top: ptop + 50 + "px" });
+}

@@ -109,7 +109,6 @@ background-color:#fff !important;
 {
     padding-top: 14px;
     width: 100%;
-    position: relative;
     height: 37px;
     background: url(../image/barbg.png) top left repeat-x;
     z-index:1000;
