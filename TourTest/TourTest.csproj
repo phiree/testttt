@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AreaTest.cs" />
+    <Compile Include="BLLTest\AreaTest.cs" />
     <Compile Include="Common\testStringHelper.cs" />
     <Compile Include="EnumTEst.cs" />
     <Compile Include="MembershipTest.cs" />
