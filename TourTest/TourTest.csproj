@@ -104,11 +104,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AreaTest.cs" />
     <Compile Include="BLLTest\AreaTest.cs" />
+    <Compile Include="BLLTest\BackManagerTest.cs" />
+    <Compile Include="BLLTest\MembershipTest.cs" />
+    <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="Common\testStringHelper.cs" />
     <Compile Include="EnumTEst.cs" />
-    <Compile Include="MembershipTest.cs" />
     <Compile Include="OrderTest.cs" />
     <Compile Include="PromStaticTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

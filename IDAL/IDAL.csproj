@@ -73,6 +73,7 @@
     <Compile Include="IVote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IUserVoteAmount.cs" />
+    <Compile Include="IDALFormatSerialNo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MODEL\MODEL.csproj">
