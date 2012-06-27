@@ -108,6 +108,7 @@
     <Compile Include="BLLTest\BackManagerTest.cs" />
     <Compile Include="BLLTest\MembershipTest.cs" />
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
+    <Compile Include="BLLTest\OrderTest.cs" />
     <Compile Include="Common\testStringHelper.cs" />
     <Compile Include="EnumTEst.cs" />
     <Compile Include="OrderTest.cs" />
