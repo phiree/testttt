@@ -66,6 +66,7 @@
   <ItemGroup>
     <Content Include="docs\Questions.txt" />
     <Content Include="docs\ToDoList.txt" />
+    <Content Include="docs\WebTest\DefaultWebTest.html" />
     <Content Include="docs\测试驱动开发--景区审核.txt" />
     <Content Include="docs\测试驱动开发.txt" />
     <Content Include="docs\测试驱动开发--网上支付.txt" />

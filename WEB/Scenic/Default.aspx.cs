@@ -10,7 +10,6 @@ using Model;
 
 public partial class Scenic_Default : System.Web.UI.Page
 {
-
     BLLScenic bllscenic = new BLLScenic();
     BLLMembership bllMember = new BLLMembership();
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
@@ -101,14 +100,12 @@ public partial class Scenic_Default : System.Web.UI.Page
         foreach (ScenicImg item in sclist)
         {
             bindimglist += item.Scenic.Position + ":";
+            searchbigmap.HRef += ","+item.Scenic.Id;
         }
         rptzbsc.DataSource = sclist;
         rptzbsc.DataBind();
         searchbigmap.HRef = "/map/Default.aspx?scenicid="+scenic.Id;
-        foreach (ScenicImg item in sclist)
-        {
-            searchbigmap.HRef += ","+item.Scenic.Id;
-        }
+
 
         List<ScenicImg> listsc = new List<ScenicImg>();
         if (Request.Cookies["visitedscenic"] != null)
@@ -153,8 +150,9 @@ public partial class Scenic_Default : System.Web.UI.Page
         }
     }
     int k = 0;
-    int dd = 20;
+    int dd = 500;
     List<ScenicImg> sclist = new List<ScenicImg>();
+    object[,] o = new object[,] { };
     public void bindimg(IList<Scenic> list, Scenic scenic)
     {
         foreach (Scenic item in list)
@@ -175,8 +173,6 @@ public partial class Scenic_Default : System.Web.UI.Page
                             break;
                         }
                     }
-                    //places.Add(item, distance);
-                    //listdistance.Add(distance);
                     if (flag == 0)
                     {
                         if (bllscenicimg.GetSiByType(item, 1).Count > 0)
@@ -185,11 +181,11 @@ public partial class Scenic_Default : System.Web.UI.Page
                 }
             }
         }
-        if (k < 6 && dd < 500)
-        {
-            dd = dd + 20;
-            bindimg(list, scenic);
-        }
+        //if (k < 6 && dd < 500)
+        //{
+        //    dd = dd + 20;
+        //    bindimg(list, scenic);
+        //}
     }
 
 
