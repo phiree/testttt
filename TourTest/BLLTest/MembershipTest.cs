@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NUnit.Framework;
 using BLL;
 using Model;
-using NUnit.Framework;
-namespace TourTest
+
+namespace TourTest.BLLTest
 {
     [TestFixture]
-   public class MembershipTest
+    public class MembershipTest
     {
         [Test]
         public void CreateUpdateMemberTest()
@@ -17,7 +18,7 @@ namespace TourTest
             bllMember.CreateUser("realname", "phone", "address", "idcard", "loginname", "password");
 
             TourMembership member = bllMember.GetMember("loginname");
-            
+
             Assert.IsTrue(member != null);
             Assert.IsTrue(member.GetType() == typeof(User));
         }
@@ -25,8 +26,8 @@ namespace TourTest
         public void GetUserByUserName()
         {
             DAL.DALMembership dalmember = new DAL.DALMembership();
-          TourMembership t=  dalmember.GetMemberByName("yuanfei");
-          Console.Write(t.GetType());
+            TourMembership t = dalmember.GetMemberByName("yuanfei");
+            Console.Write(t.GetType());
         }
         [Test]
         public void GetUsersByUsertypeTest()

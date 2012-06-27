@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using Rhino.Mocks;
 
-namespace TourTest
+namespace TourTest.BLLTest
 {
     [TestFixture]
-    public class AreaTest
+    public class BackManagerTest
     {
         [Test]
-        public void GetAreaProvinceTest()
+        public void AddProm()
         {
-            IDAL.IArea dal = new DAL.DALArea();
-            dal.GetAreaProvince();
+          
+           
         }
     }
 }

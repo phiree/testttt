@@ -6,10 +6,29 @@ using Model;
 using DAL;
 namespace BLL
 {
+    /// <summary>
+    /// 根据当前日期,以及 标志符 生成 序列号.
+    /// </summary>
     public class BLLFormatSerialNo 
     {
-        DALFormatSerialNo dalFs = new DALFormatSerialNo();
 
+        IDAL.IDALFormatSerialNo idalFS;
+     public   IDAL.IDALFormatSerialNo IdalFS
+        {
+            get
+            {
+                if (idalFS == null)
+                {
+                    idalFS = new DALFormatSerialNo();
+               }
+                return idalFS;
+            }
+            set {
+                idalFS = value;
+            }
+        }
+
+    
         public string GetSerialNo(string flag)
         {
             return GetSerialNo(flag, true);
@@ -18,7 +37,7 @@ namespace BLL
         {
             string serialNo = string.Empty;
 
-            IList<FormatSerialNo> flagNos = dalFs.GetSerialNoList(flag);
+            IList<FormatSerialNo> flagNos = idalFS.GetSerialNoList(flag);
             FormatSerialNo format = new FormatSerialNo();
             DateTime now = DateTime.Now;
             if (flagNos.Count == 0)
@@ -30,7 +49,7 @@ namespace BLL
                 format.Year = EnsureFormatItemLength(2, now.Year);
                 format.Value = EnsureFormatItemLength(4, 1);
                 serialNo = format.ToString();
-                dalFs.Save(format);
+                idalFS.Save(format);
 
             }
             else if (flagNos.Count == 1)
@@ -86,18 +105,23 @@ namespace BLL
                 format.Year = EnsureFormatItemLength(2, now.Year);
                 format.Value = EnsureFormatItemLength(4, value);
                 serialNo = format.ToString();
-                dalFs.Save(format);
+                idalFS.Save(format);
             }
             else
             {
                 throw new Exception("流水号生成错误:出现" + flagNos.Count + "个相同的Flag");
             }
-
-
             return serialNo;
 
         }
-        private string EnsureFormatItemLength(int length, int value)
+
+        /// <summary>
+        /// 格式化数字为指定长度
+        /// </summary>
+        /// <param name="length">长度</param>
+        /// <param name="value">数字</param>
+        /// <returns></returns>
+        public string EnsureFormatItemLength(int length, int value)
         {
             string zeros = string.Empty;
             for (int i = 0; i < length; i++)

@@ -5,7 +5,7 @@ using System.Text;
 using Model;
 namespace DAL
 {
-    public class DALFormatSerialNo : DalBase
+    public class DALFormatSerialNo : DalBase,IDAL.IDALFormatSerialNo
     {
 
         public IList<FormatSerialNo> GetSerialNoList(string flag)
