@@ -29,7 +29,7 @@ namespace BLL
         /// <summary>
         /// 如果不存在该景区门票 则自动创建
         /// </summary>
-        private Model.Ticket EnsureTicket(int scid)
+        public Model.Ticket EnsureTicket(int scid)
         {
             IList<Model.Ticket> tickets = Iticket.GetTicketByscId(scid);
             Model.Ticket ticket = null;
@@ -52,12 +52,11 @@ namespace BLL
         /// <returns></returns>
         public IList<Model.Ticket> GetTicketByAreaId(int areaid)
         {
-
             return Iticket.GetTicketByAreaId(areaid);
         }
-        public IList<Model.Ticket> GetTicketByAreaIdAndLevel(int areaId, int level,int pageIndex,int pageSize,out int totalRecord)
-        { 
-            return Iticket.GetTicketByAreaIdAndLevel( areaId,  level,pageIndex-1,pageSize,out totalRecord);
+        public IList<Model.Ticket> GetTicketByAreaIdAndLevel(int areaId, int level, int pageIndex, int pageSize, out int totalRecord)
+        {
+            return Iticket.GetTicketByAreaIdAndLevel(areaId, level, pageIndex - 1, pageSize, out totalRecord);
         }
         public IList<Model.Ticket> GetTicketByscId(int scid)
         {
@@ -76,7 +75,8 @@ namespace BLL
             }
             return tickets;
         }
-        public Ticket GetTicket(int ticketId) {
+        public Ticket GetTicket(int ticketId)
+        {
             return Iticket.Get(ticketId);
         }
 
@@ -98,8 +98,7 @@ namespace BLL
 
         public IList<Ticket> Search(string paramKey, int pageIndex, int pageSize, out int totalRecord)
         {
-           
-            return Iticket.Search(paramKey,pageIndex-1,pageSize,out totalRecord);
+            return Iticket.Search(paramKey, pageIndex - 1, pageSize, out totalRecord);
         }
         /// <summary>
         /// 购物车内的门票
@@ -108,8 +107,6 @@ namespace BLL
         public IList<Ticket> GetTicketsFromCart()
         {
             List<Ticket> Tickets = new List<Ticket>();
-          
-        
             foreach (CartItem item in GetCartFromCookies())
             {
                 OrderDetail od = new OrderDetail();
@@ -120,22 +117,20 @@ namespace BLL
             return Tickets;
         }
 
-
-
         public IList<CartItem> GetCartFromCookies()
         {
-           IList<CartItem> CartItems=new List<CartItem>();
+            IList<CartItem> CartItems = new List<CartItem>();
             HttpRequest Request = HttpContext.Current.Request;
             HttpResponse Response = HttpContext.Current.Response;
             HttpServerUtility Server = HttpContext.Current.Server;
             string cookieName = "_cart";
             HttpCookie cookie = Request.Cookies[cookieName];
             if (cookie == null)
-                
             {
                 cookie = new HttpCookie(cookieName, "[]");
                 Response.Cookies.Add(cookie);
-                return CartItems; }
+                return CartItems;
+            }
             string cartJson = Server.UrlDecode(cookie.Value);
             Newtonsoft.Json.Linq.JArray arrya = Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JArray>(cartJson);
             if (CartItems == null)
@@ -146,14 +141,12 @@ namespace BLL
             }
             CartItems = Newtonsoft.Json.JsonConvert.DeserializeObject<IList<CartItem>>(cartJson);
             return CartItems;
-
         }
-      
-    }  public class CartItem
-        {
-            public int TicketId;
-           
-            public int Qty;
+    }
 
-        }
+    public class CartItem
+    {
+        public int TicketId;
+        public int Qty;
+    }
 }

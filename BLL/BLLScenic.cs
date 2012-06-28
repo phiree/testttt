@@ -25,6 +25,36 @@ namespace BLL
                 iscenic = value;
             }
         }
+        IDAL.ITicket iticket;
+        public IDAL.ITicket ITicket
+        {
+            get {
+                if (iticket == null)
+                {
+                    iticket = new DAL.DALTicket();
+                }
+                return iticket;
+            }
+            set {
+                iticket = value;
+            }
+        }
+        IDAL.ITicketPrice iticketprice;
+        public IDAL.ITicketPrice ITicketprice
+        {
+            get
+            {
+                if (iticket == null)
+                {
+                    iticketprice = new DAL.DALTicketPrice();
+                }
+                return iticketprice;
+            }
+            set
+            {
+                iticketprice = value;
+            }
+        }
 
         public IList<Model.Scenic> GetScenic()
         {
@@ -80,33 +110,33 @@ namespace BLL
             IList<Ticket> list;
             if (scid == 0)
             {
-                list = new BLLTicket().GetTicketByAreaId(areaid);
+                list = iticket.GetTicketByAreaId(areaid);
             }
             else
-                list = new BLLTicket().GetTicketByscId(scid);
+                list = iticket.GetTicketByscId(scid);
             foreach (Ticket item in list)
             {
-                Model.ScenicTicket s = new ScenicTicket();
-                s.Scenic = item.Scenic;
-                s.Ticket = item;
-                IList<TicketPrice> tp = new BLLTicketPrice().GetTicketPriceByScenicId(item.Scenic.Id);
+                Model.ScenicTicket st = new ScenicTicket();
+                st.Scenic = item.Scenic;
+                st.Ticket = item;
+                IList<TicketPrice> tp = ITicketprice.GetTicketPriceByScenicId(item.Scenic.Id);
                 foreach (TicketPrice items in tp)
                 {
                     switch (items.PriceType)
                     {
                         case PriceType.Normal:
-                            s.Price1 = items.Price;
+                            st.Price1 = items.Price;
                             break;
 
-                        case PriceType.PayOnline: s.Price2 = items.Price; break;
+                        case PriceType.PayOnline: st.Price2 = items.Price; break;
 
-                        case PriceType.PreOrder: s.Price3 = items.Price; break;
-                        case PriceType.PostCardDiscount: s.Price4 = items.Price; break;
-                        case PriceType.DigitalPostCardDiscount: s.Price5 = items.Price; break;
+                        case PriceType.PreOrder: st.Price3 = items.Price; break;
+                        case PriceType.PostCardDiscount: st.Price4 = items.Price; break;
+                        case PriceType.DigitalPostCardDiscount: st.Price5 = items.Price; break;
                     }
 
                 }
-                ScenicTicket.Add(s);
+                ScenicTicket.Add(st);
             }
             return ScenicTicket;
         }
