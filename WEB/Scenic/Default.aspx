@@ -203,12 +203,12 @@
                 <div class="yyprice">
                     原价:<span id="yjhtprice" runat="server">100</span>元</div>
                 <div class="zxprice">
-                    在线支付价:&nbsp;<span id="zfhtprice" runat="server">70</span><font style="color: #D05037">元</font>
+                    网上订购价:&nbsp;<span id="zfhtprice" runat="server">70</span><font style="color: #D05037">元</font>
                     </div>    
                 <div class="priceintro" onmouseover="ShowPriceIntro()" onmouseout="ClosePriceIntro()">
                 </div>
                 <div class="ydprice">
-                    网上预定：<span id="ydhtprice" runat="server">95</span>元</div>
+                    景区现付价：<span id="ydhtprice" runat="server">95</span>元</div>
                 <div class="paytype">
                     付款方式:&nbsp;网银支付&nbsp;&nbsp;支付宝</div>
                 <div class="paycount">

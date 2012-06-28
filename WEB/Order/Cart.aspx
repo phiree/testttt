@@ -12,20 +12,7 @@
 
         $(function () {
             $("#cart").hide();
-            var cart = new Cart();
-            $("#cticketsSum").text(cart.TotalQty);
-            var totalOnlinePrice = 0;
-            var totalPreorderPrice = 0;
-            $(".orderlist tbody tr").each(function () {
-                var that = this;
-                var qty = parseInt($(that).find(".qtyModify").val());
-                var priceorder = parseFloat($(that).find(".priceorder").text());
-                var priceonline = parseFloat($(that).find(".priceonline").text());
-                totalOnlinePrice += qty * priceonline;
-                totalPreorderPrice += qty * priceorder;
-            });
-            $("#totalonline").text(totalOnlinePrice);
-            $("#totalpreorder").text(totalPreorderPrice);
+            init();
         });
        
     </script>
@@ -47,10 +34,10 @@
                                         景区名称
                                     </td>
                                     <td>
-                                        预订价
+                                        景区现付价
                                     </td>
                                     <td>
-                                        在线价
+                                        网上订购价
                                     </td>
                                     <td>
                                         购买数量

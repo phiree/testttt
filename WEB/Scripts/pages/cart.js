@@ -17,9 +17,9 @@ $(function () {
         if (type == "add")
         { nowQty = qty + 1; }
         else if (type == "cut")
-        { nowQty =  qty - 1; }
+        { nowQty = qty - 1; }
         else if (type == "modify") {
-            nowQty =  qty;
+            nowQty = qty;
         }
         else if (type = "delete") {
 
@@ -38,18 +38,19 @@ $(function () {
     }
     $(".qtyAdd").click(function () {
         ModifyQty(this, "add");
-
+        init();
     });
     $(".qtyCut").click(function () {
         ModifyQty(this, "cut");
-
+        init();
     });
     $(".qtyModify").change(function () {
         ModifyQty(this, "modify");
-
+        init();
     });
     $(".delete").click(function () {
         ModifyQty(this, "delete");
+        init();
 
     });
     //ticketsSum
@@ -66,3 +67,20 @@ $(function () {
 
 
 });
+
+function init() {
+    var cart = new Cart();
+    $("#cticketsSum").text(cart.TotalQty);
+    var totalOnlinePrice = 0;
+    var totalPreorderPrice = 0;
+    $(".orderlist tbody tr").each(function () {
+        var that = this;
+        var qty = parseInt($(that).find(".qtyModify").val());
+        var priceorder = parseFloat($(that).find(".priceorder").text());
+        var priceonline = parseFloat($(that).find(".priceonline").text());
+        totalOnlinePrice += qty * priceonline;
+        totalPreorderPrice += qty * priceorder;
+    });
+    $("#totalonline").text(totalOnlinePrice);
+    $("#totalpreorder").text(totalPreorderPrice);
+}
