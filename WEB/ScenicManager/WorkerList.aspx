@@ -42,6 +42,7 @@
                 <td style=" background-color:#F9F9F9">
                     <asp:LinkButton ID="LinkButton1" CssClass="lkbtnxg" runat="server" PostBackUrl='<%# Eval("Membership.Id","/ScenicManager/WorkerAssign.aspx?userid={0}") %>'></asp:LinkButton><a class="axg" href="/ScenicManager/WorkerAssign.aspx?userid=<%#Eval("Membership.Id") %>">修改</a>
                 </td>
+                <asp:HiddenField ID="hfid" runat="server" Value='<%#Eval("Membership.Id") %>' />
             </tr>
         </ItemTemplate>
         <FooterTemplate>

@@ -32,9 +32,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtBoxIdcard" runat="server" CssClass="atxt"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtBoxIdcard"
-                runat="server" ErrorMessage="必填">
-            </asp:RequiredFieldValidator><asp:RegularExpressionValidator ID="RegularExpressionValidator1"
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
                 ControlToValidate="txtBoxIdcard" ValidationExpression="^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$|^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$"
                 runat="server" ErrorMessage="身份证号码无效"></asp:RegularExpressionValidator>
                 </td>

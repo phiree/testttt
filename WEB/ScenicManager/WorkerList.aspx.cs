@@ -10,7 +10,10 @@ public partial class ScenicManager_WorkerList : bpScenicManager
     BLL.BLLMembership bllMem = new BLL.BLLMembership();
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindUsers();
+        if (!IsPostBack)
+        {
+            BindUsers();
+        }
     }
 
     private void BindUsers()
@@ -36,7 +39,7 @@ public partial class ScenicManager_WorkerList : bpScenicManager
         {
             Model.ScenicAdmin sadmin = (Model.ScenicAdmin)e.Item.DataItem;
             int admintype = (int)sadmin.AdminType;
-            (e.Item.FindControl("ckbselect") as CheckBox).ID = sadmin.Membership.Id.ToString();
+            //(e.Item.FindControl("ckbselect") as CheckBox).ID = sadmin.Membership.Id.ToString();
             switch (admintype)
             {
                 case 1:
@@ -81,5 +84,20 @@ public partial class ScenicManager_WorkerList : bpScenicManager
     protected void btnDelete_Click(object sender, EventArgs e)
     {
         //checkbox中保存了membershipId, 用于将来可能的假删除操作
+        foreach (RepeaterItem item in rptScenicAdmin.Items)
+        {
+            if (item.FindControl("ckbselect") != null)
+            {
+                CheckBox cb = item.FindControl("ckbselect") as CheckBox;
+                if (cb.Checked == true)
+                {
+                    HiddenField hf = item.FindControl("hfid") as HiddenField;
+                    Model.ScenicAdmin sa = new BLL.BLLMembership().GetScenicAdmin((Guid.Parse(hf.Value.ToString())));
+                    sa.IsDisabled = true;
+                    new BLL.BLLScenicAdmin().SaveOrUpdate(sa);
+                }
+            }
+        }
+        BindUsers();
     }
 }

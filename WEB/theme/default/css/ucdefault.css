@@ -552,7 +552,7 @@
 {
     width:715px;
     display:inline-block;
-    height:250px;
+    min-height:250px;
     background-color:#FAF6ED;
     margin-left: 12px;
 }
@@ -595,7 +595,7 @@
 }
 .xzan
 {
-    margin:15px 0px 0px 30px;
+    margin:15px 0px 20px 30px;
 }
 .btnaddcu
 {

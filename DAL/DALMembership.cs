@@ -89,14 +89,14 @@ namespace DAL
         {
             string sqlQuery="select sa from ScenicAdmin sa ";
             if (scenicid > 0)
-                sqlQuery += " where sa.Scenic.Id=" + scenicid;
+                sqlQuery += " where sa.Scenic.Id=" + scenicid+"and IsDisabled=0";
             IQuery query = session.CreateQuery(sqlQuery);
             return query.Future<Model.ScenicAdmin>().ToList<Model.ScenicAdmin>() ;
         }
 
         public IList<Model.ScenicAdmin> GetScenicAdmin(int scenicid, string code)
         {
-            string sqlQuery = "select sa from ScenicAdmin sa where sa.Scenic.Area.Code='"+code+"'";
+            string sqlQuery = "select sa from ScenicAdmin sa where sa.Scenic.Area.Code='"+code+"' and IsDisabled=0";
             if (scenicid > 0)
                 sqlQuery += " and sa.Scenic.Id=" + scenicid;
             IQuery query = session.CreateQuery(sqlQuery);

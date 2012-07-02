@@ -93,6 +93,6 @@ public partial class ScenicManager_WorkerAssign : System.Web.UI.Page
         Model.ScenicAdmin sa = bllMembership.GetScenicAdmin(userId);
         sa.AdminType = sat;
         bllScenicadmin.SaveOrUpdate(sa);
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "btnOk", "alert('修改成功')", true);
+        Response.Redirect("WorkerList.aspx");
     }
 }

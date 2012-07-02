@@ -41,5 +41,6 @@ public partial class UserCenter_UpdateCommonUser : basepage
             string msg;
             bllcommonuser.SaveCommonUser(cu, out msg);
         }
+        Response.Redirect("CommonUserInfo.aspx");
     }
 }

@@ -44,6 +44,7 @@ public partial class ScenicManager_WorderAdd : bpScenicManager
         new BLL.BLLMembership().CreateUser("", "", "", "",txtname.Text , txtpsw.Text);
         TourMembership tour = new BLL.BLLMembership().GetMember(txtname.Text);
         sa.Membership = tour;
+        sa.IsDisabled = false;
         bllscenicadmin.SaveOrUpdate(sa);
         Page.ClientScript.RegisterStartupScript(this.GetType(), "btnOk", "alert('添加成功')", true);
         Response.Redirect("/ScenicManager/WorkerList.aspx");

@@ -33,7 +33,7 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="fbody">
     <div class="block" id="regcontainer">
         <div>
-            &nbsp;<asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+            <%--&nbsp;<asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />--%>
         </div>
         <table>
             <tr>
