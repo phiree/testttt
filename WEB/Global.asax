@@ -25,11 +25,8 @@
         Exception ex = Server.GetLastError();
         // log.Error(ex);
         BLL.TourLog.LogError(ex);
-#if RELEASE
-    Server.ClearError();
-        
+
           Server.Transfer("/err.aspx?err=0");
-#endif
 
         // BLL.ErrHandler.Redirect(BLL.ErrType.UnknownError);
 

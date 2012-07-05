@@ -110,7 +110,14 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.Order>().Value;
         }
-
+        /// <summary>
+        /// 获取一段时间内的订单详情
+        /// </summary>
+        /// <param name="scenicid">景区</param>
+        /// <param name="dateBegin">开始时间</param>
+        /// <param name="dateEnd">截至时间</param>
+        /// <param name="paidstate">是否已付款7</param>
+        /// <returns></returns>
         public IList<OrderDetail> GetMonthOrder(int scenicid, string dateBegin, string dateEnd, bool? paidstate)
         {
             string sql = "select od from OrderDetail od where od.TicketPrice.Ticket.Scenic.Id=" + scenicid
@@ -121,6 +128,20 @@ namespace DAL
             return temp;
         }
 
+        public IList<OrderDetail> GetMonthOrder(int scenicid, string dateBegin, string dateEnd)
+        {
+            string where = " where  od.TicketPrice.Ticket.Scenic.Id=" + scenicid
+                + " and od.Order.PayTime>" + dateBegin
+                + " and od.Order.PayTime<" + dateEnd
+            + " and od.Order.IsPaid=1";
+            
+
+            string sql = "select od from OrderDetail od " + where;
+            IQuery query = session.CreateQuery(sql);
+            IList<OrderDetail> temp = query.Future<Model.OrderDetail>().ToList();
+            return temp;
+        }
+        //获取某个月份的订单
         public MonthOrder GetPaidstate(string yearmonth, int scenicid, string orderway)
         {
             string sql = "select mo from MonthOrder mo where mo.scenic.Id=:scenicid and mo.date="
