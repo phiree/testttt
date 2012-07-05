@@ -25,6 +25,5 @@ namespace TourTest.BLLTest
 
             Assert.AreNotEqual(ticket, bllticket.EnsureTicket(scid));
         }
-
     }
 }
