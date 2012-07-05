@@ -150,8 +150,6 @@ public partial class Scenic_Default : System.Web.UI.Page
             }
         }
     }
-    int k = 0;
-    int dd = 500;
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区
     Dictionary<ScenicImg, double> scdiction = new Dictionary<ScenicImg, double>();
     public void bindimg(IList<Scenic> list, Scenic scenic)
@@ -163,45 +161,31 @@ public partial class Scenic_Default : System.Web.UI.Page
                 string[] str = scenic.Position.Split(',');
                 string[] str2 = item.Position.Split(',');
                 double distance = CaculateDistance(double.Parse(str[0]), double.Parse(str[1]), double.Parse(str2[0]), double.Parse(str2[1]));
-                if (scdiction.Count<6)
+                if (distance != 0)
                 {
-                    if (bllscenicimg.GetSiByType(item, 1).Count > 0)
+                    if (scdiction.Count < 6)
                     {
-                        scdiction.Add(bllscenicimg.GetSiByType(item, 1)[0], distance);
-                    }
-                }
-                else
-                {
-                    foreach (KeyValuePair<ScenicImg,double> kvp in scdiction)
-                    {
-                        if (distance < kvp.Value)
+                        if (bllscenicimg.GetSiByType(item, 1).Count > 0)
                         {
-                            if (bllscenicimg.GetSiByType(item, 1).Count > 0)
+                            scdiction.Add(bllscenicimg.GetSiByType(item, 1)[0], distance);
+                        }
+                    }
+                    else
+                    {
+                        foreach (KeyValuePair<ScenicImg, double> kvp in scdiction)
+                        {
+                            if (distance < kvp.Value)
                             {
-                                scdiction.Remove(kvp.Key);
-                                scdiction.Add(bllscenicimg.GetSiByType(item, 1)[0], distance);
-                                break;
+                                if (bllscenicimg.GetSiByType(item, 1).Count > 0)
+                                {
+                                    scdiction.Remove(kvp.Key);
+                                    scdiction.Add(bllscenicimg.GetSiByType(item, 1)[0], distance);
+                                    break;
+                                }
                             }
                         }
                     }
                 }
-                //if (distance < dd && distance != 0)
-                //{
-                //    int flag = 0;
-                //    foreach (ScenicImg ss in sclist)
-                //    {
-                //        if (ss.Scenic == item)
-                //        {
-                //            flag = 1;
-                //            break;
-                //        }
-                //    }
-                //    if (flag == 0)
-                //    {
-                //        if (bllscenicimg.GetSiByType(item, 1).Count > 0)
-                //            sclist.Add(bllscenicimg.GetSiByType(item, 1)[0]);
-                //    }
-                //}
             }
         }
         //if (k < 6 && dd < 500)
