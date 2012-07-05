@@ -94,5 +94,20 @@ namespace BLL
         {
             dal.AddMonthBill(date, scenic, orderway, num, price, state);
         }
+
+        public IList<MonthOrder> BuildMonthOrder(int scenicid, string dateBegin, string dateEnd)
+        {
+            IList<OrderDetail> odlist = dal.GetMonthOrder(scenicid, dateBegin, dateEnd);
+            IList<MonthOrder> molist = new List<MonthOrder>();
+             int idatebegin = int.Parse(dateBegin);
+            int idateend = int.Parse(dateEnd);
+            int totalnum = 0;
+            decimal totalprice = 0;
+            for (int i = idatebegin; i <= idateend && i % 100 < 13; i++)
+            {
+
+            }
+            return molist;
+        }
     }
 }

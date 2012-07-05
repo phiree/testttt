@@ -13,6 +13,9 @@ namespace TourTest.TDD.order
     [TestFixture]
    public class PaymentTDD
     {
+        /// <summary>
+        /// 一个订单.
+        /// </summary>
         [Test]
         public void TestGetOrder()
         {
@@ -36,7 +39,7 @@ namespace TourTest.TDD.order
                     ta.IdCard = "idcard1";
                     ta.IsUsed = false;
                     ta.Name = "namei";
-                    
+                     
                     detail.TicketAssignList.Add(ta);
                     
                 }
