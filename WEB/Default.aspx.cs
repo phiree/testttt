@@ -41,7 +41,7 @@ public partial class _Default : basepage
         urlParamHelper = new CommonLibrary.UrlParamHelper(Request.Url.AbsoluteUri);
       
         areaSeoName = Request["area"];
-        levelname = Request["level"];
+        levelname = Request.QueryString["level"];
         if (levelname != null)
         {
             int.TryParse(levelname.TrimEnd('a'), out level);
