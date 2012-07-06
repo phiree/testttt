@@ -401,12 +401,12 @@
     <div id="priceintrodiv" style="display:none">
         <ul>
             <li>
-                <span>在线支付价</span>
+                <span>网上订购价</span>
                 <p>在网上支付,享受的优惠价格</p>
             </li>
             <li>
-                <span>预定</span>
-                <p>无需网上支付,预定即有优惠</p>
+                <span>景区现付价</span>
+                <p>无需网上支付,预订即有优惠</p>
             </li>
         </ul>
     </div>

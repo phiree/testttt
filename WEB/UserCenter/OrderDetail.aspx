@@ -5,6 +5,7 @@
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/checkout.css" rel="stylesheet" type="text/css" />
     <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
     <script type="text/javascript">
         function openusedetail(obj) {
             var url = "UseDetail.aspx?odid=" + obj;
@@ -44,11 +45,6 @@
 
                 var nameinput = ".aa[tid='" + ticketid + "']";
                 var idcardinput = ".bb[tid='" + ticketid + "']";
-                if ($(that).attr("all") != undefined) {
-                    nameinput = ".aa";
-                    idcardinput = ".bb";
-                    that = $(that).prev();
-                }
                 var commuserId = $(that).attr("cid");
                 var name = $(that).text().trim();
                 var idcard = $(that).attr("idcard");
@@ -68,6 +64,45 @@
             $("body").click(function () {
                 $("#contactlist").hide();
             });
+
+            $("[id$='BtnSave']").click(function () {
+                var a = veriname();
+                if (a == false) {
+                    alert("游览者姓名不能为空");
+                    return false;
+                }
+                var b = veriidcard();
+                if (!b) {
+                    alert(errormsg);
+                    return false;
+                }
+
+            });
+
+            function veriname() {
+                var items = $(".aa");
+                for (var i = 0; i < items.length; i++) {
+                    var item = $(items[i]);
+                    var name = item.val();
+                    if (name == "") {
+                        item.focus();
+                        return false;
+                    }
+                }
+            }
+            var errormsg;
+            function veriidcard() {
+                var items = $(".bb");
+                for (var i = 0; i < items.length; i++) {
+                    var item = $(items[i]);
+                    var idcard = item.val();
+                    errormsg = test(idcard);
+                    if (errormsg != "验证通过") {
+                        $($(".bb")[i]).focus();
+                        return false;
+                    }
+                }
+            }
         });
 
         function btn2(obj) {
@@ -80,9 +115,21 @@
             $("[id$='txtdetailidcard']").val($(obj).attr("title"));
         }
 
-
-
-        
+        function veriidcard() {
+            var items = $(".bb");
+            for (var i = 0; i < items.length; i++) {
+                var item = $(items[i]);
+                var idcardno = item.val();
+                if (idcardno != "") {
+                    var returnmsg = test(idcardno);
+                    if (returnmsg != "验证通过") {
+                        item.focus();
+                        $($(".veritext")[i]).html(returnmsg);
+                        $($(".veritext")[i]).css("display", "");
+                    }
+                }
+            }
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" runat="Server">
@@ -190,7 +237,7 @@
                     <ItemTemplate>
                         
                             <a class="assignitem" href="javascript:void" idcard='<%#Eval("IdCard") %>' cid='<%#Eval("Id") %>'>
-                                <%#Eval("Name") %></a><a href="javascript:void" style="display:none" class="assignitem" all="">全部指派</a>
+                                <%#Eval("Name") %></a>
                        
                     </ItemTemplate>
                     <FooterTemplate></div>
@@ -203,23 +250,18 @@
                     <ItemTemplate>
                         <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                         <div runat="server" id="oscused" class="oscdetailname">
-                            <span id="oscname" runat="server" style="width: 150px; margin-left: 10px; float: left">
+                            <span id="oscname" runat="server" style="width: 80px; margin-left: 10px; float: left">
                                 <%# Eval("TicketPrice.Ticket.Scenic.Name")%>
                             </span><span style="color: Red; margin-left: 10px; float: left;">*</span><span style="float: left">姓名</span><asp:TextBox
                                 ID="txtdetailname" Text='<%# Eval("TicketAssignList[0].Name") %>' runat="server"
                                 tid='<%#Eval("Id") %>' CssClass="aa" Style="text-align: center; height: 20px;
                                 width: 150px; margin-left: 10px; float: left; padding: 0px; margin-top: 0px;
                                 line-height: 22px"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="必填"
-                                Style="float: left; width: 25px;" ControlToValidate="txtdetailname" ForeColor="Red"></asp:RequiredFieldValidator>
-                            <span style="color: Red; margin-left: 20px; float: left;">*</span><span style="float: left">身份证号</span><asp:TextBox
+                            <span style="color: Red; margin-left: 100px; float: left;">*</span><span style="float: left">身份证号</span><asp:TextBox
                                 ID="txtdetailidcard" runat="server" Text='<%# Eval("TicketAssignList[0].IdCard") %>'
                                 Style="height: 20px; width: 150px; margin-left: 10px; float: left; padding: 0px;
-                                margin-top: 0px; line-height: 20px" tid='<%#Eval("Id")%>' CssClass="bb"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="必填"
-                                ControlToValidate="txtdetailidcard" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="身份证无效"
-                                ControlToValidate="txtdetailidcard" ForeColor="Red" ValidationExpression="\d{17}[\d|X]|\d{15}"></asp:RegularExpressionValidator>
+                                margin-top: 0px; line-height: 20px" tid='<%#Eval("Id")%>' CssClass="bb" onblur="veriidcard()"></asp:TextBox>
+                            <span style="color:Red; display:none;" class="veritext"></span>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>

@@ -80,10 +80,10 @@
         var nameinput = ".assignName[tid='" + ticketid + "']";
         var idcardinput = ".assignIdcard[tid='" + ticketid + "']";
         //if ($(that).attr("all") != undefined) {
-            nameinput = ".assignName";
-            idcardinput = ".assignIdcard";
-            //that = $(that).prev();
-       // }
+        nameinput = ".assignName";
+        idcardinput = ".assignIdcard";
+        //that = $(that).prev();
+        // }
         var commuserId = $(that).attr("cid");
         var name = $(that).text().trim();
         var idcard = $(that).attr("idcard").trim();
@@ -111,6 +111,12 @@
     $("#btnCheckout").click(function () {
         if (pricetype == null) {
             alert("您需要先选择一种支付方式");
+            return false;
+        }
+
+        var a = veriname();
+        if (a == false) {
+            alert("游览者姓名不能为空");
             return false;
         }
         var b = buildassign();
@@ -163,4 +169,33 @@
         return ap;
     }
 
+
+    function veriname() {
+        var items = $(".assignName");
+        for (var i = 0; i < items.length; i++) {
+            var item = $(items[i]);
+            var name = item.val();
+            if (name == "") {
+                item.focus();
+                return false;
+            }
+        }
+    }
+
 });
+
+function veriidcard() {
+    var items = $(".assignIdcard");
+    for (var i = 0; i < items.length; i++) {
+        var item = $(items[i]);
+        var idcardno = item.val();
+        if (idcardno != "") {
+            var returnmsg = test(idcardno);
+            if (returnmsg != "验证通过") {
+                item.focus();
+                $($(".veritext")[i]).html(returnmsg);
+                $($(".veritext")[i]).css("display", "");
+            }
+        }
+    }
+}

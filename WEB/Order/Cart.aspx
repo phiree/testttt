@@ -80,8 +80,8 @@
                             <tr>
                                 <td colspan="5">
                                     <div>
-                                        <span>共<strong id="cticketsSum"></strong>张门票</span> <span>在线支付价:<strong id="totalonline"></strong>
-                                        </span><span>预订价:<strong id="totalpreorder"></strong> </span>
+                                        <span>共<strong style=" font-size:20px" id="cticketsSum"></strong>张门票</span> <span>网上订购价:<strong style=" font-size:20px" id="totalonline"></strong>
+                                        </span>元&nbsp;<span>景区现付价:<strong style=" font-size:20px" id="totalpreorder"></strong> </span>元
                                     </div>
                                 </td>
                             </tr>

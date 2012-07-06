@@ -10,26 +10,25 @@
     background-color: #fff;
     border: 2px solid #999;
     padding: 5px;
-    width:150px;
-    
+    width: 150px;
 }
 #contactHead
 {
-     margin-bottom:4px;
-    }
+    margin-bottom: 4px;
+}
 #contactlist #contactBody
 {
-    padding-top:10px;
-     background:url(../image/contactsheaderbg.png) top left no-repeat;
-     
-    }
-    .assignitem
-    {
-        display:block;
-        float:left;
-         margin:5px 10px;
-         
-        }
+    padding-top: 10px;
+    background: url(../image/contactsheaderbg.png) top left no-repeat;
+}
+.assignitem
+{
+    display: block;
+    float: left;
+    margin: 5px 10px;
+    width:50px;
+    overflow:hidden;
+}
 #itemlist
 {
     margin-bottom: 1.4em;
@@ -43,14 +42,14 @@
 }
 #sceniclist
 {
-    width:100%;
+    width: 100%;
     margin: 0;
 }
 #tilist
 {
-     background-color:#FAF6ED;
-     width:100%;
-    }
+    background-color: #FAF6ED;
+    width: 100%;
+}
 
 #sceniclist thead
 {
@@ -59,7 +58,7 @@
 #sceniclist tfoot
 {
     background-color: #FFF5A0;
-    font-style:normal;
+    font-style: normal;
 }
 
 .tihead
@@ -71,69 +70,71 @@
 #tourinfo
 {
     border: 1px solid #999;
-    margin-bottom:5px;
+    margin-bottom: 5px;
 }
-    #payinfo
-    {
-       border:7px solid #aaa; 
-        }
+#payinfo
+{
+    border: 7px solid #aaa;
+}
 
 #payinfo span
 {
-     display:block;
-     float:left;
-   
+    display: block;
+    float: left;
 }
 .pricedesc
 {
-  
-    background:url(../image/pricebg.png) top left no-repeat;
-    padding-left:30px;
-    line-height:76px;
-    
-    }
-    .pricedesc:hover
-    {
-           
-        }
-    #payonline
-    {
-         border-bottom:2px solid #aaa;
-        }
+    background: url(../image/pricebg.png) top left no-repeat;
+    padding-left: 30px;
+    line-height: 76px;
+}
+.pricedesc:hover
+{
+}
+#payonline
+{
+    border-bottom: 2px solid #aaa;
+}
 .price
 {
-   
-     width:150px;
-     padding-left:30px;
-     line-height:76px;
-     _padding-top:30px;
-    }
-    .priceselection
-    {
-         cursor:pointer;
-         }
-           .priceselection:hover
-           {
-                background-color:#FFFFCC;
-               }
+    width: 150px;
+    padding-left: 30px;
+    line-height: 76px;
+    _padding-top: 30px;
+}
+.priceselection
+{
+    cursor: pointer;
+    overflow: hidden;
+}
+.priceselection:hover
+{
+    background-color: #FFFFCC;
+}
 .price em
 {
-     font-size:1.4em;
-     font-weight:500;
-     font-style:normal;
-    }
+    font-size: 1.4em;
+    font-weight: 500;
+    font-style: normal;
+}
 #tourinfo input
 {
-     height:25px;
-     line-height:25px;
-    }
-    .assignIdcard
+    height: 25px;
+    line-height: 25px;
+}
+.assignIdcard
 {
-     width:200px;
-    }
-    #payaction
-    {
-         margin:20px 0;
-         text-align:center;
-         
-        }
+    width: 200px;
+}
+#payaction
+{
+    margin: 20px 0;
+    text-align: center;
+}
+.veritext
+{
+    padding:0px;
+    margin:0px;
+    width:100px;
+    color:Red;
+}
