@@ -15,6 +15,7 @@ namespace Model.Mapping
             Map(x => x.Phone);
             Map(x => x.Address);
             Map(x => x.IdCard);
+            Map(x => x.Email);
             //References<Membership>(x => x.Membership);
         }
     }

@@ -15,7 +15,7 @@ namespace TourTest.BLLTest
         public void CreateUpdateMemberTest()
         {
             BLLMembership bllMember = new BLLMembership();
-            bllMember.CreateUser("realname", "phone", "address", "idcard", "loginname", "password");
+            bllMember.CreateUser("realname", "phone", "address", "idcard", "loginname", "password","");
 
             TourMembership member = bllMember.GetMember("loginname");
 

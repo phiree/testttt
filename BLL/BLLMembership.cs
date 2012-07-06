@@ -20,7 +20,7 @@ namespace BLL
         /// <param name="loginname"></param>
         /// <param name="password"></param>
         public void CreateUser(string realname, string phone, string address, string idcard,
-            string loginname, string password)
+            string loginname, string password,string email)
         {
             //valid parameters
             string encryptedPwd = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(password, "MD5");
@@ -32,6 +32,7 @@ namespace BLL
                 IdCard = idcard,
                 Name = loginname,
                 Password = encryptedPwd,
+                Email=email
             };
             CreateUpdateMember(user);
         }

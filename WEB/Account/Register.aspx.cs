@@ -21,6 +21,7 @@ public partial class Account_Register : System.Web.UI.Page
     {
         string username = txtBoxLoginname.Text.Trim();
         string password = txtBoxPwd.Text.Trim();
+        string email = txtPost.Text.Trim();
         TourMembership isexist = bllMember.GetMember(username);
         if (isexist != null)
         {
@@ -28,7 +29,7 @@ public partial class Account_Register : System.Web.UI.Page
             return;
         }
         bllMember.CreateUser(username, string.Empty, string.Empty,
-        string.Empty, txtBoxLoginname.Text.Trim(), txtBoxPwd.Text.Trim());
+        string.Empty, txtBoxLoginname.Text.Trim(), txtBoxPwd.Text.Trim(),email);
         FormsAuthentication.SetAuthCookie(username, false /* createPersistentCookie */);
         if (Request.Cookies["promid"] != null)
         {

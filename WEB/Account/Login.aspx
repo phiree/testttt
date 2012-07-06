@@ -62,8 +62,10 @@
                         </td>
                         <td>
                             <asp:CheckBox ID="RememberMe" Text="下次自动登录" CssClass="cbremember" runat="server" />
+                            <a href="ResetPwd.aspx" style="color:#838383; margin-left:40px;">忘记密码</a>
                         </td>
                         <td>
+                            
                         </td>
                     </tr>
                     <tr>

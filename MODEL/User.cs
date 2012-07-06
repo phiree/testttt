@@ -12,6 +12,7 @@ namespace Model
         public virtual string Phone { get; set; }
         public virtual string Address { get; set; }
         public virtual string IdCard { get; set; }
+        public virtual string Email { get; set; }
        // public virtual Membership Membership { get; set; }
     }
 }

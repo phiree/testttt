@@ -41,7 +41,7 @@ public partial class ScenicManager_WorderAdd : bpScenicManager
         sa.AdminType = ScenicAdminType.景区资料员;
         sa.Scenic = bllScenic.GetScenicById(scid);
         sa.AdminType = sat;
-        new BLL.BLLMembership().CreateUser("", "", "", "",txtname.Text , txtpsw.Text);
+        new BLL.BLLMembership().CreateUser("", "", "", "",txtname.Text , txtpsw.Text,"");
         TourMembership tour = new BLL.BLLMembership().GetMember(txtname.Text);
         sa.Membership = tour;
         sa.IsDisabled = false;

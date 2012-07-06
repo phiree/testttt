@@ -69,6 +69,17 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <span style=" display:block; margin-bottom:13px">邮箱:</span>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtPost"  TabIndex=4 runat="server" CssClass="tbx tbxconpwd"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                        ErrorMessage="必填" ControlToValidate="txtPost" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <span style=" display:block; color:#BDBDBD">邮箱地址必须填写正确,作为找回密码的凭证</span>
+                </td>
+            </tr>
+            <tr>
                 <td class="lp ar" colspan="2">
                     <input type="checkbox" checked="checked" id="cbxAgree" /><label for="cbxAgree">我同意<a
                         href="#">用户服务条款</a></label>
@@ -76,10 +87,12 @@
             </tr>
             <tr>
                 <td class="lp" colspan="2">
-                    <asp:Button  TabIndex=4  class="btn  btnlight regBtn" ID="btnReg" runat="server" Text="注册" OnClick="btnRegist_Click" />
+                    <div style="border:1px solid #E78834; width:130px;"><asp:Button  TabIndex=4  class="btn  btnlight regBtn" ID="btnReg" runat="server" Text="注册" OnClick="btnRegist_Click" /></div>
+                    
                 </td>
-                
+                    
             </tr>
+            
            
         </table>
        

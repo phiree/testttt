@@ -92,7 +92,7 @@ public partial class Manager_ScenicinList : System.Web.UI.Page
             if (!string.IsNullOrEmpty(sa.Scenic.SeoName))
             {
                 string loginname = new MakeAccount().automakeaccount(sa.Scenic.SeoName);
-                new BLL.BLLMembership().CreateUser("", "", "", "", loginname, "123456");
+                new BLL.BLLMembership().CreateUser("", "", "", "", loginname, "123456","");
                 TourMembership tour = new BLL.BLLMembership().GetMember(loginname);
                 sa.Membership = tour;
                 bllscenicadmin.SaveOrUpdate(sa);
