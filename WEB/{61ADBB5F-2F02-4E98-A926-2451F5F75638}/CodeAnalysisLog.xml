@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="d:\program files\microsoft visual studio 10.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="10.0">
+ <Targets>
+  <Target Name="C:\Users\stone\AppData\Local\Temp\tmp4B3A.tmp.cadir\bin\App_Web_fitsgiy3.dll">
+   <Modules>
+    <Module Name="app_web_fitsgiy3.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Voting_Default" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#getReaderIpds()" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="丢失范围之前释放对象" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2012-07-10 06:17:38Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\我的prj\testttt\WEB\Voting" File="Default.aspx.cs" Line="171">在方法 'Voting_Default.getReaderIpds()' 中，请在对 'sk' 对象的所有引用超出范围之前，对该对象调用 System.IDisposable.Dispose。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#rptSenic2Vote_ItemCommand(System.Object,System.Web.UI.WebControls.RepeaterCommandEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2012-07-10 06:17:38Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="e:\我的prj\testttt\WEB\Voting" File="Default.aspx.cs" Line="95">'Voting_Default.rptSenic2Vote_ItemCommand(object, RepeaterCommandEventArgs)' 再次引发捕获的异常并将其显式地指定为一个参数。请改用不带参数的“throw”以保留该异常最初引发时所在的堆栈位置。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\stone\AppData\Local\Temp\tmp4B3A.tmp.cadir\bin\App_Web_s1n0pu4q.dll">
+   <Modules>
+    <Module Name="app_web_s1n0pu4q.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Handler" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ProcessRequest(System.Web.HttpContext)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2012-07-10 06:17:38Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="e:\我的prj\testttt\WEB\Account" File="Handler.ashx" Line="31">'Handler.ProcessRequest(HttpContext)' 再次引发捕获的异常并将其显式地指定为一个参数。请改用不带参数的“throw”以保留该异常最初引发时所在的堆栈位置。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\stone\AppData\Local\Temp\tmp4B3A.tmp.cadir\bin\App_Web_yxh5sdoc.dll">
+   <Modules>
+    <Module Name="app_web_yxh5sdoc.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="ResetPwd" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SendEmail(System.String,System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2012-07-10 06:17:38Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="e:\我的prj\testttt\WEB\Account" File="ResetPwd.ashx" Line="74">'ResetPwd.SendEmail(string, string, string)' 再次引发捕获的异常并将其显式地指定为一个参数。请改用不带参数的“throw”以保留该异常最初引发时所在的堆栈位置。</Issue>
+            </Message>
+            <Message TypeName="丢失范围之前释放对象" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2012-07-10 06:17:38Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\我的prj\testttt\WEB\Account" File="ResetPwd.ashx" Line="57">在方法 'ResetPwd.SendEmail(string, string, string)' 中，请在对 'aMessage' 对象的所有引用超出范围之前，对该对象调用 System.IDisposable.Dispose。</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\我的prj\testttt\WEB\Account" File="ResetPwd.ashx" Line="63">在方法 'ResetPwd.SendEmail(string, string, string)' 中，请在对 'smtp' 对象的所有引用超出范围之前，对该对象调用 System.IDisposable.Dispose。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
+   <Name>再次引发以保留堆栈详细信息</Name>
+   <Description>重复引发捕获的异常时，请使用 IL 再次引发指令保留原始堆栈详细信息。</Description>
+   <Resolution Name="Default">{0} 再次引发捕获的异常并将其显式地指定为一个参数。请改用不带参数的“throw”以保留该异常最初引发时所在的堆栈位置。</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182363(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="丢失范围之前释放对象" Category="Microsoft.Reliability" CheckId="CA2000">
+   <Name>丢失范围之前释放对象</Name>
+   <Description>如果在对某个可释放对象的所有引用超出范围之前未显式释放该对象，则当垃圾回收器运行该对象的终结器时，会在某个不确定时间释放该对象。由于可能会发生阻止该对象的终结器运行的意外事件，因此应改为显式释放该对象。</Description>
+   <Resolution Name="NonExceptionEdge">在方法 {0} 中，请在对 {1} 对象的所有引用超出范围之前，对该对象调用 System.IDisposable.Dispose。</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182289(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="10.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">类别</String>
+  <String Key="Certainty">确定性</String>
+  <String Key="CollapseAll">全部折叠</String>
+  <String Key="CheckId">检查 ID</String>
+  <String Key="Error">错误</String>
+  <String Key="Errors">错误</String>
+  <String Key="ExpandAll">全部展开</String>
+  <String Key="Help">帮助</String>
+  <String Key="Line">行</String>
+  <String Key="Messages">消息</String>
+  <String Key="LocationNotStoredInPdb">[位置未存储在 Pdb 中]</String>
+  <String Key="Project">项目</String>
+  <String Key="Resolution">解析</String>
+  <String Key="Rule">规则</String>
+  <String Key="RuleFile">规则文件</String>
+  <String Key="RuleDescription">规则说明</String>
+  <String Key="Source">源</String>
+  <String Key="Status">状态</String>
+  <String Key="Target">目标</String>
+  <String Key="Warning">警告</String>
+  <String Key="Warnings">警告</String>
+  <String Key="ReportTitle">代码分析报告</String>
+ </Localized>
+</FxCopReport>
