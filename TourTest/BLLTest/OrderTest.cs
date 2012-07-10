@@ -33,8 +33,6 @@ namespace TourTest.BLLTest
                 Order = new Model.Order() { PayTime=new DateTime(2012,6,27)}
             });
             idalOrder.Stub(x => x.GetMonthOrder(scenicid, datebegin, dateend, paidstate)).Return(odlist);
-
-
         }
     }
 }
