@@ -27,15 +27,16 @@ public partial class UserCenter_AccountInfo : System.Web.UI.Page
     }
     protected void btnModify_Click(object sender, EventArgs e)
     {
-            System.Web.Security.MembershipUser mu = System.Web.Security.Membership.GetUser();
-            Guid guid = new Guid(mu.ProviderUserKey.ToString());
-            TourMembership tm = bllMember.GetMemberById(guid);
-            User user = (User)tm;
-            user.Name=txtBoxLoginname.Text.Trim();
-            user.RealName = txtBoxName.Text.Trim();
-            user.IdCard = txtBoxIdcard.Text.Trim();
-            user.Address = txtBoxAddress.Text.Trim();
-            user.Phone = txtBoxPhone.Text.Trim();
-            bllMember.CreateUpdateMember(user);
+        System.Web.Security.MembershipUser mu = System.Web.Security.Membership.GetUser();
+        Guid guid = new Guid(mu.ProviderUserKey.ToString());
+        TourMembership tm = bllMember.GetMemberById(guid);
+        User user = (User)tm;
+        user.Name = txtBoxLoginname.Text.Trim();
+        user.RealName = txtBoxName.Text.Trim();
+        user.IdCard = txtBoxIdcard.Text.Trim();
+        user.Address = txtBoxAddress.Text.Trim();
+        user.Phone = txtBoxPhone.Text.Trim();
+        bllMember.CreateUpdateMember(user);
+        Page.ClientScript.RegisterStartupScript(typeof(Button), "buttonsave", "alert('修改成功')",true);
     }
 }

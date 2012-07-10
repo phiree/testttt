@@ -28,3 +28,6 @@
   update [TourOnline].[dbo].[Scenic] set [TourOnline].[dbo].[Scenic].[SeoName]='suichangqianfoshan' where [TourOnline].[dbo].[Scenic].[Id]=293
   update [TourOnline].[dbo].[Scenic] set [TourOnline].[dbo].[Scenic].[SeoName]='qingtianshimendong' where [TourOnline].[dbo].[Scenic].[Id]=294
   update [TourOnline].[dbo].[Scenic] set [TourOnline].[dbo].[Scenic].[SeoName]='yunhetitian' where [TourOnline].[dbo].[Scenic].[Id]=295
+
+  
+  update [TourOnline].[dbo].[Ticket] set [TourOnline].[dbo].[Ticket].[Lock]=0
