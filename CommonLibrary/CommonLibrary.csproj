@@ -81,6 +81,7 @@
     <Content Include="docs\测试用数据.txt" />
     <Content Include="docs\页面分配.txt" />
     <Content Include="PDesigner\area.sql" />
+    <Content Include="PDesigner\SEO脚本.sql" />
     <Content Include="PDesigner\初始化脚本.sql" />
     <Content Include="PDesigner\景区图片.sql" />
     <Content Include="PDesigner\景区脚本.sql" />
