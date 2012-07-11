@@ -113,7 +113,7 @@ div:246
     border-bottom: 1px solid #dfdfdf;
     padding-bottom: 10px;
     width: 758px;
-    float: left;
+    /*float: left;*/
 }
 .noresult
 {

@@ -47,10 +47,19 @@
     float:right;
     padding-top:9px;
 }
-.about a
+.about a:link,.about a:active,.about a:visited
 {
     margin-left:5px;
     margin-right:5px;
+    color:Black;
+    text-decoration:none;
+}
+.about a:hover
+{
+    margin-left:5px;
+    margin-right:5px;
+    color:Black;
+    text-decoration:underline;
 }
 .topleft
 {

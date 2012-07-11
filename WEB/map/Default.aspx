@@ -222,7 +222,7 @@
             <div style=" padding:5px; margin: 20px 0px 10px 0px; height:25px;" id="pager" ></div>
         </div>
         <div id="bottom">
-             <div class="about"><a>关于中国旅游在线</a><span>|</span><a>联系我们</a><span>|</span><a>景区登录</a></div>
+             <div class="about"><a href="/About/Default.aspx">关于旅游在线</a><span>|</span><a href="/About/Default.aspx">联系我们</a><span>|</span><a href="/ScenicManager/Login.aspx">景区登录</a></div>
         </div>
     </form>
 </body>

@@ -72,8 +72,8 @@
                         <td>
                         </td>
                         <td colspan="2">
-                            <asp:Button ID="LoginButton"  TabIndex=3  CssClass="btn loginbtn  btnlight" runat="server" CommandName="Login"
-                                Text="登录" ValidationGroup="LoginUserValidationGroup" />
+                            <div style="border:1px solid #E78834;width:100px;"><asp:Button ID="LoginButton"  TabIndex=3  CssClass="btn loginbtn  btnlight" runat="server" CommandName="Login" style="border:0px none solid" 
+                                Text="登录" ValidationGroup="LoginUserValidationGroup" /></div>
                         </td>
                     </tr>
                     <tr>

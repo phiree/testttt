@@ -90,9 +90,9 @@
                         </div>
                         <div class="dvprice">
                             <div style="float: left">
-                                <span class="normalpr">门票<em>
+                                <span class="normalpr">原价<em>
                                     <asp:Literal runat="server" ID="liPriceNormal"></asp:Literal></em></span> <span class="onlinepr">
-                                        在线价<em><asp:Literal runat="server" ID="liPriceOnline"></asp:Literal></em>起</span>
+                                        网上订购价<em><asp:Literal runat="server" ID="liPriceOnline"></asp:Literal></em>起</span>
                             </div>
                             <a class="linkorder" href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
                                 <img src="/theme/default/image/orderbtn.png" /></a>
