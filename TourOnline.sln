@@ -29,7 +29,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB", "{61ADBB5F-2F0
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "27042"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -76,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDCardActiveX", "IDCardActi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelOplib", "ExcelOplib\ExcelOplib.csproj", "{86A9D97C-AB59-4C06-93B5-7724675CD97A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvcweb", "mvcweb\mvcweb.csproj", "{5F0122A8-2BF5-4EB3-A73E-ED75DF89C2F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +119,10 @@ Global
 		{86A9D97C-AB59-4C06-93B5-7724675CD97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86A9D97C-AB59-4C06-93B5-7724675CD97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86A9D97C-AB59-4C06-93B5-7724675CD97A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F0122A8-2BF5-4EB3-A73E-ED75DF89C2F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F0122A8-2BF5-4EB3-A73E-ED75DF89C2F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F0122A8-2BF5-4EB3-A73E-ED75DF89C2F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F0122A8-2BF5-4EB3-A73E-ED75DF89C2F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
