@@ -2,8 +2,7 @@
 /*override blueprint*/
 body
 {
-    padding-top: 27px;
-    background: url(../image/headerbg.png) top left repeat-x;
+    /*background: url(../image/headerbg.png) top left repeat-x;*/
 }
 a, a:link, a:visited, a:active
 {
@@ -41,9 +40,8 @@ background-color:#fff !important;
 #logo
 {
     width: 955px;
-    height: 136px;
+    height: 146px;
     float: left;
-    background: url(../image/topbg.png) top left no-repeat;
     margin: 0 auto;
 }
 #logotitle
@@ -166,15 +164,30 @@ background-color:#fff !important;
 }
 #popcart
 {
-    background-color: White;
     position: absolute;
-    width: 273px;
-    border: 3px solid #999;
+    width: 280px;
     right: 0;
     z-index: 9999;
     padding-bottom:20px;
+    height:300px;
+    display:none;
 }
-
+.popmain
+{
+    filter: alpha(opacity=80);
+    opacity: 0.7;
+    background-color:#277523;
+    height:300px;
+    display:block;
+    
+}
+.popcartbg
+{
+     background-color:White;
+     margin:5px 10px 10px 10px;
+     position:relative;
+     top:-300px;
+}
 #popcart #pchead
 {
     font-weight:500;
@@ -215,20 +228,28 @@ background-color:#fff !important;
     background-image: url(../image/footerbg.png);
     height: 130px;
     text-align: center;
+    padding-top:10px;
 }
 #footerlink
 {
-    background-image: url(../image/footerbarbg.png);
-    padding-top:14px;
-    height: 37px;
+    background-color:#115E1D;
+    height: 30px;
     text-align: center;
     
 }
-#footerlink a
+#footerlink a:link,#footerlink a:active,#footerlink a:visited
 {
     font-size: 12px;
     color: White;
     text-decoration: none;
+    line-height: 30px;
+    margin-left: 15px;
+}
+#footerlink a:hover
+{
+    font-size: 12px;
+    color: White;
+    text-decoration: underline;
     line-height: 30px;
     margin-left: 15px;
 }
@@ -241,4 +262,117 @@ background-color:#fff !important;
 {
     position:relative;
     z-index:998;
+}
+/*新版样式*/
+.logoleft
+{
+    background:url("/theme/default/image/newversion/Logo.png");
+    width:356px;
+    height:115px;
+    float:left;
+}
+.logoright
+{
+    float:left;
+    background:url("/theme/default/image/newversion/logobg.png");
+    width:599px;
+    height:115px;
+    background-repeat:repeat-x;
+}
+.NavList
+{
+    float:left;
+    background-color:#115E1D;
+    height:30px;
+    width:932px;
+    padding-left:23px;
+}
+.uertool
+{
+    width:240px;
+    margin-top:5px;
+}
+.uertool a
+{
+    margin-left:5px;
+    margin-right:5px;
+}
+.searchdiv
+{
+    margin-top:35px;
+    margin-left:120px;
+}
+.searchdiv #tbxKeywords
+{
+    float: left;
+    border-style: none;
+    height: 30px;
+    line-height:29px;
+    margin: 0;
+    width:362px;
+    /*
+   *padding-top:9px;   
+   *height:22px;  
+  */
+    vertical-align: middle;
+    background: url(../image/newversion/keywordbg.png) repeat-x;
+}
+
+
+.searchdiv #btnSearch
+{
+    cursor: pointer;
+    width: 90px;
+    height: 30px;
+    float: left;
+    border: 1px solid #024D19;
+    margin-left: 4px;
+    background-color:#55A930;
+    color:White;
+    font-weight:700;
+    border: 0.8px solid #024D19 \9;
+}
+.NavList a,.NavList span
+{
+    display:block;
+    float:left;
+    width:85px;
+    height:25px;
+    margin-right:15px;
+    color:White;
+    text-align:center;
+    padding-top:5px;
+}
+.chartdiv
+{
+    display:block;
+    float:left;
+    width:280px;
+    height:30px;
+    margin-left:320px;
+}
+.chartdiv img
+{
+    margin-left:130px;
+    float:left;
+}
+.chartdiv span
+{
+    display:block;
+    width:100px;
+}
+.chartdiv strong
+{
+    color:#F8F400;
+    font-weight:bold;
+    font-size:14px;
+}
+.HighLightLink:link
+{
+    background-color:Black;
+}
+.navhight
+{
+    background-color:#51A42F;
+    font-weight:600;
 }

@@ -41,12 +41,28 @@ $(function () {
     $("#ticketsSum").text(cart.TotalQty);
     $("#scenicSum").text(cart.CartItems.length);
 
-    var pleft = $("#cart").position().left;
-    var ptop = $("#cart").position().top;
-    $("#popcart").css({ left: pleft -90+ "px", top: ptop+50 + "px" });
+    //var pleft = $("#cart").position().left;
+    //var ptop = $("#cart").position().top;
+    //$("#popcart").css({ left: pleft -90+ "px", top: ptop+50 + "px" });
+    $(".chartdiv").mouseover(function () {
+        $(this).css("background-color", "#277523");
+        var pleft = $(".chartdiv").position().left;
+        var ptop = $(".chartdiv").position().top;
+        $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px", display: "block" });
+    });
+    $(".chartdiv").mouseout(function () {
+        $("#popcart").hide();
+        $("#popcart").mouseout(function () {
+            $(this).css("background-color", "");
+            $("#popcart").hide();
+        });
+        $("#popcart").mouseover(function () {
+            $("#popcart").show();
+        });
+    });
 });
 window.onresize = function () {
-    var pleft = $("#cart").position().left;
-    var ptop = $("#cart").position().top;
-    $("#popcart").css({ left: pleft -90+ "px", top: ptop + 50 + "px" });
+    var pleft = $(".chartdiv").position().left;
+    var ptop = $(".chartdiv").position().top;
+    $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px", display: "block" });
 }

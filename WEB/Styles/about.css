@@ -1,53 +1,69 @@
 ﻿
 #aboutleft
 {
-    float:left;
-    width:20%;
+    float: left;
+    width: 20%;
 }
 #aboutleft ul
 {
-    list-style-type:none;
-    font-weight:600;
-    margin:50px 0px 20px 50px;
+    list-style-type: none;
+    
+    margin: 0px 0px 20px -18px;
 }
 #aboutleft ul li
 {
-    list-style-type:none;
-    width:150px;
-    height:30px;
-    text-align:center;
-    padding-top:10px;
-    background-color:inherit;
-    display:block;
-    
+    list-style-type: none;
+    width: 250px;
+    height: 30px;
+    text-align: center;
+    padding-top: 10px;
+    background-color: inherit;
+    display: block;
 }
 
-.normala a,.normala a:hover,.normala a:visited,.normala a:active
+.normala a, .normala a:hover, .normala a:visited, .normala a:active
 {
-    margin:7px auto;
-    color:#CE5135;
-    display:block;
-    width:140px;
-    height:30px;
-    line-height:25px;
-    text-align:center;
+    background-color: #C1E2A5;
+    color: Black;
+    display: block;
+    width: 190px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
 }
 
 #aboutright
 {
-    float:right;
-    width:80%;
+    float: right;
+    width: 80%;
 }
 #maintitle
 {
-    font-weight:800;
-    margin:20px 0px 10px 30px;
-    font-size:12px;
+    font-weight: 800;
+    margin: 20px 0px 10px 30px;
+    font-size: 12px;
 }
 #wenzi
 {
-    border:1px solid #C9C8C7;
-    width:600px;
-    height:350px;
-    margin:20px 0px 50px 30px;
+    border: 3px solid #DFEDD5;
+    width: 600px;
+    height: 350px;
+    margin: 10px 0px 50px 30px;
+}
+.textareadiv
+{
+    width: 550px;
+    margin: 15px auto;
+    line-height: 25px;
+}
+.highLightLink a, .highLightLink a:hover, .highLightLink a:active, .highLightLink a:visited, .highLightLink a:link
+{
+    background-color: #C1E2A5;
+    color: Black;
+    display: block;
+    width: 190px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-weight:600;
 }

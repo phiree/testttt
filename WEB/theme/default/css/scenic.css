@@ -4,11 +4,7 @@
     padding-top:10px;
     _overflow:hidden;
 }
-#mainscenic
-{
-    width:848px;
-   _overflow:hidden;
-}
+
 .leftimg
 {
     padding:3px;
@@ -18,13 +14,7 @@
     display:inline;
       border:1px solid #999;
 }
-.mainscenicimg
-{
-    display:block;
-    width:500px;
-    height:340px;
-  
-}
+
 .sceincdesc
 {
     width:500px;
@@ -309,18 +299,7 @@
     left:-4px;
 }
 /*第二版样式*/
-#maintitle
-{
-    margin-right:25px;
-    height:60px;
-    display:inline-block;
-}
-#maintitle h2
-{
-    font-size:18px;
-    font-family:微软雅黑;
-    margin:30px 0px 0px 20px;
-}
+
 #scdescinfo
 {
     width:838px;
@@ -563,4 +542,226 @@
     _top:17px;
     left:10px;
     overflow:hidden;
+}
+/*新版本*/
+.perscenic
+{
+    background-color:#DFEDD5;
+    display:block;
+    margin-top:20px;
+    width:190px;
+    padding-bottom:2px;
+}
+.perscenic p
+{
+    font-weight:bold;
+    padding-left:30px;
+    letter-spacing:2px;
+    padding-top:10px;
+    padding-bottom:0px;
+    margin:0px;
+}
+.perscenicdiv
+{
+    display:block;
+    background-color:White;
+    width:180px;
+    margin:5px auto;
+    padding-top:5px;
+}
+.perscenicdiv table tr td
+{
+    padding:5px;
+    margin:0px;
+    padding-bottom:2px;
+    
+}
+.navsc
+{
+    margin-left:20px;
+    margin-top:5px;
+}
+.navsc a,.navsc a:link,.navsc a:active,.navsc a:visited,.navsc a:hover
+{
+    color:#007520;
+}
+#mainscenic
+{
+    width:100%;
+   _overflow:hidden;
+   margin-left:20px;
+}
+.mainscenicimg
+{
+    display:block;
+    width:431px;
+    height:287px;
+    float:left;
+    margin-bottom:20px;
+}
+#maintitle
+{
+    margin-right:25px;
+    height:60px;
+    display:block;
+    float:left;
+}
+#maintitle h2
+{
+    font-size:18px;
+    font-family:微软雅黑;
+    margin:10px 0px 0px 30px;
+}
+.themespan
+{
+    display:block;
+    margin:20px 0px 0px 30px;
+}
+.themespan span
+{
+    margin-right:15px;
+    color:#8E569B;
+}
+.opentime
+{
+    margin:15px 0px 0px 30px;
+}
+.ordertktype
+{
+    margin:50px 0px 0px 30px;
+}
+.paytktype
+{
+    margin:15px 0px 0px 30px;
+}
+#priceinfo
+{
+     clear:both;
+     display:block;
+     margin-right:10px;
+     border:1px solid #55A930;
+     width:97%;
+}
+#priceinfo table
+{
+    margin:5px;
+    margin-right:5px;
+    width:99%;
+}
+#priceinfo table tr td
+{
+    margin:0px;
+}
+.tstr td
+{
+    background-color:#E6E6E6;
+    text-align:center;
+    font-weight:bold;
+}
+.btnputcart
+{
+    border:0px none;
+    background:url("/theme/default/image/newversion/btncart.png");
+    width:122px;
+    height:28px;
+    cursor:pointer;
+}
+.pttr td
+{
+    background-color:White;
+    text-align:center;
+    font-weight:normal;
+    border-bottom:1px solid #B4B4B4;
+}
+.pttr2 td
+{
+    background-color:White;
+    text-align:center;
+    font-weight:normal;
+    border-bottom:1px dashed #B4B4B4;
+}
+#allinfo
+{
+    margin:20px 0px 0px 0px;
+}
+.selectinfospan 
+{
+    margin:0px;
+    padding:0px;
+    overflow:hidden;
+}
+.selectinfospan  span
+{
+    display:block;
+    float:left;
+    border:1px solid #55A930;
+    border-bottom:0px none;
+    padding:10px 30px 10px 30px;
+    margin-right:5px;
+    cursor:pointer;
+}
+#plate1
+{
+    margin:0px;
+    clear:both;
+    border:1px solid #55A930;
+    padding-left:15px;
+    padding-top:20px;
+    width:95%;
+    line-height:25px;
+    padding-bottom:10px;
+}
+.highselected
+{
+    background-color:#55A930;
+    color:White;
+    font-weight:bold;
+}
+#plap
+{
+    height:30px;
+    display:block;
+    padding-left:20px;
+    padding-top:10px;
+    color:White;
+    background-color:#55A930;
+    font-weight:bold;
+    margin-top:5px;
+    margin-bottom:0px;
+}
+#plate2
+{
+    margin:0px;
+    clear:both;
+    border:1px solid #55A930;
+    padding-left:5px;
+    padding-top:10px;
+    width:96.3%;
+    line-height:25px;
+    padding-bottom:10px;
+    display:inline-block;
+    overflow:hidden;
+}
+.sconeft
+{
+    width:340px;
+    float:left;
+    height:245px;
+    display:inline-block;
+    margin-right:20px;
+    margin-bottom:20px;
+}
+.imgft
+{
+    margin-right:10px;
+    margin-top:0px;
+    margin-bottom:0px;
+    width:340px;
+    height:225px;
+}
+.sconeft p
+{
+    height:20px;
+    text-align:right;
+    padding-right:10px;
 }

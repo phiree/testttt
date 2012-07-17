@@ -50,19 +50,23 @@
     margin-top: 6px;
     list-style-type: none;
 }
-.hla, .hlv, .hla:link, .hlv:link, .hla:visited, .hla:visited
+.hla, .hlv, .hla:link, .hlv:link, .hla:visited, .hlv:visited,.hla:active,.hlv:active
 {
     color: #566932;
     font-weight: 700;
 }
 .hla
 {
-    background: url(../image/areanamebg.gif) top right no-repeat;
+    background-color: #C3D0A2;
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-left:5px;
+    padding-right:0px;
 }
 .hlv
 {
     background-color: #C3D0A2;
-    padding: 2px 5px;
+    padding:2px 5px;
 }
 #toprecomm
 {
@@ -123,9 +127,9 @@ div:246
 .scenicdesc
 {
     margin-top: 15px;
-    margin-left: 5px;
+    margin-left: 2px;
     border: solid 1px #ddd;
-    width: 245px;
+    width: 240px;
     float: left;
     display: inline;
     position: relative;
@@ -149,7 +153,7 @@ div:246
 {
     margin: 0 4px;
 }
-.dvprice .normalpr em
+.dvprice .normalpr 
 {
     text-decoration: line-through;
     color: #888;
@@ -157,8 +161,13 @@ div:246
 .dvprice .onlinepr em
 {
     font-size: 16pt;
-    color: red;
+    color: #E8641B;
     font-style: normal;
+}
+.onlinepr
+{
+    color:#E8641B;
+    margin-left:10px;
 }
 .scenicname
 {
@@ -191,6 +200,7 @@ div:246
 {
     float: right;
     margin-right: 5px;
+    margin-top:5px;
 }
 /*
  图片切换
@@ -291,4 +301,240 @@ div:246
 #imgPlay .num span.on
 {
     background-position: 1px -83px;
+}
+
+/*新版首页*/
+#maindefault
+{
+    background-color:White;
+    padding-top:15px;
+    width:950px;
+    margin:0px auto;
+}
+.defaultleft
+{
+    width:200px;
+    float:left;
+    overflow:hidden;
+}
+.defaultright
+{
+    width:750px;
+    float:left;
+    overflow:hidden;
+}
+.bookprocess
+{
+    background-color:#DFEDD5;
+    display:block;
+    height:300px;
+    width:190px;
+    margin-top:20px;
+}
+.bookprocess p
+{
+    font-weight:bold;
+    padding-left:30px;
+    letter-spacing:10px;
+    padding-top:10px;
+    padding-bottom:0px;
+    margin:0px;
+}
+.processdiv
+{
+    background-color:White;
+    margin:5px auto;
+    width:160px;
+    margin-bottom:2px;
+    padding-left:20px;
+    padding-top:20px;
+    line-height:25px;
+    height:240px;
+}
+.Recscenic
+{
+    background-color:#DFEDD5;
+    display:block;
+    height:305px;
+    margin-top:20px;
+    width:190px;
+}
+.Recscenic table tr td
+{
+    margin:0px;
+    padding:0px;
+    padding:5px;
+    padding-bottom:2px;
+}
+.Recscenic p
+{
+    font-weight:bold;
+    padding-left:30px;
+    letter-spacing:10px;
+    padding-top:10px;
+    padding-bottom:0px;
+    margin:0px;
+}
+.recscdiv
+{
+    background-color:White;
+    margin:5px auto;
+    width:170px;
+    padding-bottom:30px;
+    padding-top:10px;
+    padding-left:10px;
+}
+.postcarddesc
+{
+    display:block;
+    background:url("/theme/default/image/newversion/postcardimg.png");
+    width:190px;
+    height:233px;
+    margin-top:20px;
+}
+.visitedscenic
+{
+    background-color:#DFEDD5;
+    display:block;
+    margin-top:20px;
+    width:190px;
+    padding-bottom:2px;
+}
+.visitedscenic p
+{
+     font-weight:bold;
+    padding-left:30px;
+    letter-spacing:2px;
+    padding-top:10px;
+    padding-bottom:0px;
+    margin:0px;
+}
+.visitedscdiv 
+{
+    display:block;
+    background-color:White;
+    width:180px;
+    margin:5px auto;
+    padding-top:5px;
+}
+.visitedscdiv table tr td
+{
+    padding:5px;
+    margin:0px;
+    padding-bottom:2px;
+    
+}
+#selectdiv
+{
+    display:block;
+    border:1px solid #55A930;
+    height:150px;
+}
+.selectarea
+{
+    margin-top:10px;
+}
+.selectarea a,.selectarea a:link,.selectarea a:active,.selectarea a:visited,.selectarea a:active
+{
+    font-weight:600;
+    color:#004B18;
+    margin-left:5px;
+    margin-right:5px;
+}
+#sceniclist
+{
+    border:1px solid #55A930;
+    padding:3px;
+    display:inline-block;
+    min-height:500px;
+    overflow:hidden;
+    width:741px;
+}
+.webscenic
+{
+    background-color:#DFEDD5;
+    display:block;
+    height:250px;
+    width:190px;
+    overflow:hidden;
+}
+.webscenicdiv
+{
+    display:block;
+    background-color:White;
+    width:160px;
+    margin:5px auto;
+    padding-top:5px;
+    padding-left:20px;
+    padding-bottom:20px;
+    overflow:hidden;
+}
+.webscenicdiv img
+{
+    position:relative;
+    top:5px;
+}
+.webscenic p
+{
+    text-align:center;
+    margin-top:20px;
+    color:#007520;
+    letter-spacing:2px;
+}
+.leveldiv
+{
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:5px;
+    border:0px none White;
+    border-top:1px dashed #C1C1C1;
+    padding-top:5px;
+}
+.leveldiv span,.themedivspan
+{
+    font-weight:bold;
+    margin-right:10px;
+}
+.leveldiv a,.leveldiv a:link,.leveldiv a:active,.leveldiv a:visited,.leveldiv a:hover
+{
+    margin-right:10px;
+}
+
+.areadiv .areadivspan
+{
+    font-weight:bold;
+    margin-right:10px;
+}
+.xx
+{
+    
+    margin-left:10px;
+    width:96%;
+    margin-top:10px;
+    margin-bottom:0px;
+    padding:0px;
+    display:inline-block;
+}
+.themediv
+{
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:5px;
+    border:0px none White;
+    border-top:1px dashed #C1C1C1;
+    padding-top:5px;
+}
+.areadiv
+{
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:15px;
+    border:0px none White;
+}
+
+#searchbody
+{
+    display:inline-block;
+    border:1px solid #5EAE3B;
+    margin-top:10px;
 }

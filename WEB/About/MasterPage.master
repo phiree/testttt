@@ -15,17 +15,7 @@
     <style type="text/css">
         
         
-        .highLightLink a, .highLightLink a:hover, .highLightLink a:active, .highLightLink a:visited, .highLightLink a:link
-        {
-            background-color: #BDD2F1;
-            color: #ffffff;
-            margin: 7px auto;
-            display: block;
-            width: 140px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-        }
+
     </style>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
     </asp:ContentPlaceHolder>
@@ -34,8 +24,8 @@
     <div style="height: 500px;">
         <div id="aboutleft">
             <ul>
-                <li class="normala"><a  href="/About/Default.aspx">关于中国旅游在线</a> </li>
-                <li class="normala"><a >联系我们</a> </li>
+                <li class="normala"><a  href="/About/Default.aspx">关于旅游在线</a> </li>
+                <li class="normala"><a  href="/About/Link.aspx">联系我们</a> </li>
             </ul>
         </div>
         <div id="aboutright">

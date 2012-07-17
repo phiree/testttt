@@ -2,7 +2,7 @@
 {
     margin: 0 auto;
     padding: 25px 30px;
-    width: 400px;
+    width: 750px;
     background-color: #fff;
 }
 #regcontainer table td
@@ -20,6 +20,8 @@
     height: 30px;
     cursor:pointer;
     border:1px none White;
+    background-color:#55A930;
+    color:White;
 }
 .lp
 {
@@ -32,4 +34,40 @@
 .ar label a, .ar label a:link, .ar label a:visited, .ar label a:hover
 {
     color: Blue;
+}
+
+/*新版本*/
+.regtitle
+{
+    font-size:15px;
+    font-weight:600;
+    margin-left:50px;
+}
+ table
+{
+    margin-left:150px;
+   
+}
+table tr td
+{
+    padding-left:10px;
+}
+.agreement
+{
+    border:1px solid #DADADA;
+    width:600px;
+    height:300px;
+    overflow-y:scroll;
+    margin-left:50px; 
+}
+.agreement p
+{
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+}
+.agreeinfo
+{
+    margin-left:15px;
+    margin-top:20px;
 }

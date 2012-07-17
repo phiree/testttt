@@ -83,12 +83,24 @@ public partial class _Default : basepage
         if (!string.IsNullOrEmpty(levelname))
         {
             lLevelBread.Text = levelname.ToUpper();
-            lArrow.Visible = true;
+            //lArrow.Visible = true;
+            breadareaurl.HRef = "/" + levelname.ToLower();
+        }
+        else
+        {
+            lLevelBread.Text = "全部";
+            breadlevelurl.HRef = "/";
         }
         if (areaId != 0)
         {
             Model.Area area = bllArea.GetAreaByAreaid(areaId);
-            lAreabread.Text = area.Name;
+            lAreabread.Text = area.Name.Substring(3, 2);
+            breadlevelurl.HRef = "/" + area.SeoName;
+        }
+        else
+        {
+            lAreabread.Text = "全部";
+            breadareaurl.HRef = "/";
         }
         
     }

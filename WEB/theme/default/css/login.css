@@ -45,7 +45,10 @@
      height:30px;
      text-align:center;
     cursor:pointer;
-    
+    background-color:#55A930;
+    border:0px none;
+    color:White;
+    font-weight:bold;
     }
  #lg3rd
  {
@@ -64,4 +67,66 @@
     padding: 20px;
 }
 
-
+/*新版本*/
+#loginmain
+{
+    width:100%;
+}
+.loginmainleft
+{
+    float:left;
+    width:50%;
+    display:block;
+    height:500px;
+}
+.lmbg
+{
+    background-image:url("/theme/default/image/newversion/loginbg.png");
+    width:258px;
+    height:165px;
+    display:block;
+    margin-left:120px;
+    margin-top:120px;
+    display:inline-block;
+}
+.loginmainright
+{
+    float:left;
+    width:50%;
+    display:block;
+    height:500px;
+    
+}
+.lmbg span
+{
+    display:block;
+    color:#4B4B4B;
+    margin-top:100px;
+    margin-left:65px;
+}
+.lmbg a
+{
+    font-weight:bold;
+    color:White;
+    margin-left:150px;
+    position:relative;
+    top:-18px;
+}
+.logindiv
+{
+    border:1px solid #DFEDD5;
+    display:block;
+    height:350px;
+    width:400px;
+    margin-top:100px;
+    padding:0px;
+}
+table
+{
+    width:100%;
+}
+hr
+{
+    border:0px none;
+    border-bottom:1px solid #DFEDD5;
+}
