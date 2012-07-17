@@ -1,6 +1,5 @@
 ﻿var tip = "输入景区或景点名称";
 $(function () {
-
     $("#tbxKeywords").InlineTip({ "tip": tip });
 
     $("#btnSearch").click(
@@ -64,5 +63,5 @@ $(function () {
 window.onresize = function () {
     var pleft = $(".chartdiv").position().left;
     var ptop = $(".chartdiv").position().top;
-    $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px", display: "block" });
+    $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px" });
 }
