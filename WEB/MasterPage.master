@@ -27,11 +27,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <div class="Filldiv"></div>
     <div id="header">
-        <div class="container">
             <div id="logo">
+                <div class="mainarea">
+                    浙江省<span></span></div>
                 <a href="/">
-                    <img class="logoleft" src="/theme/default/image/newversion/Logo.png"> </img>
+                    <img class="logoleft" src="/theme/default/image/newversion/Logo.png" />
                 </a>
                 <div class="logoright">
                     <div class="uertool">
@@ -54,15 +56,16 @@
                             Text="门票搜索" />
                     </div>
                 </div>
-                <div class="NavList">
+            </div>
+            <div class="NavList">
+                    <div  class="navlistnb">
                     <a class="navhight" href="/">首页</a> <a>旅游明信片</a> <a>地图版</a>
                     <div class="chartdiv">
                         <img src="/theme/default/image/newversion/charticon.gif" />
                         <span>购物车/&nbsp;&nbsp;<strong>3</strong>个景区</span>
                     </div>
+                    </div>
                 </div>
-            </div>
-        </div>
     </div>
     <div id="main">
         <div class="container">
@@ -112,49 +115,43 @@
             </div>
         </div>
     </div>
-        <div id="popcart" style="display:none">
-            <div class="popmain">
-            
-            </div>
-            <div class="popcartbg">
-                <div id="pchead">
-                    <span>购物车</span></div>
-                <div id="pcbody">
-                    <div id="cartsumhead">
-                        <span>共有<span id="scenicSum"></span>个景区<span id="ticketsSum"></span>张门票</span></div>
-                    <asp:Repeater runat="server" ID="rptPopCart">
-                        <HeaderTemplate>
-                            <table>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <tr>
-                                <td>
-                                    <a tid='<%#Eval("Id") %>' href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
-                                        <%#Eval("Scenic.Name") %></a>
-                                </td>
-                                <td>
-                                    <span class="pcqty"></span>
-                                </td>
-                                <td>
-                                    <span class="cartdelete" tid='<%#Eval("Id")%>'>删除</span>
-                                </td>
-                            </tr>
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <tr>
-                                <td colspan="3">
-                                    <a class="btn btnlight" id="pcbtn" href="/order/cart.aspx">去购物车结算</a>
-                                </td>
-                            </tr>
-                            </table></FooterTemplate>
-                    </asp:Repeater>
-                    <asp:Panel runat="server" ID="pnlEmpty">
-                        <span>您的购物车内还没有门票</span>
-                    </asp:Panel>
-                </div>
-            </div>
+    <div id="popcart" style="display: none">
+        <div id="pchead">
+            <span>购物车</span></div>
+        <div id="pcbody">
+            <div id="cartsumhead">
+                <span>共有<span id="scenicSum"></span>个景区<span id="ticketsSum"></span>张门票</span></div>
+            <asp:Repeater runat="server" ID="rptPopCart">
+                <HeaderTemplate>
+                    <table>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <a tid='<%#Eval("Id") %>' href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
+                                <%#Eval("Scenic.Name") %></a>
+                        </td>
+                        <td>
+                            <span class="pcqty"></span>
+                        </td>
+                        <td>
+                            <span class="cartdelete" tid='<%#Eval("Id")%>'>删除</span>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <tr>
+                        <td colspan="3">
+                            <a class="btn btnlight" id="pcbtn" href="/order/cart.aspx">去购物车结算</a>
+                        </td>
+                    </tr>
+                    </table></FooterTemplate>
+            </asp:Repeater>
+            <asp:Panel runat="server" ID="pnlEmpty">
+                <span>您的购物车内还没有门票</span>
+            </asp:Panel>
         </div>
-    
+    </div>
     </form>
 </body>
 </html>

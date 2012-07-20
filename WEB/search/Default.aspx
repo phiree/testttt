@@ -228,15 +228,15 @@
                 <p>
                     订票流程</p>
                 <div class="processdiv">
-                    <img src="/theme/default/image/newversion/jiantouicon.png" />&nbsp;选择景区&nbsp;&nbsp;放入购物车<br />
-                    <img src="/theme/default/image/newversion/jiantouicon.png" />&nbsp;填写订单<br />
-                    <img src="/theme/default/image/newversion/jiantouicon.png" />&nbsp;确认订单<br />
-                    <img src="/theme/default/image/newversion/jiantouicon.png" />&nbsp;前往景区<br />
+                    <img src="/theme/default/image/newversion/jiantouicon4.png" />&nbsp;选择景区&nbsp;&nbsp;放入购物车<br />
+                    <img src="/theme/default/image/newversion/jiantouicon4.png" />&nbsp;填写订单<br />
+                    <img src="/theme/default/image/newversion/jiantouicon4.png" />&nbsp;确认订单<br />
+                    <img src="/theme/default/image/newversion/jiantouicon4.png" />&nbsp;前往景区<br />
                     <span style="margin-left: 10px;">&nbsp;在线支付的游客</span><br />
                     <span style="margin-left: 10px;">&nbsp;凭身份证领取景区门票</span><br />
                     <span style="margin-left: 10px;">&nbsp;预订的游客</span><br />
                     <span style="margin-left: 10px;">&nbsp;凭身份证&nbsp;购买折扣门票</span><br />
-                    <img src="/theme/default/image/newversion/jiantouicon.png" />&nbsp;入园游玩<br />
+                    <img src="/theme/default/image/newversion/jiantouicon4.png" />&nbsp;入园游玩<br />
                 </div>
             </div>
         </div>

@@ -59,9 +59,21 @@ $(function () {
             $("#popcart").show();
         });
     });
+    var ileft = $(".logoleft").position().left;
+    var itop = $(".logoleft").position().top;
+    $(".mainarea").css({ left: ileft + 200 + "px", top: itop + 70 + "px" });
+    //var h = $(".popcartbg").css("height");
+    //$(".popmain").css("height",  120 + "px");
+    var ll = (document.body.clientWidth - 955) / 2;
+    $(".Filldiv").css("width", ll);
 });
 window.onresize = function () {
     var pleft = $(".chartdiv").position().left;
     var ptop = $(".chartdiv").position().top;
     $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px" });
+    var ileft = $(".logoleft").position().left;
+    var itop = $(".logoleft").position().top;
+    $(".mainarea").css({ left: ileft + 200 + "px", top: itop + 70 + "px" });
+    var ll = (document.body.clientWidth - 955) / 2;
+    $(".Filldiv").css("width", ll);
 }

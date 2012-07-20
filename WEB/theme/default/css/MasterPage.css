@@ -3,6 +3,17 @@
 body
 {
     /*background: url(../image/headerbg.png) top left repeat-x;*/
+    background:url("/theme/default/image/newversion/logobg.png");
+    background-repeat:repeat-x;
+}
+.Filldiv
+{
+    position:absolute;
+    display:block;
+    height:33px;
+    background-color:White;
+    top:0px;
+    left:0px;
 }
 a, a:link, a:visited, a:active
 {
@@ -40,8 +51,7 @@ background-color:#fff !important;
 #logo
 {
     width: 955px;
-    height: 146px;
-    float: left;
+    height: 116px;
     margin: 0 auto;
 }
 #logotitle
@@ -171,13 +181,13 @@ background-color:#fff !important;
     padding-bottom:20px;
     height:300px;
     display:none;
+    /*filter: alpha(opacity=80);
+    opacity: 0.7;*/
+    background-color:#277523;
 }
 .popmain
 {
-    filter: alpha(opacity=80);
-    opacity: 0.7;
-    background-color:#277523;
-    height:300px;
+    
     display:block;
     
 }
@@ -185,8 +195,7 @@ background-color:#fff !important;
 {
      background-color:White;
      margin:5px 10px 10px 10px;
-     position:relative;
-     top:-300px;
+     display:block;
 }
 #popcart #pchead
 {
@@ -260,8 +269,9 @@ background-color:#fff !important;
 }
 #header
 {
-    position:relative;
-    z-index:998;
+    text-align:center;
+    width:100%;
+    height:146px;
 }
 /*新版样式*/
 .logoleft
@@ -278,19 +288,26 @@ background-color:#fff !important;
     width:599px;
     height:115px;
     background-repeat:repeat-x;
+    text-align:left;
 }
 .NavList
 {
-    float:left;
     background-color:#115E1D;
     height:30px;
-    width:932px;
-    padding-left:23px;
+    width:100%;
+    
+}
+.navlistnb
+{
+    margin:0px auto;
+    width:955px;
+    padding-left:5px;
 }
 .uertool
 {
     width:240px;
     margin-top:5px;
+    text-align:left;
 }
 .uertool a
 {
@@ -332,7 +349,7 @@ background-color:#fff !important;
     font-weight:700;
     border: 0.8px solid #024D19 \9;
 }
-.NavList a,.NavList span
+.navlistnb a,.navlistnb span
 {
     display:block;
     float:left;
@@ -375,4 +392,25 @@ background-color:#fff !important;
 {
     background-color:#51A42F;
     font-weight:600;
+}
+.mainarea
+{
+    position:absolute;
+    z-index:9999;
+    display:block;
+    width:80px;
+    height:18px;
+    border:1px solid #D6D8D8;
+    text-align:left;
+}
+.mainarea span
+{
+    display:block;
+    background:url("/theme/default/image/newversion/jiantouicon.png");
+    width:13px;
+    height:14px;
+    position:relative;
+    top:-16px;
+    left:65px;
+    cursor:pointer;
 }
