@@ -3,7 +3,7 @@
 body
 {
     /*background: url(../image/headerbg.png) top left repeat-x;*/
-    background:url("/theme/default/image/newversion/logobg.png");
+    background:url("/theme/default/image/newversion/logobg2.png");
     background-repeat:repeat-x;
 }
 .Filldiv
@@ -234,17 +234,23 @@ background-color:#fff !important;
 }
 #footer
 {
-    background-image: url(../image/footerbg.png);
+    /*background-image: url(../image/footerbg.png);*/
+    clear:both;
     height: 130px;
     text-align: center;
-    padding-top:10px;
+    width:100%;
+}
+.footernb
+{
+    width:100%;
+    margin:0px auto;
 }
 #footerlink
 {
     background-color:#115E1D;
     height: 30px;
     text-align: center;
-    
+    width:100%;
 }
 #footerlink a:link,#footerlink a:active,#footerlink a:visited
 {
@@ -265,7 +271,8 @@ background-color:#fff !important;
 #footer p
 {
     font-size: 12px;
-   
+    margin-top:10px;
+    color:#919191;
 }
 #header
 {
@@ -284,7 +291,7 @@ background-color:#fff !important;
 .logoright
 {
     float:left;
-    background:url("/theme/default/image/newversion/logobg.png");
+    background:url("/theme/default/image/newversion/logobg2.png");
     width:599px;
     height:115px;
     background-repeat:repeat-x;
@@ -292,7 +299,10 @@ background-color:#fff !important;
 }
 .NavList
 {
-    background-color:#115E1D;
+    background:url("/theme/default/image/newversion/navbg.png");
+    background-repeat:repeat-x;
+    border-top:1px solid #1A9F47;
+    border-bottom:1px solid #86C637;
     height:30px;
     width:100%;
     
@@ -355,10 +365,26 @@ background-color:#fff !important;
     float:left;
     width:85px;
     height:25px;
-    margin-right:15px;
+    margin-right:5px;
     color:White;
     text-align:center;
     padding-top:5px;
+}
+.navlistnb a:hover
+{
+    background-color:#2E7D25;
+}
+.navsper
+{
+    border-left:1px solid #078632;
+    border-right:1px solid #D1F5A4;
+    display:block;
+    float:left;
+    width:0px;
+    height:18px;
+    margin-top:5px;
+    margin-left:0px;
+    margin-right:5px;
 }
 .chartdiv
 {
@@ -366,7 +392,7 @@ background-color:#fff !important;
     float:left;
     width:280px;
     height:30px;
-    margin-left:320px;
+    margin-left:220px;
 }
 .chartdiv img
 {
@@ -389,6 +415,11 @@ background-color:#fff !important;
     background-color:Black;
 }
 .navhight
+{
+    background-color:#51A42F;
+    font-weight:600;
+}
+.navhight:hover
 {
     background-color:#51A42F;
     font-weight:600;

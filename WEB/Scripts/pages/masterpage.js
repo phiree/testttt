@@ -50,6 +50,7 @@ $(function () {
         $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px", display: "block" });
     });
     $(".chartdiv").mouseout(function () {
+        $(this).css("background-color", "");
         $("#popcart").hide();
         $("#popcart").mouseout(function () {
             $(this).css("background-color", "");
@@ -61,19 +62,37 @@ $(function () {
     });
     var ileft = $(".logoleft").position().left;
     var itop = $(".logoleft").position().top;
-    $(".mainarea").css({ left: ileft + 200 + "px", top: itop + 70 + "px" });
+    $(".mainarea").css({ left: ileft + 230 + "px", top: itop + 70 + "px" });
     //var h = $(".popcartbg").css("height");
     //$(".popmain").css("height",  120 + "px");
-    var ll = (document.body.clientWidth - 955) / 2;
+    findDimensions();
+    var ll = (winWidth - 955) / 2;
     $(".Filldiv").css("width", ll);
+    navshow();
+
+
 });
 window.onresize = function () {
+    findDimensions();
     var pleft = $(".chartdiv").position().left;
     var ptop = $(".chartdiv").position().top;
     $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px" });
     var ileft = $(".logoleft").position().left;
     var itop = $(".logoleft").position().top;
-    $(".mainarea").css({ left: ileft + 200 + "px", top: itop + 70 + "px" });
-    var ll = (document.body.clientWidth - 955) / 2;
+    $(".mainarea").css({ left: ileft + 230 + "px", top: itop + 70 + "px" });
+    var ll = (winWidth - 955) / 2;
     $(".Filldiv").css("width", ll);
+}
+
+
+function navshow() {
+    var thishref = window.location.href;
+    $(".navlistnb a").attr("class", "");
+    if (/^.*map.*$/.test(thishref)) {
+        $(".navlistnb a:eq(3)").attr("class", "navhight");
+    } else if (/^.*Discount.*$/.test(thishref)) {
+        $(".navlistnb a:eq(1)").attr("class", "navhight");
+    } else {
+        $(".navlistnb a:eq(0)").attr("class", "navhight");
+    }
 }

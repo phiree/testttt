@@ -176,10 +176,10 @@ ComplexCustomOverlay1.prototype.initialize = function (mapp) {
 
 
     var arrow = this._arrow = document.createElement("div");
-    arrow.style.background = "url('/Img/yuansu/largeicon2.gif') no-repeat";
+    arrow.style.background = "url('/Img/yuansu/largeicon3.gif') no-repeat";
     arrow.style.position = "absolute";
-    arrow.style.width = "14px";
-    arrow.style.height = "15px";
+    arrow.style.width = "15px";
+    arrow.style.height = "14px";
     arrow.style.top = "19px";
     arrow.style.left = "10px";
     arrow.style.overflow = "hidden";
@@ -224,7 +224,7 @@ ComplexCustomOverlay2.prototype.initialize = function (map) {
     var div = this._div = document.createElement("div");
     div.style.position = "absolute";
     div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
-    div.style.background = "url('/Img/yuansu/smallicon6.gif') no-repeat";
+    div.style.background = "url('/Img/yuansu/smallicon7.gif') no-repeat";
     //div.style.border = "1px solid #BC3B3A";
     div.style.color = "white";
     div.style.height = "13px";

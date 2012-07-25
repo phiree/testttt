@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="BackPwd.aspx.cs" Inherits="Account_BackPwd" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/detail.master" AutoEventWireup="true" CodeFile="BackPwd.aspx.cs" Inherits="Account_BackPwd" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="/theme/default/css/ResetPwd.css" rel="stylesheet" type="text/css" />

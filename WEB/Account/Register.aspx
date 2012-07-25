@@ -1,4 +1,4 @@
-﻿<%@ Page Title="注册" Language="C#" MasterPageFile="/MasterPage.master" AutoEventWireup="true"
+﻿<%@ Page Title="注册" Language="C#" MasterPageFile="/detail.master" AutoEventWireup="true"
     CodeFile="Register.aspx.cs" Inherits="Account_Register" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="head">

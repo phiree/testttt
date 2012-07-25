@@ -1,4 +1,4 @@
-﻿<%@ Page Title="登录"   Language="C#" MasterPageFile="/MasterPage.master" AutoEventWireup="true"
+﻿<%@ Page Title="登录"   Language="C#" MasterPageFile="~/detail.master" AutoEventWireup="true"
     CodeFile="Login.aspx.cs" Inherits="Account_Login" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="head">

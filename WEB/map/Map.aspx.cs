@@ -5,30 +5,53 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
-using System.Text;
+using Model;
 
-public partial class BaiduMap : System.Web.UI.Page
+public partial class map_Map : System.Web.UI.Page
 {
+    BLLMembership bllMember = new BLLMembership();
+    public string iconUrl = "";
+    public string iconAlt = "";
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Page.User.Identity.IsAuthenticated)
+        {
+            TourMembership member = bllMember.GetMember(Page.User.Identity.Name);
 
+            switch (member.Opentype)
+            {
+                case Opentype.TencentWeibo:
+                    iconAlt = "腾讯微博登录";
+                    iconUrl = "/img/weiboicon16.png";
+                    break;
+                case Opentype.Sina: break;
+            }
+
+        }
+        if (!IsPostBack)
+        {
+            bind();
+        }
     }
 
-
-    //private void bind()
-    //{
-    //    IList<Model.Scenic> list=null;
-    //    string scname = HttpUtility.UrlDecode(Request.Cookies["scname"].Value, Encoding.GetEncoding("UTF-8"));
-    //    string level = HttpUtility.UrlDecode(Request.Cookies["level"].Value, Encoding.GetEncoding("UTF-8"));
-    //    if(level!="全部")
-    //         list = new BLLScenic().GetScenicByScenicName(scname,level);
-    //    else if(scname!="")
-    //        list = new BLLScenic().GetScenicByScenicName(scname, "");
-    //    rptScenic.DataSource = list;
-    //    rptScenic.DataBind();
-    //}
-    protected void Button2_Click(object sender, EventArgs e)
+    private void bind()
     {
-       // bind();
+        rptarea.DataSource = new BLLArea().GetArea(33);
+        rptarea.DataBind();
+    }
+    protected void rptarea_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.FindControl("areaname") != null)
+        {
+            string str = ((System.Web.UI.HtmlControls.HtmlAnchor)(e.Item.FindControl("areaname"))).InnerHtml;
+            str = str.Substring(3);
+            if (str.Length > 0)
+                str = str.Substring(0, str.Length - 1);
+            else
+            {
+                str = "全部";
+            }
+            ((System.Web.UI.HtmlControls.HtmlAnchor)(e.Item.FindControl("areaname"))).InnerHtml = str;
+        }
     }
 }

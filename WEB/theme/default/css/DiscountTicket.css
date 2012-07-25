@@ -1,0 +1,172 @@
+﻿#dismain
+{
+    background-color:White;
+    width:950px;
+    margin:0px auto;
+}
+.disleft
+{
+    width:750px;
+    float:left;
+    overflow:hidden;
+}
+.disright
+{
+    width:200px;
+    float:left;
+    overflow:hidden;
+}
+.disright a
+{
+    display:block;
+    margin:40px 5px 0px 0px;
+}
+.tjsc
+{
+    margin-top:15px;
+    margin-bottom:15px;
+    color:#D91706;
+}
+.zjscdiv
+{
+    background:url("/theme/default/image/newversion/zjscbg.png");
+    width:195px;
+    height:80px;
+    display:block;
+    margin:0px 5px 0px 0px;
+}
+.zjscdiv img
+{
+    display:block;
+    float:right;
+    margin:8px 8px 8px 0px;
+}
+.zjscdiv div
+{
+    float:left;
+    margin:8px;
+    display:block;
+}
+.zjscdiv div p
+{
+     color:#0054FF;
+     margin-top:3px;
+     margin-bottom:0px;
+     margin-left:10px;
+     padding:0px;
+}
+.zjscdiv div input
+{
+    background:url("/theme/default/image/newversion/morezjsc.png");
+    width:36px;
+    height:13px;
+    margin:24px 0px 0px 10px;
+    border:0px none;
+    cursor:pointer;
+    padding:0px;
+    float:left;
+    margin-left:1px \9;
+}
+.zjscdiv2
+{
+    background:url("/theme/default/image/newversion/zjscbg2.png");
+    width:195px;
+    height:78px;
+    display:block;
+    margin:15px 5px 0px 0px;
+}
+.zjscdiv2 img
+{
+    display:block;
+    float:left;
+    margin:8px 0px 8px 8px;
+}
+.zjscdiv2 div
+{
+    float:left;
+    margin:8px;
+    display:block;
+}
+.zjscdiv2 div p
+{
+    color:#0054FF;
+     margin-top:3px;
+     margin-bottom:0px;
+     margin-left:10px;
+     padding:0px;
+}
+.zjscdiv2 div input
+{
+    background:url("/theme/default/image/newversion/morezjsc.png");
+    width:36px;
+    height:13px;
+    margin:24px 0px 0px 10px;
+    border:0px none;
+    cursor:pointer;
+    padding:0px;
+    float:left;
+    margin-left:1px \9;
+}
+.visitedsc
+{
+    width:185px;
+    height:30px;
+    background-color:#D0EDC1;
+    line-height:30px;
+    padding-left:10px;
+    margin-top:30px;
+    margin-bottom:0px;
+}
+.tbvisitedsc
+{
+    width:195px;
+    
+    margin:0px;
+    border-top:none;
+    margin-bottom:20px;
+}
+.tbvisitedsc tr,.tbvisitedsc tr td
+{
+    margin:0px;
+    padding:0px;
+}
+.tbvisitedsc tr td
+{
+    padding:5px 0px 5px 5px;
+    border-bottom:1px dashed #CDCDCD;
+}
+.tbvisitedsc tr td img
+{
+    margin-left:5px;
+    margin-right:5px;
+    margin-top:2px;
+}
+.tbvisitedsc tr td:hover
+{
+    background-color:#F4FFE9 !important;
+}
+.ticketsellist
+{
+    margin-top:20px;
+    width:100%;
+    padding-left:20px;
+    height:20px;
+    line-height:20px;
+}
+.ticketsellist img
+{
+    margin-right:5px;
+    vertical-align:text-top;
+}
+.breadNav
+{
+    margin-top:10px;
+    width:100%;
+    padding-left:20px;
+    height:30px;
+}
+.breadNav img
+{
+    margin-right:5px;
+    vertical-align:text-top;
+}

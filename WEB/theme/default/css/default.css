@@ -52,24 +52,27 @@
 }
 .hla, .hlv, .hla:link, .hlv:link, .hla:visited, .hlv:visited,.hla:active,.hlv:active
 {
-    color: #566932;
+    color: #009F3C;
     font-weight: 700;
+    border:1px solid #A6DF9E;
+    background-color:#D1EFCD;
 }
 .hla
 {
     background-color: #C3D0A2;
-    padding-top:2px;
-    padding-bottom:2px;
-    padding-left:5px;
+    padding-top:3px;
+    padding-bottom:3px;
+    padding-left:6px;
     padding-right:0px;
 }
 .hlv
 {
     background-color: #C3D0A2;
-    padding:2px 5px;
+    padding:3px 6px 3px 6px;
 }
 #toprecomm
 {
+    display:inline-block;
 }
 /*
 div:246
@@ -126,32 +129,38 @@ div:246
 }
 .scenicdesc
 {
-    margin-top: 15px;
-    margin-left: 2px;
-    border: solid 1px #ddd;
-    width: 240px;
+    margin:0px 0px 20px 30px;
+    border: 0px none;
+    width: 213px;
     float: left;
     display: inline;
-    position: relative;
+    padding-bottom:20px;
+    border-bottom:1px dashed #DEDEDE;
+}
+.scenicimgdivbg
+{
+    width:213px;
+    height:166px;
+    display:inline-block;
+    background:url("/theme/default/image/newversion/scinfobg.png");
 }
 .scenicdescimg
 {
-    width: 233px;
-    height: 156px;
-    margin: 5px 5px 10px 5px;
-    border: 1px solid #ccc;
+    width: 201px;
+    height: 148px;
+    margin: 6px;
     display: block;
 }
 .dvprice, .divOrder
 {
     float: left;
-    padding-left: 5px;
-    width: 240px;
+    padding-left: 0px;
+    width: 213px;
 }
 
 .dvprice em
 {
-    margin: 0 4px;
+    margin: 0 2px;
 }
 .dvprice .normalpr 
 {
@@ -161,21 +170,20 @@ div:246
 .dvprice .onlinepr em
 {
     font-size: 16pt;
-    color: #E8641B;
+    color: #E23C46;
     font-style: normal;
 }
 .onlinepr
 {
-    color:#E8641B;
-    margin-left:10px;
+    color:#E23C46;
+    margin-left:0px;
 }
 .scenicname
 {
-    left: 12px;
-    top: 132px;
-    width: 235px;
-    padding-left: 10px;
+    width: 213px;
     line-height: 30px;
+    font-size:13px;
+    padding-left:5px;
 }
 .scenicname a
 {
@@ -201,6 +209,27 @@ div:246
     float: right;
     margin-right: 5px;
     margin-top:5px;
+}
+.linkorder,.linkorder:link
+{
+    display:block;
+    width:60px;
+    height:22px;
+    background:url("/theme/default/image/newversion/ydbtn_link.png");
+}
+.linkorder:hover
+{
+    display:block;
+    width:60px;
+    height:22px;
+    background:url("/theme/default/image/newversion/ydbtn_hover.png");
+}
+.linkorder:visited,.linkorder:active
+{
+    display:block;
+    width:60px;
+    height:22px;
+    background:url("/theme/default/image/newversion/ydbtn_visited.png");
 }
 /*
  图片切换
@@ -427,12 +456,16 @@ div:246
 #selectdiv
 {
     display:block;
-    border:1px solid #55A930;
-    height:150px;
+    border:1px solid #DEDEDE;
+    height:162px;
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:2px;
 }
 .selectarea
 {
     margin-top:10px;
+    margin-bottom:0px;
 }
 .selectarea a,.selectarea a:link,.selectarea a:active,.selectarea a:visited,.selectarea a:active
 {
@@ -443,12 +476,10 @@ div:246
 }
 #sceniclist
 {
-    border:1px solid #55A930;
-    padding:3px;
     display:inline-block;
     min-height:500px;
     overflow:hidden;
-    width:741px;
+    width:729px;
 }
 .webscenic
 {
@@ -488,7 +519,7 @@ div:246
     margin-top:5px;
     border:0px none White;
     border-top:1px dashed #C1C1C1;
-    padding-top:5px;
+    padding-top:15px;
 }
 .leveldiv span,.themedivspan
 {
@@ -519,10 +550,11 @@ div:246
 {
     margin-left:10px;
     margin-right:10px;
-    margin-top:5px;
+    margin-top:15px;
+    margin-bottom:15px;
     border:0px none White;
     border-top:1px dashed #C1C1C1;
-    padding-top:5px;
+    padding-top:15px;
 }
 .areadiv
 {
@@ -530,6 +562,7 @@ div:246
     margin-right:10px;
     margin-top:15px;
     border:0px none White;
+    margin-bottom:15px;
 }
 
 #searchbody

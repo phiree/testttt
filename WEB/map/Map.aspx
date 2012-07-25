@@ -1,50 +1,60 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Map.aspx.cs" Inherits="BaiduMap" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Map.aspx.cs" Inherits="map_Map" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script>
-<script  type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script src="/Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <%--<link href="../Styles/DefaultMapCss.css" rel="stylesheet" type="text/css" />--%>
+    <script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="../Scripts/baidumap.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var count = 0;
-        function qiehuan() {
-            if (count % 2 == 0) {
-                $.cookie("maptype", "1");
-                $("#change").html("切换至google版地图");
-            }
-            else {
-                $.cookie("maptype", "2");
-                $("#change").html("切换至百度版地图");
-            }
-            count++;
-           check();
-        }
-       
-    </script>
+    <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
+    <script src="/map/map.js" type="text/javascript"></script>
+    <%--<link href="/Styles/default.css" rel="stylesheet" type="text/css" />--%>
+    <link rel="stylesheet" type="text/css" href="../Styles/page.css" />
+    <script src="../Scripts/jquery.myPagination.js" type="text/javascript"></script>
+    <link href="/theme/default/css/map.css" rel="stylesheet" type="text/css" />
+    <script src="mapcommon.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
-<div>
-   <div style=" margin:0px; padding:0px; float:left;width: 79%; height: 550px; border: 1px solid gray" id="container">
-    </div>
-    <div style=" margin:0px; padding:0px; float:left;width:20%">
-        景区名:<asp:TextBox ID="txtPosition" style=" margin:0px; padding:0px;" runat="server"></asp:TextBox><br />
-        景区级别
-        <asp:DropDownList ID="Level" runat="server">
-            <asp:ListItem>全部</asp:ListItem>
-            <asp:ListItem>1A</asp:ListItem>
-            <asp:ListItem>2A</asp:ListItem>
-            <asp:ListItem>3A</asp:ListItem>
-            <asp:ListItem>4A</asp:ListItem>
-            <asp:ListItem>5A</asp:ListItem>
-        </asp:DropDownList>
-        <input id="Button2" type="button" value="搜索" onclick="check2();" />
-        <br />
-        <div id="showscenic">
-            
+    <div id="left">
+        <div class="selbg"></div>
+        <div class="sellevel">
+            景区级别<img src="/Img/yuansu/jiantouicon1.png" width="14px" height="9px"  style="margin-left:5px"/>
         </div>
-    <a id="change"  onclick="qiehuan()" style=" cursor:pointer;">切换至google版地图</a>
-    </div>
-    </div>
+        <div class="sellevelinfo">
+            <a onclick="btnarea(this)">全部</a><a style=" border:1px solid #F9CD8A;background-color:#FDF0CA;color:#E8641B" onclick="btnarea(this)">5A</a><a onclick="btnarea(this)">4A</a><a onclick="btnarea(this)">3A</a>
+        </div>
+        <div class="selarea">
+            选择城市<img src="/Img/yuansu/jiantouicon1.png" width="14px" height="9px"  style="margin-left:5px"/>
+        </div>
+        <div class="selareainfo">
+            <asp:Repeater ID="rptarea" runat="server" 
+                        onitemdatabound="rptarea_ItemDataBound" >
+                        <ItemTemplate>
+                            <a runat="server" id="areaname" onclick="qdpostion();" href='<%# Eval("Id","Map.aspx?areaid={0}") %>'><%# Eval("Name")  %></a>
+                        </ItemTemplate>
+                    </asp:Repeater>
+        </div>
+        <div class="seltheme">
+            旅游主题<img src="/Img/yuansu/jiantouicon1.png" width="14px" height="9px"  style="margin-left:5px"/>
+        </div>
+        <div class="selthemeinfo">
+        
+        </div>
+        <input id="txtSearch" type="text" class="selkeyword" />
+        <input id="Button1" type="button" class="btnsearch" onclick="check2();" value="地图查找" />
+        <div id="container">
+        </div>
+        </div>
+    <div id="right">
+            <%--<div class="searchdiv">
+                <input id="txtSearch" type="text" class="scenicname" />
+                <input id="Button1" type="button" class="btnsearch" onclick="check2();" />
+            </div>--%>
+            <%--<div class="resulttitle">
+                搜索到：<span id="searchareaname"></span>共<span id="countscenic" style="margin:0px"></span>个景区
+            </div>--%>
+            <div id="resultscenic">
+            </div>
+            <div style=" padding:5px; margin: 20px 0px 10px 0px; height:25px;" id="pager" ></div>
+        </div>
 </asp:Content>
 

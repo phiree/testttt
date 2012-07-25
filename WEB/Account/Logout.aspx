@@ -1,4 +1,4 @@
-﻿<%@ Page Title="顺利登出" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Logout.aspx.cs" Inherits="Account_Logout" %>
+﻿<%@ Page Title="顺利登出" Language="C#" MasterPageFile="~/detail.master" AutoEventWireup="true" CodeFile="Logout.aspx.cs" Inherits="Account_Logout" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="/Scripts/jqueryplugin/jquery.autoRedirect.js" type="text/javascript"></script>
