@@ -19,6 +19,9 @@ namespace Model
         public virtual Area Area { get; set; }
         public virtual string Desec { get; set; }
         public virtual string Position { get; set; }
+
+        public virtual IList<Ticket> Tickets { get; set; }
+
         public virtual IList<ScenicCheckProgress> CheckProgress { get; set; }
 
         /// <summary>
