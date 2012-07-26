@@ -13,11 +13,11 @@ namespace BLL
         #region 景区相关
         public IList<Model.Scenic> GetScenicList(string strCondition)
         {
-            return dalbackmanager.GetScenicList(strCondition);    
+            return dalbackmanager.GetScenicList(strCondition);
         }
-        public List<Model.Scenic> GetScenicList(string strCondition, int pageIndex, int pageSize ,out long totalRecord)
+        public List<Model.Scenic> GetScenicList(string strCondition, int pageIndex, int pageSize, out long totalRecord)
         {
-            return dalbackmanager.GetScenicList( strCondition,  pageIndex,  pageSize , out totalRecord);
+            return dalbackmanager.GetScenicList(strCondition, pageIndex, pageSize, out totalRecord);
         }
         public bool ScenicinfoPass(int id)
         {
@@ -32,7 +32,7 @@ namespace BLL
             return dalbackmanager.GetPromList(strCondition);
         }
 
-        public IList<Model.PromotionStatic> GetPromList(string strCondition, int pageIndex, int pageSize ,out long totalRecord)
+        public IList<Model.PromotionStatic> GetPromList(string strCondition, int pageIndex, int pageSize, out long totalRecord)
         {
             return dalbackmanager.GetPromList(strCondition, pageIndex, pageSize, out totalRecord);
         }

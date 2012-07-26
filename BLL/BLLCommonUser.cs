@@ -57,7 +57,7 @@ namespace BLL
 
         public IList<CommonUser> SearchCommonUser(string name)
         {
-             return ICommonUser.SearchCommonUser(name);
+            return ICommonUser.SearchCommonUser(name);
         }
 
         public void deleteCommonUser(int id)
@@ -71,7 +71,7 @@ namespace BLL
 
         public void updatecu(CommonUser cu)
         {
-             ICommonUser.updatecu(cu);
+            ICommonUser.updatecu(cu);
         }
 
         public IList<CommonUser> GetCommonUserByIdCard(string idcard)
