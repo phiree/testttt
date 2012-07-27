@@ -6,12 +6,12 @@ using System.Text;
 namespace BLL.BLLForTDD
 {
 
-   public class BLLMember
+    public class BLLMember
     {
-       public bool CreateMember(string username, string password)
-       {
-           return true;
-       }
+        public bool CreateMember(string username, string password)
+        {
+            return true;
+        }
     }
 
 }

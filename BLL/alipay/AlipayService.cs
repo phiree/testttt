@@ -34,7 +34,7 @@ namespace Com.Alipay
         //服务器通知的页面文件路径
         private string _notify_url = "";
         //支付宝网关地址（新）
-      //  private string GATEWAY_NEW = " http://www.14kr.com/pg.aspx?";
+        //  private string GATEWAY_NEW = " http://www.14kr.com/pg.aspx?";
         private string GATEWAY_NEW = " https://mapi.alipay.com/gateway.do?";
         #endregion
 
@@ -70,10 +70,10 @@ namespace Com.Alipay
             string strButtonValue = "确认";
             //表单提交HTML数据
             string strHtml = "";
-           
+
             //构造表单提交HTML数据
             strHtml = Submit.BuildFormHtml(sParaTemp, GATEWAY_NEW, "get", strButtonValue);
-           
+
             return strHtml;
         }
 
@@ -87,11 +87,11 @@ namespace Com.Alipay
         {
             //增加基本配置
             sParaTemp.Add("service", "refund_fastpay_by_platform_pwd");
-          
+
             sParaTemp.Add("_input_charset", _input_charset);
             sParaTemp.Add("seller_email", _seller_email);
             sParaTemp.Add("notify_url", _notify_url);
-          
+
 
 
             //确认按钮显示文字

@@ -6,6 +6,12 @@ using System.Security.Cryptography;
 
 namespace CommonLibrary.QweiboSDK
 {
+    /// <summary>
+    /// QQ验证. 
+    /// <remarks>
+    /// 好像不用了,直接用QQ自带的验证系统
+    /// </remarks>
+    /// </summary>
     public class OAuth
     {
         private const string OAuthVersion = "1.0";

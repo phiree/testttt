@@ -39,7 +39,8 @@
                 </div>
             </div>
             <div class="breadNav">
-                <p class="selectarea"><img src="/theme/default/image/newversion/icon.gif" />
+                <p class="selectarea">
+                    <img src="/theme/default/image/newversion/icon.gif" />
                     您选择的景区门票:浙江省&nbsp;&nbsp;><a href="" runat="server" id="breadareaurl"><asp:Literal
                         ID="lAreabread" runat="server"></asp:Literal></a>><a href="" runat="server" id="breadlevelurl"><asp:Literal
                             ID="lLevelBread" runat="server"></asp:Literal></a>&nbsp;<a style="text-decoration: none"><asp:Literal
@@ -51,7 +52,7 @@
                         <div class="scenicdesc">
                             <div class="scenicimgdivbg">
                                 <a href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
-                                <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='<%# Eval("Scenic.Photo","/ScenicImg/{0}") %>' /></a>
+                                    <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='<%# Eval("Scenic.Photo","/ScenicImg/{0}") %>' /></a>
                             </div>
                             <div class="scenicname">
                                 <a style="display: block" href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
@@ -64,7 +65,8 @@
                                         <asp:Literal runat="server" ID="liPriceNormal"></asp:Literal>元</em></span> <span
                                             class="onlinepr">在线价<em><asp:Literal runat="server" ID="liPriceOnline"></asp:Literal></em>元</span>
                                 </div>
-                                <a class="linkorder" href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'></a>
+                                <a class="linkorder" href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
+                                </a>
                             </div>
                         </div>
                     </ItemTemplate>
@@ -72,7 +74,7 @@
                         <asp:Label runat="server" CssClass="success noresult" Visible="false" ID="lblNoResult">没有相应的景区</asp:Label>
                     </FooterTemplate>
                 </asp:Repeater>
-                <div id="pager" class="span-19 last" style="margin-left:30px;">
+                <div id="pager" class="span-19 last" style="margin-left: 30px;">
                     <uc:AspNetPager runat="server" EnableUrlRewriting="true" ID="pagerGot" CssClass="paginator"
                         UrlPaging="true" UrlPageIndexName="pgotindex" UrlRewritePattern="%area%/%level%/page_{0}.html"
                         FirstPageText="首页" LastPageText="尾页" PageSize="12" NextPageText="下一页" CurrentPageButtonClass="cpb"
@@ -80,36 +82,6 @@
                     </uc:AspNetPager>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
         <div class="disright">
             <a href="#">

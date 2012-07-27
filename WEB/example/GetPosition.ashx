@@ -11,13 +11,15 @@ using System.Text;
 using System.Runtime.Serialization.Json;
 using System.IO;
 
-public class GetPosition : IHttpHandler {
-    
-    public void ProcessRequest (HttpContext context) {
+public class GetPosition : IHttpHandler
+{
+
+    public void ProcessRequest(HttpContext context)
+    {
         context.Response.ContentType = "text/json";
         BLLScenic bllscenic = new BLLScenic();
         string index = context.Request.Form[0];
-        for (int i = 0; i < context.Request.Form.Count-1; i++)
+        for (int i = 0; i < context.Request.Form.Count - 1; i++)
         {
             if (context.Request.Form[i] != "")
             {
@@ -25,14 +27,14 @@ public class GetPosition : IHttpHandler {
                 scenic.Position = context.Request.Form[i];
                 bllscenic.UpdateScenicInfo(scenic);
             }
-            
+
         }
     }
 
 
 
 
-    public  T FromJsonTo<T>(string jsonString)
+    public T FromJsonTo<T>(string jsonString)
     {
         DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(T));
         using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)))
@@ -41,8 +43,10 @@ public class GetPosition : IHttpHandler {
             return jsonObject;
         }
     }
-    public bool IsReusable {
-        get {
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }

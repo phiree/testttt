@@ -15,18 +15,27 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
     {
 
     }
-    protected void Login1_LoggedIn(object sender, EventArgs e)
+
+    /// <summary>
+    /// 登陆
+    /// </summary>
+    /// <remarks>
+    ///  原始裸机混乱,修改之.
+    /// </remarks>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void Login1_LoggingIn(object sender, EventArgs e)
     {
         MembershipUser member = (tourmembership.GetUser(Login1.UserName, true));
+        if (member == null)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('未找到该用户名，请重新确认！');", true);
+        }
         if (Roles.IsUserInRole(member.UserName, "SiteAdmin"))
         {
-            Response.Redirect("/Manager/");
+            Response.Redirect("/default.aspx");
         }
+        else
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或密码错误');", true);
-
-
-
-        
-        
     }
 }

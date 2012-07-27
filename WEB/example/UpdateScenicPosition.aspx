@@ -1,7 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UpdateScenicPosition.aspx.cs" Inherits="example_UpdateScenicPosition" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UpdateScenicPosition.aspx.cs"
+    Inherits="example_UpdateScenicPosition" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
 <script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
@@ -67,7 +67,7 @@
         var sendJSON = new Array();
         var name = new Array();
         var count = 0;
-        var xx=0;
+        var xx = 0;
         function updateposition(obj) {
             var myGeo = new BMap.Geocoder();
             myGeo.getPoint(obj, function (point) {

@@ -1,47 +1,46 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Manager/manager.master"
     CodeFile="Default.aspx.cs" EnableEventValidation="false" Inherits="Manager_ScenicinList" %>
+
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="head">
     <link href="/theme/default/css/Managerdefault.css" rel="stylesheet" type="text/css" />
 </asp:Content>
-
 <asp:Content runat="server" ContentPlaceHolderID="cphmain">
     <div id="selectdiv">
         <span>筛选:&nbsp;&nbsp;</span>
         <asp:DropDownList runat="server" ID="ddlArea">
-        </asp:DropDownList>&nbsp;
+        </asp:DropDownList>
+        &nbsp;
         <asp:Button runat="server" ID="btnSearch" OnClick="btnSearch_Click" CssClass="btnok" />
     </div>
-    
-    <asp:Repeater runat="server" ID="rptScenic" OnItemDataBound="rpt_ItemDataBound" 
-        onitemcommand="rptScenic_ItemCommand">
+    <asp:Repeater runat="server" ID="rptScenic" OnItemDataBound="rpt_ItemDataBound" OnItemCommand="rptScenic_ItemCommand">
         <HeaderTemplate>
             <table class="tblist" cellpadding="0" cellspacing="0" border="0">
-                    <tr class="thead">
-                        <td style="width:200px">
-                            名称
-                        </td>
-                        <td style="width:200px">
-                            地址
-                        </td>
-                        <td style="width:30px">
-                            等级
-                        </td>
-                        <td style="width:200px">
-                            审核状态
-                        </td>
-                        <td style="width:50px">
-                            操作
-                        </td>
-                       <%-- <td>
+                <tr class="thead">
+                    <td style="width: 200px">
+                        名称
+                    </td>
+                    <td style="width: 200px">
+                        地址
+                    </td>
+                    <td style="width: 30px">
+                        等级
+                    </td>
+                    <td style="width: 200px">
+                        审核状态
+                    </td>
+                    <td style="width: 50px">
+                        操作
+                    </td>
+                    <%-- <td>
                             生成账号
                         </td>
                         <td>
                             账号操作
                         </td>--%>
-                    </tr>
+                </tr>
         </HeaderTemplate>
         <FooterTemplate>
-                 </table></FooterTemplate>
+            </table></FooterTemplate>
         <ItemTemplate>
             <tr>
                 <td>
@@ -50,7 +49,7 @@
                 <td>
                     <%#Eval("Address") %>
                 </td>
-                <td style="text-align:center">
+                <td style="text-align: center">
                     <%#Eval("Level") %>
                 </td>
                 <td>
@@ -61,7 +60,7 @@
                         </ItemTemplate>
                     </asp:Repeater>
                 </td>
-                <td style="text-align:center">
+                <td style="text-align: center">
                     <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a>
                 </td>
                 <%--<td >
@@ -74,14 +73,14 @@
             </tr>
         </ItemTemplate>
         <AlternatingItemTemplate>
-            <tr style="background-color:#F2F2F2">
+            <tr style="background-color: #F2F2F2">
                 <td>
                     <%#Eval("Name") %>
                 </td>
                 <td>
                     <%#Eval("Address") %>
                 </td>
-                <td style="text-align:center">
+                <td style="text-align: center">
                     <%#Eval("Level") %>
                 </td>
                 <td>
@@ -92,7 +91,7 @@
                         </ItemTemplate>
                     </asp:Repeater>
                 </td>
-                <td style="text-align:center">
+                <td style="text-align: center">
                     <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a>
                 </td>
                 <%--<td >

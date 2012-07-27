@@ -52,7 +52,7 @@ namespace Com.Alipay
             return_url = (CommonLibrary.HttpContextHelper.FullVirtualPath + "payment/return_url.aspx").ToLower();
 
             //服务器通知的页面文件路径 要用 http://格式的完整路径，不允许加?id=123这类自定义参数
-            notify_url = (CommonLibrary.HttpContextHelper.FullVirtualPath+"payment/notify_url.aspx").ToLower();
+            notify_url = (CommonLibrary.HttpContextHelper.FullVirtualPath + "payment/notify_url.aspx").ToLower();
 
 
             //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑

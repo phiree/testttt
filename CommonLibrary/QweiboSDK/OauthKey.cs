@@ -8,15 +8,15 @@ namespace CommonLibrary.QweiboSDK
     public class OauthKey
     {
         /// <summary>
-        /// 
+        /// url请求标记
         /// </summary>
-        public const string urlRequesToken = "https://open.t.qq.com/cgi-bin/request_token";
+        public const string urlRequestToken = "https://open.t.qq.com/cgi-bin/request_token";
         /// <summary>
-        /// 
+        /// url用户验证
         /// </summary>
         public const string urlUserAuthrize = "https://open.t.qq.com/cgi-bin/authorize";
         /// <summary>
-        /// 
+        /// url访问标记
         /// </summary>
         public const string urlAccessToken = "https://open.t.qq.com/cgi-bin/access_token";
 
