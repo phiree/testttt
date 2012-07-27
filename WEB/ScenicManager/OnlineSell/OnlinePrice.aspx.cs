@@ -27,11 +27,9 @@ public partial class ScenticManager_OnlineSell_OnlinePrice : bpScenicManager
     private void LoadPrice()
     {
         IList<Model.Ticket> tickets = bllTicket.GetTicketByscId(CurrentScenic.Id);
+        hidden_scid.Value = CurrentScenic.Id.ToString();
         rptPrice.DataSource = tickets;
         rptPrice.DataBind();
-        //this.tbxPrice.Text = ticket.TicketPrice[0].Price.ToString("0");
-        //this.tbxPreOrder.Text = ticket.TicketPrice[1].Price.ToString("0");
-        //this.tbxPayOnline.Text = ticket.TicketPrice[2].Price.ToString("0");
     }
     /// <summary>
     /// 保存景区的三种门票
@@ -73,36 +71,5 @@ public partial class ScenticManager_OnlineSell_OnlinePrice : bpScenicManager
         //}
         //Page.ClientScript.RegisterStartupScript(this.GetType(), "notice", "alert('操作成功!')", true);
 
-        IList<Model.Ticket> tickets = bllTicket.GetTicketByscId(CurrentScenic.Id);
-
-        //更新该景区票状态为锁，无法显示在首页上
-        tickets.All(x => x.Lock = true);
-        bllTicket.SaveOrUpdateTicket(tickets);
-
-        TicketPrice tpNormal = new TicketPrice();
-        tpNormal.PriceType = PriceType.Normal;
-        tpNormal.Price = 1;// Convert.ToDecimal(tbxPrice.Text.Trim());
-
-        tpNormal.Ticket = tickets[0];
-        bllTp.SaveOrUpdateTicketPrice(tpNormal);
-
-        TicketPrice tpPayOnline = new TicketPrice();
-        tpPayOnline.PriceType = PriceType.PayOnline;
-        tpPayOnline.Price = 1;// Convert.ToDecimal(tbxPayOnline.Text.Trim());
-        tpPayOnline.Ticket = tickets[0];
-        bllTp.SaveOrUpdateTicketPrice(tpPayOnline);
-
-        TicketPrice tpPreorder = new TicketPrice();
-        tpPreorder.PriceType = PriceType.PreOrder;
-        tpPreorder.Price = 1;// Convert.ToDecimal(tbxPreOrder.Text.Trim());
-        tpPreorder.Ticket = tickets[0];
-        bllTp.SaveOrUpdateTicketPrice(tpPreorder);
-        ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(CurrentScenic.Id, 1);
-        if (scp != null)
-        {
-            scp.CheckStatus = CheckStatus.NotApplied;
-            bllscenic.UpdateCheckState(scp);
-        }
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "notice", "alert('操作成功!')", true);
     }
 }

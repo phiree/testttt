@@ -9,6 +9,7 @@ namespace DAL
 {
     public class DALTicket:DalBase,ITicket
     {
+
         public IList<Model.Ticket> GetTicketByAreaId(int areaid)
         {
             string sql = "select t from Ticket t where t.Scenic.Area.Id=" + areaid + "";
