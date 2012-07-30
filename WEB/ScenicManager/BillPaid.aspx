@@ -1,10 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true" CodeFile="BillPaid.aspx.cs" Inherits="ScenicManager_BillPaid" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true"
+    CodeFile="BillPaid.aspx.cs" Inherits="ScenicManager_BillPaid" %>
 
 <%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="smHeader" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
-<asp:Repeater ID="rptStatis" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
+    <asp:Repeater ID="rptStatis" runat="server">
         <HeaderTemplate>
             <table>
                 <tr>
@@ -67,4 +68,3 @@
         </FooterTemplate>
     </asp:Repeater>
 </asp:Content>
-

@@ -22,10 +22,12 @@
                 优惠价:<asp:Label ID="lblyhj" CssClass="jtpriceinfo" runat="server"></asp:Label></p>
         </asp:Panel>
         <asp:Panel ID="panelshing" runat="server">
-            <div class="passsh">正在审核中...</div>
+            <div class="passsh">
+                正在审核中...</div>
         </asp:Panel>
         <asp:Panel ID="panelnotpass" runat="server">
-            <div class="passsh">审核失败,请重新修改价格,请选择<a class="update" href="Pricesetting.aspx?update=1">修改</a></div>
+            <div class="passsh">
+                审核失败,请重新修改价格,请选择<a class="update" href="Pricesetting.aspx?update=1">修改</a></div>
         </asp:Panel>
         <asp:Panel ID="panelchangeprice" runat="server" CssClass="daohang">
             <p class="priceintro">

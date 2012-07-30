@@ -29,6 +29,7 @@
                 var zaixianjia = $(this).children().next().next().next().next().children().val();
                 var ticketid = $(this).children().next().next().next().next().next().children().val();
                 var scid = $("input[id*=hidden_scid]").val();
+                Boolean result=true;
                 //alert("ticketname:" + ticketname + " yuanjia:" + yuanjia + " mxp:" + mingxipianjia + " xianfujia:" + xianfujia + " zaixianjia:" + zaixianjia + " ticketid:" + ticketid + "scid:" + scid);
                 $.ajax({
                     type: "Post",

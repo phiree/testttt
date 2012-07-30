@@ -1,6 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true" CodeFile="ScenicPicture.aspx.cs" Inherits="ScenicManager_ScenicPicture" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true"
+    CodeFile="ScenicPicture.aspx.cs" Inherits="ScenicManager_ScenicPicture" %>
+
 <%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="smHeader" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
     <link href="../theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery.uploadify.min.js" type="text/javascript"></script>
     <link href="/Styles/uploadify.css" rel="stylesheet" type="text/css" />
@@ -39,27 +41,25 @@
         }
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <p class="fuctitle">
         景区图片管理</p>
     <hr />
     <asp:HiddenField ID="hfimgurl" runat="server" />
     <div id="scpic">
         <div class="scpics">
-            <span>点击进入景区图库</span>
-            <a href="/ScenicManager/ScenicPictureShow.aspx?type=1">主图</a>
-            <a href="/ScenicManager/ScenicPictureShow.aspx?type=2">辅图</a>
-            <a href="/ScenicManager/ScenicPictureShow.aspx?type=3">备图</a>
+            <span>点击进入景区图库</span> <a href="/ScenicManager/ScenicPictureShow.aspx?type=1">主图</a>
+            <a href="/ScenicManager/ScenicPictureShow.aspx?type=2">辅图</a> <a href="/ScenicManager/ScenicPictureShow.aspx?type=3">
+                备图</a>
         </div>
         <hr class="scpicsper" />
         <div class="scpicmain">
             <span>上传图片</span>
             <table border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td style="width:100px">
-                        
+                    <td style="width: 100px">
                     </td>
-                    <td style="width:550px">
+                    <td style="width: 550px">
                         <img id="uploadimg" width="500px" height="350px" />
                     </td>
                 </tr>
@@ -100,14 +100,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
                     <td>
-                        <asp:Button ID="btnok" runat="server"  CssClass="btnsaveimg" 
-                            onclick="btnok_Click" />
+                    </td>
+                    <td>
+                        <asp:Button ID="btnok" runat="server" CssClass="btnsaveimg" OnClick="btnok_Click" />
                     </td>
                 </tr>
             </table>
         </div>
     </div>
 </asp:Content>
-

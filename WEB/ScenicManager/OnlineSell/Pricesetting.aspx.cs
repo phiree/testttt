@@ -35,7 +35,7 @@ public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
             panelshing.Visible = scp.CheckStatus == CheckStatus.Applied;
             panelnotpass.Visible = scp.CheckStatus == CheckStatus.NotPass;
             panelchangeprice.Visible = scp.CheckStatus == CheckStatus.NotApplied;
-            lblyj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 1).Price.ToString("0")+"元";
+            lblyj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 1).Price.ToString("0") + "元";
             lblydj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0") + "元";
             lblyhj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 3).Price.ToString("0") + "元";
         }
@@ -50,10 +50,10 @@ public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
     protected void btnApply_Click(object sender, EventArgs e)
     {
         ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(CurrentScenic.Id, (int)Model.ScenicModule.SellOnLine);
-        if(scp==null)
+        if (scp == null)
             bllscenic.Apply(CurrentScenic, CurrentMember, ScenicModule.SellOnLine);
         else
-            bllscenic.Apply(CurrentScenic, CurrentMember, ScenicModule.SellOnLine,scp.Id);
+            bllscenic.Apply(CurrentScenic, CurrentMember, ScenicModule.SellOnLine, scp.Id);
         loadstate();
     }
 }

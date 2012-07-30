@@ -6,5 +6,4 @@
     <link href="../Styles/pricesetting.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
-    
 </asp:Content>

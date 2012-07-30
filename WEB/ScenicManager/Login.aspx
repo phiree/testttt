@@ -14,53 +14,54 @@
                 景区后台管理系统
             </div>
             <div>
-                <asp:Login ID="Login1" runat="server" OnLoggedIn="Login1_LoggedIn" cellpadding="0" cellspacing="20" class="tablemain" >
+                <asp:Login ID="Login1" runat="server" OnLoggedIn="Login1_LoggedIn" cellpadding="0"
+                    cellspacing="20" class="tablemain">
                     <LayoutTemplate>
                         <%--<table cellpadding="0" cellspacing="0" >--%>
-                            <tr>
-                                <td align="left" style="width:100px;">
-                                    <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" CssClass="username">操作员：</asp:Label>
-                                </td>
-                                <td align="center">
-                                    <div class="txtusername">
-                                        <asp:TextBox ID="UserName" runat="server" CssClass="txtusername2"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
-                                        ErrorMessage="必须填写“用户名”。" ToolTip="必须填写“用户名”。" ValidationGroup="Login1">*</asp:RequiredFieldValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="left">
-                                    <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password" CssClass="username">密码:</asp:Label>
-                                </td>
-                                <td>
-                                    <div class="txtpwd">
-                                        <asp:TextBox ID="Password" runat="server" TextMode="Password" CssClass="txtpwd2"></asp:TextBox>
-                                    </div>
-                                    <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
-                                        ErrorMessage="必须填写“密码”。" ToolTip="必须填写“密码”。" ValidationGroup="Login1">*</asp:RequiredFieldValidator>
-                                </td>
-                            </tr>
-                            <%--<tr>
+                        <tr>
+                            <td align="left" style="width: 100px;">
+                                <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" CssClass="username">操作员：</asp:Label>
+                            </td>
+                            <td align="center">
+                                <div class="txtusername">
+                                    <asp:TextBox ID="UserName" runat="server" CssClass="txtusername2"></asp:TextBox>
+                                </div>
+                                <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
+                                    ErrorMessage="必须填写“用户名”。" ToolTip="必须填写“用户名”。" ValidationGroup="Login1">*</asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">
+                                <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password" CssClass="username">密码:</asp:Label>
+                            </td>
+                            <td>
+                                <div class="txtpwd">
+                                    <asp:TextBox ID="Password" runat="server" TextMode="Password" CssClass="txtpwd2"></asp:TextBox>
+                                </div>
+                                <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
+                                    ErrorMessage="必须填写“密码”。" ToolTip="必须填写“密码”。" ValidationGroup="Login1">*</asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <%--<tr>
                                 <td>
                                 </td>
                                 <td>
                                     <asp:CheckBox ID="RememberMe" runat="server" Text="下次记住我。" />
                                 </td>
                             </tr>--%>
-                            <tr>
-                                <td align="center" colspan="2" style="color: Red;">
-                                    <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td align="left">
-                                    <asp:Button ID="LoginButton" runat="server" CommandName="Login" 
-                                        ValidationGroup="Login1" CssClass="btnlogin"  />
-                                </td>
-                            </tr>
+                        <tr>
+                            <td align="center" colspan="2" style="color: Red;">
+                                <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td align="left">
+                                <asp:Button ID="LoginButton" runat="server" CommandName="Login" ValidationGroup="Login1"
+                                    CssClass="btnlogin" />
+                            </td>
+                        </tr>
                         <%--</table>--%>
                     </LayoutTemplate>
                 </asp:Login>
