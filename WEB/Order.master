@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/detail.master" AutoEventWireup="true" CodeFile="Order.master.cs" Inherits="Order" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/detail.master" AutoEventWireup="true" CodeFile="Order.master.cs" Inherits="OrderMaster" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
