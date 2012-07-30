@@ -20,35 +20,63 @@
     <form id="WebForm1" method="post" runat="server">
     <table border="1px">
         <tr>
-            <td>名称</td>
-            <td>内容</td>
+            <td>
+                名称
+            </td>
+            <td>
+                内容
+            </td>
         </tr>
         <tr>
-            <td>景区名称</td>
-            <td><asp:Label ID="lblScenicname" Text="text" runat="server" /></td>
+            <td>
+                景区名称
+            </td>
+            <td>
+                <asp:Label ID="lblScenicname" Text="text" runat="server" />
+            </td>
         </tr>
         <tr>
-            <td>等级</td>
-            <td><asp:Label ID="lblLevel" Text="text" runat="server" /></td>
+            <td>
+                等级
+            </td>
+            <td>
+                <asp:Label ID="lblLevel" Text="text" runat="server" />
+            </td>
         </tr>
         <tr>
-            <td>所在区域</td>
-            <td><asp:Label ID="lblArea" Text="text" runat="server" /></td>
+            <td>
+                所在区域
+            </td>
+            <td>
+                <asp:Label ID="lblArea" Text="text" runat="server" />
+            </td>
         </tr>
         <tr>
-            <td>地址</td>
-            <td><asp:Label ID="lblAddress" Text="text" runat="server" /></td>
+            <td>
+                地址
+            </td>
+            <td>
+                <asp:Label ID="lblAddress" Text="text" runat="server" />
+            </td>
         </tr>
         <tr>
-            <td>描述</td>
-            <td><asp:Label ID="lblDesc" Text="text" runat="server" /></td>
+            <td>
+                描述
+            </td>
+            <td>
+                <asp:Label ID="lblDesc" Text="text" runat="server" />
+            </td>
         </tr>
         <tr>
-            <td>景区位置</td>
-            <td><asp:Label ID="lblLocation" Text="text" runat="server" /></td>
+            <td>
+                景区位置
+            </td>
+            <td>
+                <asp:Label ID="lblLocation" Text="text" runat="server" />
+            </td>
         </tr>
     </table>
-    <asp:Button ID="Button1" Text="打印" runat="server" OnClientClick="window.print()"/>
+    <asp:Button ID="Button1" Text="打印" runat="server" OnClientClick="window.print()" />
     </form>
 </body>
 </html>

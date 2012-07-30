@@ -62,7 +62,8 @@
                 </td>
             </tr>
         </table>
-        <asp:Button ID="Button1" Text="打印" runat="server" OnClientClick="window.print()" /><a style="float:right; margin-right:350px;" href="Pricesetting.aspx">返回上一层</a>
+        <asp:Button ID="Button1" Text="打印" runat="server" OnClientClick="window.print()" /><a
+            style="float: right; margin-right: 350px;" href="Pricesetting.aspx">返回上一层</a>
     </div>
     </form>
 </body>
