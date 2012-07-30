@@ -56,7 +56,7 @@ public partial class ScenicManager_WorkerList : bpScenicManager
                     break;
                 case 3:
                     (e.Item.FindControl("lblAdminType") as Label).Text =
-                        ((Model.ScenicAdminType)Enum.ToObject(typeof(Model.ScenicAdminType), 1)).ToString()+";"+
+                        ((Model.ScenicAdminType)Enum.ToObject(typeof(Model.ScenicAdminType), 1)).ToString() + ";" +
                         ((Model.ScenicAdminType)Enum.ToObject(typeof(Model.ScenicAdminType), 2)).ToString();
                     break;
                 case 5:

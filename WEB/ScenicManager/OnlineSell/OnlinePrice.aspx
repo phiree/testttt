@@ -29,7 +29,7 @@
                 var zaixianjia = $(this).children().next().next().next().next().children().val();
                 var ticketid = $(this).children().next().next().next().next().next().children().val();
                 var scid = $("input[id*=hidden_scid]").val();
-                Boolean result=true;
+                var result = true;
                 //alert("ticketname:" + ticketname + " yuanjia:" + yuanjia + " mxp:" + mingxipianjia + " xianfujia:" + xianfujia + " zaixianjia:" + zaixianjia + " ticketid:" + ticketid + "scid:" + scid);
                 $.ajax({
                     type: "Post",
@@ -37,10 +37,14 @@
                     dataType: "json",
                     data: { 'ticketname': ticketname, 'yuanjia': yuanjia, 'mingxipianjia': mingxipianjia, 'xianfujia': xianfujia, 'zaixianjia': zaixianjia, "ticketid": ticketid, "scid": scid },
                     success: function (data, status) {
-                        alert("修改成功！");
+                        result &= data;
                     }
                 });
             });
+            if (result)
+                alert("修改成功！");
+            else
+                alert("修改失败！");
             return false;
         }
 
