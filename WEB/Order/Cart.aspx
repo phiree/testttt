@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/detail.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/order.master" AutoEventWireup="true"
     CodeFile="Cart.aspx.cs" Inherits="Scenic_Cart" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/cart.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/json2.js" type="text/javascript"></script>
@@ -17,21 +17,27 @@
        
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="fhead" runat="Server">
-    <div id="orderstep">
-        <span class="stepcurrent">购物车</span><span>>确认订单</span><span>>完成订单</span></div>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphstate" runat="Server">
+    <div class="cartbread"><img src="/theme/default/image/newversion/icon.gif" />购物车</div>
+    <img class="stateimg" src="/theme/default/image/newversion/cart_state1.png"/>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="fbody" runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
     <asp:Panel runat="server" ID="pnlCart">
         <div id="itemlist">
             <div id="ilBody">
                 <asp:Repeater runat="server" ID="rptCart" OnItemDataBound="rptCart_ItemDataBound">
                     <HeaderTemplate>
-                        <table class="orderlist">
+                        <table class="orderlist" cellpadding=0 cellspacing=0>
                             <thead>
                                 <tr>
                                     <td>
                                         景区名称
+                                    </td>
+                                    <td>
+                                        门票种类
+                                    </td>
+                                    <td>
+                                        原价
                                     </td>
                                     <td>
                                         景区现付价
@@ -57,6 +63,12 @@
                                     <%#Eval("Scenic.Name") %></a>
                             </td>
                             <td>
+                            
+                            </td>
+                            <td>
+                            
+                            </td>
+                            <td>
                                 <span class="priceorder">
                                     <asp:Literal runat="server" ID="liPriceOrder"></asp:Literal></span>
                             </td>
@@ -74,11 +86,11 @@
                             </td>
                         </tr>
                     </ItemTemplate>
-                    <FooterTemplate>
-                        </tbody>
+                    <%--<FooterTemplate>
+                        
                         <tfoot>
                             <tr>
-                                <td colspan="5">
+                                <td colspan="7">
                                     <div>
                                         <span>共<strong style=" font-size:20px" id="cticketsSum"></strong>张门票</span> <span>网上订购价:<strong style=" font-size:20px" id="totalonline"></strong>
                                         </span>元&nbsp;<span>景区现付价:<strong style=" font-size:20px" id="totalpreorder"></strong> </span>元
@@ -86,14 +98,22 @@
                                 </td>
                             </tr>
                         </tfoot>
-                        </table>
-                    </FooterTemplate>
+                        
+                    </FooterTemplate>--%>
                 </asp:Repeater>
+                </tbody>
+                </table>
             </div>
         </div>
+        <div class="tkcount">
+            订<strong id="cticketsSum">3</strong>张门票
+        </div>
+        <div class="tksum">
+            <div class="tksuminfo">景区现付价合计：<strong id="totalpreorder"></strong>元</div>
+            <div class="tksuminfo2">在线支付合计：<strong id="totalonline"></strong>元</div>
+        </div>
         <div id="payaction">
-            <a href="/" class="btn btngray">继续购物</a> <a class="btn btnlight" href="checkout.aspx">
-                确认订单</a>
+            <a class="cartbtnok" href="checkout.aspx">确认订单</a><a href="/" class="btn btngray">继续购物</a> 
         </div>
     </asp:Panel>
     <asp:Panel CssClass="emptycart" runat="server" ID="pnlEmptyCart">

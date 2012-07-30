@@ -35,21 +35,33 @@
 }
 .orderlist
 {
-    width:100%;
-    margin-bottom: 0;
+    width:98%;
+    margin:15px auto 15px auto;
+    border-bottom:1px solid #D4CEC8;
 }
+
 .orderlist tr
 {
     height: 35px;
 }
 .orderlist td
 {
+    margin:0px;
+    padding:0px;
     text-align:center;
+    padding-top:5px;
+    padding-bottom:5px;
 }
 .orderlist thead tr
 {
-    background-color: #E6E6E6;
+    background-color: #A7D991;
     color: Black;
+}
+.orderlist thead tr td
+{
+    font-weight:bold;
+    color:White;
+    padding:0px;
 }
 .orderlist tfoot
 {
@@ -79,3 +91,94 @@
 }
 
 
+.cartbread
+{
+    display:block;
+    height:20px;
+    margin-top:10px;
+    margin-left:10px;
+    font-weight:bold;
+    float:left;
+    width:200px;
+}
+.cartbread img
+{
+    vertical-align:middle;
+    margin-right:10px;
+}
+.stateimg
+{
+    float:right;
+    display:block;
+    margin-top:10px;
+    margin-right:10px;
+}
+.tkcount
+{
+    text-align:right;
+    margin:10px 40px;
+    font-size:14px;
+}
+.tkcount strong
+{
+    margin-left:10px;
+    margin-right:10px;
+}
+.tksum
+{
+    width:98%;
+    height:63px;
+    border:1px solid #CDCDCD;
+    background-color:#F1F1F1;
+    margin:5px auto;
+}
+.tksuminfo
+{
+    display:block;
+    float:left;
+    margin-left:400px;
+    margin-top:15px;
+}
+.tksuminfo2
+{
+    display:block;
+    float:left;
+    margin-left:40px;
+    margin-top:15px;
+}
+.tksuminfo strong,.tksuminfo2 strong
+{
+    font-size:20px;
+    font-weight:bold;
+    color:#EF6782;
+}
+.cartbtnok:link,.cartbtnok:active,.cartbtnok:visited
+{
+    display:block;
+    width:80px;
+    height:24px;
+    background:url("/theme/default/image/newversion/cartbtnokbg.gif");
+    background-repeat:repeat;
+    float:left;
+    border:1px solid #FF8414;
+    text-decoration:none;
+    color:White;
+    font-weight:bold;
+    text-align:center;
+    line-height:24px;
+}
+.cartbtnok:hover
+{
+    display:block;
+    width:80px;
+    height:24px;
+    background:url("/theme/default/image/newversion/cartbtnokbg2.gif");
+    background-repeat:repeat;
+    float:left;
+    border:1px solid #FF8414;
+    text-decoration:none;
+    color:White;
+    font-weight:bold;
+    text-align:center;
+    line-height:24px;
+}
