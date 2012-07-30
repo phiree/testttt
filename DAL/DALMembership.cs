@@ -17,9 +17,9 @@ namespace DAL
 
         public void CreateUpdateMember(Model.TourMembership member)
         {
-            
-                session.SaveOrUpdate(member);
-                session.Flush();
+
+            session.SaveOrUpdate(member);
+            session.Flush();
         }
 
         public bool ValidateUser(string username, string password)
@@ -44,7 +44,7 @@ namespace DAL
 
         public Model.TourMembership GetMemberByOpenid(string openid, Model.Opentype opentype)
         {
-            IQuery query = session.CreateQuery("select m from  TourMembership as m where Openid='" + openid + "' and Opentype="+(int)opentype);
+            IQuery query = session.CreateQuery("select m from  TourMembership as m where Openid='" + openid + "' and Opentype=" + (int)opentype);
             Model.TourMembership user = query.FutureValue<Model.TourMembership>().Value;
             return user;
         }
@@ -55,7 +55,7 @@ namespace DAL
             Model.TourMembership member = query.FutureValue<Model.TourMembership>().Value;
             return member;
         }
-       
+
         public IList<Model.TourMembership> GetAllUsers()
         {
             IQuery query = session.CreateQuery("select u from TourMembership u ");
@@ -78,7 +78,7 @@ namespace DAL
         }
         public Model.ScenicAdmin GetScenicAdmin(Guid id)
         {
-            IQuery query = session.CreateQuery("select sa from ScenicAdmin sa where sa.Membership.Id='"+id+"'");
+            IQuery query = session.CreateQuery("select sa from ScenicAdmin sa where sa.Membership.Id='" + id + "'");
             IFutureValue<Model.ScenicAdmin> sa = query.FutureValue<Model.ScenicAdmin>();
             if (sa == null) return null;
             return sa.Value;
@@ -87,48 +87,48 @@ namespace DAL
 
         public IList<Model.ScenicAdmin> GetScenicAdmin(int scenicid)
         {
-            string sqlQuery="select sa from ScenicAdmin sa ";
+            string sqlQuery = "select sa from ScenicAdmin sa ";
             if (scenicid > 0)
-                sqlQuery += " where sa.Scenic.Id=" + scenicid+"and IsDisabled=0";
+                sqlQuery += " where sa.Scenic.Id=" + scenicid + "and IsDisabled=0";
             IQuery query = session.CreateQuery(sqlQuery);
-            return query.Future<Model.ScenicAdmin>().ToList<Model.ScenicAdmin>() ;
+            return query.Future<Model.ScenicAdmin>().ToList<Model.ScenicAdmin>();
         }
 
         public IList<Model.ScenicAdmin> GetScenicAdmin(int scenicid, string code)
         {
-            string sqlQuery = "select sa from ScenicAdmin sa where sa.Scenic.Area.Code='"+code+"' and IsDisabled=0";
+            string sqlQuery = "select sa from ScenicAdmin sa where sa.Scenic.Area.Code='" + code + "' and IsDisabled=0";
             if (scenicid > 0)
                 sqlQuery += " and sa.Scenic.Id=" + scenicid;
             IQuery query = session.CreateQuery(sqlQuery);
             return query.Future<Model.ScenicAdmin>().ToList<Model.ScenicAdmin>();
         }
 
-       public void DeleteScenicAdmin(Model.ScenicAdmin sa)
+        public void DeleteScenicAdmin(Model.ScenicAdmin sa)
         {
             session.Delete(sa);
             session.Flush();
         }
 
-       public void ChangePassword(Model.TourMembership member)
-       {
-           using (var x=session.Transaction)
-           {
-               x.Begin();
-               session.Update(member);
-               x.Commit();
-           }
-           
-       }
+        public void ChangePassword(Model.TourMembership member)
+        {
+            using (var x = session.Transaction)
+            {
+                x.Begin();
+                session.Update(member);
+                x.Commit();
+            }
+
+        }
 
 
-       public void ChangeInfo(Model.TourMembership member)
-       {
-           using (var x = session.Transaction)
-           {
-               x.Begin();
-               session.Update(member);
-               x.Commit();
-           }
-       }
+        public void ChangeInfo(Model.TourMembership member)
+        {
+            using (var x = session.Transaction)
+            {
+                x.Begin();
+                session.Update(member);
+                x.Commit();
+            }
+        }
     }
 }

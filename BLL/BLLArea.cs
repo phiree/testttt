@@ -13,7 +13,7 @@ namespace BLL
 
         public IArea Iarea
         {
-            get 
+            get
             {
                 if (iarea == null)
                 {

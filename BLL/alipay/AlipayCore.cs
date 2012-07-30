@@ -77,7 +77,7 @@ namespace Com.Alipay
 
             //去掉最後一個&字符
             int nLen = prestr.Length;
-            prestr.Remove(nLen-1,1);
+            prestr.Remove(nLen - 1, 1);
 
             return prestr.ToString();
         }

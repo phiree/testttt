@@ -19,13 +19,13 @@ namespace Model
         //public virtual DateTime UpdateTime { get; set; }
         ////是否正在使用中
         //public bool IsInUse { get; set; }
-        
+
     }
     public enum PriceType
-    { 
+    {
         [Description("门市价")]
-     Normal=1//正常价格/门市价格
-        ,
+        Normal = 1//正常价格/门市价格
+           ,
         [Description("预定价")]
         PreOrder//预定价格(本地区票)
         ,

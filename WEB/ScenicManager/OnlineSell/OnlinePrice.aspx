@@ -5,6 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
     <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
+
         function Pricepd() {
             var price = $("[id$='tbxPrice']").val();
             var orderprice = $("[id$='tbxPreOrder']").val();
@@ -17,7 +18,53 @@
                 return false;
             }
         }
+
+        function calc() {
+            var tabledom = $("tbody>tr");
+            tabledom.each(function () {
+                var ticketname = $(this).children().children().val();
+                var yuanjia = $(this).children().next().children().val();
+                var mingxipianjia = $(this).children().next().next().children().val();
+                var xianfujia = $(this).children().next().next().next().children().val();
+                var zaixianjia = $(this).children().next().next().next().next().children().val();
+                var ticketid = $(this).children().next().next().next().next().next().children().val();
+                var scid = $("input[id*=hidden_scid]").val();
+                //alert("ticketname:" + ticketname + " yuanjia:" + yuanjia + " mxp:" + mingxipianjia + " xianfujia:" + xianfujia + " zaixianjia:" + zaixianjia + " ticketid:" + ticketid + "scid:" + scid);
+                $.ajax({
+                    type: "Post",
+                    url: "TicketPriceHandler.ashx",
+                    dataType: "json",
+                    data: { 'ticketname': ticketname, 'yuanjia': yuanjia, 'mingxipianjia': mingxipianjia, 'xianfujia': xianfujia, 'zaixianjia': zaixianjia, "ticketid": ticketid, "scid": scid },
+                    success: function (data, status) {
+                        alert("修改成功！");
+                    }
+                });
+            });
+            return false;
+        }
+
+        //删除行
+        function delrow(obj) {
+            $(obj).parent().parent().remove();
+        }
+
+        //添加行
+        $(function () {
+            $("#addrow").click(function () {
+                var tbody = $(this).parent().parent().parent().next().html();
+                tbody += "<tr><td><input type='text' /></td><td><input type='text' /></td><td><input type='text' />" +
+                "</td><td><input type='text' /></td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />" +
+                "<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>";
+                $(this).parent().parent().parent().next().html(tbody);
+            });
+        });
     </script>
+    <style type="text/css">
+        td input
+        {
+            width: 80px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <p class="fuctitle">
@@ -33,37 +80,65 @@
                 <li>网上订购价:网上支付的价格</li>
             </ul>
         </div>
-        <hr style="border:0px none;border-top: 1px solid Gray; width: 95%;" />
-        <table class="tableprice">
-            <tr>
+        <hr style="border: 0px none; border-top: 1px solid Gray; width: 95%;" />
+        <table class="tableprice" id="tptable">
+            <thead>
+                <tr>
+                    <td>
+                        景区门票
+                    </td>
+                    <td>
+                        门票原价
+                    </td>
+                    <td>
+                        明信片优惠价
+                    </td>
+                    <td>
+                        景区现付价
+                    </td>
+                    <td>
+                        在线支付价
+                    </td>
+                    <td>
+                        <input id="addrow" type="button" style="width: 25px;" value="+" />
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="rptPrice" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <input type="text" value='<%# Eval("Name") %>' />
+                            </td>
+                            <td>
+                                <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.Normal).First().Price.ToString("0") %>' />
+                            </td>
+                            <td>
+                                <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PostCardDiscount).First().Price.ToString("0")%>' />
+                            </td>
+                            <td>
+                                <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price.ToString("0") %>' />
+                            </td>
+                            <td>
+                                <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PayOnline).First().Price.ToString("0") %>' />
+                            </td>
+                            <td>
+                                <input type="hidden" value='<%# Eval("Id") %>' />
+                                <input type="hidden" value='<%# Eval("Scenic.Id") %>' />
+                                <input type="button" style="width: 25px;" value="-" onclick="delrow(this)" />
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+            <%-- <tr>
                 <td>
-                    门市价:
+                    
                 </td>
-                <td>
-                    <asp:TextBox runat="server" ID="tbxPrice"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    景区现付价:
-                </td>
-                <td>
-                    <asp:TextBox runat="server" ID="tbxPreOrder"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    网上订购价:
-                </td>
-                <td>
-                    <asp:TextBox runat="server" ID="tbxPayOnline"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Button runat="server" ID="btnOK"  OnClick="btnOK_Click" CssClass="btnokprice" OnClientClick="return Pricepd()" />
-                </td>
-            </tr>
+            </tr>--%>
         </table>
+        <input type="button" name="name" class="btnokprice" onclick="calc()" />
+        <input type="hidden" id="hidden_scid" runat="server" />
     </div>
 </asp:Content>

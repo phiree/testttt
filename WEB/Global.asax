@@ -26,7 +26,7 @@
         // log.Error(ex);
         BLL.TourLog.LogError(ex);
 
-          Server.Transfer("/err.aspx?err=0");
+        //  Server.Transfer("/err.aspx?err=0");
 
         // BLL.ErrHandler.Redirect(BLL.ErrType.UnknownError);
 

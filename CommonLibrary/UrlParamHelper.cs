@@ -13,7 +13,7 @@ namespace CommonLibrary
         public string url { get; set; }
         private SortedDictionary<string, string> DictParameters = new SortedDictionary<string, string>();
         private SortedDictionary<string, string> DictParametersOrigional = new SortedDictionary<string, string>();
-      
+
         public UrlParamHelper(string url)
         {
             this.url = url;
@@ -182,7 +182,7 @@ namespace CommonLibrary
         {
             if (url.Contains('?'))
             {
-                url = url.Substring(url.IndexOf('?')+1);
+                url = url.Substring(url.IndexOf('?') + 1);
             }
             else
             {
@@ -192,8 +192,8 @@ namespace CommonLibrary
             string[] paramers = url.Split('&');
             foreach (string s in paramers)
             {
-                
-                
+
+
                 string[] paramValue = s.Split('=');
                 if (paramValue.Length == 2)
                 {

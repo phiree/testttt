@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
 
-public partial class DiscountCode :basepage
+public partial class DiscountCode : basepage
 {
     BLLDiscountCode blldc = new BLLDiscountCode();
     protected void Page_Load(object sender, EventArgs e)
@@ -23,10 +23,11 @@ public partial class DiscountCode :basepage
         {
             Response.Redirect("ShowMessage.aspx?type=1");
         }
-        Model.DiscountCode dc= blldc.GetDiscountCodeByDisCode(DisCode.Text.Trim());
+        Model.DiscountCode dc = blldc.GetDiscountCodeByDisCode(DisCode.Text.Trim());
         if (dc == null)
         {
-            Response.Redirect("ShowMessage.aspx?type=2");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "notfound", "alert('未找到您输入的注册码，请重新确认！')", true);
+            return;
         }
         if (!string.IsNullOrEmpty(dc.IdCard))
         {
@@ -34,7 +35,7 @@ public partial class DiscountCode :basepage
         }
         else
         {
-            Model.User user = new BLLMembership().GetUserByUserId((Guid) CurrentUser.ProviderUserKey);
+            Model.User user = new BLLMembership().GetUserByUserId((Guid)CurrentUser.ProviderUserKey);
             dc.MemberId = user.Id;
             dc.IdCard = user.IdCard;
             blldc.updateDiscountCode(dc);

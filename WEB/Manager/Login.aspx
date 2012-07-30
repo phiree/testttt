@@ -14,11 +14,12 @@
                 中国旅游在线&nbsp;网站后台管理系统
             </div>
             <div>
-                <asp:Login ID="Login1" runat="server" OnLoggedIn="Login1_LoggedIn" cellpadding="20" cellspacing="40" class="tablemain">
+                <asp:Login ID="Login1" runat="server" OnLoggingIn="Login1_LoggingIn" cellpadding="20"
+                    cellspacing="40" class="tablemain">
                     <LayoutTemplate>
                         <%--<table cellpadding="1" cellspacing="0" style="border-collapse: collapse;">--%>
                         <tr>
-                            <td align="left" style="padding:0px margin:0px; width:80px;">
+                            <td align="left" style="padding: 0px margin:0px; width: 80px;">
                                 <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" CssClass="username">登录名:</asp:Label>
                             </td>
                             <td align="left">
@@ -48,9 +49,11 @@
                                             </td>
                                         </tr>--%>
                         <tr>
-                            <td></td>
+                            <td>
+                            </td>
                             <td align="left" colspan="2">
-                                <asp:Button ID="LoginButton" runat="server" CommandName="Login" ValidationGroup="Login1" CssClass="btnlogin" />
+                                <asp:Button ID="LoginButton" runat="server" CommandName="Login" ValidationGroup="Login1"
+                                    CssClass="btnlogin" />
                             </td>
                         </tr>
                         <%--</table>--%>

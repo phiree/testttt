@@ -14,7 +14,7 @@ namespace BLL.SEO
     {
         public string Title { get; set; }
         public string KeyWord { get; set; }
-     
+
     }
     /// <summary>
     /// title的seo优化
@@ -80,7 +80,7 @@ namespace BLL.SEO
 
             if (pageIndex > 0)
             {
-                title += string.Format("(第{0}页)",pageIndex);
+                title += string.Format("(第{0}页)", pageIndex);
             }
             if (pageIndex > 0)
             {

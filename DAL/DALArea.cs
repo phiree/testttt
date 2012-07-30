@@ -13,7 +13,7 @@ namespace DAL
         {
             string sqlstr = "select a from Area a where a.Code like '" + areaid + "__00'";
             IQuery query = session.CreateQuery(sqlstr);
-            
+
             return query.Future<Model.Area>().ToList<Model.Area>();
         }
         public Model.Area GetAreaByAreaid(int areaid)

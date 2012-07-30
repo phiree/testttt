@@ -1,4 +1,4 @@
-﻿<%@ Page Title="注册" Language="C#" MasterPageFile="/detail.master" AutoEventWireup="true"
+﻿<%@ Page Title="注册" Language="C#" MasterPageFile="../detail.master" AutoEventWireup="true"
     CodeFile="Register.aspx.cs" Inherits="Account_Register" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="head">
@@ -28,70 +28,77 @@
     </script>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="cphmain">
-    <div style=" border:1px solid #72B854">
+    <div style="border: 1px solid #72B854">
         <div id="regcontainer">
-            <p class="regtitle">注册新用户</p>
+            <p class="regtitle">
+                注册新用户</p>
             <table>
-            <tr>
-                <td>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtBoxLoginname"
-                        runat="server" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-                    用户名:
-                </td>
-                <td>
-                    <asp:TextBox ID="txtBoxLoginname" TabIndex=1  CssClass="tbx tbxusername" runat="server"></asp:TextBox>                    
-                </td>
-                <td style="color:#8D8D8D">&nbsp;支持使用中文、字母、数字</td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:RequiredFieldValidator
-                        ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBoxPwd" ErrorMessage="*"
-                        ForeColor="Red"></asp:RequiredFieldValidator>
-                     密码:
-                </td>
-                <td>
-                    <asp:TextBox ID="txtBoxPwd"  TabIndex=2 CssClass="tbx" runat="server" TextMode="Password"></asp:TextBox>
-                </td>
-                <td style="color:#8D8D8D">&nbsp;6个以上字符，支持使用字母、数字</td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:RequiredFieldValidator
-                        ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtBoxPwd" ErrorMessage="*"
-                        Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
-                    确认密码:
-                </td>
-                <td>
-                    <asp:TextBox ID="tbxPwdConfirm"  TabIndex=3 runat="server" CssClass="tbx tbxconpwd" TextMode="Password"></asp:TextBox>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtBoxPwd"
-                        ControlToValidate="tbxPwdConfirm" Display="Dynamic" ErrorMessage="两次输入不一致" ForeColor="Red"></asp:CompareValidator>
-                </td>
-                <td style="color:#8D8D8D">&nbsp;请再次输入密码</td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                        ErrorMessage="*" ControlToValidate="txtPost" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
-                    联系邮箱:
-                </td>
-                <td>
-                    <asp:TextBox ID="txtPost"  TabIndex=4 runat="server" CssClass="tbx tbxconpwd"></asp:TextBox>
-                </td>
-                <td style="color:#8D8D8D">&nbsp;请输入常用邮箱，方便找回密码</td>
-            </tr>
-            <tr>
-                <td class="lp" colspan="2" style=" text-align:right">
-                    <div style="border:1px solid #55A930; width:130px; float:right; "><asp:Button  TabIndex=4  class="btn regBtn" ID="btnReg" runat="server" Text="同意以下并提交" OnClick="btnRegist_Click" /></div>
-                    
-                </td>
-                    
-            </tr>
-            
-           
-        </table>
+                <tr>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtBoxLoginname"
+                            runat="server" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                        用户名:
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtBoxLoginname" TabIndex="1" CssClass="tbx tbxusername" runat="server"></asp:TextBox>
+                    </td>
+                    <td style="color: #8D8D8D">
+                        &nbsp;支持使用中文、字母、数字
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBoxPwd"
+                            ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                        密码:
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtBoxPwd" TabIndex="2" CssClass="tbx" runat="server" TextMode="Password"></asp:TextBox>
+                    </td>
+                    <td style="color: #8D8D8D">
+                        &nbsp;6个以上字符，支持使用字母、数字
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtBoxPwd"
+                            ErrorMessage="*" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                        确认密码:
+                    </td>
+                    <td>
+                        <asp:TextBox ID="tbxPwdConfirm" TabIndex="3" runat="server" CssClass="tbx tbxconpwd"
+                            TextMode="Password"></asp:TextBox>
+                        <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtBoxPwd"
+                            ControlToValidate="tbxPwdConfirm" Display="Dynamic" ErrorMessage="两次输入不一致" ForeColor="Red"></asp:CompareValidator>
+                    </td>
+                    <td style="color: #8D8D8D">
+                        &nbsp;请再次输入密码
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*"
+                            ControlToValidate="txtPost" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                        联系邮箱:
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtPost" TabIndex="4" runat="server" CssClass="tbx tbxconpwd"></asp:TextBox>
+                    </td>
+                    <td style="color: #8D8D8D">
+                        &nbsp;请输入常用邮箱，方便找回密码
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lp" colspan="2" style="text-align: right">
+                        <div style="border: 1px solid #55A930; width: 130px; float: right;">
+                            <asp:Button TabIndex="4" class="btn regBtn" ID="btnReg" runat="server" Text="同意以下并提交"
+                                OnClick="btnRegist_Click" /></div>
+                    </td>
+                </tr>
+            </table>
             <div class="agreement">
-                <p>旅游在线网站服务条款</p>
+                <p>
+                    旅游在线网站服务条款</p>
                 <div class="agreeinfo">
                     1.服务条款的确认<br />
                     &nbsp;&nbsp;&nbsp;旅游在线网站的所有权与运作权归杭州笨牛技术有限公司(以下简称"旅游在线")所有。本服务条款具<br />
@@ -104,12 +111,10 @@
                 </div>
             </div>
         </div>
-        <div id="regcontainer" style="display:none;">
-        <div>
-            <%--&nbsp;<asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />--%>
+        <div id="regcontainer" style="display: none;">
+            <div>
+                <%--&nbsp;<asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />--%>
+            </div>
         </div>
-        
-       
-    </div>
     </div>
 </asp:Content>

@@ -13,6 +13,7 @@ namespace BLL
     {
         ITicket iticket;
         BLLScenic bllScenic = new BLLScenic();
+
         public ITicket Iticket
         {
             get
@@ -60,7 +61,7 @@ namespace BLL
         }
         public IList<Model.Ticket> GetTicketByscId(int scid)
         {
-            EnsureTicket(scid);
+            //EnsureTicket(scid);  删除，与下文重复
             IList<Model.Ticket> tickets = Iticket.GetTicketByscId(scid);
             if (tickets.Count == 0)
             {
@@ -69,10 +70,10 @@ namespace BLL
                 SaveOrUpdateTicket(newTicket);
                 tickets.Add(newTicket);
             }
-            else if (tickets.Count > 1)
-            {
-                throw new Exception("一个景区限定为一张门票");
-            }
+            //else if (tickets.Count > 1)
+            //{
+            //    throw new Exception("一个景区限定为一张门票");
+            //}
             return tickets;
         }
         public Ticket GetTicket(int ticketId)
@@ -86,14 +87,51 @@ namespace BLL
         }
 
         BLLTicketPrice bllTp = new BLLTicketPrice();
+        public void SaveOrUpdateTicket(string ticketname, string yuan, string mxp, string xf, string zx, string ticketid, string scid)
+        {
+            Model.Ticket ticket;
+            if (!string.IsNullOrEmpty(ticketid))
+            {
+                ticket = GetTicket(int.Parse(ticketid));
+                ticket.TicketPrice.Where(x => x.PriceType == PriceType.Normal).First().Price = decimal.Parse(yuan);
+                ticket.TicketPrice.Where(x => x.PriceType == PriceType.PostCardDiscount).First().Price = decimal.Parse(mxp);
+                ticket.TicketPrice.Where(x => x.PriceType == PriceType.PreOrder).First().Price = decimal.Parse(xf);
+                ticket.TicketPrice.Where(x => x.PriceType == PriceType.PayOnline).First().Price = decimal.Parse(zx);
+                ticket.Name = ticketname;
+                ticket.Lock = true;
+            }
+            else
+            {
+                ticket = new Ticket();
+                ticket.Name = ticketname;
+                ticket.Scenic = bllScenic.GetScenicById(int.Parse(scid));
+                ticket.Lock = true;
+                ticket.TicketPrice = new List<TicketPrice>() { 
+                        new TicketPrice(){PriceType=PriceType.Normal,Price=decimal.Parse(yuan),Ticket=ticket},
+                        new TicketPrice(){PriceType=PriceType.PostCardDiscount,Price=decimal.Parse(mxp),Ticket=ticket},
+                        new TicketPrice(){PriceType=PriceType.PreOrder,Price=decimal.Parse(xf),Ticket=ticket},
+                        new TicketPrice(){PriceType=PriceType.PayOnline,Price=decimal.Parse(zx),Ticket=ticket}
+                    };
+            }
+            SaveOrUpdateTicket(ticket);
+        }
         public void SaveOrUpdateTicket(Model.Ticket ticket)
         {
+            Iticket.SaveOrUpdateTicket(ticket);
             foreach (TicketPrice tp in ticket.TicketPrice)
             {
                 bllTp.SaveOrUpdateTicketPrice(tp);
             }
-
-            // Iticket.SaveOrUpdateTicket(ticket);
+        }
+        public void SaveOrUpdateTicket(IList<Model.Ticket> tickets)
+        {
+            foreach (var item in tickets)
+            {
+                foreach (TicketPrice tp in item.TicketPrice)
+                {
+                    bllTp.SaveOrUpdateTicketPrice(tp);
+                }
+            }
         }
 
         public IList<Ticket> Search(string paramKey, int pageIndex, int pageSize, out int totalRecord)
