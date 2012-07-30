@@ -31,7 +31,7 @@ namespace BLL
             get;
             set;
         }
-        public BLLPayment(Order order)
+        public BLLPayment(Model.Order order)
         {
             this.order = order;
         }

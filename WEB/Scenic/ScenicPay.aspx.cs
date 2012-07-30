@@ -51,7 +51,7 @@ public partial class Scenic_ScenicPay : basepage
             //yuanjia.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 1).Price.ToString("0") + "元";
             //goumaijia.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 3).Price.ToString("0") + "元";
             //total.InnerHtml = (bllticketprice.GetTicketPriceByScenicandtypeid(scid, 3).Price * count).ToString("0") + "元";
-            
+
         }
         else
         {
@@ -75,33 +75,33 @@ public partial class Scenic_ScenicPay : basepage
         //int scid = int.Parse(Request.QueryString["scid"]);
         //int count = int.Parse(Request.QueryString["count"]);
         int type = int.Parse(Request.QueryString["type"]);
-        if (CurrentUser==null)
+        if (CurrentUser == null)
         {
-            Response.Redirect("/Account/Login.aspx?ReturnUrl="+"/Scenic/ScenicPay.aspx?"+"scid="+Request.QueryString["scid"]+Server.UrlEncode("&")+"count="+Request.QueryString["count"]+Server.UrlEncode("&")+"type="+type.ToString()+"");
+            Response.Redirect("/Account/Login.aspx?ReturnUrl=" + "/Scenic/ScenicPay.aspx?" + "scid=" + Request.QueryString["scid"] + Server.UrlEncode("&") + "count=" + Request.QueryString["count"] + Server.UrlEncode("&") + "type=" + type.ToString() + "");
         }
         else
         {
-            Order order = new Order();
+            Model.Order order = new Model.Order();
             order.BuyTime = DateTime.Now;
             order.IsPaid = false;
             Guid guid = new Guid(CurrentUser.ProviderUserKey.ToString());
             order.MemberId = guid;
             order.PayTime = DateTime.Now;
-            int totalnum=0;
+            int totalnum = 0;
             string[] countstr = Request.QueryString["count"].Split(',');
             foreach (string item in countstr)
-	        {
-		        totalnum+=int.Parse(item);
-	        }
-            order.TotalNum =totalnum;
+            {
+                totalnum += int.Parse(item);
+            }
+            order.TotalNum = totalnum;
             //TicketPrice ticketprice;
             //if(type==1)
             //    ticketprice = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 3);
             //else
             //    ticketprice = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 2);
-            order.TotalPrice =decimal.Parse(fonttotal.InnerHtml);
+            order.TotalPrice = decimal.Parse(fonttotal.InnerHtml);
             int orderid = bllorder.SaveOrUpdateOrder(order);
-            Order bindorder = bllorder.GetOrderByOrderid(orderid);
+            Model.Order bindorder = bllorder.GetOrderByOrderid(orderid);
             foreach (RepeaterItem item in rptscenic.Items)
             {
                 OrderDetail orderdetail = new OrderDetail();
@@ -109,13 +109,13 @@ public partial class Scenic_ScenicPay : basepage
                 orderdetail.Quantity = int.Parse((item.FindControl("txtcount") as TextBox).Text);
                 TicketPrice tp;
                 int scid = int.Parse((item.FindControl("hfscid") as HiddenField).Value);
-                if(type==1)
-                    tp=bllticketprice.GetTicketPriceByScenicandtypeid(scid,3);
+                if (type == 1)
+                    tp = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 3);
                 else
                     tp = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 2);
                 orderdetail.TicketPrice = tp;
-                int otid= bllorderdetail.SaveOrUpdateOrderDetail(orderdetail);
-                for (int i = 0; i < int.Parse((item.FindControl("txtcount") as TextBox).Text) ; i++)
+                int otid = bllorderdetail.SaveOrUpdateOrderDetail(orderdetail);
+                for (int i = 0; i < int.Parse((item.FindControl("txtcount") as TextBox).Text); i++)
                 {
                     TicketAssign ticketassign = new TicketAssign();
                     ticketassign.IsUsed = false;
@@ -132,7 +132,7 @@ public partial class Scenic_ScenicPay : basepage
             }
 
             Response.Redirect("ConfirmOrder.aspx?type=" + Request.QueryString["type"] + "&orderid=" + orderid);
-           
+
         }
     }
     protected void rptscenic_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -155,7 +155,7 @@ public partial class Scenic_ScenicPay : basepage
                 (e.Item.FindControl("total") as HtmlContainerControl).InnerHtml = (bllticketprice.GetTicketPriceByScenicandtypeid(scid, 2).Price * listcount[e.Item.ItemIndex]).ToString("0") + "元";
                 totalprice += int.Parse((bllticketprice.GetTicketPriceByScenicandtypeid(scid, 2).Price * listcount[e.Item.ItemIndex]).ToString("0"));
             }
-            
+
         }
     }
 }

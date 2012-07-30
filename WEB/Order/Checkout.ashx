@@ -49,7 +49,7 @@ public class CheckoutHandler : IHttpHandler
             context.Response.Write("<script>window.location.href='/order/orderErr.aspx';</script>");
             return;
         }
-        Order order = docheck();
+        Model.Order order = docheck();
 
         if (pt == PriceType.PayOnline)
         {
@@ -100,7 +100,7 @@ public class CheckoutHandler : IHttpHandler
 
     }
 
-    private Order docheck()
+    private Model.Order docheck()
     {
         /*已有的数据
           门票/ 门票类别/
@@ -116,11 +116,11 @@ public class CheckoutHandler : IHttpHandler
         checkout.PriceType = pt;
 
         checkout.Details = GetDetails();
-        Order order = checkout.MakeOrder();
+        Model.Order order = checkout.MakeOrder();
 
         return order;
     }
-    private string DoPayment(Order order)
+    private string DoPayment(Model.Order order)
     {
         TourLog.LogPayment("**************准备支付订单:"+order.Id+"***************");
         BLLPayment payment = new BLLPayment(order);

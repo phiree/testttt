@@ -20,7 +20,7 @@ namespace BLL
         public List<OrderDetail> Details { get; set; }
         
 
-        public Order MakeOrder()
+        public Model.Order MakeOrder()
         {
 
             Order order = new Order();
