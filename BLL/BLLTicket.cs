@@ -87,7 +87,7 @@ namespace BLL
         }
 
         BLLTicketPrice bllTp = new BLLTicketPrice();
-        public void SaveOrUpdateTicket(string ticketname, string yuan, string mxp, string xf, string zx, string ticketid,string scid)
+        public void SaveOrUpdateTicket(string ticketname, string yuan, string mxp, string xf, string zx, string ticketid, string scid)
         {
             Model.Ticket ticket;
             if (!string.IsNullOrEmpty(ticketid))
@@ -101,12 +101,12 @@ namespace BLL
                 ticket.Lock = true;
             }
             else
-            { 
-                ticket=new Ticket();
-                    ticket.Name=ticketname;
-                    ticket.Scenic=bllScenic.GetScenicById(int.Parse(scid));
-                    ticket.Lock=true;
-                    ticket.TicketPrice = new List<TicketPrice>() { 
+            {
+                ticket = new Ticket();
+                ticket.Name = ticketname;
+                ticket.Scenic = bllScenic.GetScenicById(int.Parse(scid));
+                ticket.Lock = true;
+                ticket.TicketPrice = new List<TicketPrice>() { 
                         new TicketPrice(){PriceType=PriceType.Normal,Price=decimal.Parse(yuan),Ticket=ticket},
                         new TicketPrice(){PriceType=PriceType.PostCardDiscount,Price=decimal.Parse(mxp),Ticket=ticket},
                         new TicketPrice(){PriceType=PriceType.PreOrder,Price=decimal.Parse(xf),Ticket=ticket},

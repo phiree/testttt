@@ -81,7 +81,7 @@
             </ul>
         </div>
         <hr style="border: 0px none; border-top: 1px solid Gray; width: 95%;" />
-        <table class="tableprice" id="tptable" >
+        <table class="tableprice" id="tptable">
             <thead>
                 <tr>
                     <td>

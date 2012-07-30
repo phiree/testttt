@@ -19,7 +19,7 @@ public partial class Manager_ScenicinList : System.Web.UI.Page
         if (!IsPostBack)
         {
             BindArea();
-            BindList(); 
+            BindList();
         }
     }
     private void BindArea()
@@ -87,12 +87,12 @@ public partial class Manager_ScenicinList : System.Web.UI.Page
         {
             int scid = int.Parse(e.CommandArgument.ToString());
             ScenicAdmin sa = new ScenicAdmin();
-            sa.AdminType = ScenicAdminType.景区资料员|ScenicAdminType.检票员|ScenicAdminType.景区财务;
+            sa.AdminType = ScenicAdminType.景区资料员 | ScenicAdminType.检票员 | ScenicAdminType.景区财务;
             sa.Scenic = bllScenic.GetScenicById(scid);
             if (!string.IsNullOrEmpty(sa.Scenic.SeoName))
             {
                 string loginname = new MakeAccount().automakeaccount(sa.Scenic.SeoName);
-                new BLL.BLLMembership().CreateUser("", "", "", "", loginname, "123456","");
+                new BLL.BLLMembership().CreateUser("", "", "", "", loginname, "123456", "");
                 TourMembership tour = new BLL.BLLMembership().GetMember(loginname);
                 sa.Membership = tour;
                 bllscenicadmin.SaveOrUpdate(sa);
@@ -105,6 +105,6 @@ public partial class Manager_ScenicinList : System.Web.UI.Page
             sa.Membership.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             bllscenicadmin.SaveOrUpdate(sa);
         }
-        BindList(); 
+        BindList();
     }
 }

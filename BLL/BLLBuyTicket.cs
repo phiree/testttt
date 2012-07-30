@@ -8,8 +8,8 @@ namespace BLL
     /// <summary>
     /// 购买一张门票
     /// </summary>
-   public class BLLBuyTicket
+    public class BLLBuyTicket
     {
-       
+
     }
 }

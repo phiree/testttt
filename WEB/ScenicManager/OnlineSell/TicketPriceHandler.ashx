@@ -3,9 +3,11 @@
 using System;
 using System.Web;
 
-public class TicketPriceHandler : IHttpHandler {
-    
-    public void ProcessRequest (HttpContext context) {
+public class TicketPriceHandler : IHttpHandler
+{
+
+    public void ProcessRequest(HttpContext context)
+    {
         context.Response.ContentType = "application/json";
         string ticketname = context.Request.Form["ticketname"];
         string yuanjia = context.Request.Form["yuanjia"];
@@ -15,14 +17,16 @@ public class TicketPriceHandler : IHttpHandler {
         string ticketid = context.Request.Form["ticketid"];
         string scid = context.Request.Form["scid"];
         BLL.BLLTicket bllTicket = new BLL.BLLTicket();
-        bllTicket.SaveOrUpdateTicket(ticketname, yuanjia, mingxipianjia, xianfujia, zaixianjia, ticketid,scid);
+        bllTicket.SaveOrUpdateTicket(ticketname, yuanjia, mingxipianjia, xianfujia, zaixianjia, ticketid, scid);
         //System.Collections.Generic.IList<Model.Ticket> tickets = bllTicket.GetTicketByscId(int.Parse(context.Request["scid"]));
         //var json = new System.Runtime.Serialization.Json.DataContractJsonSerializer(tickets.GetType());
         //json.WriteObject(context.Response.OutputStream, tickets);
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }
