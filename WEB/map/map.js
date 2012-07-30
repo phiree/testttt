@@ -321,7 +321,7 @@ function ReadyDo() {
                         var myCompOverlay1 = new ComplexCustomOverlay1(point, txt, i+1);
                         map.addOverlay(myCompOverlay1);
                         loadstr += "<div class='scenicinfo'>";
-                        loadstr += "<span class='sceincnum'>" + ((parseInt($.cookie("pager_currPage")) - 1) * 15 + numcount) + "</span><span class='spansceincname' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + "</span><a href='/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html' >[预定]</a>"
+                        loadstr += "<span class='sceincnum'>" + ((parseInt($.cookie("pager_currPage")) - 1) * 15 + numcount) + "</span><span onmouseover='changescnamecl(this)' onmouseout='changescnamecl2(this)' class='spansceincname' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + "</span><a href='/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html' >[预定]</a>"
                         loadstr += "</div>"; 
                             
                        // loadstr += "<tr><td><font class='num'>" + ((parseInt($.cookie("pager_currPage")) - 1) * 15 + numcount) + "</font></td><td><a style='cursor: pointer;' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + " </a> </td><td>" + allpoint[i].level + "</td><td>" + allpoint[i].price + "</td></tr>";
@@ -462,7 +462,7 @@ function btnshowinfo() {
             break;
         //loadstr += "<tr><td><font class='num'>" + parseInt(i + 1) + "</font></td><td><a style='cursor: pointer;' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + " </a> </td><td>" + allpoint[i].level + "</td><td>" + allpoint[i].price + "</td></tr>";
         loadstr += "<div class='scenicinfo'>";
-        loadstr += "<span class='sceincnum'>" + parseInt(i + 1) + "</span><span class='spansceincname' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + "</span><a href='/"+allpoint[i].areaseoname+"/"+allpoint[i].scseoname+".html' >[预定]</a>"
+        loadstr += "<span class='sceincnum'>" + parseInt(i + 1) + "</span><span class='spansceincname' onmouseout='changescnamecl2(this)' onmouseover='changescnamecl(this)' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + "</span><a href='/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html' >[预定]</a>"
         loadstr += "</div>"; 
     }
     $("#resultscenic").html(loadstr);

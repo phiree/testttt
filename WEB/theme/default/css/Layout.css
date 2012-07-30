@@ -1,0 +1,34 @@
+﻿.moddiv
+{
+    width:195px;
+    background:url("/theme/default/image/newversion/moddivbg.png");
+    background-position:right bottom;
+    background-repeat:no-repeat;
+    margin-top:25px;
+    display:inline-block;
+}
+.moddiv p
+{
+    background:url("/theme/default/image/newversion/moddivtitle.gif");
+    background-repeat:no-repeat;
+    background-position:right top;
+    line-height:24px;
+    padding-left:15px;
+    color:#6AA94E;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+.paihang
+{
+    display:block;
+    float:left;
+    background:url("/theme/default/image/newversion/paihangbg.gif");
+    margin-left:5px;
+    margin-right:5px;
+    margin-top:2px;
+    width:11px;
+    height:12px;
+    line-height:12px;
+    padding-left:2px;
+    font-size:10px;
+}

@@ -209,6 +209,9 @@ div:246
     float: right;
     margin-right: 5px;
     margin-top:5px;
+    background:url("/theme/default/image/newversion/ydbtn_visited.png");
+    background:url("/theme/default/image/newversion/ydbtn_hover.png");
+    background:url("/theme/default/image/newversion/ydbtn_link.png");
 }
 .linkorder,.linkorder:link
 {
@@ -336,7 +339,6 @@ div:246
 #maindefault
 {
     background-color:White;
-    padding-top:15px;
     width:950px;
     margin:0px auto;
 }

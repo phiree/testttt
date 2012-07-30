@@ -1,10 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="/MasterPage.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="/Layout.master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="Scenic_Default" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/scenic.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&amp;services=true"> </script>
     <script type="text/javascript">
@@ -179,316 +180,36 @@
        
     </script>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="cphmain" runat="Server">
-    <div id="maindefault">
-        <div class="defaultleft">
-            <div class="webscenic">
-                <div class="webscenicdiv">
-                    <table border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td>
-                                <img src="/theme/default/image/newversion/jiantouicon3.png" />
-                            </td>
-                            <td style="padding-top: 10px;">
-                                预订免费
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="/theme/default/image/newversion/jiantouicon3.png" />
-                            </td>
-                            <td style="padding-top: 10px;">
-                                保证低价折扣
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="/theme/default/image/newversion/jiantouicon3.png" />
-                            </td>
-                            <td style="padding-top: 10px;">
-                                门票有效期长
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="/theme/default/image/newversion/jiantouicon3.png" />
-                            </td>
-                            <td style="padding-top: 10px;">
-                                订票后随时游玩,
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td style="padding-top: 10px;">
-                                无需提前确认
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <p>
-                    订票,尽在旅游在线</p>
-            </div>
-            <div class="perscenic">
-                <p>
-                    周边景区推荐</p>
-                <div class="perscenicdiv">
-                    <table border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td style="width: 10%">
-                                <%--<img style="margin-left: 5px" src="/theme/default/image/newversion/jiantouicon2.png" />--%>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <%--<img style="margin-left: 5px" src="/theme/default/image/newversion/jiantouicon2.png" />--%>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <%--<img style="margin-left: 5px" src="/theme/default/image/newversion/jiantouicon2.png" />--%>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <%--<img style="margin-left: 5px" src="/theme/default/image/newversion/jiantouicon2.png" />--%>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="Recscenic">
-                <p>
-                    推荐景区</p>
-                <div class="recscdiv">
-                    <table border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td style="width: 10%">
-                                <span style="display: block; width: 15px; height: 15px; background-color: #62BD19;
-                                    text-align: center; color: White;">1</span>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <span style="display: block; width: 15px; height: 15px; background-color: #62BD19;
-                                    text-align: center; color: White;">1</span>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <span style="display: block; width: 15px; height: 15px; background-color: #62BD19;
-                                    text-align: center; color: White;">1</span>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <span style="display: block; width: 15px; height: 15px; background-color: #62BD19;
-                                    text-align: center; color: White;">1</span>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <span style="display: block; width: 15px; height: 15px; background-color: #62BD19;
-                                    text-align: center; color: White;">1</span>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <span style="display: block; width: 15px; height: 15px; background-color: #62BD19;
-                                    text-align: center; color: White;">1</span>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <span style="display: block; width: 15px; height: 15px; background-color: #62BD19;
-                                    text-align: center; color: White;">1</span>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <span style="display: block; width: 15px; height: 15px; background-color: #62BD19;
-                                    text-align: center; color: White;">1</span>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <span style="display: block; width: 15px; height: 15px; background-color: #62BD19;
-                                    text-align: center; color: White;">1</span>
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <a href="" class="postcarddesc"></a>
-            <div class="visitedscenic">
-                <p>
-                    最近浏览过的景区</p>
-                <div class="visitedscdiv">
-                    <table border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td style="width: 10%">
-                                <img style="margin-left: 5px" src="/theme/default/image/newversion/jiantouicon2.png" />
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <img style="margin-left: 5px" src="/theme/default/image/newversion/jiantouicon2.png" />
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <img style="margin-left: 5px" src="/theme/default/image/newversion/jiantouicon2.png" />
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 10%">
-                                <img style="margin-left: 5px" src="/theme/default/image/newversion/jiantouicon2.png" />
-                            </td>
-                            <td style="width: 65%">
-                                仙都
-                            </td>
-                            <td style="color: #E8641B; width: 25%">
-                                15元
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="bookprocess">
-                <p>
-                    订票流程</p>
-                <div class="processdiv">
-                    <img src="/theme/default/image/newversion/jiantouicon4.png" />&nbsp;选择景区&nbsp;&nbsp;放入购物车<br />
-                    <img src="/theme/default/image/newversion/jiantouicon4.png" />&nbsp;填写订单<br />
-                    <img src="/theme/default/image/newversion/jiantouicon4.png" />&nbsp;确认订单<br />
-                    <img src="/theme/default/image/newversion/jiantouicon4.png" />&nbsp;前往景区<br />
-                    <span style="margin-left: 10px;">&nbsp;在线支付的游客</span><br />
-                    <span style="margin-left: 10px;">&nbsp;凭身份证领取景区门票</span><br />
-                    <span style="margin-left: 10px;">&nbsp;预订的游客</span><br />
-                    <span style="margin-left: 10px;">&nbsp;凭身份证&nbsp;购买折扣门票</span><br />
-                    <img src="/theme/default/image/newversion/jiantouicon4.png" />&nbsp;入园游玩<br />
-                </div>
-            </div>
-        </div>
-        <div class="defaultright">
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
             <p class="navsc">
-                您选择的景区门票：浙江省&nbsp;>&nbsp;<a runat="server" id="areaname"></a>&nbsp;>&nbsp;<a runat="server"
+                <img src="/theme/default/image/newversion/icon.gif" />您选择的景区门票：浙江省&nbsp;>&nbsp;<a runat="server" id="areaname"></a>&nbsp;>&nbsp;<a runat="server"
                     id="scenicname"></a></p>
             <div id="mainscenic">
-                <img runat="server" id="ImgMainScenic" class="mainscenicimg" src="" />
+                <div class="mainscbg"><img runat="server" id="ImgMainScenic" class="mainscenicimg" src="" /></div>
                 <div id="maintitle">
                     <h2 runat="server" id="maintitlett">
                     </h2>
                     <div class="themespan">
-                        <span>峰岩奇绝</span><span>山水神秀</span><span>仙人荟萃之都</span>
+                        主题标签<span>峰岩奇绝</span><span>山水神秀</span><span>仙人荟萃之都</span>
                     </div>
-                    <div class="opentime">
-                        开放时间：7:00-17:30
+                    <div class="sclv">
+                        <span>景区级别:</span>4A
                     </div>
-                    <div class="ordertktype">
-                        订票方式：网上购买&nbsp;&nbsp;预订&nbsp;&nbsp;明信片预订
+                    <div class="scaddr">
+                        地址：浙江省丽水市缙云县境内&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
                     </div>
-                    <div class="paytktype">
-                        付款方式：网上支付&nbsp;&nbsp;景区现付
+                    <div class="scdesc">
+                        有奇峰一百六、异洞二十七，有“桂林之秀、黄山之气、华山之险”的美誉。...<a href="#plate2">景区简介</a>
+                    </div>
+                    <div class="ordertype">
+                        <h3>订票方式</h3><span>网上购买</span><span>预订</span><span>明信片预订</span>
+                    </div>
+                    <div class="paytype">
+                        <h3>付款方式</h3><span>网上支付</span><span>景区现付</span>
                     </div>
                 </div>
                 <div id="priceinfo">
+                    <p class="captitle"><img src="/theme/default/image/newversion/icon.gif" />门票种类和价格</p>
                     <table border="0" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr class="tstr">
@@ -508,10 +229,11 @@
                                     在线支付价
                                 </td>
                                 <td>
+                                    操作
                                 </td>
                             </tr>
                         </tbody>
-                        <tr class="pttr">
+                        <tr class="pttr" onmouseover="" onmouseout="">
                             <td>
                                 套票
                             </td>
@@ -527,8 +249,8 @@
                             <td style="color: #E8641B; font-weight: bold">
                                 90
                             </td>
-                            <td style="text-align: right;">
-                                <input id="btnputcart" type="button" class="btnputcart" />
+                            <td style="text-align: center;">
+                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" />
                             </td>
                         </tr>
                         <tr class="pttr2">
@@ -547,19 +269,16 @@
                             <td style="color: #E8641B; font-weight: bold">
                                 40
                             </td>
-                            <td style="text-align: right;">
-                                <input id="Button2" type="button" class="btnputcart" />
+                            <td style="text-align:center;">
+                                <input id="Button2" type="button" class="btnputcart" value="放入购物车" />
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div id="allinfo">
-                    <div class="selectinfospan">
-                        <span class="highselected" onclick="btnselect(this)">订票说明</span> <span onclick="btnselect(this)">
-                            景区简介</span>
-                    </div>
-                    <div id="changeinfo">
-                        <div id="plate1">
+
+                <div id="introordertk">
+                    <p class="captitle"><img src="/theme/default/image/newversion/icon.gif" />订票说明</p>
+                    <div class="otinfo">
                             1&nbsp;取票：请到鼎湖峰景点，在线支付的游客凭身份证领取景区门票，预定的游客凭身份证购买折扣门票<br />
                             2&nbsp;特殊人群：<br />
                             A.免费政策：儿童身高1.2米以下免费，军官证凭证免费<br />
@@ -567,9 +286,17 @@
                                 <span style="margin-left: 70px;"></span>其他优惠以景区公布为准</span> 4&nbsp;发票说明：预订景区门票，网站不提供发票<br />
                             5&nbsp;温馨提示：套票包含仙都里面的六个景点门票<br />
                             &nbsp;&nbsp;网站预订的景区门票有效期一年，未使用的门票可以在期限内更改游客信息。
-                        </div>
-                        <p id="plap">
-                            景区简介</p>
+                     </div>
+                </div>
+
+
+                <div id="allinfo">
+                    <p class="captitle"><img src="/theme/default/image/newversion/icon.gif" />景区概况</p>
+                    <div class="selectinfospan">
+                        <span class="highselected" onclick="btnselect(this)">景区简介</span> <span onclick="btnselect(this)">
+                            交通指南</span>
+                    </div>
+                    <div id="changeinfo">
                         <div id="plate2">
                             仙都，位于浙江省丽水市缙云县境内，是一处以峰岩奇绝、山水神秀为景观特色，融田园风光与人文史迹为一体，以观光、避暑休闲<br />
                             和开展科学、文化活动为一体的国家级重点风景名胜区；亦是一个山明水秀、景物优美、气候宜人的游览胜地。境内九曲练溪，十里<br />
@@ -588,11 +315,20 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
+                            <p id="plap">交通指南</p>
+                        <div id="plate1">
+                            <div id="containtermap">
+                            </div>
+                            <div class="rdinfo">
+                                从上海到浙江仙都可坐火车到缙云火车站。出站走进二百米到山叉路口，向右转是去县城，一直往下是往鼎湖峰。再次地可乘过路车
+                                到鼎湖峰，不用到县城。出站后也可直接雇面包车（20元）到鼎湖峰。&nbsp;&nbsp;&nbsp;到鼎湖峰方向的车很多，几十分钟就有一辆，也可乘到
+                                壶镇的车，但在鼎湖峰前面的岔路口就要下车，往里还要走一段路。所以最好乘到铁城（芙蓉峡）的中巴，先到铁城或先到鼎湖峰下车均可。到铁城是三块板，
+                                到鼎湖峰二块。在景区可花40元左右（淡季价）包一辆残疾车一天，然后就可以随心所欲地玩了。晚上可乘火车离开，下午5：:3,7:30,9:30都有火车。地的治安也不错。
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
     <div id="mainbody" style="display: none">
         <div>
             <div class="leftimg">
@@ -721,8 +457,7 @@
                     <p>
                         地图&nbsp;&nbsp;&nbsp;&nbsp;<a runat="server" id="searchbigmap" style="font-weight: normal;"
                             href="/map/Default.aspx">[查看大图]</a></p>
-                    <div id="containtermap">
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -796,4 +531,5 @@
             </div>
         </div>
     </div>
+    <img src="/theme/default/image/newversion/backtop.png" width="41px" height="49px" class="backtop" />
 </asp:Content>

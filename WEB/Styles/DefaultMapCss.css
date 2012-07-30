@@ -282,6 +282,17 @@
     display:inline-block;
     cursor:pointer;
 }
+.spansceincname:hover
+{
+    margin-left:10px;
+    font-size:12px;
+    position:relative;
+    top:-2px;
+    width:135px;
+    display:inline-block;
+    cursor:pointer;
+    color:#8BB06D;
+}
 
 .scenicinfo
 {

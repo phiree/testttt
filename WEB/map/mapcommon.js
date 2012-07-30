@@ -1,7 +1,7 @@
 ﻿        var winWidth = 0;
 
         var winHeight = 0;
-
+        
         function findDimensions() //函数：获取尺寸
         {
 
@@ -187,4 +187,11 @@
                      else {
                          $($(".selareainfo a")[0]).attr("style", "border:1px solid #F9CD8A;background-color:#FDF0CA;color:#E8641B");
                      }
+                 }
+
+                 function changescnamecl(obj) {
+                     $(obj).css("color", "#8BB06D");
+                 }
+                 function changescnamecl2(obj) {
+                     $(obj).css("color", "");
                  }
