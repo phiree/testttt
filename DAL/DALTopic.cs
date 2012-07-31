@@ -38,5 +38,13 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Topic>().ToList<Model.Topic>();
         }
+
+
+        public IList<Topic> GetTopicByName(string name)
+        {
+            string sql = "select t from Topic t where t.Name='" + name + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Topic>().ToList<Topic>();
+        }
     }
 }
