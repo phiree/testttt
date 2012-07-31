@@ -13,3 +13,4 @@ namespace Model
         public virtual ScenicModule ScenicModule { get; set; }
     }
 }
+
