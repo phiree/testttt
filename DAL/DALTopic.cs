@@ -25,11 +25,18 @@ namespace DAL
         }
 
 
-        public IList<Topic> GetTopicByName(string name)
+        public IList<Topic> GetTopicByscid(int scid)
         {
-            string sql = "select t from Topic t where t.Name='" + name + "'";
+            string sql = "select st.Topic from ScenicTopic st where st.Scenic.Id=" + scid;
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Topic>().ToList<Topic>();
+            return query.Future<Topic>().ToList<Model.Topic>();
+        }
+
+        public IList<Model.Topic> GetAllTopics()
+        {
+            string sql = "select t from Topic t ";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Topic>().ToList<Model.Topic>();
         }
     }
 }

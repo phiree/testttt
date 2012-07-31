@@ -36,5 +36,15 @@ namespace BLL
         {
             return Iticket.GetTopicByName(name);
         }
+
+        public IList<Model.Topic> GetTopicByscid(int scid)
+        {
+            return Iticket.GetTopicByscid(scid);
+        }
+
+        public IList<Model.Topic> GetAllTopics()
+        {
+            return Iticket.GetAllTopics();
+        }
     }
 }
