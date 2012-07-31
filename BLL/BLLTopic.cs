@@ -30,5 +30,10 @@ namespace BLL
         {
             return Iticket.GetStByscid(scid);
         }
+
+        public IList<Model.Topic> GetTopicByscid(int scid)
+        {
+            return Iticket.GetTopicByscid(scid);
+        }
     }
 }

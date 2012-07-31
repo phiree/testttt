@@ -8,9 +8,9 @@
         <span>筛选:&nbsp;&nbsp;</span>
         <asp:DropDownList runat="server" ID="ddlArea">
         </asp:DropDownList>&nbsp;
-        <asp:Button runat="server" ID="btnSearch" CssClass="btnok"  />
+        <asp:Button runat="server" ID="btnSearch" CssClass="btnok" OnClick="btnSearch_Click" />
     </div>
-    <asp:Repeater ID="rptScenicAdmin" runat="server" >
+    <asp:Repeater ID="rptScenic" runat="server" >
         <HeaderTemplate>
             <table class="tblist" cellpadding="0" cellspacing="1" border="1px">
                 <tr class="thead">

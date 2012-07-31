@@ -44,8 +44,13 @@ public partial class Manager_ScenicTopicSetting : System.Web.UI.Page
             Repeater rep = e.Item.FindControl("rptTopic") as Repeater;//找到里层的repeater对象
             DataRowView rowv = (DataRowView)e.Item.DataItem;//找到分类Repeater关联的数据项 
             int scenicid = Convert.ToInt32(rowv["Id"]); //获取填充子类的id 
-            rep.DataSource = bllTopic.GetScenicTopics(scenicid.ToString());
+            rep.DataSource = bllTopic.GetTopicByscid(scenicid);
             rep.DataBind();
         }
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        BindTopics();
     }
 }

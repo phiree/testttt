@@ -53,6 +53,7 @@
                 <div id="adminBlock" runat="server">
                     <li><span>景区管理</span></li>
                     <li><a href="/scenicmanager/UpdateScenticInfo.aspx">景区资料</a></li>
+                    <li><a href="/scenicmanager/ScenictopicInfo.aspx">景区主题</a></li>
                     <li><a href="/scenicmanager/onlinesell/Pricesetting.aspx">景区门票信息</a></li>
                     <li><a href="/scenicmanager/ScenicPictureShow.aspx">景区图片管理</a></li>
                     <li><span>人员管理</span></li>

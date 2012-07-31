@@ -23,5 +23,13 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<ScenicTopic>().Value;
         }
+
+
+        public IList<Topic> GetTopicByscid(int scid)
+        {
+            string sql = "select st.Topic from ScenicTopic st where st.Scenic.Id=" + scid + "";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Topic>().ToList<Model.Topic>();
+        }
     }
 }
