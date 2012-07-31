@@ -192,5 +192,13 @@ namespace DAL
             query.ExecuteUpdate();
         }
         #endregion
+
+
+        public Scenic GetScenicBySeoName(string aseoname, string sseoname)
+        {
+            string sql = "select s from Scenic s where s.SeoName='" + sseoname + "' and s.Area.SeoName='" + aseoname + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Scenic>().Value;
+        }
     }
 }

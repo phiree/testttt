@@ -218,6 +218,11 @@ namespace BLL
             IScenic.SaveCheckProgress(scp);
         }
 
+        public Scenic GetScenicBySeoName(string aseoname, string sseoname)
+        {
+            return IScenic.GetScenicBySeoName(aseoname, sseoname);
+        }
+
         #region Contract
 
         public void UploadContractImg(ContractImg contractimg)
