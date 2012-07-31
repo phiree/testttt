@@ -60,16 +60,31 @@
 .hla
 {
     background-color: #C3D0A2;
-    padding-top:3px;
-    padding-bottom:3px;
-    padding-left:6px;
-    padding-right:0px;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:7px;
+    padding-right:3px;
+    padding-right:0px \9;
+    margin:0px;
 }
-.hlv
+.leveldiv span,.leveldiv a
 {
-    background-color: #C3D0A2;
-    padding:3px 6px 3px 6px;
+    display:block;
+    float:left;
+    line-height:25px;
+    margin-top:2px;
 }
+.hlv,.hlv:link,.hlv:active,.hlv:visited,.hlv:hover
+{
+    display:block;
+    width:40px;
+    text-align:center;
+    padding:0px;
+    height:25px !important;
+    line-height:25px !important;
+    overflow:hidden;
+}
+
 #toprecomm
 {
     display:inline-block;
@@ -129,9 +144,9 @@ div:246
 }
 .scenicdesc
 {
-    margin:0px 0px 20px 30px;
+    margin:0px 0px 20px 13px;
     border: 0px none;
-    width: 213px;
+    width: 230px;
     float: left;
     display: inline;
     padding-bottom:20px;
@@ -139,15 +154,15 @@ div:246
 }
 .scenicimgdivbg
 {
-    width:213px;
-    height:166px;
+    width:230px;
+    height:177px;
     display:inline-block;
     background:url("/theme/default/image/newversion/scinfobg.png");
 }
 .scenicdescimg
 {
-    width: 201px;
-    height: 148px;
+    width: 218px;
+    height: 158px;
     margin: 6px;
     display: block;
 }
@@ -155,7 +170,7 @@ div:246
 {
     float: left;
     padding-left: 0px;
-    width: 213px;
+    width: 230px;
 }
 
 .dvprice em
@@ -182,7 +197,7 @@ div:246
 {
     width: 213px;
     line-height: 30px;
-    font-size:13px;
+    font-size:14px;
     padding-left:5px;
 }
 .scenicname a

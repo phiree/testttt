@@ -113,7 +113,7 @@
             <div class="tksuminfo2">在线支付合计：<strong id="totalonline"></strong>元</div>
         </div>
         <div id="payaction">
-            <a class="cartbtnok" href="checkout.aspx">确认订单</a><a href="/" class="btn btngray">继续购物</a> 
+            <a class="cartbtnok" href="checkout.aspx">确认订单</a><a href="/" class="cartbtngoon">继续购物</a> 
         </div>
     </asp:Panel>
     <asp:Panel CssClass="emptycart" runat="server" ID="pnlEmptyCart">

@@ -31,7 +31,7 @@
             <span class="themedivspan" style="color: #009F3C;">旅游主题 </span>
         </div>
         <div class="leveldiv">
-            <span style="color: #009F3C;">景区级别:</span> <a runat="server" id="hlLevelAll">全部</a>
+            <span style="color: #009F3C; float:left; display:block; height:25px; width:55px;" >景区级别:</span> <a runat="server" id="hlLevelAll">全部</a>
             <a runat="server" t="level" id="hlLevel5">5A</a> <a runat="server" t="level" id="hlLevel4">
                 4A</a> <a runat="server" t="level" id="hlLevel3">3A</a>
         </div>
