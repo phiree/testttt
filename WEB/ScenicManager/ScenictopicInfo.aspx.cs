@@ -5,10 +5,29 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class ScenicManager_ScenictopicInfo : System.Web.UI.Page
+public partial class ScenicManager_ScenictopicInfo : bpScenicManager
 {
+    BLL.BLLTopic bllTopic = new BLL.BLLTopic();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            BindTopicStore();
+            BindTopicOwn();
+        }
+    }
 
+    private void BindTopicStore()
+    {
+        IList<Model.Topic> topics=bllTopic.GetAllTopics();
+        rptTopicStore.DataSource = topics;
+        rptTopicStore.DataBind();
+    }
+
+    private void BindTopicOwn()
+    {
+        IList<Model.Topic> topics = bllTopic.GetTopicByscid(Master.Scenic.Id);
+        rptTopicOwn.DataSource = topics;
+        rptTopicOwn.DataBind();
     }
 }

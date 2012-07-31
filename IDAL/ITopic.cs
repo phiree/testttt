@@ -11,5 +11,6 @@ namespace IDAL
         IList<Model.ScenicTopic> GetScenictopic(string areacode);
         ScenicTopic GetStByscid(int scid);
         IList<Topic> GetTopicByscid(int scid);
+        IList<Model.Topic> GetAllTopics();
     }
 }
