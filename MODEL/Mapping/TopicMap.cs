@@ -20,7 +20,7 @@ namespace Model.Mapping
         {
             Id(x => x.Id);
             References(x => x.Scenic);
-            References(x => x.Topic);
+            HasMany<Topic>(x => x.Topic).Cascade.All();
         }
     }
 

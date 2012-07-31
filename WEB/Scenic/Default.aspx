@@ -190,7 +190,12 @@
                     <h2 runat="server" id="maintitlett">
                     </h2>
                     <div class="themespan">
-                        主题标签<span>峰岩奇绝</span><span>山水神秀</span><span>仙人荟萃之都</span>
+                        主题标签
+                        <asp:Repeater ID="rpttopic" runat="server">
+                            <ItemTemplate>
+                                <span><%# Eval("Name") %></span>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </div>
                     <div class="sclv">
                         <span>景区级别:</span>4A

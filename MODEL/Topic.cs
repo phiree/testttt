@@ -17,7 +17,7 @@ namespace Model
     public class ScenicTopic
     {
         public virtual Guid Id { get; set; }
-        public virtual Topic Topic { get; set; }
+        public virtual IList<Topic> Topic { get; set; }
         public virtual Scenic Scenic { get; set; }
     }
 

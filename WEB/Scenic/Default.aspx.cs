@@ -106,49 +106,9 @@ public partial class Scenic_Default : System.Web.UI.Page
         rptzbsc.DataSource = scdiction.Keys;
         rptzbsc.DataBind();
         
-
-
-        List<ScenicImg> listsc = new List<ScenicImg>();
-        if (Request.Cookies["visitedscenic"] != null)
-        {
-            string[] allkeys = Request.Cookies["visitedscenic"].Value.Split(',');
-            foreach (string item in allkeys)
-            {
-                Scenic sss = bllscenic.GetScenicById(int.Parse(item));
-                if (bllscenicimg.GetSiByType(sss, 1).Count > 0)
-                    listsc.Add(bllscenicimg.GetSiByType(sss, 1)[0]);
-            }
-            rptvisited.DataSource = listsc;
-            rptvisited.DataBind();
-        }
-
-
-
-
-
-
-
-        //绑定最近浏览过的记录
-        if (Request.Cookies["visitedscenic"] == null)//如果没有cookie，则生成该cookie,并且添加当前的景区
-        {
-            Response.Cookies.Add(new HttpCookie("visitedscenic", scenic.Id.ToString()));
-        }
-        else
-        {
-            string allvisited = Request.Cookies["visitedscenic"].Value;
-            string[] allscenicids = allvisited.Split(',');
-            int flag = 0;
-            foreach (string item in allscenicids)
-            {
-                if (item == scenic.Id.ToString())
-                    flag = 1;
-            }
-            if (flag == 0)
-            {
-                Request.Cookies["visitedscenic"].Value = Request.Cookies["visitedscenic"].Value + "," + scenic.Id.ToString();
-                Response.Cookies["visitedscenic"].Value = Request.Cookies["visitedscenic"].Value;
-            }
-        }
+        //绑定主题
+        //rpttopic.DataSource=
+        
     }
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区
     Dictionary<ScenicImg, double> scdiction = new Dictionary<ScenicImg, double>();
