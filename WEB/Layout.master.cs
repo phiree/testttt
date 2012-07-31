@@ -30,7 +30,7 @@ public partial class Layout : System.Web.UI.MasterPage
     }
 
 
-
+    //绑定最近浏览过的景区
     private void BindVisited()
     {
         List<Scenic> listsc = new List<Scenic>();
@@ -68,6 +68,16 @@ public partial class Layout : System.Web.UI.MasterPage
                     Response.Cookies["visitedscenic"].Value = Request.Cookies["visitedscenic"].Value;
                 }
             }
+        }
+      
+    }
+
+    //绑定相似景区
+    private void BindLikeScenic()
+    {
+        if (scenic != null)
+        {
+
         }
     }
 }

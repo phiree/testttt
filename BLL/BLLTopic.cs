@@ -23,7 +23,12 @@ namespace BLL
 
         public IList<Model.ScenicTopic> GetScenicTopics(string areacode)
         {
-            return itopic.GetScenictopic(areacode);
+            return Iticket.GetScenictopic(areacode);
+        }
+
+        public Model.ScenicTopic GetStByscid(int scid)
+        {
+            return Iticket.GetStByscid(scid);
         }
     }
 }

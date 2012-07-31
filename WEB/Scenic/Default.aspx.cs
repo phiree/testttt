@@ -15,6 +15,7 @@ public partial class Scenic_Default : System.Web.UI.Page
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
     BLLOrder bllorder = new BLLOrder();
     BLLScenicImg bllscenicimg = new BLLScenicImg();
+    BLLTopic blltopic = new BLLTopic();
     public int TicketId = 0;
     public string scpoint = "";
     public string scbindname = "";
@@ -107,7 +108,8 @@ public partial class Scenic_Default : System.Web.UI.Page
         rptzbsc.DataBind();
         
         //绑定主题
-        //rpttopic.DataSource=
+        rpttopic.DataSource = blltopic.GetStByscid(scenic.Id).Topic;
+        rpttopic.DataBind();
         
     }
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区

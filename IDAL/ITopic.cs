@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Model;
 
 namespace IDAL
 {
     public interface ITopic
     {
         IList<Model.ScenicTopic> GetScenictopic(string areacode);
+        ScenicTopic GetStByscid(int scid);
     }
 }
