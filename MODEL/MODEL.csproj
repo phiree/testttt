@@ -60,6 +60,7 @@
     <Compile Include="ContractScenicPrice.cs" />
     <Compile Include="DiscountCode.cs" />
     <Compile Include="Mapping\Order\RefundMap.cs" />
+    <Compile Include="Mapping\TopicMap.cs" />
     <Compile Include="ScenicMap.cs" />
     <Compile Include="Mapping\CommonUserMap.cs" />
     <Compile Include="Mapping\ContractImgMap.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Qweiboinfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="ScenicTicket.cs" />
+    <Compile Include="ScenicTopic.cs" />
     <Compile Include="SeoDescription.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="TicketCount.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Mapping\UseRecordMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Mapping\VoteMap.cs" />
+    <Compile Include="Topic.cs" />
     <Compile Include="TourMembership.cs" />
     <Compile Include="PreferentialCode.cs" />
     <Compile Include="PromotionStatic.cs" />
@@ -121,9 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Check\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

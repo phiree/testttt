@@ -20,7 +20,7 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
     /// 登陆
     /// </summary>
     /// <remarks>
-    ///  原始裸机混乱,修改之.
+    ///  原始逻辑混乱,修改之.
     /// </remarks>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -33,7 +33,7 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
         }
         if (Roles.IsUserInRole(member.UserName, "SiteAdmin"))
         {
-            Response.Redirect("/default.aspx");
+            Response.Redirect("/manager/default.aspx");
         }
         else
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或密码错误');", true);
