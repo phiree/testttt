@@ -85,7 +85,6 @@
     <Compile Include="Qweiboinfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="ScenicTicket.cs" />
-    <Compile Include="ScenicTopic.cs" />
     <Compile Include="SeoDescription.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="TicketCount.cs" />
