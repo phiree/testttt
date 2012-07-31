@@ -19,8 +19,9 @@ namespace Model.Mapping
         public ScenicTopicMap()
         {
             Id(x => x.Id);
-            Map(x => x.Scenic);
-            Map(x => x.Topic);
+            References(x => x.Scenic);
+            References(x => x.Topic);
         }
     }
+
 }
