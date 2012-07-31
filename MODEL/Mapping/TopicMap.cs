@@ -12,6 +12,7 @@ namespace Model.Mapping
         {
             Id(x => x.Id);
             Map(x => x.Name);
+            References(x => x.Scenictopic);
         }
     }
     public class ScenicTopicMap : ClassMap<ScenicTopic>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Model;
 
 namespace BLL
 {
@@ -29,6 +30,11 @@ namespace BLL
         public Model.ScenicTopic GetStByscid(int scid)
         {
             return Iticket.GetStByscid(scid);
+        }
+
+        public IList<Topic> GetTopicByName(string name)
+        {
+            return Iticket.GetTopicByName(name);
         }
     }
 }

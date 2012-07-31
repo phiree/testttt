@@ -20,86 +20,32 @@
                 <img src="/theme/default/image/newversion/discountticket.png" width="195px" height="132px"
                     alt="明信片优惠" />
             </a>
-            <div class="moddiv">
-                <p>
-                    类似景区推荐</p>
+            <div class="moddiv" runat="server" id="likemod">
+                <p>类似景区推荐</p>
                 <table class="tbvisitedsc" border="0" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" /><a href="#">仙都</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" /><a>仙都</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" /><a>仙都</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" /><a>仙都</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" /><a>仙都</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" /><a>仙都</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" /><a>仙都</a>
-                        </td>
-                    </tr>
+                    <asp:Repeater ID="rptlikesc" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td>
+                                    <img src="/theme/default/image/newversion/jt2.gif" /><a href='<%# ResolveUrl(string.Format("/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </table>
             </div>
-            <div class="moddiv">
-                <p>
-                    周边景点</p>
+            <div class="moddiv" runat="server" id="zbmod">
+                <p>周边景点</p>
                 <table class="tbvisitedsc" border="0" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" /><a>仙都漂流</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" />缙云仙都黄龙景区
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" />缙云仙都黄龙景区
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" />缙云仙都黄龙景区
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" />缙云仙都黄龙景区
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" />缙云仙都黄龙景区
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="../theme/default/image/newversion/jt2.gif" />缙云仙都黄龙景区
-                        </td>
-                    </tr>
+                    <asp:Repeater ID="rptzbsc" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td>
+                                    <img src="/theme/default/image/newversion/jt2.gif" /><a href='<%# ResolveUrl(string.Format("/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </table>
             </div>
             <%--<div class="moddiv">
