@@ -26,6 +26,24 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
     /// <param name="e"></param>
     protected void Login1_LoggingIn(object sender, EventArgs e)
     {
+        //Membership.ValidateUser(Login1.UserName, Login1.Password);
+        //tourmembership.ValidateUser(Login1.UserName, Login1.Password);
+        //MembershipUser member = (tourmembership.GetUser(Login1.UserName, true));
+        //if (member == null)
+        //{
+        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('未找到该用户名，请重新确认！');", true);
+        //}
+        //if (Roles.IsUserInRole(member.UserName, "SiteAdmin"))
+        //{
+        //    Response.Redirect("/Manager/ScenicManage/");
+        //}
+        //else
+        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或密码错误');", true);
+    }
+    protected void Login1_LoggedIn(object sender, EventArgs e)
+    {
+        Membership.ValidateUser(Login1.UserName, Login1.Password);
+        tourmembership.ValidateUser(Login1.UserName, Login1.Password);
         MembershipUser member = (tourmembership.GetUser(Login1.UserName, true));
         if (member == null)
         {
@@ -33,7 +51,7 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
         }
         if (Roles.IsUserInRole(member.UserName, "SiteAdmin"))
         {
-            Response.Redirect("/manager/default.aspx");
+            Response.Redirect("/Manager/ScenicManage/");
         }
         else
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或密码错误');", true);
