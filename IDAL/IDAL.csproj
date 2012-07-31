@@ -68,6 +68,7 @@
     <Compile Include="ITicketAssign.cs" />
     <Compile Include="ITicketCount.cs" />
     <Compile Include="ITicketPrice.cs" />
+    <Compile Include="ITopic.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="IVistor.cs" />
     <Compile Include="IVote.cs" />

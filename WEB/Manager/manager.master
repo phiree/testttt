@@ -42,6 +42,7 @@
                 <ul>
                     <li><a href="/Manager/ScenicManage/">景区资料审核</a></li>
                     <li><a href="/Manager/ScenicAdminSetting.aspx">景区账号管理</a></li>
+                    <li><a href="/Manager/ScenicTopicSetting.aspx">景区主题管理</a></li>
                     <%--<li><a href="/Manager/AccountManager.aspx">用户账号管理</a></li>--%>
                     <%--<li><a href="/Manager/RoleManage.aspx">用户角色管理</a></li>--%>
                     <%--<li><a href="/Manager/BillCheck.aspx">当前账单管理</a></li>--%>

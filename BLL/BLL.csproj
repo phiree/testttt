@@ -87,6 +87,7 @@
     <Compile Include="BLLTicketAssign.cs" />
     <Compile Include="BLLTicketCount.cs" />
     <Compile Include="BLLTicketPrice.cs" />
+    <Compile Include="BLLTopic.cs" />
     <Compile Include="BLLVote.cs" />
     <Compile Include="Checkout.cs" />
     <Compile Include="ErrType.cs" />

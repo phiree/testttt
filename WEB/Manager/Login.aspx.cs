@@ -48,12 +48,15 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
         if (member == null)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('未找到该用户名，请重新确认！');", true);
+            return;
         }
         if (Roles.IsUserInRole(member.UserName, "SiteAdmin"))
         {
             Response.Redirect("/Manager/ScenicManage/");
         }
         else
+        {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或密码错误');", true);
+        }
     }
 }
