@@ -55,7 +55,7 @@ namespace DAL
             IList<Topic> topicresult = new List<Topic>();
             foreach (var item in topicname)
             {
-                topicresult.Add(topicsource.FirstOrDefault(x => x.Name == item));
+                topicresult.Add(topicsource.Where(x => x.Name == item).First());
             }
             st.Topic = topicresult;
             session.SaveOrUpdate(st);
