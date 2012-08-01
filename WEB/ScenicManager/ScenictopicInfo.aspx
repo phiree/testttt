@@ -13,6 +13,18 @@
                 alert("hi~");
                 $(this).remove();
             });
+            $("#btnok").click(function () {
+                $("#taglist>li");
+                $.ajax({
+                    type: "Post",
+                    url: "TopicHandler.ashx",
+                    dataType: "json",
+                    data: { 'ticketname': ticketname, 'yuanjia': yuanjia, 'mingxipianjia': mingxipianjia, 'xianfujia': xianfujia, 'zaixianjia': zaixianjia, "ticketid": ticketid, "scid": scid },
+                    success: function (data, status) {
+                        result &= data;
+                    }
+                });
+            });
         });
     </script>
 </asp:Content>

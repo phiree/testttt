@@ -46,5 +46,19 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Topic>().ToList<Topic>();
         }
+
+
+        public void Save(IList<string> topicname, int scenicid)
+        {
+            ScenicTopic st = GetStByscid(scenicid);
+            IList<Topic> topicsource = GetAllTopics();
+            IList<Topic> topicresult = new List<Topic>();
+            foreach (var item in topicname)
+            {
+                topicresult.Add(topicsource.FirstOrDefault(x => x.Name == item));
+            }
+            st.Topic = topicresult;
+            session.SaveOrUpdate(st);
+        }
     }
 }

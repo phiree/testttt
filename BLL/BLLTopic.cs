@@ -22,6 +22,11 @@ namespace BLL
             set { itopic = value; }
         }
 
+        public void Save(IList<string> topicname, int scenicid)
+        {
+            Iticket.Save(topicname, scenicid);
+        }
+
         public IList<Model.ScenicTopic> GetScenicTopics(string areacode)
         {
             return Iticket.GetScenictopic(areacode);
