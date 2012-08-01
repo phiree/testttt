@@ -201,7 +201,7 @@
                         <span>景区级别:</span>4A
                     </div>
                     <div class="scaddr">
-                        地址：浙江省丽水市缙云县境内&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
+                        地址：<%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
                     </div>
                     <div class="scdesc">
                         有奇峰一百六、异洞二十七，有“桂林之秀、黄山之气、华山之险”的美誉。...<a href="#plate2">景区简介</a>

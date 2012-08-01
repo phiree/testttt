@@ -21,6 +21,7 @@ namespace Model.Mapping
             Map(x => x.Desec);
             Map(x => x.Position);
             Map(x => x.SeoName);
+            Map(x => x.BookNote);
             References<Area>(x => x.Area);
             HasMany<ScenicCheckProgress>(x => x.CheckProgress);
         }
