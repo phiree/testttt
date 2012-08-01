@@ -22,6 +22,7 @@ namespace Model.Mapping
             Map(x => x.Position);
             Map(x => x.SeoName);
             Map(x => x.BookNote);
+            Map(x => x.TransGuid);
             References<Area>(x => x.Area);
             HasMany<ScenicCheckProgress>(x => x.CheckProgress);
         }

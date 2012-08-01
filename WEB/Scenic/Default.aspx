@@ -198,7 +198,7 @@
                         </asp:Repeater>
                     </div>
                     <div class="sclv">
-                        <span>景区级别:</span>4A
+                        <span>景区级别:</span><%=sclevel%>
                     </div>
                     <div class="scaddr">
                         地址：<%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
@@ -284,13 +284,7 @@
                 <div id="introordertk">
                     <p class="captitle"><img src="/theme/default/image/newversion/icon.gif" />订票说明</p>
                     <div class="otinfo">
-                            1&nbsp;取票：请到鼎湖峰景点，在线支付的游客凭身份证领取景区门票，预定的游客凭身份证购买折扣门票<br />
-                            2&nbsp;特殊人群：<br />
-                            A.免费政策：儿童身高1.2米以下免费，军官证凭证免费<br />
-                            B.优惠政策：<span>儿童身高1.2-1.4米半价。学生票凭证半价，老年人60-70周岁半价，70岁以上浙江省内免费省外半票<br />
-                                <span style="margin-left: 70px;"></span>其他优惠以景区公布为准</span> 4&nbsp;发票说明：预订景区门票，网站不提供发票<br />
-                            5&nbsp;温馨提示：套票包含仙都里面的六个景点门票<br />
-                            &nbsp;&nbsp;网站预订的景区门票有效期一年，未使用的门票可以在期限内更改游客信息。
+                            <%=booknote %>
                      </div>
                 </div>
 

@@ -22,6 +22,8 @@ public partial class Scenic_Default : System.Web.UI.Page
     public string bindimglist = "";
     public int imgcount;
     public string scaddress = "";
+    public string booknote = "";
+    public string sclevel = "";
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -52,7 +54,6 @@ public partial class Scenic_Default : System.Web.UI.Page
 
     private void bind(Ticket t)
     {
-
         Scenic scenic = t.Scenic;
         maintitlett.InnerHtml = scenic.Name;
         scpoint = scenic.Position;
@@ -63,6 +64,8 @@ public partial class Scenic_Default : System.Web.UI.Page
         scenicname.HRef = "/" + scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
         scenicname.InnerHtml = scenic.Name;
         scaddress = scenic.Address;
+        booknote = scenic.BookNote;
+        sclevel = scenic.Level;
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/" + listsi[0].Name;
