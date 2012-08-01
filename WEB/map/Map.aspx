@@ -17,13 +17,13 @@
     <div id="left">
         <div class="selbg"></div>
         <div class="sellevel">
-            景区级别<img src="/Img/yuansu/jiantouicon1.png" width="14px" height="9px"  style="margin-left:5px"/>
+            <span>景区级别</span><img src="/Img/yuansu/jiantouicon1.png" width="14px" height="9px"  style="margin-left:5px"/>
         </div>
         <div class="sellevelinfo">
             <a onclick="btnarea(this)">全部</a><a style=" border:1px solid #F9CD8A;background-color:#FDF0CA;color:#E8641B" onclick="btnarea(this)">5A</a><a onclick="btnarea(this)">4A</a><a onclick="btnarea(this)">3A</a>
         </div>
         <div class="selarea">
-            选择城市<img src="/Img/yuansu/jiantouicon1.png" width="14px" height="9px"  style="margin-left:5px"/>
+            <span>选择城市</span><img src="/Img/yuansu/jiantouicon1.png" width="14px" height="9px"  style="margin-left:5px"/>
         </div>
         <div class="selareainfo">
             <asp:Repeater ID="rptarea" runat="server" 
