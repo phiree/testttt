@@ -12,7 +12,6 @@ namespace Model.Mapping
         {
             Id(x => x.Id);
             Map(x => x.Name);
-            References(x => x.Scenictopic);
         }
     }
     public class ScenicTopicMap : ClassMap<ScenicTopic>
@@ -21,7 +20,7 @@ namespace Model.Mapping
         {
             Id(x => x.Id);
             References(x => x.Scenic);
-            HasMany<Topic>(x => x.Topic).Cascade.All();
+            References(x => x.Topic);
         }
     }
 

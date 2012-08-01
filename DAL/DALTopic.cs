@@ -55,10 +55,10 @@ namespace DAL
             IList<Topic> topicresult = new List<Topic>();
             foreach (var item in topicname)
             {
-                topicresult.Add(topicsource.Where(x => x.Name == item).First());
+                var tmp = topicsource.Where(x => x.Name == item).First();
+                st.Topic=tmp;
+                session.SaveOrUpdate(st);
             }
-            st.Topic = topicresult;
-            session.SaveOrUpdate(st);
         }
     }
 }
