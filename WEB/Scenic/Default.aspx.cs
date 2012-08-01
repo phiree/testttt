@@ -16,6 +16,7 @@ public partial class Scenic_Default : System.Web.UI.Page
     BLLOrder bllorder = new BLLOrder();
     BLLScenicImg bllscenicimg = new BLLScenicImg();
     BLLTopic blltopic = new BLLTopic();
+    BLLTicket bllticket = new BLLTicket();
     public int TicketId = 0;
     public string scpoint = "";
     public string scbindname = "";
@@ -24,6 +25,7 @@ public partial class Scenic_Default : System.Web.UI.Page
     public string scaddress = "";
     public string booknote = "";
     public string sclevel = "";
+    public string transguid = "";
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -66,6 +68,7 @@ public partial class Scenic_Default : System.Web.UI.Page
         scaddress = scenic.Address;
         booknote = scenic.BookNote;
         sclevel = scenic.Level;
+        transguid = scenic.TransGuid;
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/" + listsi[0].Name;
@@ -115,7 +118,28 @@ public partial class Scenic_Default : System.Web.UI.Page
         //绑定主题
         rpttopic.DataSource = blltopic.GetStByscid(scenic.Id).Topic;
         rpttopic.DataBind();
-        
+
+        //绑定套票
+        List<Ticket> listticket= bllticket.GetTp(scenic.Id).ToList();
+        var result = from pair in listticket orderby pair.TicketPrice[0] descending select pair;
+        List<Ticket> listtp = new List<Ticket>();
+        List<Ticket> listcom = new List<Ticket>();
+        int cc = 1;
+        foreach (Ticket item in result)
+        {
+            if (cc == 1)
+            {
+                listtp.Add(item);
+            }
+            else
+            {
+                listcom.Add(item);
+            }
+        }
+        rpttp.DataSource = listtp;
+        rpttp.DataBind();
+        rptcom.DataSource = listcom;
+        rptcom.DataBind();
     }
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区
     Dictionary<ScenicImg, double> scdiction = new Dictionary<ScenicImg, double>();

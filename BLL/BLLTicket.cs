@@ -180,6 +180,11 @@ namespace BLL
             CartItems = Newtonsoft.Json.JsonConvert.DeserializeObject<IList<CartItem>>(cartJson);
             return CartItems;
         }
+
+        public IList<Model.Ticket> GetTp(int scid)
+        {
+            return Iticket.GetTp(scid);
+        }
     }
 
     public class CartItem

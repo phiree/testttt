@@ -89,5 +89,13 @@ namespace DAL
            Model.Ticket t= qry.FutureValue<Model.Ticket>().Value;
            return t;
         }
+
+
+        public IList<Model.Ticket> GetTp(int scid)
+        {
+            string sql = "select t from Ticket t where t.Scenic.Id=" + scid + " and Lock=false";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.Ticket>().ToList<Model.Ticket>();
+        }
     }
 }

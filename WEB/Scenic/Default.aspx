@@ -181,153 +181,166 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
-            <p class="navsc">
-                <img src="/theme/default/image/newversion/icon.gif" />您选择的景区门票：浙江省&nbsp;>&nbsp;<a runat="server" id="areaname"></a>&nbsp;>&nbsp;<a runat="server"
-                    id="scenicname"></a></p>
-            <div id="mainscenic">
-                <div class="mainscbg"><img runat="server" id="ImgMainScenic" class="mainscenicimg" src="" /></div>
-                <div id="maintitle">
-                    <h2 runat="server" id="maintitlett">
-                    </h2>
-                    <div class="themespan">
-                        主题标签
-                        <asp:Repeater ID="rpttopic" runat="server">
-                            <ItemTemplate>
-                                <span><%# Eval("Name") %></span>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </div>
-                    <div class="sclv">
-                        <span>景区级别:</span><%=sclevel%>
-                    </div>
-                    <div class="scaddr">
-                        地址：<%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
-                    </div>
-                    <div class="scdesc">
-                        有奇峰一百六、异洞二十七，有“桂林之秀、黄山之气、华山之险”的美誉。...<a href="#plate2">景区简介</a>
-                    </div>
-                    <div class="ordertype">
-                        <h3>订票方式</h3><span>网上购买</span><span>预订</span><span>明信片预订</span>
-                    </div>
-                    <div class="paytype">
-                        <h3>付款方式</h3><span>网上支付</span><span>景区现付</span>
-                    </div>
-                </div>
-                <div id="priceinfo">
-                    <p class="captitle"><img src="/theme/default/image/newversion/icon.gif" />门票种类和价格</p>
-                    <table border="0" cellpadding="0" cellspacing="0">
-                        <tbody>
-                            <tr class="tstr">
-                                <td>
-                                    景区门票
-                                </td>
-                                <td>
-                                    门票原价
-                                </td>
-                                <td>
-                                    明信片优惠价
-                                </td>
-                                <td>
-                                    景区现付价
-                                </td>
-                                <td>
-                                    在线支付价
-                                </td>
-                                <td>
-                                    操作
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tr class="pttr" onmouseover="" onmouseout="">
+    <p class="navsc">
+        <img src="/theme/default/image/newversion/icon.gif" />您选择的景区门票：浙江省&nbsp;>&nbsp;<a
+            runat="server" id="areaname"></a>&nbsp;>&nbsp;<a runat="server" id="scenicname"></a></p>
+    <div id="mainscenic">
+        <div class="mainscbg">
+            <img runat="server" id="ImgMainScenic" class="mainscenicimg" src="" /></div>
+        <div id="maintitle">
+            <h2 runat="server" id="maintitlett">
+            </h2>
+            <div class="themespan">
+                主题标签
+                <asp:Repeater ID="rpttopic" runat="server">
+                    <ItemTemplate>
+                        <span>
+                            <%# Eval("Name") %></span>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+            <div class="sclv">
+                <span>景区级别:</span><%=sclevel%>
+            </div>
+            <div class="scaddr">
+                地址：<%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
+            </div>
+            <div class="scdesc">
+                有奇峰一百六、异洞二十七，有“桂林之秀、黄山之气、华山之险”的美誉。...<a href="#plate2">景区简介</a>
+            </div>
+            <div class="ordertype">
+                <h3>
+                    订票方式</h3>
+                <span>网上购买</span><span>预订</span><span>明信片预订</span>
+            </div>
+            <div class="paytype">
+                <h3>
+                    付款方式</h3>
+                <span>网上支付</span><span>景区现付</span>
+            </div>
+        </div>
+        <div id="priceinfo">
+            <p class="captitle">
+                <img src="/theme/default/image/newversion/icon.gif" />门票种类和价格</p>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr class="tstr">
+                        <td>
+                            景区门票
+                        </td>
+                        <td>
+                            门票原价
+                        </td>
+                        <td>
+                            明信片优惠价
+                        </td>
+                        <td>
+                            景区现付价
+                        </td>
+                        <td>
+                            在线支付价
+                        </td>
+                        <td>
+                            操作
+                        </td>
+                    </tr>
+                </tbody>
+                    <asp:Repeater ID="rpttp" runat="server">
+                        <ItemTemplate>
+                            <tr class="pttr" onmouseover="" onmouseout="">
                             <td>
-                                套票
+                                <%# Eval("Name") %>
                             </td>
                             <td>
-                                130
+                                <%# Eval("TicketPrice[0].Price","{0:0}")%>
                             </td>
                             <td>
-                                104
+                                <%# Eval("TicketPrice[1].Price", "{0:0}")%>
                             </td>
                             <td>
-                                104
+                                <%# Eval("TicketPrice[2].Price", "{0:0}")%>
                             </td>
                             <td style="color: #E8641B; font-weight: bold">
-                                90
+                                <%# Eval("TicketPrice[3].Price", "{0:0}")%>
                             </td>
                             <td style="text-align: center;">
                                 <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" />
                             </td>
-                        </tr>
-                        <tr class="pttr2">
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                
+                    <asp:Repeater ID="rptcom" runat="server">
+                        <ItemTemplate>
+                            <tr class="pttr2">
                             <td>
-                                鼎湖峰
+                                <%# Eval("Name") %>
                             </td>
                             <td>
-                                60
+                                <%# Eval("TicketPrice[0].Price", "{0:0}")%>
                             </td>
                             <td>
-                                48
+                                <%# Eval("TicketPrice[1].Price", "{0:0}")%>
                             </td>
                             <td>
-                                48
+                                <%# Eval("TicketPrice[2].Price", "{0:0}")%>
                             </td>
                             <td style="color: #E8641B; font-weight: bold">
-                                40
+                                <%# Eval("TicketPrice[3].Price", "{0:0}")%>
                             </td>
-                            <td style="text-align:center;">
-                                <input id="Button2" type="button" class="btnputcart" value="放入购物车" />
+                            <td style="text-align: center;">
+                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" />
                             </td>
-                        </tr>
-                    </table>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+            </table>
+        </div>
+        <div id="introordertk">
+            <p class="captitle">
+                <img src="/theme/default/image/newversion/icon.gif" />订票说明</p>
+            <div class="otinfo">
+                <%=booknote %>
+            </div>
+        </div>
+        <div id="allinfo">
+            <p class="captitle">
+                <img src="/theme/default/image/newversion/icon.gif" />景区概况</p>
+            <div class="selectinfospan">
+                <span class="highselected" onclick="btnselect(this)">景区简介</span> <span onclick="btnselect(this)">
+                    交通指南</span>
+            </div>
+            <div id="changeinfo">
+                <div id="plate2">
+                    仙都，位于浙江省丽水市缙云县境内，是一处以峰岩奇绝、山水神秀为景观特色，融田园风光与人文史迹为一体，以观光、避暑休闲<br />
+                    和开展科学、文化活动为一体的国家级重点风景名胜区；亦是一个山明水秀、景物优美、气候宜人的游览胜地。境内九曲练溪，十里<br />
+                    画廊，山水飘逸，云雾缭绕。<br />
+                    仙都，是一处以峰岩奇绝、山水神秀为特色、融田园风光与人文史迹为一体，以观光、休闲、度假和科普为主的国家级重点风景<br />
+                    名胜区、国家首批AAAA级旅游区。境内九曲练溪、十里画廊；山水飘逸、云雾缭绕。有奇峰一百六、异洞二十七，有“桂林之秀、<br />
+                    黄山之奇、华山之险”的美誉。仙都风景名胜区由仙都、黄龙、岩门、大洋四大景区组成<br />
+                    <asp:Repeater runat="server" ID="rptft">
+                        <ItemTemplate>
+                            <div class="sconeft">
+                                <img class="imgft" alt='<%# Eval("Description") %>' src='<%# Eval("Name","/ScenicImg/{0}") %>' />
+                                <p runat="server" id="fttitle1">
+                                    <%# Eval("Title")%>
+                                </p>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </div>
-
-                <div id="introordertk">
-                    <p class="captitle"><img src="/theme/default/image/newversion/icon.gif" />订票说明</p>
-                    <div class="otinfo">
-                            <%=booknote %>
-                     </div>
-                </div>
-
-
-                <div id="allinfo">
-                    <p class="captitle"><img src="/theme/default/image/newversion/icon.gif" />景区概况</p>
-                    <div class="selectinfospan">
-                        <span class="highselected" onclick="btnselect(this)">景区简介</span> <span onclick="btnselect(this)">
-                            交通指南</span>
+                <p id="plap">
+                    交通指南</p>
+                <div id="plate1">
+                    <div id="containtermap">
                     </div>
-                    <div id="changeinfo">
-                        <div id="plate2">
-                            仙都，位于浙江省丽水市缙云县境内，是一处以峰岩奇绝、山水神秀为景观特色，融田园风光与人文史迹为一体，以观光、避暑休闲<br />
-                            和开展科学、文化活动为一体的国家级重点风景名胜区；亦是一个山明水秀、景物优美、气候宜人的游览胜地。境内九曲练溪，十里<br />
-                            画廊，山水飘逸，云雾缭绕。<br />
-                            仙都，是一处以峰岩奇绝、山水神秀为特色、融田园风光与人文史迹为一体，以观光、休闲、度假和科普为主的国家级重点风景<br />
-                            名胜区、国家首批AAAA级旅游区。境内九曲练溪、十里画廊；山水飘逸、云雾缭绕。有奇峰一百六、异洞二十七，有“桂林之秀、<br />
-                            黄山之奇、华山之险”的美誉。仙都风景名胜区由仙都、黄龙、岩门、大洋四大景区组成<br />
-                            <asp:Repeater runat="server" ID="rptft">
-                                <ItemTemplate>
-                                    <div class="sconeft">
-                                        <img class="imgft" alt='<%# Eval("Description") %>' src='<%# Eval("Name","/ScenicImg/{0}") %>' />
-                                        <p runat="server" id="fttitle1">
-                                            <%# Eval("Title")%>
-                                        </p>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </div>
-                            <p id="plap">交通指南</p>
-                        <div id="plate1">
-                            <div id="containtermap">
-                            </div>
-                            <div class="rdinfo">
-                                从上海到浙江仙都可坐火车到缙云火车站。出站走进二百米到山叉路口，向右转是去县城，一直往下是往鼎湖峰。再次地可乘过路车
-                                到鼎湖峰，不用到县城。出站后也可直接雇面包车（20元）到鼎湖峰。&nbsp;&nbsp;&nbsp;到鼎湖峰方向的车很多，几十分钟就有一辆，也可乘到
-                                壶镇的车，但在鼎湖峰前面的岔路口就要下车，往里还要走一段路。所以最好乘到铁城（芙蓉峡）的中巴，先到铁城或先到鼎湖峰下车均可。到铁城是三块板，
-                                到鼎湖峰二块。在景区可花40元左右（淡季价）包一辆残疾车一天，然后就可以随心所欲地玩了。晚上可乘火车离开，下午5：:3,7:30,9:30都有火车。地的治安也不错。
-                            </div>
-                        </div>
+                    <div class="rdinfo">
+                        <%=transguid %>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
     <div id="mainbody" style="display: none">
         <div>
             <div class="leftimg">
@@ -456,7 +469,6 @@
                     <p>
                         地图&nbsp;&nbsp;&nbsp;&nbsp;<a runat="server" id="searchbigmap" style="font-weight: normal;"
                             href="/map/Default.aspx">[查看大图]</a></p>
-                    
                 </div>
             </div>
         </div>
@@ -530,5 +542,6 @@
             </div>
         </div>
     </div>
-    <img src="/theme/default/image/newversion/backtop.png" width="41px" height="49px" class="backtop" />
+    <img src="/theme/default/image/newversion/backtop.png" width="41px" height="49px"
+        class="backtop" />
 </asp:Content>

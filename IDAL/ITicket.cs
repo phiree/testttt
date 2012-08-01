@@ -16,5 +16,6 @@ namespace IDAL
         IList<Model.Ticket> Search(string q, int pageIndex, int pageSize, out int totalRecord);
         Ticket Get(int ticketId);
         Ticket GetByScenicSeo(string scenicSeoName);
+        IList<Ticket> GetTp(int scid);
     }
 }
