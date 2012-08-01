@@ -29,7 +29,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB", "{61ADBB5F-2F0
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "4817"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -44,6 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{3A2FC873-64D
 		lib\AspNetPager.xml = lib\AspNetPager.xml
 		lib\Castle.Core.dll = lib\Castle.Core.dll
 		lib\Castle.Core.xml = lib\Castle.Core.xml
+		F:\JYSystem\Bin\CKEditor.NET.dll = F:\JYSystem\Bin\CKEditor.NET.dll
 		lib\FluentNHibernate.dll = lib\FluentNHibernate.dll
 		lib\FluentNHibernate.pdb = lib\FluentNHibernate.pdb
 		lib\FluentNHibernate.XML = lib\FluentNHibernate.XML
