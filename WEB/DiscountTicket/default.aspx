@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.master" AutoEventWireup="true"
-    CodeFile="DiscountTicket.aspx.cs" Inherits="DiscountTicket_DiscountTicket" %>
+    CodeFile="default.aspx.cs" Inherits="DiscountTicket_DiscountTicket" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
@@ -29,6 +29,13 @@
         </div>
         <div class="themediv">
             <span class="themedivspan" style="color: #009F3C;">旅游主题 </span>
+            <a runat="server" id="hrefTopicAll">全部</a>
+            <asp:Repeater ID="rptTopic" runat="server" 
+                onitemdatabound="rptTopic_ItemDataBound">
+                <ItemTemplate>
+                    <a runat="server" id="hltopic"><%# Eval("Name") %></a>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
         <div class="leveldiv">
             <span style="color: #009F3C; float:left; display:block; height:25px; width:55px;" >景区级别:</span> <a runat="server" id="hlLevelAll">全部</a>

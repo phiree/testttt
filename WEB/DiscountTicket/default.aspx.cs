@@ -17,12 +17,13 @@ public partial class DiscountTicket_DiscountTicket : basepage
     BLLScenic bllscenic = new BLLScenic();
     BLLTicket bllTicket = new BLLTicket();
     BLLMembership bllMember = new BLLMembership();
+    BLLTopic blltopic = new BLLTopic();
     BLLArea bllArea = new BLLArea();
     /// 用于构建两个查询的链接
     /// </summary>
     string UrlQuery = string.Empty;
     int areaId = 0, level = 0;
-    string areaSeoName, levelname;
+    string areaSeoName, levelname,topicname;
     Area area;
     CommonLibrary.UrlParamHelper urlParamHelper;
     protected void Page_Load(object sender, EventArgs e)
@@ -43,6 +44,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
 
         areaSeoName = Request["area"];
         levelname = Request.QueryString["level"];
+        topicname = Request.QueryString["topicname"];
         if (levelname != null)
         {
             int.TryParse(levelname.TrimEnd('a'), out level);
@@ -56,7 +58,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
             BindLevelLinks();
             BindTicketList();
             SetSeo();
-
+            BindTopic();
         }
 
     }
@@ -131,6 +133,13 @@ public partial class DiscountTicket_DiscountTicket : basepage
     }
 
 
+    private void BindTopic()
+    {
+        rptTopic.DataSource = blltopic.GetAllTopics();
+        rptTopic.DataBind();
+    }
+
+
 
     protected void rptscenic_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
@@ -178,6 +187,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
     }
     const string queryArea = "area";
     const string queryLevel = "level";
+    const string queryTopic = "topic";
     protected void rptArea_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -273,5 +283,25 @@ public partial class DiscountTicket_DiscountTicket : basepage
         BatchSeoData seodata = SeoHandler.GetSeoData_Home(area, level, pageIndex);
         this.Title = seodata.Title;
         this.MetaKeywords = seodata.KeyWord;
+    }
+    protected void rptTopic_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            Model.Topic topic = e.Item.DataItem as Model.Topic;
+
+
+            HtmlAnchor hreftopic = e.Item.FindControl("hltopic") as HtmlAnchor;
+            hreftopic.HRef = BuildLink(queryTopic, topic.seoname);
+            if (string.IsNullOrEmpty(topicname))
+            {
+                hrefTopicAll.Attributes["class"] = "hlt";
+            }
+            else if (areaSeoName == area.SeoName)
+            {
+                hreftopic.Attributes["class"] = "hlt";
+            }
+
+        }
     }
 }

@@ -60,7 +60,7 @@
             </div>
             <div class="NavList">
                     <div  class="navlistnb">
-                    <a class="navhight" href="/">首页</a><div class="navsper"></div><a class="navhight" href="/DiscountTicket/DiscountTicket.aspx">打折门票</a><div class="navsper"></div> <a>旅游明信片</a><div class="navsper"></div> <a href="/map/Map.aspx">地图版</a>
+                    <a class="navhight" href="/">首页</a><div class="navsper"></div><a class="navhight" href="/DiscountTicket/default.aspx">打折门票</a><div class="navsper"></div> <a>旅游明信片</a><div class="navsper"></div> <a href="/map/Map.aspx">地图版</a>
                     <div class="chartdiv">
                         <img src="/theme/default/image/newversion/charticon.gif" />
                         <span>购物车/&nbsp;&nbsp;<strong>3</strong>个景区</span>
