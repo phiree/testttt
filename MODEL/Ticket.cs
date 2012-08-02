@@ -20,7 +20,7 @@ namespace Model
         //public virtual TicketsType TicketsType { get; set; }
         public virtual Scenic Scenic { get; set; }
         public virtual bool Lock { get; set; }
-        
+        public virtual bool IsMain { get; set; }
         public virtual IList<TicketPrice> TicketPrice { get; set; }
         /// <summary>
         /// 获得某个类型的票价
