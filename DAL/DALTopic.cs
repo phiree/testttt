@@ -17,11 +17,11 @@ namespace DAL
         }
 
 
-        public IList<Model.ScenicTopic> GetStByscid(int scid)
+        public Model.ScenicTopic GetStByscid(int scid)
         {
             string sql = "select st from ScenicTopic st where st.Scenic.Id=" + scid + "";
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.ScenicTopic>().ToList<Model.ScenicTopic>();
+            return query.FutureValue<ScenicTopic>().Value;
         }
 
 
@@ -50,23 +50,15 @@ namespace DAL
 
         public void Save(IList<string> topicname, int scenicid)
         {
-            //ScenicTopic st = GetStByscid(scenicid);
-            //IList<Topic> topicsource = GetAllTopics();
-            //IList<Topic> topicresult = new List<Topic>();
-            //foreach (var item in topicname)
-            //{
-            //    var tmp = topicsource.Where(x => x.Name == item).First();
-            //    st.Topic=tmp;
-            //    session.SaveOrUpdate(st);
-            //}
-        }
-
-
-        public IList<ScenicTopic> GetStByTopicid(Guid topid)
-        {
-            string sql = "select st from ScenicTopic st where st.Topic.Id='" + topid + "'";
-            IQuery query = session.CreateQuery(sql);
-            return query.Future<ScenicTopic>().ToList<ScenicTopic>();
+            ScenicTopic st = GetStByscid(scenicid);
+            IList<Topic> topicsource = GetAllTopics();
+            IList<Topic> topicresult = new List<Topic>();
+            foreach (var item in topicname)
+            {
+                var tmp = topicsource.Where(x => x.Name == item);
+                st.Topic=tmp.First();
+                session.SaveOrUpdate(st);
+            }
         }
     }
 }
