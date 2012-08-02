@@ -6,15 +6,11 @@
     <script type="text/javascript">
         $(function () {
             $(".tagstore>a").click(function () {
-                var content = $("#taglist").html() + "<li>" + $(this).html() + "</li>";
+                var content = $("#taglist").html() + "<li onclick='delitem(this)'>" + $(this).html() + "</li>";
                 $("#taglist").html(content);
             });
-            $("#taglist>li").click(function () {
-                alert("hi~");
-                $(this).remove();
-            });
             $("#btnok").click(function () {
-                var scenicnames="";
+                var scenicnames = "";
                 $("#taglist>li").each(function () {
                     scenicnames += $(this).html() + "+";
                 });
@@ -29,11 +25,22 @@
                 });
             });
         });
+        function delitem(obj) {
+                $(obj).remove();
+            }
+            function saveitem() {
+                var scenicnames = "";
+                $("#taglist>li").each(function () {
+                    scenicnames += $(this).html() + "+";
+                });
+                $("#<%=hiddentag.ClientID%>").val(scenicnames);
+            }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <div >
 <br />
+        <asp:HiddenField ID="hiddentag" runat="server" />
     <div>
         <p>
             你可能感兴趣的标签：</p>
@@ -53,7 +60,7 @@
         <ul id="taglist">
         <asp:Repeater ID="rptTopicOwn" runat="server">
             <ItemTemplate>
-            <li><%#Eval("Name") %></li>
+            <li onclick='delitem(this)'><%#Eval("Name") %></li>
             </ItemTemplate>
         </asp:Repeater>
             </ul>
@@ -61,4 +68,5 @@
         </div>
     </div>
     <input id="btnok" type="button"value="确定" />
+    <asp:Button ID="btnsave" runat="server" Text="保存" OnClientClick="saveitem()" onclick="btnsave_Click" />
 </asp:Content>
