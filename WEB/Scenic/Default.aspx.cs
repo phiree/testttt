@@ -26,6 +26,7 @@ public partial class Scenic_Default : System.Web.UI.Page
     public string booknote = "";
     public string sclevel = "";
     public string transguid = "";
+    public string scdesc = "";
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -68,6 +69,7 @@ public partial class Scenic_Default : System.Web.UI.Page
         scaddress = scenic.Address;
         booknote = scenic.BookNote;
         sclevel = scenic.Level;
+        scdesc = scenic.Desec;
         transguid = scenic.TransGuid;
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
@@ -77,25 +79,25 @@ public partial class Scenic_Default : System.Web.UI.Page
             scdescription.InnerHtml = scenic.Desec;
         }
         //添加辅图
-        IList<ScenicImg> ilist=bllscenicimg.GetSiByType(scenic, 2);
-        if (ilist.Count <= 6)
-        {
-            imgcount = ilist.Count;
-            rptft.DataSource = ilist;
-            rptft.DataBind();
-        }
-        else
-        {
-            List<ScenicImg> ftlist = new List<ScenicImg>();
-            for (int i = 0; i < 6; i++)
-            {
-                ftlist.Add(ilist[i]);
-            }
+        //IList<ScenicImg> ilist=bllscenicimg.GetSiByType(scenic, 2);
+        //if (ilist.Count <= 6)
+        //{
+        //    imgcount = ilist.Count;
+        //    rptft.DataSource = ilist;
+        //    rptft.DataBind();
+        //}
+        //else
+        //{
+        //    List<ScenicImg> ftlist = new List<ScenicImg>();
+        //    for (int i = 0; i < 6; i++)
+        //    {
+        //        ftlist.Add(ilist[i]);
+        //    }
             
-            imgcount = 6;
-            rptft.DataSource = ftlist;
-            rptft.DataBind();
-        }
+        //    imgcount = 6;
+        //    rptft.DataSource = ftlist;
+        //    rptft.DataBind();
+        //}
 
 
         ydhtprice.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 2).Price.ToString("0");

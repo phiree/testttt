@@ -20,6 +20,9 @@ public partial class ScenicManager_Default2 : System.Web.UI.Page
 
     private void bind()
     {
+        Scenic scenic = Master.Scenic;
+        CkBookNote.Text = scenic.BookNote;
+        CkScjj.Text = scenic.Desec;
     }
     protected void BtnSave_Click(object sender, EventArgs e)
     {

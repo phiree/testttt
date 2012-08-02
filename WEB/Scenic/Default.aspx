@@ -312,22 +312,7 @@
             </div>
             <div id="changeinfo">
                 <div id="plate2">
-                    仙都，位于浙江省丽水市缙云县境内，是一处以峰岩奇绝、山水神秀为景观特色，融田园风光与人文史迹为一体，以观光、避暑休闲<br />
-                    和开展科学、文化活动为一体的国家级重点风景名胜区；亦是一个山明水秀、景物优美、气候宜人的游览胜地。境内九曲练溪，十里<br />
-                    画廊，山水飘逸，云雾缭绕。<br />
-                    仙都，是一处以峰岩奇绝、山水神秀为特色、融田园风光与人文史迹为一体，以观光、休闲、度假和科普为主的国家级重点风景<br />
-                    名胜区、国家首批AAAA级旅游区。境内九曲练溪、十里画廊；山水飘逸、云雾缭绕。有奇峰一百六、异洞二十七，有“桂林之秀、<br />
-                    黄山之奇、华山之险”的美誉。仙都风景名胜区由仙都、黄龙、岩门、大洋四大景区组成<br />
-                    <asp:Repeater runat="server" ID="rptft">
-                        <ItemTemplate>
-                            <div class="sconeft">
-                                <img class="imgft" alt='<%# Eval("Description") %>' src='<%# Eval("Name","/ScenicImg/{0}") %>' />
-                                <p runat="server" id="fttitle1">
-                                    <%# Eval("Title")%>
-                                </p>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                    <%=scdesc %>
                 </div>
                 <p id="plap">
                     交通指南</p>
