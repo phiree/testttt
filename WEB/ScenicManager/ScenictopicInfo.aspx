@@ -74,6 +74,5 @@
         </asp:Repeater>
             </ul>
     </div>
-    <input id="btnok" type="button"value="确定" />
     <asp:Button ID="btnsave" runat="server" Text="保存" OnClientClick="saveitem()" onclick="btnsave_Click" />
 </asp:Content>

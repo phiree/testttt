@@ -11,6 +11,7 @@ public partial class Manager_ScenicTopicSetting : System.Web.UI.Page
 {
     BLLArea bllArea = new BLLArea();
     BLLTopic bllTopic = new BLLTopic();
+    BLLBackManager bllmanager = new BLLBackManager();
     
 
     protected void Page_Load(object sender, EventArgs e)
@@ -32,8 +33,8 @@ public partial class Manager_ScenicTopicSetting : System.Web.UI.Page
 
     private void BindTopics()
     {
-        IList<Model.ScenicTopic> scenictopicList = bllTopic.GetScenicTopics( ddlArea.SelectedValue);
-        rptScenic.DataSource = scenictopicList;
+        IList<Model.Scenic> scenicList = bllmanager.GetScenicList(" where s.Area.Code=" + ddlArea.SelectedValue);
+        rptScenic.DataSource = scenicList;
         rptScenic.DataBind();
     }
 
@@ -42,8 +43,8 @@ public partial class Manager_ScenicTopicSetting : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             Repeater rep = e.Item.FindControl("rptTopic") as Repeater;//找到里层的repeater对象
-            DataRowView rowv = (DataRowView)e.Item.DataItem;//找到分类Repeater关联的数据项 
-            int scenicid = Convert.ToInt32(rowv["Id"]); //获取填充子类的id 
+            Model.Scenic s = (Model.Scenic)e.Item.DataItem;//找到分类Repeater关联的数据项 
+            int scenicid = Convert.ToInt32(s.Id); //获取填充子类的id 
             rep.DataSource = bllTopic.GetTopicByscid(scenicid);
             rep.DataBind();
         }

@@ -10,7 +10,7 @@
         </asp:DropDownList>&nbsp;
         <asp:Button runat="server" ID="btnSearch" CssClass="btnok" OnClick="btnSearch_Click" />
     </div>
-    <asp:Repeater ID="rptScenic" runat="server" >
+    <asp:Repeater ID="rptScenic" runat="server" OnItemDataBound="rptScenic_ItemDataBound" >
         <HeaderTemplate>
             <table class="tblist" cellpadding="0" cellspacing="1" border="1px">
                 <tr class="thead">
@@ -28,17 +28,18 @@
         <ItemTemplate>
             <tr>
                 <td style="text-align:center">
-                    <%#Eval("Scenic.Name")%>
+                    <%#Eval("Name")%>
                 </td>
                 <td style="text-align:center">
                     <asp:Label ID="lblaccount" runat="server">
-                        <asp:repeater runat="server">
-    <itemtemplate><%# Eval("Topic")%></itemtemplate>
+                        <asp:repeater ID="rptTopic" runat="server">
+    <itemtemplate><%# Eval("Name")%>  </itemtemplate>
 </asp:repeater>
                     </asp:Label>
                 </td>
                 <td style="text-align:center">
-                   &nbsp; <asp:Button ID="btncz" runat="server" Text="修改" CommandName="reset" CommandArgument='<%#Eval("Id") %>' />
+                   &nbsp; 
+                    <a href='/manager/scenictopicsetting2.aspx?scid=<%#Eval("Id") %>'>修改</a>
                 </td>
                 
             </tr>
