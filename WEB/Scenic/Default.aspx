@@ -12,8 +12,8 @@
 
         var cart = new Cart();
         function AddToCart() {
-            var qty = $("#txtTicketCount").val();
-            cart.AddToCart(GetTicketId(), qty);
+            //var qty = $("#txtTicketCount").val();
+            cart.AddToCart(GetTicketId(), 1);
             window.location.href = "/order/cart.aspx";
         }
 
@@ -206,7 +206,7 @@
                 地址：<%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
             </div>
             <div class="scdesc">
-                有奇峰一百六、异洞二十七，有“桂林之秀、黄山之气、华山之险”的美誉。...<a href="#plate2">景区简介</a>
+                <%=scshortdesc %><a href="#plate2">景区简介</a>
             </div>
             <div class="ordertype">
                 <h3>
@@ -264,7 +264,7 @@
                                 <%# Eval("TicketPrice[3].Price", "{0:0}")%>
                             </td>
                             <td style="text-align: center;">
-                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" />
+                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart()" />
                             </td>
                             </tr>
                         </ItemTemplate>
@@ -289,7 +289,7 @@
                                 <%# Eval("TicketPrice[3].Price", "{0:0}")%>
                             </td>
                             <td style="text-align: center;">
-                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" />
+                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart()" />
                             </td>
                             </tr>
                         </ItemTemplate>

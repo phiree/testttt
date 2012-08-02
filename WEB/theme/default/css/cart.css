@@ -21,10 +21,12 @@
     float: left;
     margin: 0 !important;
     margin-left: 5px !important;
+    vertical-align:middle;
+    margin-top:2px !important;
     width: 40px;
     text-align:center;
-    height:18px;
-    _height:16px;
+    height:15px;
+    _height:12px;
 }
 .delete
 {
@@ -56,12 +58,14 @@
 {
     background-color: #A7D991;
     color: Black;
+    height:30px;
 }
 .orderlist thead tr td
 {
     font-weight:bold;
     color:White;
     padding:0px;
+    height:30px;
 }
 .orderlist tfoot
 {
@@ -81,9 +85,9 @@
 #payaction
 {
     float: right;
-    margin-right: 80px;
+    margin-right: 10px;
     margin-top: 30px;
-    _margin-right:40px;
+    _margin-right:5px;
 }
 #payaction a
 {
@@ -151,6 +155,7 @@
     font-size:20px;
     font-weight:bold;
     color:#EF6782;
+    margin-right:5px;
 }
 .cartbtnok:link,.cartbtnok:active,.cartbtnok:visited
 {

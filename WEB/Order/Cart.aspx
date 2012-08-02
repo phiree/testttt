@@ -63,10 +63,10 @@
                                     <%#Eval("Scenic.Name") %></a>
                             </td>
                             <td>
-                            
+                                <%# Eval("Name") %>
                             </td>
                             <td>
-                            
+                                <%# Eval("TicketPrice[0].Price","{0:0}")%>
                             </td>
                             <td>
                                 <span class="priceorder">
@@ -78,8 +78,8 @@
                                 </span>
                             </td>
                             <td style="width:200px">
-                                <span class="qtyCut qtyBtn" style="margin-left:60px;_margin-left:30px;">-</span><input class="qtyModify" runat="server" id="inputQty"
-                                    type="text" /><span class="qtyAdd qtyBtn">+</span>
+                                <span class="qtyCut qtyBtn" style="margin-left:60px;_margin-left:30px; margin-top:2px; background:url('/Img/btnjian2.jpg'); background-repeat:no-repeat;border:0px;"></span><input class="qtyModify" runat="server" id="inputQty"
+                                    type="text" /><span class="qtyAdd qtyBtn" style="background:url('/Img/btnjian2.jpg'); background-repeat:no-repeat;border:0px; margin-top:2px;">+</span>
                             </td>
                             <td>
                                 <span class="delete">删除</span>

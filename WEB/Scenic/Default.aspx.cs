@@ -27,6 +27,7 @@ public partial class Scenic_Default : System.Web.UI.Page
     public string sclevel = "";
     public string transguid = "";
     public string scdesc = "";
+    public string scshortdesc = "";
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -71,6 +72,7 @@ public partial class Scenic_Default : System.Web.UI.Page
         sclevel = scenic.Level;
         scdesc = scenic.Desec;
         transguid = scenic.TransGuid;
+        scshortdesc = scenic.Desec.Substring(0, 30) + "...";
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/" + listsi[0].Name;
@@ -126,10 +128,9 @@ public partial class Scenic_Default : System.Web.UI.Page
         var result = from pair in listticket orderby pair.TicketPrice[0] descending select pair;
         List<Ticket> listtp = new List<Ticket>();
         List<Ticket> listcom = new List<Ticket>();
-        int cc = 1;
-        foreach (Ticket item in result)
+        foreach (Ticket item in listticket)
         {
-            if (cc == 1)
+            if (item.IsMain)
             {
                 listtp.Add(item);
             }
