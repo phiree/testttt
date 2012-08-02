@@ -195,7 +195,7 @@
                 <asp:Repeater ID="rpttopic" runat="server">
                     <ItemTemplate>
                         <span>
-                            <%# Eval("Name") %></span>
+                            <%# Eval("Topic.Name") %></span>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>

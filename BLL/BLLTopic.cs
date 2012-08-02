@@ -32,7 +32,7 @@ namespace BLL
             return Iticket.GetScenictopic(areacode);
         }
 
-        public Model.ScenicTopic GetStByscid(int scid)
+        public IList<Model.ScenicTopic> GetStByscid(int scid)
         {
             return Iticket.GetStByscid(scid);
         }

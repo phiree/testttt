@@ -18,7 +18,7 @@ public partial class Layout : System.Web.UI.MasterPage
         ChooseScenic();
         IsShow();
         BindVisited();
-        BindLikeScenic();
+        //BindLikeScenic();
         bindzbsc();
     }
 

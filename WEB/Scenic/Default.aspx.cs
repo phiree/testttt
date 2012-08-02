@@ -116,7 +116,7 @@ public partial class Scenic_Default : System.Web.UI.Page
         rptzbsc.DataBind();
         
         //绑定主题
-        rpttopic.DataSource = blltopic.GetStByscid(scenic.Id).Topic;
+        rpttopic.DataSource = blltopic.GetStByscid(scenic.Id);
         rpttopic.DataBind();
 
         //绑定套票
