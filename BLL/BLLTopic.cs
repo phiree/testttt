@@ -51,5 +51,9 @@ namespace BLL
         {
             return Iticket.GetAllTopics();
         }
+        public IList<ScenicTopic> GetStByTopicid(Guid topid)
+        {
+            return Iticket.GetStByTopicid(topid);
+        }
     }
 }

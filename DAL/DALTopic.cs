@@ -60,5 +60,13 @@ namespace DAL
             //    session.SaveOrUpdate(st);
             //}
         }
+
+
+        public IList<ScenicTopic> GetStByTopicid(Guid topid)
+        {
+            string sql = "select st from ScenicTopic st where st.Topic.Id='" + topid + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<ScenicTopic>().ToList<ScenicTopic>();
+        }
     }
 }
