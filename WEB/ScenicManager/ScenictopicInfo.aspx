@@ -14,14 +14,17 @@
                 $(this).remove();
             });
             $("#btnok").click(function () {
-                $("#taglist>li");
+                var scenicnames="";
+                $("#taglist>li").each(function () {
+                    scenicnames += $(this).html() + "+";
+                });
                 $.ajax({
                     type: "Post",
                     url: "TopicHandler.ashx",
                     dataType: "json",
-                    data: { 'ticketname': ticketname, 'yuanjia': yuanjia, 'mingxipianjia': mingxipianjia, 'xianfujia': xianfujia, 'zaixianjia': zaixianjia, "ticketid": ticketid, "scid": scid },
+                    data: { 'scenicnames': scenicnames, "scid": 10 },
                     success: function (data, status) {
-                        result &= data;
+                        alert("ok");
                     }
                 });
             });

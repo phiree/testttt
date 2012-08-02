@@ -151,7 +151,7 @@ public partial class Layout : System.Web.UI.MasterPage
     #region 查找相似景区算法
     private List<Scenic> SearchLikeSc()
     {
-        List<Topic> listst = blltopic.GetStByscid(scenic.Id).Topic.ToList();
+        List<Topic> listst = null;//blltopic.GetStByscid(scenic.Id).Topic.ToList();
         List<Scenic> listsc = new List<Scenic>(); //获取到的所有的景区，其中有重复项
         Dictionary<int, int> dic = new Dictionary<int, int>();
         List<Scenic> listresult = new List<Scenic>();
@@ -160,7 +160,7 @@ public partial class Layout : System.Web.UI.MasterPage
             List<Topic> Listtt = blltopic.GetTopicByName(topic.Name).ToList();
             foreach (Topic t in Listtt)
             {
-                listsc.Add(t.Scenictopic.Scenic);
+                //listsc.Add(t.Scenictopic.Scenic);
             }
         }
         foreach (Scenic item in listsc)
