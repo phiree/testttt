@@ -24,7 +24,9 @@ namespace BLL
 
         public void Save(IList<string> topicname, int scenicid)
         {
-            Iticket.Save(topicname, scenicid);
+            Scenic s = new BLL.BLLScenic().GetScenicById(scenicid);
+            
+            Iticket.Save(topicname, s);
         }
 
         public IList<Model.ScenicTopic> GetScenicTopics(string areacode)

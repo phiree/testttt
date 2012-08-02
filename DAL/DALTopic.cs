@@ -48,17 +48,30 @@ namespace DAL
         }
 
 
-        public void Save(IList<string> topicname, int scenicid)
+        public void Save(IList<string> topicname, Scenic scenic)
         {
-            //ScenicTopic st = GetStByscid(scenicid);
-            //IList<Topic> topicsource = GetAllTopics();
-            //IList<Topic> topicresult = new List<Topic>();
-            //foreach (var item in topicname)
-            //{
-            //    var tmp = topicsource.Where(x => x.Name == item).First();
-            //    st.Topic=tmp;
-            //    session.SaveOrUpdate(st);
-            //}
+            IList<Topic> tlist = GetAllTopics();
+            IList<ScenicTopic> stlist = GetStByscid(scenic.Id);
+            if (stlist.Count > 0)
+            {
+                foreach (var item in stlist)
+                {
+                    session.Delete(item);
+                }
+            }
+            ScenicTopic st;
+            foreach (string item in topicname)
+            {
+                var tmp = tlist.Where(x => x.Name == item.Trim()).First();
+                st = new ScenicTopic() {
+                    Scenic = scenic,Topic=tmp
+                };
+                using (var t = session.BeginTransaction())
+                {
+                    session.SaveOrUpdate(st);
+                    t.Commit();
+                }
+            }
         }
 
 

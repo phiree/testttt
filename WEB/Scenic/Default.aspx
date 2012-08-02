@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="/Layout.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="Scenic_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">

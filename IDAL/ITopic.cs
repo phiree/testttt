@@ -9,7 +9,7 @@ namespace IDAL
     public interface ITopic
     {
         IList<Model.ScenicTopic> GetScenictopic(string areacode);
-        void Save(IList<string> topicname, int scenicid);
+        void Save(IList<string> topicname, Scenic scenic);
         IList<ScenicTopic> GetStByscid(int scid);
         IList<Topic> GetTopicByscid(int scid);
         IList<Model.Topic> GetAllTopics();

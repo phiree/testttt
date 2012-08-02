@@ -6,8 +6,17 @@
     <script type="text/javascript">
         $(function () {
             $(".tagstore>a").click(function () {
-                var content = $("#taglist").html() + "<li onclick='delitem(this)'>" + $(this).html() + "</li>";
-                $("#taglist").html(content);
+                var isexsit = false;
+                var selectedone = $(this).html();
+                $("#taglist>li").each(function () {
+                    if ($.trim($(this).html()) == $.trim(selectedone)) {
+                        isexsit = true;
+                    }
+                });
+                if (!isexsit) {
+                    var content = $("#taglist").html() + "<li onclick='delitem(this)'>" + selectedone + "</li>";
+                    $("#taglist").html(content);
+                }
             });
             $("#btnok").click(function () {
                 var scenicnames = "";
@@ -47,7 +56,7 @@
         <div class="tagstore">
             <asp:Repeater ID="rptTopicStore" runat="server">
                 <ItemTemplate>
-                    <a><%#Eval("Name") %></a>
+                    <a><%#Eval("Name")%></a>
                 </ItemTemplate>
             </asp:Repeater>
             </div>
@@ -64,8 +73,6 @@
             </ItemTemplate>
         </asp:Repeater>
             </ul>
-        <div class="clear">
-        </div>
     </div>
     <input id="btnok" type="button"value="确定" />
     <asp:Button ID="btnsave" runat="server" Text="保存" OnClientClick="saveitem()" onclick="btnsave_Click" />
