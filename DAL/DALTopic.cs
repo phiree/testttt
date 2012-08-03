@@ -48,7 +48,7 @@ namespace DAL
         }
 
 
-        public void Save(IList<string> topicname, Scenic scenic)
+        public void SaveScenictopic(IList<string> topicname, Scenic scenic)
         {
             IList<Topic> tlist = GetAllTopics();
             IList<ScenicTopic> stlist = GetStByscid(scenic.Id);
@@ -80,6 +80,17 @@ namespace DAL
             string sql = "select st from ScenicTopic st where st.Topic.Id='" + topid + "'";
             IQuery query = session.CreateQuery(sql);
             return query.Future<ScenicTopic>().ToList<ScenicTopic>();
+        }
+
+
+        public void SaveTopic(string topicname)
+        {
+            Topic t = new Topic() { Name=topicname};
+            using (var tr = session.BeginTransaction())
+            {
+                session.Save(t);
+                tr.Commit();
+            }
         }
     }
 }

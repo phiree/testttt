@@ -12,6 +12,10 @@ public partial class Manager_ScenicTopicSetting2 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (string.IsNullOrWhiteSpace(Request["scid"]))
+        {
+            Response.Redirect("/manager");
+        }
         if (!IsPostBack)
         {
             BindTopicStore();
@@ -28,7 +32,7 @@ public partial class Manager_ScenicTopicSetting2 : System.Web.UI.Page
 
     private void BindTopicOwn()
     {
-        scid=int.Parse(Request["scid"]);
+        scid = int.Parse(Request["scid"]);
         IList<Model.Topic> topics = bllTopic.GetTopicByscid(scid);
         rptTopicOwn.DataSource = topics;
         rptTopicOwn.DataBind();
@@ -38,7 +42,7 @@ public partial class Manager_ScenicTopicSetting2 : System.Web.UI.Page
     {
         scid = int.Parse(Request["scid"]);
         IList<string> topicnames = hiddentag.Value.Split(new char[] { '+' }, StringSplitOptions.RemoveEmptyEntries);
-        bllTopic.Save(topicnames, scid);
+        bllTopic.SaveScenictopic(topicnames, scid);
         BindTopicOwn();
     }
 }
