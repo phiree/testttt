@@ -72,7 +72,8 @@ public partial class Scenic_Default : System.Web.UI.Page
         sclevel = scenic.Level;
         scdesc = scenic.Desec;
         transguid = scenic.TransGuid;
-        scshortdesc = scenic.Desec.Substring(0, 30) + "...";
+        if (!string.IsNullOrEmpty(scenic.Desec))
+            scshortdesc = scenic.Desec.Substring(0, 30) + "...";
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/" + listsi[0].Name;
