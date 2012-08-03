@@ -38,7 +38,7 @@
                 下一张</div>
         </div>
     </div>
-    <div id="maindefault">
+    <div id="maindefault" style="display:none">
         <div class="defaultleft">
             <div class="webscenic">
                 <div class="webscenicdiv">

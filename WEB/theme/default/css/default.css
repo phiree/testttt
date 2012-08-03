@@ -50,40 +50,10 @@
     margin-top: 6px;
     list-style-type: none;
 }
-.hla, .hlv, .hla:link, .hlv:link, .hla:visited, .hlv:visited,.hla:active,.hlv:active,.hlt,.hlt:link,.hlt:active,.hlt:visited,.hlt:hover
-{
-    color: #009F3C;
-    font-weight: 700;
-    border:1px solid #A6DF9E;
-    background-color:#D1EFCD;
-}
-.hla,hlt
-{
-    background-color: #C3D0A2;
-    padding-top:5px;
-    padding-bottom:5px;
-    padding-left:7px;
-    padding-right:3px;
-    padding-right:0px \9;
-    margin:0px;
-}
-.leveldiv span,.leveldiv a
-{
-    display:block;
-    float:left;
-    line-height:25px;
-    margin-top:2px;
-}
-.hlv,.hlv:link,.hlv:active,.hlv:visited,.hlv:hover
-{
-    display:block;
-    width:40px;
-    text-align:center;
-    padding:0px;
-    height:25px !important;
-    line-height:25px !important;
-    overflow:hidden;
-}
+
+
+
+
 
 #toprecomm
 {
@@ -474,7 +444,6 @@ div:246
 {
     display:block;
     border:1px solid #DEDEDE;
-    height:162px;
     margin-left:10px;
     margin-right:10px;
     margin-top:2px;
@@ -537,6 +506,9 @@ div:246
     border:0px none White;
     border-top:1px dashed #C1C1C1;
     padding-top:15px;
+    display:inline-block;
+    width:708px;
+    padding-bottom:15px;
 }
 .leveldiv span,.themedivspan
 {
@@ -548,7 +520,7 @@ div:246
     margin-right:10px;
 }
 
-.areadiv .areadivspan
+ .areadivspan
 {
     font-weight:bold;
     margin-right:10px;
@@ -567,11 +539,12 @@ div:246
 {
     margin-left:10px;
     margin-right:10px;
-    margin-top:15px;
-    margin-bottom:15px;
+    margin-bottom:10px;
     border:0px none White;
     border-top:1px dashed #C1C1C1;
     padding-top:15px;
+    display:inline-block;
+    width:708px;
 }
 .areadiv
 {
@@ -580,6 +553,7 @@ div:246
     margin-top:15px;
     border:0px none White;
     margin-bottom:15px;
+    display:block !important;
 }
 
 #searchbody

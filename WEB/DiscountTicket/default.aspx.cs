@@ -45,6 +45,10 @@ public partial class DiscountTicket_DiscountTicket : basepage
         areaSeoName = Request["area"];
         levelname = Request.QueryString["level"];
         topicname = Request.QueryString["topic"];
+        if (topicname != null)
+        {
+            topicname = topicname.Substring(2);
+        }
         if (levelname != null)
         {
             int.TryParse(levelname.TrimEnd('a'), out level);
@@ -218,6 +222,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
     {
 
         hrefAllArea.HRef = BuildLink(queryArea, "", true);
+        hrefTopicAll.HRef = BuildLink(queryTopic, "", true);
         hlLevelAll.HRef = BuildLink(queryLevel, "", true);
         hlLevel3.HRef = BuildLink(queryLevel, "3a");
         hlLevel4.HRef = BuildLink(queryLevel, "4a");
@@ -290,7 +295,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
 
 
             HtmlAnchor hreftopic = e.Item.FindControl("hltopic") as HtmlAnchor;
-            hreftopic.HRef = BuildLink(queryTopic, topic.seoname);
+            hreftopic.HRef = BuildLink(queryTopic, "t_"+topic.seoname);
             if (string.IsNullOrEmpty(topicname))
             {
                 hrefTopicAll.Attributes["class"] = "hlt";

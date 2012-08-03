@@ -14,13 +14,13 @@
     <div id="selectdiv">
         <div class="areadiv">
             <span class="areadivspan" style="color: #009F3C;">所在城市:</span> <a runat="server"
-                id="hrefAllArea" t="area" style="margin-right: 10px;">全部 </a>
+                id="hrefAllArea" t="area" style="margin-right: 10px;">全部</a>
             <asp:Repeater runat="server" ID="rptAreas" OnItemDataBound="rptArea_ItemDataBound">
                 <HeaderTemplate>
                 </HeaderTemplate>
                 <ItemTemplate>
                     <a t="area" runat="server" id="hrefArea" style="margin-right: 10px;">
-                        <%# Eval("Name").ToString().Substring(3,2) %>
+                        <%# Eval("Name").ToString().Substring(3,2).Trim() %>
                     </a>
                 </ItemTemplate>
                 <FooterTemplate>
@@ -28,17 +28,17 @@
             </asp:Repeater>
         </div>
         <div class="themediv">
-            <span class="themedivspan" style="color: #009F3C;">旅游主题 </span>
-            <a runat="server" id="hrefTopicAll">全部</a>
+            <span class="themedivspan" style="color: #009F3C;">旅游主题:</span>
+            <a runat="server" id="hrefTopicAll" style="margin-right: 10px;">全部</a>
             <asp:Repeater ID="rptTopic" runat="server" 
                 onitemdatabound="rptTopic_ItemDataBound">
                 <ItemTemplate>
-                    <a runat="server" id="hltopic"><%# Eval("Name") %></a>
+                    <a runat="server" id="hltopic" style="margin-right: 10px;"><%# Eval("Name") %></a>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
         <div class="leveldiv">
-            <span style="color: #009F3C; float:left; display:block; height:25px; width:55px;" >景区级别:</span> <a runat="server" id="hlLevelAll">全部</a>
+            <span class="themedivspan" style="color: #009F3C;">景区级别:</span> <a runat="server" id="hlLevelAll">全部</a>
             <a runat="server" t="level" id="hlLevel5">5A</a> <a runat="server" t="level" id="hlLevel4">
                 4A</a> <a runat="server" t="level" id="hlLevel3">3A</a>
         </div>
@@ -81,7 +81,7 @@
         </asp:Repeater>
         <div id="pager" class="span-19 last" style="margin-left: 30px;">
             <uc:AspNetPager runat="server" EnableUrlRewriting="true" ID="pagerGot" CssClass="paginator"
-                UrlPaging="true" UrlPageIndexName="pgotindex" UrlRewritePattern="%area%/%level%/page_{0}.html"
+                UrlPaging="true" UrlPageIndexName="pgotindex" UrlRewritePattern="/%area%/%level%/page_{0}.html"
                 FirstPageText="首页" LastPageText="尾页" PageSize="12" NextPageText="下一页" CurrentPageButtonClass="cpb"
                 PrevPageText="上一页">
             </uc:AspNetPager>
