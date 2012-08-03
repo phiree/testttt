@@ -26,30 +26,38 @@ namespace DAL
         }
 
 
-        public IList<Model.Ticket> GetTicketByAreaIdAndLevel(int areaId, int level,int pageIndex,int pageSize ,out int totalRecord)
+        public IList<Model.Scenic> GetTicketByAreaIdAndLevel(int areaId, int level,string topic,int pageIndex,int pageSize ,out int totalRecord)
         {
-
-            string where = " where  1=1 and Lock=false ";
+            string where = " where  1=1 ";
             if (areaId > 0)
             {
-                where += " and  t.Scenic.Area=" + areaId;
+                where += " and  s.Area=" + areaId;
             }
             if (level > 0)
             {
-                where += " and t.Scenic.Level='" + level + "A'";
+                where += " and s.Level='" + level + "A'";
             }
-            string order = " order by t.Scenic.Name desc";
+            string order = " order by s.Name desc";
 
 
-            string fromwhere = " from Ticket t " + where;
-            string strQuery = "select t " + fromwhere + order ;
+            string fromwhere = " from Scenic s " + where;
+            string strQuery = "select s " + fromwhere + order ;
             string strQueryCount = "select count(*) " + fromwhere;
-
-
-            return Search(strQuery, strQueryCount, pageIndex, pageSize, out totalRecord);
-
-
-          
+            if(topic==null)
+            {
+                return  Search(strQuery, strQueryCount, pageIndex, pageSize, out totalRecord);
+            }
+            else
+            {
+                string topicsql = "select st from ScenicTopic st where st.Topic.seoname='" + topic + "'";
+                IQuery query = session.CreateQuery(topicsql);
+                List<Model.ScenicTopic> listtopic= query.Future<Model.ScenicTopic>().ToList<Model.ScenicTopic>();
+                query = session.CreateQuery(strQuery);
+                List<Model.Scenic> list = query.Future<Model.Scenic>().ToList<Model.Scenic>();
+                var result=from t in listtopic join l in list on t.Scenic.Id equals l.Id select l;
+                totalRecord = result.ToList<Model.Scenic>().Count;
+                return result.ToList<Model.Scenic>().Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            }         
         }
         public IList<Model.Ticket> Search(string q, int pageIndex, int pageSize, out int totalRecord)
         {
@@ -57,14 +65,16 @@ namespace DAL
 
             strQuery = "select t from Ticket t where t.Scenic.Name like '%" + q + "%'";
             strQueryCount = "select count(*) from Ticket t where t.Scenic.Name like '%"+q+"%'";
-            return Search(strQuery, strQueryCount, pageIndex, pageSize, out totalRecord);
+            //return Search(strQuery, strQueryCount, pageIndex, pageSize, out totalRecord);
+            totalRecord = 0;
+            return null;
         }
-        private IList<Model.Ticket> Search(string strQuery, string strQueryCount, int pageIndex, int pageSize, out int totalRecord)
+        private IList<Model.Scenic> Search(string strQuery, string strQueryCount, int pageIndex, int pageSize, out int totalRecord)
         {
              IQuery qryTotal = session.CreateQuery(strQueryCount);
             IQuery qry = session.CreateQuery(strQuery);
 
-            List<Model.Ticket> ticketList = qry.Future<Model.Ticket>().Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            List<Model.Scenic> ticketList = qry.Future<Model.Scenic>().Skip(pageIndex * pageSize).Take(pageSize).ToList();
             totalRecord =(int) qryTotal.FutureValue<long>().Value;
             return ticketList;
         }

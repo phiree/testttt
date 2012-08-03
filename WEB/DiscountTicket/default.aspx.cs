@@ -44,7 +44,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
 
         areaSeoName = Request["area"];
         levelname = Request.QueryString["level"];
-        topicname = Request.QueryString["topicname"];
+        topicname = Request.QueryString["topic"];
         if (levelname != null)
         {
             int.TryParse(levelname.TrimEnd('a'), out level);
@@ -119,7 +119,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         {
             level = int.Parse(levelname.Substring(0, 1));
         }
-        IList<Model.Ticket> ticketList = bllTicket.GetTicketByAreaIdAndLevel(areaId, level, pageIndex, pageSize, out totalRecord);
+        IList<Model.Scenic> ticketList = bllTicket.GetTicketByAreaIdAndLevel(areaId, level,topicname, pageIndex, pageSize, out totalRecord);
 
 
 
@@ -145,9 +145,9 @@ public partial class DiscountTicket_DiscountTicket : basepage
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
-            Model.Ticket t = e.Item.DataItem as Model.Ticket;
-            decimal priceNormal = t.GetPrice(Model.PriceType.Normal);
-            decimal priceOnline = t.GetPrice(Model.PriceType.PayOnline);
+            Model.Scenic t = e.Item.DataItem as Model.Scenic;
+            decimal priceNormal = t.Tickets[0].GetPrice(Model.PriceType.Normal);
+            decimal priceOnline = t.Tickets[0].GetPrice(Model.PriceType.PayOnline);
             Literal liPriceNormal = e.Item.FindControl("liPriceNormal") as Literal;
             Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
             liPriceNormal.Text = priceNormal.ToString("0");
@@ -166,7 +166,6 @@ public partial class DiscountTicket_DiscountTicket : basepage
             e.Item.Visible = totalRecord > 0;
             Label lblTotalRecord = e.Item.FindControl("lblTotalRecord") as Label;
             lblTotalRecord.Text = totalRecord.ToString();
-
         }
     }
     private int GetPageIndex()
@@ -223,7 +222,6 @@ public partial class DiscountTicket_DiscountTicket : basepage
         hlLevel3.HRef = BuildLink(queryLevel, "3a");
         hlLevel4.HRef = BuildLink(queryLevel, "4a");
         hlLevel5.HRef = BuildLink(queryLevel, "5a");
-
 
         BuildHignLightItems();
 
@@ -297,7 +295,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
             {
                 hrefTopicAll.Attributes["class"] = "hlt";
             }
-            else if (areaSeoName == area.SeoName)
+            else if (topicname == topic.seoname)
             {
                 hreftopic.Attributes["class"] = "hlt";
             }

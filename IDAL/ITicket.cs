@@ -12,7 +12,7 @@ namespace IDAL
         IList<Ticket> GetTicketByscId(int scid);
         void SaveOrUpdateTicket(Model.Ticket ticket);
        
-        IList<Ticket> GetTicketByAreaIdAndLevel(int areaId, int level, int pageSize, int pageIndex,out int totalRecord);
+        IList<Scenic> GetTicketByAreaIdAndLevel(int areaId, int level,string topic, int pageSize, int pageIndex,out int totalRecord);
         IList<Model.Ticket> Search(string q, int pageIndex, int pageSize, out int totalRecord);
         Ticket Get(int ticketId);
         Ticket GetByScenicSeo(string scenicSeoName);

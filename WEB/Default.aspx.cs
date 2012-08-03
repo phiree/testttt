@@ -108,25 +108,25 @@ public partial class _Default : basepage
     int pageIndex;
     private void BindTicketList()
     {
-        pageIndex = GetPageIndex();
-        int pageSize = pagerGot.PageSize;
+        //pageIndex = GetPageIndex();
+        //int pageSize = pagerGot.PageSize;
 
-        int level = 0;
-        if (!string.IsNullOrEmpty(levelname))
-        {
-         level=int.Parse(levelname.Substring(0,1));
-        }
-        IList<Model.Ticket> ticketList = bllTicket.GetTicketByAreaIdAndLevel(areaId, level, pageIndex, pageSize, out totalRecord);
+        //int level = 0;
+        //if (!string.IsNullOrEmpty(levelname))
+        //{
+        // level=int.Parse(levelname.Substring(0,1));
+        //}
+        //IList<Model.Ticket> ticketList = bllTicket.GetTicketByAreaIdAndLevel(areaId, level, pageIndex, pageSize, out totalRecord);
 
 
 
-        rptItems.DataSource = ticketList;
-        rptItems.DataBind();
-        pagerGot.RecordCount = totalRecord;
-        if (totalRecord > 0)
-        {
-            lblTotal.Text = "共" + totalRecord + "个景区";
-        }
+        //rptItems.DataSource = ticketList;
+        //rptItems.DataBind();
+        //pagerGot.RecordCount = totalRecord;
+        //if (totalRecord > 0)
+        //{
+        //    lblTotal.Text = "共" + totalRecord + "个景区";
+        //}
     }
 
 

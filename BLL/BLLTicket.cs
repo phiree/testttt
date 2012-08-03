@@ -55,9 +55,9 @@ namespace BLL
         {
             return Iticket.GetTicketByAreaId(areaid);
         }
-        public IList<Model.Ticket> GetTicketByAreaIdAndLevel(int areaId, int level, int pageIndex, int pageSize, out int totalRecord)
+        public IList<Model.Scenic> GetTicketByAreaIdAndLevel(int areaId, int level,string topic, int pageIndex, int pageSize, out int totalRecord)
         {
-            return Iticket.GetTicketByAreaIdAndLevel(areaId, level, pageIndex - 1, pageSize, out totalRecord);
+            return Iticket.GetTicketByAreaIdAndLevel(areaId, level,topic, pageIndex - 1, pageSize, out totalRecord);
         }
         public IList<Model.Ticket> GetTicketByscId(int scid)
         {

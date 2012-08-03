@@ -25,6 +25,7 @@ namespace Model.Mapping
             Map(x => x.TransGuid);
             References<Area>(x => x.Area);
             HasMany<ScenicCheckProgress>(x => x.CheckProgress);
+            HasMany<Ticket>(x => x.Tickets);
         }
     }
     public class ScenicCheckProgressMap : ClassMap<ScenicCheckProgress>

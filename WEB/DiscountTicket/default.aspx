@@ -56,13 +56,13 @@
             <ItemTemplate>
                 <div class="scenicdesc">
                     <div class="scenicimgdivbg">
-                        <a href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
-                            <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='<%# Eval("Scenic.Photo","/ScenicImg/{0}") %>' /></a>
+                        <a href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
+                            <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='<%# Eval("Photo","/ScenicImg/{0}") %>' /></a>
                     </div>
                     <div class="scenicname">
-                        <a style="display: block" href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
+                        <a style="display: block" href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
                             <!---->
-                            <%# Eval("Scenic.Name")%></a>
+                            <%# Eval("Name")%></a>
                     </div>
                     <div class="dvprice">
                         <div style="float: left">
@@ -70,7 +70,7 @@
                                 <asp:Literal runat="server" ID="liPriceNormal"></asp:Literal>元</em></span> <span
                                     class="onlinepr">在线价<em><asp:Literal runat="server" ID="liPriceOnline"></asp:Literal></em>元</span>
                         </div>
-                        <a class="linkorder" href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
+                        <a class="linkorder" href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
                         </a>
                     </div>
                 </div>
