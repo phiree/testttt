@@ -43,7 +43,7 @@ namespace BLL
             return Iticket.GetStByscid(scid);
         }
 
-        public IList<Topic> GetTopicByName(string name)
+        public Topic GetTopicByName(string name)
         {
             return Iticket.GetTopicByName(name);
         }
@@ -60,6 +60,10 @@ namespace BLL
         public IList<ScenicTopic> GetStByTopicid(Guid topid)
         {
             return Iticket.GetStByTopicid(topid);
+        }
+        public void DelTopic(Topic topic)
+        {
+            Iticket.DelTopic(topic);
         }
     }
 }

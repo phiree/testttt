@@ -4,7 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript">
         $(function () {
-            $(".tagstore>a").click(function () {
+        //添加主题分类到景区主题
+            $(".deltopic").click(function () {
                 var isexsit = false;
                 var selectedone = $(this).html();
                 $("#taglist>li").each(function () {
@@ -17,21 +18,24 @@
                     $("#taglist").html(content);
                 }
             });
-            $("#btnok").click(function () {
-                var scenicnames = "";
-                $("#taglist>li").each(function () {
-                    scenicnames += $(this).html() + "+";
-                });
-                $.ajax({
-                    type: "Post",
-                    url: "TopicHandler.ashx",
-                    dataType: "json",
-                    data: { 'scenicnames': scenicnames, "scid": 10 },
-                    success: function (data, status) {
-                        alert("ok");
-                    }
-                });
-            });
+
+//            $("#btnok").click(function () {
+//                var scenicnames = "";
+//                $("#taglist>li").each(function () {
+//                    scenicnames += $(this).html() + "+";
+//                });
+//                $.ajax({
+//                    type: "Post",
+//                    url: "TopicHandler.ashx",
+//                    dataType: "json",
+//                    data: { 'scenicnames': scenicnames, "scid": 10 },
+//                    success: function (data, status) {
+//                        alert("ok");
+//                    }
+//                });
+            //            });
+
+//添加主题分类
             $("#btn_newitem").click(function () {
                 $.ajax({
                     type: "Post",
@@ -39,14 +43,38 @@
                     dataType: "json",
                     data: { 'newitem': $("#txt_newitem").val() },
                     success: function (data, status) {
-                        $(".tagstore").html($(".tagstore").html() + "<a>" + $("#txt_newitem").val() + "</a>");
+                        $(".tagstore").html($(".tagstore").html() + "<a>" + $("#txt_newitem").val() + "</a><a class='deltopic' onclick='deltopic(this)'>-</a>");
                     }
                 });
             });
         });
+
+        //删除主题分类
+        function deltopic(obj) {
+            var item = $.trim($(obj).prev().html());
+            var r = confirm("是否删除" + item + "吗？");
+            if (r) {
+                $.ajax({
+                    type: "Post",
+                    url: "TopicDelHandler.ashx",
+                    dataType: "json",
+                    data: { 'delitem': item },
+                    success: function (data, status) {
+                        $(obj).remove();
+                    }
+                });
+            }
+            else {
+                return;
+            }
+        }
+
+        //删除景区主题
         function delitem(obj) {
             $(obj).remove();
         }
+
+        //保存景区主题
         function saveitem() {
             var scenicnames = "";
             $("#taglist>li").each(function () {
@@ -66,8 +94,9 @@
             <div class="tagstore">
                 <asp:Repeater ID="rptTopicStore" runat="server">
                     <ItemTemplate>
-                        <a>
+                        <a class="deltopic">
                             <%#Eval("Name")%></a>
+                            <a class="delfunc" onclick='deltopic(this)'>-</a>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>

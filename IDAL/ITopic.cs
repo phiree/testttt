@@ -14,7 +14,8 @@ namespace IDAL
         IList<ScenicTopic> GetStByscid(int scid);
         IList<Topic> GetTopicByscid(int scid);
         IList<Model.Topic> GetAllTopics();
-        IList<Topic> GetTopicByName(string name);
+        Topic GetTopicByName(string name);
         IList<ScenicTopic> GetStByTopicid(Guid topid);
+        void DelTopic(Topic topic);
     }
 }
