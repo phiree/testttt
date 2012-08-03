@@ -22,11 +22,15 @@ namespace BLL
             set { itopic = value; }
         }
 
-        public void Save(IList<string> topicname, int scenicid)
+        public void SaveTopic(string topicname)
+        {
+            Iticket.SaveTopic(topicname);
+        }
+
+        public void SaveScenictopic(IList<string> topicname, int scenicid)
         {
             Scenic s = new BLL.BLLScenic().GetScenicById(scenicid);
-            
-            Iticket.Save(topicname, s);
+            Iticket.SaveScenictopic(topicname, s);
         }
 
         public IList<Model.ScenicTopic> GetScenicTopics(string areacode)
@@ -39,7 +43,7 @@ namespace BLL
             return Iticket.GetStByscid(scid);
         }
 
-        public IList<Topic> GetTopicByName(string name)
+        public Topic GetTopicByName(string name)
         {
             return Iticket.GetTopicByName(name);
         }
@@ -56,6 +60,10 @@ namespace BLL
         public IList<ScenicTopic> GetStByTopicid(Guid topid)
         {
             return Iticket.GetStByTopicid(topid);
+        }
+        public void DelTopic(Topic topic)
+        {
+            Iticket.DelTopic(topic);
         }
     }
 }

@@ -40,15 +40,15 @@ namespace DAL
         }
 
 
-        public IList<Topic> GetTopicByName(string name)
+        public Topic GetTopicByName(string name)
         {
             string sql = "select t from Topic t where t.Name='" + name + "'";
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Topic>().ToList<Topic>();
+            return query.FutureValue<Topic>().Value;
         }
 
 
-        public void Save(IList<string> topicname, Scenic scenic)
+        public void SaveScenictopic(IList<string> topicname, Scenic scenic)
         {
             IList<Topic> tlist = GetAllTopics();
             IList<ScenicTopic> stlist = GetStByscid(scenic.Id);
@@ -80,6 +80,30 @@ namespace DAL
             string sql = "select st from ScenicTopic st where st.Topic.Id='" + topid + "'";
             IQuery query = session.CreateQuery(sql);
             return query.Future<ScenicTopic>().ToList<ScenicTopic>();
+        }
+
+
+        public void SaveTopic(string topicname)
+        {
+            Topic t = new Topic() { Name=topicname};
+            using (var tr = session.BeginTransaction())
+            {
+                session.Save(t);
+                tr.Commit();
+            }
+        }
+
+        public void DelTopic(Topic topic)
+        {
+            using (var trans = session.BeginTransaction())
+            {
+                string sql = "delete ScenicTopic st where st.Topic.Id=:topicid";
+                IQuery query = session.CreateQuery(sql);
+                query.SetParameter("topicid", topic.Id);
+                query.ExecuteUpdate();
+                session.Delete(topic);
+                trans.Commit();
+            }
         }
     }
 }
