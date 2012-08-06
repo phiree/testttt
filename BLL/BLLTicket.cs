@@ -117,11 +117,11 @@ namespace BLL
         }
         public void SaveOrUpdateTicket(Model.Ticket ticket)
         {
+            //foreach (TicketPrice tp in ticket.TicketPrice)
+            //{
+            //    bllTp.SaveOrUpdateTicketPrice(tp);
+            //}
             Iticket.SaveOrUpdateTicket(ticket);
-            foreach (TicketPrice tp in ticket.TicketPrice)
-            {
-                bllTp.SaveOrUpdateTicketPrice(tp);
-            }
         }
         public void SaveOrUpdateTicket(IList<Model.Ticket> tickets)
         {

@@ -17,6 +17,7 @@ public partial class ScenticManager_OnlineSell_OnlinePrice : bpScenicManager
     protected void Page_Load(object sender, EventArgs e)
     {
         CurrentScenic = Master.Scenic;
+        hidden_scid.Value = CurrentScenic.Id.ToString();
         if (!IsPostBack)
         {
             LoadPrice();
@@ -27,10 +28,10 @@ public partial class ScenticManager_OnlineSell_OnlinePrice : bpScenicManager
     private void LoadPrice()
     {
         IList<Model.Ticket> tickets = bllTicket.GetTicketByscId(CurrentScenic.Id);
-        hidden_scid.Value = CurrentScenic.Id.ToString();
         rptPrice.DataSource = tickets;
         rptPrice.DataBind();
     }
+
     /// <summary>
     /// 保存景区的三种门票
     /// </summary>

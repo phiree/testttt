@@ -78,11 +78,11 @@ namespace DAL
         }
         public void SaveOrUpdateTicket(Model.Ticket ticket)
         {
-            using (var x=session.Transaction)
+            using (var t=session.BeginTransaction())
             {
-                x.Begin();
                 session.SaveOrUpdate(ticket);
-                x.Commit();
+                session.Flush();
+                t.Commit();
             }
         }
         public Model.Ticket Get(int ticketId)

@@ -21,6 +21,8 @@
 
         function calc() {
             var tabledom = $("tbody>tr");
+            var result = true;
+            var datas='';
             tabledom.each(function () {
                 var ticketname = $(this).children().children().val();
                 var yuanjia = $(this).children().next().children().val();
@@ -29,17 +31,15 @@
                 var zaixianjia = $(this).children().next().next().next().next().children().val();
                 var ticketid = $(this).children().next().next().next().next().next().children().val();
                 var scid = $("input[id*=hidden_scid]").val();
-                var result = true;
-                //alert("ticketname:" + ticketname + " yuanjia:" + yuanjia + " mxp:" + mingxipianjia + " xianfujia:" + xianfujia + " zaixianjia:" + zaixianjia + " ticketid:" + ticketid + "scid:" + scid);
-                $.ajax({
-                    type: "Post",
-                    url: "TicketPriceHandler.ashx",
-                    dataType: "json",
-                    data: { 'ticketname': ticketname, 'yuanjia': yuanjia, 'mingxipianjia': mingxipianjia, 'xianfujia': xianfujia, 'zaixianjia': zaixianjia, "ticketid": ticketid, "scid": scid },
-                    success: function (data, status) {
-                        result &= data;
-                    }
-                });
+                datas+='{'+ticketname+','+yuanjia+','+mingxipianjia+','+xianfujia+','+zaixianjia+','+ticketid+','+scid;
+            });
+            $.ajax({
+                type: "Post",
+                url: "TicketPriceHandler.ashx",
+                dataType: "json",
+                data: datas,
+                success: function (data, status) {
+                }
             });
             if (result)
                 alert("修改成功！");
@@ -137,11 +137,6 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
-            <%-- <tr>
-                <td>
-                    
-                </td>
-            </tr>--%>
         </table>
         <input type="button" name="name" class="btnokprice" onclick="calc()" />
         <input type="hidden" id="hidden_scid" runat="server" />
