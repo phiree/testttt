@@ -166,7 +166,14 @@ namespace CommonLibrary
 
             foreach (string s in DictParameters.Keys)
             {
-                r += "/" + DictParameters[s];
+                if (DictParameters[s]!= "")
+                {
+                    r += "/" + DictParameters[s];
+                }
+            }
+            if (r == string.Empty)
+            {
+                r = "/DiscountTicket/";
             }
             return r;
         }

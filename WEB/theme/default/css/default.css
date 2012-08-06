@@ -554,11 +554,12 @@ div:246
     border:0px none White;
     margin-bottom:15px;
     display:block !important;
+    padding-bottom:15px;
 }
 
 #searchbody
 {
     display:inline-block;
-    border:1px solid #5EAE3B;
-    margin-top:10px;
+    margin-top:20px;
+    overflow:hidden;
 }

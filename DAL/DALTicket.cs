@@ -59,15 +59,13 @@ namespace DAL
                 return result.ToList<Model.Scenic>().Skip(pageIndex * pageSize).Take(pageSize).ToList();
             }         
         }
-        public IList<Model.Ticket> Search(string q, int pageIndex, int pageSize, out int totalRecord)
+        public IList<Model.Scenic> Search(string q, int pageIndex, int pageSize, out int totalRecord)
         {
             string strQuery, strQueryCount;
 
-            strQuery = "select t from Ticket t where t.Scenic.Name like '%" + q + "%'";
-            strQueryCount = "select count(*) from Ticket t where t.Scenic.Name like '%"+q+"%'";
-            //return Search(strQuery, strQueryCount, pageIndex, pageSize, out totalRecord);
-            totalRecord = 0;
-            return null;
+            strQuery = "select s from Scenic s where s.Name like '%" + q + "%'";
+            strQueryCount = "select count(*) from Scenic s where s.Name like '%"+q+"%'";
+            return Search(strQuery, strQueryCount, pageIndex, pageSize, out totalRecord);
         }
         private IList<Model.Scenic> Search(string strQuery, string strQueryCount, int pageIndex, int pageSize, out int totalRecord)
         {

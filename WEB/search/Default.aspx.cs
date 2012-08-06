@@ -23,7 +23,7 @@ public partial class search_Default : System.Web.UI.Page
         int pageSize = pagerGot.PageSize;
         int totalRecord;
 
-        IList<Model.Ticket> ticketList = bllTicket.Search(q, pageIndex, pageSize, out totalRecord);
+        IList<Model.Scenic> ticketList = bllTicket.Search(q, pageIndex, pageSize, out totalRecord);
         rptItems.DataSource = ticketList;
         rptItems.DataBind();
         pagerGot.RecordCount = totalRecord;
@@ -33,13 +33,17 @@ public partial class search_Default : System.Web.UI.Page
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
-            Model.Ticket t = e.Item.DataItem as Model.Ticket;
-            decimal priceNormal = t.GetPrice(Model.PriceType.Normal);
-            decimal priceOnline = t.GetPrice(Model.PriceType.PayOnline);
-            Literal liPriceNormal = e.Item.FindControl("liPriceNormal") as Literal;
+            Model.Scenic s = e.Item.DataItem as Model.Scenic;
+            foreach (Ticket item in s.Tickets.Where(x=>x.IsMain==true))
+	        {
+		        decimal priceNormal = item.GetPrice(Model.PriceType.Normal);
+            decimal priceOnline = item.GetPrice(Model.PriceType.PayOnline);  
+                Literal liPriceNormal = e.Item.FindControl("liPriceNormal") as Literal;
             Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
             liPriceNormal.Text = priceNormal.ToString("0");
             liPriceOnline.Text = priceOnline.ToString("0");
+	        }
+            
         }
     }
     private int GetPageIndex()

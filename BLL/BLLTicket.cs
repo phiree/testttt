@@ -134,7 +134,7 @@ namespace BLL
             }
         }
 
-        public IList<Ticket> Search(string paramKey, int pageIndex, int pageSize, out int totalRecord)
+        public IList<Scenic> Search(string paramKey, int pageIndex, int pageSize, out int totalRecord)
         {
             return Iticket.Search(paramKey, pageIndex - 1, pageSize, out totalRecord);
         }
