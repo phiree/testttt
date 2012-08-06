@@ -32,30 +32,21 @@
                 <%=scenic.Address %>
             </td>
         </tr>
-        <tr>
-            <th>
-                原价
-            </th>
-            <td>
-                <asp:Label ID="lblyj" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                预订价
-            </th>
-            <td>
-                <asp:Label ID="lblydj" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <th>
-                优惠价
-            </th>
-            <td>
-                <asp:Label ID="lblyhj" runat="server"></asp:Label>
-            </td>
-        </tr>
+        <asp:Repeater ID="rptprice" runat="server">
+            <ItemTemplate>
+                <tr>
+                    <th>门票: <%#Eval("Name") %></th>
+                    <td>
+                        <ul>
+                            <li>原价: <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.Normal).First().Price.ToString("0") %></li>
+                            <li>明信片优惠价: <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PostCardDiscount).First().Price.ToString("0")%></li>
+                            <li>景区现付价: <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price.ToString("0")%></li>
+                            <li>在线支付价: <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PayOnline).First().Price.ToString("0")%></li>
+                        </ul>
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </asp:Repeater>
         <tr>
             <th>
                 传真图片

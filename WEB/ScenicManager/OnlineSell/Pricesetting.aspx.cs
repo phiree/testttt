@@ -11,6 +11,8 @@ public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
 {
     BLLScenic bllscenic = new BLLScenic();
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
+    BLLTicket bllticket = new BLLTicket();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         CurrentScenic = Master.Scenic;
@@ -25,6 +27,12 @@ public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
         }
     }
 
+    private void BindPrice()
+    {
+        IList<Model.Ticket> tickets = bllticket.GetTicketByscId(CurrentScenic.Id);
+        rptprice.DataSource = tickets;
+        rptprice.DataBind();
+    }
 
     private void loadstate()
     {
@@ -35,9 +43,10 @@ public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
             panelshing.Visible = scp.CheckStatus == CheckStatus.Applied;
             panelnotpass.Visible = scp.CheckStatus == CheckStatus.NotPass;
             panelchangeprice.Visible = scp.CheckStatus == CheckStatus.NotApplied;
-            lblyj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 1).Price.ToString("0") + "元";
-            lblydj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0") + "元";
-            lblyhj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 3).Price.ToString("0") + "元";
+            BindPrice();
+            //lblyj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 1).Price.ToString("0") + "元";
+            //lblydj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0") + "元";
+            //lblyhj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 3).Price.ToString("0") + "元";
         }
         else
         {

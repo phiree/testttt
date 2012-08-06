@@ -18,6 +18,7 @@ public partial class Manager_ScenicDetail : basepage
     protected ContractImg contractimg;
     BLLScenic bllScenic = new BLLScenic();
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
+    BLLTicket bllticket = new BLLTicket();
     protected void Page_Load(object sender, EventArgs e)
     {
         string paramId = Request["id"];
@@ -28,9 +29,10 @@ public partial class Manager_ScenicDetail : basepage
         }
         scenic = bllScenic.GetScenicById(scenicId);
         contractimg = bllScenic.GetContractImg(scenic.Id);
-        lblyj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 1).Price.ToString("0");
-        lblydj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 2).Price.ToString("0");
-        lblyhj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 3).Price.ToString("0");
+        BindPrice();
+        //lblyj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 1).Price.ToString("0");
+        //lblydj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 2).Price.ToString("0");
+        //lblyhj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 3).Price.ToString("0");
         if (contractimg!=null)
             ContractImg.ImageUrl = "/ScenicImg/" + contractimg.Imgloc;
 
@@ -40,6 +42,13 @@ public partial class Manager_ScenicDetail : basepage
         }
     }
     ScenicCheckProgress checkprogress;
+
+    private void BindPrice()
+    {
+        IList<Model.Ticket> tickets = bllticket.GetTicketByscId(scenic.Id);
+        rptprice.DataSource = tickets;
+        rptprice.DataBind();
+    }
 
     /// <summary>
     /// 网上售票申请进度
@@ -59,7 +68,6 @@ public partial class Manager_ScenicDetail : basepage
     /// <param name="e"></param>
     protected void btnPass_Click(object sender, EventArgs e)
     {
-
         UpdateStatus(CheckStatus.Pass, ScenicModule.SellOnLine);
         checkprogress = bllScenic.GetStatus(scenic.Id, ScenicModule.SellOnLine);
         LoadOnLineCheck();
@@ -69,6 +77,7 @@ public partial class Manager_ScenicDetail : basepage
         new BLLTicket().SaveOrUpdateTicket(ticket);
         //Response.Redirect("ScenicPrice.aspx?id=" + Request["id"] + "");
     }
+
     protected void btnNoPass_Click(object sender, EventArgs e)
     {
         UpdateStatus(CheckStatus.NotPass, ScenicModule.SellOnLine);

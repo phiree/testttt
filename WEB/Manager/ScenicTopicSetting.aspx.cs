@@ -12,7 +12,7 @@ public partial class Manager_ScenicTopicSetting : System.Web.UI.Page
     BLLArea bllArea = new BLLArea();
     BLLTopic bllTopic = new BLLTopic();
     BLLBackManager bllmanager = new BLLBackManager();
-    
+
 
     protected void Page_Load(object sender, EventArgs e)
     {

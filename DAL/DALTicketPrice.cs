@@ -18,8 +18,12 @@ namespace DAL
 
         public void SaveOrUpdateTicketPrice(Model.TicketPrice ticketprice)
         {
+            using (var t = session.BeginTransaction())
+            {
                 session.SaveOrUpdate(ticketprice);
                 session.Flush();
+                t.Commit();
+            }
         }
 
         public Model.TicketPrice GetTicketPriceByScenicandtypeid(int scenicid, int typeid)

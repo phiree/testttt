@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript">
         $(function () {
-        //添加主题分类到景区主题
+            //添加主题分类到景区主题
             $(".deltopic").click(function () {
                 var isexsit = false;
                 var selectedone = $(this).html();
@@ -19,23 +19,23 @@
                 }
             });
 
-//            $("#btnok").click(function () {
-//                var scenicnames = "";
-//                $("#taglist>li").each(function () {
-//                    scenicnames += $(this).html() + "+";
-//                });
-//                $.ajax({
-//                    type: "Post",
-//                    url: "TopicHandler.ashx",
-//                    dataType: "json",
-//                    data: { 'scenicnames': scenicnames, "scid": 10 },
-//                    success: function (data, status) {
-//                        alert("ok");
-//                    }
-//                });
+            //            $("#btnok").click(function () {
+            //                var scenicnames = "";
+            //                $("#taglist>li").each(function () {
+            //                    scenicnames += $(this).html() + "+";
+            //                });
+            //                $.ajax({
+            //                    type: "Post",
+            //                    url: "TopicHandler.ashx",
+            //                    dataType: "json",
+            //                    data: { 'scenicnames': scenicnames, "scid": 10 },
+            //                    success: function (data, status) {
+            //                        alert("ok");
+            //                    }
+            //                });
             //            });
 
-//添加主题分类
+            //添加主题分类
             $("#btn_newitem").click(function () {
                 $.ajax({
                     type: "Post",
@@ -95,8 +95,8 @@
                 <asp:Repeater ID="rptTopicStore" runat="server">
                     <ItemTemplate>
                         <a class="deltopic">
-                            <%#Eval("Name")%></a>
-                            <a class="delfunc" onclick='deltopic(this)'>-</a>
+                            <%#Eval("Name")%></a> <a class="delfunc" onclick='deltopic(this)' style="cursor: pointer">
+                                -</a>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
