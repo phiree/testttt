@@ -11,7 +11,7 @@
                 共搜索到与<span style="font-weight: 600; color:#E8641B">"<%=q %>"</span>相关景点&nbsp;<asp:Label Font-Bold="true" runat="server" ID="lblTotalRecord" style="color:#E8641B"></asp:Label>个
             </div>
             <div id="searchbody">
-                <div style=" display:inline-block; margin-bottom:30px;">
+                <div style=" display:inline-block; margin-bottom:0px;">
                 <asp:Repeater runat="server" ID="rptItems" OnItemDataBound="rptscenic_ItemDataBound">
             <ItemTemplate>
                 <div class="scenicdesc">
@@ -40,7 +40,7 @@
             </FooterTemplate>
         </asp:Repeater>
                 </div>
-                <div id="pager" class="block" style="margin-left:10px;">
+                <div id="pager" class="block" style="margin-left:10px; margin-bottom:30px;">
                     <uc:AspNetPager runat="server" ID="pagerGot" CssClass="paginator" UrlPaging="true"
                         UrlPageIndexName="pgotindex" FirstPageText="首页" LastPageText="尾页" PageSize="12"
                         NextPageText="下一页" CurrentPageButtonClass="cpb" PrevPageText="上一页">

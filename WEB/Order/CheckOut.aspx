@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/detail.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/order.master" AutoEventWireup="true"
     CodeFile="CheckOut.aspx.cs" Inherits="Scenic_CheckOut" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <title>订单结算</title>
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/checkout.css" rel="stylesheet" type="text/css" />
@@ -19,10 +19,11 @@
 
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="fhead" runat="Server">
- <div id="orderstep"><span >购物车</span><span class="stepcurrent">>确认订单</span><span>>完成订单</span></div> 
+<asp:Content ID="Content4" ContentPlaceHolderID="cphstate" runat="Server">
+    <div class="cartbread"><img src="/theme/default/image/newversion/icon.gif" />购物车</div>
+    <img class="stateimg" src="/theme/default/image/newversion/cart_state1.png"/>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="fbody" runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
     <div id="itemlist">
         <div  class="tihead">
             门票清单</div>

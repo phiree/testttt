@@ -62,7 +62,7 @@ $(function () {
     });
     var ileft = $(".logoleft").position().left;
     var itop = $(".logoleft").position().top;
-    $(".mainarea").css({ left: ileft + 230 + "px", top: itop + 70 + "px" });
+    $(".mainarea").css({ left: ileft + 370 + "px", top: itop + 70 + "px" });
     //var h = $(".popcartbg").css("height");
     //$(".popmain").css("height",  120 + "px");
     findDimensions();

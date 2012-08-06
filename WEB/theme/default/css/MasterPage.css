@@ -10,7 +10,7 @@ body
 {
     position:absolute;
     display:block;
-    height:33px;
+    height:35px;
     background-color:White;
     top:0px;
     left:0px;
@@ -297,7 +297,8 @@ background-color:#fff !important;
 }
 .NavList
 {
-    background:url("/theme/default/image/newversion/navbg.png");
+    /*background:url("/theme/default/image/newversion/navbg.png");*/
+    background-color:#4F8B11;
     background-repeat:repeat-x;
     border-top:1px solid #1A9F47;
     border-bottom:1px solid #86C637;
@@ -314,7 +315,7 @@ background-color:#fff !important;
 .uertool
 {
     width:340px;
-    margin-top:5px;
+    margin-top:7px;
     text-align:left;
 }
 .uertool a

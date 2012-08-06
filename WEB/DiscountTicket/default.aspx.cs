@@ -150,12 +150,15 @@ public partial class DiscountTicket_DiscountTicket : basepage
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             Model.Scenic t = e.Item.DataItem as Model.Scenic;
-            decimal priceNormal = t.Tickets[0].GetPrice(Model.PriceType.Normal);
-            decimal priceOnline = t.Tickets[0].GetPrice(Model.PriceType.PayOnline);
-            Literal liPriceNormal = e.Item.FindControl("liPriceNormal") as Literal;
-            Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
-            liPriceNormal.Text = priceNormal.ToString("0");
-            liPriceOnline.Text = priceOnline.ToString("0");
+            foreach (Ticket item in t.Tickets.Where(x => x.IsMain == true))
+            {
+                decimal priceNormal = item.GetPrice(Model.PriceType.Normal);
+                decimal priceOnline = item.GetPrice(Model.PriceType.PayOnline);
+                Literal liPriceNormal = e.Item.FindControl("liPriceNormal") as Literal;
+                Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
+                liPriceNormal.Text = priceNormal.ToString("0");
+                liPriceOnline.Text = priceOnline.ToString("0");
+            }
         }
         if (e.Item.ItemType == ListItemType.Footer)
         {
