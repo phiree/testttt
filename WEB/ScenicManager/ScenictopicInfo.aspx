@@ -3,6 +3,7 @@
     
 <%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
+    <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
             $(".tagstore>a").click(function () {
@@ -47,12 +48,14 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
-    <div >
-<br />
+    <p class="fuctitle">
+        景区主题管理</p>
+    <hr />
+    <div id="scinfo">
         <asp:HiddenField ID="hiddentag" runat="server" />
-    <div>
-        <p>
-            你可能感兴趣的标签：</p>
+    <div >
+        <p class="interesttopic">
+            可选择的主题标签：(点击后选择)</p>
         <div class="tagstore">
             <asp:Repeater ID="rptTopicStore" runat="server">
                 <ItemTemplate>
@@ -60,19 +63,21 @@
                 </ItemTemplate>
             </asp:Repeater>
             </div>
-    </div></div>
+    </div>
     <br />
     <div >
-        <p>我已经添加的标签：</p>
+        <p class="interesttopic" style="margin-top:0px">已添加的主题标签：(点击后取消)</p>
         </div>
     <div>
         <ul id="taglist">
         <asp:Repeater ID="rptTopicOwn" runat="server">
             <ItemTemplate>
-            <li onclick='delitem(this)'><%#Eval("Name") %></li>
+            <li onclick='delitem(this)'><a><%#Eval("Name") %></a></li>
             </ItemTemplate>
         </asp:Repeater>
             </ul>
     </div>
-    <asp:Button ID="btnsave" runat="server" Text="保存" OnClientClick="saveitem()" onclick="btnsave_Click" />
+    <asp:Button ID="btnsave" runat="server"  OnClientClick="saveitem()" onclick="btnsave_Click" CssClass="topicbtn" />
+    </div >
+        
 </asp:Content>

@@ -30,7 +30,7 @@ public partial class ScenticManager_UpdateScenticInfo : basepage
         ScenicLevel.Text = scenic.Level;
         ScenicArea.Text = scenic.Area.Name;
         Address.Text = scenic.Address;
-        Desc.Text = scenic.Desec;
+        Desc.Text = scenic.TransGuid;
         IList<ScenicImg> list = bllscenicimg.GetSiByType(scenic, 1);
         if (list.Count > 0)
             ScenicImg.ImageUrl = "/ScenicImg/" + list[0].Name;
@@ -44,7 +44,7 @@ public partial class ScenticManager_UpdateScenticInfo : basepage
         scenic.Level = ScenicLevel.Text.Trim();
         scenic.Area.Name = ScenicArea.Text.Trim();
         scenic.Address = Address.Text;
-        scenic.Desec = Desc.Text;
+        scenic.TransGuid = Desc.Text;
         scenic.Photo = "";
         scenic.Position = hfposition.Value;
         ScenicCheckProgress temp = scenic.CheckProgress.First<ScenicCheckProgress>(x => x.Module == ScenicModule.SellOnLine);
