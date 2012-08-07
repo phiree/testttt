@@ -19,7 +19,7 @@ public partial class ScenicManager_ScenictopicInfo : bpScenicManager
 
     private void BindTopicStore()
     {
-        IList<Model.Topic> topics=bllTopic.GetAllTopics();
+        IList<Model.Topic> topics = bllTopic.GetAllTopics();
         rptTopicStore.DataSource = topics;
         rptTopicStore.DataBind();
     }
@@ -33,7 +33,7 @@ public partial class ScenicManager_ScenictopicInfo : bpScenicManager
 
     protected void btnsave_Click(object sender, EventArgs e)
     {
-        IList<string> topicnames=hiddentag.Value.Split(new char[] { '+' }, StringSplitOptions.RemoveEmptyEntries);
+        IList<string> topicnames = hiddentag.Value.Split(new char[] { '+' }, StringSplitOptions.RemoveEmptyEntries);
         bllTopic.SaveScenictopic(topicnames, Master.Scenic.Id);
         BindTopicOwn();
         Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "btnsave", "alert('保存成功')", true);

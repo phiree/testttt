@@ -84,27 +84,27 @@
             $("#<%=hiddentag.ClientID%>").val(scenicnames);
         }
     </script>
-        <style type="text/css">
-    .deltopic,.hlv,.deltopic:link,.deltopic:active,.deltopic:visited,.deltopic:hover,.hlv:link,.hlv:active,.hlv:visited,.hlv:hover
-{
-    color: #009F3C;
-    font-weight: 700;
-    border: #A6DF9E;
-    background-color:#D1EFCD;
-    padding:3px 5px 3px 5px;
-    margin-top:-4px;
-    cursor:pointer;
-}
-.delfunc
-{
-    color: #009F3C;
-    font-weight: 700;
-    border:   #A6DF9E;
-    background-color:#D1EFCD;
-    padding:3px 5px 3px 5px;
-    margin-top:-4px;
-    cursor:pointer;
-    }
+    <style type="text/css">
+        .deltopic, .hlv, .deltopic:link, .deltopic:active, .deltopic:visited, .deltopic:hover, .hlv:link, .hlv:active, .hlv:visited, .hlv:hover
+        {
+            color: #009F3C;
+            font-weight: 700;
+            border: #A6DF9E;
+            background-color: #D1EFCD;
+            padding: 3px 5px 3px 5px;
+            margin-top: -4px;
+            cursor: pointer;
+        }
+        .delfunc
+        {
+            color: #009F3C;
+            font-weight: 700;
+            border: #A6DF9E;
+            background-color: #D1EFCD;
+            padding: 3px 5px 3px 5px;
+            margin-top: -4px;
+            cursor: pointer;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
@@ -118,8 +118,7 @@
                 <asp:Repeater ID="rptTopicStore" runat="server">
                     <ItemTemplate>
                         <a class="deltopic">
-                            <%#Eval("Name")%><a class="delfunc" onclick='deltopic(this)'>
-                                ×</a></a> 
+                            <%#Eval("Name")%><a class="delfunc" onclick='deltopic(this)'> ×</a></a>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
@@ -133,13 +132,12 @@
             我已经添加的标签：</p>
     </div>
     <div id="taglist">
-            <asp:Repeater ID="rptTopicOwn" runat="server">
-                <ItemTemplate>
-                    <a class="hlv">
-                        <%#Eval("Name") %><a class="delfunc" onclick='delitem(this)'>
-                                ×</a></a>
-                </ItemTemplate>
-            </asp:Repeater>
+        <asp:Repeater ID="rptTopicOwn" runat="server">
+            <ItemTemplate>
+                <a class="hlv">
+                    <%#Eval("Name") %><a class="delfunc" onclick='delitem(this)'> ×</a></a>
+            </ItemTemplate>
+        </asp:Repeater>
     </div>
     <asp:Button ID="btnsave" runat="server" Text="保存" OnClientClick="saveitem()" OnClick="btnsave_Click" />
     <a href="/manager/ScenicTopicSetting.aspx">返回</a>

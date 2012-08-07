@@ -12,11 +12,12 @@ public partial class Manager_SeoInit : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
+        if (!IsPostBack)
             InitCity();
     }
 
-    private void InitCity() {
+    private void InitCity()
+    {
         ddlCity.DataSource = bllarea.GetSubArea("330000");
         ddlCity.DataTextField = "Name";
         ddlCity.DataValueField = "Code";

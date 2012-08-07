@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager/manager.master" AutoEventWireup="true" CodeFile="ScenicTopicSetting3.aspx.cs" Inherits="Manager_ScenicTopicSetting3" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager/manager.master" AutoEventWireup="true"
+    CodeFile="ScenicTopicSetting3.aspx.cs" Inherits="Manager_ScenicTopicSetting3" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <asp:Repeater runat="server" ID="rptTopic" OnItemCommand="rptTopic_ItemCommand">
         <HeaderTemplate>
             <table class="tblist" cellpadding="0" cellspacing="0" border="0">
@@ -37,4 +38,3 @@
         </ItemTemplate>
     </asp:Repeater>
 </asp:Content>
-

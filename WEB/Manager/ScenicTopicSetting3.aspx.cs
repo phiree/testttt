@@ -28,7 +28,7 @@ public partial class Manager_ScenicTopicSetting3 : System.Web.UI.Page
     {
         string KeyName = e.CommandArgument.ToString();
         Model.Topic t = blltopic.GetTopicByName(KeyName);
-        var seoname= (e.Item.FindControl("txtSeoname") as TextBox).Text;
+        var seoname = (e.Item.FindControl("txtSeoname") as TextBox).Text;
         if (string.IsNullOrWhiteSpace(seoname))
         {
             Page.ClientScript.RegisterStartupScript(this.GetType(), "btnOk", "alert('seo名称不能为空！')", true);
