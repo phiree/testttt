@@ -4,6 +4,7 @@ using System;
 using System.Web;
 using BLL;
 using Model;
+using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.Web.Script.Serialization;
@@ -31,7 +32,11 @@ public class SearchBigMap : IHttpHandler {
             m.level = si.Scenic.Level;
             m.name = si.Scenic.Name;
             m.position = si.Scenic.Position;
-            m.price = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(scenic.Id, 3).Price.ToString("0") + "元";
+            foreach (Ticket item in si.Scenic.Tickets.Where(x=>x.IsMain==true))
+            {
+                m.price=item.TicketPrice[0].Price.ToString("0") + "元";
+            }
+            //m.price = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(scenic.Id, 3).Price.ToString("0") + "元";
             m.scseoname = si.Scenic.SeoName;
             m.areaseoname = si.Scenic.Area.SeoName;
             list.Add(m);

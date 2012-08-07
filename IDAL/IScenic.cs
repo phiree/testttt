@@ -22,8 +22,8 @@ namespace IDAL
         void UpdateScenicInfo(List<Scenic> slist);
         void UploadContractImg(ContractImg contractimg);
         ContractImg GetContractImg(int scenicid);
-        IList<Ticket> GetScenicByScenicName(string scenicname,string level,int areaid);
-        IList<Ticket> GetScenicByScenicPosition(string position);
+        IList<Scenic> GetScenicByScenicName(string scenicname,string level,int areaid,string topic);
+        IList<Scenic> GetScenicByScenicPosition(string position);
         //根据区域seoname和景区seoname获取景区
         Scenic GetScenicBySeoName(string aseoname, string sseoname);
         /// <summary>

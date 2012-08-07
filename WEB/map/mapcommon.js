@@ -156,7 +156,7 @@ $(function () {
 
     /*表面搜索结果*/
     $(".sellevelinfo a").each(function () {
-        if ($(this).css("color") == "#e8641b" || $(this).css("color") != "rgb(0, 0, 0)") {
+        if ($(this).css("color") == "#e8641b" || $(this).css("color") == "rgb(232, 100, 27)") {
             if ($(this).html() != "全部") {
                 $(".sellevel span").html("级别：" + $(this).html());
             }
@@ -166,7 +166,7 @@ $(function () {
         }
     });
     $(".selareainfo a").each(function () {
-        if ($(this).css("color") == "#e8641b" || $(this).css("color") != "rgb(0, 0, 0)") {
+        if ($(this).css("color") == "#e8641b" || $(this).css("color") == "rgb(232, 100, 27)") {
             if ($(this).html() != "全部") {
                 $(".selarea span").html("城市:" + $(this).html());
             }
@@ -189,7 +189,7 @@ function btnarea(obj) {
     $(obj).attr("style", "border:1px solid #F9CD8A;background-color:#FDF0CA;color:#E8641B");
     /*表面搜索结果*/
     $(".sellevelinfo a").each(function () {
-        if ($(this).css("color") == "#e8641b" || $(this).css("color") != "rgb(0, 0, 0)") {
+        if ($(this).css("color") == "#e8641b" || $(this).css("color") == "rgb(232, 100, 27)") {
             if ($(this).html() != "全部") {
                 $(".sellevel span").html("级别：" + $(this).html());
             }
@@ -227,4 +227,26 @@ function changescnamecl(obj) {
 }
 function changescnamecl2(obj) {
     $(obj).css("color", "");
+}
+function qdtopic(obj) {
+    if (obj.innerHTML == "全部") {
+        $.cookie("topic", "");
+    }
+    else {
+        $.cookie("topic", obj.innerHTML);
+    }
+    $(".selthemeinfo a").attr("style", "");
+    $(obj).attr("style", "border:1px solid #F9CD8A;background-color:#FDF0CA;color:#E8641B;padding-bottom:0px;");
+    /*表面搜索结果*/
+    $(".selthemeinfo a").each(function () {
+        if ($(this).css("color") == "#e8641b" || $(this).css("color") == "rgb(232, 100, 27)") {
+            if ($.trim($(this).html()) != "全部") {
+                $(".seltheme span").html("旅游主题：" + $(this).html());
+            }
+            else {
+                $(".seltheme span").html("旅游主题");
+            }
+        }
+    });
+    check2();
 }

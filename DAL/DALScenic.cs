@@ -70,35 +70,37 @@ namespace DAL
             }
         }
 
-        public IList<Ticket> GetScenicByScenicName(string scenicname, string level, int areaid)
+        public IList<Scenic> GetScenicByScenicName(string scenicname, string level, int areaid,string topic)
         {
             string sqlstr = "";
-            if (areaid == 0)
-                if (level != "")
-                    sqlstr = "select t from Ticket t where t.Scenic.Name like '%" + scenicname + "%' and t.Scenic.Level like '%" + level + "%'";
-                else
-                {
-                    sqlstr = "select t from Ticket t where t.Scenic.Name like '%" + scenicname + "%'";
-                }
+            sqlstr = "select s from Scenic s where  s.Name like '%" + scenicname + "%'";
+            if (areaid != 0)
+                sqlstr += " and s.Area.Id=" + areaid + "";
+            if (level != "")
+                sqlstr += " and s.Level like '%" + level + "%'";
+            if (!string.IsNullOrEmpty(topic))
+            {
+                IQuery query = session.CreateQuery(sqlstr);
+                List<Scenic> List = query.Future<Scenic>().ToList<Scenic>();
+                string topicsql = "select st from ScenicTopic st where st.Topic.Name='" + topic + "'";
+                query = session.CreateQuery(topicsql);
+                List<Model.ScenicTopic> listtopic = query.Future<Model.ScenicTopic>().ToList<Model.ScenicTopic>();
+                var result = from t in listtopic join l in List on t.Scenic.Id equals l.Id select l;
+                return result.ToList<Scenic>();
+            }
             else
             {
-                if (level != "")
-                    sqlstr = "select t from Ticket t where t.Scenic.Name like '%" + scenicname + "%' and t.Scenic.Level like '%" + level + "%' and t.Scenic.Area.Id=" + areaid + "";
-                else
-                {
-                    sqlstr = "select t from Ticket t where t.Scenic.Name like '%" + scenicname + "%' and t.Scenic.Area.Id=" + areaid + "";
-                }
+                IQuery query = session.CreateQuery(sqlstr);
+                return query.Future<Scenic>().ToList<Scenic>();
             }
-            IQuery query = session.CreateQuery(sqlstr);
-            return query.Future<Ticket>().ToList<Ticket>();
         }
 
 
-        public IList<Ticket> GetScenicByScenicPosition(string position)
+        public IList<Scenic> GetScenicByScenicPosition(string position)
         {
-            string sqlstr = "select t from Ticket t where t.Scenic.Position like '" + position.Split(',')[0] + "%," + position.Split(',')[1] + "%'";
+            string sqlstr = "select s from Scenic s where s.Position like '" + position.Split(',')[0] + "%," + position.Split(',')[1] + "%'";
             IQuery query = session.CreateQuery(sqlstr);
-            return query.Future<Ticket>().ToList<Ticket>();
+            return query.Future<Scenic>().ToList<Scenic>();
         }
 
         public ScenicCheckProgress GetStatus(int scenicId, ScenicModule module)

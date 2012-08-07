@@ -13,27 +13,27 @@ public class qiehuan : IHttpHandler {
     
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
-        IList<Ticket> list = null;
+        IList<Scenic> list = null;
             string scname = HttpUtility.UrlDecode(context.Request.Cookies["scname"].Value, Encoding.GetEncoding("UTF-8"));
             string level = HttpUtility.UrlDecode(context.Request.Cookies["level"].Value, Encoding.GetEncoding("UTF-8"));
             if (level != "全部")
-                list = new BLLScenic().GetScenicByScenicName(scname, level,0);
+                list = new BLLScenic().GetScenicByScenicName(scname, level,0,HttpUtility.UrlDecode(context.Request.Cookies["topic"].Value, Encoding.GetEncoding("UTF-8")));
             else if (scname != "")
-                list = new BLLScenic().GetScenicByScenicName(scname, "",0);
+                list = new BLLScenic().GetScenicByScenicName(scname, "", 0, HttpUtility.UrlDecode(context.Request.Cookies["topic"].Value, Encoding.GetEncoding("UTF-8")));
         List<Model.ScenicMap> list2 = new List<Model.ScenicMap>();
         if (list != null)
         {
-            foreach (Ticket item in list)
+            foreach (Scenic item in list)
             {
                 Model.ScenicMap m = new Model.ScenicMap();
-                m.id = item.Scenic.Id;
-                m.name = item.Scenic.Name;
-                m.img = item.Scenic.Photo;
-                m.desc = item.Scenic.Desec;
-                m.address = item.Scenic.Address;
-                m.position = item.Scenic.Position;
-                m.scseoname = item.Scenic.SeoName;
-                m.areaseoname = item.Scenic.Area.SeoName;
+                m.id = item.Id;
+                m.name = item.Name;
+                m.img = item.Photo;
+                m.desc = item.Desec;
+                m.address = item.Address;
+                m.position = item.Position;
+                m.scseoname = item.SeoName;
+                m.areaseoname = item.Area.SeoName;
                 list2.Add(m);
             }
         }

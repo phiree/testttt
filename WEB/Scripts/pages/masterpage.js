@@ -112,9 +112,9 @@ function navshow() {
     $(".navlistnb a").attr("class", "");
     if (/^.*map.*$/.test(thishref)) {
         $(".navlistnb a:eq(3)").attr("class", "navhight");
-    } else if (/^.*Discount.*$/.test(thishref)) {
-        $(".navlistnb a:eq(1)").attr("class", "navhight");
-    } else {
+    } else if (/www.tourol.cn\/($|[D|d]efault.aspx)/.test(thishref)) {
         $(".navlistnb a:eq(0)").attr("class", "navhight");
+    } else {
+        $(".navlistnb a:eq(1)").attr("class", "navhight");
     }
 }

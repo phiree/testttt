@@ -64,14 +64,14 @@ namespace BLL
         {
             return IScenic.GetScenicBySeoName(seoName);
         }
-        public IList<Model.Ticket> GetScenicByScenicPosition(string position)
+        public IList<Model.Scenic> GetScenicByScenicPosition(string position)
         {
             return IScenic.GetScenicByScenicPosition(position);
         }
 
-        public IList<Model.Ticket> GetScenicByScenicName(string scenicname, string level, int areaid)
+        public IList<Model.Scenic> GetScenicByScenicName(string scenicname, string level, int areaid,string topic)
         {
-            return IScenic.GetScenicByScenicName(scenicname, level, areaid);
+            return IScenic.GetScenicByScenicName(scenicname, level, areaid,topic);
         }
         public Scenic GetScenicById(int scid)
         {

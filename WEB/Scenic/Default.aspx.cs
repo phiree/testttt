@@ -36,10 +36,6 @@ public partial class Scenic_Default : System.Web.UI.Page
         if (!string.IsNullOrEmpty(paramSname))
         {
             Ticket t = new BLLTicket().GetTicketByScenicSeoName(paramSname);
-            if (t.Lock == true)
-            {
-                Response.Redirect("/Default.aspx");
-            }
             if (t == null)
             {
                 ErrHandler.Redirect(ErrType.UnknownError);

@@ -210,6 +210,41 @@
     line-height:25px;
     display:none;
 }
+.selthemeinfo a,.selthemeinfo a:link,.selthemeinfo a:active,.selthemeinfo a:visited
+{
+    color:Black;
+    text-decoration:none;
+    text-align:center;
+    margin-bottom:6px;
+    padding-left:5px !important;
+    padding-right:5px !important;
+    display:block;
+    text-align:center;
+    margin-left:3px;
+    margin-right:3px;
+    height:25px;
+    line-height:25px;
+    float:left;
+    cursor:pointer;
+    border:1px solid White;
+}
+.selthemeinfo a:hover
+{
+    color:Black;
+    text-align:center;
+    margin-bottom:6px;
+    text-decoration:underline;
+    padding-left:5px;
+    padding-right:5px;
+    display:block;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    margin-left:3px;
+    margin-right:3px;
+    float:left;
+    border:1px solid White;
+}
 .selkeyword
 {
     width:245px;

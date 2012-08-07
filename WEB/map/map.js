@@ -382,6 +382,7 @@ $(document).ready(function () {
     $.cookie("scname", "");
     $.cookie("level", "5A");
     $.cookie("pager_currPage", "1");
+    $.cookie("topic", "");
     var strUrl = new QueryString();
     //findallpoint();
     if (strUrl.areaid != undefined) {

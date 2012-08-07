@@ -34,10 +34,15 @@
                     </asp:Repeater>
         </div>
         <div class="seltheme">
-            旅游主题<img src="/Img/yuansu/jiantouicon1.png" width="14px" height="9px"  style="margin-left:5px"/>
+            <span>旅游主题</span><img src="/Img/yuansu/jiantouicon1.png" width="14px" height="9px"  style="margin-left:5px" />
         </div>
         <div class="selthemeinfo">
-        
+            <a style=" border:1px solid #F9CD8A;background-color:#FDF0CA;color:#E8641B"  onclick="qdtopic(this);">全部</a>
+            <asp:Repeater ID="rpttheme" runat="server">
+                        <ItemTemplate>
+                            <a  onclick="qdtopic(this);"><%# Eval("Name")  %></a>
+                        </ItemTemplate>
+                    </asp:Repeater>
         </div>
         <input id="txtSearch" type="text" class="selkeyword" />
         <input id="Button1" type="button" class="btnsearch" onclick="check2();" value="地图查找" />

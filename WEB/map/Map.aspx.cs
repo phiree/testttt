@@ -38,6 +38,8 @@ public partial class map_Map : System.Web.UI.Page
     {
         rptarea.DataSource = new BLLArea().GetArea(33);
         rptarea.DataBind();
+        rpttheme.DataSource = new BLLTopic().GetAllTopics();
+        rpttheme.DataBind();
     }
     protected void rptarea_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
