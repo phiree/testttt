@@ -761,3 +761,28 @@ h3
     color:#2E6391;
     margin-bottom:10px;
 }
+/*主题管理*/
+.interesttopic
+{
+    margin:15px 0px 10px 10px;
+    font-weight:700;
+}
+.tagstore 
+{
+    margin:10px;
+}
+.tagstore a,#taglist a
+
+{
+    cursor:pointer;
+    margin-right:10px;
+}
+.topicbtn
+{
+    background: url("/theme/default/image/biao1.png");
+    width: 78px;
+    height: 32px;
+    border: 0px none;
+    cursor: pointer;
+    margin:10px 0px 10px 10px;
+}

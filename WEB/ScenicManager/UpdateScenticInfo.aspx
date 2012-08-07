@@ -270,7 +270,7 @@
             </tr>
         </table>
 
-        <p class="scintrotitle">景区简介</p>
+        <p class="scintrotitle">交通指南</p>
         <asp:TextBox ID="Desc" TextMode="MultiLine" runat="server" Height="100px" CssClass="jjtext"
                         Width="400px"></asp:TextBox>
         <p class="scintrotitle">景区图片</p>

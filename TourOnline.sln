@@ -29,7 +29,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB", "{61ADBB5F-2F0
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "48758"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -69,6 +68,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{3A2FC873-64D
 		lib\Remotion.Data.Linq.dll = lib\Remotion.Data.Linq.dll
 		lib\RestSharp.dll = lib\RestSharp.dll
 		lib\Rhino.Mocks.dll = lib\Rhino.Mocks.dll
+		lib\termb.dll = lib\termb.dll
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEL", "MODEL\MODEL.csproj", "{9D0253F0-B0A7-4D66-BE57-7C32C4953340}"
