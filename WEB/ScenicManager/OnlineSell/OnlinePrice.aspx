@@ -22,7 +22,7 @@
         function calc() {
             var tabledom = $("tbody>tr");
             var result = true;
-            var datas='';
+            var datas = '';
             tabledom.each(function () {
                 var ticketname = $(this).children().children().val();
                 var yuanjia = $(this).children().next().children().val();
@@ -31,7 +31,7 @@
                 var zaixianjia = $(this).children().next().next().next().next().children().val();
                 var ticketid = $(this).children().next().next().next().next().next().children().val();
                 var scid = $("input[id*=hidden_scid]").val();
-                datas+='{'+ticketname+','+yuanjia+','+mingxipianjia+','+xianfujia+','+zaixianjia+','+ticketid+','+scid;
+                datas += '{' + ticketname + ',' + yuanjia + ',' + mingxipianjia + ',' + xianfujia + ',' + zaixianjia + ',' + ticketid + ',' + scid;
             });
             $.ajax({
                 type: "Post",
