@@ -8,13 +8,13 @@
             $(".deltopic").click(function () {
                 var isexsit = false;
                 var selectedone = $(this).html();
-                $("#taglist>li").each(function () {
+                $("#taglist>a").each(function () {
                     if ($.trim($(this).html()) == $.trim(selectedone)) {
                         isexsit = true;
                     }
                 });
                 if (!isexsit) {
-                    var content = $("#taglist").html() + "<li onclick='delitem(this)'>" + selectedone + "</li>";
+                    var content = $("#taglist").html() + "<a onclick='delitem(this)' class='hlv'>" + selectedone + "<a class='delfunc' onclick='delitem(this)'>×</a></a>";
                     $("#taglist").html(content);
                 }
             });
@@ -71,18 +71,41 @@
 
         //删除景区主题
         function delitem(obj) {
+            $(obj).prev().remove();
             $(obj).remove();
         }
 
         //保存景区主题
         function saveitem() {
             var scenicnames = "";
-            $("#taglist>li").each(function () {
+            $("#taglist>a").each(function () {
                 scenicnames += $(this).html() + "+";
             });
             $("#<%=hiddentag.ClientID%>").val(scenicnames);
         }
     </script>
+        <style type="text/css">
+    .deltopic,.hlv,.deltopic:link,.deltopic:active,.deltopic:visited,.deltopic:hover,.hlv:link,.hlv:active,.hlv:visited,.hlv:hover
+{
+    color: #009F3C;
+    font-weight: 700;
+    border: #A6DF9E;
+    background-color:#D1EFCD;
+    padding:3px 5px 3px 5px;
+    margin-top:-4px;
+    cursor:pointer;
+}
+.delfunc
+{
+    color: #009F3C;
+    font-weight: 700;
+    border:   #A6DF9E;
+    background-color:#D1EFCD;
+    padding:3px 5px 3px 5px;
+    margin-top:-4px;
+    cursor:pointer;
+    }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <div>
@@ -95,8 +118,8 @@
                 <asp:Repeater ID="rptTopicStore" runat="server">
                     <ItemTemplate>
                         <a class="deltopic">
-                            <%#Eval("Name")%></a> <a class="delfunc" onclick='deltopic(this)' style="cursor: pointer">
-                                -</a>
+                            <%#Eval("Name")%><a class="delfunc" onclick='deltopic(this)'>
+                                ×</a></a> 
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
@@ -109,15 +132,14 @@
         <p>
             我已经添加的标签：</p>
     </div>
-    <div>
-        <ul id="taglist">
+    <div id="taglist">
             <asp:Repeater ID="rptTopicOwn" runat="server">
                 <ItemTemplate>
-                    <li onclick='delitem(this)'>
-                        <%#Eval("Name") %></li>
+                    <a class="hlv">
+                        <%#Eval("Name") %><a class="delfunc" onclick='delitem(this)'>
+                                ×</a></a>
                 </ItemTemplate>
             </asp:Repeater>
-        </ul>
     </div>
     <asp:Button ID="btnsave" runat="server" Text="保存" OnClientClick="saveitem()" OnClick="btnsave_Click" />
     <a href="/manager/ScenicTopicSetting.aspx">返回</a>

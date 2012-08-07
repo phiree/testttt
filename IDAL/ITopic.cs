@@ -10,11 +10,13 @@ namespace IDAL
     {
         IList<Model.ScenicTopic> GetScenictopic(string areacode);
         void SaveTopic(string topicname);
+        void UpdateTopic(Topic topic);
         void SaveScenictopic(IList<string> topicname, Scenic scenic);
         IList<ScenicTopic> GetStByscid(int scid);
         IList<Topic> GetTopicByscid(int scid);
         IList<Model.Topic> GetAllTopics();
         Topic GetTopicByName(string name);
+        Topic GetTopicBySeoname(string seoname);
         IList<ScenicTopic> GetStByTopicid(Guid topid);
         void DelTopic(Topic topic);
     }

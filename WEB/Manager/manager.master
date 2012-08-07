@@ -48,6 +48,7 @@
                     <%--<li><a href="/Manager/BillCheck.aspx">当前账单管理</a></li>--%>
                     <li><a href="/Manager/BillAll.aspx">已结账单管理</a></li>
                     <li><a href="/Manager/SeoInit.aspx">景区SEO修改</a></li>
+                    <li><a href="/Manager/ScenicTopicSetting3.aspx">景区主题SEO</a></li>
                     <li><a href="/Manager/ScenicimgInit.aspx">EXCEL导入</a></li>
                     <li><a href="/Manager/ScenicMapPoint.aspx">景区坐标初始化</a></li>
                 </ul>

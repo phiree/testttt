@@ -7,7 +7,7 @@ using Model;
 
 namespace DAL
 {
-    public class DALTopic : DalBase,IDAL.ITopic
+    public class DALTopic : DalBase, IDAL.ITopic
     {
         public IList<Model.ScenicTopic> GetScenictopic(string areacode)
         {
@@ -47,6 +47,12 @@ namespace DAL
             return query.FutureValue<Topic>().Value;
         }
 
+        public Topic GetTopicBySeoname(string seoname)
+        {
+            string sql = "select t from Topic t where t.seoname='" + seoname + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Topic>().Value;
+        }
 
         public void SaveScenictopic(IList<string> topicname, Scenic scenic)
         {
@@ -63,8 +69,10 @@ namespace DAL
             foreach (string item in topicname)
             {
                 var tmp = tlist.Where(x => x.Name == item.Trim()).First();
-                st = new ScenicTopic() {
-                    Scenic = scenic,Topic=tmp
+                st = new ScenicTopic()
+                {
+                    Scenic = scenic,
+                    Topic = tmp
                 };
                 using (var t = session.BeginTransaction())
                 {
@@ -85,11 +93,20 @@ namespace DAL
 
         public void SaveTopic(string topicname)
         {
-            Topic t = new Topic() { Name=topicname};
+            Topic t = new Topic() { Name = topicname };
             using (var tr = session.BeginTransaction())
             {
                 session.Save(t);
                 tr.Commit();
+            }
+        }
+
+        public void UpdateTopic(Topic topic)
+        {
+            using (var t = session.BeginTransaction())
+            {
+                session.Update(topic);
+                t.Commit();
             }
         }
 

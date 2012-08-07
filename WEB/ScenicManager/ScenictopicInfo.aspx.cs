@@ -36,5 +36,6 @@ public partial class ScenicManager_ScenictopicInfo : bpScenicManager
         IList<string> topicnames=hiddentag.Value.Split(new char[] { '+' }, StringSplitOptions.RemoveEmptyEntries);
         bllTopic.SaveScenictopic(topicnames, Master.Scenic.Id);
         BindTopicOwn();
+        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "btnsave", "alert('保存成功')", true);
     }
 }

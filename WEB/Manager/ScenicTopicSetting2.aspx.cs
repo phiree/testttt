@@ -44,5 +44,6 @@ public partial class Manager_ScenicTopicSetting2 : System.Web.UI.Page
         IList<string> topicnames = hiddentag.Value.Split(new char[] { '+' }, StringSplitOptions.RemoveEmptyEntries);
         bllTopic.SaveScenictopic(topicnames, scid);
         BindTopicOwn();
+        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "btnsave", "alert('保存成功')", true);
     }
 }

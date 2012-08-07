@@ -33,6 +33,11 @@ namespace BLL
             Iticket.SaveScenictopic(topicname, s);
         }
 
+        public void UpdateTopic(Topic topic)
+        {
+            Iticket.UpdateTopic(topic);
+        }
+
         public IList<Model.ScenicTopic> GetScenicTopics(string areacode)
         {
             return Iticket.GetScenictopic(areacode);
@@ -46,6 +51,11 @@ namespace BLL
         public Topic GetTopicByName(string name)
         {
             return Iticket.GetTopicByName(name);
+        }
+
+        public Topic GetTopicBySeoname(string seoname)
+        {
+            return Iticket.GetTopicBySeoname(seoname);
         }
 
         public IList<Model.Topic> GetTopicByscid(int scid)
