@@ -26,7 +26,7 @@
     <div id="top">
         <span class="peoicon"></span><span class="czy">操作员 </span><span class="czyname">
             <asp:Literal runat="server" ID="liUserName"></asp:Literal>
-        </span><span class="upinfo"></span><span class="czyupinfo"><a href="/ScenicManager/UploadAdminInfo.aspx">修改信息</a></span><span class="seper">▏ </span><span class="title">中国旅游在线&nbsp;景区后台管理系统</span>
+        </span><span class="upinfo"></span><span class="czyupinfo"><a href="/ScenicManager/UpdateAdminInfo.aspx">修改信息</a></span><span class="seper">▏ </span><span class="title">中国旅游在线&nbsp;景区后台管理系统</span>
         <asp:LoginStatus LogoutText="" LogoutPageUrl="/ScenicManager/Login.aspx" LogoutAction="Redirect"
                         runat="server" ID="loginstatus"  CssClass="btnout"  />
     </div>

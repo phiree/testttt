@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true" CodeFile="UploadAdminInfo.aspx.cs" Inherits="ScenicManager_UploadAdminInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true" CodeFile="UpdateAdminInfo.aspx.cs" Inherits="ScenicManager_UploadAdminInfo" %>
 <%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" Runat="Server">
     <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
@@ -22,7 +22,18 @@
                     旧密码
                 </td>
                 <td>
-                    <asp:TextBox ID="txtpwd" TextMode="Password" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtpwd1" TextMode="Password" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    新密码
+                </td>
+                <td>
+                    <asp:TextBox ID="txtpwd2" TextMode="Password" runat="server" 
+                        style="vertical-align:middle"></asp:TextBox><asp:CompareValidator
+                        ID="CompareValidator1" runat="server" ErrorMessage="两次密码不同" 
+                        ControlToCompare="txtpwd1" ControlToValidate="txtpwd2" ForeColor="Red"></asp:CompareValidator>
                 </td>
             </tr>
             <tr>
