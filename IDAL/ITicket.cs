@@ -11,7 +11,7 @@ namespace IDAL
         IList<Ticket> GetTicketByAreaId(int areaid);
         IList<Ticket> GetTicketByscId(int scid);
         void SaveOrUpdateTicket(Model.Ticket ticket);
-       
+        void SaveOrUpdateTicket(IList<Model.Ticket> tickets);
         IList<Scenic> GetTicketByAreaIdAndLevel(int areaId, int level,string topic, int pageSize, int pageIndex,out int totalRecord);
         IList<Model.Scenic> Search(string q, int pageIndex, int pageSize, out int totalRecord);
         Ticket Get(int ticketId);

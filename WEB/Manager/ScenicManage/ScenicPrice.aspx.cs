@@ -42,7 +42,11 @@ public partial class Manager_ScenicManage_ScenicPrice : basepage
         pnlPassed.Visible = checkprogress.CheckStatus == CheckStatus.Pass;
     }
 
-
+    /// <summary>
+    /// 通过审核
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void btnPass_Click(object sender, EventArgs e)
     {
         UpdateStatus(CheckStatus.Pass, ScenicModule.SellOnLine);

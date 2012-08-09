@@ -85,6 +85,14 @@ namespace DAL
                 t.Commit();
             }
         }
+
+        public void SaveOrUpdateTicket(IList<Model.Ticket> tickets)
+        {
+            foreach (var item in tickets)
+            {
+                SaveOrUpdateTicket(item);
+            }
+        }
         public Model.Ticket Get(int ticketId)
         {
             Model.Ticket t = session.Get<Model.Ticket>(ticketId);
@@ -105,5 +113,6 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.Ticket>().ToList<Model.Ticket>();
         }
+
     }
 }
