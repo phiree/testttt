@@ -216,6 +216,15 @@ namespace BLL
             }
             scp.CheckStatus = cs;
             IScenic.SaveCheckProgress(scp);
+            if (module == ScenicModule.SellOnLine)
+            {
+                IList<Ticket> tickets=ITicket.GetTicketByscId(scenic.Id);
+                foreach (var item in tickets)
+                {
+                    item.Lock = false;
+                }
+                ITicket.SaveOrUpdateTicket(tickets);
+            }
         }
 
         public Scenic GetScenicBySeoName(string aseoname, string sseoname)

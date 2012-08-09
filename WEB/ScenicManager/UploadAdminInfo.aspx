@@ -27,6 +27,22 @@
             </tr>
             <tr>
                 <td>
+                    新密码
+                </td>
+                <td>
+                    <asp:TextBox ID="txtnewpwd1" TextMode="Password" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    确认新密码
+                </td>
+                <td>
+                    <asp:TextBox ID="txtnewpwd2" TextMode="Password" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     
                 </td>
                 <td>

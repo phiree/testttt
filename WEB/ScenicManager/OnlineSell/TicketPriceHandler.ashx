@@ -30,9 +30,6 @@ public class TicketPriceHandler : IHttpHandler
             string scid = tmp[6];
             bllTicket.SaveOrUpdateTicket(ticketname, yuanjia, mingxipianjia, xianfujia, zaixianjia, ticketid, scid);
         }
-        //System.Collections.Generic.IList<Model.Ticket> tickets = bllTicket.GetTicketByscId(int.Parse(context.Request["scid"]));
-        //var json = new System.Runtime.Serialization.Json.DataContractJsonSerializer(tickets.GetType());
-        //json.WriteObject(context.Response.OutputStream, tickets);
     }
 
     public bool IsReusable
