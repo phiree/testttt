@@ -20,36 +20,53 @@
                 预订价:<asp:Label ID="lblydj" CssClass="jtpriceinfo" runat="server"></asp:Label></p>
             <p class="priceinfo">
                 优惠价:<asp:Label ID="lblyhj" CssClass="jtpriceinfo" runat="server"></asp:Label></p>--%>
-                
-        <asp:Repeater ID="rptprice" runat="server">
-        <HeaderTemplate>
-        <table>
-            <thead>
-                <tr>
-                <th>门票</th>
-                <th>原价</th>
-                <th>明信片优惠价</th>
-                <th>景区现付价</th>
-                <th>在线支付价</th>
-                </tr>
-            </thead>
-            <tbody>
-        </HeaderTemplate>
-            <ItemTemplate>
-                <tr>
-                    <th><%#Eval("Name") %></th>
-                    <td> <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.Normal).First().Price.ToString("0") %></td>
-                            <td><%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PostCardDiscount).First().Price.ToString("0")%></td>
-                            <td><%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price.ToString("0")%></td>
-                            <td><%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PayOnline).First().Price.ToString("0")%></td>
-                </tr>
-            </ItemTemplate>
-        <FooterTemplate>
-            </tbody>
-        </table>
-        </FooterTemplate>
-        </asp:Repeater>
-
+            <asp:Repeater ID="rptprice" runat="server">
+                <HeaderTemplate>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    门票
+                                </th>
+                                <th>
+                                    原价
+                                </th>
+                                <th>
+                                    明信片优惠价
+                                </th>
+                                <th>
+                                    景区现付价
+                                </th>
+                                <th>
+                                    在线支付价
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <th>
+                            <%#Eval("Name") %>
+                        </th>
+                        <td>
+                            <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.Normal).First().Price.ToString("0") %>
+                        </td>
+                        <td>
+                            <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PostCardDiscount).First().Price.ToString("0")%>
+                        </td>
+                        <td>
+                            <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price.ToString("0")%>
+                        </td>
+                        <td>
+                            <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PayOnline).First().Price.ToString("0")%>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </tbody> </table>
+                </FooterTemplate>
+            </asp:Repeater>
         </asp:Panel>
         <asp:Panel ID="panelshing" runat="server">
             <div class="passsh">
