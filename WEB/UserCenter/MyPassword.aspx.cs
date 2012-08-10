@@ -11,4 +11,9 @@ public partial class UserCenter_MyPassword : System.Web.UI.Page
     {
 
     }
+
+    protected void btnGoon_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/usercenter");
+    }
 }

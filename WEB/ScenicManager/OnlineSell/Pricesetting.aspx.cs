@@ -10,7 +10,7 @@ using BLL;
 public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
 {
     BLLScenic bllscenic = new BLLScenic();
-    BLLTicketPrice bllticketprice = new BLLTicketPrice();   
+    BLLTicketPrice bllticketprice = new BLLTicketPrice();
     BLLTicket bllticket = new BLLTicket();
 
     protected void Page_Load(object sender, EventArgs e)

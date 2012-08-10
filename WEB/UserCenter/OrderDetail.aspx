@@ -136,10 +136,13 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div id="otop">
-        <a href="Order.aspx" style=" margin-right:15px;color:#C9C9C9">我的订单</a><a style=" margin-right:15px; color:#C9C9C9">></a><a runat="server" id="oredernum" style="text-decoration:none">订单3</a></div>
+        <a href="Order.aspx" style="margin-right: 15px; color: #C9C9C9">我的订单</a><a style="margin-right: 15px;
+            color: #C9C9C9">></a><a runat="server" id="oredernum" style="text-decoration: none">订单3</a></div>
     <div id="oscdpinfo">
         <div class="oscdptop">
-            <span runat="server" id="paystate" style=" color: Black;"></span><asp:Button runat="server" Visible="false" OnClick="btnRefurb_Click" ID="btnRefurb" Text="退订/退款" />
+            <span runat="server" id="paystate" style="color: Black;"></span>
+            <asp:Button runat="server" Visible="false" OnClick="btnRefurb_Click" ID="btnRefurb"
+                Text="退订/退款" />
         </div>
         <div style="display: none">
             <asp:HiddenField ID="hfodid" runat="server" />
@@ -155,8 +158,8 @@
             <ItemTemplate>
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;">
-                    <span class="oscfirst">
-                        <a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'><%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span><span class="oscsecond" runat="server"
+                    <span class="oscfirst"><a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
+                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span><span class="oscsecond" runat="server"
                             id="buytype"></span><span class="oscthird" runat="server" id="tp"><%# Eval("TicketPrice.Price","{0:0}")%></span><span
                                 class="oscfour" runat="server" id="qua"><%# Eval("Quantity")%></span><span class="oscfifth"><span
                                     id="sumprice" runat="server"></span>元</span><span class="oscsix"><span id="usedstate"
@@ -165,31 +168,32 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-        <asp:Repeater ID="rptOrderDetail2" runat="server" 
-            onitemdatabound="rptOrderDetail2_ItemDataBound">
+        <asp:Repeater ID="rptOrderDetail2" runat="server" OnItemDataBound="rptOrderDetail2_ItemDataBound">
             <HeaderTemplate>
                 <div class="oscdptitle">
-                    <span class="oscfirst" style=" margin-left:0px;">景区名称</span><span class="oscsecond">预定价</span><span class="oscthird" style=" width:100px">已使用数量</span>
-                    <span class="oscfour" style=" width:100px">未使用数量</span><span class="oscfifth">小计</span><span class="oscsix">使用情况</span><span
-                        class="oscseven" style="margin-left:15px;">使用详情</span>
+                    <span class="oscfirst" style="margin-left: 0px;">景区名称</span><span class="oscsecond">预定价</span><span
+                        class="oscthird" style="width: 100px">已使用数量</span> <span class="oscfour" style="width: 100px">
+                            未使用数量</span><span class="oscfifth">小计</span><span class="oscsix">使用情况</span><span
+                                class="oscseven" style="margin-left: 15px;">使用详情</span>
                 </div>
             </HeaderTemplate>
             <ItemTemplate>
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;">
-                    <span class="oscfirst" style=" margin:0px;">
-                        <a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'><%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span>
-                     <span class="oscsecond" runat="server" id="ydprice" style="margin-left:5px" ><%# Eval("TicketPrice.Price","{0:0}")%></span>
-                     <span class="oscthird" runat="server" id="usedcount" style="width:100px"></span>
-                     <span class="oscfour" runat="server" id="notusedcount" style="width:100px"></span>
-                     <span class="oscfifth"><span id="sumprice" runat="server"></span>元</span>
-                     <span class="oscsix" style="margin-left:5px"><span id="usedstate" runat="server"></span></span>
-                     <span class="oscseven"><a id="usedetail" style="cursor: pointer; margin-left:0px;" runat="server" onclick='<%# Eval("Id","openusedetail({0})") %>'>使用详情</a></span>
+                    <span class="oscfirst" style="margin: 0px;"><a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
+                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span> <span class="oscsecond" runat="server"
+                            id="ydprice" style="margin-left: 5px">
+                            <%# Eval("TicketPrice.Price","{0:0}")%></span> <span class="oscthird" runat="server"
+                                id="usedcount" style="width: 100px"></span><span class="oscfour" runat="server" id="notusedcount"
+                                    style="width: 100px"></span><span class="oscfifth"><span id="sumprice" runat="server">
+                                    </span>元</span> <span class="oscsix" style="margin-left: 5px"><span id="usedstate"
+                                        runat="server"></span></span><span class="oscseven"><a id="usedetail" style="cursor: pointer;
+                                            margin-left: 0px;" runat="server" onclick='<%# Eval("Id","openusedetail({0})") %>'>
+                                            使用详情</a></span>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-        <asp:Repeater ID="rptOrderDetail3" runat="server" 
-            onitemdatabound="rptOrderDetail3_ItemDataBound">
+        <asp:Repeater ID="rptOrderDetail3" runat="server" OnItemDataBound="rptOrderDetail3_ItemDataBound">
             <HeaderTemplate>
                 <div class="oscdptitle">
                     <span class="oscfirst">景区名称</span><span class="oscsecond">在线支付价</span><span class="oscthird">数量</span>
@@ -199,28 +203,32 @@
             <ItemTemplate>
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;">
-                    <span class="oscfirst">
-                        <a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'><%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span>
-                    <span class="oscsecond" runat="server" id="onlineprice" style="margin-left:5px;"><%# Eval("TicketPrice.Price","{0:0}")%></span>
-                    <span class="oscthird" runat="server" id="tp"><%# Eval("Quantity")%></span>
-                    <span class="oscfour" runat="server" id="sumprice"></span>
+                    <span class="oscfirst"><a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
+                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span> <span class="oscsecond" runat="server"
+                            id="onlineprice" style="margin-left: 5px;">
+                            <%# Eval("TicketPrice.Price","{0:0}")%></span> <span class="oscthird" runat="server"
+                                id="tp">
+                                <%# Eval("Quantity")%></span> <span class="oscfour" runat="server" id="sumprice">
+                    </span>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-        <div class="dscdptotal" runat="server"  id="state1">
+        <div class="dscdptotal" runat="server" id="state1">
             合计:<span runat="server" id="oscticketcount"></span>张门票&nbsp;&nbsp;<span runat="server"
                 id="oscticketprice"></span>元
         </div>
         <div id="state2" runat="server" class="state2">
-                未使用<span runat="server" id="ydcount"></span>张门票&nbsp;&nbsp;合计<span runat="server" id="ttprice"></span>元&nbsp;<span class="jstitle">你也可以选择在线支付立省
-                <span runat="server" id="jsprice"></span>元 </span>
+            未使用<span runat="server" id="ydcount"></span>张门票&nbsp;&nbsp;合计<span runat="server"
+                id="ttprice"></span>元&nbsp;<span class="jstitle">你也可以选择在线支付立省 <span runat="server"
+                    id="jsprice"></span>元 </span>
             <asp:Button ID="Button1" runat="server" CssClass="payonline" />
-            </div>
+        </div>
         <div id="state3" runat="server" class="state3">
             <span runat="server" id="wfcount"></span>张门票&nbsp;&nbsp;合计<span runat="server" id="wfttprice"></span>元
-            <asp:Button ID="Button2" ValidationGroup="none"  runat="server" CssClass="payonline" 
-                onclick="Button2_Click" />&nbsp;&nbsp;你也可以选择<asp:Button
-                ID="Button3" ValidationGroup="none" runat="server" CssClass="btnyd" onclick="Button3_Click" />合计&nbsp;<span runat="server" id="zbttprice"></span>元
+            <asp:Button ID="Button2" ValidationGroup="none" runat="server" CssClass="payonline"
+                OnClick="Button2_Click" />&nbsp;&nbsp;你也可以选择<asp:Button ID="Button3" ValidationGroup="none"
+                    runat="server" CssClass="btnyd" OnClick="Button3_Click" />合计&nbsp;<span runat="server"
+                        id="zbttprice"></span>元
         </div>
     </div>
     <div id="oscupdateinfo">
@@ -228,25 +236,24 @@
             修改游客信息<span style="margin-left: 25px; color: Black;">(景区验票系统仅识别姓名,身份证号码,请准确填写)</span>
         </div>
         <div class="oscupdatesearch">
-            
             <div id="contactlist">
                 <asp:Repeater runat="server" ID="rptContacts">
-                <HeaderTemplate>
-                          <div id="contactHead">常用联系人</div>
-            <div id="contactBody"></HeaderTemplate>
+                    <HeaderTemplate>
+                        <div id="contactHead">
+                            常用联系人</div>
+                        <div id="contactBody">
+                    </HeaderTemplate>
                     <ItemTemplate>
-                        
-                            <a class="assignitem" href="javascript:void" idcard='<%#Eval("IdCard") %>' cid='<%#Eval("Id") %>'>
-                                <%#Eval("Name") %></a>
-                       
+                        <a class="assignitem" href="javascript:void" idcard='<%#Eval("IdCard") %>' cid='<%#Eval("Id") %>'>
+                            <%#Eval("Name") %></a>
                     </ItemTemplate>
-                    <FooterTemplate></div>
-</FooterTemplate>
+                    <FooterTemplate>
+                        </div>
+                    </FooterTemplate>
                 </asp:Repeater>
             </div>
-            <div style="padding-top:10px">
-                <asp:Repeater ID="rptbind" runat="server" 
-                    onitemdatabound="rptbind_ItemDataBound">
+            <div style="padding-top: 10px">
+                <asp:Repeater ID="rptbind" runat="server" OnItemDataBound="rptbind_ItemDataBound">
                     <ItemTemplate>
                         <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                         <div runat="server" id="oscused" class="oscdetailname">
@@ -261,7 +268,7 @@
                                 ID="txtdetailidcard" runat="server" Text='<%# Eval("TicketAssignList[0].IdCard") %>'
                                 Style="height: 20px; width: 150px; margin-left: 10px; float: left; padding: 0px;
                                 margin-top: 0px; line-height: 20px" tid='<%#Eval("Id")%>' CssClass="bb" onblur="veriidcard()"></asp:TextBox>
-                            <span style="color:Red; display:none;" class="veritext"></span>
+                            <span style="color: Red; display: none;" class="veritext"></span>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>

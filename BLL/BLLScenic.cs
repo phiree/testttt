@@ -28,14 +28,16 @@ namespace BLL
         IDAL.ITicket iticket;
         public IDAL.ITicket ITicket
         {
-            get {
+            get
+            {
                 if (iticket == null)
                 {
                     iticket = new DAL.DALTicket();
                 }
                 return iticket;
             }
-            set {
+            set
+            {
                 iticket = value;
             }
         }
@@ -69,9 +71,9 @@ namespace BLL
             return IScenic.GetScenicByScenicPosition(position);
         }
 
-        public IList<Model.Scenic> GetScenicByScenicName(string scenicname, string level, int areaid,string topic)
+        public IList<Model.Scenic> GetScenicByScenicName(string scenicname, string level, int areaid, string topic)
         {
-            return IScenic.GetScenicByScenicName(scenicname, level, areaid,topic);
+            return IScenic.GetScenicByScenicName(scenicname, level, areaid, topic);
         }
         public Scenic GetScenicById(int scid)
         {
@@ -158,7 +160,7 @@ namespace BLL
         /// <param name="module"></param>
         public void Apply(Scenic scenic, TourMembership applier, ScenicModule module)
         {
-            ScenicCheckProgress scp=new ScenicCheckProgress();
+            ScenicCheckProgress scp = new ScenicCheckProgress();
             var cplist = scenic.CheckProgress.ToList();
             if (cplist.Count != 0)
             {
@@ -207,7 +209,7 @@ namespace BLL
         /// <param name="scenic"></param>
         /// <param name="checker"></param>
         /// <param name="module"></param>
-        public void ChangeCheckStatus(Scenic scenic, TourMembership checker, ScenicModule module,CheckStatus cs)
+        public void ChangeCheckStatus(Scenic scenic, TourMembership checker, ScenicModule module, CheckStatus cs)
         {
             ScenicCheckProgress scp = GetStatus(scenic.Id, module);
             if (scp.CheckStatus != CheckStatus.Applied)
@@ -218,7 +220,7 @@ namespace BLL
             IScenic.SaveCheckProgress(scp);
             if (module == ScenicModule.SellOnLine)
             {
-                IList<Ticket> tickets=ITicket.GetTicketByscId(scenic.Id);
+                IList<Ticket> tickets = ITicket.GetTicketByscId(scenic.Id);
                 foreach (var item in tickets)
                 {
                     item.Lock = false;
