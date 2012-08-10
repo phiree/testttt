@@ -22,7 +22,7 @@ public partial class UserCenter_MyOrder : basepage
         {
             bind();
         }
-        
+
         int orderid = int.Parse(Request.QueryString["orderid"]);
 
 
@@ -194,7 +194,7 @@ public partial class UserCenter_MyOrder : basepage
                 ta.Name = (item.FindControl("txtdetailname") as TextBox).Text.Trim();
                 ta.IdCard = (item.FindControl("txtdetailidcard") as TextBox).Text.Trim();
                 bllticketassign.SaveOrUpdate(ta);
-                if (bllcommonuser.GetCommonUserByUserIdandidcard((Guid)CurrentUser.ProviderUserKey, ta.IdCard) == null&&ta.IdCard!=bllMember.GetUserByUserId((Guid)CurrentUser.ProviderUserKey).IdCard)
+                if (bllcommonuser.GetCommonUserByUserIdandidcard((Guid)CurrentUser.ProviderUserKey, ta.IdCard) == null && ta.IdCard != bllMember.GetUserByUserId((Guid)CurrentUser.ProviderUserKey).IdCard)
                 {
                     bllcommonuser.Save((Guid)CurrentUser.ProviderUserKey, ta.Name, ta.IdCard);
                 }

@@ -28,7 +28,7 @@
                 </td>
             </tr>
             <tr>
-                <td style="vertical-align:top; padding-top:8px;">
+                <td style="vertical-align: top; padding-top: 8px;">
                     <asp:Label ID="Label3" Text="*权限" runat="server" />
                 </td>
                 <td>
@@ -44,12 +44,6 @@
                 </td>
             </tr>
         </table>
-            
-            
-            
-            
-            
-            
     </div>
     <p class="wkintr">
         景区总负责人:可以更改工作人员的操作权限，负责资料的审核，账单的审核

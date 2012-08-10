@@ -1,6 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true" CodeFile="UpdateScenicImg.aspx.cs" Inherits="ScenicManager_UpdateScenicImg" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true"
+    CodeFile="UpdateScenicImg.aspx.cs" Inherits="ScenicManager_UpdateScenicImg" %>
+
 <%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="smHeader" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
     <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery.uploadify.min.js" type="text/javascript"></script>
     <link href="/Styles/uploadify.css" rel="stylesheet" type="text/css" />
@@ -39,21 +41,21 @@
         }
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <asp:HiddenField ID="hfimgurl" runat="server" />
     <p class="fuctitle">
-        <a id="listname" runat="server" href="/ScenicManager/ScenicPictureShow.aspx">景区图片管理</a>>&nbsp;<span id="pictype" runat="server">编辑图片</span></p>
+        <a id="listname" runat="server" href="/ScenicManager/ScenicPictureShow.aspx">景区图片管理</a>>&nbsp;<span
+            id="pictype" runat="server">编辑图片</span></p>
     <hr />
     <div id="picshow">
         <div class="scpicmain">
             <span>编辑图片</span>
             <table border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td style="width:100px">
-                        
+                    <td style="width: 100px">
                     </td>
-                    <td style="width:550px">
-                        <img id="uploadimg" style="width:500px; height:350px;" runat="server" />
+                    <td style="width: 550px">
+                        <img id="uploadimg" style="width: 500px; height: 350px;" runat="server" />
                     </td>
                 </tr>
                 <tr>
@@ -93,14 +95,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
                     <td>
-                        <asp:Button ID="btnok" runat="server"  CssClass="btnsaveimg" 
-                            onclick="btnok_Click" />
+                    </td>
+                    <td>
+                        <asp:Button ID="btnok" runat="server" CssClass="btnsaveimg" OnClick="btnok_Click" />
                     </td>
                 </tr>
             </table>
         </div>
     </div>
 </asp:Content>
-
