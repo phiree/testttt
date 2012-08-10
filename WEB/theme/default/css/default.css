@@ -58,6 +58,9 @@
 #toprecomm
 {
     display:inline-block;
+    height:345px;
+    width:950px;
+    background:url("/theme/default/image/newversion/toperbg.png");
 }
 /*
 div:246
