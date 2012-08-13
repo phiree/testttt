@@ -10,6 +10,7 @@ namespace ExcelOplib.Entity
         public string name { get; set; }
         public string address { get; set; }
         public string areaid { get; set; }
+        public string ticketname { get; set; }
         public decimal price { get; set; }
         public string opentime { get; set; }
         public string pricedesc { get; set; }
