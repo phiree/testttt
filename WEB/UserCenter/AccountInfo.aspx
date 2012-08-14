@@ -5,8 +5,6 @@
     <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" runat="Server">
-    <div id="atop">
-        个人信息</div>
     <div id="ainfo">
         <table border="0" cellpadding="5" cellspacing="0">
             <tr>
@@ -58,7 +56,7 @@
                 <td>
                 </td>
                 <td>
-                    <asp:Button ID="btnModify" runat="server" OnClick="btnModify_Click" CssClass="achangebtn" />
+                    <asp:Button ID="btnModify" runat="server" OnClick="btnModify_Click" CssClass="achangebtn" Text="保存修改" />
                 </td>
             </tr>
         </table>

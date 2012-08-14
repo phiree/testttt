@@ -2,15 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <link href="/theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/ucdefault.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" Runat="Server">
-    <div id="cutop">常用联系人管理</div>
     <div id="cuinfo">
         <div class="culist">
             <asp:Repeater ID="rptcu" runat="server">
                 <HeaderTemplate>
                     <table border="0" cellpadding="0" cellspacing="0" width="600px">
-                        <tr style=" background-color:#82974C; color:White;">
+                        <tr style=" background-color:#E3DED3; color:#807940;height:25px; line-height:25px;">
                             <td>
                                 &nbsp;
                             </td>
@@ -25,7 +25,7 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
-                    <tr>
+                    <tr onmousemove="changebg(this)" onmouseout="changebg2(this)">
                         <td>
                             <asp:CheckBox ID="ckbselect" runat="server" />
                         </td>
@@ -45,10 +45,10 @@
                 </FooterTemplate>
             </asp:Repeater>
             <div class="xzan">
-                <asp:Button ID="btnadd" runat="server" CssClass="btnaddcu" 
+                <asp:Button ID="btnadd" runat="server" CssClass="btnaddcu" Text="新增"
                     onclick="btnadd_Click" />
                 <asp:Button ID="btndelete"
-                    runat="server" CssClass="btndeletecu" onclick="btndelete_Click"  />
+                    runat="server" CssClass="btndeletecu" onclick="btndelete_Click" Text="删除"  />
             </div>
         </div>
     </div>

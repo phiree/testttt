@@ -2,9 +2,9 @@
     CodeFile="MyVisited.aspx.cs" Inherits="UserCenter_MyVisited" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/ucdefault.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" runat="Server">
-    <div id="vtop">游玩记录</div>
     <div id="vdetail">
         <asp:Repeater ID="rptVisited" runat="server" 
             onitemdatabound="rptVisited_ItemDataBound">
@@ -14,16 +14,12 @@
                 </div>
             </HeaderTemplate>
             <ItemTemplate>
-                <div class="vinfo">
+                <div class="vinfo" onmouseover="changebg(this)" onmouseout="changebg2(this)">
                 <span class="vtfirst"><%# Eval("UsedTime","{0:yyyy-MM-dd}")%></span><span class="vtsecond"><%# Eval("OrderDetail.TicketPrice.Ticket.Scenic.Name")%></span><span runat="server" id="vpricetype" class="vtthird"><%# Eval("OrderDetail.TicketPrice.PriceType")%></span><span class="vtfour" runat="server" id="vprice"><%# Eval("OrderDetail.TicketPrice.Price","{0:0}")%></span><span runat="server" id="vcount" class="vtfifth"><%# Eval("UsedTime")%></span><span class="vtsix"><%# Eval("Name")%></span></div>
             </ItemTemplate>
-            <AlternatingItemTemplate>
-                <div class="valinfo">
-                <span class="vtfirst"><%# Eval("UsedTime","{0:yyyy-MM-dd}")%></span><span class="vtsecond"><%# Eval("OrderDetail.TicketPrice.Ticket.Scenic.Name")%></span><span runat="server" id="vpricetype" class="vtthird"><%# Eval("OrderDetail.TicketPrice.PriceType")%></span><span class="vtfour" runat="server" id="vprice"><%# Eval("OrderDetail.TicketPrice.Price","{0:0}")%></span><span runat="server" id="vcount" class="vtfifth"><%# Eval("UsedTime")%></span><span class="vtsix"><%# Eval("Name")%></span></div>
-            </AlternatingItemTemplate>
         </asp:Repeater>
         <div class="vtotal">
-            <span runat="server" id="vtotalprice">共消费:190元</span>
+            <span runat="server" id="vtotalprice"></span>
         </div>
     </div>
 

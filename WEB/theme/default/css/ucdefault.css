@@ -66,22 +66,21 @@
 }
 #vdetail
 {
-    border-left:1px solid #DBD4CC;
-    border-right:1px solid #DBD4CC;
-    width:715px;
-    margin:0px auto;
+    width:98%;
+    margin:10px 5px 0px 5px;
     min-height:173px;
 }
 .vtitlename
 {
-    background-color:#82974C;
-    height:22px;
+    background-color:#E3DED3;
+    height:30px;
+    
 }
 .vtitlename span
 {
     display:inline-block;
-    color:White;
-    line-height:22px;
+    line-height:30px;
+    color:#807940;
 }
 .vtfirst
 {
@@ -122,7 +121,6 @@
 .vinfo
 {
     height:35px;
-    background-color:#FAF6ED;
 }
 .vinfo span,.valinfo span
 {
@@ -136,14 +134,23 @@
 }
 .vtotal
 {
-    height:30px;
-    background-color:#FFF5A0;
+    height:50px;
+    width:95%;
+    margin:20px auto;
+    border-top:1px solid #CDCDCD;
 }
 .vtotal span
 {
-    margin-left:550px;
-    color:#B34341;
-    line-height:30px;
+    margin-left:10px;
+    color:#807940;
+    line-height:50px;
+    margin-left:10px;
+    margin-right:10px;
+}
+.strongnum
+{
+    font-size:20px;
+    font-weight:bold;
 }
 /*修改密码*/
 #ptop
@@ -165,7 +172,6 @@
     width:715px;
     display:block;
     height:250px;
-    background-color:#FAF6ED;
     margin:0px auto;
 }
 #pinfo table
@@ -180,16 +186,28 @@
 }
 #pinfo table tr td
 {
-    background-color:inherit;
+    background-color:inherit !important;
 }
 .pchangepwd
 {
     width:86px;
-    height:28px;
-    background:url("/theme/default/image/changepwdbtn.png");
-    border:0px none White;
+    height:26px !important;
+    background:url("/theme/default/image/newversion/ucbtnokbg.png");
+    background-repeat:repeat-x;
+    border:1px solid #BFB130;
     cursor:pointer;
+    color:White;
+    font-weight:bold;
+    text-align:center;
+    line-height:24px !important;
+    font-size:12px;
+    margin-top:20px;
 }
+.pchangepwd:hover
+{
+    background-image:url("/theme/default/image/newversion/ucbtnokbg2.png");
+}
+
 /*个人信息*/
 #atop
 {
@@ -210,8 +228,7 @@
     width:715px;
     display:block;
     height:350px;
-    background-color:#FAF6ED;
-    margin:0px 0px 0px 10px;
+    margin:0px 0px 0px 0px;
     display:inline-block;
 }
 #ainfo table
@@ -225,7 +242,8 @@
 }
 #ainfo table tr td
 {
-    background-color:inherit;
+    background-color:inherit !important;
+    color:#807940;
 }
 .atxt
 {
@@ -237,10 +255,21 @@
 .achangebtn
 {
     width:86px;
-    height:28px;
-    background:url("/theme/default/image/changepwdbtn.png");
-    border:0px none White;
+    height:26px !important;
+    background:url("/theme/default/image/newversion/ucbtnokbg.png");
+    background-repeat:repeat-x;
+    border:1px solid #BFB130;
     cursor:pointer;
+    color:White;
+    font-weight:bold;
+    text-align:center;
+    line-height:24px !important;
+    font-size:12px;
+    margin-top:20px;
+}
+.achangebtn:hover
+{
+    background-image:url("/theme/default/image/newversion/ucbtnokbg2.png");
 }
 /*订单记录*/
 #otop
@@ -369,9 +398,6 @@
 /*订单详情*/
 #oscdpinfo
 {
-    border-left:1px solid #DBD4CC;
-    border-right:1px solid #DBD4CC;
-    border-bottom:1px solid #DBD4CC;
     width:715px;
     margin:0px auto;
 }
@@ -389,6 +415,7 @@
     height:32px;
     margin-left:10px;
     margin-right:10px;
+    color:White;
 }
 .oscdptitle span
 {
@@ -397,10 +424,15 @@
     text-align:center;
     color:#807940;
 }
+.osczero
+{
+    margin-left:20px;
+    width:120px;
+}
 .oscfirst
 {
     margin-left:20px;
-    width:200px;
+    width:100px;
 }
 .oscsecond,.oscsix,.oscseven
 {
@@ -422,22 +454,29 @@
     line-height:35px;
     display:inline-block;
     text-align:center;
+    color:#807940;
+}
+.oscticketcount
+{
+    margin-left:5px;
+    margin-right:5px;
+    font-size:20px;
+    font-weight:bold;
 }
 .dscdptotal
 {
-    height:32px;
-    background-color:#FFF5A0;
-    color:#AF4A1C;
-    line-height:32px;
-    padding-left:560px;
+    height:50px;
+    border-top:1px dashed #CDCDCD;
+    color:#807940;
+    line-height:50px;
+    padding-left:60px;
 }
 #oscupdateinfo
 {
-    border-left:1px solid #DBD4CC;
-    border-right:1px solid #DBD4CC;
-    border-bottom:1px solid #DBD4CC;
+    border-top:1px solid #DBD4CC;
     width:715px;
     margin:5px auto;
+    color:#807940;
 }
 .oscupdatetop
 {
@@ -449,7 +488,6 @@
 }
 .oscupdatesearch
 {
-    background-color:#FAF6ED;
 }
 .oscsearchnav
 {
@@ -520,48 +558,84 @@
     width:700px;
     text-align:center;
     padding-bottom:10px;
+    margin-top:40px;
 }
 .oscbtnupdate
 {
     width:86px;
-    height:28px;
-    background-image:url("/theme/default/image/changepwdbtn.png");
-    border:0px none White;
+    height:26px;
+    background-image:url("/theme/default/image/newversion/ucbtnokbg.png");
+    background-repeat:repeat-x;
+    border:1px solid #BFB130;
     cursor:pointer;
+    text-align:center;
+    line-height:22px;
+    *padding:0px;
+    margin:0px;
+    font-weight:bold;
+    color:White;
+    font-size:12px;
+    
+}
+.oscbtnupdate:hover
+{
+    background-image:url("/theme/default/image/newversion/ucbtnokbg2.png");
 }
 .state2
 {
-    padding-left:300px;
+    width:90%;
+    margin:0px auto;
+    border-top:1px dashed #CDCDCD;
+    padding-left:30px;
     padding-bottom:20px;
     padding-top:10px;
+    color:#807940;
 }
 .jstitle
 {
     color:#82974C;
 }
-.payonline
+.payonline,.payonline:link,.payonline:hover,.payonline:visited,.payonline:active,.payonline:visited
 {
-    background:url("/theme/default/image/payonline.png");
-    border:0px none White;
-    width:75px;
-    height:28px;
-    cursor:pointer;
+    color:#EC6B9E;
     vertical-align:middle;
+    font-weight:bold;
+    cursor:pointer;
+    margin-left:10px;
+}
+.payonline2
+{
+    border:none;
+    background-color:White;
+    vertical-align:middle;
+    line-height:20px;
+    color:#EC6B9E;
+    font-weight:bold;
+    cursor:pointer;
+}
+.payonline2:hover
+{
+    text-decoration:underline;
 }
 .state3
 {
-    padding-left:300px;
+    padding-left:30px;
     padding-bottom:20px;
     padding-top:10px;
 }
 .btnyd
 {
-    background:url("/theme/default/image/scxf.png");
-    width:101px;
-    height:30px;
-    border:0px none White;
+    border:none;
+    background-color:White;
     vertical-align:middle;
+    line-height:20px;
+    color:#EC6B9E;
+    font-weight:bold;
     cursor:pointer;
+}
+.btnyd:hover
+{
+    text-decoration:underline;
 }
 /*常用联系人管理*/
 #cutop
@@ -583,14 +657,13 @@
     width:715px;
     display:inline-block;
     min-height:250px;
-    background-color:#FAF6ED;
-    margin-left: 12px;
+    margin-left: 0px;
 }
 
 .culist table
 {
-    width:100%;
-    margin:0px auto;
+    width:98%;
+    margin:10px 5px;
 }
 .culist table td
 {
@@ -627,22 +700,25 @@
 {
     margin:15px 0px 20px 30px;
 }
-.btnaddcu
+.btnaddcu,.btndeletecu
 {
-    width:77px;
-    height:28px;
+    width:86px;
+    height:26px;
+    background-image:url("/theme/default/image/newversion/ucbtnokbg.png");
+    background-repeat:repeat-x;
+    border:1px solid #BFB130;
     cursor:pointer;
-    border:0px none;
-    background:url("/theme/default/image/addcu.png");
+    text-align:center;
+    line-height:22px;
+    *padding:0px;
+    margin:0px;
+    font-weight:bold;
+    color:White;
+    font-size:12px;
 }
-.btndeletecu
+.btnaddcu:hover,.btndeletecu:hover
 {
-    background:url("/theme/default/image/btndeletecu.png");
-    border:0px none;
-    cursor:pointer;
-    margin-left:20px;
-    width:75px;
-    height:28px;
+    background-image:url("/theme/default/image/newversion/ucbtnokbg2.png");
 }
 /*常用联系人设置*/
 #cuutop
@@ -665,20 +741,35 @@
     width:715px;
     display:inline-block;
     height:250px;
-    background-color:#FAF6ED;
-    margin-left: 12px;
 }
 #cuuinfo table
 {
     width:400px;
     margin:50px auto;
 }
+#cuuinfo table tr td
+{
+    background-color:inherit !important;
+    color:#807940;
+}
 .btnsave
 {
     width:86px;
-    height:28px;
-    background:url("/theme/default/image/changepwdbtn.png");
-    border:0px none White;
+    height:26px;
+    background-image:url("/theme/default/image/newversion/ucbtnokbg.png");
+    background-repeat:repeat-x;
+    border:1px solid #BFB130;
     cursor:pointer;
-    margin-top:15px;
+    text-align:center;
+    line-height:22px;
+    *padding:0px;
+    margin:0px;
+    font-weight:bold;
+    color:White;
+    font-size:12px;
+    margin-top:20px;
+}
+.btnsave:hover
+{
+    background-image:url("/theme/default/image/newversion/ucbtnokbg2.png");
 }

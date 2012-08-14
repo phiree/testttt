@@ -5,8 +5,6 @@
     <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ucContent" runat="Server">
-    <div id="ptop">
-        修改密码</div>
     <div id="pinfo">
         <asp:ChangePassword ID="ChangePassword1" runat="server">
             <ChangePasswordTemplate>
@@ -16,7 +14,7 @@
                             <table cellpadding="0">
                                 <tr>
                                     <td align="right">
-                                        <asp:Label ID="CurrentPasswordLabel" runat="server" AssociatedControlID="CurrentPassword">密码:</asp:Label>
+                                        <asp:Label ID="CurrentPasswordLabel" runat="server" AssociatedControlID="CurrentPassword" style=" font-weight:normal;color:#807940">密码:</asp:Label>
                                     </td>
                                     <td>
                                         <asp:TextBox ID="CurrentPassword" runat="server" TextMode="Password"></asp:TextBox>
@@ -26,20 +24,20 @@
                                 </tr>
                                 <tr>
                                     <td align="right">
-                                        <asp:Label ID="NewPasswordLabel" runat="server" AssociatedControlID="NewPassword">新密码:</asp:Label>
+                                        <asp:Label ID="NewPasswordLabel" runat="server" AssociatedControlID="NewPassword" style=" font-weight:normal;color:#807940">新密码:</asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="NewPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="NewPassword" runat="server" TextMode="Password" ></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="NewPasswordRequired" runat="server" ControlToValidate="NewPassword"
                                             ErrorMessage="必须填写“新密码”。" ToolTip="必须填写“新密码”。" ValidationGroup="ChangePassword1">*</asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="right">
-                                        <asp:Label ID="ConfirmNewPasswordLabel" runat="server" AssociatedControlID="ConfirmNewPassword">确认新密码:</asp:Label>
+                                        <asp:Label ID="ConfirmNewPasswordLabel" runat="server" AssociatedControlID="ConfirmNewPassword" style=" font-weight:normal;color:#807940">确认新密码:</asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="ConfirmNewPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="ConfirmNewPassword" runat="server" TextMode="Password" ></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="ConfirmNewPasswordRequired" runat="server" ControlToValidate="ConfirmNewPassword"
                                             ErrorMessage="必须填写“确认新密码”。" ToolTip="必须填写“确认新密码”。" ValidationGroup="ChangePassword1">*</asp:RequiredFieldValidator>
                                     </td>
@@ -61,7 +59,7 @@
                                     </td>
                                     <td>
                                         <asp:Button ID="ChangePasswordPushButton" runat="server" CommandName="ChangePassword"
-                                            CssClass="pchangepwd" ValidationGroup="ChangePassword1" />
+                                            CssClass="pchangepwd" ValidationGroup="ChangePassword1" Text="保存修改" />
                                     </td>
                                 </tr>
                             </table>
