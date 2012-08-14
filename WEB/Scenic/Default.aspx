@@ -23,8 +23,6 @@
             var targetqty = EnsureCartQty(parseInt(qty) + parseInt(m));
             $("#txtTicketCount").val(targetqty);
             cart.ModifyQty(GetTicketId(), targetqty);
-
-
         }
 
         function change() {

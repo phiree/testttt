@@ -10,6 +10,8 @@
     if ($(".highselected").html().toString().trim() == "景区简介") {
         $("#changeinfo").html("<div id='plate2'>" + t + "</div>" + "<p id='plap'>" + "景区简介" + "</p>" + "<div id='plate1'>" + f + "</div>");
     }
+    showmap();
+    
 }
 
 $(window).scroll(function () {

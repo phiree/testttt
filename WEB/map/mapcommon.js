@@ -199,6 +199,7 @@ function btnarea(obj) {
         }
     });
     check2();
+    $(".sellevelinfo").slideToggle();
 }
 
 
@@ -249,4 +250,5 @@ function qdtopic(obj) {
         }
     });
     check2();
+    $(".selthemeinfo").slideToggle();
 }
