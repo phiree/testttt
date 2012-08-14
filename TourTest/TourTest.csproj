@@ -106,7 +106,6 @@
   <ItemGroup>
     <Compile Include="BLLTest\AreaTest.cs" />
     <Compile Include="BLLTest\BackManagerTest.cs" />
-    <Compile Include="BLLTest\MembershipTest.cs" />
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="BLLTest\OrderTest.cs" />
     <Compile Include="BLLTest\ScenicTest.cs" />
@@ -116,7 +115,6 @@
     <Compile Include="OrderTest.cs" />
     <Compile Include="PromStaticTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TDD\Member\MemberShipTest.cs" />
     <Compile Include="TDD\order\CheckoutTEst.cs" />
     <Compile Include="TDD\Payment\TetsPayment.cs" />
     <Compile Include="TDD\RoleTest.cs" />

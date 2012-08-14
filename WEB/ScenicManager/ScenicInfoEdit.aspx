@@ -19,7 +19,7 @@
     <div id="scinfoedit">
         <p class="scinfoedittitle">订票说明</p>
             <CKEditor:CKEditorControl ID="CkBookNote" runat="server"></CKEditor:CKEditorControl>
-        <p class="scinfoedittitle">景区简介</p>
+        <p class="scinfoedittitle">景区详情</p>
             <CKEditor:CKEditorControl ID="CkScjj" runat="server"></CKEditor:CKEditorControl>
 
     </div>
