@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\ScenicEntity.cs" />
+    <Compile Include="Entity\TicketEntity.cs" />
     <Compile Include="ExcelOpr.cs" />
     <Compile Include="Entity\ExcelEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -57,7 +57,11 @@ namespace DAL
             using (var t = session.Transaction)
             {
                 t.Begin();
-                session.Update(scenic);
+                foreach (var item in scenic.Tickets)
+                {
+                    session.SaveOrUpdate(item);
+                }
+                session.SaveOrUpdate(scenic);
                 t.Commit();
             }
         }
