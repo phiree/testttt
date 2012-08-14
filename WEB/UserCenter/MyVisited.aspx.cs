@@ -38,7 +38,7 @@ public partial class UserCenter_MyVisited : basepage
         {
             totalprice += int.Parse((item.FindControl("vprice") as HtmlContainerControl).InnerHtml) * int.Parse((item.FindControl("vcount") as HtmlContainerControl).InnerHtml);
         }
-        vtotalprice.InnerHtml ="共消费:"+ totalprice.ToString()+"元";
+        vtotalprice.InnerHtml ="合计消费:<span class='strongnum'>"+ totalprice.ToString()+"</span>元";
     }
     protected void rptVisited_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
