@@ -14,6 +14,7 @@
                 url: "UpdatePosition.ashx?id=2",
                 dataType: "json",
                 success: function (data, status) {
+                    alert(data);
                     var JSON = eval(data);
                     for (var i = 0; ; i++) {
                         if (JSON[i] == undefined)

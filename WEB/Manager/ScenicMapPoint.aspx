@@ -5,7 +5,7 @@
     function GetAndUpdate() {
         $.ajax({
             type: "get",
-            url: "UpdatePosition.ashx?id=2",
+            url: "/example/UpdatePosition.ashx?id=2",
             dataType: "json",
             success: function (data, status) {
                 var JSON = eval(data);

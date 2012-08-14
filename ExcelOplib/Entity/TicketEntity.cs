@@ -11,5 +11,6 @@ namespace ExcelOplib.Entity
         public string ticketname { get; set; }
         public string orgprice { get; set; }
         public string olprice { get; set; }
+        public string scprice { get; set; }
     }
 }
