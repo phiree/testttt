@@ -22,7 +22,7 @@ namespace TourTest
             Photo = "",
             ScenicOrder = 1,
         
-            ActiveTime = "9:00-18:00"
+            //ActiveTime = "9:00-18:00"
         };
           
 

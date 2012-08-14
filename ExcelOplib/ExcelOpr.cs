@@ -17,62 +17,182 @@ namespace ExcelOplib
     /// </summary>
     public class ExcelOpr
     {
+        public BLL.BLLArea bllarea = new BLL.BLLArea();
+        public BLL.BLLTopic blltopic = new BLL.BLLTopic();
+        public BLL.BLLTicket bllticket = new BLL.BLLTicket();
+
         public void Run()
         {
             BLL.BLLScenic bllscenic = new BLL.BLLScenic();
-            List<Entity.ExcelEntity> eelist = getEelist();
-            List<Model.Scenic> slist = bllscenic.GetScenic().ToList<Model.Scenic>();
+            List<Entity.ScenicEntity> newslist = getSceniclist();
+             
+            List<Model.Scenic> orgslist = bllscenic.GetScenic().ToList<Model.Scenic>();
             bllscenic.DeleteScenicimg();
-            foreach (Entity.ExcelEntity item in eelist)
+            foreach (Entity.ScenicEntity item in newslist)
             {
                 if (string.IsNullOrWhiteSpace(item.name)) break;
-                Model.Scenic s = slist.First<Model.Scenic>(x => x.Name == item.name);
-                s.ActiveTime = item.opentime;
-                s.Desec = item.descp;
-                s.SeoName = item.seoname;
-                List<Model.ScenicImg> silist = CopyFile(s);
-                if (silist != null)
+                //组装scenic
+                List<Model.Scenic> ss = orgslist.Where<Model.Scenic>(x => x.Name == item.name).ToList();
+                Model.Scenic s ;
+                if(ss.Count==1)//已经存在该景区
                 {
-                    bllscenic.SaveScenicimg(silist);
+                    s = ss.First();
+                    s.Address = item.address;
+                    s.Level = item.level;
+                    s.SeoName = item.seoname;
+                    s.Area=bllarea.GetAreaByAreaid(int.Parse(item.areaid));
+                    s.Topic = blltopic.GetTopicByName(item.topic);
+                    s.Trafficintro = item.trafficintro;
+                    s.BookNote = item.bookintro;
+                    s.ScenicDetail = item.scenicdetail;
+                    //组装tickets
+                    List<Entity.TicketEntity> newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
+                    IList<Model.Ticket> tickets = bllticket.GetTicketByscId(s.Id);
+                    Model.Ticket t;
+                    foreach (var te in newtlist)
+                    {
+                        var tmp = tickets.Where(x => x.Name == te.ticketname);
+                        if (tmp.Count() == 1)//已经存在该票
+                        {
+                            t = tmp.First();
+                            t.Name = te.ticketname;
+                            t.Scenic = s;
+                            t.TicketPrice = new List<Model.TicketPrice>() { 
+                            new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
+                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t}};
+                            tickets.Add(t);
+                        }
+                        else
+                        { 
+                            t = new Model.Ticket();
+                            t.Name = te.ticketname;
+                            t.Scenic = s;
+                            t.TicketPrice = new List<Model.TicketPrice>() { 
+                            new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
+                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t}};
+                            tickets.Add(t);
+                        }
+                    };
+                    s.Tickets = tickets;
+                    bllscenic.UpdateScenicInfo(s);
+                    List<Model.ScenicImg> silist = CopyFile(s);
+                    if (silist != null)
+                    {
+                        bllscenic.SaveScenicimg(silist);
+                    }
+                }
+                else//不存在该景区
+                {
+                    s = new Model.Scenic();
+                    s.Name = item.name;
+                    s.Address = item.address;
+                    s.Area = bllarea.GetAreaByAreaid(int.Parse(item.areaid));
+                    s.BookNote = item.bookintro;
+                    s.Level = item.level;
+                    s.ScenicDetail = item.scenicdetail;
+                    s.SeoName = item.seoname;
+                    s.Topic = blltopic.GetTopicByName(item.topic);
+                    s.Trafficintro = item.trafficintro;
+                    //组装tickets
+                    List<Entity.TicketEntity> newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
+                    List<Model.Ticket> tickets = new List<Model.Ticket>();
+                    Model.Ticket t;
+                    foreach (var te in newtlist)
+                    {
+                        t = new Model.Ticket();
+                        t.Name = te.ticketname;
+                        t.Scenic = s;
+                        t.TicketPrice = new List<Model.TicketPrice>() { 
+                        new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
+                        new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t}
+                    };
+                        tickets.Add(t);
+                    }
+                    s.Tickets = tickets;
+                    bllscenic.UpdateScenicInfo(s);
+                    List<Model.ScenicImg> silist = CopyFile(s);
+                    if (silist != null)
+                    {
+                        bllscenic.SaveScenicimg(silist);
+                    }
                 }
             }
-            bllscenic.UpdateScenicInfo(slist);
+            //bllscenic.UpdateScenicInfo(orgslist);
         }
 
         /// <summary>
-        /// 获取excel表格内容
+        /// 获取-景区表-内容
         /// </summary>
         /// <returns></returns>
-        private List<Entity.ExcelEntity> getEelist()
+        private List<Entity.ScenicEntity> getSceniclist()
         {
             try
             {
                 //path即是excel文档的路径。
-                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\2012年浙江省A级旅游景区汇总统计表.xls;Extended Properties=Excel 8.0;";
+                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\景区表格式.xls;Extended Properties=Excel 8.0;";
                 //Sheet1为excel中表的名字
-                string sql = "select 名称,办公地点,区域,门票名称,开园时间,价格说明,景区简介,seoname,景区门票 from [Sheet1$]";
+                string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                 OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 DataTable dt = new DataTable();
                 ad.Fill(dt);
-                List<Entity.ExcelEntity> eelist = new List<Entity.ExcelEntity>();
+                List<Entity.ScenicEntity> slist = new List<Entity.ScenicEntity>();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    eelist.Add(new Entity.ExcelEntity()
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt.Rows[i][1].ToString())) continue;
+                    //如果excel中的行不为空,添加
+                    slist.Add(new Entity.ScenicEntity()
                     {
                         name = dt.Rows[i][0].ToString(),
-                        address = dt.Rows[i][1].ToString(),
+                        seoname = dt.Rows[i][1].ToString(),
                         areaid = dt.Rows[i][2].ToString(),
-                        price = decimal.Parse(dt.Rows[i][3].ToString() == "" ? "0" : dt.Rows[i][3].ToString()),
-                        opentime = dt.Rows[i][4].ToString(),
-                        pricedesc = dt.Rows[i][5].ToString(),
-                        descp = dt.Rows[i][6].ToString(),
-                        seoname = dt.Rows[i][7].ToString(),
-                        ticketname = dt.Rows[i][8].ToString()
+                        topic = dt.Rows[i][3].ToString(),
+                        trafficintro = dt.Rows[i][4].ToString(),
+                        bookintro = dt.Rows[i][5].ToString(),
+                        scenicdetail = dt.Rows[i][6].ToString(),
+                        level = dt.Rows[i][7].ToString(),
+                        address = dt.Rows[i][8].ToString(),
                     });
                 }
-                return eelist;
+                return slist;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 获取-价格表-内容
+        /// </summary>
+        /// <returns></returns>
+        private List<Entity.TicketEntity> getTicketslist()
+        {
+            try
+            {
+                //path即是excel文档的路径。
+                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\价格表格式.xls;Extended Properties=Excel 8.0;";
+                //Sheet1为excel中表的名字
+                string sql = "select 景区名称,门票名称,原价,在线支付价 from [Sheet1$]";
+                OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
+                OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                ad.Fill(dt);
+                List<Entity.TicketEntity> tlist = new List<Entity.TicketEntity>();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    tlist.Add(new Entity.TicketEntity()
+                    {
+                        scenicname = dt.Rows[i][0].ToString(),
+                        ticketname = dt.Rows[i][1].ToString(),
+                        orgprice = dt.Rows[i][2].ToString(),
+                        olprice = dt.Rows[i][3].ToString()
+                    });
+                }
+                return tlist;
             }
             catch (Exception ex)
             {
@@ -177,8 +297,7 @@ namespace ExcelOplib
         //                opentime = dt.Rows[i][4].ToString(),
         //                pricedesc = dt.Rows[i][5].ToString(),
         //                descp = dt.Rows[i][6].ToString(),
-        //                seoname = dt.Rows[i][7].ToString(),
-        //                ticketname=dt.Rows[i][8].ToString()
+        //                seoname = dt.Rows[i][7].ToString()
         //            });
         //        }
         //        return eelist;

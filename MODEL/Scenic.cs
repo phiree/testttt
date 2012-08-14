@@ -15,8 +15,17 @@ namespace Model
         public virtual string Level { get; set; }
         public virtual string Photo { get; set; }
       
-        public virtual string ActiveTime { get; set; }
+        //public virtual string ActiveTime { get; set; } 更改结构,删除该字段
+        public virtual Topic Topic { get; set; }
+        /// <summary>
+        /// 交通信息
+        /// </summary>
+        public virtual string Trafficintro { get; set; }
         public virtual Area Area { get; set; }
+        /// <summary>
+        /// 景区详情
+        /// </summary>
+        public virtual string ScenicDetail { get; set; }
         public virtual string Desec { get; set; }
         public virtual string Position { get; set; }
         public virtual string BookNote { get; set; }

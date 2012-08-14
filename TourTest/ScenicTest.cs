@@ -14,7 +14,7 @@ namespace TourTest
             IDAL.IScenic dal = new DAL.DALScenic();
 
             Model.Scenic scenic = new Model.Scenic();
-            scenic.ActiveTime = DateTime.Now.ToString();
+            //scenic.ActiveTime = DateTime.Now.ToString();
             scenic.Address = "address";
             Model.Area area = new Model.Area();
             area.AreaOrder = 1;
