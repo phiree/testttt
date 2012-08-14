@@ -16,7 +16,7 @@ $(window).scroll(function () {
     findDimensions();
     $(".backtop").css("right", (winWidth - 950) / 2 - 50);
     $(".backtop").click(function () {
-        window.scrollTo(0,0); 
+        window.scrollTo(0, 0);
     });
     $(".backtop").css("position", "fixed");
     if (document.documentElement.scrollTop + document.body.scrollTop > 100) {
@@ -25,7 +25,7 @@ $(window).scroll(function () {
     else {
         $(".backtop").fadeOut("fast");
     }
-    if (document.documentElement.scrollTop + document.body.scrollTop > document.body.scrollHeight - 800) {
+    if (document.body.scrollHeight - document.documentElement.scrollTop - document.body.scrollTop - winHeight < 135) {
         $(".backtop").css("position", "absolute");
     }
 });

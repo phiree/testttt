@@ -33,6 +33,9 @@
 {
     margin-bottom: 1.4em;
     border: 1px solid #999;
+    margin-top:14px;
+    margin-right:10px;
+    margin-left:7px;
 }
 #ilh
 {
@@ -44,10 +47,10 @@
 {
     width: 100%;
     margin: 0;
+    height:100px;
 }
 #tilist
 {
-    background-color: #FAF6ED;
     width: 100%;
 }
 
@@ -63,18 +66,29 @@
 
 .tihead
 {
-    background-color: #82974C;
-    padding: 4px 25px;
-    color: White;
+    color: Black;
+    font-weight:bold;
+    margin-left:10px;
+}
+.tihead span
+{
+    margin-left:20px;
+    font-weight:normal;
+    color:#666EB0;
 }
 #tourinfo
 {
     border: 1px solid #999;
     margin-bottom: 5px;
+    margin-top:10px;
+    width:97%;
+    margin-left:10px;
 }
 #payinfo
 {
-    border: 7px solid #aaa;
+    border: 1px solid #aaa;
+    margin:0px auto;
+    width:97%;
 }
 
 #payinfo span
@@ -84,9 +98,8 @@
 }
 .pricedesc
 {
-    background: url(../image/pricebg.png) top left no-repeat;
     padding-left: 30px;
-    line-height: 76px;
+    line-height: 73px;
 }
 .pricedesc:hover
 {
@@ -97,10 +110,16 @@
 }
 .price
 {
-    width: 150px;
+    width: 200px;
     padding-left: 30px;
-    line-height: 76px;
+    line-height: 73px;
     _padding-top: 30px;
+    background:url("/theme/default/image/pricebg.png");
+    background-position:right;
+}
+.price:hover
+{
+    background-color: #FFFFCC;
 }
 .priceselection
 {
@@ -109,7 +128,7 @@
 }
 .priceselection:hover
 {
-    background-color: #FFFFCC;
+    
 }
 .price em
 {
@@ -130,6 +149,7 @@
 {
     margin: 20px 0;
     text-align: center;
+    float:none !important;
 }
 .veritext
 {
@@ -137,4 +157,44 @@
     margin:0px;
     width:100px;
     color:Red;
+}
+#bpricepreorder
+{
+    margin-left:10px;
+    margin-right:10px;
+    color:#E3007A;
+    font-size:24px;
+}
+#bpriceonline
+{
+    margin-left:10px;
+    margin-right:10px;
+    font-size:24px;
+    color:#EC6B9E;
+}
+.btntkok
+{
+    cursor:pointer;
+    border:1px solid #E3007A;
+    background:url("/theme/default/image/newversion/popokbg1.png");
+    background-repeat:repeat-x;
+    width:90px;
+    height:24px;
+    display:block;
+    color:White;
+    font-weight:bold;
+    line-height:24px;
+    margin:0px auto;
+}
+.btntkok:hover
+{
+    cursor:pointer;
+    border:1px solid #E3007A;
+    background:url("/theme/default/image/newversion/popokbg2.png");
+    width:90px;
+    height:24px;
+    display:block;
+    color:White;
+    font-weight:bold;
+    line-height:24px;
 }

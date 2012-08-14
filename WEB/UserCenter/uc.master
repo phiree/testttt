@@ -17,18 +17,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <div id="ucNav">
         <div class="Navtop">
-            <a href="Default.aspx">个人中心</a></div>
+            <a href="Default.aspx" style="color:White;">个人中心</a></div>
         <ul>
-            <li class="ptlink"><a href="/usercenter/Order.aspx">我的订单</a></li>
-            <li class="ptlink"><a href="/usercenter/MyVisited.aspx">游玩记录</a></li>
-            <li class="ptlink"><a href="/usercenter/AccountInfo.aspx">个人信息</a></li>
-            <li class="ptlink"><a href="/usercenter/MyPassword.aspx">修改密码</a></li>
-            <li class="ptlink"><a href="CommonUserInfo.aspx">常用联系人</a></li>
+            <li class="ptlink"><span>▶</span><a href="/usercenter/Order.aspx">我的订单</a></li>
+            <li class="ptlink"><span>▶</span><a href="/usercenter/MyVisited.aspx">游玩记录</a></li>
+            <li class="ptlink"><span>▶</span><a href="/usercenter/AccountInfo.aspx">个人信息</a></li>
+            <li class="ptlink"><span>▶</span><a href="/usercenter/MyPassword.aspx">修改密码</a></li>
+            <li class="ptlink"><span>▶</span><a href="CommonUserInfo.aspx">常用联系人</a></li>
         </ul>
     </div>
     
     <div id="ucMain">
-        <div id="ucMainTop"></div>
         <div id="uccontent">
         <asp:ContentPlaceHolder runat="server" ID="ucContent" >
         </asp:ContentPlaceHolder>

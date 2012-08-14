@@ -271,16 +271,13 @@
                                 <%# Eval("Name") %>
                             </td>
                             <td>
-                                <%# Eval("TicketPrice[0].Price", "{0:0}")%>
+                                <%# Eval("TicketPrice[0].Price","{0:0}")%>
                             </td>
                             <td>
                                 <%# Eval("TicketPrice[1].Price", "{0:0}")%>
                             </td>
-                            <td>
-                                <%# Eval("TicketPrice[2].Price", "{0:0}")%>
-                            </td>
                             <td style="color: #E8641B; font-weight: bold">
-                                <%# Eval("TicketPrice[3].Price", "{0:0}")%>
+                                <%# Eval("TicketPrice[2].Price", "{0:0}")%>
                             </td>
                             <td style="text-align: center;">
                                 <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart()" />
@@ -289,6 +286,7 @@
                         </ItemTemplate>
                     </asp:Repeater>
             </table>
+            <hr />
         </div>
         <div id="introordertk">
             <p class="captitle">

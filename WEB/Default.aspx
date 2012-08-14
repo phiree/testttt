@@ -118,9 +118,9 @@
                 </a>
                 <a href="">
                     <img alt="畲乡漂流" src="theme/default/image/defaultimg/畲乡漂流.jpg" width="100%" height="100%" />
-                    <p></p>
-                    <span>畲乡漂流</span>
-                    <div class="mark" style="width:50%"></div>
+                    <p style="left:163px;"></p>
+                    <span style="left:163px;">畲乡漂流</span>
+                    <div class="mark" style="width:50%;left:163px;"></div>
                 </a>
             </div>
             <div class="sccol2row2">
@@ -140,9 +140,9 @@
                 </a>
                 <a href="">
                     <img alt="黄龙景区" src="theme/default/image/defaultimg/黄龙景区.jpg" width="100%" height="100%" />
-                    <p></p>
-                    <span>黄龙景区</span>
-                    <div class="mark" style="width:50%"></div>
+                    <p style="left:163px;"></p>
+                    <span style="left:163px;">黄龙景区</span>
+                    <div class="mark" style="width:50%;left:163px;"></div>
                 </a>
             </div>
         </div>

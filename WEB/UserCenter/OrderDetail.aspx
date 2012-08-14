@@ -135,12 +135,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div id="otop">
-        <a href="Order.aspx" style="margin-right: 15px; color: #C9C9C9">我的订单</a><a style="margin-right: 15px;
-            color: #C9C9C9">></a><a runat="server" id="oredernum" style="text-decoration: none">订单3</a></div>
     <div id="oscdpinfo">
         <div class="oscdptop">
-            <span runat="server" id="paystate" style="color: Black;"></span>
+            <span runat="server" id="paystate" style="color: #807940;"></span>
             <asp:Button runat="server" Visible="false" OnClick="btnRefurb_Click" ID="btnRefurb"
                 Text="退订/退款" />
         </div>

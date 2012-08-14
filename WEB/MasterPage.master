@@ -18,6 +18,7 @@
     <script src="/Scripts/Cart.js" type="text/javascript"></script>
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/pages/masterpage.js" type="text/javascript"></script>
+    <script src="/Scripts/pages/default.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
         $(function () {
             $("#popcart").hide();
@@ -63,7 +64,7 @@
                     <a class="navhight" href="/">首页</a><div class="navsper"></div><a class="navhight" href="/DiscountTicket/default.aspx">打折门票</a><div class="navsper"></div> <a>旅游明信片</a><div class="navsper"></div> <a href="/map/Map.aspx">地图版</a>
                     <div class="chartdiv">
                         <img src="/theme/default/image/newversion/charticon.gif" />
-                        <span>购物车/&nbsp;&nbsp;<strong>3</strong>个景区</span>
+                        <span>购物车/&nbsp;&nbsp;<strong id="ticketsSum"></strong>个景区</span>
                     </div>
                     </div>
                 </div>
@@ -111,39 +112,36 @@
         </div>
     </div>
     <div id="popcart" style="display: none">
-        <div id="pchead">
-            <span>购物车</span></div>
+        <div class="popbg"></div>
         <div id="pcbody">
+            <p class="poptitle">我的购物车</p>
             <div id="cartsumhead">
-                <span>共有<span id="scenicSum"></span>个景区<span id="ticketsSum"></span>张门票</span></div>
+                <span style="margin-left:20px;">共有<span id="scenicSum"></span>个景区<span id="ticketsSum"></span>张门票</span></div>
             <asp:Repeater runat="server" ID="rptPopCart">
                 <HeaderTemplate>
-                    <table>
+                    <table class="poptable">
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td>
-                            <a tid='<%#Eval("Id") %>' href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
+                        <td style="width:80%;">
+                            <a tid='<%#Eval("Id") %>' href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html' style="margin-left:5px;">
                                 <%#Eval("Scenic.Name") %></a>
                         </td>
-                        <td>
-                            <span class="pcqty"></span>
-                        </td>
-                        <td>
-                            <span class="cartdelete" tid='<%#Eval("Id")%>'>删除</span>
+                        <td style="width:40px;">
+                            <span style="margin:0px; padding:0px;" class="cartdelete" tid='<%#Eval("Id")%>'>删除</span>
                         </td>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
                     <tr>
-                        <td colspan="3">
-                            <a class="btn btnlight" id="pcbtn" href="/order/cart.aspx">去购物车结算</a>
+                        <td colspan="2" style="background-color:White !important">
+                            <a class="popok" id="pcbtn" href="/order/cart.aspx">去购物车结算</a>
                         </td>
                     </tr>
                     </table></FooterTemplate>
             </asp:Repeater>
             <asp:Panel runat="server" ID="pnlEmpty">
-                <span>您的购物车内还没有门票</span>
+                <span class="emptypop">您的购物车内还没有门票</span>
             </asp:Panel>
         </div>
     </div>

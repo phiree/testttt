@@ -653,6 +653,15 @@
      margin-right:10px;
      width:97%;
 }
+#priceinfo hr
+{
+    border:none;
+    border-bottom:2px solid #B5ACA2;
+    margin-top:10px;
+    margin-bottom:5px;
+    margin:10px auto 5px auto;
+    width:99%; 
+}
 #priceinfo table
 {
     margin:5px;
@@ -673,7 +682,6 @@
 }
 #priceinfo table
 {
-    border-bottom:2px solid #B5ACA2;
     padding-bottom:10px;
 }
 .btnputcart
@@ -689,6 +697,7 @@
     text-align:center;
     line-height:20px;
     padding:0px;
+    font-size:12px;
 
 }
 .btnputcart:hover

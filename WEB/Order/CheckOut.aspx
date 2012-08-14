@@ -10,37 +10,43 @@
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/Cart.js" type="text/javascript"></script>
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
+    <link href="/theme/default/css/cart.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/pages/checkout.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
         $(function () {
-           
+
         });
      
 
     </script>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphstate" runat="Server">
-    <div class="cartbread"><img src="/theme/default/image/newversion/icon.gif" />购物车</div>
-    <img class="stateimg" src="/theme/default/image/newversion/cart_state1.png"/>
+    <div class="cartbread">
+        您选择的门票列表</div>
+    <img class="stateimg" src="/theme/default/image/newversion/cart_state2.png" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
     <div id="itemlist">
-        <div  class="tihead">
-            门票清单</div>
         <div id="ilBody">
             <asp:Repeater runat="server" ID="rptCart" OnItemDataBound="rptCart_ItemDataBound">
                 <HeaderTemplate>
-                    <table id="sceniclist"  class="orderlist">
+                    <table id="orderlist" class="orderlist" style="padding: 0px; margin: 0px; width: 100%">
                         <thead>
                             <tr>
                                 <td>
                                     景区名称
                                 </td>
                                 <td>
+                                    门票种类
+                                </td>
+                                <td>
+                                    原价
+                                </td>
+                                <td>
                                     景区现付价
                                 </td>
                                 <td>
-                                    网上订购价
+                                    在线支付价
                                 </td>
                                 <td>
                                     购买数量
@@ -50,37 +56,51 @@
                         <tbody>
                 </HeaderTemplate>
                 <ItemTemplate>
-                <tr>
-                            <td>
-                                <input type="hidden" class="hdId" value='<%#Eval("Id") %>' />
-                                <a href='<%# "/"+Eval("Scenic.Area.SeoName")+"/"+Eval("Scenic.SeoName")+".html"%>'>
-                                    <%#Eval("Scenic.Name") %></a>
-                            </td>
-                             <td>
-                                <span class="priceorder">
-                                    <asp:Literal runat="server" ID="liPriceOrder"></asp:Literal></span>
-                            </td>
-                            <td>
-                                <span class="priceonline">
-                                    <asp:Literal runat="server" ID="liPriceOnline"></asp:Literal>
-                                </span>
-                            </td>
-                            <td>
-                                 <span tid='<%#Eval("Id") %>' class="qtyfinal"></span>
-                            </td>
-                           
-                        </tr>
-                   
+                    <tr>
+                        <td>
+                            <input type="hidden" class="hdId" value='<%#Eval("Id") %>' />
+                            <a href='<%# "/"+Eval("Scenic.Area.SeoName")+"/"+Eval("Scenic.SeoName")+".html"%>'>
+                                <%#Eval("Scenic.Name") %></a>
+                        </td>
+                        <td>
+                            <%# Eval("Name") %>
+                        </td>
+                        <td>
+                            <%# Eval("TicketPrice[0].Price","{0:0}")%>
+                        </td>
+                        <td>
+                            <span class="priceorder">
+                                <asp:Literal runat="server" ID="liPriceOrder"></asp:Literal></span>
+                        </td>
+                        <td>
+                            <span class="priceonline">
+                                <asp:Literal runat="server" ID="liPriceOnline"></asp:Literal>
+                            </span>
+                        </td>
+                        <td>
+                            <span tid='<%#Eval("Id") %>' class="qtyfinal"></span>
+                        </td>
+                    </tr>
                 </ItemTemplate>
                 <FooterTemplate>
-                </tbody>
-                    <tfoot>
+                    </tbody>
+                    <tfoot style="background-color: White">
                         <tr>
-                            <td colspan="4">
-                              <div style="color:#E78834">
-                                        <span>共<strong style="font-size:20px" id="cticketsSum"></strong>张门票</span> <span>网上订购价:<strong style="font-size:20px" id="totalonline"></strong>元&nbsp;
-                                        </span><span>景区现付价:<strong style="font-size:20px" id="totalpreorder"></strong> </span>元
-                                    </div>
+                            <td colspan="6">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" style="text-align:right;color:Black;padding-right:50px;">
+                                订<strong style="font-size: 20px;margin-left:15px;margin-right:15px; vertical-align:text-bottom; font-size:20px; line-height:18px;" id="cticketsSum"></strong>张门票
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" style="border-top: 1px solid #CDCDCD">
+                                <div style="color:Black">
+                                    <span style="margin-right:50px;">景区现付价合计:<strong
+                                        style="font-size: 20px; margin-left:10px;margin-right:10px;color:#EC6B9E" id="totalonline"></strong>元&nbsp; </span><span>在线支付合计:<strong
+                                            style="font-size: 20px;margin-left:10px;margin-right:10px;color:#E3007A" id="totalpreorder"></strong> </span>元
+                                </div>
                             </td>
                         </tr>
                     </tfoot>
@@ -89,24 +109,25 @@
             </asp:Repeater>
         </div>
     </div>
+    <div id="tihead" class="tihead">
+            填写游客信息<span>景区根据游客信息确认在线支付或者预订的情况，请准确填写。</span></div>
     <div id="tourinfo">
-        <div id="tihead" class="tihead">
-            填写游客信息</div>
         <div id="contactlist">
             <asp:Repeater runat="server" ID="rptContacts">
-            <HeaderTemplate>
-            <div id="contactHead">常用联系人</div>
-            <div id="contactBody">
-            </HeaderTemplate>
+                <HeaderTemplate>
+                    <div id="contactHead">
+                        常用联系人</div>
+                    <div id="contactBody">
+                </HeaderTemplate>
                 <ItemTemplate>
                     <div>
                         <a class="assignitem" href="javascript:void" idcard='<%#Eval("IdCard") %>' cid='<%#Eval("Id") %>'>
                             <%#Eval("Name") %></a>
-                            <!--<a href="javascript:void" class="assignitem" style="display:none" all="">全部指派</a>-->
+                        <!--<a href="javascript:void" class="assignitem" style="display:none" all="">全部指派</a>-->
                     </div>
                 </ItemTemplate>
                 <FooterTemplate>
-                </div>
+                    </div>
                 </FooterTemplate>
             </asp:Repeater>
         </div>
@@ -116,14 +137,15 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td style="padding-left:20px; width:10%">
+                    <td style="padding-left: 20px; width: 10%">
                         <%#Eval("Scenic.Name") %>
                     </td>
-                    <td style="width:40%;">
-                        游览者姓名:&nbsp;<input type="text" tid='<%#Eval("Id") %>' class="assignName" style="vertical-align:middle" />
+                    <td style="width: 40%;">
+                        游览者姓名:&nbsp;<input type="text" tid='<%#Eval("Id") %>' class="assignName" style="vertical-align: middle" />
                     </td>
-                    <td style="width:50%;">
-                        身份证号:&nbsp;<input type="text"  tid='<%#Eval("Id")%>' onblur="veriidcard()" class="assignIdcard" style="vertical-align:middle" />
+                    <td style="width: 50%;">
+                        身份证号:&nbsp;<input type="text" tid='<%#Eval("Id")%>' onblur="veriidcard()" class="assignIdcard"
+                            style="vertical-align: middle" />
                         <span class="veritext"></span>
                     </td>
                 </tr>
@@ -132,10 +154,12 @@
                 </table></FooterTemplate>
         </asp:Repeater>
     </div>
+    <div class="tihead" style="margin-top:20px;margin-bottom:10px;">
+            选择付款方式</div>
     <div id="payinfo">
         <div id="payonline" pricetype="3" class="priceselection">
             <span class="price">
-                <input type="radio"  name="price" />
+                <input type="radio" name="price" />
                 网上订购总价:<em id="bpricepreorder">123</em>元</span><span class="pricedesc">通过支付宝支付,享受最优惠价格.</span>
             <div class="clear">
             </div>
@@ -149,6 +173,6 @@
         </div>
     </div>
     <div id="payaction">
-        <span class="btnlight btn" id="btnCheckout">确认订单</span>
+        <span class="btntkok" id="btnCheckout">确认订单</span>
     </div>
 </asp:Content>

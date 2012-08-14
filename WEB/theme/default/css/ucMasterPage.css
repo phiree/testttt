@@ -2,15 +2,18 @@
 #ucNav
 {
     float:left;
-    width:174px;
+    width:190px;
+    margin-top:15px;
 }
 .Navtop
 {
-    height:28px;
+    height:27px;
     text-align:center;
     font-weight:700;
-    background:url("/theme/default/image/ucnavtop.png");
-    line-height:28px;
+    background:url("/theme/default/image/newversion/ucbg1.png");
+    line-height:27px;
+    color:White;
+    border:1px solid #E6DA73;
 }
 .Navtop a:link,.Navtop a:acvtive,.Navtop a:visited,.Navtop a:hover
 {
@@ -23,41 +26,59 @@
     margin:0px;
     padding:0px;
     list-style-type:none;
+    margin-top:5px;
 }
 .ptlink
 {
     margin:0px;
     height:30px;
-    border-bottom:1px solid #DBD4CC;
+    border-bottom:1px dashed #DBD4CC;
     width:100%;
-    text-align:center;
     line-height:30px;
-    background:url("/theme/default/image/ptlink.png");
+    color:#807940;
+    margin-bottom:5px;
+}
+.ptlink span
+{
+    margin-left:35px;
+    margin-right:25px;
+    font-size:12px;
+    font-family:黑体;
+}
+.ptlink a
+{
+    color:#807940;
 }
 .highLightLink
 {
-    background:url("/theme/default/image/hightlinkbg.png");
+    background-color:#E6DA73;
     margin:0px;
     height:30px;
     border-bottom:1px solid #DBD4CC;
     width:100%;
-    text-align:center;
     line-height:30px;
+}
+.highLightLink span
+{
+    margin-left:35px;
+    margin-right:25px;
+    color:White;
 }
 .highLightLink a:link,.highLightLink a:hover,.highLightLink a:visited,.highLightLink a:active
 {
     font-weight:700;
-    color:#4D5F2D;
+    color:#807940;
 }
 /*右侧具体页面*/
 #ucMain
 {
     float:left;
     width:742px;
-    margin-top:-10px;
-    margin-left:-1px;
+    margin-top:0px;
+    margin-left:0px;
     min-height:230px;
     position:relative;
+    min-height:500px;
 }
 #ucMainTop
 {
@@ -69,9 +90,11 @@
 #uccontent
 {
     height:100%;
-    width:99.5%;
-    border-left:1px solid #DBD4CC;
-    border-right:1px solid #DBD4CC;
+    width:97%;
+    border:1px solid #DBD4CC;
+    margin:15px 0px 0px 15px;
+    min-height:500px;
+    margin-bottom:10px;
 }
 tbody tr:nth-child(even) td, tbody tr.even td 
 {

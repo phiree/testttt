@@ -17,8 +17,8 @@
 {
     width:715px;
     display:block;
-    height:250px;
-    background-color:#FAF6ED;
+    height:500px;
+    background-color:#F9F8F6;
     margin:0px auto;
 }
 .dorder:link,.dorder:active,.dorder:hover,.dorder:visited
@@ -259,18 +259,26 @@
 }
 #odetail
 {
-    border-left:1px solid #DBD4CC;
-    border-right:1px solid #DBD4CC;
-    width:715px;
-    margin:0px auto;
+    width:700px;
+    margin:15px auto;
     min-height:173px;
+}
+.osper
+{
+    border:none !important;
+    border-bottom:1px dashed #CDCDCD !important;
+    margin:5px 0px 5px 0px;
+    width:100%;
+    display:block;
+    background:none;
 }
 .otitlename
 {
-    background-color:#82974C;
-    height:22px;
-    line-height:22px;
+    background-color:#E3DED3;
+    height:30px;
+    line-height:30px;
     color:White;
+    margin-bottom:10px;
 }
 .otitlename span
 {
@@ -278,6 +286,7 @@
     text-align:center;
     padding-top:1px;
     padding-bottom:1px;
+    color:#807940;
 }
 .ofirst
 {
@@ -286,15 +295,28 @@
 }
 .osecond
 {
-    margin-left:10px;
-    width:200px;
+    margin-left:15px;
+    width:250px;
 }
 .odname
 {
-    width:200px;
+    width:250px;
     margin-right:10px;
     display:inline-block;
-    text-align:center;
+    text-align:left !important;
+}
+.odname a
+{
+    display:block;
+    float:left;
+    width:150px;
+}
+.odname span
+{
+    display:block;
+    width:100px !important;
+    float:left;
+    text-align:left !important;
 }
 .othird
 {
@@ -309,7 +331,7 @@
 .ofifth
 {
     margin-left:10px;
-    width:130px;
+    width:80px;
 }
 .osix
 {
@@ -320,7 +342,11 @@
 .oinfo
 {
     min-height:35px;
-    background-color:#FAF6ED;
+    color:#807940;
+}
+.tttt
+{
+    color:#DBD7CC;
 }
 .oinfo span,.oainfo span
 {
@@ -336,7 +362,7 @@
 }
 .onowpay:link,.onowpay:active,.onowpay:hover,.onowpay:visited
 {
-    color:#F0832E;
+    color:#EC6B9E;
 }
 
 
@@ -359,14 +385,17 @@
 }
 .oscdptitle
 {
-    background-color:#FEFADF;
+    background-color:#E3DED3;
     height:32px;
+    margin-left:10px;
+    margin-right:10px;
 }
 .oscdptitle span
 {
     line-height:32px;
     display:inline-block;
     text-align:center;
+    color:#807940;
 }
 .oscfirst
 {
@@ -386,6 +415,7 @@
 .oscdpdetail
 {
     height:35px;
+    margin:5px 10px 5px 10px;
 }
 .oscdpdetail span
 {

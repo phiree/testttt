@@ -44,10 +44,23 @@ $(function () {
     //var ptop = $("#cart").position().top;
     //$("#popcart").css({ left: pleft -90+ "px", top: ptop+50 + "px" });
     $(".chartdiv").mouseover(function () {
-        $(this).css("background-color", "#277523");
+        $(this).css("background-color", "#4FA600");
         var pleft = $(".chartdiv").position().left;
         var ptop = $(".chartdiv").position().top;
-        $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px", display: "block" });
+        $("#popcart").css({ left: pleft + 330 + "px", top: ptop + 30 + "px", display: "block" });
+        //购物车背景高度
+        var pcheight = $("#pcbody").height();
+        if (navigator.appName == "Microsoft Internet Explorer") {
+            if (navigator.appVersion.match(/7./i) == '7.') {
+                $("#popcart").css("height", pcheight + "px");
+            }
+            else {
+                $("#popcart").css("height", pcheight + "px");
+            }
+        }
+        else {
+            $("#popcart").css("height", pcheight + "px");
+        }
     });
     $(".chartdiv").mouseout(function () {
         $(this).css("background-color", "");
@@ -58,6 +71,19 @@ $(function () {
         });
         $("#popcart").mouseover(function () {
             $("#popcart").show();
+            //购物车背景高度
+            var pcheight = $("#pcbody").height();
+            if (navigator.appName == "Microsoft Internet Explorer") {
+                if (navigator.appVersion.match(/7./i) == '7.') {
+                    $("#popcart").css("height", pcheight + "px");
+                }
+                else {
+                    $("#popcart").css("height", pcheight + "px");
+                }
+            }
+            else {
+                $("#popcart").css("height", pcheight + "px");
+            }
         });
     });
     var ileft = $(".logoleft").position().left;
@@ -69,8 +95,6 @@ $(function () {
     var ll = (winWidth - 955) / 2;
     $(".Filldiv").css("width", ll);
     navshow();
-
-
 
 
     $(".navlistnb a").each(function () {
@@ -98,7 +122,7 @@ window.onresize = function () {
     findDimensions();
     var pleft = $(".chartdiv").position().left;
     var ptop = $(".chartdiv").position().top;
-    $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px" });
+    $("#popcart").css({ left: pleft + 330 + "px", top: ptop + 30 + "px" });
     var ileft = $(".logoleft").position().left;
     var itop = $(".logoleft").position().top;
     $(".mainarea").css({ left: ileft + 370 + "px", top: itop + 70 + "px" });
