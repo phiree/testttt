@@ -56,7 +56,7 @@
                             <tbody>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <tr>
+                        <tr onmousemove="carttdon(this)" onmouseout="carttdout(this)">
                             <td>
                                 <input type="hidden" class="hdId" value='<%#Eval("Id") %>' />
                                 <a href='/scenic/?tid=<%#Eval("Id") %>'>
@@ -78,7 +78,7 @@
                                 </span>
                             </td>
                             <td style="width:200px">
-                                <span class="qtyCut qtyBtn" style="margin-left:60px;_margin-left:30px; margin-top:2px; background:url('/Img/btnjian2.jpg'); background-repeat:no-repeat;border:0px;"></span><input class="qtyModify" runat="server" id="inputQty"
+                                <span class="qtyCut qtyBtn" style="margin-left:20px;_margin-left:10px; margin-top:2px; background:url('/Img/btnjian2.jpg'); background-repeat:no-repeat;border:0px;"></span><input class="qtyModify" runat="server" id="inputQty"
                                     type="text" /><span class="qtyAdd qtyBtn" style="background:url('/Img/btnjian2.jpg'); background-repeat:no-repeat;border:0px; margin-top:2px;">+</span>
                             </td>
                             <td>

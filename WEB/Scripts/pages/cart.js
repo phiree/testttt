@@ -66,6 +66,9 @@ $(function () {
     TicketSum();
 
 
+
+
+
 });
 
 function init() {
@@ -83,4 +86,15 @@ function init() {
     });
     $("#totalonline").text(totalOnlinePrice);
     $("#totalpreorder").text(totalPreorderPrice);
+}
+
+function carttdon(obj) {
+    $(obj).find("td").attr("class", "carttbtd");
+    $(obj).find("td").first().find("a").css("color", "#EC6B9E");
+    $(obj).find("td").last().find("span").css("color", "#EC6B9E");
+}
+function carttdout(obj) {
+    $(obj).find("td").attr("class", "");
+    $(obj).find("td").first().find("a").css("color", "");
+    $(obj).find("td").last().find("span").css("color", "");
 }

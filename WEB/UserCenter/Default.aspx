@@ -4,7 +4,6 @@
     <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" runat="Server">
-    <div id="dtop">个人中心</div>
     <div id="dinfo">
         <a class="dorder" href="Order.aspx" mce_href=”#1″ hidefocus=”true”>
             我的订单
