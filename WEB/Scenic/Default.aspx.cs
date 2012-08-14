@@ -67,7 +67,7 @@ public partial class Scenic_Default : System.Web.UI.Page
         booknote = scenic.BookNote;
         sclevel = scenic.Level;
         scdesc = scenic.Desec;
-        transguid = scenic.TransGuid;
+        transguid = scenic.Trafficintro;
         if (!string.IsNullOrEmpty(scenic.Desec))
             scshortdesc = scenic.Desec.Substring(0, 30) + "...";
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
