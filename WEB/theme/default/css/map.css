@@ -71,7 +71,7 @@
 /*新版本*/
 .selbg
 {
-    width:800px;
+    width:730px;
     height:32px;
     display:block;
     background-color:#E5E5E5;
@@ -247,7 +247,7 @@
 }
 .selkeyword
 {
-    width:245px;
+    width:175px;
     height:24px;
     display:block;
     position:absolute;
@@ -266,7 +266,7 @@
     height:25px;
     top:4px;
     position:absolute;
-    left:705px;
+    left:635px;
     line-height:25px;
     border:0px none;
     cursor:pointer;
