@@ -62,19 +62,24 @@ namespace BLL
         public IList<Model.Ticket> GetTicketByscId(int scid)
         {
             //EnsureTicket(scid);  删除，与下文重复
-            IList<Model.Ticket> tickets = Iticket.GetTicketByscId(scid);
-            if (tickets.Count == 0)
-            {
-                Model.Ticket newTicket = new Ticket();
-                newTicket.Scenic = bllScenic.GetScenicById(scid);
-                SaveOrUpdateTicket(newTicket);
-                tickets.Add(newTicket);
-            }
+
+            return Iticket.GetTicketByscId(scid);
+            //注释: 7行   SST.aug.8
+            //IList<Model.Ticket> tickets = Iticket.GetTicketByscId(scid);
+            //if (tickets.Count == 0)
+            //{
+            //    Model.Ticket newTicket = new Ticket();
+            //    newTicket.Scenic = bllScenic.GetScenicById(scid);
+            //    SaveOrUpdateTicket(newTicket);
+            //    tickets.Add(newTicket);
+            //}
+
+
             //else if (tickets.Count > 1)
             //{
             //    throw new Exception("一个景区限定为一张门票");
             //}
-            return tickets;
+            //return tickets;
         }
         public Ticket GetTicket(int ticketId)
         {

@@ -60,7 +60,7 @@ namespace ExcelOplib
                             t.TicketPrice = new List<Model.TicketPrice>() { 
                             new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
                             new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t}};
-                            tickets.Add(t);
+                            //tickets.Add(t);
                         }
                         else
                         { 
@@ -145,15 +145,15 @@ namespace ExcelOplib
                     //如果excel中的行不为空,添加
                     slist.Add(new Entity.ScenicEntity()
                     {
-                        name = dt.Rows[i][0].ToString(),
-                        seoname = dt.Rows[i][1].ToString(),
-                        areaid = dt.Rows[i][2].ToString(),
-                        topic = dt.Rows[i][3].ToString(),
-                        trafficintro = dt.Rows[i][4].ToString(),
-                        bookintro = dt.Rows[i][5].ToString(),
-                        scenicdetail = dt.Rows[i][6].ToString(),
-                        level = dt.Rows[i][7].ToString(),
-                        address = dt.Rows[i][8].ToString(),
+                        name = dt.Rows[i][0].ToString().Replace("\n","").Trim(),
+                        seoname = dt.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        areaid = dt.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        topic = dt.Rows[i][3].ToString().Replace("\n", "").Trim(),
+                        trafficintro = dt.Rows[i][4].ToString().Replace("\n", "").Trim(),
+                        bookintro = dt.Rows[i][5].ToString().Replace("\n", "").Trim(),
+                        scenicdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim(),
+                        level = dt.Rows[i][7].ToString().Replace("\n", "").Trim(),
+                        address = dt.Rows[i][8].ToString().Replace("\n", "").Trim(),
                     });
                 }
                 return slist;
@@ -186,10 +186,10 @@ namespace ExcelOplib
                 {
                     tlist.Add(new Entity.TicketEntity()
                     {
-                        scenicname = dt.Rows[i][0].ToString(),
-                        ticketname = dt.Rows[i][1].ToString(),
-                        orgprice = dt.Rows[i][2].ToString(),
-                        olprice = dt.Rows[i][3].ToString()
+                        scenicname = dt.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt.Rows[i][3].ToString().Replace("\n", "").Trim()
                     });
                 }
                 return tlist;
@@ -207,7 +207,7 @@ namespace ExcelOplib
         /// <returns></returns>
         private List<Model.ScenicImg> CopyFile(Model.Scenic scenic)
         {
-            string sourcePath = @"d:\图片\" + scenic.Name;
+            string sourcePath = @"d:\图片\" + scenic.Name.Trim();
             if (!Directory.Exists(sourcePath)) return null;
             string destPath = @"d:\scenicimg";
             DirectoryInfo TheFolder = new DirectoryInfo(sourcePath);

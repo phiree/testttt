@@ -54,9 +54,8 @@ namespace DAL
 
         public void UpdateScenicInfo(Scenic scenic)
         {
-            using (var t = session.Transaction)
+            using (var t = session.BeginTransaction())
             {
-                t.Begin();
                 foreach (var item in scenic.Tickets)
                 {
                     session.SaveOrUpdate(item);

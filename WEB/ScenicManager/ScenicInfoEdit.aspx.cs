@@ -22,13 +22,13 @@ public partial class ScenicManager_Default2 : System.Web.UI.Page
     {
         Scenic scenic = Master.Scenic;
         CkBookNote.Text = scenic.BookNote;
-        CkScjj.Text = scenic.Desec;
+        CkScjj.Text = scenic.ScenicDetail;
     }
     protected void BtnSave_Click(object sender, EventArgs e)
     {
         Scenic scenic = Master.Scenic;
         scenic.BookNote = CkBookNote.Text;
-        scenic.Desec = CkScjj.Text;
+        scenic.ScenicDetail = CkScjj.Text;
         bllscenic.UpdateScenicInfo(scenic);
         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功')", true);
     }
