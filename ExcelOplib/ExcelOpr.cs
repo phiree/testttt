@@ -25,23 +25,36 @@ namespace ExcelOplib
         {
             BLL.BLLScenic bllscenic = new BLL.BLLScenic();
             List<Entity.ScenicEntity> newslist = getSceniclist();
-             
+
+            //收集景区topic
+            string temp=string.Empty;
+            foreach (var tstring in newslist)
+            {
+                temp += tstring.topic + ",";
+            }
+            List<string> topicc1 = temp.Split(new char[] { ',' , '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+            List<string> topicc2=topicc1.Distinct().ToList<string>();
+            blltopic.SaveTopic(topicc2);
+
             List<Model.Scenic> orgslist = bllscenic.GetScenic().ToList<Model.Scenic>();
             bllscenic.DeleteScenicimg();
+            //循环景区
             foreach (Entity.ScenicEntity item in newslist)
             {
                 if (string.IsNullOrWhiteSpace(item.name)) break;
                 //组装scenic
                 List<Model.Scenic> ss = orgslist.Where<Model.Scenic>(x => x.Name == item.name).ToList();
-                Model.Scenic s ;
-                if(ss.Count==1)//已经存在该景区
+                Model.Scenic s;
+                if (ss.Count == 1)//已经存在该景区
                 {
                     s = ss.First();
                     s.Address = item.address;
                     s.Level = item.level;
                     s.SeoName = item.seoname;
-                    s.Area=bllarea.GetAreaByAreaid(int.Parse(item.areaid));
-                    s.Topic = blltopic.GetTopicByName(item.topic);
+                    s.Area = bllarea.GetAreaByAreaid(int.Parse(item.areaid));
+                    //处理topic字符串
+                    var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+                    blltopic.SaveScenictopic(temptopic, s.Id);
                     s.Trafficintro = item.trafficintro;
                     s.BookNote = item.bookintro;
                     s.ScenicDetail = item.scenicdetail;
@@ -57,19 +70,22 @@ namespace ExcelOplib
                             t = tmp.First();
                             t.Name = te.ticketname;
                             t.Scenic = s;
+                            t.IsMain = true;
                             t.TicketPrice = new List<Model.TicketPrice>() { 
                             new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t}};
-                            //tickets.Add(t);
+                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}};
                         }
                         else
-                        { 
+                        {
                             t = new Model.Ticket();
                             t.Name = te.ticketname;
                             t.Scenic = s;
+                            t.IsMain = true;
                             t.TicketPrice = new List<Model.TicketPrice>() { 
                             new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t}};
+                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}};
                             tickets.Add(t);
                         }
                     };
@@ -89,9 +105,10 @@ namespace ExcelOplib
                     s.Area = bllarea.GetAreaByAreaid(int.Parse(item.areaid));
                     s.BookNote = item.bookintro;
                     s.Level = item.level;
+                    //处理topic字符串
+                    var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
                     s.ScenicDetail = item.scenicdetail;
                     s.SeoName = item.seoname;
-                    s.Topic = blltopic.GetTopicByName(item.topic);
                     s.Trafficintro = item.trafficintro;
                     //组装tickets
                     List<Entity.TicketEntity> newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
@@ -102,14 +119,17 @@ namespace ExcelOplib
                         t = new Model.Ticket();
                         t.Name = te.ticketname;
                         t.Scenic = s;
+                        t.IsMain = true;
                         t.TicketPrice = new List<Model.TicketPrice>() { 
-                        new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
-                        new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t}
-                    };
+                            new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
+                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}
+                        };
                         tickets.Add(t);
                     }
                     s.Tickets = tickets;
                     bllscenic.UpdateScenicInfo(s);
+                    blltopic.SaveScenictopic(temptopic,bllscenic.GetScenicBySeoName(item.seoname).Id);
                     List<Model.ScenicImg> silist = CopyFile(s);
                     if (silist != null)
                     {
@@ -145,7 +165,7 @@ namespace ExcelOplib
                     //如果excel中的行不为空,添加
                     slist.Add(new Entity.ScenicEntity()
                     {
-                        name = dt.Rows[i][0].ToString().Replace("\n","").Trim(),
+                        name = dt.Rows[i][0].ToString().Replace("\n", "").Trim(),
                         seoname = dt.Rows[i][1].ToString().Replace("\n", "").Trim(),
                         areaid = dt.Rows[i][2].ToString().Replace("\n", "").Trim(),
                         topic = dt.Rows[i][3].ToString().Replace("\n", "").Trim(),

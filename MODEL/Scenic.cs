@@ -16,7 +16,6 @@ namespace Model
         public virtual string Photo { get; set; }
       
         //public virtual string ActiveTime { get; set; } 更改结构,删除该字段
-        public virtual Topic Topic { get; set; }
         /// <summary>
         /// 交通信息
         /// </summary>

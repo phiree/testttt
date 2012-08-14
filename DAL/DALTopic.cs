@@ -101,6 +101,17 @@ namespace DAL
             }
         }
 
+        public void SaveTopic(List<string> topicnames)
+        {
+            foreach (var item in topicnames)
+            {
+                if (GetTopicByName(item) == null)
+                {
+                    SaveTopic(item);
+                }
+            }
+        }
+
         public void UpdateTopic(Topic topic)
         {
             using (var t = session.BeginTransaction())
@@ -122,5 +133,6 @@ namespace DAL
                 trans.Commit();
             }
         }
+
     }
 }

@@ -18,7 +18,6 @@ namespace Model.Mapping
             Map(x => x.Level);
             Map(x => x.Photo);
             //Map(x => x.ActiveTime);
-            References<Topic>(x => x.Topic);
             Map(x => x.Trafficintro);
             Map(x => x.ScenicDetail);
             Map(x => x.Desec);

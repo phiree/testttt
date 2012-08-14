@@ -27,6 +27,11 @@ namespace BLL
             Iticket.SaveTopic(topicname);
         }
 
+        public void SaveTopic(List<string> topicnames)
+        {
+            Iticket.SaveTopic(topicnames);
+        }
+
         public void SaveScenictopic(IList<string> topicname, int scenicid)
         {
             Scenic s = new BLL.BLLScenic().GetScenicById(scenicid);
