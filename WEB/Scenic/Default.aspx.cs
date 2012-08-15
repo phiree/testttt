@@ -81,11 +81,11 @@ public partial class Scenic_Default : System.Web.UI.Page
         List<double> listdistance = new List<double>();
         if (!string.IsNullOrEmpty(scenic.Position))
         {
-            bindimg(list, scenic);
-            foreach (ScenicImg item in scdiction.Keys)
-            {
-                bindimglist += item.Scenic.Position + ":";
-            }
+            //bindimg(list, scenic);
+            //foreach (ScenicImg item in scdiction.Keys)
+            //{
+                bindimglist += scenic.Position + ":";
+           // }
         }
 
         
@@ -116,7 +116,7 @@ public partial class Scenic_Default : System.Web.UI.Page
     }
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区
     Dictionary<ScenicImg, double> scdiction = new Dictionary<ScenicImg, double>();
-    public void bindimg(IList<Scenic> list, Scenic scenic)
+    /*public void bindimg(IList<Scenic> list, Scenic scenic)
     {
         foreach (Scenic item in list)
         {
@@ -154,7 +154,7 @@ public partial class Scenic_Default : System.Web.UI.Page
         }
     }
 
-
+    */
     const double PI = 3.1415926535;
 
     double CaculateDistance(double lat1, double lng1, double lat2, double lng2)

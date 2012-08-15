@@ -10,7 +10,7 @@ public class TopicNewHandler : IHttpHandler
     {
         context.Response.ContentType = "application/json";
         BLL.BLLTopic blltopic = new BLL.BLLTopic();
-        blltopic.SaveTopic(context.Request["newitem"]);
+        blltopic.SaveTopic(context.Request["newitem"],null);
     }
 
     public bool IsReusable

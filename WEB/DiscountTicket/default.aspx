@@ -29,6 +29,7 @@
         </div>
         <div class="themediv">
             <span class="themedivspan" style="color: #009F3C;">旅游主题:</span>
+            <div style="float:left; width:640px;">
             <a runat="server" id="hrefTopicAll" style="margin-right: 10px;">全部</a>
             <asp:Repeater ID="rptTopic" runat="server" 
                 onitemdatabound="rptTopic_ItemDataBound">
@@ -36,6 +37,7 @@
                     <a runat="server" id="hltopic" style="margin-right: 10px;"><%# Eval("Name") %></a>
                 </ItemTemplate>
             </asp:Repeater>
+            </div>
         </div>
         <div class="leveldiv">
             <span class="themedivspan" style="color: #009F3C;">景区级别:</span> <a runat="server" id="hlLevelAll">全部</a>
@@ -57,7 +59,7 @@
                 <div class="scenicdesc">
                     <div class="scenicimgdivbg">
                         <a href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
-                            <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='<%# Eval("Photo","/ScenicImg/{0}") %>' /></a>
+                            <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='' /></a>
                     </div>
                     <div class="scenicname">
                         <a style="display: block" href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>

@@ -243,7 +243,7 @@
                     <asp:Repeater ID="rpttp" runat="server">
                         <ItemTemplate>
                             <tr class="pttr" onmouseover="" onmouseout="">
-                            <td>
+                            <td style="text-align:left;padding-left:60px;">
                                 <%# Eval("Name") %>
                             </td>
                             <td>

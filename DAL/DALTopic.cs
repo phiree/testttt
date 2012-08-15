@@ -91,9 +91,17 @@ namespace DAL
         }
 
 
-        public void SaveTopic(string topicname)
+        public void SaveTopic(string topicname,string topicseo)
         {
-            Topic t = new Topic() { Name = topicname };
+            Topic t;
+            if (string.IsNullOrWhiteSpace(topicseo))
+            {
+                t = new Topic() { Name = topicname };
+            }
+            else
+            {
+                t = new Topic() { Name = topicname, seoname = topicseo };
+            }
             using (var tr = session.BeginTransaction())
             {
                 session.Save(t);
@@ -107,8 +115,34 @@ namespace DAL
             {
                 if (GetTopicByName(item) == null)
                 {
-                    SaveTopic(item);
+                    SaveTopic(item,null);
                 }
+            }
+        }
+
+        public void SaveTopic(List<string> topicnames, List<string> topicseos)
+        {
+            Topic topic;
+            try
+            {
+                for (int i = 0; i < topicnames.Count; i++)
+                {
+                    topic = GetTopicByName(topicnames[i]);
+                    if (topic == null)
+                    {
+                        SaveTopic(topicnames[i], topicseos[i]);
+                    }
+                    else
+                    {
+                        topic.seoname = topicseos[i];
+                        UpdateTopic(topic);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                e = new Exception("景区表格式.xls中景区主题和topicseo对应不完整，请检查！");
+                throw e;
             }
         }
 
