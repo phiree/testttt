@@ -578,6 +578,7 @@
 {
     margin-left:10px;
     margin-top:15px;
+    font-weight:bold;
 }
 .navsc img
 {
@@ -628,7 +629,7 @@
 {
     display:block;
     margin:20px 0px 0px 30px;
-    color:#EB6B76;
+    color:#EC6B9E;
 }
 .themespan span
 {
@@ -737,7 +738,7 @@
 {
     margin:0px;
     padding:0px;
-    margin-left:10px;
+    margin-left:0px;
     overflow:hidden;
     margin-bottom:-5px;
 }

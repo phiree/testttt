@@ -180,7 +180,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
     <p class="navsc">
-        <img src="/theme/default/image/newversion/icon.gif" />您选择的景区门票：浙江省&nbsp;>&nbsp;<a
+        您选择的景区门票：浙江省&nbsp;>&nbsp;<a
             runat="server" id="areaname"></a>&nbsp;>&nbsp;<a runat="server" id="scenicname"></a></p>
     <div id="mainscenic">
         <div class="mainscbg">
@@ -219,7 +219,7 @@
         </div>
         <div id="priceinfo">
             <p class="captitle">
-                <img src="/theme/default/image/newversion/icon.gif" />门票种类和价格</p>
+                门票种类和价格</p>
             <table border="0" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr class="tstr">
@@ -252,7 +252,7 @@
                             <td>
                                 <%# Eval("TicketPrice[1].Price", "{0:0}")%>
                             </td>
-                            <td style="color: #E8641B; font-weight: bold">
+                            <td style="color: #EC6B9E; font-weight: bold">
                                 <%# Eval("TicketPrice[2].Price", "{0:0}")%>
                             </td>
                             <td style="text-align: center;">
@@ -288,7 +288,7 @@
         </div>
         <div id="introordertk">
             <p class="captitle">
-                <img src="/theme/default/image/newversion/icon.gif" />订票说明</p>
+                订票说明</p>
             <div class="otinfo">
                 <%=booknote %>
             </div>

@@ -13,7 +13,7 @@
     </div>
     <div id="selectdiv">
         <div class="areadiv">
-            <span class="areadivspan" style="color: #009F3C;">所在城市:</span> <a runat="server"
+            <span class="areadivspan" style="color:Black; font-weight:normal">所在城市:</span> <a runat="server"
                 id="hrefAllArea" t="area" style="margin-right: 10px;">全部</a>
             <asp:Repeater runat="server" ID="rptAreas" OnItemDataBound="rptArea_ItemDataBound">
                 <HeaderTemplate>
@@ -28,7 +28,7 @@
             </asp:Repeater>
         </div>
         <div class="themediv">
-            <span class="themedivspan" style="color: #009F3C;">旅游主题:</span>
+            <span class="themedivspan" style="color:Black;font-weight:normal">旅游主题:</span>
             <div style="float:left; width:640px;">
             <a runat="server" id="hrefTopicAll" style="margin-right: 10px;">全部</a>
             <asp:Repeater ID="rptTopic" runat="server" 
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="leveldiv">
-            <span class="themedivspan" style="color: #009F3C;">景区级别:</span> <a runat="server" id="hlLevelAll">全部</a>
+            <span class="themedivspan" style="color: Black;font-weight:normal">景区级别:</span> <a runat="server" id="hlLevelAll">全部</a>
             <a runat="server" t="level" id="hlLevel5">5A</a> <a runat="server" t="level" id="hlLevel4">
                 4A</a> <a runat="server" t="level" id="hlLevel3">3A</a>
         </div>
@@ -80,7 +80,7 @@
                 <asp:Label runat="server" CssClass="success noresult" Visible="false" ID="lblNoResult">没有相应的景区</asp:Label>
             </FooterTemplate>
         </asp:Repeater>
-        <div id="pager" class="span-19 last" style="margin-left: 30px;">
+        <div id="pager" class="span-19 last" style="margin-left: 30px;margin-bottom:40px;">
             <uc:AspNetPager runat="server" EnableUrlRewriting="true" ID="pagerGot" CssClass="paginator"
                 UrlPaging="true" UrlPageIndexName="pgotindex" UrlRewritePattern="/%area%/%level%/page_{0}.html"
                 FirstPageText="首页" LastPageText="尾页" PageSize="12" NextPageText="下一页" CurrentPageButtonClass="cpb"
