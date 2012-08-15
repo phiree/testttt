@@ -1,16 +1,16 @@
 ﻿
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='hangzhou' where [TourOnline].[dbo].[Area].[Id]=1019
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='ningbo' where [TourOnline].[dbo].[Area].[Id]=1034
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='wenzhou' where [TourOnline].[dbo].[Area].[Id]=1047
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='jiaxing' where [TourOnline].[dbo].[Area].[Id]=1060
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='huzhou' where [TourOnline].[dbo].[Area].[Id]=1069
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='shaoxing' where [TourOnline].[dbo].[Area].[Id]=1076
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='jinhua' where [TourOnline].[dbo].[Area].[Id]=1084
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='quzhou' where [TourOnline].[dbo].[Area].[Id]=1095
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='zhoushan' where [TourOnline].[dbo].[Area].[Id]=1103
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='taizhou' where [TourOnline].[dbo].[Area].[Id]=1109
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='lishui' where [TourOnline].[dbo].[Area].[Id]=1120
-  update [TourOnline].[dbo].[Area] set [TourOnline].[dbo].[Area].[SeoName]='shaoxing' where [TourOnline].[dbo].[Area].[Id]=1076
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='hangzhou' where [dbo].[Area].[Id]=1019
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='ningbo' where [dbo].[Area].[Id]=1034
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='wenzhou' where [dbo].[Area].[Id]=1047
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='jiaxing' where [dbo].[Area].[Id]=1060
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='huzhou' where [dbo].[Area].[Id]=1069
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='shaoxing' where [dbo].[Area].[Id]=1076
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='jinhua' where [dbo].[Area].[Id]=1084
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='quzhou' where [dbo].[Area].[Id]=1095
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='zhoushan' where [dbo].[Area].[Id]=1103
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='taizhou' where [dbo].[Area].[Id]=1109
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='lishui' where [dbo].[Area].[Id]=1120
+  update [dbo].[Area] set [dbo].[Area].[SeoName]='shaoxing' where [dbo].[Area].[Id]=1076
 
 
 
