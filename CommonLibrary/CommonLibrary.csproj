@@ -74,19 +74,20 @@
     <Content Include="docs\WebTest\RegisiterWebTest.html" />
     <Content Include="docs\WebTest\ScenicAdminWebTest.html" />
     <Content Include="docs\WebTest\ScenicWebTest.html" />
+    <Content Include="docs\部署全新数据库.txt" />
     <Content Include="docs\测试驱动开发--景区审核.txt" />
     <Content Include="docs\测试驱动开发.txt" />
     <Content Include="docs\测试驱动开发--网上支付.txt" />
     <Content Include="docs\测试驱动开发--角色功能.txt" />
     <Content Include="docs\测试用数据.txt" />
     <Content Include="docs\页面分配.txt" />
-    <Content Include="PDesigner\area.sql" />
-    <Content Include="PDesigner\SEO脚本.sql" />
-    <Content Include="PDesigner\初始化脚本.sql" />
-    <Content Include="PDesigner\景区图片.sql" />
-    <Content Include="PDesigner\景区脚本.sql" />
-    <Content Include="PDesigner\门票价格.sql" />
-    <Content Include="PDesigner\门票初始化.sql" />
+    <Content Include="PDesigner\1区域初始化.sql" />
+    <Content Include="PDesigner\2区域SEO脚本.sql" />
+    <Content Include="PDesigner\3创建管理员.sql" />
+    <Content Include="PDesigner\tobedeleted\景区图片.sql" />
+    <Content Include="PDesigner\tobedeleted\景区脚本.sql" />
+    <Content Include="PDesigner\tobedeleted\门票价格.sql" />
+    <Content Include="PDesigner\tobedeleted\门票初始化.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="docs\2012年浙江省A级旅游景区汇总统计表.xls" />
