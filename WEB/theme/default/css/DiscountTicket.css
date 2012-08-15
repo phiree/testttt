@@ -205,4 +205,5 @@
     margin-top:-4px;
     position:relative;
     z-index:5;
+    white-space:nowrap;
 }
