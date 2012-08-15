@@ -7,6 +7,11 @@
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/pager.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/Show.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            $(".navlistnb a:eq(0)").attr("class", "navhight");
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <!--顶部推荐-->
