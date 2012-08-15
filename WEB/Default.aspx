@@ -20,7 +20,7 @@
                     <img src="/Img/slide/2.png" />
                 </li>
                 <li>
-                    <img src="/Img/slide/3.png" />
+                    <a href="/lishui/yunhetitianjingqu.html"><img src="/Img/slide/3.png" /></a>
                 </li>
             </ul>
             <div class="num">

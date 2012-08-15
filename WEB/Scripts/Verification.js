@@ -44,11 +44,6 @@ function BtnUpdateScenicInfo() {
         return false;
     }
 
-    if ($("[id$='ScenicImg']").attr("src")==""){
-        alert("景区图片不能为空");
-        return false;
-    }
-
     if ($("[id$='hfposition']").val() == "") {
         alert("请在地图上选择景区位置");
         return false;

@@ -66,55 +66,28 @@ public partial class Scenic_Default : System.Web.UI.Page
         scaddress = scenic.Address;
         booknote = scenic.BookNote;
         sclevel = scenic.Level;
-        scdesc = scenic.Desec;
+        scdesc = scenic.ScenicDetail;
         transguid = scenic.Trafficintro;
         if (!string.IsNullOrEmpty(scenic.Desec))
             scshortdesc = scenic.Desec.Substring(0, 30) + "...";
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/" + listsi[0].Name;
-        if (scenic.Desec != null)
-        {
-            scdescription.InnerHtml = scenic.Desec;
-        }
-        //添加辅图
-        //IList<ScenicImg> ilist=bllscenicimg.GetSiByType(scenic, 2);
-        //if (ilist.Count <= 6)
-        //{
-        //    imgcount = ilist.Count;
-        //    rptft.DataSource = ilist;
-        //    rptft.DataBind();
-        //}
-        //else
-        //{
-        //    List<ScenicImg> ftlist = new List<ScenicImg>();
-        //    for (int i = 0; i < 6; i++)
-        //    {
-        //        ftlist.Add(ilist[i]);
-        //    }
-            
-        //    imgcount = 6;
-        //    rptft.DataSource = ftlist;
-        //    rptft.DataBind();
-        //}
 
 
-        ydhtprice.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 2).Price.ToString("0");
-        yjhtprice.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 1).Price.ToString("0");
-        zfhtprice.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(scid, 3).Price.ToString("0");
 
         IList<Scenic> list = bllscenic.GetScenic();
         Dictionary<Scenic, double> places = new Dictionary<Scenic, double>();
         List<double> listdistance = new List<double>();
-        bindimg(list, scenic);
-        searchbigmap.HRef = "/map/Default.aspx?scenicid=" + scenic.Id;
-        foreach (ScenicImg item in scdiction.Keys)
+        if (!string.IsNullOrEmpty(scenic.Position))
         {
-            bindimglist += item.Scenic.Position + ":";
-            searchbigmap.HRef += ","+item.Scenic.Id;
+            bindimg(list, scenic);
+            foreach (ScenicImg item in scdiction.Keys)
+            {
+                bindimglist += item.Scenic.Position + ":";
+            }
         }
-        rptzbsc.DataSource = scdiction.Keys;
-        rptzbsc.DataBind();
+
         
         //绑定主题
         rpttopic.DataSource = blltopic.GetStByscid(scenic.Id);
@@ -179,12 +152,6 @@ public partial class Scenic_Default : System.Web.UI.Page
                 }
             }
         }
-        //if (k < 6 && dd < 500)
-        //{
-        //    dd = dd + 20;
-        //    bindimg(list, scenic);
-        //}
-
     }
 
 
