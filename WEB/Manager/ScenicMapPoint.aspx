@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager/manager.master" AutoEventWireup="true" CodeFile="ScenicMapPoint.aspx.cs" Inherits="Manager_ScenicMapPoint" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" Runat="Server">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
 <script type="text/javascript">
     function GetAndUpdate() {
         $.ajax({
             type: "get",
-            url: "/example/UpdatePosition.ashx?id=2",
+            url: "UpdatePosition.ashx?id=2",
             dataType: "json",
             success: function (data, status) {
                 var JSON = eval(data);
@@ -14,12 +15,6 @@
                         break;
                     var add = JSON[i].name;
                     name[count++] = add;
-                    //                        if (add == null || add == undefined || add == "") {
-                    //                            sendJSON[count++] = "";
-                    //                        }
-                    //                        else {
-                    //                            updateposition(add);
-                    //                        }
                 }
 
             }
@@ -32,6 +27,7 @@
     }
 
     function testbtn() {
+        debugger;
         for (var i = 0; i < name.length; i++) {
             var myGeo = new BMap.Geocoder();
             myGeo.getPoint(name[i], function (point) {

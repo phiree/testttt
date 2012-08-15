@@ -40,6 +40,7 @@
 
         function testbtn() {
             for (var i = 0; i < name.length; i++) {
+                
                 var myGeo = new BMap.Geocoder();
                 myGeo.getPoint(name[i], function (point) {
                     if (point) {

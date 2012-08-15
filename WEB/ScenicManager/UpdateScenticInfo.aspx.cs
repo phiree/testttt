@@ -47,8 +47,6 @@ public partial class ScenticManager_UpdateScenticInfo : basepage
         scenic.TransGuid = Desc.Text;
         scenic.Photo = "";
         scenic.Position = hfposition.Value;
-        ScenicCheckProgress temp = scenic.CheckProgress.First<ScenicCheckProgress>(x => x.Module == ScenicModule.SellOnLine);
-        temp.CheckStatus = CheckStatus.NotApplied;
         bllscenic.UpdateScenicInfo(scenic);
 
         bind();
