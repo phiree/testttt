@@ -487,6 +487,10 @@
     font-family:黑体;
     padding:0px;
 }
+.mapscnameinfo a
+{
+     color:White;
+    }
 .mapscnameinfo2
 {
     margin:5px 0px 5px 30px;
