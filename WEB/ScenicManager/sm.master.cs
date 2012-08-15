@@ -21,7 +21,7 @@ public partial class ScenicManager_sm : System.Web.UI.MasterPage
     protected override void OnInit(EventArgs e)
     {
         MembershipUser mu = Membership.GetUser();
-        if (mu == null || mu.UserName == string.Empty)
+        if (mu == null || mu.UserName == string.Empty || bllMember.GetScenicAdmin((Guid)mu.ProviderUserKey)==null)
         {
             Response.Redirect("/ScenicManager/login.aspx");
         }

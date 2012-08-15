@@ -190,9 +190,19 @@
     background-color:#D1EFCD;
     padding:3px 5px 3px 5px;
     margin-top:-4px;
+    z-index:6;
 }
 .areadiv span,.areadiv a,.themediv span,.themediv a,.leveldiv span,.leveldiv a
 {
      display:block;
      float:left;
+     margin-bottom:5px;
+}
+.themediv a
+{
+    border:1px solid White;
+    padding:3px 5px 3px 5px;
+    margin-top:-4px;
+    position:relative;
+    z-index:5;
 }

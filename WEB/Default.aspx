@@ -9,6 +9,7 @@
     <link href="/theme/default/css/Show.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
+            $(".navlistnb a").attr("class", "");
             $(".navlistnb a:eq(0)").attr("class", "navhight");
         });
     </script>
