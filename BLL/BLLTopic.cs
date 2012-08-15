@@ -22,14 +22,19 @@ namespace BLL
             set { itopic = value; }
         }
 
-        public void SaveTopic(string topicname)
+        public void SaveTopic(string topicname, string topicseo)
         {
-            Iticket.SaveTopic(topicname);
+            Iticket.SaveTopic(topicname, topicseo);
         }
 
         public void SaveTopic(List<string> topicnames)
         {
             Iticket.SaveTopic(topicnames);
+        }
+
+        public void SaveTopic(List<string> topicnames,List<string> topicseos)
+        {
+            Iticket.SaveTopic(topicnames, topicseos);
         }
 
         public void SaveScenictopic(IList<string> topicname, int scenicid)

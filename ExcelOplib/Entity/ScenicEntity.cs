@@ -13,6 +13,7 @@ namespace ExcelOplib.Entity
         public string seoname { get; set; }
         public string areaid { get; set; }
         public string topic { get; set; }
+        public string topicseo { get; set; }
         public string trafficintro { get; set; }
         public string bookintro { get; set; }
         public string scenicdetail { get; set; }

@@ -26,15 +26,19 @@ namespace ExcelOplib
             BLL.BLLScenic bllscenic = new BLL.BLLScenic();
             List<Entity.ScenicEntity> newslist = getSceniclist();
 
-            //收集景区topic
-            string temp=string.Empty;
+            //收集景区topic,及topicseo
+            string temptp=string.Empty;
+            string temptseo = string.Empty;
             foreach (var tstring in newslist)
             {
-                temp += tstring.topic + ",";
+                temptp += tstring.topic + ",";
+                temptseo += tstring.topicseo + ",";
             }
-            List<string> topicc1 = temp.Split(new char[] { ',' , '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
-            List<string> topicc2=topicc1.Distinct().ToList<string>();
-            blltopic.SaveTopic(topicc2);
+            List<string> topicc1 = temptp.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+            List<string> topics1 = temptseo.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+            List<string> topicc2 = topicc1.Distinct().ToList<string>();
+            List<string> topics2 = topics1.Distinct().ToList<string>();
+            blltopic.SaveTopic(topicc2,topics2);
 
             List<Model.Scenic> orgslist = bllscenic.GetScenic().ToList<Model.Scenic>();
             bllscenic.DeleteScenicimg();
@@ -151,7 +155,7 @@ namespace ExcelOplib
                 //path即是excel文档的路径。
                 string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\景区表格式.xls;Extended Properties=Excel 8.0;";
                 //Sheet1为excel中表的名字
-                string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址 from [Sheet1$]";
+                string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                 OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -174,6 +178,7 @@ namespace ExcelOplib
                         scenicdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim(),
                         level = dt.Rows[i][7].ToString().Replace("\n", "").Trim(),
                         address = dt.Rows[i][8].ToString().Replace("\n", "").Trim(),
+                        topicseo = dt.Rows[i][9].ToString().Replace("\n", "").Trim(),
                     });
                 }
                 return slist;
