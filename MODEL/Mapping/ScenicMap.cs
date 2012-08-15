@@ -18,12 +18,12 @@ namespace Model.Mapping
             Map(x => x.Level);
             Map(x => x.Photo);
             //Map(x => x.ActiveTime);
-            Map(x => x.Trafficintro);
-            Map(x => x.ScenicDetail);
+            Map(x => x.Trafficintro).CustomType("StringClob").CustomSqlType("nvarchar(max)");
+            Map(x => x.ScenicDetail).CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(x => x.Desec);
             Map(x => x.Position);
             Map(x => x.SeoName);
-            Map(x => x.BookNote);
+            Map(x => x.BookNote).CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(x => x.TransGuid);
             References<Area>(x => x.Area);
             HasMany<ScenicCheckProgress>(x => x.CheckProgress);
