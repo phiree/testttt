@@ -106,6 +106,7 @@
   <ItemGroup>
     <Compile Include="BLLTest\AreaTest.cs" />
     <Compile Include="BLLTest\BackManagerTest.cs" />
+    <Compile Include="BLLTest\ExcelOperTets.cs" />
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="BLLTest\OrderTest.cs" />
     <Compile Include="BLLTest\ScenicTest.cs" />
@@ -144,6 +145,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{81A65767-666A-4C51-A374-EE9AC1A1E4C3}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelOplib\ExcelOplib.csproj">
+      <Project>{86A9D97C-AB59-4C06-93B5-7724675CD97A}</Project>
+      <Name>ExcelOplib</Name>
     </ProjectReference>
     <ProjectReference Include="..\IDAL\IDAL.csproj">
       <Project>{D1050179-E4D5-4DF8-AFC4-305A93F90EE6}</Project>

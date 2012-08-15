@@ -4,9 +4,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <p>请确认一下信息</p>
     <ul>
-        <li>将excel放在d盘下, 文件名为"2012年浙江省A级旅游景区汇总统计表.xls"</li>
-        <li>在d盘下创建scenicimg文件夹</li>
-        <li>将各景区图片放在以景区命名的文件夹中, 并将此文件夹放到d盘的图片文件夹中.</li>
+        <li>将2个excel文件放在d盘下, 文件名分别为为<b>价格表格式.xls</b>,<b>景区表格式.xls</b></li>
+        <li>在d盘下创建<b>scenicimg</b>文件夹</li>
+        <li>将各景区图片放在以<b>景区命名</b>的文件夹中, 并将此文件夹放到d盘的<b>图片</b>文件夹中.</li>
     </ul>
     <asp:Button ID="btnExcel" runat="server" Text="导入数据" OnClick="btnExcel_Click" />
 </asp:Content>
