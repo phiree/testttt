@@ -9,7 +9,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContent" runat="Server">
     <div class="ticketsellist">
-        <img src="/theme/default/image/newversion/icon.gif" />浙江省景区门票&nbsp;选择列表
+        浙江省景区门票&nbsp;选择列表
     </div>
     <div id="selectdiv">
         <div class="areadiv">
@@ -47,7 +47,6 @@
     </div>
     <div class="breadNav">
         <p class="selectarea">
-            <img src="/theme/default/image/newversion/icon.gif" />
             您选择的景区门票:浙江省&nbsp;&nbsp;><a href="" runat="server" id="breadareaurl"><asp:Literal
                 ID="lAreabread" runat="server"></asp:Literal></a>><a href="" runat="server" id="breadlevelurl"><asp:Literal
                     ID="lLevelBread" runat="server"></asp:Literal></a>&nbsp;<a style="text-decoration: none"><asp:Literal

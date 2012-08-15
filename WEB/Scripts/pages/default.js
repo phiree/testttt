@@ -14,6 +14,6 @@ $(function () {
     $(".scoloum").mouseout(function () {
         $(".scoloum").find(".mark").css("display", "none");
     });
-    
+
 });
       
