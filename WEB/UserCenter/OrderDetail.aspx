@@ -157,12 +157,12 @@
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;" onmouseover="changebg(this)" onmouseout="changebg2(this)">
                     <span class="osczero"><a style="color:#807940;" href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
-                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span><span class="tttt">|</span>
-                    <span class="oscfirst"><%# Eval("TicketPrice.Ticket.Name")%></span><span class="tttt">|</span><span class="oscsecond" runat="server"
-                            id="buytype"></span><span class="tttt">|</span><span class="oscthird" runat="server" id="tp"><%# Eval("TicketPrice.Price","{0:0}")%></span><span class="tttt">|</span><span
-                                class="oscfour" runat="server" id="qua"><%# Eval("Quantity")%></span><span class="tttt">|</span><span class="oscfifth"><span
-                                    id="sumprice" runat="server"></span>元</span><span class="tttt">|</span><span class="oscsix"><span id="usedstate"
-                                        runat="server"></span></span><span class="tttt">|</span><span class="oscseven"><a id="usedetail" style="cursor: pointer"
+                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span>
+                    <span class="oscfirst"><%# Eval("TicketPrice.Ticket.Name")%></span><span class="oscsecond" runat="server"
+                            id="buytype"></span><span class="oscthird" runat="server" id="tp"><%# Eval("TicketPrice.Price","{0:0}")%></span><span
+                                class="oscfour" runat="server" id="qua"><%# Eval("Quantity")%></span><span class="oscfifth"><span
+                                    id="sumprice" runat="server"></span>元</span><span class="oscsix"><span id="usedstate"
+                                        runat="server"></span></span><span class="oscseven"><a id="usedetail" style="cursor: pointer"
                                             runat="server" onclick='<%# Eval("Id","openusedetail({0})") %>'>使用详情</a></span>
                 </div>
             </ItemTemplate>
@@ -181,14 +181,14 @@
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;" onmouseover="changebg(this)" onmouseout="changebg2(this)">
                     <span class="osczero" style="margin: 0px;"><a style="color:#807940;" href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
-                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span><span class="tttt">|</span>
-                    <span class="oscfirst" style="margin: 0px;"><%# Eval("TicketPrice.Ticket.Name")%></span><span class="tttt">|</span> <span class="oscsecond" runat="server"
+                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span>
+                    <span class="oscfirst" style="margin: 0px;"><%# Eval("TicketPrice.Ticket.Name")%></span> <span class="oscsecond" runat="server"
                             id="ydprice" style="margin-left: 5px">
-                            <%# Eval("TicketPrice.Price","{0:0}")%></span><span class="tttt">|</span> <span class="oscthird" runat="server"
-                                id="usedcount" style="width: 70px"></span><span class="tttt">|</span><span class="oscfour" runat="server" id="notusedcount"
-                                    style="width: 70px"></span><span class="tttt">|</span><span class="oscfifth"><span id="sumprice" runat="server">
-                                    </span>元</span><span class="tttt">|</span> <span class="oscsix" style="margin-left: 10px"><span id="usedstate"
-                                        runat="server"></span></span><span class="tttt">|</span><span class="oscseven"><a id="usedetail" style="cursor: pointer;color:#807940;
+                            <%# Eval("TicketPrice.Price","{0:0}")%></span> <span class="oscthird" runat="server"
+                                id="usedcount" style="width: 70px"></span><span class="oscfour" runat="server" id="notusedcount"
+                                    style="width: 70px;margin-right:20px;"></span><span class="oscfifth"><span id="sumprice" runat="server">
+                                    </span>元</span> <span class="oscsix" style="margin-left: 10px"><span id="usedstate"
+                                        runat="server"></span></span><span class="oscseven"><a id="usedetail" style="cursor: pointer;color:#807940;
                                             margin-left: 0px;" runat="server" onclick='<%# Eval("Id","openusedetail({0})") %>'>
                                             使用详情</a></span>
                 </div>
@@ -204,13 +204,13 @@
             <ItemTemplate>
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;" onmouseover="changebg(this)" onmouseout="changebg2(this)">
-                    <span class="osczero" style="width:200px;"><a href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
-                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span><span class="tttt">|</span>
-                    <span class="oscfirst" style="width:200px;"><%# Eval("TicketPrice.Ticket.Name")%></span><span class="tttt">|</span> <span class="oscsecond" runat="server"
+                    <span class="osczero" style="width:200px;"><a style="color:#807940;" href='<%# "/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
+                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span>
+                    <span class="oscfirst" style="width:200px;"><%# Eval("TicketPrice.Ticket.Name")%></span> <span class="oscsecond" runat="server"
                             id="onlineprice" style="margin-left: 5px;">
-                            <%# Eval("TicketPrice.Price","{0:0}")%></span> <span class="tttt">|</span><span class="oscthird" runat="server"
+                            <%# Eval("TicketPrice.Price","{0:0}")%></span> <span class="oscthird" runat="server"
                                 id="tp">
-                                <%# Eval("Quantity")%></span><span class="tttt">|</span> <span class="oscfour" runat="server" id="sumprice">
+                                <%# Eval("Quantity")%></span> <span class="oscfour" runat="server" id="sumprice">
                     </span>
                 </div>
             </ItemTemplate>

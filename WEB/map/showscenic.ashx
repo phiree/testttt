@@ -28,7 +28,8 @@ public class qiehuan : IHttpHandler {
                 Model.ScenicMap m = new Model.ScenicMap();
                 m.id = item.Id;
                 m.name = item.Name;
-                m.img = item.Photo;
+                if (new BLLScenicImg().GetSiByType(item, 1).Count > 0)
+                    m.img = new BLLScenicImg().GetSiByType(item, 1)[0].Name;
                 m.desc = item.Desec;
                 m.address = item.Address;
                 m.position = item.Position;

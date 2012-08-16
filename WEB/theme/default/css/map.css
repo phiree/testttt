@@ -198,7 +198,6 @@
 .selthemeinfo
 {
     width:220px;
-    height:100px;
     display:block;
     background-color:White;
     position:absolute;
@@ -274,4 +273,15 @@
     color:White;
     z-index:9999;
     text-align:center;
+}
+.resulttitle
+{
+    margin:15px 0px 0px 18px;
+}
+#countscenic
+{
+    font-weight:bold;
+    margin-left:5px;
+    margin-right:5px;
+    color:#E8641B;
 }

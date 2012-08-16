@@ -149,21 +149,21 @@ div:246
 .dvprice em
 {
     margin: 0 2px;
+    font-style:normal;
 }
 .dvprice .normalpr 
 {
-    text-decoration: line-through;
     color: #888;
 }
 .dvprice .onlinepr em
 {
     font-size: 16pt;
-    color: #E23C46;
+    color: #E3007A;
     font-style: normal;
 }
 .onlinepr
 {
-    color:#E23C46;
+    color:#E3007A;
     margin-left:0px;
 }
 .scenicname
@@ -565,6 +565,7 @@ div:246
     display:inline-block;
     margin-top:20px;
     overflow:hidden;
+    min-height:450px;
 }
 #sceniccount
 {

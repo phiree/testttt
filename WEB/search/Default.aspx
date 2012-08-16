@@ -17,7 +17,7 @@
                 <div class="scenicdesc">
                     <div class="scenicimgdivbg">
                         <a href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
-                            <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='<%# Eval("Photo","/ScenicImg/{0}") %>' /></a>
+                            <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='' /></a>
                     </div>
                     <div class="scenicname">
                         <a style="display: block" href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
