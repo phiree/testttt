@@ -36,7 +36,7 @@ public partial class UserCenter_UseDetail : basepage
         {
              string idcard= (e.Item.FindControl("idcard") as HtmlContainerControl).InnerHtml;
              TourMembership tm = bllMember.GetMemberById((Guid)CurrentUser.ProviderUserKey);
-             User user = (User)tm;
+             TourMembership user = tm;
              if (user.IdCard == idcard)
                  (e.Item.FindControl("usename") as HtmlContainerControl).InnerHtml = user.Name;
              else

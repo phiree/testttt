@@ -20,7 +20,7 @@ public class ResetPwd : IHttpHandler {
         else
         {
             string backurl = "http://www.tourol.cn/Account/BackPwd.aspx?id=" + user.Id + "&pwdcode=" + user.Password;
-            User u = bllmember.GetUserByUserId(user.Id);
+            TourMembership u = bllmember.GetUserByUserId(user.Id);
             //发送邮件
             string content = "<table><tr><td></td><td style='font-size:14px;'>" + user.Name + "，你好！</td></tr>"
                         + "<tr><td></td><td height='20'>&nbsp;</td>"

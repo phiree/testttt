@@ -111,7 +111,7 @@ public partial class Voting_Default : basepage
     public bool isOauthUser()
     {
         bool result = false;
-        Model.User user = (Model.User)CurrentMember;
+        Model.TourMembership user = (Model.TourMembership)CurrentMember;
         if (!string.IsNullOrWhiteSpace(user.Openid))
             result = true;
         return result;

@@ -35,7 +35,7 @@ public partial class DiscountCode : basepage
         }
         else
         {
-            Model.User user = new BLLMembership().GetUserByUserId((Guid)CurrentUser.ProviderUserKey);
+            Model.TourMembership user = new BLLMembership().GetUserByUserId((Guid)CurrentUser.ProviderUserKey);
             dc.MemberId = user.Id;
             dc.IdCard = user.IdCard;
             blldc.updateDiscountCode(dc);

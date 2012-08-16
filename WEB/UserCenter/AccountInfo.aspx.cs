@@ -17,12 +17,12 @@ public partial class UserCenter_AccountInfo : System.Web.UI.Page
             System.Web.Security.MembershipUser mu = System.Web.Security.Membership.GetUser();
             Guid guid = new Guid(mu.ProviderUserKey.ToString());
             TourMembership tm = bllMember.GetMemberById(guid);
-            User user = (User)tm;
-            txtBoxLoginname.Text = user.Name;
-            txtBoxName.Text = user.RealName;
-            txtBoxIdcard.Text = user.IdCard;
-            txtBoxAddress.Text = user.Address;
-            txtBoxPhone.Text = user.Phone;
+
+            txtBoxLoginname.Text = tm.Name;
+            txtBoxName.Text = tm.RealName;
+            txtBoxIdcard.Text = tm.IdCard;
+            txtBoxAddress.Text = tm.Address;
+            txtBoxPhone.Text = tm.Phone;
         }
     }
     protected void btnModify_Click(object sender, EventArgs e)
@@ -30,7 +30,7 @@ public partial class UserCenter_AccountInfo : System.Web.UI.Page
         System.Web.Security.MembershipUser mu = System.Web.Security.Membership.GetUser();
         Guid guid = new Guid(mu.ProviderUserKey.ToString());
         TourMembership tm = bllMember.GetMemberById(guid);
-        User user = (User)tm;
+        TourMembership user = tm;
         user.Name = txtBoxLoginname.Text.Trim();
         user.RealName = txtBoxName.Text.Trim();
         user.IdCard = txtBoxIdcard.Text.Trim();

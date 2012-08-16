@@ -61,7 +61,7 @@ namespace DAL
                 .Database(msconfg)
                 .Mappings(
                     //  m =>m.FluentMappings.Add(AssemblyOf<Model.Area>(cfg)))
-                    m => m.FluentMappings.AddFromAssemblyOf<Model.User>())
+                    m => m.FluentMappings.AddFromAssemblyOf<Model.TourMembership>())
                     .ExposeConfiguration(BuildSchema)
                     .BuildSessionFactory();
             }

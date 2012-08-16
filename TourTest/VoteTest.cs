@@ -34,7 +34,7 @@ namespace TourTest
         {
             
             long votesAmount1 = dalUserVoteAmount.GetTotalAmount(memberId);
-            User u = new User();
+            TourMembership u = new TourMembership();
             u.Id = memberId;
 
             //1 赢得选票

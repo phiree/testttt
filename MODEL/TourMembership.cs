@@ -12,6 +12,11 @@ namespace Model
         public virtual string Password { get; set; }
         public virtual string Openid { get; set; }
         public virtual Opentype Opentype { get; set; }
+        public virtual string RealName { get; set; }
+        public virtual string Phone { get; set; }
+        public virtual string Address { get; set; }
+        public virtual string IdCard { get; set; }
+        public virtual string Email { get; set; }
     }
     public enum Opentype
     {

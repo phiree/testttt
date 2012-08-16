@@ -13,7 +13,7 @@ namespace Model.Mapping
             Id(x => x.Id);
             Map(x => x.UsedNum);
             Map(x => x.UsedDate);
-            References(x => x.User);
+            References(x => x.Member);
             References<Ticket>(x => x.Ticket);
             //References<TransRecord>(x => x.Order);
         }

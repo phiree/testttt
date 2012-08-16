@@ -14,7 +14,7 @@ namespace Model.Mapping
             Map(x => x.UserFrom);
             Map(x => x.Time);
             Map(x => x.Validated);
-            References<User>(x => x.User);
+            References<TourMembership>(x => x.Member);
             
         }
     }

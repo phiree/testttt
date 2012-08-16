@@ -11,7 +11,7 @@ namespace Model.Mapping
         public UserVoteAmountMap()
         {
             Id(x => x.Id);
-            References<User>(x => x.User);
+            References<TourMembership>(x => x.User);
             Map(x => x.EarnWay).CustomType<int>();
             Map(x => x.Amount);
             Map(x => x.EarnDate);

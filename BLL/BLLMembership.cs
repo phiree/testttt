@@ -24,7 +24,7 @@ namespace BLL
         {
             //valid parameters
             string encryptedPwd = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(password, "MD5");
-            Model.User user = new Model.User()
+            Model.TourMembership user = new Model.TourMembership()
             {
                 RealName = realname,
                 Phone = phone,
@@ -53,7 +53,7 @@ namespace BLL
                 nickname += nickname + "0";
                 tm = GetMember(nickname);
             }
-            Model.User user = new Model.User()
+            Model.TourMembership user = new Model.TourMembership()
             {
                 RealName = "",
                 Phone = "",
@@ -112,17 +112,10 @@ namespace BLL
             return dal.GetMemberById(memberId);
         }
 
-        public Model.User GetUserByUserId(Guid userid)
+        public Model.TourMembership GetUserByUserId(Guid userid)
         {
             TourMembership member = dal.GetMemberById(userid);
-            if (member.GetType() == typeof(User))
-            {
-                return (User)member;
-            }
-            else
-            {
-                throw new Exception("该用户不能转换为User");
-            }
+            return member;
         }
 
         public IList<TourMembership> GetAllUsers()

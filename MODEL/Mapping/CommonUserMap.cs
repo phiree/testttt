@@ -13,7 +13,7 @@ namespace Model.Mapping
             Id(x => x.Id);
             Map(x => x.Name);
             Map(x => x.IdCard);
-            References<User>(x => x.User);
+            References<TourMembership>(x => x.User);
         }
     }
 }

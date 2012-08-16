@@ -8,7 +8,7 @@ namespace IDAL
     public interface IMembership
     {
         //创建用户
-        int CreateUser(Model.User user);
+        int CreateUser(Model.TourMembership user);
 
         //验证用户
         bool ValidateUser(string username, string password);

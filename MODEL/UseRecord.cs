@@ -8,7 +8,7 @@ namespace Model
     public class UseRecord
     {
         public virtual int Id { get; set; }
-        public virtual User User { get; set; }
+        public virtual TourMembership Member { get; set; }
         public virtual Ticket Ticket { get; set; }
         public virtual int UsedNum { get; set; }
         public virtual DateTime UsedDate { get; set; }

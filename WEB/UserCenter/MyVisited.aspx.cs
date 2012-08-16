@@ -29,7 +29,7 @@ public partial class UserCenter_MyVisited : basepage
         System.Web.Security.MembershipUser mu = System.Web.Security.Membership.GetUser();
             Guid guid = new Guid(mu.ProviderUserKey.ToString());
             TourMembership tm = bllMember.GetMemberById(guid);
-            User user = (User)tm;
+            TourMembership user = tm;
         //IList<TicketAssign> ilist=bllorderdetail.
             rptVisited.DataSource = bllticketassign.GetUsedRecord(user.IdCard);
         rptVisited.DataBind();
@@ -45,7 +45,7 @@ public partial class UserCenter_MyVisited : basepage
         System.Web.Security.MembershipUser mu = System.Web.Security.Membership.GetUser();
             Guid guid = new Guid(mu.ProviderUserKey.ToString());
             TourMembership tm = bllMember.GetMemberById(guid);
-            User user = (User)tm;
+            TourMembership user = tm;
         if (e.Item.FindControl("vpricetype") != null)
         {
             HtmlContainerControl hc = (e.Item.FindControl("vpricetype") as HtmlContainerControl);

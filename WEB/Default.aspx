@@ -45,46 +45,53 @@
                 下一张</div>
         </div>
     </div>
-    <div class="fcolum">
+     <div class="fcolum">
         <div class="fcolum1">
-            <span class="fcol1_scname">兰溪六洞山风景区 </span><span class="fcol1_area">金华</span> <a
-                href="">
-                <img src="/ScenicImg/兰溪六风洞景区.jpg" width="100%" height="160px" alt="兰溪六风洞景区" /></a>
-            <p>
-                山美、水秀、洞奇、寺幽为特色。涌雪洞的“地下长河”为海内一绝……</p>
+            <span class="fcol1_scname">
+                兰溪六洞山风景区
+            </span>
+            <span class="fcol1_area">金华</span>
+            <a href=""><img src="/ScenicImg/兰溪六风洞景区.jpg" width="100%" height="160px" alt="兰溪六风洞景区" /></a>
+            <p>山美、水秀、洞奇、寺幽为特色。涌雪洞的“地下长河”为海内一绝……</p>
             <hr />
             <div class="fcol1_bottom">
-                <span>景区门票<strong>4</strong>折</span><a class="wa" href="">看看</a><a href="" class="btna"></a>
+                <span>景区门票,买一送一</span></a><a href="" class="btna"></a>
             </div>
         </div>
         <div class="fcolum1">
-            <span class="fcol1_scname">夹溪十八涡景区 </span><span class="fcol1_area">金华</span> <a href="">
-                <img src="/ScenicImg/夹溪十八涡景区.jpg" width="100%" height="160px" alt="夹溪十八涡景区" /></a>
-            <p>
-                近千米长的河床t徒然下跌，水流随势跌落入潭……</p>
+            <span class="fcol1_scname">
+                夹溪十八涡景区
+            </span>
+            <span class="fcol1_area">金华</span>
+            <a href=""><img src="/ScenicImg/夹溪十八涡景区.jpg" width="100%" height="160px" alt="夹溪十八涡景区" /></a>
+            <p>近千米长的河床t徒然下跌，水流随势跌落入潭……</p>
             <hr />
             <div class="fcol1_bottom">
-                <span>景区门票<strong>4</strong>折</span><a class="wa" href="">看看</a><a href="" class="btna"></a>
+                <span>清凉一夏，特价门票</span></a><a href="" class="btna"></a>
             </div>
         </div>
         <div class="fcolum1">
-            <span class="fcol1_scname">浙西大峡谷 </span><span class="fcol1_area">宁波</span> <a href="">
-                <img src="/ScenicImg/浙西大峡谷.jpg" width="100%" height="160px" alt="浙西大峡谷" /></a>
-            <p>
-                景区以峡谷溪流、田野风光为特色景观，集皮筏漂流、竹筏漂流……</p>
+            <span class="fcol1_scname">
+                浙西大峡谷
+            </span>
+            <span class="fcol1_area">宁波</span>
+            <a href=""><img src="/ScenicImg/浙西大峡谷.jpg" width="100%" height="160px" alt="浙西大峡谷" /></a>
+            <p>景区以峡谷溪流、田野风光为特色景观，集皮筏漂流、竹筏漂流……</p>
             <hr />
             <div class="fcol1_bottom">
-                <span>景区门票<strong>4</strong>折</span><a class="wa" href="">看看</a><a href="" class="btna"></a>
+                <span>漂的不止市好心情</span></a><a href="" class="btna"></a>
             </div>
         </div>
         <div class="fcolum1">
-            <span class="fcol1_scname">新昌大佛寺景区 </span><span class="fcol1_area">嵊州</span> <a href="">
-                <img src="/ScenicImg/新昌大佛寺.jpg" width="100%" height="160px" alt="新昌大佛寺景区" /></a>
-            <p>
-                巨大的弥勒佛石像正面跌坐于大殿正中。这座巨大的石像，雕凿于悬崖绝壁之中，历时约30年才全部雕成……</p>
+            <span class="fcol1_scname">
+                新昌大佛寺景区
+            </span>
+            <span class="fcol1_area">嵊州</span>
+            <a href=""><img src="/ScenicImg/新昌大佛寺.jpg" width="100%" height="160px" alt="新昌大佛寺景区" /></a>
+            <p>巨大的弥勒佛石像正面跌坐于大殿正中。这座巨大的石像，雕凿于悬崖绝壁之中，历时约30年才全部雕成……</p>
             <hr />
             <div class="fcol1_bottom">
-                <span>景区门票<strong>4</strong>折</span><a class="wa" href="">看看</a><a href="" class="btna"></a>
+                <span>佛地优惠,免费许愿<span><a href="" class="btna"></a>
             </div>
         </div>
     </div>

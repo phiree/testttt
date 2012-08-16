@@ -35,7 +35,7 @@ namespace BLL
         {
             Model.PromotionStatic prom = new Model.PromotionStatic()
             {
-                User = new BLLMembership().GetUserByUserId(userid),
+                Member = new BLLMembership().GetUserByUserId(userid),
                 UserFrom=userfrom,
                 Time=DateTime.Now,
                 Validated=false

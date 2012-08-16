@@ -15,6 +15,11 @@ namespace Model.Mapping
             Map(x => x.Password);
             Map(x => x.Openid);
             Map(x => x.Opentype).CustomType<int>();
+            Map(x => x.RealName);
+            Map(x => x.Phone);
+            Map(x => x.Address);
+            Map(x => x.IdCard);
+            Map(x => x.Email);
         }
     }
 }

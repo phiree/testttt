@@ -19,7 +19,7 @@ public partial class Account_BackPwd : System.Web.UI.Page
         {
             string id = Request.QueryString["id"];
             string pwd = Request.QueryString["pwdcode"];
-            User user = new BLLMembership().GetUserByUserId(Guid.Parse(id));
+            TourMembership user = new BLLMembership().GetUserByUserId(Guid.Parse(id));
             if (user.Password != pwd)
             {
                 Response.Redirect("/");
@@ -30,7 +30,7 @@ public partial class Account_BackPwd : System.Web.UI.Page
     {
         string id = Request.QueryString["id"];
         string pwd = Request.QueryString["pwdcode"];
-        User user = new BLLMembership().GetUserByUserId(Guid.Parse(id));
+        TourMembership user = new BLLMembership().GetUserByUserId(Guid.Parse(id));
         string newpwd = txtPwd.Text;
         string encryptedNewPsw = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(newpwd, "MD5");
         user.Password = encryptedNewPsw;

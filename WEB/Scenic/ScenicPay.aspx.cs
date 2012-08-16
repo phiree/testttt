@@ -122,7 +122,7 @@ public partial class Scenic_ScenicPay : basepage
                     System.Web.Security.MembershipUser mu = System.Web.Security.Membership.GetUser();
                     Guid guids = new Guid(mu.ProviderUserKey.ToString());
                     TourMembership tm = bllMember.GetMemberById(guids);
-                    User user = (User)tm;
+                    TourMembership user = tm;
                     ticketassign.IdCard = user.IdCard;
                     ticketassign.Name = user.Name;
                     ticketassign.OrderDetail = bllorderdetail.GetOrderDetailByodid(otid);

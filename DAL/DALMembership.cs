@@ -10,7 +10,7 @@ namespace DAL
     {
         ISession session = new HybridSessionBuilder().GetSession();
 
-        public int CreateUser(Model.User user)
+        public int CreateUser(Model.TourMembership user)
         {
             return (int)session.Save(user);
         }

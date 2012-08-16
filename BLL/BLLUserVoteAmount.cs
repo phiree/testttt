@@ -14,7 +14,7 @@ namespace BLL
         /// <summary>
         /// 获得选票
         /// </summary>
-        public void EarnVote(Model.User user, Model.EarnWay way)
+        public void EarnVote(Model.TourMembership user, Model.EarnWay way)
         {
             UserVoteAmount uva = new UserVoteAmount()
             {
