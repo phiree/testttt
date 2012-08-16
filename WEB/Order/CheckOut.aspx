@@ -137,10 +137,10 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td style="padding-left: 20px; width: 10%">
+                    <td style="padding-left: 20px; width: 25%">
                         <%#Eval("Scenic.Name") %>
                     </td>
-                    <td style="width: 40%;">
+                    <td style="width: 35%;">
                         游览者姓名:&nbsp;<input type="text" tid='<%#Eval("Id") %>' class="assignName" style="vertical-align: middle" />
                     </td>
                     <td style="width: 50%;">

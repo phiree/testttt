@@ -97,6 +97,7 @@
 
         }
         $("#contactlist").hide();
+        veriidcard();
 
     });
 
@@ -193,8 +194,12 @@ function veriidcard() {
             var returnmsg = test(idcardno);
             if (returnmsg != "验证通过") {
                 item.focus();
+                $($(".assignIdcard")[i]).focus();
                 $($(".veritext")[i]).html(returnmsg);
                 $($(".veritext")[i]).css("display", "");
+            }
+            else {
+                $($(".veritext")[i]).css("display", "none");
             }
         }
     }

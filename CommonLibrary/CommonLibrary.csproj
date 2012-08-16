@@ -74,7 +74,6 @@
     <Content Include="docs\WebTest\RegisiterWebTest.html" />
     <Content Include="docs\WebTest\ScenicAdminWebTest.html" />
     <Content Include="docs\WebTest\ScenicWebTest.html" />
-    <Content Include="docs\部署全新数据库.txt" />
     <Content Include="docs\测试驱动开发--景区审核.txt" />
     <Content Include="docs\测试驱动开发.txt" />
     <Content Include="docs\测试驱动开发--网上支付.txt" />
@@ -88,12 +87,14 @@
     <Content Include="PDesigner\tobedeleted\景区脚本.sql" />
     <Content Include="PDesigner\tobedeleted\门票价格.sql" />
     <Content Include="PDesigner\tobedeleted\门票初始化.sql" />
+    <Content Include="PDesigner\区域Seo名称.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="docs\2012年浙江省A级旅游景区汇总统计表.xls" />
     <None Include="docs\全国省市名称%28附代码%29-excel.xls" />
     <None Include="PDesigner\Business Process_1.bpm" />
     <None Include="PDesigner\ObjectOrientedModel_2.oom" />
+    <None Include="PDesigner\ObjectOrientedModel_UserCase.oob" />
     <None Include="PDesigner\ObjectOrientedModel_UserCase.oom" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
