@@ -12,5 +12,6 @@ namespace Model
         public virtual string SeoName { get; set; }
         public virtual string Code { get; set; }
         public virtual int AreaOrder { get; set; }
+        public virtual string MetaDescription { get; set; }
     }
 }

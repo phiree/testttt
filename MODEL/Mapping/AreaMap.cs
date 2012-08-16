@@ -14,6 +14,7 @@ namespace Model.Mapping
             Map(x => x.Code);
             Map(x => x.SeoName);
             Map(x => x.AreaOrder);
+            Map(x => x.MetaDescription);
         }
     }
 }

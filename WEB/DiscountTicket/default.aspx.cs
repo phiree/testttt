@@ -25,6 +25,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
     int areaId = 0, level = 0;
     string areaSeoName, levelname,topicname;
     Area area;
+    Topic topic;
     CommonLibrary.UrlParamHelper urlParamHelper;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -48,6 +49,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         if (topicname != null)
         {
             topicname = topicname.Substring(2);
+            topic = blltopic.GetTopicBySeoname(topicname);
         }
         if (levelname != null)
         {
@@ -286,12 +288,15 @@ public partial class DiscountTicket_DiscountTicket : basepage
 
     }
 
+    /// <summary>
+    /// 设置seo
+    /// </summary>
     private void SetSeo()
     {
-
-        BatchSeoData seodata = SeoHandler.GetSeoData_Home(area, level, pageIndex);
+        BatchSeoData seodata = SeoHandler.GetSeoData_Home(area, level, topic,pageIndex);
         this.Title = seodata.Title;
         this.MetaKeywords = seodata.KeyWord;
+        this.MetaDescription = seodata.Description;
     }
     protected void rptTopic_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
