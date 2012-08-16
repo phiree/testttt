@@ -168,7 +168,6 @@
                 map.addOverlay(myCompOverlay2);
             }
             map.addControl(new BMap.NavigationControl());
-            map.enableScrollWheelZoom(true);
         }   
     </script>
     <script type="text/javascript">
@@ -307,6 +306,7 @@
                 <p id="plap">
                     交通指南</p>
                 <div id="plate1">
+                    <a onclick="showmap()" style="float:right;margin-right:15px;cursor:pointer;color:#53C46C">恢复坐标中心</a>
                     <div id="containtermap">
                     </div>
                     <div class="rdinfo">

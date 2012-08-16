@@ -380,7 +380,7 @@ function QueryString() {
 $(document).ready(function () {
     $.cookie("pageindex", "")
     $.cookie("scname", "");
-    $.cookie("level", "5A");
+    $.cookie("level", "");
     $.cookie("pager_currPage", "1");
     $.cookie("topic", "");
     var strUrl = new QueryString();
