@@ -54,10 +54,10 @@
                 <input id="txtSearch" type="text" class="scenicname" />
                 <input id="Button1" type="button" class="btnsearch" onclick="check2();" />
             </div>--%>
-            <%--<div class="resulttitle">
+            <div class="resulttitle">
                 搜索到：<span id="searchareaname"></span>共<span id="countscenic" style="margin:0px"></span>个景区
-            </div>--%>
-            <div id="resultscenic">
+            </div>
+            <div id="resultscenic" style="min-height:460px; ">
             </div>
             <div style=" padding:5px; margin: 20px 0px 10px 0px; height:25px;" id="pager" ></div>
         </div>

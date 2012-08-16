@@ -59,7 +59,7 @@ public partial class Scenic_Default : System.Web.UI.Page
         scpoint = scenic.Position;
         scbindname = scenic.Name;
         int scid = scenic.Id;
-        areaname.HRef = "/" + scenic.Area.SeoName + ".html";
+        areaname.HRef = "/" + scenic.Area.SeoName;
         areaname.InnerHtml = scenic.Area.Name.Substring(3, scenic.Area.Name.Length - 3);
         scenicname.HRef = "/" + scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
         scenicname.InnerHtml = scenic.Name;
