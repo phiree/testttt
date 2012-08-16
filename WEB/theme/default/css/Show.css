@@ -504,3 +504,7 @@
     width:950px;
     height:151px;
 }
+.scoloum a,.scoloum a:link,.scoloum a:active,.scoloum a:visited,.scoloum a:hover
+{
+    text-decoration:none;
+}
