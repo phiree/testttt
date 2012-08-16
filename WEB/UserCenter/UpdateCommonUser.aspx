@@ -26,7 +26,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <asp:Button ID="btnsave" runat="server" onclick="btnsave_Click" CssClass="btnsave" Text="新增" />
+                    <asp:Button ID="btnsave" runat="server" onclick="btnsave_Click" CssClass="btnsave" Text="修改" />
                 </td>
             </tr>
         </table>
