@@ -28,12 +28,14 @@ public partial class Manager_BillAll : System.Web.UI.Page
 
     protected void ddlCity_TextChanged(object sender, EventArgs e)
     {
-        BindScenicList(ddlCity.SelectedValue);
+        if (!string.IsNullOrEmpty(ddlCity.SelectedValue))
+            BindScenicList(ddlCity.SelectedValue);
     }
 
     protected void ddlScenics_TextChanged(object sender, EventArgs e)
     {
-        bindBills(int.Parse(ddlScenics.SelectedValue));
+        if (!string.IsNullOrEmpty(ddlCity.SelectedValue))
+            bindBills(int.Parse(ddlCity.SelectedValue));
     }
 
     private void BindCity()

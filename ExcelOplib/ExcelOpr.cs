@@ -75,12 +75,22 @@ namespace ExcelOplib
                             t.Name = te.ticketname;
                             t.Scenic = s;
                             t.IsMain = true;
-                            t.TicketPrice = new List<Model.TicketPrice>() { 
-                            new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}};
+                            //new会产生很多垃圾数据,改为一下.   SST
+                            //t.TicketPrice = new List<Model.TicketPrice>() { 
+                            //new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
+                            //new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
+                            //new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}};
+                            var tpnormal = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.Normal);
+                            if(tpnormal.Count()>0)
+                                t.TicketPrice.Where(x => x.PriceType == Model.PriceType.Normal).First().Price = decimal.Parse(te.orgprice);
+                            var tpol = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PayOnline);
+                            if (tpol.Count() > 0)
+                                t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PayOnline).First().Price = decimal.Parse(te.olprice);
+                            var tppre = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PreOrder);
+                            if (tppre.Count() > 0)
+                                t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price = decimal.Parse(te.orgprice)*(decimal)0.95;
                         }
-                        else
+                        else//不存在该票
                         {
                             t = new Model.Ticket();
                             t.Name = te.ticketname;
