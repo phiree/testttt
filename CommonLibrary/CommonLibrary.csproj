@@ -80,13 +80,6 @@
     <Content Include="docs\测试驱动开发--角色功能.txt" />
     <Content Include="docs\测试用数据.txt" />
     <Content Include="docs\页面分配.txt" />
-    <Content Include="PDesigner\地区脚本.sql" />
-    <Content Include="PDesigner\SEO脚本.sql" />
-    <Content Include="PDesigner\初始化脚本.sql" />
-    <Content Include="PDesigner\景区图片.sql" />
-    <Content Include="PDesigner\景区脚本.sql" />
-    <Content Include="PDesigner\门票价格.sql" />
-    <Content Include="PDesigner\门票初始化.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="docs\2012年浙江省A级旅游景区汇总统计表.xls" />
