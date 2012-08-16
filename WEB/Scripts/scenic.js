@@ -5,10 +5,10 @@
     var f = $("#plate1").html();
     var t = $("#plate2").html();
     if ($(".highselected").html().toString().trim() == "交通指南") {
-        $("#changeinfo").html("<div id='plate1'>" + f + "</div>" + "<p id='plap'>" + "交通指南" + "</p>" + "<div id='plate2'>" + t + "</div>");
+        $("#changeinfo").html("<div id='plate1'>" + f + "</div>" + "<p id='plap'>" + "景区简介" + "</p>" + "<div id='plate2'>" + t + "</div>");
     }
     if ($(".highselected").html().toString().trim() == "景区简介") {
-        $("#changeinfo").html("<div id='plate2'>" + t + "</div>" + "<p id='plap'>" + "景区简介" + "</p>" + "<div id='plate1'>" + f + "</div>");
+        $("#changeinfo").html("<div id='plate2'>" + t + "</div>" + "<p id='plap'>" + "交通指南" + "</p>" + "<div id='plate1'>" + f + "</div>");
     }
     showmap();
     
