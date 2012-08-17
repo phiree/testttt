@@ -86,8 +86,8 @@ public partial class search_Default : System.Web.UI.Page
             Model.Scenic s = e.Item.DataItem as Model.Scenic;
             foreach (Ticket item in s.Tickets.Where(x => x.IsMain == true))
             {
-                HtmlHead hc = e.Item.FindControl("nsinfosc_price") as HtmlHead;
-                hc.InnerHtml = item.TicketPrice[3].Price.ToString("0");
+                HtmlContainerControl hc = e.Item.FindControl("nsinfosc_price") as HtmlContainerControl;
+                hc.InnerHtml = item.TicketPrice[2].Price.ToString("0");
             }
         }
     }
