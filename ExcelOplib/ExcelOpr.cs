@@ -27,7 +27,7 @@ namespace ExcelOplib
             List<Entity.ScenicEntity> newslist = getSceniclist();
 
             //收集景区topic,及topicseo
-            string temptp=string.Empty;
+            string temptp = string.Empty;
             string temptseo = string.Empty;
             foreach (var tstring in newslist)
             {
@@ -38,7 +38,7 @@ namespace ExcelOplib
             List<string> topics1 = temptseo.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
             List<string> topicc2 = topicc1.Distinct().ToList<string>();
             List<string> topics2 = topics1.Distinct().ToList<string>();
-            blltopic.SaveTopic(topicc2,topics2);
+            blltopic.SaveTopic(topicc2, topics2);
 
             List<Model.Scenic> orgslist = bllscenic.GetScenic().ToList<Model.Scenic>();
             bllscenic.DeleteScenicimg();
@@ -81,14 +81,14 @@ namespace ExcelOplib
                             //new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
                             //new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}};
                             var tpnormal = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.Normal);
-                            if(tpnormal.Count()>0)
+                            if (tpnormal.Count() > 0)
                                 t.TicketPrice.Where(x => x.PriceType == Model.PriceType.Normal).First().Price = decimal.Parse(te.orgprice);
                             var tpol = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PayOnline);
                             if (tpol.Count() > 0)
                                 t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PayOnline).First().Price = decimal.Parse(te.olprice);
                             var tppre = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PreOrder);
                             if (tppre.Count() > 0)
-                                t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price = decimal.Parse(te.orgprice)*(decimal)0.95;
+                                t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price = decimal.Parse(te.orgprice) * (decimal)0.95;
                         }
                         else//不存在该票
                         {
@@ -143,7 +143,7 @@ namespace ExcelOplib
                     }
                     s.Tickets = tickets;
                     bllscenic.UpdateScenicInfo(s);
-                    blltopic.SaveScenictopic(temptopic,bllscenic.GetScenicBySeoName(item.seoname).Id);
+                    blltopic.SaveScenictopic(temptopic, bllscenic.GetScenicBySeoName(item.seoname).Id);
                     List<Model.ScenicImg> silist = CopyFile(s);
                     if (silist != null)
                     {
@@ -176,6 +176,15 @@ namespace ExcelOplib
                 {
                     //如果excel中的某行为空,跳过
                     if (string.IsNullOrEmpty(dt.Rows[i][1].ToString())) continue;
+                    
+                    //对景区详情处理
+                    string[] srclist = GetPiclist(dt.Rows[i][0].ToString().Replace("\n", "").Trim()).Split(new char[] { '$' },StringSplitOptions.RemoveEmptyEntries);
+                    string scdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim();
+                    for (int j = 0; j < srclist.Length/2; j++)
+                    {
+                        scdetail = scdetail.Replace(srclist[j], srclist[j + srclist.Length / 2]);
+                    }
+
                     //如果excel中的行不为空,添加
                     slist.Add(new Entity.ScenicEntity()
                     {
@@ -185,7 +194,7 @@ namespace ExcelOplib
                         topic = dt.Rows[i][3].ToString().Replace("\n", "").Trim(),
                         trafficintro = dt.Rows[i][4].ToString().Replace("\n", "").Trim(),
                         bookintro = dt.Rows[i][5].ToString().Replace("\n", "").Trim(),
-                        scenicdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim(),
+                        scenicdetail = scdetail,
                         level = dt.Rows[i][7].ToString().Replace("\n", "").Trim(),
                         address = dt.Rows[i][8].ToString().Replace("\n", "").Trim(),
                         topicseo = dt.Rows[i][9].ToString().Replace("\n", "").Trim(),
@@ -277,6 +286,26 @@ namespace ExcelOplib
                 firstone = false;
             }
             return silist;
+        }
+
+        private string GetPiclist(string scenicname)
+        {
+            try
+            {
+                string result = string.Empty;
+                string line = string.Empty;
+                System.IO.StreamReader file = new System.IO.StreamReader(string.Format(@"d:\scenicfile\{0}.txt", scenicname));
+                while ((line = file.ReadLine()) != null)
+                {
+                    result += line + "$";
+                }
+                file.Close();
+                return result;
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
         }
 
         #region 老版本

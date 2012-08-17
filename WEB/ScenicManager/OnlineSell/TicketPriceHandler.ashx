@@ -23,12 +23,11 @@ public class TicketPriceHandler : IHttpHandler
             string[] tmp = item.Split(new char[] { ',' });
             string ticketname = tmp[0];
             string yuanjia = tmp[1];
-            string mingxipianjia = tmp[2];
-            string xianfujia = tmp[3];
-            string zaixianjia = tmp[4];
-            string ticketid = tmp[5];
-            string scid = tmp[6];
-            bllTicket.SaveOrUpdateTicket(ticketname, yuanjia, mingxipianjia, xianfujia, zaixianjia, ticketid, scid);
+            string xianfujia = tmp[2];
+            string zaixianjia = tmp[3];
+            string ticketid = tmp[4];
+            string scid = tmp[5];
+            bllTicket.SaveOrUpdateTicket(ticketname, yuanjia, xianfujia, zaixianjia, ticketid, scid);
         }
     }
 
