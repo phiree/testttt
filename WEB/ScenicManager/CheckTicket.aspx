@@ -18,6 +18,7 @@
     </object>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
+    <asp:HiddenField ID="hfscid" runat="server" />
     <p class="fuctitle">
         景区验票</p>
     <hr />

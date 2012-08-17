@@ -26,12 +26,11 @@
             tabledom.each(function () {
                 var ticketname = $(this).children().children().val();
                 var yuanjia = $(this).children().next().children().val();
-                var mingxipianjia = $(this).children().next().next().children().val();
-                var xianfujia = $(this).children().next().next().next().children().val();
-                var zaixianjia = $(this).children().next().next().next().next().children().val();
-                var ticketid = $(this).children().next().next().next().next().next().children().val();
+                var xianfujia = $(this).children().next().next().children().val();
+                var zaixianjia = $(this).children().next().next().next().children().val();
+                var ticketid = $(this).children().next().next().next().next().children().val();
                 var scid = $("input[id*=hidden_scid]").val();
-                datas += '{' + ticketname + ',' + yuanjia + ',' + mingxipianjia + ',' + xianfujia + ',' + zaixianjia + ',' + ticketid + ',' + scid;
+                datas += '{' + ticketname + ',' + yuanjia + ',' + xianfujia + ',' + zaixianjia + ',' + ticketid + ',' + scid;
             });
             $.ajax({
                 type: "Post",
@@ -45,7 +44,8 @@
                 alert("修改成功！");
             else
                 alert("修改失败！");
-            return false;
+            window.navigate("/scenicmanager/onlinesell/Pricesetting.aspx?update=1");
+            //return false;
         }
 
         //删除行
@@ -58,7 +58,7 @@
             $("#addrow").click(function () {
                 var tbody = $(this).parent().parent().parent().next().html();
                 tbody += "<tr><td><input type='text' /></td><td><input type='text' /></td><td><input type='text' />" +
-                "</td><td><input type='text' /></td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />" +
+                "</td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />" +
                 "<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>";
                 $(this).parent().parent().parent().next().html(tbody);
             });
@@ -96,9 +96,6 @@
                         门票原价
                     </td>
                     <td>
-                        明信片优惠价
-                    </td>
-                    <td>
                         景区现付价
                     </td>
                     <td>
@@ -118,9 +115,6 @@
                             </td>
                             <td>
                                 <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.Normal).First().Price.ToString("0") %>' />
-                            </td>
-                            <td>
-                                <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PostCardDiscount).First().Price.ToString("0")%>' />
                             </td>
                             <td>
                                 <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price.ToString("0") %>' />

@@ -41,7 +41,7 @@
         function saveitem() {
             var scenicnames = "";
             $("#taglist>a").each(function () {
-                scenicnames += $(this).html() + "+";
+                scenicnames += $.trim($(this).html()) + "+";
             });
             $("#<%=hiddentag.ClientID%>").val(scenicnames);
         }
@@ -69,7 +69,7 @@
             <asp:HiddenField ID="hiddentag" runat="server" />
             <div>
                 <p>
-                    你可能感兴趣的标签：</p>
+                    你可能感兴趣的标签（单击标签添加）：</p>
                 <div class="tagstore">
                     <asp:Repeater ID="rptTopicStore" runat="server">
                         <ItemTemplate>
@@ -83,7 +83,7 @@
         <br />
         <div>
             <p>
-                我已经添加的标签：</p>
+                我已经添加的标签（单击标签删除）：</p>
         </div>
         <div id="taglist">
             <asp:Repeater ID="rptTopicOwn" runat="server">

@@ -2,12 +2,14 @@
     CodeFile="Default.aspx.cs" Inherits="Scenic_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
+    <link rel="stylesheet" type="text/css" href="http://css.40017.cn/cn/new_ui/scenic/style/lastpage/scenice_last_1.6.9.css?v=20120081601" media="screen" />
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/scenic.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&amp;services=true"> </script>
+    
     <script type="text/javascript">
 
         var cart = new Cart();
@@ -168,7 +170,6 @@
                 map.addOverlay(myCompOverlay2);
             }
             map.addControl(new BMap.NavigationControl());
-            map.enableScrollWheelZoom(true);
         }   
     </script>
     <script type="text/javascript">
@@ -307,6 +308,7 @@
                 <p id="plap">
                     交通指南</p>
                 <div id="plate1">
+                    <a onclick="showmap()" style="float:right;margin-right:15px;cursor:pointer;color:#53C46C">恢复坐标中心</a>
                     <div id="containtermap">
                     </div>
                     <div class="rdinfo">
