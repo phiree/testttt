@@ -560,14 +560,55 @@ div:246
     padding-bottom:15px;
 }
 
-#searchbody
+.searchbody
 {
     display:inline-block;
-    margin-top:20px;
+    margin-top:15px;
     overflow:hidden;
     min-height:450px;
 }
-#sceniccount
+.sceniccount
 {
     margin:10px 0px 0px 15px;
+}
+.nosearch
+{
+    display:inline-block;
+    margin-top:15px;
+    overflow:hidden;
+    min-height:450px;
+    border:1px solid #F1F1F1;
+    width:96%;
+    margin-left:15px;
+    margin-right:15px;
+}
+.nosceniccount
+{
+    margin:10px 0px 0px 15px;
+    font-weight:bold;
+}
+.nstitle
+{
+    width:100%;
+    height:30px;
+    background-color:#FBFBEA;
+    color:#EC6B9E;
+    padding-left:20px;
+    line-height:30px;
+}
+.nsinfo
+{
+    width:630px;
+    margin:10px auto;
+}
+.nsinfo p
+{
+    font-weight:bold;
+}
+.nsinfosc
+{
+    display:block;
+    float:left;
+    width:315px;
+    margin-top:10px;
 }

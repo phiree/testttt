@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 using Model;
 using BLL;
+using System.Configuration;
 public partial class search_Default : System.Web.UI.Page
 {
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
@@ -24,10 +26,32 @@ public partial class search_Default : System.Web.UI.Page
         int totalRecord;
 
         IList<Model.Scenic> ticketList = bllTicket.Search(q, pageIndex, pageSize, out totalRecord);
-        rptItems.DataSource = ticketList;
-        rptItems.DataBind();
-        pagerGot.RecordCount = totalRecord;
-        lblTotalRecord.Text = totalRecord.ToString();
+        if (ticketList.Count > 0)
+        {
+            rptItems.DataSource = ticketList;
+            rptItems.DataBind();
+            pagerGot.RecordCount = totalRecord;
+            lblTotalRecord.Text = totalRecord.ToString();
+            searchbody.Visible = true;
+            nosearch.Visible = false;
+            sceniccount.Visible = true;
+            nosceniccount.Visible = false;
+        }
+        else
+        {
+            searchbody.Visible = false;
+            nosearch.Visible = true;
+            sceniccount.Visible = false;
+            nosceniccount.Visible = true;
+            string ids = ConfigurationManager.AppSettings["ScenicFocusIds"];
+            List<Scenic> list = new List<Scenic>();
+            foreach (string id in ids.Split(','))
+            {
+                list.Add(bllscenic.GetScenicById(int.Parse(id)));
+            }
+            rptrmsc.DataSource = list;
+            rptrmsc.DataBind();
+        }
     }
     protected void rptscenic_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
@@ -46,7 +70,6 @@ public partial class search_Default : System.Web.UI.Page
             if (new BLLScenicImg().GetSiByType(s, 1).Count > 0)
                 img.ImageUrl = "/ScenicImg/" + new BLLScenicImg().GetSiByType(s, 1)[0].Name;
 	        }
-            
         }
     }
     private int GetPageIndex()
@@ -55,5 +78,17 @@ public partial class search_Default : System.Web.UI.Page
         int pageIndex;
         int.TryParse(paramPageIndex, out pageIndex);
         return pageIndex;
+    }
+    protected void rptrmsc_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Model.Scenic s = e.Item.DataItem as Model.Scenic;
+            foreach (Ticket item in s.Tickets.Where(x => x.IsMain == true))
+            {
+                HtmlContainerControl hc = e.Item.FindControl("nsinfosc_price") as HtmlContainerControl;
+                hc.InnerHtml = item.TicketPrice[2].Price.ToString("0");
+            }
+        }
     }
 }

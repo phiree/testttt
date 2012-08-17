@@ -2,12 +2,14 @@
     CodeFile="Default.aspx.cs" Inherits="Scenic_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
+    <link rel="stylesheet" type="text/css" href="http://css.40017.cn/cn/new_ui/scenic/style/lastpage/scenice_last_1.6.9.css?v=20120081601" media="screen" />
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/scenic.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&amp;services=true"> </script>
+    
     <script type="text/javascript">
 
         var cart = new Cart();
