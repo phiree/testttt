@@ -32,6 +32,10 @@ public partial class search_Default : System.Web.UI.Page
             rptItems.DataBind();
             pagerGot.RecordCount = totalRecord;
             lblTotalRecord.Text = totalRecord.ToString();
+            searchbody.Visible = true;
+            nosearch.Visible = false;
+            sceniccount.Visible = true;
+            nosceniccount.Visible = false;
         }
         else
         {
