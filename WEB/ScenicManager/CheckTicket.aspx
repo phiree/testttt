@@ -14,11 +14,10 @@
     <script src="../Scripts/CheckTicket.js" type="text/javascript"></script>
     <script src="../Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
     <script src="../Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d025">
+    <object id="aaa" style="height:0" classid="clsid:6c78bcd1-ac43-4fb9-8d89 -d9f7b717d025">
     </object>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
-    <asp:HiddenField ID="hfscid" runat="server" />
     <p class="fuctitle">
         景区验票</p>
     <hr />

@@ -17,7 +17,7 @@
         <div style="font-size: 18px; font-weight: 600; color: #EB7286; margin:50px 0px 30px 130px;">
             支付成功!</div>
         <div  style="margin:20px 0px 0px 130px;">
-            您的订单已完成，你可以在<a style="color:#8E569B; font-weight:bold;margin-left:5px;margin-right:5px;" href="/UserCenter/Orderdetail.aspx?orderid=">个人中心</a>查看订票信息，感谢您订购了景区门票
+            您的订单已完成，你可以在<a style="color:#8E569B; font-weight:bold;margin-left:5px;margin-right:5px;" href="/UserCenter/">个人中心</a>查看订票信息，感谢您订购了景区门票
         </div>
 
         </div>
