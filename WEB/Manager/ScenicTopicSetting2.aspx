@@ -79,7 +79,7 @@
         function saveitem() {
             var scenicnames = "";
             $("#taglist>a").each(function () {
-                scenicnames += $(this).html() + "+";
+                scenicnames += $.trim($(this).html()) + "+";
             });
             $("#<%=hiddentag.ClientID%>").val(scenicnames);
         }
