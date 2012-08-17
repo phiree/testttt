@@ -208,3 +208,25 @@
     z-index:5;
     white-space:nowrap;
 }
+.nsinfosc_price
+{
+    color:#E3007A;
+    margin-top:-2px;
+}
+.nsinfosc span,.nsinfosc img,.nsinfosc a
+{
+    display:block;
+    float:left;
+}
+.nsinfosc a:link,.nsinfosc a:active,.nsinfosc a:visited,.nsinfosc a:hover
+{
+    color:White;
+    border:1px solid #E3007A;
+    background-color:#EC6B9E;
+    height:20px;
+    text-align:center;
+    line-height:20px;
+    width:45px;
+    margin-left:30px;
+    margin-top:-3px;
+}

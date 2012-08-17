@@ -799,16 +799,39 @@ changeinfo
     margin:0px;
     clear:both;
     border:1px solid #55A930;
-    width:692px;
-    padding:10px 15px 10px 15px;
+    width:707px;
+    padding:10px 15px 10px 0px;
     line-height:25px;
     padding-bottom:10px;
     display:inline-block;
     overflow:hidden;
 }
+/*同程网样式*/
+.intro_information
+{
+    width:700px;
+}
+.intro_information img
+{
+    display:block;
+    width:340px;
+    float:left;   
+}
+.intro_img
+{
+    width:330px;
+}
+#plate2 p
+{
+    padding-left:20px;
+}
+.intro_information p
+{
+    padding-left:0px !important;
+}
 .sconeft
 {
-    width:340px;
+    width:330px;
     float:left;
     height:245px;
     display:inline-block;
