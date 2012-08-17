@@ -92,14 +92,13 @@ namespace BLL
         }
 
         BLLTicketPrice bllTp = new BLLTicketPrice();
-        public void SaveOrUpdateTicket(string ticketname, string yuan, string mxp, string xf, string zx, string ticketid, string scid)
+        public void SaveOrUpdateTicket(string ticketname, string yuan, string xf, string zx, string ticketid, string scid)
         {
             Model.Ticket ticket;
             if (!string.IsNullOrEmpty(ticketid))
             {
                 ticket = GetTicket(int.Parse(ticketid));
                 ticket.TicketPrice.Where(x => x.PriceType == PriceType.Normal).First().Price = decimal.Parse(yuan);
-                ticket.TicketPrice.Where(x => x.PriceType == PriceType.PostCardDiscount).First().Price = decimal.Parse(mxp);
                 ticket.TicketPrice.Where(x => x.PriceType == PriceType.PreOrder).First().Price = decimal.Parse(xf);
                 ticket.TicketPrice.Where(x => x.PriceType == PriceType.PayOnline).First().Price = decimal.Parse(zx);
                 ticket.Name = ticketname;
@@ -113,7 +112,6 @@ namespace BLL
                 ticket.Lock = true;
                 ticket.TicketPrice = new List<TicketPrice>() { 
                         new TicketPrice(){PriceType=PriceType.Normal,Price=decimal.Parse(yuan),Ticket=ticket},
-                        new TicketPrice(){PriceType=PriceType.PostCardDiscount,Price=decimal.Parse(mxp),Ticket=ticket},
                         new TicketPrice(){PriceType=PriceType.PreOrder,Price=decimal.Parse(xf),Ticket=ticket},
                         new TicketPrice(){PriceType=PriceType.PayOnline,Price=decimal.Parse(zx),Ticket=ticket}
                     };

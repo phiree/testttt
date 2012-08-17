@@ -32,9 +32,6 @@
                                     原价
                                 </th>
                                 <th>
-                                    明信片优惠价
-                                </th>
-                                <th>
                                     景区现付价
                                 </th>
                                 <th>
@@ -51,9 +48,6 @@
                         </th>
                         <td>
                             <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.Normal).First().Price.ToString("0") %>
-                        </td>
-                        <td>
-                            <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PostCardDiscount).First().Price.ToString("0")%>
                         </td>
                         <td>
                             <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price.ToString("0")%>

@@ -36,7 +36,7 @@ public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
 
     private void loadstate()
     {
-        ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(CurrentScenic.Id, (int)Model.ScenicModule.SellOnLine);
+        ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(CurrentScenic.Id, (int)Model.ScenicModule.SellOnLine);http://www.tol.cn/ScenicManager/Handler.ashx
         if (scp != null)
         {
             panelpassstate.Visible = scp.CheckStatus == CheckStatus.Pass;
