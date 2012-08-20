@@ -15,7 +15,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
         <div id="paysuccess" style=" width:97%; min-height: 300px; margin: 15px auto; background:url('/theme/default/image/newversion/paysucbg.gif' ); background-position:top; background-repeat:no-repeat; display:inline-block;">
         <div style="font-size: 18px; font-weight: 600; color: #EB7286; margin:50px 0px 30px 130px;">
-            支付成功!</div>
+           预订成功!</div>
         <div  style="margin:20px 0px 0px 130px;">
             您的订单已完成，你可以在<a style="color:#8E569B; font-weight:bold;margin-left:5px;margin-right:5px;" href="/UserCenter/">个人中心</a>查看订票信息，感谢您订购了景区门票
         </div>

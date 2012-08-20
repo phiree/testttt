@@ -129,7 +129,7 @@
                     <tr>
                         <td style="width:80%;">
                             <a tid='<%#Eval("Id") %>' href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html' style="margin-left:5px;">
-                                <%#Eval("Scenic.Name") %></a>
+                                <%#Eval("Scenic.Name")%>-<%#Eval("Name")%></a>
                         </td>
                         <td style="width:40px;">
                             <span style="margin:0px; padding:0px;" class="cartdelete" tid='<%#Eval("Id")%>'>删除</span>

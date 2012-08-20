@@ -14,29 +14,20 @@
     <script type="text/javascript">
 
         var cart = new Cart();
-        function AddToCart() {
+        function AddToCart(btn) {
             //var qty = $("#txtTicketCount").val();
-            cart.AddToCart(GetTicketId(), 1);
+            cart.AddToCart(GetTicketId(btn), 1);
             window.location.href = "/order/cart.aspx";
         }
 
-        function clickmodify(m) {
+       
+      
 
-            var qty = $("#txtTicketCount").val();
-            var targetqty = EnsureCartQty(parseInt(qty) + parseInt(m));
-            $("#txtTicketCount").val(targetqty);
-            cart.ModifyQty(GetTicketId(), targetqty);
-        }
-
-        function change() {
-            var qty = $("#txtTicketCount").val();
-            var targetqty = EnsureCartQty(parseInt(qty));
-            $("#txtTicketCount").val(targetqty);
-            cart.ModifyQty(GetTicketId(), targetqty);
-        }
-
-        function GetTicketId() {
-            return "<%=TicketId %>";
+        function GetTicketId(btn) {
+            var ticketId = 0;
+            ticketId = $($(btn).parent().siblings()[0]).children("input").val()
+            
+            return ticketId;
         }
 
         function ShowPriceIntro() {
@@ -263,6 +254,7 @@
                         <ItemTemplate>
                             <tr class="pttr" onmouseover="" onmouseout="">
                             <td style="text-align:left;padding-left:60px;">
+                            <input type="hidden" value='<%#Eval("Id") %>' />
                                 <%# Eval("Name") %>
                             </td>
                             <td>
@@ -275,33 +267,13 @@
                                 <%# Eval("TicketPrice[2].Price", "{0:0}")%>
                             </td>
                             <td style="text-align: center;">
-                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart()" />
+                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart(this)" />
                             </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 
-                    <asp:Repeater ID="rptcom" runat="server">
-                        <ItemTemplate>
-                            <tr class="pttr2">
-                            <td>
-                                <%# Eval("Name") %>
-                            </td>
-                            <td>
-                                <%# Eval("TicketPrice[0].Price","{0:0}")%>
-                            </td>
-                            <td>
-                                <%# Eval("TicketPrice[1].Price", "{0:0}")%>
-                            </td>
-                            <td style="color: #E8641B; font-weight: bold">
-                                <%# Eval("TicketPrice[2].Price", "{0:0}")%>
-                            </td>
-                            <td style="text-align: center;">
-                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart()" />
-                            </td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                   
             </table>
             <hr />
         </div>
