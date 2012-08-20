@@ -48,7 +48,8 @@
             $("#priceintrodiv").css("display", "none");
         }
         var map;
-        var position; 
+        var position;
+        var flag = 1;
         function showmap() {
             ////////////////////////////////////////////////复杂覆盖物
             // 复杂的自定义覆盖物1
@@ -154,12 +155,15 @@
             ////////////////////////////////////
             map = new BMap.Map("containtermap");            // 创建Map实例
             position= "<%=scpoint %>";
-            
+
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
-            if (map.getZoom()>8)
-                map.centerAndZoom(point, map.getZoom());                     // 初始化地图,设置中心点坐标和地图级别。
+            if (flag == 1) {
+                map.centerAndZoom(point, 8);
+                flag++;
+            }
             else
-                map.centerAndZoom(point, 8); 
+                map.centerAndZoom(point, map.getZoom());                      // 初始化地图,设置中心点坐标和地图级别。
+
             var txt = "<%=scbindname %>";
             var myCompOverlay1 = new ComplexCustomOverlay1(point, txt, 0);
             map.addOverlay(myCompOverlay1);
@@ -178,10 +182,12 @@
         
         function gotocenter() {
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
-            if (map.getZoom() > 8)
-                map.centerAndZoom(point, map.getZoom());                     // 初始化地图,设置中心点坐标和地图级别。
+            if (flag == 1) {
+                map.centerAndZoom(point, 8);
+                flag++;
+            }
             else
-                map.centerAndZoom(point, 8); 
+                map.centerAndZoom(point, map.getZoom());                      // 初始化地图,设置中心点坐标和地图级别。
         }
     </script>
     <script type="text/javascript">
