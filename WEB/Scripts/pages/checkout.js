@@ -51,10 +51,12 @@
 
     //鼠标放到输入联系人文本框时,自动显示常用联系人
     var originalTop;
+    var currentCustomerIndex;
     $(".assignName").hover(function () {
         $("#contactlist").show();
         var rowIndex = $(this).parent().parent().index();
         var contactlist = $("#contactlist");
+        currentCustomerIndex = rowIndex;
         contactlist.show();
         if (originalTop == null) {
             originalTop = contactlist.position().top;
@@ -90,12 +92,12 @@
 
         var inputname = $(nameinput);
         var inputidcard = $(idcardinput);
-        for (var i = 0; i < inputname.length; i++) {
-            $(inputname[i]).val(name);
-            $(inputidcard[i]).val(idcard);
-            $(inputidcard[i]).attr("cid", commuserId);
+       
+            $(inputname[currentCustomerIndex]).val(name);
+            $(inputidcard[currentCustomerIndex]).val(idcard);
+            $(inputidcard[currentCustomerIndex]).attr("cid", commuserId);
 
-        }
+        
         $("#contactlist").hide();
         veriidcard();
 
