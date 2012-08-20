@@ -14,6 +14,7 @@ namespace Model.Mapping
             Id(x => x.Id);
             Map(x => x.Name);
             Map(x => x.Lock);
+            Map(x => x.OrderNumber);
             //References<TicketsType>(x => x.TicketsType);
             References<Scenic>(x => x.Scenic);
            // References<TicketPrice>(x => x.TicketPrice);

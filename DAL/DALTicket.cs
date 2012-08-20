@@ -22,7 +22,7 @@ namespace DAL
         {
             string sql = "select t from Ticket t where t.Scenic.Id="+scid+"";
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.Ticket>().ToList<Model.Ticket>();
+            return query.Future<Model.Ticket>().OrderByDescending(x=>x.IsMain).ToList<Model.Ticket>();
         }
 
 
@@ -111,7 +111,7 @@ namespace DAL
         {
             string sql = "select t from Ticket t where t.Scenic.Id=" + scid + " and Lock=false";
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.Ticket>().ToList<Model.Ticket>();
+            return query.Future<Model.Ticket>().OrderByDescending(x=>x.OrderNumber).ToList();
         }
 
     }

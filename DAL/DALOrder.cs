@@ -11,10 +11,10 @@ namespace DAL
     {
         public IList<Model.Order> GetListForUser(Guid memberId)
         {
-            string sql = "select o from Order o where o.MemberId=:memberId";
+            string sql = "select o from Order o where o.MemberId=:memberId ";
             IQuery query = session.CreateQuery(sql)
                 .SetParameter("memberId", memberId);
-            return query.Future<Model.Order>().ToList<Model.Order>();
+            return query.Future<Model.Order>().OrderByDescending(x => x.BuyTime).ToList();
         }
 
         public IList<Model.OrderDetail> GetListForUser(int orderID, int scenicID, string dbegin, string dend)
