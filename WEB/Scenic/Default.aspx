@@ -2,7 +2,8 @@
     CodeFile="Default.aspx.cs" Inherits="Scenic_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
-    <link rel="stylesheet" type="text/css" href="http://css.40017.cn/cn/new_ui/scenic/style/lastpage/scenice_last_1.6.9.css?v=20120081601" media="screen" />
+    <link href="/theme/default/css/TCCSS.css" rel="stylesheet" type="text/css" />
+
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
@@ -46,7 +47,8 @@
         function ClosePriceIntro() {
             $("#priceintrodiv").css("display", "none");
         }
-
+        var map;
+        var position; 
         function showmap() {
             ////////////////////////////////////////////////复杂覆盖物
             // 复杂的自定义覆盖物1
@@ -150,12 +152,14 @@
                 this._div.style.top = pixel.y - 16 + "px";
             }
             ////////////////////////////////////
-
-
-            var map = new BMap.Map("containtermap");            // 创建Map实例
-            var position = "<%=scpoint %>";
+            map = new BMap.Map("containtermap");            // 创建Map实例
+            position= "<%=scpoint %>";
+            
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
-            map.centerAndZoom(point, 8);                     // 初始化地图,设置中心点坐标和地图级别。
+            if (map.getZoom()>8)
+                map.centerAndZoom(point, map.getZoom());                     // 初始化地图,设置中心点坐标和地图级别。
+            else
+                map.centerAndZoom(point, 8); 
             var txt = "<%=scbindname %>";
             var myCompOverlay1 = new ComplexCustomOverlay1(point, txt, 0);
             map.addOverlay(myCompOverlay1);
@@ -170,7 +174,15 @@
                 map.addOverlay(myCompOverlay2);
             }
             map.addControl(new BMap.NavigationControl());
-        }   
+        }
+        
+        function gotocenter() {
+            var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
+            if (map.getZoom() > 8)
+                map.centerAndZoom(point, map.getZoom());                     // 初始化地图,设置中心点坐标和地图级别。
+            else
+                map.centerAndZoom(point, 8); 
+        }
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -308,7 +320,7 @@
                 <p id="plap">
                     交通指南</p>
                 <div id="plate1">
-                    <a onclick="showmap()" style="float:right;margin-right:15px;cursor:pointer;color:#53C46C">恢复坐标中心</a>
+                    <a onclick="gotocenter()" style="float:right;margin-right:15px;cursor:pointer;color:#53C46C">恢复坐标中心</a>
                     <div id="containtermap">
                     </div>
                     <div class="rdinfo">
