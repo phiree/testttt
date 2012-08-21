@@ -79,8 +79,9 @@
     margin-top:0px;
     
     vertical-align:middle;
-    margin-top:0.5px \0;
-    margin-top:-0.5px \9\0;
+    margin-top:4px \0;
+    margin-top:0px \9\0;
+    *margin-top:-2px;
 }
 .txtpwd
 {
@@ -103,7 +104,8 @@
     
     vertical-align:middle;
     margin-top:0.5px \0;
-    margin-top:-0.5px \9\0;
+    margin-top:0px \9\0;
+    *margin-top:-2px;
 }
 .btnlogin
 {
