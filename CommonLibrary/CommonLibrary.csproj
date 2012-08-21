@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="HTMLInfo.cs" />
     <Compile Include="HttpContextHelper.cs" />
     <Compile Include="JosnHelper.cs" />
     <Compile Include="MakeAccount.cs" />
