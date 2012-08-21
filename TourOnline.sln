@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvcweb", "mvcweb\mvcweb.csp
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{CBB9EF01-D87F-4963-A2E3-4987F54900DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourControls", "TourControls\TourControls.csproj", "{F9A8FF69-DB79-4712-B0EE-6F4983E877FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,12 @@ Global
 		{CBB9EF01-D87F-4963-A2E3-4987F54900DA}.Debug|Any CPU.ActiveCfg = Debug
 		{CBB9EF01-D87F-4963-A2E3-4987F54900DA}.Release|Any CPU.ActiveCfg = Release
 		{CBB9EF01-D87F-4963-A2E3-4987F54900DA}.tr|Any CPU.ActiveCfg = tr
+		{F9A8FF69-DB79-4712-B0EE-6F4983E877FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A8FF69-DB79-4712-B0EE-6F4983E877FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A8FF69-DB79-4712-B0EE-6F4983E877FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A8FF69-DB79-4712-B0EE-6F4983E877FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A8FF69-DB79-4712-B0EE-6F4983E877FD}.tr|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A8FF69-DB79-4712-B0EE-6F4983E877FD}.tr|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
