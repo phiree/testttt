@@ -1,9 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="Scenic_Default" %>
-
+<%@ Register TagPrefix="self" Namespace="TourControls" Assembly="TourControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <link href="/theme/default/css/TCCSS.css" rel="stylesheet" type="text/css" />
-
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
@@ -280,8 +279,8 @@
         <div id="introordertk">
             <p class="captitle">
                 订票说明</p>
-            <div class="otinfo">
-                <%=booknote %>
+            <div class="otinfo" runat="server" id="dp_info">
+                <self:ContentReader runat="server" ID="sc_dp" scFuncType="订票说明" type="景区" />
             </div>
         </div>
         <div id="allinfo">

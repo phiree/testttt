@@ -7,8 +7,9 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using BLL;
 using Model;
+using System.Web.Security;
 
-public partial class Scenic_Default : System.Web.UI.Page
+public partial class Scenic_Default : basepage
 {
     BLLScenic bllscenic = new BLLScenic();
     BLLMembership bllMember = new BLLMembership();
@@ -28,6 +29,7 @@ public partial class Scenic_Default : System.Web.UI.Page
     public string transguid = "";
     public string scdesc = "";
     public string scshortdesc = "";
+    public int scid;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -51,14 +53,14 @@ public partial class Scenic_Default : System.Web.UI.Page
 
 
     }
-
     private void bind(Scenic scenic)
     {
       
         maintitlett.InnerHtml = scenic.Name;
         scpoint = scenic.Position;
         scbindname = scenic.Name;
-        int scid = scenic.Id;
+        sc_dp.scname = scenic.Name;
+        scid = scenic.Id;
         areaname.HRef = "/" + scenic.Area.SeoName;
         areaname.InnerHtml = scenic.Area.Name.Substring(3, scenic.Area.Name.Length - 3);
         scenicname.HRef = "/" + scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
@@ -98,7 +100,8 @@ public partial class Scenic_Default : System.Web.UI.Page
     
         rpttp.DataSource = listticket;
         rpttp.DataBind();
-      
+       //编辑
+        EditRole();
     }
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区
     Dictionary<ScenicImg, double> scdiction = new Dictionary<ScenicImg, double>();
@@ -136,4 +139,17 @@ public partial class Scenic_Default : System.Web.UI.Page
         //  Response.Redirect("ScenicPay.aspx?scid=" + Request.QueryString["id"] + "&count=" + txtTicketCount.Value + "&type=1");
 
     }
+
+
+    #region 网站编辑人员编辑权限（暂时设置为网站后台管理员）
+    public void EditRole()
+    {
+        if (CurrentUser != null && Roles.IsUserInRole(CurrentUser.UserName, "SiteAdmin"))
+        {
+            dp_info.Attributes.Add("onmouseover", "EditHTMLInfo(this)");
+            dp_info.Attributes.Add("onmouseout", "CancelHTMLInfo(this)");
+            dp_info.Attributes.Add("ondblclick", "EditHTMLInfoBtn(this,'"+scbindname+"','订票说明')");
+        }
+    }
+    #endregion
 }

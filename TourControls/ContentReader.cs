@@ -46,7 +46,7 @@ namespace TourControls
             }
             set
             {
-                ViewState["scid"] = value;
+                ViewState["scname"] = value;
             }
         }
         //scFuncType属性表明景区描绘的类型scFuncType

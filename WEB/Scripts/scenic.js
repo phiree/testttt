@@ -43,4 +43,17 @@ $(function () {
             });
         }
     });
-})
+});
+
+function EditHTMLInfo(obj) {
+    $(obj).css("border-color", "#FAF707");
+}
+function CancelHTMLInfo(obj) {
+    $(obj).css("border-color", "#DEDEDE");
+}
+function EditHTMLInfoBtn(obj, scname, scfunctype) {
+    findDimensions();
+    var w = (winWidth - 740) / 2;
+    var h = (winHeight - 500) / 2;
+    window.open('/Scenic/EditHTMLInfo.aspx?scname=' + scname + '&scfunctype=' + scfunctype + '&type=景区', 'newwindow', 'height=500,width=740,top='+h+',left='+w+',toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+}

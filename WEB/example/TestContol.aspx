@@ -9,7 +9,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <self:ContentReader runat="server" ID="ss" scid="0" scFuncType="0" type="首页" />
+        <self:ContentReader runat="server" ID="ss" scname="西湖" scFuncType="订票说明" type="景区" />
+        <self:ContentReader runat="server" ID="ContentReader1" scname="" scFuncType="" type="首页" />
     </div>
     </form>
 </body>
