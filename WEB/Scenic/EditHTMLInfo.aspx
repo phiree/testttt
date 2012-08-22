@@ -17,7 +17,7 @@
                 url: 'SaveHTML.ashx?' + str,
                 data: { html: oEditor.getData() }
             });
-            var parentWin = window.opener;
+            var parentWin = window.opener.document;
             $(parentWin).find(".otinfo").html(oEditor.getData());
         }
     </script>
