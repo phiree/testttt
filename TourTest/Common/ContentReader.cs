@@ -14,10 +14,10 @@ namespace TourTest.Common
         public void testContentReader()
         {
            HTMLInfo htmlinfo = new HTMLInfo();
-           string html=htmlinfo.GetHTMLInfo("首页", null, 0);
+           string html=htmlinfo.GetHTMLInfo("首页", null, null);
            string oldhtml="<div>这是测试首页<p>测试测试测试测试测试</p></div>";
            Assert.AreEqual(oldhtml, html);
-           html = htmlinfo.GetHTMLInfo("景区", "西湖", 1);
+           html = htmlinfo.GetHTMLInfo("景区", "西湖","订票说明");
            oldhtml = "<p>这是一个西湖订票说明页面s</p>";
            Assert.AreEqual(oldhtml, html);
         }

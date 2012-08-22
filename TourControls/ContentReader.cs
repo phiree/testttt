@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
-using Model;
-using BLL;
 using System.IO;
 using System.Web.UI.WebControls;
 using System.ComponentModel;
@@ -35,15 +33,15 @@ namespace TourControls
                 ViewState["type"] = value;
             }
         }
-        //scid属性表明景区id
+        //scid属性表明景区名称
         [
-         Bindable(true), Category("Appearance"), DefaultValue(""), Description("景区id"), Localizable(true)
+         Bindable(true), Category("Appearance"), DefaultValue(""), Description("景区名称"), Localizable(true)
         ]
-        public virtual int scid
+        public virtual string scname
         {
             get
             {
-                int t = (int)ViewState["scid"];
+                string t = (string)ViewState["scname"];
                 return t;
             }
             set
@@ -55,11 +53,11 @@ namespace TourControls
         [
          Bindable(true), Category("Appearance"), DefaultValue(""), Description("景区描述类型"), Localizable(true)
         ]
-        public virtual int scFuncType
+        public virtual string scFuncType
         {
             get
             {
-                int t = (int)ViewState["scFuncType"];
+                string t = (string)ViewState["scFuncType"];
                 return t;
             }
             set
@@ -75,12 +73,7 @@ namespace TourControls
         protected override void Render(HtmlTextWriter output)
         {
             HTMLInfo htmlinfo = new HTMLInfo();
-            BLLScenic bllscenic = new BLLScenic();
-            Scenic scenic=bllscenic.GetScenicById(scid);
-            if(scenic!=null)
-                output.Write(htmlinfo.GetHTMLInfo(type,scenic.Name,scFuncType));
-            else
-                output.Write(htmlinfo.GetHTMLInfo(type,null, scFuncType));
+            output.Write(htmlinfo.GetHTMLInfo(type,scname,scFuncType));
         }
     }
 }

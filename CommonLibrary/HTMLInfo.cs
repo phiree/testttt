@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Configuration;
 
 namespace CommonLibrary
 {
@@ -13,8 +14,9 @@ namespace CommonLibrary
         /// </summary>
         /// <param name="scid">景区id</param>
         /// <param name="type">需要获取的景区内容类型</param>
+        /// <param name="scFuncType"></param>
         /// <returns>返回获取到的HTML</returns>
-        public string GetHTMLInfo(string type, string scname, int scFuncType)
+        public string GetHTMLInfo(string type, string scname, string scFuncType)
         {
             //需要提取的文件名名称
             string FileName = "";
@@ -22,14 +24,9 @@ namespace CommonLibrary
                 FileName = type;
             else
             {
-                switch (scFuncType)
-                {
-                    case 1: FileName = scname + "_" + "订票说明"; break;
-                    case 2: FileName = scname + "_" + "景区简介"; break;
-                    case 3: FileName = scname + "_" + "交通指南"; break;
-                }
+                FileName = scname + "_" + scFuncType;
             }
-            string path = "D:\\HTMLInfo\\" + FileName + ".html";
+            string path = ConfigurationManager.AppSettings["HTMLInfoPath"].ToString()+ FileName + ".html";
             //获取到的HTML
             string HTMLInfo = "";
             try
