@@ -67,7 +67,7 @@ namespace CommonLibrary
             HTMLData=HTMLData.Replace("&gt;", ">");
             try
             {
-                using (StreamWriter sw = new StreamWriter(path,false,Encoding.UTF8))
+                using (StreamWriter sw = new StreamWriter(path,false,Encoding.Default))
                 {
                     sw.Write(HTMLData);
                 }
