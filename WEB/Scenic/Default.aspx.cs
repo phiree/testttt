@@ -59,7 +59,6 @@ public partial class Scenic_Default : basepage
         maintitlett.InnerHtml = scenic.Name;
         scpoint = scenic.Position;
         scbindname = scenic.Name;
-        sc_dp.scname = scenic.Name;
         scid = scenic.Id;
         areaname.HRef = "/" + scenic.Area.SeoName;
         areaname.InnerHtml = scenic.Area.Name.Substring(3, scenic.Area.Name.Length - 3);
@@ -75,7 +74,6 @@ public partial class Scenic_Default : basepage
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/" + listsi[0].Name;
-
 
 
         IList<Scenic> list = bllscenic.GetScenic();
@@ -102,6 +100,12 @@ public partial class Scenic_Default : basepage
         rpttp.DataBind();
        //编辑
         EditRole();
+        sc_dp.scname = scenic.Name;
+        sc_dp.BaseData = booknote;
+        plate2.scname = scenic.Name;
+        plate2.BaseData = scenic.ScenicDetail;
+        sc_jtzn.scname = scenic.Name;
+        sc_jtzn.BaseData = scenic.Trafficintro;
     }
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区
     Dictionary<ScenicImg, double> scdiction = new Dictionary<ScenicImg, double>();
@@ -146,9 +150,9 @@ public partial class Scenic_Default : basepage
     {
         if (CurrentUser != null && Roles.IsUserInRole(CurrentUser.UserName, "SiteAdmin"))
         {
-            dp_info.Attributes.Add("onmouseover", "EditHTMLInfo(this)");
-            dp_info.Attributes.Add("onmouseout", "CancelHTMLInfo(this)");
-            dp_info.Attributes.Add("ondblclick", "EditHTMLInfoBtn(this,'"+scbindname+"','订票说明')");
+            sc_dp.CanEdit = true;
+            plate2.CanEdit = true;
+            sc_jtzn.CanEdit = true;
         }
     }
     #endregion

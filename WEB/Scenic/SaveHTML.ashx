@@ -4,12 +4,13 @@ using System;
 using System.Web;
 using System.Configuration;
 using CommonLibrary;
+using System.Text;
 
 public class SaveHTML : IHttpHandler {
     
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
-        string type = context.Request.QueryString["type"];
+        string type = context.Request.QueryString["type"]; 
         string scname = context.Request.QueryString["scname"];
         string scfunctype = context.Request.QueryString["scfunctype"];
         string htmldata=context.Request.Form["html"];

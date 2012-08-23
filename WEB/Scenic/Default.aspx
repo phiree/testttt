@@ -6,6 +6,7 @@
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/scenic.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&amp;services=true"> </script>
@@ -279,9 +280,9 @@
         <div id="introordertk">
             <p class="captitle">
                 订票说明</p>
-            <div class="otinfo" runat="server" id="dp_info">
-                <self:ContentReader runat="server" ID="sc_dp" scFuncType="订票说明" type="景区" />
-            </div>
+            <%--<div class="otinfo" runat="server" id="dp_info">--%>
+                <self:ContentReader runat="server" ID="sc_dp" scFuncType="订票说明" type="景区" CssClass="otinfo"/>
+            <%--</div>--%>
         </div>
         <div id="allinfo">
             <p class="captitle">
@@ -291,18 +292,15 @@
                     交通指南</span>
             </div>
             <div id="changeinfo">
-                <div id="plate2">
-                    <%=scdesc %>
-                </div>
+                    <self:ContentReader runat="server" ID="plate2" scFuncType="景区详情" type="景区"/>
                 <p id="plap">
                     交通指南</p>
                 <div id="plate1">
                     <a onclick="gotocenter()" style="float:right;margin-right:15px;cursor:pointer;color:#53C46C">恢复坐标中心</a>
                     <div id="containtermap">
                     </div>
-                    <div class="rdinfo">
-                        <%=transguid %>
-                    </div>
+                    <self:ContentReader runat="server" ID="sc_jtzn" scFuncType="交通指南" type="景区" CssClass="rdinfo"/>
+
                 </div>
             </div>
         </div>

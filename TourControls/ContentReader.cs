@@ -65,15 +65,62 @@ namespace TourControls
                 ViewState["scFuncType"] = value;
             }
         }
-
-
-        
-        
+        //CanEdit属性表明是否可以编辑该控件
+        [
+         Bindable(true), Category("Appearance"), DefaultValue(false), Description("是否能编辑"), Localizable(true)
+        ]
+        public virtual bool CanEdit
+        {
+            get
+            {
+                bool t = (bool)ViewState["CanEdit"];
+                return t;
+            }
+            set
+            {
+                ViewState["CanEdit"] = value;
+            }
+        }
+        //BaseData属性表明数据库数据
+        [
+         Bindable(true), Category("Appearance"), DefaultValue(false), Description("若没有文件数据,这个是数据库数据"), Localizable(true)
+        ]
+        public virtual string BaseData
+        {
+            get
+            {
+                string t = (string)ViewState["BaseData"];
+                return t;
+            }
+            set
+            {
+                ViewState["BaseData"] = value;
+            }
+        }
 
         protected override void Render(HtmlTextWriter output)
         {
             HTMLInfo htmlinfo = new HTMLInfo();
-            output.Write(htmlinfo.GetHTMLInfo(type,scname,scFuncType));
+            string outputstr = htmlinfo.GetHTMLInfo(type, scname, scFuncType);
+            if (string.IsNullOrEmpty(outputstr))
+            {
+                outputstr = BaseData;
+            }
+            if (CanEdit)
+            {
+                output.AddAttribute("onmouseover", "EditHTMLInfo(this)");
+                output.AddAttribute("onmouseout", "CancelHTMLInfo(this)");
+                output.AddAttribute("ondblclick", "EditHTMLInfoBtn(this,'" + scname + "','" + scFuncType + "')");
+                output.AddAttribute("class", CssClass);
+                output.AddAttribute("id", ID);
+                output.RenderBeginTag(HtmlTextWriterTag.Div);
+                output.Write(outputstr);
+                output.RenderEndTag();
+            }
+            else
+            {
+                output.Write(outputstr);
+            }
         }
     }
 }

@@ -10,6 +10,8 @@ CKEDITOR.editorConfig = function( config )
     // config.uiColor = '#AADC6E';
     config.enterMode = CKEDITOR.ENTER_BR;
     config.shiftEnterMode = CKEDITOR.ENTER_P;
+   
+
 };
 CKEDITOR.on('instanceReady', function (ev) {
     with (ev.editor.dataProcessor.writer) {
@@ -28,4 +30,4 @@ CKEDITOR.on('instanceReady', function (ev) {
         setRules("ul", { indent: false, breakBeforeOpen: false, breakAfterOpen: false, breakBeforeClose: false, breakAfterClose: false });
         setRules("ol", { indent: false, breakBeforeOpen: false, breakAfterOpen: false, breakBeforeClose: false, breakAfterClose: false });
     }
-})
+});

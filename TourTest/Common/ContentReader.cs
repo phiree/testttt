@@ -25,5 +25,22 @@ namespace TourTest.Common
            Assert.IsTrue(File.Exists(ConfigurationManager.AppSettings["HTMLInfoPath"].ToString() +"西湖_订票说明"+".html"));
            Assert.AreEqual(oldhtml, html);
         }
+
+        [Test]
+        public void testContentWriter()
+        {
+            HTMLInfo htmlinfo = new HTMLInfo();
+            htmlinfo.WriteHTMLInfo("测试", null, null, "<div>这是测试测试测试测试测试</div>");
+            //由于这文件事先不存在，先验证是否存在
+            Assert.IsTrue(File.Exists(ConfigurationManager.AppSettings["HTMLInfoPath"].ToString() + "测试" + ".html"));
+            string oldhtml = "<div>这是测试测试测试测试测试</div>";
+            string html = htmlinfo.GetHTMLInfo("测试", null, null);
+            Assert.AreEqual(oldhtml, html);
+            //文件存在后，修改其内容
+            htmlinfo.WriteHTMLInfo("测试", null, null, "<div>这是新的新的新的新的新的新的</div>");
+            oldhtml = "<div>这是新的新的新的新的新的新的</div>";
+            html = htmlinfo.GetHTMLInfo("测试", null, null);
+            Assert.AreEqual(oldhtml, html);
+        }
     }
 }

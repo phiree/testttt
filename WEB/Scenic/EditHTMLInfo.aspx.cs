@@ -12,15 +12,6 @@ public partial class Scenic_EditHTMLInfo : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            bind();
         }
-    }
-
-    private void bind()
-    {
-        string type = Request.QueryString["type"];
-        string scname = Request.QueryString["scname"];
-        string scfunctype = Request.QueryString["scfunctype"];
-        CKHTML.Text = new HTMLInfo().GetHTMLInfo(type, scname, scfunctype);
     }
 }
