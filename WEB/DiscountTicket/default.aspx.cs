@@ -46,8 +46,10 @@ public partial class DiscountTicket_DiscountTicket : basepage
         areaSeoName = Request["area"];
         levelname = Request.QueryString["level"];
         topicname = Request.QueryString["topic"];
+        
         if (topicname != null)
         {
+            topicname = topicname.TrimEnd('/');
             topicname = topicname.Substring(2);
             topic = blltopic.GetTopicBySeoname(topicname);
         }
@@ -89,28 +91,41 @@ public partial class DiscountTicket_DiscountTicket : basepage
     /// </summary>
     private void BindBread()
     {
-        if (!string.IsNullOrEmpty(levelname))
-        {
-            lLevelBread.Text = levelname.ToUpper();
-            //lArrow.Visible = true;
-            breadareaurl.HRef = "/" + levelname.ToLower();
-        }
-        else
-        {
-            lLevelBread.Text = "全部";
-            breadlevelurl.HRef = "/";
-        }
+
+        string urlBase = "/Tickets/";
+
         if (areaId != 0)
         {
-            Model.Area area = bllArea.GetAreaByAreaid(areaId);
-            lAreabread.Text = area.Name.Substring(3, 2);
-            breadlevelurl.HRef = "/" + area.SeoName;
+           
+            breadareaurl.InnerText = area.Name.Substring(3, 2);
+           urlBase= breadareaurl.HRef = urlBase + area.SeoName+"/";
+            
         }
         else
         {
-            lAreabread.Text = "全部";
-            breadareaurl.HRef = "/";
+            phArea.Visible = false;
         }
+        if (!string.IsNullOrEmpty(levelname))
+        {
+            breadlevelurl.InnerText = levelname.ToUpper();
+            //lArrow.Visible = true;
+          urlBase=  breadlevelurl.HRef = urlBase + levelname.ToLower()+"/";
+        }
+        else
+        {
+            phLevel.Visible = false;
+        }
+        if (!string.IsNullOrEmpty(topicname))
+        {
+            breadtopic.InnerText = topic.Name;
+            //lArrow.Visible = true;
+            urlBase = breadtopic.HRef = urlBase + "t_" + topicname + "/";
+        }
+        else
+        {
+            phTopic.Visible = false;
+        }
+       
 
     }
     int totalRecord;
@@ -284,7 +299,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
     }
     private string BuildLink(string type, string value, bool isAll)
     {
-        return urlParamHelper.BuildLink2(type, value, isAll);
+        return "/Tickets"+ urlParamHelper.BuildLink2(type, value, isAll);
 
     }
 
@@ -296,7 +311,13 @@ public partial class DiscountTicket_DiscountTicket : basepage
         BatchSeoData seodata = SeoHandler.GetSeoData_Home(area, level, topic,pageIndex);
         this.Title = seodata.Title;
         this.MetaKeywords = seodata.KeyWord;
-        this.MetaDescription = seodata.Description;
+        if (level == 0 && topic == null&&area!=null)
+        { this.MetaDescription = area.MetaDescription; }
+        else
+        {
+            this.MetaDescription = seodata.Description;
+        }
+        liH1.Text = seodata.H1Text;
     }
     protected void rptTopic_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {

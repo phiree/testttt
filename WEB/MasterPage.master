@@ -7,8 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=8" />
     <meta name="description" content="中国旅游在线官网提供浙江省内各旅游景点门票在线预订服务，是本省最权威的旅游景点门票授权机构，全面塑造“诗画江南，山水浙江”的旅游总体形象，全面推动本省旅游业的发展。" />
     <meta name="keywords" content="景点门票，门票预订，门票价格，旅游景点门票推荐" />
-    <meta name="title" content="中国旅游在线_浙江旅游景点门票预订官网 " />
-    <meta name="url" content="www.tourol.cn" />
+    <title>中国旅游在线_浙江旅游景点门票预订官网</title>
     <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
     <!--[if lt IE 8]><link rel="stylesheet" href="/theme/ie.css" type="text/css" media="screen, projection"/><![endif]-->
@@ -65,7 +64,7 @@
             </div>
             <div class="NavList">
                     <div  class="navlistnb">
-                    <a class="navhight" href="/">首页</a><div class="navsper"></div><a href="/DiscountTicket/default.aspx">打折门票</a><div class="navsper"></div> <a href="">旅游明信片</a><div class="navsper"></div> <a href="/map/Map.aspx">地图版</a>
+                    <a class="navhight" href="/">首页</a><div class="navsper"></div><a href="/Tickets/">打折门票</a><div class="navsper"></div> <a href="">旅游明信片</a><div class="navsper"></div> <a href="/map/Map.aspx">地图版</a>
                     <div class="chartdiv">
                         <img src="/theme/default/image/newversion/charticon.gif" />
                         <span>购物车/&nbsp;&nbsp;<strong id="ticketsSum"></strong>个景区</span>

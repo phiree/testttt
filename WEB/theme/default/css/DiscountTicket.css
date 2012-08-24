@@ -164,6 +164,11 @@
     line-height:20px;
     font-weight:bold;
 }
+.ticketsellist h1
+{
+     font-size:100%;
+     font-weight:600;
+    }
 .ticketsellist img
 {
     margin-right:5px;
