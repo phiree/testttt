@@ -73,6 +73,8 @@ namespace TourControls
         {
             get
             {
+                if (ViewState["CanEdit"] == null)
+                    ViewState["CanEdit"] = false;
                 bool t = (bool)ViewState["CanEdit"];
                 return t;
             }
@@ -105,6 +107,7 @@ namespace TourControls
             if (string.IsNullOrEmpty(outputstr))
             {
                 outputstr = BaseData;
+                htmlinfo.WriteHTMLInfo(type, scname, scFuncType, BaseData);
             }
             if (CanEdit)
             {
@@ -119,7 +122,11 @@ namespace TourControls
             }
             else
             {
+                output.AddAttribute("class", CssClass);
+                output.AddAttribute("id", ID);
+                output.RenderBeginTag(HtmlTextWriterTag.Div);
                 output.Write(outputstr);
+                output.RenderEndTag();
             }
         }
     }

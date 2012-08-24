@@ -161,8 +161,12 @@ public partial class DiscountTicket_DiscountTicket : basepage
                 liPriceNormal.Text = priceNormal.ToString("0");
                 liPriceOnline.Text = priceOnline.ToString("0");
                 Image img = e.Item.FindControl("Image1") as Image;
-                if (new BLLScenicImg().GetSiByType(t, 1).Count>0)
-                    img.ImageUrl = "/ScenicImg/" + new BLLScenicImg().GetSiByType(t, 1)[0].Name;
+                if (new BLLScenicImg().GetSiByType(t, 1).Count > 0)
+                {
+                    string extention = new BLLScenicImg().GetSiByType(t, 1)[0].Name.Split('.')[1];
+                    img.ImageUrl = "/ScenicImg/small/" + new BLLScenicImg().GetSiByType(t, 1)[0].Name.Split('.')[0]+"_s."+extention;
+                }
+                    
             }
         }
         if (e.Item.ItemType == ListItemType.Footer)

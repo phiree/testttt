@@ -6,6 +6,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <script src="/Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <link href="/theme/default/css/TCCSS.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
     <title></title>
     <script type="text/javascript">
         var parentid;
@@ -13,7 +17,7 @@
 
             var parentWin = window.opener.document;
             var editor = CKEDITOR.replace("CKHTML", {
-                width: 710, height: 450,
+                width: 730, height: 450,
                 toolbar: [
                 //加粗     斜体，     下划线      穿过线      下标字        上标字
                 ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],
@@ -30,11 +34,12 @@
                 ['Styles', 'Format', 'Font', 'FontSize'],
                 //文本颜色     背景颜色
                 ['TextColor', 'BGColor'],
-                //全屏           显示区块
-                ['Maximize', '-', 'ShowBlocks']
+                //全屏           显示区块        源码
+                ['Maximize', '-', 'ShowBlocks'], ['Source']
              ]
             });
-            debugger;
+            editor.config['contentsCss'] = ['/theme/default/css/scenic.css', '/theme/default/css/TCCSS.css', '/theme/default/css/global.css', '/theme/default/css/default.css', '/theme/bp/screen.css',
+            '/theme/bp/print.css', '/theme/default/css/MasterPage.css'];
             parentid = window.location.href.match(/flag.*$/)[0];
             parentid = parentid.substr(5);
             editor.setData($(parentWin).find(parentid).html());
