@@ -810,6 +810,7 @@ changeinfo
 .intro_information
 {
     width:700px;
+    font-size:12px;
 }
 .intro_information img
 {
@@ -819,11 +820,20 @@ changeinfo
 }
 .intro_img
 {
-    width:330px;
+    width:330px !important;
+    display:block !important;
+    float:left !important;
+}
+.intro_img img
+{
+    display:block !important;
+    width:340px !important;
+    float:left !important;   
 }
 #plate2 p
 {
     padding-left:20px;
+    font-size:12px;
 }
 .intro_information p
 {
