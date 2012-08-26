@@ -7,8 +7,9 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using BLL;
 using Model;
+using System.Web.Security;
 
-public partial class Scenic_Default : System.Web.UI.Page
+public partial class Scenic_Default : basepage
 {
     BLLScenic bllscenic = new BLLScenic();
     BLLMembership bllMember = new BLLMembership();
@@ -28,6 +29,7 @@ public partial class Scenic_Default : System.Web.UI.Page
     public string transguid = "";
     public string scdesc = "";
     public string scshortdesc = "";
+    public int scid;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -35,13 +37,13 @@ public partial class Scenic_Default : System.Web.UI.Page
 
         if (!string.IsNullOrEmpty(paramSname))
         {
-            Ticket t = new BLLTicket().GetTicketByScenicSeoName(paramSname);
-            if (t == null)
+            Scenic s = new BLLScenic().GetScenicBySeoName(paramSname);
+            if (s == null)
             {
                 ErrHandler.Redirect(ErrType.UnknownError);
             }
-            TicketId = t.Id;
-            bind(t);
+          
+            bind(s);
         }
         else
         {
@@ -51,14 +53,13 @@ public partial class Scenic_Default : System.Web.UI.Page
 
 
     }
-
-    private void bind(Ticket t)
+    private void bind(Scenic scenic)
     {
-        Scenic scenic = t.Scenic;
+      
         maintitlett.InnerHtml = scenic.Name;
         scpoint = scenic.Position;
         scbindname = scenic.Name;
-        int scid = scenic.Id;
+        scid = scenic.Id;
         areaname.HRef = "/" + scenic.Area.SeoName;
         areaname.InnerHtml = scenic.Area.Name.Substring(3, scenic.Area.Name.Length - 3);
         scenicname.HRef = "/" + scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
@@ -73,7 +74,6 @@ public partial class Scenic_Default : System.Web.UI.Page
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/" + listsi[0].Name;
-
 
 
         IList<Scenic> list = bllscenic.GetScenic();
@@ -94,69 +94,22 @@ public partial class Scenic_Default : System.Web.UI.Page
         rpttopic.DataBind();
 
         //绑定套票
-        List<Ticket> listticket= bllticket.GetTp(scenic.Id).ToList();
-        var result = from pair in listticket orderby pair.TicketPrice[0] descending select pair;
-        List<Ticket> listtp = new List<Ticket>();
-        List<Ticket> listcom = new List<Ticket>();
-        foreach (Ticket item in listticket)
-        {
-            if (item.IsMain)
-            {
-                listtp.Add(item);
-            }
-            else
-            {
-                listcom.Add(item);
-            }
-        }
-        rpttp.DataSource = listtp;
+        IList<Ticket> listticket= bllticket.GetTp(scenic.Id);
+    
+        rpttp.DataSource = listticket;
         rpttp.DataBind();
-        rptcom.DataSource = listcom;
-        rptcom.DataBind();
+       //编辑
+        EditRole();
+        sc_dp.scname = scenic.Name;
+        sc_dp.BaseData = booknote;
+        plate2.scname = scenic.Name;
+        plate2.BaseData = scenic.ScenicDetail;
+        sc_jtzn.scname = scenic.Name;
+        sc_jtzn.BaseData = scenic.Trafficintro;
     }
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区
     Dictionary<ScenicImg, double> scdiction = new Dictionary<ScenicImg, double>();
-    /*public void bindimg(IList<Scenic> list, Scenic scenic)
-    {
-        foreach (Scenic item in list)
-        {
-            if (!string.IsNullOrEmpty(item.Position))
-            {
-                string[] str = scenic.Position.Split(',');
-                string[] str2 = item.Position.Split(',');
-                double distance = CaculateDistance(double.Parse(str[0]), double.Parse(str[1]), double.Parse(str2[0]), double.Parse(str2[1]));
-                if (distance != 0)
-                {
-                    if (scdiction.Count < 6)
-                    {
-                        if (bllscenicimg.GetSiByType(item, 1).Count > 0)
-                        {
-                            scdiction.Add(bllscenicimg.GetSiByType(item, 1)[0], distance);
-                        }
-                    }
-                    else
-                    {
-                        foreach (KeyValuePair<ScenicImg, double> kvp in scdiction)
-                        {
-                            if (distance < kvp.Value)
-                            {
-                                if (bllscenicimg.GetSiByType(item, 1).Count > 0)
-                                {
-                                    scdiction.Remove(kvp.Key);
-                                    scdiction.Add(bllscenicimg.GetSiByType(item, 1)[0], distance);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    */
     const double PI = 3.1415926535;
-
     double CaculateDistance(double lat1, double lng1, double lat2, double lng2)
     {
         double EARTH_RADIUS = 6378.137;   // 地球半径
@@ -190,4 +143,17 @@ public partial class Scenic_Default : System.Web.UI.Page
         //  Response.Redirect("ScenicPay.aspx?scid=" + Request.QueryString["id"] + "&count=" + txtTicketCount.Value + "&type=1");
 
     }
+
+
+    #region 网站编辑人员编辑权限（暂时设置为网站后台管理员）
+    public void EditRole()
+    {
+        if (CurrentUser != null && Roles.IsUserInRole(CurrentUser.UserName, "SiteAdmin"))
+        {
+            sc_dp.CanEdit = true;
+            plate2.CanEdit = true;
+            sc_jtzn.CanEdit = true;
+        }
+    }
+    #endregion
 }

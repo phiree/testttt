@@ -15,6 +15,10 @@ namespace BLL.SEO
         public string Title { get; set; }
         public string KeyWord { get; set; }
         public string Description { get; set; }
+        /// <summary>
+        /// 页面主题,用h1标签
+        /// </summary>
+        public string H1Text { get; set; }
     }
     /// <summary>
     /// title的seo优化
@@ -28,6 +32,7 @@ namespace BLL.SEO
         const string AreaKeywordFormat = @"{0}景点门票，{0}景点门票价格，{0}旅游景点门票";
         const string LevelTitleFormat = "浙江{0}景区门票_浙江{0}级景区_浙江{0}及旅游景区 - 中国旅游在线";
         const string LevelKeywordFormat = "{0}景区门票，浙江{0}景区，浙江{0}级旅游景区";
+        const string LevelDescriptionFormat = "中国旅游在线提供浙江{0}A景区门票预订服务，众多风景名胜区吸引无数游客观光，浙江{0}A级景区全力打造一流的休闲度假环境，可方便的在线预订浙江{0}A级旅游景区门票.";
         const string AreaAndLEvelTitleFormat = "{0}{1}景区门票_{0}{1}景点门票_{0}{1}景点门票价格 - 中国旅游在线  ";
         const string AreaAndLEvelKeywordFormat = "{0}{1}景区门票,{0}{1}景点门票,{0}{1}景点门票价格";
         const string TopicTitleFormat = "浙江{0}风景区_浙江{0}景点门票预订 - 中国旅游在线";
@@ -35,6 +40,8 @@ namespace BLL.SEO
 
         const string HomeTitle = "中国旅游在线_浙江旅游景点门票预订官网";
         const string HomeKeyword = "景点门票，门票预订，门票价格，旅游景点门票推荐";
+
+       
         //区域--级别页面
         public static BatchSeoData GetSeoData_Home(Area area, int level, Topic topic, int pageIndex)
         {
@@ -96,39 +103,55 @@ namespace BLL.SEO
             string title = string.Empty;
             string keyword = string.Empty;
             string description = string.Empty;
+            string h1text = string.Empty;
 
 
             switch (tt)
             {
+                /*
+                    城市+景区级别的页面title按照下列规则统一生成，省略keyword和description，如：                                                                                  
+                    http://www.tourol.cn/hangzhou/5a/                                                                                                       
+                    Title：杭州5a景区门票_杭州5a景点门票_杭州5a景点门票价格 - 中国旅游在线     
+                 */
                 case TemplateType.AreaAndLevel:
                     title = string.Format(AreaAndLEvelKeywordFormat, area.Name, level + "A");
-                    keyword = string.Format(AreaAndLEvelKeywordFormat, area.Name, level + "A");
-                    description = bllarea.GetAreaByAreaid(area.Id).MetaDescription;
+                    //keyword = string.Format(AreaAndLEvelKeywordFormat, area.Name, level + "A");
+                    //description = bllarea.GetAreaByAreaid(area.Id).MetaDescription;
+                    h1text = string.Format("{0}{1}景点门票",area.Name,level+"A级");
                     break;
                 case TemplateType.AreaAndTopic:
                     title = string.Format(AreaAndTopicTitleFormat, area.Name, topic.Name);
-                    keyword = string.Format(AreaAndTopicTitleFormat, area.Name, topic.Name);
-                    description = bllarea.GetAreaByAreaid(area.Id).MetaDescription;
+                    //keyword = string.Format(AreaAndTopicTitleFormat, area.Name, topic.Name);
+                    //description = bllarea.GetAreaByAreaid(area.Id).MetaDescription;
+                    h1text = string.Format("{0}{1}景点门票", area.Name, topic.Name );
                     break;
                 case TemplateType.OnlyArea:
                     title = string.Format(AreaTitleFormat, area.Name);
                     keyword = string.Format(AreaKeywordFormat, area.Name);
                     description = bllarea.GetAreaByAreaid(area.Id).MetaDescription;
+                    h1text = string.Format("{0}景点门票", area.Name);
+                
                     break;
                 case TemplateType.OnlyTopic:
                     title = string.Format(TopicTitleFormat, topic.Name);
                     keyword = string.Format(TopicTitleFormat, topic.Name);
                     description = "中国旅游在线官网提供浙江省内各旅游景点门票在线预订服务，是本省最权威的旅游景点门票授权机构，全面塑造“诗画江南，山水浙江”的旅游总体形象，全面推动本省旅游业的发展";
+                    h1text = string.Format("浙江{0}景点门票", topic.Name);
+                
                     break;
                 case TemplateType.OnlyLevel:
                     title = string.Format(LevelTitleFormat, level + "A");
                     keyword = string.Format(LevelKeywordFormat, level + "A");
-                    description = "中国旅游在线官网提供浙江省内各旅游景点门票在线预订服务，是本省最权威的旅游景点门票授权机构，全面塑造“诗画江南，山水浙江”的旅游总体形象，全面推动本省旅游业的发展";
+                    description = string.Format(LevelDescriptionFormat,level);
+                    h1text = string.Format("浙江{0}景点门票", level+"A级");
+                
                     break;
                 default:
                     title = HomeTitle;
                     keyword = HomeKeyword;
                     description = "中国旅游在线官网提供浙江省内各旅游景点门票在线预订服务，是本省最权威的旅游景点门票授权机构，全面塑造“诗画江南，山水浙江”的旅游总体形象，全面推动本省旅游业的发展";
+                    h1text = "浙江旅游景点门票";
+                
                     break;
             }
 
@@ -143,7 +166,7 @@ namespace BLL.SEO
             seoData.KeyWord = keyword;
             seoData.Title = title;
             seoData.Description = description;
-
+            seoData.H1Text = h1text;
             return seoData;
         }
         //页面应该使用的seo模板

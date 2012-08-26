@@ -21,6 +21,10 @@ namespace Model
         public virtual Scenic Scenic { get; set; }
         public virtual bool Lock { get; set; }
         public virtual bool IsMain { get; set; }
+        /// <summary>
+        /// 序号,用来控制门票的排序
+        /// </summary>
+        public virtual int OrderNumber { get; set; }
         public virtual IList<TicketPrice> TicketPrice { get; set; }
         /// <summary>
         /// 获得某个类型的票价

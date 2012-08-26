@@ -38,6 +38,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'tr|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\tr\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\lib\Antlr3.Runtime.dll</HintPath>
@@ -111,6 +121,7 @@
     <Compile Include="BLLTest\OrderTest.cs" />
     <Compile Include="BLLTest\ScenicTest.cs" />
     <Compile Include="BLLTest\TicketTest.cs" />
+    <Compile Include="Common\ContentReader.cs" />
     <Compile Include="Common\testStringHelper.cs" />
     <Compile Include="EnumTEst.cs" />
     <Compile Include="OrderTest.cs" />
@@ -157,6 +168,10 @@
     <ProjectReference Include="..\MODEL\MODEL.csproj">
       <Project>{9D0253F0-B0A7-4D66-BE57-7C32C4953340}</Project>
       <Name>MODEL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TourControls\TourControls.csproj">
+      <Project>{F9A8FF69-DB79-4712-B0EE-6F4983E877FD}</Project>
+      <Name>TourControls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

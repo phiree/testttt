@@ -33,7 +33,7 @@
             }
         }
     </script>
-    <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d025">
+    <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d025" codebase="/ScenicManager/DONETCAB.cab" >
     </object>
 </head>
 <body>

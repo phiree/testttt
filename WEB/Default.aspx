@@ -12,6 +12,29 @@
         $(function () {
             $(".navlistnb a").attr("class", "");
             $(".navlistnb a:eq(0)").attr("class", "navhight");
+            $(".navhight").next().attr("class", "");
+            $(".navlistnb a").each(function () {
+                if ($(this).attr("class") == "navhight") {
+                    $(this).next().css("display", "none");
+                    $(".chartdiv").css("display", "block");
+                }
+                else {
+                    $(this).next().css("display", "");
+                    $(".chartdiv").css("display", "block");
+                    $(this).click(function () {
+                        $(this).next().css("display", "none");
+                        $(".chartdiv").css("display", "block");
+                    });
+                    $(this).mouseover(function () {
+                        $(this).next().css("display", "none");
+                        $(".chartdiv").css("display", "block");
+                    });
+                    $(this).mouseout(function () {
+                        $(this).next().css("display", "");
+                        $(".chartdiv").css("display", "block");
+                    });
+                }
+            });
         });
     </script>
 </asp:Content>

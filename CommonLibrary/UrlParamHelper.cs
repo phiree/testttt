@@ -173,7 +173,7 @@ namespace CommonLibrary
             }
             if (r == string.Empty)
             {
-                r = "/DiscountTicket/";
+                r = "/Tickets/";
             }
             return r;
         }
@@ -210,4 +210,5 @@ namespace CommonLibrary
             }
         }
     }
+
 }

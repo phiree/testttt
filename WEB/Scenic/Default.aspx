@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="Scenic_Default" %>
-
+<%@ Register TagPrefix="self" Namespace="TourControls" Assembly="TourControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <link href="/theme/default/css/TCCSS.css" rel="stylesheet" type="text/css" />
-
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/scenic.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&amp;services=true"> </script>
@@ -14,29 +14,20 @@
     <script type="text/javascript">
 
         var cart = new Cart();
-        function AddToCart() {
+        function AddToCart(btn) {
             //var qty = $("#txtTicketCount").val();
-            cart.AddToCart(GetTicketId(), 1);
+            cart.AddToCart(GetTicketId(btn), 1);
             window.location.href = "/order/cart.aspx";
         }
 
-        function clickmodify(m) {
+       
+      
 
-            var qty = $("#txtTicketCount").val();
-            var targetqty = EnsureCartQty(parseInt(qty) + parseInt(m));
-            $("#txtTicketCount").val(targetqty);
-            cart.ModifyQty(GetTicketId(), targetqty);
-        }
-
-        function change() {
-            var qty = $("#txtTicketCount").val();
-            var targetqty = EnsureCartQty(parseInt(qty));
-            $("#txtTicketCount").val(targetqty);
-            cart.ModifyQty(GetTicketId(), targetqty);
-        }
-
-        function GetTicketId() {
-            return "<%=TicketId %>";
+        function GetTicketId(btn) {
+            var ticketId = 0;
+            ticketId = $($(btn).parent().siblings()[0]).children("input").val()
+            
+            return ticketId;
         }
 
         function ShowPriceIntro() {
@@ -48,7 +39,8 @@
             $("#priceintrodiv").css("display", "none");
         }
         var map;
-        var position; 
+        var position;
+        var flag = 1;
         function showmap() {
             ////////////////////////////////////////////////复杂覆盖物
             // 复杂的自定义覆盖物1
@@ -154,12 +146,15 @@
             ////////////////////////////////////
             map = new BMap.Map("containtermap");            // 创建Map实例
             position= "<%=scpoint %>";
-            
+
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
-            if (map.getZoom()>8)
-                map.centerAndZoom(point, map.getZoom());                     // 初始化地图,设置中心点坐标和地图级别。
+            if (flag == 1) {
+                map.centerAndZoom(point, 8);
+                flag++;
+            }
             else
-                map.centerAndZoom(point, 8); 
+                map.centerAndZoom(point, map.getZoom());                      // 初始化地图,设置中心点坐标和地图级别。
+
             var txt = "<%=scbindname %>";
             var myCompOverlay1 = new ComplexCustomOverlay1(point, txt, 0);
             map.addOverlay(myCompOverlay1);
@@ -178,10 +173,12 @@
         
         function gotocenter() {
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
-            if (map.getZoom() > 8)
-                map.centerAndZoom(point, map.getZoom());                     // 初始化地图,设置中心点坐标和地图级别。
+            if (flag == 1) {
+                map.centerAndZoom(point, 8);
+                flag++;
+            }
             else
-                map.centerAndZoom(point, 8); 
+                map.centerAndZoom(point, map.getZoom());                      // 初始化地图,设置中心点坐标和地图级别。
         }
     </script>
     <script type="text/javascript">
@@ -257,6 +254,7 @@
                         <ItemTemplate>
                             <tr class="pttr" onmouseover="" onmouseout="">
                             <td style="text-align:left;padding-left:60px;">
+                            <input type="hidden" value='<%#Eval("Id") %>' />
                                 <%# Eval("Name") %>
                             </td>
                             <td>
@@ -269,42 +267,22 @@
                                 <%# Eval("TicketPrice[2].Price", "{0:0}")%>
                             </td>
                             <td style="text-align: center;">
-                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart()" />
+                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart(this)" />
                             </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                 
-                    <asp:Repeater ID="rptcom" runat="server">
-                        <ItemTemplate>
-                            <tr class="pttr2">
-                            <td>
-                                <%# Eval("Name") %>
-                            </td>
-                            <td>
-                                <%# Eval("TicketPrice[0].Price","{0:0}")%>
-                            </td>
-                            <td>
-                                <%# Eval("TicketPrice[1].Price", "{0:0}")%>
-                            </td>
-                            <td style="color: #E8641B; font-weight: bold">
-                                <%# Eval("TicketPrice[2].Price", "{0:0}")%>
-                            </td>
-                            <td style="text-align: center;">
-                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart()" />
-                            </td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                   
             </table>
             <hr />
         </div>
         <div id="introordertk">
             <p class="captitle">
                 订票说明</p>
-            <div class="otinfo">
-                <%=booknote %>
-            </div>
+            <%--<div class="otinfo" runat="server" id="dp_info">--%>
+                <self:ContentReader runat="server" ID="sc_dp" scFuncType="订票说明" type="景区" CssClass="otinfo"/>
+            <%--</div>--%>
         </div>
         <div id="allinfo">
             <p class="captitle">
@@ -314,18 +292,15 @@
                     交通指南</span>
             </div>
             <div id="changeinfo">
-                <div id="plate2">
-                    <%=scdesc %>
-                </div>
+                    <self:ContentReader runat="server" ID="plate2" scFuncType="景区详情" type="景区"/>
                 <p id="plap">
                     交通指南</p>
                 <div id="plate1">
                     <a onclick="gotocenter()" style="float:right;margin-right:15px;cursor:pointer;color:#53C46C">恢复坐标中心</a>
                     <div id="containtermap">
                     </div>
-                    <div class="rdinfo">
-                        <%=transguid %>
-                    </div>
+                    <self:ContentReader runat="server" ID="sc_jtzn" scFuncType="交通指南" type="景区" CssClass="rdinfo"/>
+
                 </div>
             </div>
         </div>

@@ -103,6 +103,8 @@ $(function () {
             $(".chartdiv").css("display", "block");
         }
         else {
+            $(this).next().css("display", "");
+            $(".chartdiv").css("display", "block");
             $(this).click(function () {
                 $(this).next().css("display", "none");
                 $(".chartdiv").css("display", "block");
