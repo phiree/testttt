@@ -17,5 +17,6 @@ namespace ExcelOplib.Entity
         public string trafficintro { get; set; }
         public string bookintro { get; set; }
         public string scenicdetail { get; set; }
+        public string scenicintro { get; set; }
     }
 }
