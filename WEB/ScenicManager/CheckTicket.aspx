@@ -23,7 +23,7 @@
         景区验票</p>
     <hr />
     <p class="wkintr">
-        身份证读卡器的测试驱动下载地址:<a href="http://productbbs.it168.com/thread-67620-1-1.html">下载地址</a>
+        身份证读卡器的驱动下载地址:<a href="http://productbbs.it168.com/thread-67620-1-1.html">下载地址</a>
     </p>
     <p class="wkintr">
         首次进入该页面，请先下载身份证读卡器程序，安装到本地电脑后，打开IE浏览器，进入该页面后浏览器会提示是否运行该加载项，点击允许，即可使用：
@@ -35,16 +35,16 @@
                 <div class="divtxtinfo">
                     <asp:TextBox ID="txtinfo" CssClass="txtinfo" runat="server" Style="border: 0px none White;"></asp:TextBox></div>
             </div>
-            <span id="yklistt"><span style="margin-left: 0px; padding-left: 0px; float: left;">游客列表&nbsp;&nbsp;</span><img
-                onclick="showyklist()" height="15px" width="10px" src="../theme/default/image/downicon.png"
+            <span id="yklistt"><span style="margin-left: 0px; padding-left: 0px; float: left; cursor:pointer" onmouseover="showyklist()">游客列表&nbsp;&nbsp;</span><img
+                onmouseover="showyklist()" height="15px" width="10px" src="../theme/default/image/downicon.png"
                 style="margin-top: 7px; display: block; float: left; cursor: pointer;" /></span>
             <%--<asp:Button ID="btnsearch" runat="server" Text="查询全部信息" OnClick="btnsearch_Click" />--%>
         </div>
         <div runat="server" id="detailinfo" class="detailinfo">
             <h3 id="username" runat="server">
-                王小莉</h3>
+                </h3>
             <p id="useridcard" runat="server" class="idcard">
-                身份证号码:&nbsp;330203198909253615</p>
+                身份证号码:&nbsp;</p>
             <div class="onlinebuy" runat="server" id="idcardol">
                 在线支付购票&nbsp;<span id="olgpcount" class="num"><%= totalolcount %></span>&nbsp;张&nbsp;&nbsp;已使用了&nbsp;<span
                     class="num" id="olgpusedcount"><%= useolcount %></span>&nbsp;张&nbsp;&nbsp;现用
@@ -75,8 +75,8 @@
             </div>
         </div>
         <div runat="server" id="ywdiv" class="ywdiv">
-            <span id="ywspan"><span style="display: block; float: left; padding: 0px; margin: 0px">
-                游玩记录&nbsp;&nbsp;</span><img onclick="showywrecord()" height="15px" width="10px" src="../theme/default/image/downicon.png"
+            <span id="ywspan"><span style="display: block; float: left; padding: 0px; margin: 0px;cursor:pointer;" onmouseover="showywrecord()">
+                游玩记录&nbsp;&nbsp;</span><img onmouseover="showywrecord()" height="15px" width="10px" src="../theme/default/image/downicon.png"
                     style="display: block; float: left; margin-top: 3px; cursor: pointer;" />
             </span>
         </div>
@@ -92,29 +92,33 @@
     </div>
     <div id="listname" class="yklist" style="display: none;">
         <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom: 0px;
-            width: 200px;">
-            <tr style="background-color: #E9E9E9">
-                <td style="width: 50px;">
-                    <span style="display: block; width: 50px;">姓名</span>
+            width: 200px; table-layout: fixed">
+            <tr style="width: 150px; background-color: #E9E9E9">
+                <td style="padding: 0px; padding-right: 0px; padding-left: 0px; padding-right: 0px;">
+                    <span style="display: block; width: 60px; margin: 0px; margin-left: 0px; margin-right: 0px;">
+                        姓名</span>
                 </td>
-                <td>
-                    <span style="display: block; width: 150px;">身份证号</span>
+                <td style="width: 140px; padding-left: 0px; padding-right: 0px;">
+                    <span style="display: block; width: 140px">身份证号</span>
                 </td>
             </tr>
         </table>
-        <asp:Repeater ID="rptpeopleinfo" runat="server" OnItemCommand="rptpeopleinfo_ItemCommand">
+        <div style="margin-right: 10px; padding: 0px; height: 250px; width: 215px; overflow-x: hidden;
+            overflow-y: auto;">
+            <asp:Repeater ID="rptpeopleinfo" runat="server" OnItemCommand="rptpeopleinfo_ItemCommand">
             <HeaderTemplate>
-                <table cellpadding="0" cellspacing="0" style="margin: 0px auto; margin-bottom: 0px;
-                    width: 200px; max-height: 300px; border-top: 0px none; overflow: scroll;">
+                <table cellpadding="0" cellspacing="0" style="display: block; margin-bottom: 0px;
+                        border-top: 0px none; width: 200px; table-layout: fixed">
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td style="background-color: #F7F7F7">
-                        <span style="display: block; width: 50px;"><a class="selectname" onclick="btnselectname(this);">
+                    <td style="width: 55px; background-color: #F7F7F7; padding-left: 0px; padding-right: 0px;
+                            margin-left: 0px; margin-right: 0px;">
+                        <span style="display: block; width: 55px;"><a class="selectname" onclick="btnselectname(this);">
                             <%# Eval("Name") %></a></span>
                     </td>
-                    <td style="background-color: #F7F7F7">
-                        <span style="display: block; width: 150px">
+                    <td style="width: 135px; background-color: #F7F7F7; padding: 0px;">
+                        <span style="display: block; width: 125px">
                             <%# Eval("IdCard") %></span>
                     </td>
                 </tr>
@@ -123,6 +127,9 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
+        </div>
+
+        
     </div>
     <div id="listyw" class="ywrecord" style="display: none;">
         <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom: 0px;
@@ -137,7 +144,7 @@
                 </td>
             </tr>
         </table>
-        <div style="margin-right: 10px; padding: 0px; height: 150px; width: 220px; overflow-x: hidden;
+        <div style="margin-right: 10px; padding: 0px; height: 150px; width: 215px; overflow-x: hidden;
             overflow-y: auto;">
             <asp:Repeater ID="rptywrecord" runat="server" OnItemDataBound="rptywrecord_ItemDataBound">
                 <HeaderTemplate>
@@ -146,7 +153,7 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td style="width: 140px; background-color: #F7F7F7; padding-left: 0px; padding-right: 0px;
+                        <td style="width: 135px; background-color: #F7F7F7; padding-left: 0px; padding-right: 0px;
                             margin-left: 0px; margin-right: 0px;">
                             <span style="display: block; width: 125px; margin-left: 0px; padding-left: 0px; padding-right: 0px;
                                 margin-right: 0px;">

@@ -27,26 +27,35 @@ public partial class ScenicManager_WorderAdd : bpScenicManager
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        Model.ScenicAdminType sat = 0;
-        foreach (ListItem item in cblAdminType.Items)
+        if (string.IsNullOrWhiteSpace(txtname.Text) || string.IsNullOrWhiteSpace(txtpsw.Text) || cblAdminType.SelectedItem==null)
         {
-            if (item.Selected)
-            {
-                Model.ScenicAdminType admintype = (Model.ScenicAdminType)Enum.Parse(typeof(Model.ScenicAdminType), item.Text);
-                sat = sat | admintype;
-            }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('信息填写不完善')", true);
         }
-        int scid = Master.Scenic.Id;
-        ScenicAdmin sa = new ScenicAdmin();
-        sa.AdminType = ScenicAdminType.景区资料员;
-        sa.Scenic = bllScenic.GetScenicById(scid);
-        sa.AdminType = sat;
-        new BLL.BLLMembership().CreateUser("", "", "", "",txtname.Text , txtpsw.Text,"");
-        TourMembership tour = new BLL.BLLMembership().GetMember(txtname.Text);
-        sa.Membership = tour;
-        sa.IsDisabled = false;
-        bllscenicadmin.SaveOrUpdate(sa);
-        Page.ClientScript.RegisterStartupScript(this.GetType(), "btnOk", "alert('添加成功')", true);
-        Response.Redirect("/ScenicManager/WorkerList.aspx");
+        else
+        {
+            Model.ScenicAdminType sat = 0;
+            foreach (ListItem item in cblAdminType.Items)
+            {
+                if (item.Selected)
+                {
+                    Model.ScenicAdminType admintype = (Model.ScenicAdminType)Enum.Parse(typeof(Model.ScenicAdminType), item.Text);
+                    sat = sat | admintype;
+                }
+            }
+            int scid = Master.Scenic.Id;
+            ScenicAdmin sa = new ScenicAdmin();
+            sa.AdminType = ScenicAdminType.景区资料员;
+            sa.Scenic = bllScenic.GetScenicById(scid);
+            sa.AdminType = sat;
+            sa.RealName = txtRealName.Text.Trim();
+            new BLL.BLLMembership().CreateUser(txtRealName.Text.Trim(), "", "", "", txtname.Text, txtpsw.Text, "");
+            TourMembership tour = new BLL.BLLMembership().GetMember(txtname.Text);
+            sa.Membership = tour;
+            sa.IsDisabled = false;
+
+            bllscenicadmin.SaveOrUpdate(sa);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "btnOk", "alert('添加成功')", true);
+            Response.Redirect("/ScenicManager/WorkerList.aspx");
+        }
     }
 }

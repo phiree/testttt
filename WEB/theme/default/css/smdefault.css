@@ -1,4 +1,8 @@
 ﻿/*公共部分*/
+input,select
+{
+    font-size:12px;
+}
 .fuctitle
 {
     margin: 15px 0px 0px 20px;
@@ -67,7 +71,7 @@ hr
 {
     display: inline-block;
     _display: block;
-    border: 0px none White;
+    border: 0px none !important;
     height: 25px;
     margin: 0px;
     padding: 0px;
@@ -78,6 +82,7 @@ hr
     margin-bottom: 0px;
     _margin-top: 7px;
     _margin-left: 7px;
+    font-size:12px;
 }
 .tp_nav
 {
@@ -769,7 +774,7 @@ h3
 }
 .tagstore 
 {
-    margin:10px;
+    margin:15px;
 }
 .tagstore a,#taglist a
 

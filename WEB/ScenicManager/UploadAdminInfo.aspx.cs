@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,21 +6,26 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Model;
 using BLL;
+using System.Web.Security;
 
 public partial class ScenicManager_UploadAdminInfo : basepage
 {
     BLLMembership bllmem = new BLLMembership();
-
+    TourMembershipProvider tmp = new TourMembershipProvider();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            txtusername.Text = CurrentMember.Name;
+            hfName.Value = CurrentMember.Name;
+        }
     }
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void BtnInfoOK_Click(object sender, EventArgs e)
     {
         if (string.IsNullOrWhiteSpace(txtusername.Text.Trim()) || string.IsNullOrWhiteSpace(txtpwd.Text.Trim())
             || string.IsNullOrWhiteSpace(txtnewpwd1.Text.Trim()))
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请将信息填写完整！');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "string", "alert('信息填写不完整！');", true);
             return;
         }
         else
@@ -37,8 +42,7 @@ public partial class ScenicManager_UploadAdminInfo : basepage
                     {
                         tm.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(txtnewpwd1.Text.Trim(), "MD5");
                         bllmem.updateinfo(tm);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功');", true);
-                        Response.Redirect("/scenicmanager");
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功');window.location='/ScenicManager/'", true);
                     }
                 }
                 else
@@ -53,5 +57,5 @@ public partial class ScenicManager_UploadAdminInfo : basepage
                 return;
             }
         }
-    }
+   }
 }

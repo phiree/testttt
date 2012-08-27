@@ -102,7 +102,7 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
             sc.Photo = bllsenicimg.GetSiByType(Master.Scenic, 1)[0].Name;
             new BLLScenic().UpdateScenicInfo(sc);
         }
-        Response.Redirect("/ScenicManager/ScenicPictureShow.aspx");
+        Response.Redirect("/scenicmanager/ScenicPictureShow.aspx");
     }
 
     private void bind()

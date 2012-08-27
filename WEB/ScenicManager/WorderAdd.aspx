@@ -13,7 +13,7 @@
         <table class="addmain" border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
-                    <asp:Label ID="Label1" Text="*姓名" runat="server" />
+                    <asp:Label ID="Label1" Text="*登录名" runat="server" />
                 </td>
                 <td>
                     <asp:TextBox ID="txtname" runat="server" />
@@ -21,10 +21,18 @@
             </tr>
             <tr>
                 <td>
+                    <asp:Label ID="Label4" Text="真实姓名" runat="server" />
+                </td>
+                <td>
+                    <asp:TextBox ID="txtRealName" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <asp:Label ID="Label2" Text="*密码" runat="server" />
                 </td>
                 <td>
-                    <asp:TextBox ID="txtpsw" runat="server" />
+                    <asp:TextBox ID="txtpsw" runat="server" TextMode="Password" />
                 </td>
             </tr>
             <tr>

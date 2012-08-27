@@ -1,7 +1,7 @@
 ﻿function changesumprice() {
     var usecount = $("[id$='txtUseCount']").val();
     var yddj = $("#yddj").html();
-    if (usecount != "") {
+    if (usecount != "" && usecount!="0") {
         $("#sumprice").html(parseInt(usecount) * parseInt(yddj));
         var ydcount = parseInt($("#ydmpcount").html());
         var ydusedcount = parseInt($("#ydmpusedcount").html());
@@ -12,8 +12,10 @@
             $(".jxyd").html("");
         }
     }
-    else
-        $("#sumprice").html(0+"元");
+    else {
+        $("#sumprice").html(0 + "元");
+        $(".jxyd").html("");
+    }
 }
 
 function changeolcount(obj) {
@@ -50,21 +52,10 @@ $(document).ready(function () {
     });
     $("[id$='txtinfo']").InlineTip({ "tip": "录入游客身份证或名字" });
     $("body").click(function () {
-        if ($("#listname").css("display") == "block") {
-            if (state == 0) {
-                $("#listname").attr("style", "display:none");
-            }
-            state = 0;
-        }
-        var list = $("#yklistt");
-        $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
-
-        if ($("#listyw").css("display") == "block") {
-            if (state2 == 0) {
-                $("#listyw").attr("style", "display:none");
-            }
-            state2 = 0;
-        }
+            $("#listname").attr("style", "display:none");
+            var list = $("#yklistt");
+            $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
+            $("#listyw").attr("style", "display:none");
     });
     if ($.cookie("idcard") == null)
         $.cookie("idcard", "");
@@ -131,4 +122,7 @@ function show() {
 function autobtn() {
     $("[id$='hfautoidcard']").val($("[id$='txtinfo']").val());
     $("[id$='btnauto']").click();
+}
+function hidescreen(obj) {
+    $(obj).css("display", "none");
 }
