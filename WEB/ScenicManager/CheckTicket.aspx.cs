@@ -250,8 +250,8 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     {
         if (txtinfo.Text != "录入游客身份证或名字")
         {
-            btnbind_Click(null, null);
-            return;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
+            
         }
         CurrentScenic = Master.Scenic;
         if (txtUseCount.Text != "")
@@ -260,7 +260,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
             if (wtusecount > totalyudingcount - usedyudingcount)
             {
-                int jxydcount = wtusecount-totalyudingcount+usedyudingcount;
+                int jxydcount = wtusecount - totalyudingcount + usedyudingcount;
                 TicketAssign ta = bllticketassign.GetLasetRecordByidcard(ViewState["idcard"].ToString(), CurrentScenic, 2);
                 OrderDetail od = ta.OrderDetail;
                 od.Quantity = od.Quantity + jxydcount;
@@ -286,6 +286,17 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 bllticketassign.SaveOrUpdate(ta);
             }
         }
+        else
+        {
+            if (idcardyuding.Visible == true)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
+                bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
+                yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
+                bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
+                return;
+            }
+        }
         if (txtolusecount.Text != "")
         {
             int oluse = int.Parse(txtolusecount.Text);
@@ -298,6 +309,19 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 bllticketassign.SaveOrUpdate(ta);
             }
         }
+        else
+        {
+            if (idcardol.Visible == true)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
+                bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
+                yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
+                bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
+                return;
+            }
+        }
+        txtUseCount.Text = "";
+        txtolusecount.Text = "";
         bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
         yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
         bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);

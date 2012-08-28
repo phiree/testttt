@@ -1,4 +1,5 @@
 ﻿function changesumprice() {
+    $("[id$='txtUseCount']").val($("[id$='txtUseCount']").val().replace(/[^0-9]/g, ''));
     var usecount = $("[id$='txtUseCount']").val();
     var yddj = $("#yddj").html();
     if (usecount != "" && usecount!="0") {
@@ -19,6 +20,7 @@
 }
 
 function changeolcount(obj) {
+    $(obj).val($(obj).val().replace(/[^0-9]/g, ''));
     var olgpcount = parseInt($("#olgpcount").html());
     var olusedcount = parseInt($("#olgpusedcount").html());
     var wtcount = parseInt($(obj).val());
