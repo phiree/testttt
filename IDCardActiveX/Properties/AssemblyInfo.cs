@@ -11,9 +11,9 @@ using System.Security;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("IDCardActiveX")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("身份证读卡器的ActiveX控件")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("笨牛信息科技")]
 [assembly: AssemblyProduct("IDCardActiveX")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]

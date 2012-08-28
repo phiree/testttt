@@ -3,6 +3,10 @@
 
 <%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
+    <meta   http-equiv= "expires "   content= "0 ">   
+    <meta   http-equiv= "cache-control "   content= "no-cache ">   
+    <meta   http-equiv= "pragma "   content= "no-cache ">  
+
     <%--<script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
     <script src="../Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
     <script src="../Scripts/jqueryplugin/jquery.autoRedirect.js" type="text/javascript"></script>--%>
@@ -14,7 +18,7 @@
     <script src="../Scripts/CheckTicket.js" type="text/javascript"></script>
     <script src="../Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
     <script src="../Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d025" style=" height:0px;">
+    <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d021" style=" height:0px;">
     </object>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
@@ -111,13 +115,13 @@
                         border-top: 0px none; width: 200px; table-layout: fixed">
             </HeaderTemplate>
             <ItemTemplate>
-                <tr>
+                <tr  onmouseover="cgbg(this)" onmouseout="cgbg2(this)" style="cursor:pointer;">
                     <td style="width: 55px; background-color: #F7F7F7; padding-left: 0px; padding-right: 0px;
-                            margin-left: 0px; margin-right: 0px;">
-                        <span style="display: block; width: 55px;"><a class="selectname" onclick="btnselectname(this);">
-                            <%# Eval("Name") %></a></span>
+                            margin-left: 0px; margin-right: 0px;" onclick="btnselectname(this)">
+                        <span style="display: block; width: 55px;">
+                            <%# Eval("Name") %></span>
                     </td>
-                    <td style="width: 135px; background-color: #F7F7F7; padding: 0px;">
+                    <td style="width: 135px; background-color: #F7F7F7; padding: 0px;" onclick="btnselectname(this)">
                         <span style="display: block; width: 125px">
                             <%# Eval("IdCard") %></span>
                     </td>

@@ -31,9 +31,20 @@
                 document.getElementById("td8").innerHTML = arrys[7];
                 document.getElementById("td9").innerHTML = arrys[8];
             }
+            else {
+                document.getElementById("td1").innerHTML = "";
+                document.getElementById("td2").innerHTML = "";
+                document.getElementById("td3").innerHTML = "";
+                document.getElementById("td4").innerHTML = "";
+                document.getElementById("td5").innerHTML = "";
+                document.getElementById("td6").innerHTML = "";
+                document.getElementById("td7").innerHTML = "";
+                document.getElementById("td8").innerHTML = "";
+                document.getElementById("td9").innerHTML = "";
+            }
         }
     </script>
-    <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d025" codebase="/ScenicManager/DONETCAB.cab" >
+    <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d021" codebase="/ScenicManager/DONETCAB.cab" >
     </object>
 </head>
 <body>

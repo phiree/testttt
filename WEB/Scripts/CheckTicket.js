@@ -52,16 +52,16 @@ $(document).ready(function () {
     });
     $("[id$='txtinfo']").InlineTip({ "tip": "录入游客身份证或名字" });
     $("body").click(function () {
-            $("#listname").attr("style", "display:none");
-            var list = $("#yklistt");
-            $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
-            $("#listyw").attr("style", "display:none");
+        $("#listname").attr("style", "display:none");
+        var list = $("#yklistt");
+        $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
+        $("#listyw").attr("style", "display:none");
     });
     if ($.cookie("idcard") == null)
         $.cookie("idcard", "");
     timedCount();
-
 });
+
 var state = 0;
 function showyklist() {
     $("#listname").attr("style", "display:block");
@@ -84,8 +84,9 @@ function querenuse() {
     return confirm("本次使用" + usecount + "张,是否确认使用?");
 }
 function btnselectname(obj) {
-    $("[id$='hfselectname']").val($(obj).html());
-    $("[id$='hfselectidcard']").val($.trim($(obj).parent().parent().next().find("span").html().toString()));
+    $("[id$='hfselectname']").val($.trim($(obj).parent().find("td").eq(0).find("span").html()));
+    $("[id$='hfselectidcard']").val($.trim($(obj).parent().find("td").eq(1).find("span").html().toString()));
+    $.cookie("idcard", $("[id$='hfselectidcard']").val());
     $("[id$='btnselect']").click();
 }
 var state2 = 0;
@@ -107,7 +108,6 @@ function show() {
     var strinfo = a.GetUserInfo();
     var arrys = strinfo.split(',');
     if (arrys.length > 8) {
-
         if ($.cookie("idcard") != arrys[5]) {
             $("[id$='txtinfo']").val(arrys[5]);
             $.cookie("idcard", arrys[5]);
@@ -125,4 +125,10 @@ function autobtn() {
 }
 function hidescreen(obj) {
     $(obj).css("display", "none");
+}
+function cgbg(obj) {
+    $(obj).find("td").css("background-color", "#E9E9E9");
+}
+function cgbg2(obj) {
+    $(obj).find("td").css("background-color", "#F7F7F7");
 }

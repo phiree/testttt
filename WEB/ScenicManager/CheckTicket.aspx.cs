@@ -39,6 +39,11 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //绑定预定信息
         rptpeopleinfo.DataSource = new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic);
         rptpeopleinfo.DataBind();
+        Request.Cookies.Add(new HttpCookie("idcard"));
+        Response.Cookies.Add(new HttpCookie("idcard"));
+        Request.Cookies["idcard"].Value = "";
+        Response.Cookies["idcard"].Value = "";
+
     }
     protected void btnsearch_Click(object sender, EventArgs e)
     {
@@ -114,40 +119,6 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
         bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
     }
-    //protected void btnaddyuding_Click(object sender, EventArgs e)
-    //{
-    //    if (txtyudingcount.Text == "")
-    //    {
-    //        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入需要预定的张数')", true);
-    //        bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
-    //        yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
-    //        bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
-    //        return;
-    //    }
-    //    tp_nav.Attributes.Add("style", "margin-top:20px;");
-    //    //txinfo.Attributes.Remove("class");
-    //    CurrentScenic = Master.Scenic;
-    //    int jxydcount = int.Parse(txtyudingcount.Text);
-    //    TicketAssign ta = bllticketassign.GetLasetRecordByidcard(ViewState["idcard"].ToString(),CurrentScenic,2);
-    //    OrderDetail od = ta.OrderDetail;
-    //    od.Quantity = od.Quantity + jxydcount;
-    //    od.Remark = "在景区预定" + jxydcount + "张门票";
-    //    bllorderdetail.saveorupdate(od);
-    //    for (int i = 0; i < jxydcount; i++)
-    //    {
-    //        TicketAssign ticketassign = new TicketAssign();
-    //        ticketassign.IdCard = ViewState["idcard"].ToString();
-    //        ticketassign.IsUsed = false;
-    //        ticketassign.Name = ta.Name;
-    //        ticketassign.OrderDetail = od;
-    //        ticketassign.UsedTime = DateTime.Now;
-    //        bllticketassign.SaveOrUpdate(ticketassign);
-    //    }
-    //    bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount,2);
-    //    yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
-    //    bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
-        
-    //}
     protected void btnok_Click(object sender, EventArgs e)
     {
         //txinfo.Attributes.Remove("class");
@@ -199,8 +170,31 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     }
     protected void btnbind_Click(object sender, EventArgs e)
     {
+        CurrentScenic = Master.Scenic;
+        if (hfdata.Value.Split('/').Length < 2)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
+            return;
+        }
         string name = hfdata.Value.Split('/')[0];
         string idcard = hfdata.Value.Split('/')[1];
+        int flag = 0;
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic).Where(x => x.Name == name))
+        {
+            if (item.IdCard == idcard)
+            {
+                flag = 1;
+            }
+        }
+        if (flag == 0)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
+            return;
+        }
+        if(Request.Cookies["idcard"]!=null)
+            Request.Cookies["idcard"].Value = idcard;
+        if(Response.Cookies["idcard"]!=null)
+            Response.Cookies["idcard"].Value = idcard;
         username.InnerHtml = name;
         useridcard.InnerHtml = idcard;
         //预定
@@ -254,6 +248,11 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     }
     protected void Btnckpass_Click(object sender, EventArgs e)
     {
+        if (txtinfo.Text != "录入游客身份证或名字")
+        {
+            btnbind_Click(null, null);
+            return;
+        }
         CurrentScenic = Master.Scenic;
         if (txtUseCount.Text != "")
         {

@@ -10,7 +10,7 @@ using System.IO;
 
 namespace IDCardActiveX
 {
-    [Guid("6c78bcd1-ac43-4fb9-8d89-d9f7b717d025")]
+    [Guid("6c78bcd1-ac43-4fb9-8d89-d9f7b717d021")]
     public partial class UserControl1 : UserControl, IObjectSafe
     {
         private static String[] strArray = new string[10]; //存储用户信息
@@ -48,6 +48,8 @@ namespace IDCardActiveX
 
         public void OnTimer()
         {
+            byte[] infos = new byte[255];
+            strArray = new string[10];
             bool sign = false;
             //打开端口
             for (int i = 1001; i <= 1010; i++)
@@ -93,7 +95,6 @@ namespace IDCardActiveX
             this.picbPhoto.Image = Image.FromStream(fsphotho);
             fsphotho.Close();
             FileStream fs = new FileStream("D:\\wz.txt", FileMode.Open, FileAccess.Read, FileShare.Read);
-            byte[] infos = new byte[255];
             int length = infos.Length;
             fs.Read(infos, 0, length);
             strArray[0] = Encoding.Unicode.GetString(infos, 0, 30);   //姓名
