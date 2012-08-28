@@ -98,12 +98,12 @@
         <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom: 0px;
             width: 200px; table-layout: fixed">
             <tr style="width: 150px; background-color: #E9E9E9">
-                <td style="padding: 0px; padding-right: 0px; padding-left: 0px; padding-right: 0px;">
+                <td style="width:60px;padding: 0px; padding-right: 0px; padding-left: 0px; padding-right: 0px;">
                     <span style="display: block; width: 60px; margin: 0px; margin-left: 0px; margin-right: 0px;">
                         姓名</span>
                 </td>
-                <td style="width: 140px; padding-left: 0px; padding-right: 0px;">
-                    <span style="display: block; width: 140px">身份证号</span>
+                <td style="width: 135px; padding-left: 0px; padding-right: 0px;">
+                    <span style="display: block; width: 135px">身份证号</span>
                 </td>
             </tr>
         </table>
@@ -116,9 +116,9 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr  onmouseover="cgbg(this)" onmouseout="cgbg2(this)" style="cursor:pointer;">
-                    <td style="width: 55px; background-color: #F7F7F7; padding-left: 0px; padding-right: 0px;
+                    <td style="width: 60px; background-color: #F7F7F7; padding-left: 0px; padding-right: 0px;
                             margin-left: 0px; margin-right: 0px;" onclick="btnselectname(this)">
-                        <span style="display: block; width: 55px;">
+                        <span style="display: block; width: 60px;">
                             <%# Eval("Name") %></span>
                     </td>
                     <td style="width: 135px; background-color: #F7F7F7; padding: 0px;" onclick="btnselectname(this)">
