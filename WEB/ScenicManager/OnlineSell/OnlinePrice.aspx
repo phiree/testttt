@@ -57,7 +57,7 @@
         $(function () {
             $("#addrow").click(function () {
                 var tbody = $(this).parent().parent().parent().next().html();
-                tbody += "<tr><td><input type='text' /></td><td><input type='text' /></td><td><input type='text' />" +
+                tbody += "<tr><td><input type='text' style='width:150px' /></td><td><input type='text' /></td><td><input type='text' />" +
                 "</td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />" +
                 "<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>";
                 $(this).parent().parent().parent().next().html(tbody);
@@ -77,12 +77,15 @@
             景区门票信息</a>&nbsp;>&nbsp;修改景区价格</p>
     <hr />
     <div id="updateprice">
+        <div class="paystate">
+        <a href="/scenicmanager/onlinesell/OnlinePrice.aspx" class="nowstate">填写景区价格</a>><a href="/scenicmanager/onlinesell/PrintScenicPrice.aspx">打印价格表</a>><a href="">上传盖章后价格表</a>><a id="stateurl" runat="server" href="">申请</a>
+        </div>
         <div class="priceintroduction">
             门票价格介绍
             <ul>
                 <li>门市价:正常销售价格</li>
                 <li>景区现付价:网上预定价格,游客在进入景区时付款</li>
-                <li>网上订购价:网上支付的价格</li>
+                <li>在线支付价:网上支付的价格</li>
             </ul>
         </div>
         <hr style="border: 0px none; border-top: 1px solid Gray; width: 95%;" />
@@ -111,7 +114,7 @@
                     <ItemTemplate>
                         <tr>
                             <td>
-                                <input type="text" value='<%# Eval("Name") %>' />
+                                <input type="text" value='<%# Eval("Name") %>' style="width:150px" />
                             </td>
                             <td>
                                 <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.Normal).First().Price.ToString("0") %>' />
@@ -132,7 +135,7 @@
                 </asp:Repeater>
             </tbody>
         </table>
-        <input type="button" name="name" class="btnokprice" onclick="calc()" />
+        <input type="button" name="name" class="btnokprice" onclick="calc()" style="margin-left:30px; vertical-align:middle;" /><a href="" style=" vertical-align:middle;margin-left:430px">进入下一步</a>
         <input type="hidden" id="hidden_scid" runat="server" />
     </div>
 </asp:Content>

@@ -15,6 +15,7 @@ public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Session["stateurl"] = Request.Url;
         CurrentScenic = Master.Scenic;
         if (Request.QueryString["update"] == null)               //修改标志位
             loadstate();
@@ -36,7 +37,7 @@ public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
 
     private void loadstate()
     {
-        ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(CurrentScenic.Id, (int)Model.ScenicModule.SellOnLine);http://www.tol.cn/ScenicManager/Handler.ashx
+        ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(CurrentScenic.Id, (int)Model.ScenicModule.SellOnLine);
         if (scp != null)
         {
             panelpassstate.Visible = scp.CheckStatus == CheckStatus.Pass;

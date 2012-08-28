@@ -13,7 +13,8 @@ public partial class ScenicManager_OnlineSell_Uploadscenicprice : basepage
     BLLScenic bllscenic = new BLLScenic();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        stateurl.HRef = Session["stateurl"].ToString();
+        gopay.HRef = Session["stateurl"].ToString();
     }
     protected void btnok_Click(object sender, EventArgs e)
     {

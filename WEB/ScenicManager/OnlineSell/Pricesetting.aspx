@@ -12,7 +12,7 @@
     <div id="shprice">
         <asp:Panel ID="panelpassstate" runat="server">
             <div class="passsh">
-                您的上次价格更改，已经通过审核,修改后的价格如下所示，还想修改,请选择<a href="Pricesetting.aspx?update=1">修改</a>
+                您的上次价格更改，已经通过审核,修改后的价格如下所示，还想修改,请选择<a href="Pricesetting.aspx?update=1" style="font-size:14px">修改</a>
             </div>
             <%--<p class="priceinfo">
                 门市价:<asp:Label ID="lblyj" CssClass="jtpriceinfo" runat="server"></asp:Label></p>
@@ -22,19 +22,19 @@
                 优惠价:<asp:Label ID="lblyhj" CssClass="jtpriceinfo" runat="server"></asp:Label></p>--%>
             <asp:Repeater ID="rptprice" runat="server">
                 <HeaderTemplate>
-                    <table>
+                    <table style="width:550px; margin:10px auto;">
                         <thead>
                             <tr>
-                                <th>
+                                <th style=" text-align:center;">
                                     门票
                                 </th>
-                                <th>
+                                <th style=" text-align:center;">
                                     原价
                                 </th>
-                                <th>
+                                <th style=" text-align:center;">
                                     景区现付价
                                 </th>
-                                <th>
+                                <th style=" text-align:center;">
                                     在线支付价
                                 </th>
                             </tr>
@@ -43,16 +43,16 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
-                        <th>
+                        <th style=" text-align:center;">
                             <%#Eval("Name") %>
                         </th>
-                        <td>
+                        <td style=" text-align:center;">
                             <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.Normal).First().Price.ToString("0") %>
                         </td>
-                        <td>
+                        <td style=" text-align:center;">
                             <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price.ToString("0")%>
                         </td>
-                        <td>
+                        <td style=" text-align:center;">
                             <%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PayOnline).First().Price.ToString("0")%>
                         </td>
                     </tr>

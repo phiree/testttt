@@ -30,6 +30,7 @@ public partial class ScenticManager_OnlineSell_OnlinePrice : bpScenicManager
         IList<Model.Ticket> tickets = bllTicket.GetTicketByscId(CurrentScenic.Id);
         rptPrice.DataSource = tickets;
         rptPrice.DataBind();
+        stateurl.HRef = Session["stateurl"].ToString();
     }
 
     /// <summary>

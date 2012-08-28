@@ -13,9 +13,9 @@ public partial class ScenicManager_PrintScenicPrice : basepage
     {
         Model.ScenicAdmin user = new BLL.BLLMembership().GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
         Model.Scenic scenic = user.Scenic;
-        lblScenicname.Text = scenic.Name;
-        lblyj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 1).Price.ToString("0");
-        lblydj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 2).Price.ToString("0");
-        lblyhj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 3).Price.ToString("0");
+        //lblScenicname.Text = scenic.Name;
+        title.InnerHtml = scenic.Name + "更改价格表";
+        rptScenicTicket.DataSource = new BLLScenic().GetScenicById(scenic.Id).Tickets;
+        rptScenicTicket.DataBind();
     }
 }
