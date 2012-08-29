@@ -12,30 +12,30 @@
             var url = "UseDetail.aspx?odid=" + obj;
             window.open(url, "", "height=300,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no");
         }
+        var originalTop;
+        function showlx(obj) {
+            if ($(obj).attr("use") != "t") {
+                $("#contactlist").show();
+                var rowIndex = $(obj).parent().parent().index();
+                var contactlist = $("#contactlist");
+                contactlist.show();
+                if (originalTop == null) {
+                    originalTop = contactlist.position().top;
+                }
+                var left = $(obj).position().left;
+                var width = $(obj).width();
 
+                var height = $(obj).position().top;
+                contactlist.css({ left: left + width + 10 + "px", top: height + "px" });
+
+                contactlist.attr("tid", $(obj).attr("tid"));
+            }
+        }
         $(document).ready(function () {
             $("[id$='txtsearchname']").InlineTip({ "tip": "请输入姓名" });
             //鼠标放到输入联系人文本框时,自动显示常用联系人
-            var originalTop;
-            $(".aa").hover(function () {
-                if ($(this).attr("use") != "t") {
-                    $("#contactlist").show();
-                    var rowIndex = $(this).parent().parent().index();
-                    var contactlist = $("#contactlist");
-                    contactlist.show();
-                    if (originalTop == null) {
-                        originalTop = contactlist.position().top;
-                    }
-                    var left = $(this).position().left;
-                    var width = $(this).width();
-
-                    var height = $(this).parent().parent().height() * rowIndex;
-                    contactlist.css({ left: left + width + 10 + "px", top: originalTop + 10 + "px" });
-
-                    contactlist.attr("tid", $(this).attr("tid"));
-                }
-            });
-
+            
+            
             //点击常用联系人之后,确定一种分配关系
             //生成门票分配数据
             var assign = new Array();
@@ -223,7 +223,6 @@
             未使用<span runat="server" id="ydcount" class="oscticketcount"></span>张门票&nbsp;&nbsp;合计<span runat="server"
                 id="ttprice" class="oscticketcount"></span>元&nbsp;<span class="jstitle">你也可以选择在线支付立省 <span runat="server"
                     id="jsprice" class="oscticketcount"></span>元 </span>
-            <a ID="Button1" href="" class="payonline" >在线支付</a>
         </div>
         <div id="state3" runat="server" class="state3">
             <span runat="server" id="wfcount" class="oscticketcount"></span>张门票&nbsp;&nbsp;合计<span runat="server" id="wfttprice" class="oscticketcount"></span>元
@@ -265,7 +264,7 @@
                                 ID="txtdetailname" Text='<%# Eval("TicketAssignList[0].Name") %>' runat="server"
                                 tid='<%#Eval("Id") %>' CssClass="aa" Style="text-align: center; height: 20px;
                                 width: 150px; margin-left: 10px; float: left; padding: 0px; margin-top: 0px;
-                                line-height: 22px"></asp:TextBox>
+                                line-height: 22px" onmouseover="showlx(this);"></asp:TextBox>
                             <span style="color: Red; margin-left: 100px; float: left;">*</span><span style="float: left">身份证号</span><asp:TextBox
                                 ID="txtdetailidcard" runat="server" Text='<%# Eval("TicketAssignList[0].IdCard") %>'
                                 Style="height: 20px; width: 150px; margin-left: 10px; float: left; padding: 0px;

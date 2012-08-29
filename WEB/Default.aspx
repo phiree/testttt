@@ -151,7 +151,7 @@
                     <div class="mark" style="width: 50%">
                     </div>
                 </a><a href="">
-                    <img alt="畲乡漂流" src="/Tickets/ScenicImg/畲乡漂流.jpg" width="100%" height="100%" />
+                    <img alt="畲乡漂流" src="/ScenicImg/畲乡漂流.jpg" width="100%" height="100%" />
                     <p style="left: 163px;">
                     </p>
                     <span style="left: 163px;">畲乡漂流</span>

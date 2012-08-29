@@ -73,6 +73,7 @@ public partial class UserCenter_MyTickets : basepage
         if (e.Item.FindControl("paystate") != null)
         {
             string odid = (e.Item.FindControl("hfodid") as HiddenField).Value;
+            ViewState["odid"] = odid;
             Order order = bllOrder.GetOrderByOrderid(int.Parse(odid));
             HtmlAnchor ha = e.Item.FindControl("usedetail") as HtmlAnchor;
             if (order.IsPaid == true && order.OrderDetail[0].TicketPrice.PriceType == PriceType.PayOnline)
@@ -87,9 +88,14 @@ public partial class UserCenter_MyTickets : basepage
             }
             if (order.IsPaid == false && order.OrderDetail[0].TicketPrice.PriceType == PriceType.PayOnline)
             {
-                (e.Item.FindControl("paystate") as HtmlContainerControl).InnerHtml = "未付款&nbsp;&nbsp;" + "<a class='onowpay' href=''>现在支付</a>";
+                (e.Item.FindControl("paystate") as HtmlContainerControl).InnerHtml = "未付款&nbsp;&nbsp;" + "<a class='onowpay' onclick='pay()'>现在支付</a>";
                 //ha.HRef = "/UserCenter/Orderdetail.aspx?orderid=" + odid + "&type=3";
             }
         }
+    }
+    protected void btnpayfor_Click(object sender, EventArgs e)
+    {
+        Order order = bllOrder.GetOrderByOrderid(int.Parse(ViewState["odid"].ToString()));
+        Response.Write(new BLLPayment(order).Pay());
     }
 }

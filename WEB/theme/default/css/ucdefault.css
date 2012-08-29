@@ -389,9 +389,10 @@
     min-height:35px;
     background-color:#FEFADF;
 }
-.onowpay:link,.onowpay:active,.onowpay:hover,.onowpay:visited
+.onowpay,.onowpay:link,.onowpay:active,.onowpay:hover,.onowpay:visited
 {
     color:#EC6B9E;
+    cursor:pointer;
 }
 
 

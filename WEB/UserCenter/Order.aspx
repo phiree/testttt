@@ -4,6 +4,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
     <script src="../Scripts/ucdefault.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function pay() {
+            debugger;
+            $("[id$='btnpayfor']").click();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" runat="Server">
     <div id="odetail">
@@ -38,5 +44,8 @@
             </ItemTemplate>
             
         </asp:Repeater>
+    </div>
+    <div style="display:none">
+        <asp:Button ID="btnpayfor" runat="server" Text="Button" onclick="btnpayfor_Click" />
     </div>
 </asp:Content>
