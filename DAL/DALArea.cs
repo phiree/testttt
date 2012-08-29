@@ -21,6 +21,13 @@ namespace DAL
             IQuery query = session.CreateQuery("select a from Area a where a.Id=" + areaid + "");
             return query.FutureValue<Model.Area>().Value;
         }
+
+        public Model.Area GetAreaByAreaname(string areaname)
+        {
+            IQuery query = session.CreateQuery("select a from Area a where a.Name=" + areaname + "");
+            return query.FutureValue<Model.Area>().Value;
+        }
+
         public Model.Area GetAreaBySeoName(string seoName)
         {
             IQuery query = session.CreateQuery("select a from Area a where a.SeoName='" + seoName + "'");

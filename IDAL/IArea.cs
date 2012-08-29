@@ -11,6 +11,7 @@ namespace IDAL
         IList<Model.Area> GetAreaProvince();
         IList<Model.Area> GetSubArea(string areacode);
         Model.Area GetAreaByAreaid(int areaid);
+        Model.Area GetAreaByAreaname(string areaname);
         Model.Area GetAreaBySeoName(string seoName);
     }
 }
