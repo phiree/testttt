@@ -159,15 +159,26 @@ namespace ExcelOplib
         {
             try
             {
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                #region 07
                 //path即是excel文档的路径。
                 string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\景区表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
                 //Sheet1为excel中表的名字
                 string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                 OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
                 ad.Fill(dt);
+                #endregion
+                #region 03
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\景区表格式.xls;Extended Properties=Excel 8.0";
+                    cmd = new OleDbCommand(sql, new OleDbConnection(conn));
+                    ad = new OleDbDataAdapter(cmd);
+                    ad.Fill(dt);
+                }
+                #endregion
                 List<Entity.ScenicEntity> slist = new List<Entity.ScenicEntity>();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -214,15 +225,26 @@ namespace ExcelOplib
         {
             try
             {
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
+                #region 07
                 //path即是excel文档的路径。
                 string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\价格表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
                 //Sheet1为excel中表的名字
-                string sql = "select 景区名称,门票名称,原价,在线支付价 from [Sheet1$]";
+                string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                 OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
                 ad.Fill(dt);
+                #endregion
+                #region 03
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\景区表格式.xls;Extended Properties=Excel 8.0";
+                    cmd = new OleDbCommand(sql, new OleDbConnection(conn));
+                    ad = new OleDbDataAdapter(cmd);
+                    ad.Fill(dt);
+                }
+                #endregion
                 List<Entity.TicketEntity> tlist = new List<Entity.TicketEntity>();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
