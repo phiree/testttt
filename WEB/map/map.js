@@ -92,13 +92,13 @@ function ReadyDo2() {
                     var sContent =
                             "<div style='width:300px; height:100px;margin:0px; padding:0px;'>" +
                             "<div style='width:100px; height:100px; float:left; margin-right:10px;padding:0px; margin-bottom:0px'>" +
-                              "<a class='mapimg' style=' color:White;margin:0px;padding:0px;width:100%; height:100%;border:0px none White;' href='/"+JSON[0].areaseoname+"/"+JSON[0].scseoname+".html '><img src='/ScenicImg/" + JSON[0].img + "' style='width:100%; height:100%;' /></a>" +
+                              "<a class='mapimg' style=' color:White;margin:0px;padding:0px;width:100%; height:100%;border:0px none White;' href='/Tickets/"+JSON[0].areaseoname+"/"+JSON[0].scseoname+".html '><img src='/ScenicImg/" + JSON[0].img + "' style='width:100%; height:100%;' /></a>" +
                             "</div>" +
                             "<div style='width:180px; float:left;padding:0px; margin:0px'>" +
-                            "<div style='margin-top:5px;margin-bottom:0px; padding:0px'><a class='mapname' href='/" + JSON[0].areaseoname + "/" + JSON[0].scseoname + ".html' font-size:14px;'>" + JSON[0].name + "</a></div>" +
+                            "<div style='margin-top:5px;margin-bottom:0px; padding:0px'><a class='mapname' href='/Tickets/" + JSON[0].areaseoname + "/" + JSON[0].scseoname + ".html' font-size:14px;'>" + JSON[0].name + "</a></div>" +
                             "<p style=' padding:0px; margin-top:12px; margin-bottom:0px; font-size:12px;'>级别:<font style=' color:#E49821;'>" + JSON[0].level + "</font></p>" +
                             "<p style='padding:0px; margin-top:12px; margin-bottom:0px;font-size:12px;'>在线优惠价:<font style='color:Red'>" + JSON[0].price + "</font></p>" +
-                            "<div style='font-size:12px; margin-top:8px;margin-bottom:0px; padding-bottom:0px;'><a class='mapyuding'  href='/" + JSON[0].areaseoname + "/" + JSON[0].scseoname + ".html'>[预定]</a></div>" +
+                            "<div style='font-size:12px; margin-top:8px;margin-bottom:0px; padding-bottom:0px;'><a class='mapyuding'  href='/Tickets/" + JSON[0].areaseoname + "/" + JSON[0].scseoname + ".html'>[预定]</a></div>" +
                             "</div>" +
 
                             "</div>";
@@ -321,7 +321,7 @@ function ReadyDo() {
                         var myCompOverlay1 = new ComplexCustomOverlay1(point, txt, i+1);
                         map.addOverlay(myCompOverlay1);
                         loadstr += "<div class='scenicinfo'>";
-                        loadstr += "<span class='sceincnum'>" + ((parseInt($.cookie("pager_currPage")) - 1) * 15 + numcount) + "</span><span onmouseover='changescnamecl(this)' onmouseout='changescnamecl2(this)' class='spansceincname' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + "</span><a href='/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html' >[预定]</a>"
+                        loadstr += "<span class='sceincnum'>" + ((parseInt($.cookie("pager_currPage")) - 1) * 15 + numcount) + "</span><span onmouseover='changescnamecl(this)' onmouseout='changescnamecl2(this)' class='spansceincname' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + "</span><a href='/Tickets/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html' >[预定]</a>"
                         loadstr += "</div>"; 
                             
                        // loadstr += "<tr><td><font class='num'>" + ((parseInt($.cookie("pager_currPage")) - 1) * 15 + numcount) + "</font></td><td><a style='cursor: pointer;' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + " </a> </td><td>" + allpoint[i].level + "</td><td>" + allpoint[i].price + "</td></tr>";
@@ -336,13 +336,13 @@ function ReadyDo() {
                     var sContent =
                             "<div style='width:300px; height:100px;margin:0px; padding:0px;'>" +
                             "<div style='width:100px; height:100px; float:left; margin-right:10px;padding:0px; margin-bottom:0px'>" +
-                              "<a class='mapimg' style=' color:White;margin:0px;padding:0px;width:100%; height:100%;border:0px none White;' href='/"+allpoint[i].areaseoname+"/"+allpoint[i].scseoname+".html'><img src='/ScenicImg/" + allpoint[i].img + "' style='width:100%; height:100%;' /></a>" +
+                              "<a class='mapimg' style=' color:White;margin:0px;padding:0px;width:100%; height:100%;border:0px none White;' href='/Tickets/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html'><img src='/ScenicImg/" + allpoint[i].img + "' style='width:100%; height:100%;' /></a>" +
                             "</div>" +
                             "<div style='width:180px; float:left;padding:0px; margin:0px'>" +
-                            "<div style='margin-top:5px;margin-bottom:0px; padding:0px'><a class='mapname' href='/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html' font-size:14px;'>" + allpoint[i].name + "</a></div>" +
+                            "<div style='margin-top:5px;margin-bottom:0px; padding:0px'><a class='mapname' href='/Tickets/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html' font-size:14px;'>" + allpoint[i].name + "</a></div>" +
                             "<p style=' padding:0px; margin-top:12px; margin-bottom:0px; font-size:12px;'>级别:<font style=' color:#E49821;'>" + allpoint[i].level + "</font></p>" +
                             "<p style='padding:0px; margin-top:12px; margin-bottom:0px;font-size:12px;'>在线优惠价:<font style='color:Red'>" + allpoint[i].price + "</font></p>" +
-                            "<div style='font-size:12px; margin-top:8px;margin-bottom:0px; padding-bottom:0px;'><a class='mapyuding'  href='/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html'>[预定]</a></div>" +
+                            "<div style='font-size:12px; margin-top:8px;margin-bottom:0px; padding-bottom:0px;'><a class='mapyuding'  href='/Tickets/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html'>[预定]</a></div>" +
                             "</div>" +
 
                             "</div>";
@@ -463,7 +463,7 @@ function btnshowinfo() {
             break;
         //loadstr += "<tr><td><font class='num'>" + parseInt(i + 1) + "</font></td><td><a style='cursor: pointer;' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + " </a> </td><td>" + allpoint[i].level + "</td><td>" + allpoint[i].price + "</td></tr>";
         loadstr += "<div class='scenicinfo'>";
-        loadstr += "<span class='sceincnum'>" + parseInt(i + 1) + "</span><span class='spansceincname' onmouseout='changescnamecl2(this)' onmouseover='changescnamecl(this)' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + "</span><a href='/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html' >[预定]</a>"
+        loadstr += "<span class='sceincnum'>" + parseInt(i + 1) + "</span><span class='spansceincname' onmouseout='changescnamecl2(this)' onmouseover='changescnamecl(this)' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + "</span><a href='/Tickets/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html' >[预定]</a>"
         loadstr += "</div>"; 
     }
     $("#resultscenic").html(loadstr);

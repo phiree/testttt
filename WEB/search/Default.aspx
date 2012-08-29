@@ -19,11 +19,11 @@
             <ItemTemplate>
                 <div class="scenicdesc">
                     <div class="scenicimgdivbg">
-                        <a href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
+                        <a href='/Tickets/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
                             <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='' /></a>
                     </div>
                     <div class="scenicname">
-                        <a style="display: block" href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
+                        <a style="display: block" href='/Tickets/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
                             <!---->
                             <%# Eval("Name")%></a>
                     </div>
@@ -33,7 +33,7 @@
                                 <asp:Literal runat="server" ID="liPriceNormal"></asp:Literal>元</em></span> <span
                                     class="onlinepr">在线价<em><asp:Literal runat="server" ID="liPriceOnline"></asp:Literal></em>元</span>
                         </div>
-                        <a class="linkorder" href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
+                        <a class="linkorder" href='/Tickets/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
                         </a>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                                 <img src="/theme/default/image/newversion/jt2.gif" style="margin-right:20px;margin-top:5px;" />
                                 <span style="width:120px;"><%# Eval("Name") %></span>
                                 <span class="nsinfosc_price"><strong runat="server" id="nsinfosc_price"></strong>元</span>
-                                <a href='/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>看看</a>
+                                <a href='/Tickets/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>看看</a>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>

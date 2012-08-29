@@ -121,7 +121,7 @@
     <div class="scoloum">
         <div class="sccol1">
             <div class="sccol1row1">
-                <a href="/lishui/shenlonggu.html">
+                <a href="/Tickets/lishui/shenlonggu.html">
                     <img alt="遂昌神龙谷瀑布" src="/ScenicImg/“中华第一高瀑”-遂昌神龙谷瀑布.jpg" width="100%" height="100%" />
                     <p>
                     </p>
@@ -131,7 +131,7 @@
                 </a>
             </div>
             <div class="sccol1row2">
-                <a href="/lishui/suishangjingkuang.html">
+                <a href="/Tickets/lishui/suishangjingkuang.html">
                     <img alt="遂昌金矿" src="/ScenicImg/遂昌金矿.jpg" width="100%" height="100%" />
                     <p>
                     </p>
@@ -143,7 +143,7 @@
         </div>
         <div class="sccol2">
             <div class="sccol2row1">
-                <a href="/lishui/nanjianyan.html">
+                <a href="/Tickets/lishui/nanjianyan.html">
                     <img alt="南尖岩" src="/ScenicImg/南尖岩.jpg" width="100%" height="100%" />
                     <p>
                     </p>
@@ -151,7 +151,7 @@
                     <div class="mark" style="width: 50%">
                     </div>
                 </a><a href="">
-                    <img alt="畲乡漂流" src="/ScenicImg/畲乡漂流.jpg" width="100%" height="100%" />
+                    <img alt="畲乡漂流" src="/Tickets/ScenicImg/畲乡漂流.jpg" width="100%" height="100%" />
                     <p style="left: 163px;">
                     </p>
                     <span style="left: 163px;">畲乡漂流</span>
@@ -160,7 +160,7 @@
                 </a>
             </div>
             <div class="sccol2row2">
-                <a href="/lishui/xiandufengjingmingshengqu.html">
+                <a href="/Tickets/lishui/xiandufengjingmingshengqu.html">
                     <img alt="仙都" src="/ScenicImg/仙都.jpg" width="100%" height="100%" />
                     <p>
                     </p>
@@ -170,14 +170,14 @@
                 </a>
             </div>
             <div class="sccol2row3">
-                <a href="/lishui/longquanshandujiaqu.html">
+                <a href="/Tickets/lishui/longquanshandujiaqu.html">
                     <img alt="龙泉山" src="/ScenicImg/龙泉山-高山新居.jpg" width="100%" height="100%" />
                     <p>
                     </p>
                     <span>龙泉山</span>
                     <div class="mark" style="width: 50%">
                     </div>
-                </a><a href="/lishui/xianduhuanglongshanjingqu.html">
+                </a><a href="/Tickets/lishui/xianduhuanglongshanjingqu.html">
                     <img alt="黄龙景区" src="/ScenicImg/黄龙景区.jpg" width="100%" height="100%" />
                     <p style="left: 163px;">
                     </p>
@@ -189,7 +189,7 @@
         </div>
         <div class="sccol3">
             <div class="sccol3row1">
-                <a href="/lishui/shexiangzhichuang.html">
+                <a href="/Tickets/lishui/shexiangzhichuang.html">
                     <img alt="畲家少女" src="/ScenicImg/畲家少女.jpg" width="100%" height="100%" />
                     <p>
                     </p>
@@ -199,7 +199,7 @@
                 </a>
             </div>
             <div class="sccol3row2">
-                <a href="/lishui/shimendongshenlinggongyuan.html">
+                <a href="/Tickets/lishui/shimendongshenlinggongyuan.html">
                     <img alt="青田石门洞" src="/ScenicImg/青田石门洞.jpg" width="100%" height="100%" />
                     <p>
                     </p>
@@ -219,18 +219,18 @@
                         丽水&nbsp;&nbsp;&nbsp;&nbsp;旅游亮点</p>
                     <hr />
                     <p class="mapscnameinfo">
-                        <a href="/lishui/nanjianyan.html">寻找瑶池――南尖岩</a>
+                        <a href="/Tickets/lishui/nanjianyan.html">寻找瑶池――南尖岩</a>
                     </p>
                     <p class="mapscnameinfo">
-                        <a href="/lishui/baishanzhujingqu.html">穿越――百山祖―黄茅尖</a></p>
+                        <a href="/Tickets/lishui/baishanzhujingqu.html">穿越――百山祖―黄茅尖</a></p>
                     <hr />
                     <p class="mapscnameinfo">
-                        <a href="/ruoliaoyuanshilingjingqu.html">松阳县――箬寮原始林旅游</a></p>
+                        <a href="/Tickets/ruoliaoyuanshilingjingqu.html">松阳县――箬寮原始林旅游</a></p>
                     <p class="mapscnameinfo2">
                         旧志云：“徒其巅可览七邑之胜”</p>
                     <hr />
                     <p class="mapscnameinfo">
-                        <a href="/lishui/shenlonggu.html">遂昌县――神龙谷旅游</a></p>
+                        <a href="/Tickets/lishui/shenlonggu.html">遂昌县――神龙谷旅游</a></p>
                     <p class="mapscnameinfo2">
                         森林瀑布神龙谷，汤公寻梦牡丹亭</p>
                 </div>

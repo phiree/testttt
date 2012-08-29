@@ -10,6 +10,7 @@
     if ($(".highselected").html().toString().trim() == "景区简介") {
         $("#changeinfo").html("<div id='plate2'>" + t + "</div>" + "<p id='plap'>" + "交通指南" + "</p>" + "<div id='plate1'>" + f + "</div>");
     }
+    flag = 1;
     showmap();
     
 }
@@ -50,10 +51,12 @@ function EditHTMLInfo(obj) {
     $(obj).css("border", "1px solid #FAF707");
 }
 function CancelHTMLInfo(obj) {
-    if (boderwidth!=null)
+    if (boderwidth == undefined) {
         $(obj).css("border-color", "");
-    else
-        $(obj).css("border-width", "0px");
+        if ($(obj).attr("id") == "sc_jtzn") {
+            $(obj).css("border-width", "0px");
+        }
+    }   
 }
 function EditHTMLInfoBtn(obj, scname, scfunctype) {
     var flag = $(obj).attr("class");

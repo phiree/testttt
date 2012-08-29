@@ -60,9 +60,9 @@ public partial class Scenic_Default : basepage
         scpoint = scenic.Position;
         scbindname = scenic.Name;
         scid = scenic.Id;
-        areaname.HRef = "/" + scenic.Area.SeoName;
+        areaname.HRef = "/Tickets/" + scenic.Area.SeoName;
         areaname.InnerHtml = scenic.Area.Name.Substring(3, scenic.Area.Name.Length - 3);
-        scenicname.HRef = "/" + scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
+        scenicname.HRef = "/Tickets/" + scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
         scenicname.InnerHtml = scenic.Name;
         scaddress = scenic.Address;
         booknote = scenic.BookNote;
