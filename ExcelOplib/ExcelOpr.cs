@@ -55,7 +55,7 @@ namespace ExcelOplib
                     s.Address = item.address;
                     s.Level = item.level;
                     s.SeoName = item.seoname;
-                    s.Area = bllarea.GetAreaByAreaid(int.Parse(item.areaid));
+                    s.Area = bllarea.GetAraByAreaname(item.areaid);
                     //处理topic字符串
                     var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
                     blltopic.SaveScenictopic(temptopic, s.Id);

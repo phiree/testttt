@@ -40,6 +40,12 @@ namespace BLL
         {
             return Iarea.GetAreaByAreaid(areaid);
         }
+
+        public Model.Area GetAraByAreaname(string areaname)
+        {
+            return iarea.GetAreaByAreaname(areaname);
+        }
+
         public Model.Area GetAreaBySeoName(string seoName)
         {
             return Iarea.GetAreaBySeoName(seoName);
