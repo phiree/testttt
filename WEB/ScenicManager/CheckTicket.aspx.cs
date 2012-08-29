@@ -25,6 +25,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     protected void Page_Load(object sender, EventArgs e)
     {
         hfscid.Value = Master.Scenic.Id.ToString();
+        if (txtinfo.Text != "录入游客身份或名字" && txtinfo.Text != "")
+        {
+            btnbind_Click(null, null);
+        }
         if (!IsPostBack)
         {
             bind();

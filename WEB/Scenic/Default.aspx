@@ -286,7 +286,7 @@
         </div>
         <div id="allinfo">
             <p class="captitle">
-                <img src="/theme/default/image/newversion/icon.gif" />景区概况</p>
+                景区概况</p>
             <div class="selectinfospan">
                 <span class="highselected" onclick="btnselect(this)">景区简介</span> <span onclick="btnselect(this)">
                     交通指南</span>

@@ -18,7 +18,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphstate" runat="Server">
-    <div class="cartbread"><img src="/theme/default/image/newversion/icon.gif" />购物车</div>
+    <div class="cartbread">购物车</div>
     <img class="stateimg" src="/theme/default/image/newversion/cart_state1.png"/>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">

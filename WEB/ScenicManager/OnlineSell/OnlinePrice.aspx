@@ -135,7 +135,7 @@
                 </asp:Repeater>
             </tbody>
         </table>
-        <input type="button" name="name" class="btnokprice" onclick="calc()" style="margin-left:30px; vertical-align:middle;" /><a href="" style=" vertical-align:middle;margin-left:430px">进入下一步</a>
+        <input type="button" name="name" class="btnokprice" onclick="calc()" style="margin-left:30px; vertical-align:middle;" /><a href="/scenicmanager/onlinesell/PrintScenicPrice.aspx" style=" vertical-align:middle;margin-left:430px">进入下一步</a>
         <input type="hidden" id="hidden_scid" runat="server" />
     </div>
 </asp:Content>

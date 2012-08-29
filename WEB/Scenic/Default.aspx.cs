@@ -70,7 +70,12 @@ public partial class Scenic_Default : basepage
         scdesc = scenic.ScenicDetail;
         transguid = scenic.Trafficintro;
         if (!string.IsNullOrEmpty(scenic.Desec))
-            scshortdesc = scenic.Desec.Substring(0, 30) + "...";
+        {
+            if (scenic.Desec.Length>30)
+                scshortdesc = scenic.Desec.Substring(0, 30) + "...";
+            else
+                scshortdesc = scenic.Desec + "...";
+        }
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/" + listsi[0].Name;

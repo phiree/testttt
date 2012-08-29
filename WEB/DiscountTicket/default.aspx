@@ -68,7 +68,7 @@
                             <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='' /></a>
                     </div>
                     <div class="scenicname">
-                        <a style="display: block" href='/Tickets/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
+                        <a style="display: block;font-size:14px;" href='/Tickets/<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
                             <!---->
                             <%# Eval("Name")%></a>
                     </div>

@@ -87,7 +87,7 @@ public partial class UserCenter_MyTickets : basepage
             }
             if (order.IsPaid == false && order.OrderDetail[0].TicketPrice.PriceType == PriceType.PayOnline)
             {
-                (e.Item.FindControl("paystate") as HtmlContainerControl).InnerHtml = "未付款&nbsp;&nbsp;" + "<a class='onowpay' href='/UserCenter/Orderdetail.aspx?orderid=" + odid + "'>现在支付</a>";
+                (e.Item.FindControl("paystate") as HtmlContainerControl).InnerHtml = "未付款&nbsp;&nbsp;" + "<a class='onowpay' href=''>现在支付</a>";
                 //ha.HRef = "/UserCenter/Orderdetail.aspx?orderid=" + odid + "&type=3";
             }
         }
