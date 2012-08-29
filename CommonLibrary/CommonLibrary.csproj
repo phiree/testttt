@@ -100,7 +100,6 @@
     <Content Include="PDesigner\tobedeleted\景区脚本.sql" />
     <Content Include="PDesigner\tobedeleted\门票价格.sql" />
     <Content Include="PDesigner\tobedeleted\门票初始化.sql" />
-    <Content Include="PDesigner\区域Seo名称.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="docs\2012年浙江省A级旅游景区汇总统计表.xls" />

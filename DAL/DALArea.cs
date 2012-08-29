@@ -24,7 +24,7 @@ namespace DAL
 
         public Model.Area GetAreaByAreaname(string areaname)
         {
-            IQuery query = session.CreateQuery("select a from Area a where a.Name=" + areaname + "");
+            IQuery query = session.CreateQuery("select a from Area a where a.Name='" + areaname + "'");
             return query.FutureValue<Model.Area>().Value;
         }
 

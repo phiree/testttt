@@ -76,11 +76,6 @@ namespace ExcelOplib
                             t.Name = te.ticketname;
                             t.Scenic = s;
                             t.IsMain = true;
-                            //new会产生很多垃圾数据,改为一下.   SST
-                            //t.TicketPrice = new List<Model.TicketPrice>() { 
-                            //new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
-                            //new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
-                            //new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}};
                             var tpnormal = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.Normal);
                             if (tpnormal.Count() > 0)
                                 t.TicketPrice.Where(x => x.PriceType == Model.PriceType.Normal).First().Price = decimal.Parse(te.orgprice);
@@ -117,7 +112,7 @@ namespace ExcelOplib
                     s = new Model.Scenic();
                     s.Name = item.name;
                     s.Address = item.address;
-                    s.Area = bllarea.GetAreaByAreaid(int.Parse(item.areaid));
+                    s.Area = bllarea.GetAraByAreaname(item.areaid);
                     s.BookNote = item.bookintro;
                     s.Level = item.level;
                     //处理topic字符串
@@ -165,7 +160,7 @@ namespace ExcelOplib
             try
             {
                 //path即是excel文档的路径。
-                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\景区表格式.xls;Extended Properties=Excel 8.0;";
+                string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\景区表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
                 //Sheet1为excel中表的名字
                 string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
@@ -177,7 +172,7 @@ namespace ExcelOplib
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrEmpty(dt.Rows[i][0].ToString())) continue;
                     
                     //对景区详情处理
                     string[] srclist = GetPiclist(dt.Rows[i][0].ToString().Replace("\n", "").Trim()).Split(new char[] { '$' },StringSplitOptions.RemoveEmptyEntries);
@@ -220,7 +215,7 @@ namespace ExcelOplib
             try
             {
                 //path即是excel文档的路径。
-                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\价格表格式.xls;Extended Properties=Excel 8.0;";
+                string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\价格表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
                 //Sheet1为excel中表的名字
                 string sql = "select 景区名称,门票名称,原价,在线支付价 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));

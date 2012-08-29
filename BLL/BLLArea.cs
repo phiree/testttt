@@ -43,7 +43,7 @@ namespace BLL
 
         public Model.Area GetAraByAreaname(string areaname)
         {
-            return iarea.GetAreaByAreaname(areaname);
+            return Iarea.GetAreaByAreaname(areaname);
         }
 
         public Model.Area GetAreaBySeoName(string seoName)
