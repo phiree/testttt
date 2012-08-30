@@ -10,6 +10,7 @@ using Model;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Web.Services;
+using System.Text.RegularExpressions;
 
 public partial class ScenicManager_CheckTicket : bpScenicManager
 {
@@ -25,13 +26,13 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     protected void Page_Load(object sender, EventArgs e)
     {
         hfscid.Value = Master.Scenic.Id.ToString();
-        if (txtinfo.Text != "录入游客身份或名字" && txtinfo.Text != "")
+        if (txtinfo.Text != "录入游客身份证或名字" && txtinfo.Text != "")
         {
             btnbind_Click(null, null);
         }
         if (!IsPostBack)
         {
-            bind();
+            bind(); 
             detailinfo.Visible = false;
             ywdiv.Visible = false;
         }
@@ -255,8 +256,9 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         if (txtinfo.Text != "录入游客身份证或名字")
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
-            
         }
+        txtUseCount.Text = Regex.Replace(txtUseCount.Text, "[^0-9]", "");
+        txtolusecount.Text = Regex.Replace(txtolusecount.Text, "[^0-9]", "");
         CurrentScenic = Master.Scenic;
         if (txtUseCount.Text != "")
         {
@@ -288,7 +290,33 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 ta.IsUsed = true;
                 ta.UsedTime = DateTime.Now;
                 bllticketassign.SaveOrUpdate(ta);
+                //查询订单中所有的detail是否都已付完款
+                List<TicketAssign> listticketassign= bllticketassign.GetTaByIdCard(ViewState["idcard"].ToString()).ToList();
+                foreach (TicketAssign taitem in listticketassign)
+                {
+                    Order or = taitem.OrderDetail.Order;
+                    if (!or.IsPaid)
+                    {
+                        int flag = 0;
+                        foreach (OrderDetail oditem in or.OrderDetail)
+                        {
+                            int allodta = oditem.TicketAssignList.Count;
+                            int usedodta = oditem.TicketAssignList.Where(x => x.IsUsed == true).Count();
+                            if (allodta != usedodta)
+                            {
+                                flag = 1;
+                            }
+                        }
+                        if (flag == 0)
+                        {
+                            or.IsPaid = true;
+                            or.PayTime = DateTime.Now;
+                            new BLLOrder().SaveOrUpdateOrder(or);
+                        }
+                    }
+                }
             }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
         }
         else
         {
@@ -312,6 +340,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 ta.UsedTime = DateTime.Now;
                 bllticketassign.SaveOrUpdate(ta);
             }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
         }
         else
         {

@@ -34,7 +34,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <asp:CheckBox ID="CKIsUpdateName" runat="server" onclick="IsUpdateName(this)" style=" vertical-align:middle;" />是否更换用户名</td>
+                    <asp:CheckBox ID="CKIsUpdateName" runat="server" onclick="IsUpdateName(this)" style=" vertical-align:middle;" />更换用户名</td>
             </tr>
             <tr>
                 <td>

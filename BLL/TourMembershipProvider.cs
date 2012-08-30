@@ -181,8 +181,6 @@ namespace BLL
 
         public override bool ValidateUser(string username, string password)
         {
-
-
             string encryptedPwd = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "MD5");
 
             return Imem.ValidateUser(username, encryptedPwd);

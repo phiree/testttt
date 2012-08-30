@@ -236,7 +236,7 @@ function qdtopic(obj) {
     else {
         $.cookie("topic", obj.innerHTML);
     }
-    $(".selthemeinfo a").attr("style", "");
+    $(".selthemeinfo a").removeAttr("style");
     $(obj).attr("style", "border:1px solid #F9CD8A;background-color:#FDF0CA;color:#E8641B;padding-bottom:0px;");
     /*表面搜索结果*/
     $(".selthemeinfo a").each(function () {
