@@ -35,7 +35,7 @@ public partial class Manager_BillAll : System.Web.UI.Page
     protected void ddlScenics_TextChanged(object sender, EventArgs e)
     {
         if (!string.IsNullOrEmpty(ddlCity.SelectedValue))
-            bindBills(int.Parse(ddlCity.SelectedValue));
+            bindBills(int.Parse(ddlScenics.SelectedValue));
     }
 
     private void BindCity()
