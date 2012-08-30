@@ -292,7 +292,9 @@
                     交通指南</span>
             </div>
             <div id="changeinfo">
+                    <div id="scdetailplate">
                     <self:ContentReader runat="server" ID="plate2" scFuncType="景区详情" type="景区"/>
+                    </div>
                 <p id="plap">
                     交通指南</p>
                 <div id="plate1">

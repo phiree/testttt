@@ -3,12 +3,12 @@
     $(".selectinfospan span").attr("class", "");
     $(that).attr("class", "highselected");
     var f = $("#plate1").html();
-    var t = $("#plate2").html();
+    var t = $("#scdetailplate").html();
     if ($(".highselected").html().toString().trim() == "交通指南") {
-        $("#changeinfo").html("<div id='plate1'>" + f + "</div>" + "<p id='plap'>" + "景区简介" + "</p>" + "<div id='plate2'>" + t + "</div>");
+        $("#changeinfo").html("<div id='plate1'>" + f + "</div>" + "<p id='plap'>" + "景区简介" + "</p>" + "<div id='scdetailplate'>" + t + "</div>");
     }
     if ($(".highselected").html().toString().trim() == "景区简介") {
-        $("#changeinfo").html("<div id='plate2'>" + t + "</div>" + "<p id='plap'>" + "交通指南" + "</p>" + "<div id='plate1'>" + f + "</div>");
+        $("#changeinfo").html("<div id='scdetailplate'>" + t + "</div>" + "<p id='plap'>" + "交通指南" + "</p>" + "<div id='plate1'>" + f + "</div>");
     }
     flag = 1;
     showmap();
