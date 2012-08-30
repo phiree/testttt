@@ -10,6 +10,7 @@
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
+
     <title></title>
     <script type="text/javascript">
         var parentid;
