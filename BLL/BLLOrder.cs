@@ -17,9 +17,30 @@ namespace BLL
         //{
         //    return dal.GetListForUser(orderID, scenicID);
         //}
-        public IList<Model.OrderDetail> GetListForUser(int orderID, int scenicID, bool? isPaid,string dbegin,string dend)
+        public IList<Model.OrderDetail> GetListForUser(int orderID, int scenicID, bool? isPaid, string dateBegin, string dateEnd)
         {
-            return dal.GetListForUser(orderID, scenicID, isPaid,dbegin,dend);
+            #region 日期封装
+            string datebegin = dateBegin.Substring(0, 4) + "-" + dateBegin.Substring(4, 2) + "-01";
+            string dateend = string.Empty;
+            if (dateEnd.Substring(4, 2) == "01" || dateEnd.Substring(4, 2) == "03" || dateEnd.Substring(4, 2) == "05" || dateEnd.Substring(4, 2) == "07" ||
+                dateEnd.Substring(4, 2) == "08" || dateEnd.Substring(4, 2) == "10" || dateEnd.Substring(4, 2) == "12")
+            {
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-31";
+            }
+            if (dateEnd.Substring(4, 2) == "04" || dateEnd.Substring(4, 2) == "06" || dateEnd.Substring(4, 2) == "09" || dateEnd.Substring(4, 2) == "11")
+            {
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-30";
+            }
+            if (dateEnd.Substring(4, 2) == "02" && int.Parse(dateEnd.Substring(0, 4)) % 4 == 0)
+            {
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-29";
+            }
+            if (dateEnd.Substring(4, 2) == "02" && int.Parse(dateEnd.Substring(0, 4)) % 4 != 0)
+            {
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-28";
+            }
+            #endregion
+            return dal.GetListForUser(orderID, scenicID, isPaid, datebegin, dateend);
         }
         public int SaveOrUpdateOrder(Order order)
         {

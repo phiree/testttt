@@ -65,14 +65,16 @@ namespace DAL
             {
                 if (orderID != 0)
                 {
-                    sql = " select od from OrderDetail od where od.Order.Id=:orderID and od.Order.IsPaid=:isPaid  and od.Order.BuyTime>" + dbegin + " and od.Order.BuyTime<" + dend;
+                    sql = " select od from OrderDetail od where od.Order.Id=:orderID and od.Order.IsPaid=:isPaid  and od.Order.BuyTime>=convert(datetime,'"
+                        + dbegin + "') and od.Order.BuyTime<=convert(datetime,'" + dend+"')";
                     query = session.CreateQuery(sql);
                     query.SetParameter("orderID", orderID);
                     query.SetParameter("isPaid", isPaid);
                 }
                 else
                 {
-                    sql = " select od from OrderDetail od where od.TicketPrice.Ticket.Scenic.Id=:scenicID and od.Order.IsPaid=:isPaid and od.Order.BuyTime>" + dbegin + " and od.Order.BuyTime<" + dend;
+                    sql = " select od from OrderDetail od where od.TicketPrice.Ticket.Scenic.Id=:scenicID and od.Order.IsPaid=:isPaid and od.Order.BuyTime>=convert(datetime,'"
+                        + dbegin + "') and od.Order.BuyTime<=convert(datetime,'" + dend + "')";
                     query = session.CreateQuery(sql);
                     query.SetParameter("scenicID", scenicID);
                     query.SetParameter("isPaid", isPaid);
