@@ -80,7 +80,7 @@ namespace BLL
                 var temp_book = temp.Where(x => x.TicketPrice.PriceType == PriceType.PreOrder);
                 //网上支付订单统计
                 totalnum = temp_online.Sum(x => x.Quantity);
-                totalprice = temp_online.Sum(x => x.TicketPrice.Ticket.GetPrice(x.TicketPrice.PriceType));
+                totalprice = temp_online.Sum(x => x.Order.TotalPrice);
                 MonthOrder motemp = dal.GetPaidstate(i.ToString("D6"), scenicid, "在线支付");
                 if (paidstate == null || (motemp == null && paidstate == false) || (motemp != null && paidstate==true))
                 {
@@ -95,7 +95,7 @@ namespace BLL
                 }
                 //预定订单明细统计
                 totalnum = temp_book.Sum(x => x.Quantity);
-                totalprice = temp_book.Sum(x => x.TicketPrice.Ticket.GetPrice(x.TicketPrice.PriceType));
+                totalprice = temp_book.Sum(x => x.Order.TotalPrice);
                 motemp = dal.GetPaidstate(i.ToString("D6"), scenicid, "预定");
                 if (paidstate == null || (motemp == null && paidstate == false) || (motemp != null && paidstate == true))
                 {

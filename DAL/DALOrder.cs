@@ -139,8 +139,8 @@ namespace DAL
         public IList<OrderDetail> GetMonthOrder(int scenicid, string dateBegin, string dateEnd, bool? paidstate)
         {
             string sql = "select od from OrderDetail od where od.TicketPrice.Ticket.Scenic.Id=" + scenicid
-                + " and od.Order.PayTime>convert(datetime,'" + dateBegin
-                + "') and od.Order.PayTime<convert(datetime,'" + dateEnd+"')";
+                + " and od.Order.PayTime>=convert(datetime,'" + dateBegin
+                + "') and od.Order.PayTime<=convert(datetime,'" + dateEnd+"')";
             IQuery query = session.CreateQuery(sql);
             IList<OrderDetail> temp = query.Future<Model.OrderDetail>().ToList();
             return temp;
