@@ -12,6 +12,7 @@
     <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
     <script src="/ckeditor/ckeditor.js" type="text/javascript"></script>
     <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/default/css/EditHTML.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
             var editor = CKEDITOR.replace("ctl00$cphmain$CkBookNote", {
@@ -36,7 +37,7 @@
              ]
             });
             editor.config['contentsCss'] = ['/theme/default/css/scenic.css', '/theme/default/css/TCCSS.css', '/theme/default/css/global.css', '/theme/default/css/default.css', '/theme/bp/screen.css',
-            '/theme/bp/print.css', '/theme/default/css/MasterPage.css'];
+            '/theme/bp/print.css', '/theme/default/css/MasterPage.css', '/theme/default/css/EditHTML.css'];
             var editor2 = CKEDITOR.replace("ctl00$cphmain$CkScjj", {
                 toolbar: [
                 //加粗     斜体，     下划线      穿过线      下标字        上标字

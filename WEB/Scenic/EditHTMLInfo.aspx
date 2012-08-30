@@ -10,7 +10,7 @@
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
-
+    <link href="/theme/default/css/EditHTML.css" rel="stylesheet" type="text/css" />
     <title></title>
     <script type="text/javascript">
         var parentid;
@@ -40,7 +40,7 @@
              ]
             });
             editor.config['contentsCss'] = ['/theme/default/css/scenic.css', '/theme/default/css/TCCSS.css', '/theme/default/css/global.css', '/theme/default/css/default.css', '/theme/bp/screen.css',
-            '/theme/bp/print.css', '/theme/default/css/MasterPage.css'];
+            '/theme/bp/print.css', '/theme/default/css/MasterPage.css', '/theme/default/css/EditHTML.css'];
             parentid = window.location.href.match(/flag.*$/)[0];
             parentid = parentid.substr(5);
             editor.setData($(parentWin).find(parentid).html());
