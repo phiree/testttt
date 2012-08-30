@@ -21,7 +21,7 @@ namespace BLL.SEO
         public string H1Text { get; set; }
     }
     /// <summary>
-    /// title的seo优化
+    /// 景区列表页面title的seo优化
     /// </summary>
     public class SeoHandler
     {

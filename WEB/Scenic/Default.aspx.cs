@@ -30,6 +30,7 @@ public partial class Scenic_Default : basepage
     public string scdesc = "";
     public string scshortdesc = "";
     public int scid;
+    Scenic s;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -37,7 +38,7 @@ public partial class Scenic_Default : basepage
 
         if (!string.IsNullOrEmpty(paramSname))
         {
-            Scenic s = new BLLScenic().GetScenicBySeoName(paramSname);
+             s = new BLLScenic().GetScenicBySeoName(paramSname);
             if (s == null)
             {
                 ErrHandler.Redirect(ErrType.UnknownError);
@@ -50,8 +51,18 @@ public partial class Scenic_Default : basepage
             ErrHandler.Redirect(ErrType.ParamIllegal);
         }
 
-
-
+     decimal onlineprice=   s.Tickets.FirstOrDefault(x=>x.IsMain==true).GetPrice(PriceType.PayOnline);
+     SetSeoTitle(s.Name, onlineprice); 
+    }
+    /*
+     景点内容页的title公式：***门票预订_***门票价格/多少钱 – 中国旅游在线     
+     */
+    const string scenicTitleFormat = "{0}门票预订_{0}门票价格/{1}元 – 中国旅游在线";
+    private void SetSeoTitle(string scenicName,decimal price)
+    {
+        this.Title = string.Format(scenicTitleFormat, scenicName, price.ToString("0"));
+        this.MetaDescription = string.Empty;
+        this.MetaKeywords = string.Empty;
     }
     private void bind(Scenic scenic)
     {
