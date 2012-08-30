@@ -60,6 +60,7 @@ namespace DAL
             if (isPaid == null) return GetListForUser(orderID, scenicID, dbegin, dend);
             string sql;
             IQuery query;
+            //
             if (!string.IsNullOrWhiteSpace(dbegin) || !string.IsNullOrWhiteSpace(dend))
             {
                 if (orderID != 0)
@@ -78,7 +79,24 @@ namespace DAL
                 }
                 return query.Future<Model.OrderDetail>().ToList<Model.OrderDetail>();
             }
-            return null;
+            else
+            {
+                if (orderID != 0)
+                {
+                    sql = " select od from OrderDetail od where od.Order.Id=:orderID and od.Order.IsPaid=:isPaid ";
+                    query = session.CreateQuery(sql);
+                    query.SetParameter("orderID", orderID);
+                    query.SetParameter("isPaid", isPaid);
+                }
+                else
+                {
+                    sql = " select od from OrderDetail od where od.TicketPrice.Ticket.Scenic.Id=:scenicID and od.Order.IsPaid=:isPaid ";
+                    query = session.CreateQuery(sql);
+                    query.SetParameter("scenicID", scenicID);
+                    query.SetParameter("isPaid", isPaid);
+                }
+                return query.Future<Model.OrderDetail>().ToList<Model.OrderDetail>();
+            }
         }
 
         public int SaveOrUpdateOrder(Order order)
@@ -121,8 +139,8 @@ namespace DAL
         public IList<OrderDetail> GetMonthOrder(int scenicid, string dateBegin, string dateEnd, bool? paidstate)
         {
             string sql = "select od from OrderDetail od where od.TicketPrice.Ticket.Scenic.Id=" + scenicid
-                + " and od.Order.PayTime>" + dateBegin
-                + " and od.Order.PayTime<" + dateEnd;
+                + " and od.Order.PayTime>convert(datetime,'" + dateBegin
+                + "') and od.Order.PayTime<convert(datetime,'" + dateEnd+"')";
             IQuery query = session.CreateQuery(sql);
             IList<OrderDetail> temp = query.Future<Model.OrderDetail>().ToList();
             return temp;
