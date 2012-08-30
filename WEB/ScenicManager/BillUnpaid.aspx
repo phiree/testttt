@@ -39,35 +39,33 @@
         </div>
         <asp:Repeater ID="rptStatis" runat="server">
             <HeaderTemplate>
-                <table cellpadding="0" cellspacing="0" class="sptable">
-                    <tr style="height: 30px; background-color: #CBDFF2; display: block; padding: 0px;
-                        margin: 0px; text-align: left;">
-                        <td colspan="8" style="display: inline-block; padding: 0px; margin: 0px; text-align: left;
-                            border: 0px none;">
-                            <p id="datetitle" style="">
+                <table style="border:1px">
+                    <tr >
+                        <td >
+                            <p >
                                 2012年7月-2012年8月</p>
                         </td>
                     </tr>
                     <tr class="titlename">
-                        <td style="padding-left: 10px; width: 50px">
+                        <td >
                             订单号
                         </td>
                         <td style="width: 100px;">
                             名称
                         </td>
-                        <td style="width: 80px">
+                        <td >
                             类型
                         </td>
                         <td style="width: 50px">
                             票数
                         </td>
-                        <td style="width: 80px">
+                        <td >
                             单价
                         </td>
-                        <td style="width: 80px">
+                        <td >
                             总价
                         </td>
-                        <td style="width: 80px">
+                        <td >
                             订单时间
                         </td>
                         <td style="width: 60px">
@@ -77,25 +75,25 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr class="odinfo">
-                    <td style="padding-left: 10px; width: 50px">
+                    <td >
                         <%# Eval("Order.Id")%>
                     </td>
                     <td style="width: 100px;">
                         <%# Eval("TicketPrice.Ticket.Name")%>
                     </td>
-                    <td style="width: 80px">
+                    <td >
                         <%# Eval("TicketPrice.PriceType")%>
                     </td>
                     <td style="width: 50px">
                         <%# Eval("Quantity")%>
                     </td>
-                    <td style="width: 80px">
+                    <td >
                         <%# ((Model.Ticket)Eval("TicketPrice.Ticket")).GetPrice((Model.PriceType)Eval("TicketPrice.PriceType"))%>
                     </td>
-                    <td style="width: 80px">
+                    <td >
                         <%# ((int)Eval("Quantity")) * ((Model.Ticket)Eval("TicketPrice.Ticket")).GetPrice((Model.PriceType)Eval("TicketPrice.PriceType"))%>
                     </td>
-                    <td style="width: 80px">
+                    <td >
                         <%#Eval("Order.BuyTime")%>
                     </td>
                     <td style="width: 60px">
