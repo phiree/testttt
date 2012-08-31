@@ -185,7 +185,7 @@ function btnarea(obj) {
     else {
         $.cookie("level", obj.innerHTML);
     }
-    $(".sellevelinfo a").attr("style", "");
+    $(".sellevelinfo a").removeAttr('style');
     $(obj).attr("style", "border:1px solid #F9CD8A;background-color:#FDF0CA;color:#E8641B");
     /*表面搜索结果*/
     $(".sellevelinfo a").each(function () {

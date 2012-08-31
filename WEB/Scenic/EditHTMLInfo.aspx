@@ -15,7 +15,6 @@
     <script type="text/javascript">
         var parentid;
         $(function () {
-
             var parentWin = window.opener.document;
             var editor = CKEDITOR.replace("CKHTML", {
                 width: 730, height: 450,
