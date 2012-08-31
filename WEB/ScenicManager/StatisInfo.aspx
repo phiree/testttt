@@ -70,7 +70,7 @@
                     <%# Eval("num")%>
                 </td>
                 <td style="width:100px">
-                    <%# Eval("totalprice")%>
+                    <%# decimal.Parse( Eval("totalprice").ToString()).ToString("0")%>
                 </td>
                 <td style="width:87px">
                     <%#(bool)Eval("paidstate") ? "已结" : "未结"%>
