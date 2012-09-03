@@ -59,7 +59,7 @@
                   else { jsonAllPositions[loopIndex] = ""; ProgressMessage("ERROR:没有获得该景点的信息:" + scenicName); }
 
 
-                  if (loopIndex >= scenicnames.length) {
+                  if (loopIndex >= scenicnames.length-1) {
                       ProgressMessage("获取坐标完成,开始保存");
                       SavePosition();
                   }
