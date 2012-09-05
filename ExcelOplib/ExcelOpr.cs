@@ -54,7 +54,7 @@ namespace ExcelOplib
                     s = ss.First();
                     s.Address = item.address;
                     s.Level = item.level;
-                    s.SeoName = item.seoname;
+                    s.SeoName = string.IsNullOrEmpty(s.SeoName) ? item.seoname : s.SeoName;
                     s.Area = bllarea.GetAraByAreaname(item.areaid);
                     //处理topic字符串
                     var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
@@ -184,11 +184,11 @@ namespace ExcelOplib
                 {
                     //如果excel中的某行为空,跳过
                     if (string.IsNullOrEmpty(dt.Rows[i][0].ToString())) continue;
-                    
+
                     //对景区详情处理
-                    string[] srclist = GetPiclist(dt.Rows[i][0].ToString().Replace("\n", "").Trim()).Split(new char[] { '$' },StringSplitOptions.RemoveEmptyEntries);
+                    string[] srclist = GetPiclist(dt.Rows[i][0].ToString().Replace("\n", "").Trim()).Split(new char[] { '$' }, StringSplitOptions.RemoveEmptyEntries);
                     string scdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim();
-                    for (int j = 0; j < srclist.Length/2; j++)
+                    for (int j = 0; j < srclist.Length / 2; j++)
                     {
                         scdetail = scdetail.Replace(srclist[j], srclist[j + srclist.Length / 2]);
                     }
@@ -307,7 +307,7 @@ namespace ExcelOplib
             }
             return silist;
         }
-        
+
         private string GetPiclist(string scenicname)
         {
             try
