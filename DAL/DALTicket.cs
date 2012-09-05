@@ -33,6 +33,10 @@ namespace DAL
             {
                 where += " and  s.Area=" + areaId;
             }
+            else
+            {
+                where += " and s.Area.Code like '33%' ";
+            }
             if (level > 0)
             {
                 where += " and s.Level='" + level + "A'";

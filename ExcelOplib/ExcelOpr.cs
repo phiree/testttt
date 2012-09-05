@@ -54,7 +54,7 @@ namespace ExcelOplib
                     s = ss.First();
                     s.Address = item.address;
                     s.Level = item.level;
-                    s.SeoName = item.seoname;
+                    s.SeoName = string.IsNullOrEmpty(s.SeoName) ? item.seoname : s.SeoName;
                     s.Area = bllarea.GetAraByAreaname(item.areaid);
                     //处理topic字符串
                     var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
@@ -165,7 +165,7 @@ namespace ExcelOplib
                 //path即是excel文档的路径。
                 string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\景区表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
                 //Sheet1为excel中表的名字
-                string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介 from [Sheet1$]";
+                string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介,主图 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                 OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
                 ad.Fill(dt);
@@ -184,11 +184,11 @@ namespace ExcelOplib
                 {
                     //如果excel中的某行为空,跳过
                     if (string.IsNullOrEmpty(dt.Rows[i][0].ToString())) continue;
-                    
+
                     //对景区详情处理
-                    string[] srclist = GetPiclist(dt.Rows[i][0].ToString().Replace("\n", "").Trim()).Split(new char[] { '$' },StringSplitOptions.RemoveEmptyEntries);
+                    string[] srclist = GetPiclist(dt.Rows[i][0].ToString().Replace("\n", "").Trim()).Split(new char[] { '$' }, StringSplitOptions.RemoveEmptyEntries);
                     string scdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim();
-                    for (int j = 0; j < srclist.Length/2; j++)
+                    for (int j = 0; j < srclist.Length / 2; j++)
                     {
                         scdetail = scdetail.Replace(srclist[j], srclist[j + srclist.Length / 2]);
                     }
@@ -271,16 +271,16 @@ namespace ExcelOplib
         /// <returns></returns>
         private List<Model.ScenicImg> CopyFile(Model.Scenic scenic)
         {
-            string sourcePath = @"d:\图片\" + scenic.Name.Trim();
+            string sourcePath = @"d:\testMainimgLocalizer\" + scenic.Name.Trim();
             if (!Directory.Exists(sourcePath)) return null;
-            string destPath = @"d:\scenicimg";
+            string destPath = @"d:\scenicimg\mainimg";
             DirectoryInfo TheFolder = new DirectoryInfo(sourcePath);
             List<Model.ScenicImg> silist = new List<Model.ScenicImg>();
             bool firstone = true;
             foreach (FileInfo NextFile in TheFolder.GetFiles())
             {
-                string guidname = Guid.NewGuid().ToString() + NextFile.Extension;
-                string filepath = destPath + @"\" + guidname;
+                string filename = NextFile.Name;
+                string filepath = destPath + @"\" + filename;
                 //FileInfo myfile = new FileInfo(filepath);
                 //myfile.Create();
                 //创建两个文件流 一个是源文件相关，另一个是要写入的文件
@@ -298,7 +298,7 @@ namespace ExcelOplib
                 fs2.Close();
                 silist.Add(new Model.ScenicImg()
                 {
-                    Name = guidname,
+                    Name = filename,
                     Scenic = scenic,
                     Title = NextFile.Name.Replace(NextFile.Extension, ""),
                     ImgType = firstone ? Model.ImgType.主图 : Model.ImgType.辅图
