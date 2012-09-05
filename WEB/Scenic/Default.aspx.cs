@@ -89,7 +89,7 @@ public partial class Scenic_Default : basepage
         }
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
-            ImgMainScenic.Src = "/ScenicImg/" + listsi[0].Name;
+            ImgMainScenic.Src = "/ScenicImg/mainimg/" + listsi[0].Name;
 
 
         IList<Scenic> list = bllscenic.GetScenic();
