@@ -173,7 +173,7 @@ namespace CommonLibrary
             }
             if (r == string.Empty)
             {
-                r = "/Tickets/";
+                r = "/";
             }
             return r;
         }

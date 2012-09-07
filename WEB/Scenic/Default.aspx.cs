@@ -38,27 +38,27 @@ public partial class Scenic_Default : basepage
 
         if (!string.IsNullOrEmpty(paramSname))
         {
-             s = new BLLScenic().GetScenicBySeoName(paramSname);
+            s = new BLLScenic().GetScenicBySeoName(paramSname);
             if (s == null)
             {
                 ErrHandler.Redirect(ErrType.UnknownError);
             }
-          
+
             bind(s);
         }
         else
         {
             ErrHandler.Redirect(ErrType.ParamIllegal);
         }
-
-     decimal onlineprice=   s.Tickets.FirstOrDefault(x=>x.IsMain==true).GetPrice(PriceType.PayOnline);
-     SetSeoTitle(s.Name, onlineprice); 
+        var ticket = s.Tickets.FirstOrDefault(x => x.IsMain == true);
+        decimal onlineprice = ticket == null ? 0 : ticket.GetPrice(PriceType.PayOnline);
+        SetSeoTitle(s.Name, onlineprice);
     }
     /*
      景点内容页的title公式：***门票预订_***门票价格/多少钱 – 中国旅游在线     
      */
     const string scenicTitleFormat = "{0}门票预订_{0}门票价格/{1}元 – 中国旅游在线";
-    private void SetSeoTitle(string scenicName,decimal price)
+    private void SetSeoTitle(string scenicName, decimal price)
     {
         this.Title = string.Format(scenicTitleFormat, scenicName, price.ToString("0"));
         this.MetaDescription = string.Empty;
@@ -66,7 +66,7 @@ public partial class Scenic_Default : basepage
     }
     private void bind(Scenic scenic)
     {
-      
+
         maintitlett.InnerHtml = scenic.Name;
         scpoint = scenic.Position;
         scbindname = scenic.Name;
@@ -82,7 +82,7 @@ public partial class Scenic_Default : basepage
         transguid = scenic.Trafficintro;
         if (!string.IsNullOrEmpty(scenic.Desec))
         {
-            if (scenic.Desec.Length>30)
+            if (scenic.Desec.Length > 30)
                 scshortdesc = scenic.Desec.Substring(0, 30) + "...";
             else
                 scshortdesc = scenic.Desec + "...";
@@ -100,21 +100,21 @@ public partial class Scenic_Default : basepage
             //bindimg(list, scenic);
             //foreach (ScenicImg item in scdiction.Keys)
             //{
-                bindimglist += scenic.Position + ":";
-           // }
+            bindimglist += scenic.Position + ":";
+            // }
         }
 
-        
+
         //绑定主题
         rpttopic.DataSource = blltopic.GetStByscid(scenic.Id);
         rpttopic.DataBind();
 
         //绑定套票
-        IList<Ticket> listticket= bllticket.GetTp(scenic.Id);
-    
+        IList<Ticket> listticket = bllticket.GetTp(scenic.Id);
+
         rpttp.DataSource = listticket;
         rpttp.DataBind();
-       //编辑
+        //编辑
         EditRole();
         sc_dp.scname = scenic.Name;
         sc_dp.BaseData = booknote;
