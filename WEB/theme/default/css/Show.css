@@ -508,3 +508,63 @@
 {
     text-decoration:none;
 }
+.tscoloum
+{
+    display:inline-block;
+    width:950px;
+    height:315px;
+    background:url("/theme/default/image/newversion/bottombg.png");
+    background-repeat:no-repeat;
+    background-position:bottom;
+}
+.t_fdiv
+{
+    float:left;
+    width:115px;
+    height:307px;
+    background-color:#016452;
+}
+.t_sdiv
+{
+    float:left;
+    width:835px;
+    height:307px;
+}
+.t_s_col1
+{
+    float:left;
+    width:285px;
+    height:307px;
+    position:relative;
+}
+.t_s_span
+{
+    display:block;
+    background-color:#A6D59E;
+    font-size:14px;
+    color:White;
+    font-weight:bold;
+    height:20px;
+    position:absolute;
+    padding-left:5px;
+     padding-right:5px;
+    left:0px;
+    top:0px;
+}
+.t_s_col2
+{
+    float:left;
+    width:548px;
+    height:307px;
+    margin-left:1px;
+    position:relative;
+}
+.t_s_col2_r1
+{
+    height:150px;
+    width:100%;
+}
+.t_s_col2_r1 a,.t_s_col2_r1 img
+{
+    overflow:hidden;
+}
