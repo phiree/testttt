@@ -11,6 +11,7 @@
         </asp:DropDownList>
         &nbsp;
         <asp:Button runat="server" ID="btnSearch" OnClick="btnSearch_Click" CssClass="btnok" />
+        <a href="EditScenic.aspx">新建景区</a>
     </div>
     <asp:Repeater runat="server" ID="rptScenic" OnItemDataBound="rpt_ItemDataBound" OnItemCommand="rptScenic_ItemCommand">
         <HeaderTemplate>
@@ -62,6 +63,7 @@
                 </td>
                 <td style="text-align: center">
                     <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a>
+<a href='EditScenic.aspx?id=<%#Eval("Id")%>'>编辑</a>
                 </td>
                 <%--<td >
                     <asp:Button ID="btnmake" runat="server" Text="生成" CommandName="make" CommandArgument='<%#Eval("Id") %>' />
@@ -92,7 +94,7 @@
                     </asp:Repeater>
                 </td>
                 <td style="text-align: center">
-                    <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a>
+                    <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a><a href='EditScenic.aspx?id=<%#Eval("Id")%>'>编辑</a>
                 </td>
                 <%--<td >
                     <asp:Button ID="btnmake" runat="server" Text="生成" CommandName="make" CommandArgument='<%#Eval("Id") %>' />
