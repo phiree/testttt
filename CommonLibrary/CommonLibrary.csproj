@@ -76,39 +76,6 @@
     <Compile Include="UrlParamHelper.cs" />
     <Compile Include="ValidateHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="docs\Questions.txt" />
-    <Content Include="docs\ToDoList.txt" />
-    <Content Include="docs\WebTest\CheckOrder.html" />
-    <Content Include="docs\WebTest\CheckTicketWebTest.html" />
-    <Content Include="docs\WebTest\DefaultWebTest.html" />
-    <Content Include="docs\WebTest\LoginToUserCenterWebTest.html" />
-    <Content Include="docs\WebTest\ManagerAdminWebTest.html" />
-    <Content Include="docs\WebTest\RegisiterWebTest.html" />
-    <Content Include="docs\WebTest\ScenicAdminWebTest.html" />
-    <Content Include="docs\WebTest\ScenicWebTest.html" />
-    <Content Include="docs\测试驱动开发--景区审核.txt" />
-    <Content Include="docs\测试驱动开发.txt" />
-    <Content Include="docs\测试驱动开发--网上支付.txt" />
-    <Content Include="docs\测试驱动开发--角色功能.txt" />
-    <Content Include="docs\测试用数据.txt" />
-    <Content Include="docs\页面分配.txt" />
-    <Content Include="PDesigner\1区域初始化.sql" />
-    <Content Include="PDesigner\2区域SEO脚本.sql" />
-    <Content Include="PDesigner\3创建管理员.sql" />
-    <Content Include="PDesigner\tobedeleted\景区图片.sql" />
-    <Content Include="PDesigner\tobedeleted\景区脚本.sql" />
-    <Content Include="PDesigner\tobedeleted\门票价格.sql" />
-    <Content Include="PDesigner\tobedeleted\门票初始化.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="docs\2012年浙江省A级旅游景区汇总统计表.xls" />
-    <None Include="docs\全国省市名称%28附代码%29-excel.xls" />
-    <None Include="PDesigner\Business Process_1.bpm" />
-    <None Include="PDesigner\ObjectOrientedModel_2.oom" />
-    <None Include="PDesigner\ObjectOrientedModel_UserCase.oob" />
-    <None Include="PDesigner\ObjectOrientedModel_UserCase.oom" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

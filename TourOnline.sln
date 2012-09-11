@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{9FD4644B-034E-4D19-BF9E-E77FDFD4A080}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB", "{61ADBB5F-2F02-4E98-A926-2451F5F75638}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB\", "{61ADBB5F-2F02-4E98-A926-2451F5F75638}"
 	ProjectSection(WebsiteProperties) = preProject
 		SccProjectName = ""
 		SccAuxPath = ""
@@ -70,6 +70,21 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourControls", "TourControls\TourControls.csproj", "{F9A8FF69-DB79-4712-B0EE-6F4983E877FD}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "IDCardSetup", "IDCardSetup\IDCardSetup.vdproj", "{C8CE685F-0249-4820-ABE0-CEDB3FEA76FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E2661A43-CFB5-46FC-8513-4EFEB0900776}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebTest", "WebTest", "{2EA52185-36B4-4ACB-A149-2C53E918CD9A}"
+	ProjectSection(SolutionItems) = preProject
+		docs\WebTest\CheckOrder.html = docs\WebTest\CheckOrder.html
+		docs\WebTest\CheckTicketWebTest.html = docs\WebTest\CheckTicketWebTest.html
+		docs\WebTest\DefaultWebTest.html = docs\WebTest\DefaultWebTest.html
+		docs\WebTest\LoginToUserCenterWebTest.html = docs\WebTest\LoginToUserCenterWebTest.html
+		docs\WebTest\ManagerAdminWebTest.html = docs\WebTest\ManagerAdminWebTest.html
+		docs\WebTest\MapWebTest.html = docs\WebTest\MapWebTest.html
+		docs\WebTest\RegisiterWebTest.html = docs\WebTest\RegisiterWebTest.html
+		docs\WebTest\ScenicAdminWebTest.html = docs\WebTest\ScenicAdminWebTest.html
+		docs\WebTest\ScenicWebTest.html = docs\WebTest\ScenicWebTest.html
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -150,5 +165,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2EA52185-36B4-4ACB-A149-2C53E918CD9A} = {E2661A43-CFB5-46FC-8513-4EFEB0900776}
 	EndGlobalSection
 EndGlobal
