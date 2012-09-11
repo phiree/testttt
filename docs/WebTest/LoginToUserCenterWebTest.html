@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="www.tourol.cn" />
+<title>LoginToUserCenterWebTest</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LoginToUserCenterWebTest</td></tr>
+</thead><tbody>
+<tr>
+	<td>type</td>
+	<td>id=cphmain_fbody_LoginUser_UserName</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cphmain_fbody_LoginUser_Password</td>
+	<td>123456</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=cphmain_fbody_LoginUser_LoginButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a[href=&quot;/usercenter/&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyExpression</td>
+	<td>javascript{selenium.browserbot.getCurrentWindow().getComputedStyle(this.page().findElement(&quot;css=div[class='Navtop']&quot;),'').getPropertyValue('line-height').toLowerCase()}</td>
+	<td>28px</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a[href=&quot;/usercenter/Order.aspx&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a[href=&quot;/usercenter/MyVisited.aspx&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a[href=&quot;/usercenter/AccountInfo.aspx&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cphmain_ucContent_txtBoxLoginname</td>
+	<td>test</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=cphmain_ucContent_btnModify</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a[href=&quot;/usercenter/MyPassword.aspx&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=cphmain_ucContent_ChangePassword1_ChangePasswordContainerID_ChangePasswordPushButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyExpression</td>
+	<td>javascript{selenium.browserbot.getCurrentWindow().getComputedStyle(this.page().findElement(&quot;id=cphmain_ucContent_ChangePassword1_ChangePasswordContainerID_CurrentPasswordRequired&quot;),'').getPropertyValue('visibility').toLowerCase()}</td>
+	<td>visible</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cphmain_ucContent_ChangePassword1_ChangePasswordContainerID_CurrentPassword</td>
+	<td>123456</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cphmain_ucContent_ChangePassword1_ChangePasswordContainerID_ConfirmNewPassword</td>
+	<td>111111</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=cphmain_ucContent_ChangePassword1_ChangePasswordContainerID_ChangePasswordPushButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyExpression</td>
+	<td>javascript{selenium.browserbot.getCurrentWindow().getComputedStyle(this.page().findElement(&quot;id=cphmain_ucContent_ChangePassword1_ChangePasswordContainerID_NewPasswordCompare&quot;),'').getPropertyValue('display').toLowerCase()}</td>
+	<td>inline</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cphmain_ucContent_ChangePassword1_ChangePasswordContainerID_ConfirmNewPassword</td>
+	<td>123456</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=cphmain_ucContent_ChangePassword1_ChangePasswordContainerID_ChangePasswordPushButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a[href=&quot;CommonUserInfo.aspx&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=cphmain_ucContent_btnadd</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cphmain_ucContent_txtIdcard</td>
+	<td>330101198811187855</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=cphmain_ucContent_txtName</td>
+	<td>张三</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=cphmain_ucContent_txtIdcard</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>id=cphmain_ucContent_rptcu_ckbselect_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>id=cphmain_ucContent_rptcu_ckbselect_0</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=cphmain_ucContent_btndelete</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=loginstatus</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
