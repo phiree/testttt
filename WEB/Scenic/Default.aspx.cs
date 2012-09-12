@@ -182,7 +182,8 @@ public partial class Scenic_Default : basepage
     //判断是否为套票景区
     public bool IsPackageScenic(Scenic s)
     {
-        if (s.Tickets[0] is TicketUnion)
+        var temp = s.Tickets[0] as TicketUnion;
+        if (temp!=null)
         {
             return true;
         }

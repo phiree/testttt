@@ -11,7 +11,7 @@ namespace Model.Mapping
     {
         public TicketUnionMap()
         {
-             HasMany<Scenic> (x => x.Scenics);
+             
            
         }
     }
