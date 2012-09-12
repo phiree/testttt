@@ -18,6 +18,7 @@ namespace Model
         /// 包含的景区
         /// </summary>
         public virtual IList<Scenic> Scenics { get; set; }
+        
         public override IList<Scenic> GetScenics()
         {
             if (Scenics.Count <= 1)
