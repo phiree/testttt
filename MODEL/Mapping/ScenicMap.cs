@@ -12,6 +12,7 @@ namespace Model.Mapping
         public ScenicMap()
         {
             Id(x => x.Id);
+            Map(x => x.IsHide);
             Map(x => x.Name);
             Map(x => x.Address);
             Map(x => x.ScenicOrder);

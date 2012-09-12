@@ -35,7 +35,7 @@ namespace Model
         public virtual IList<Ticket> Tickets { get; set; }
         public virtual string TransGuid { get; set; }
         public virtual IList<ScenicCheckProgress> CheckProgress { get; set; }
-
+        public virtual bool IsHide { get; set; }
         /// <summary>
         /// 已经开启的功能
         /// </summary>

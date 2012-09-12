@@ -242,53 +242,7 @@
             </div>
         </div>
     </div>
-    <div class="tscoloum">
-        <div class="t_fdiv">
-            <p style="margin-top:40px; text-align:center;color:White; font-weight:bold; font-size:14px;">千年府城</p>
-            <p style="margin-top:5px;text-align:center;color:White; font-weight:bold; font-size:14px;">江南临海</p>
-        </div>
-        <div class="t_sdiv">
-            <div class="t_s_col1">
-                <a href="">
-                    <img alt="江南大峡谷" src="/ScenicImg/江南大峡谷.gif" width="100%" height="100%" />
-                    <span style="margin:280px 0px 0px 0px;" class="t_s_span">江南大峡谷</span>
-                    <div class="mark" style="width:100%; height:100%;"></div>
-                </a>
-                <a href="" style=" position:absolute; display:block; width:200px; height:150px; right:0px; top:0px" class="dj">
-                    <span style="margin:127px 0px 0px 115px;" class="t_s_span">江南古长城</span>
-                </a>
-            </div>
-            <div class="t_s_col2">
-                <div class="t_s_col2_r1">
-                    <a style="width:205px; height:150px; display:block; float:left;margin-left:1px" href="">
-                        <img alt="国华珠算博物馆" src="/ScenicImg/国华珠算博物馆.jpg" width="205px" height="150px" />
-                        <span style="margin:127px 0px 0px 90px;" class="t_s_span">国华珠算博物馆</span>
-                        <div class="mark" style="width:205px; height:150px;"></div>
-                    </a>
-                    <a style="width:110px; height:150px;display:block; float:left;margin-left:1px" href="">
-                        <img alt="九台沟" src="/ScenicImg/九台沟.jpg" width="110px" height="150px" />
-                        <span style="margin:127px 0px 0px 262px;" class="t_s_span">九台沟</span>
-                        <div class="mark" style="width:110px; height:150px;left:207px"></div>
-                    </a>
-                    <a style="width:229px; height:150px;display:block; float:left;margin-left:1px" href="">
-                        <img alt="紫阳古街" src="/ScenicImg/紫阳古街.jpg" width="227px" height="150px" />
-                        <span style="margin:127px 0px 0px 475px;" class="t_s_span">紫阳古街</span>
-                        <div class="mark" style="width:229px; height:150px;left:319px"></div>
-                    </a>
-                    <a style="width:235px; height:155px;display:block; float:left;margin-left:1px;margin-top:1px;" href="">
-                        <img alt="临海东湖" src="/ScenicImg/临海东湖.jpg" width="235px" height="155px" />
-                        <span style="margin:283px 0px 0px 165px;" class="t_s_span">临海东湖</span>
-                        <div class="mark" style="width:235px; height:155px;top:152px"></div>
-                    </a>
-                    <a style="width:308px; height:155px;display:block; float:left;margin-left:1px;margin-top:1px;" href="">
-                        <img alt="桃江十三渚" src="/ScenicImg/桃江十三渚.jpg" width="308px" height="155px" />
-                        <span style="margin:283px 0px 0px 461px;" class="t_s_span">桃江十三渚</span>
-                        <div class="mark" style="width:308px; height:155px;top:152px;left:237px"></div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="defaultbottom">
     </div>
 </asp:Content>
