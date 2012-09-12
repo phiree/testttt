@@ -106,10 +106,10 @@ public partial class Scenic_CheckOut :  AuthPage
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
-            Ticket t = e.Item.DataItem as Ticket;
+            AssignedScenic t = e.Item.DataItem as AssignedScenic;
 
             Label lbl = e.Item.FindControl("lblUnion") as Label;
-            lbl.Visible = t.GetScenics().Count > 1;
+            lbl.Visible = t.IsInUnion;
         }
     }
 }
