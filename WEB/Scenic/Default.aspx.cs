@@ -182,32 +182,30 @@ public partial class Scenic_Default : basepage
     //判断是否为套票景区
     public bool IsPackageScenic(Scenic s)
     {
-        int packages=s.Tickets.Where(x => x.IsPackage== true).Count();
-        if(packages==s.Tickets.Count)
+        if (s.Tickets[0] is TicketUnion)
         {
             return true;
         }
-        else
-            return false;
+        return false;
     }
 
     //绑定套票所需要的内容
     public void bindpackage(Scenic s)
     {
-        string[] ids= s.Tickets[0].ScenicIds.Split(',');
+        List<Scenic> list= s.Tickets[0].GetScenics().ToList();
         bindimglist="";
-        for (int i = 0; i < ids.Length; i++)
+        for (int i = 0; i < list.Count; i++)
         {
             if (i == 0)
             {
-                scpoint = bllscenic.GetScenicById(int.Parse(ids[0])).Position;
-                scmapname = bllscenic.GetScenicById(int.Parse(ids[0])).Name;
+                scpoint = list[0].Position;
+                scmapname = list[0].Name;
             }
             else
-                bindimglist += bllscenic.GetScenicById(int.Parse(ids[i])).Position+"," +bllscenic.GetScenicById(int.Parse(ids[i])).Name+ ":";
+                bindimglist += list[i].Position+"," +list[i].Name+ ":";
         }
         bindimglist.Substring(0, bindimglist.Length - 1);
-        imgcount=ids.Length-1;
+        imgcount=list.Count-1;
         introordertk.Visible = false;
     }
 }
