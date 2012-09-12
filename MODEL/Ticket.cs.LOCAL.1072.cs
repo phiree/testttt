@@ -37,17 +37,9 @@ namespace Model
             if (tp == null) return 0 ;
             return tp.Price;
         }
-
-        /// <summary>
-        /// 本门票对应的景区,联票需要重写此方法
-        /// </summary>
-        /// <returns></returns>
-        public virtual IList<Scenic> GetScenics()
-        {
-            IList<Scenic> ss = new List<Scenic>();
-            ss.Add(Scenic);
-            return ss;
-        }
-
+        //是否属于套票
+        public virtual bool IsPackage { get; set; }
+        //景区Id,以逗号隔开
+        public virtual string ScenicIds { get; set; }
     }
 }

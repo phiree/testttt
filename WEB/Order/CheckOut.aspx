@@ -139,7 +139,7 @@
             <ItemTemplate>
                 <tr>
                     <td style="padding-left: 20px; width: 25%">
-                        <%#Eval("Scenic.Name") %> <%if (Convert.ToBoolean( Eval("IsInUnion"))){ %>(联票)<%} %> <asp:Label Visible="false" runat="server" ID="lblUnion">(联票)</asp:Label>
+                        <%#Eval("Scenic.Name") %> <%if (Convert.ToBoolean( Eval("IsInUnion"))){ %>(联票)<%} %><asp:Label Visible="false" runat="server" ID="lblUnion">(联票)</asp:Label>
                     </td>
                     <td style="width: 35%;">
                         游览者姓名:&nbsp;<input type="text" tid='<%#Eval("TickedId") %>'  class="assignName" style="vertical-align: middle" />

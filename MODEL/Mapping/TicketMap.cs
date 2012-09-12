@@ -20,8 +20,7 @@ namespace Model.Mapping
            // References<TicketPrice>(x => x.TicketPrice);
             HasMany<TicketPrice>(x => x.TicketPrice).Cascade.All();//.Inverse();
             Map(x => x.IsMain);
-            Map(x => x.IsPackage);
-            Map(x => x.ScenicIds);
+           
         }
     }
 }
