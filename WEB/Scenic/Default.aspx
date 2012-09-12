@@ -155,7 +155,7 @@
             else
                 map.centerAndZoom(point, map.getZoom());                      // 初始化地图,设置中心点坐标和地图级别。
 
-            var txt = "<%=scbindname %>";
+            var txt = "<%=scmapname %>";
             var myCompOverlay1 = new ComplexCustomOverlay1(point, txt, 0);
             map.addOverlay(myCompOverlay1);
             //            if (position != "120.159033,30.28376") {
@@ -165,7 +165,7 @@
             for (var i = 0; i < parseInt("<%=imgcount %>"); i++) {
                 var positions = "<%=bindimglist %>".split(":")[i];
                 var point2 = new BMap.Point(positions.split(",")[0], positions.split(",")[1]);
-                var myCompOverlay2 = new ComplexCustomOverlay2(point2, "", 0);
+                var myCompOverlay2 = new ComplexCustomOverlay1(point2, positions.split(",")[2], 0);
                 map.addOverlay(myCompOverlay2);
             }
             map.addControl(new BMap.NavigationControl());
@@ -277,7 +277,7 @@
             </table>
             <hr />
         </div>
-        <div id="introordertk">
+        <div runat="server" id="introordertk" class="introordertk">
             <p class="captitle">
                 订票说明</p>
             <%--<div class="otinfo" runat="server" id="dp_info">--%>

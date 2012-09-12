@@ -1,28 +1,29 @@
-﻿function changesumprice() {
-    $("[id$='txtUseCount']").val($("[id$='txtUseCount']").val().replace(/[^0-9]/g, ''));
-    var usecount = $("[id$='txtUseCount']").val();
-    var yddj = $("#yddj").html();
+﻿function changesumprice(obj) {
+    $(obj).val($(obj).val().replace(/[^0-9]/g, ''));
+    var usecount = $(obj).val();
+    var yddj = $($(obj).parent().find(".num")[2]).html().substring(0, $($(obj).parent().find(".num")[2]).html().length - 1);
+    var tn = $(obj).parent().find("#ticketname").html();
     if (usecount != "" && usecount!="0") {
-        $("#sumprice").html(parseInt(usecount) * parseInt(yddj));
-        var ydcount = parseInt($("#ydmpcount").html());
-        var ydusedcount = parseInt($("#ydmpusedcount").html());
+        $(obj).parent().find("#sumprice").html(parseInt(usecount) * parseInt(yddj));
+        var ydcount = parseInt($($(obj).parent().find(".num")[0]).html());
+        var ydusedcount = parseInt($($(obj).parent().find(".num")[1]).html());
         if (parseInt(usecount) > (ydcount - ydusedcount)) {
-            $(".jxyd").html("原预定门票&nbsp;<span class='num'>" + (ydcount - ydusedcount) + "</span>&nbsp;张&nbsp;&nbsp;" + "额外添加预定<span class='num'>" + (usecount - ydcount + ydusedcount) + "</span>张");
+            $(obj).parent().next().html("原预定&nbsp;<span style='font-weight:bold'>" + tn + "</span>&nbsp;门票&nbsp;<span class='num'>" + (ydcount - ydusedcount) + "</span>&nbsp;张&nbsp;&nbsp;" + "额外添加预定&nbsp;<span class='num'>" + (usecount - ydcount + ydusedcount) + "</span>&nbsp;张");
         }
         else {
-            $(".jxyd").html("");
+            $(obj).parent().next().html("");
         }
     }
     else {
-        $("#sumprice").html(0 + "元");
-        $(".jxyd").html("");
+        $(obj).parent().find("#sumprice").html(0 + "元");
+        $(obj).parent().next().html("");
     }
 }
 
 function changeolcount(obj) {
     $(obj).val($(obj).val().replace(/[^0-9]/g, ''));
-    var olgpcount = parseInt($("#olgpcount").html());
-    var olusedcount = parseInt($("#olgpusedcount").html());
+    var olgpcount = parseInt($($(obj).parent().find(".num")[0]).html());
+    var olusedcount = parseInt($($(obj).parent().find(".num")[1]).html());
     var wtcount = parseInt($(obj).val());
     if (wtcount > (olgpcount - olusedcount)) {
         alert("使用数超过已购买数");

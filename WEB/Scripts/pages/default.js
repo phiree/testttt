@@ -12,12 +12,22 @@ $(function () {
         $(this).mouseout(function () {
             //$(this).find("span").css("color", "White");
             //$(this).find("span").css("font-weight", "");
-           
+
         });
     });
     $(".scoloum").mouseout(function () {
         $(".scoloum").find(".mark").css("display", "none");
     });
 
+
+    $(".t_sdiv a").each(function () {
+        $(this).mouseover(function () {
+            $(".t_sdiv").find(".mark").css("display", "block");
+            $(this).find(".mark").css("display", "none");
+        });
+    });
+    $(".t_sdiv").mouseout(function () {
+        $(".t_sdiv").find(".mark").css("display", "none");
+    });
 });
       

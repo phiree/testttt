@@ -22,6 +22,7 @@ public class TicketPriceHandler : IHttpHandler
         {
             string[] tmp = item.Split(new char[] { ',' });
             string ticketname = tmp[0];
+            ticketname = ticketname.Replace(' ', '+');
             string yuanjia = tmp[1];
             string xianfujia = tmp[2];
             string zaixianjia = tmp[3];

@@ -16,19 +16,20 @@ public partial class Manager_ScenicManage_ScenicPrice : basepage
     BLLContractScenicPrice bllcsp = new BLLContractScenicPrice();
     protected void Page_Load(object sender, EventArgs e)
     {
-        string paramId = Request["id"];
-        int scenicId;
-        if (!int.TryParse(paramId, out scenicId))
-        {
-            ErrHandler.Redirect(ErrType.ParamIllegal);
-        }
-        scenic = bllScenic.GetScenicById(scenicId);
-        csp = bllcsp.GetcspByscid(scenic.Id);
-        if (csp != null)
-            imgcontract.ImageUrl = "/ScenicImg/" + csp.PriceContract;
-        txtyj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 1).Price.ToString("0");
-        txtydj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 2).Price.ToString("0");
-        txtyhj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 3).Price.ToString("0");
+        //这里注释掉是因为前台审核价格需要的是显示价格列表，需要重做
+        //string paramId = Request["id"];
+        //int scenicId;
+        //if (!int.TryParse(paramId, out scenicId))
+        //{
+        //    ErrHandler.Redirect(ErrType.ParamIllegal);
+        //}
+        //scenic = bllScenic.GetScenicById(scenicId);
+        //csp = bllcsp.GetcspByscid(scenic.Id);
+        //if (csp != null)
+        //    imgcontract.ImageUrl = "/ScenicImg/" + csp.PriceContract;
+        //txtyj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 1).Price.ToString("0");
+        //txtydj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 2).Price.ToString("0");
+        //txtyhj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(scenic.Id, 3).Price.ToString("0");
     }
     ScenicCheckProgress checkprogress;
 

@@ -63,18 +63,21 @@ namespace CommonLibrary
                 FileName = scname + "_" + scFuncType;
             }
             string path = ConfigurationManager.AppSettings["HTMLInfoPath"].ToString() + FileName + ".html";
-            HTMLData=HTMLData.Replace("&lt;", "<");
-            HTMLData=HTMLData.Replace("&gt;", ">");
-            try
+            if (HTMLData != null)
             {
-                using (StreamWriter sw = new StreamWriter(path,false,Encoding.Default))
+                HTMLData = HTMLData.Replace("&lt;", "<");
+                HTMLData = HTMLData.Replace("&gt;", ">");
+                try
                 {
-                    sw.Write(HTMLData);
+                    using (StreamWriter sw = new StreamWriter(path, false, Encoding.Default))
+                    {
+                        sw.Write(HTMLData);
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("The process failed: {0}", e.ToString());
+                catch (Exception e)
+                {
+                    Console.WriteLine("The process failed: {0}", e.ToString());
+                }
             }
         }
     }

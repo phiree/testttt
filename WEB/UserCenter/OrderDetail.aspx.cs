@@ -109,8 +109,8 @@ public partial class UserCenter_MyOrder : basepage
         foreach (RepeaterItem item in rptOrderDetail2.Items)
         {
             OrderDetail od = bllorderdetail.GetOrderDetailByodid(int.Parse((item.FindControl("hfid") as HiddenField).Value));
-            decimal yhprice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(od.TicketPrice.Ticket.Scenic.Id, 3).Price;
-            decimal ydprice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(od.TicketPrice.Ticket.Scenic.Id, 2).Price;
+            decimal yhprice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(od.TicketPrice.Ticket, 3).Price;
+            decimal ydprice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(od.TicketPrice.Ticket, 2).Price;
             ydcountt += int.Parse((item.FindControl("notusedcount") as HtmlContainerControl).InnerHtml);
             ttpricee += int.Parse((item.FindControl("notusedcount") as HtmlContainerControl).InnerHtml) * int.Parse((item.FindControl("ydprice") as HtmlContainerControl).InnerHtml);
             cj += (int)(ydprice - yhprice) * int.Parse(((item.FindControl("notusedcount") as HtmlContainerControl).InnerHtml));
@@ -125,7 +125,7 @@ public partial class UserCenter_MyOrder : basepage
         foreach (RepeaterItem item in rptOrderDetail3.Items)
         {
             OrderDetail od = bllorderdetail.GetOrderDetailByodid(int.Parse((item.FindControl("hfid") as HiddenField).Value));
-            decimal ydprice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(od.TicketPrice.Ticket.Scenic.Id, 2).Price;
+            decimal ydprice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(od.TicketPrice.Ticket, 2).Price;
             wfcountt += int.Parse((item.FindControl("tp") as HtmlContainerControl).InnerHtml);
             ttwf += int.Parse((item.FindControl("sumprice") as HtmlContainerControl).InnerHtml);
             ttwfyd += (int)(int.Parse((item.FindControl("tp") as HtmlContainerControl).InnerHtml) * ydprice);
@@ -269,7 +269,7 @@ public partial class UserCenter_MyOrder : basepage
         IList<OrderDetail> od = bllorder.GetOrderByOrderid(orderid).OrderDetail;
         foreach (OrderDetail item in od)
         {
-            item.TicketPrice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(item.TicketPrice.Ticket.Scenic.Id, 2);
+            item.TicketPrice = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(item.TicketPrice.Ticket, 2);
             bllorderdetail.saveorupdate(item);
         }
     }

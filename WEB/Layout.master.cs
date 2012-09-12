@@ -98,7 +98,7 @@ public partial class Layout : System.Web.UI.MasterPage
     //绑定周边景区
     private void bindzbsc()
     {
-        if (scenic != null&&scenic.Position!=null)
+        if (scenic != null&&!string.IsNullOrEmpty(scenic.Position))
         {
             IList<Scenic> list = bllscenic.GetScenic();
             bindimg(list, scenic);

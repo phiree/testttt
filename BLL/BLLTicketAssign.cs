@@ -49,21 +49,21 @@ namespace BLL
         {
             Iticketassign.GetTicketInfoByIdCard(idcard, scenic,out ydcount,out usedcount,type);
         }
-        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, Scenic scenic,int type)
+        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, Ticket ticket,int type)
         {
-            return Iticketassign.GetNotUsedTicketAssign(idcard, scenic,type);
+            return Iticketassign.GetNotUsedTicketAssign(idcard, ticket,type);
         }
-        public TicketAssign GetLasetRecordByidcard(string idcard, Scenic scenic,int type)
+        public TicketAssign GetLasetRecordByidcard(string idcard, Ticket ticket,int type)
         {
-            return Iticketassign.GetLasetRecordByidcard(idcard, scenic,type);
+            return Iticketassign.GetLasetRecordByidcard(idcard, ticket,type);
         }
-        public void GetOlTicketInfoByIdcard(string idcard, Scenic scenic, out int olcount, out int usedolcount, int type)
+        public void GetOlTicketInfoByIdcard(string idcard, Ticket ticket, out int olcount, out int usedolcount, int type)
         {
-            Iticketassign.GetOlTicketInfoByIdcard(idcard, scenic, out olcount, out usedolcount, type);
+            Iticketassign.GetOlTicketInfoByIdcard(idcard, ticket, out olcount, out usedolcount, type);
         }
-        public IList<TicketAssign> Getolnotusedticketassign(string idcard, Scenic scenic, int type)
+        public IList<TicketAssign> Getolnotusedticketassign(string idcard, int ticketid, int type)
         {
-            return Iticketassign.Getolnotusedticketassign(idcard, scenic, type);
+            return Iticketassign.Getolnotusedticketassign(idcard, ticketid, type);
         }
         public List<TicketAssign> GetUsedRecord(string idcard)
         {
@@ -93,6 +93,10 @@ namespace BLL
         public IList<TicketAssign> GetTaByIdcardandscenic(string idcard, Scenic scenic)
         {
             return Iticketassign.GetTaByIdcardandscenic(idcard, scenic);
+        }
+        public IList<Ticket> GetTicketTypeByIdCard(string idcard)
+        {
+            return Iticketassign.GetTicketTypeByIdCard(idcard);
         }
     }
 }

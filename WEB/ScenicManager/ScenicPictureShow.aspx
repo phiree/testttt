@@ -22,7 +22,7 @@
         <asp:Repeater ID="rptPicShow1" runat="server">
             <ItemTemplate>
                 <div class="picshowinfo">
-                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/{0}") %>' /></a>
+                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/mainimg/{0}") %>' /></a>
                     <a class="aa" href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><%# Eval("Title") %></a>
                 </div>
             </ItemTemplate>
@@ -31,7 +31,7 @@
           <asp:Repeater ID="rptPicShow2" runat="server">
             <ItemTemplate>
                 <div class="picshowinfo">
-                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/{0}") %>' /></a>
+                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/detailimg/{0}") %>' /></a>
                     <a class="aa" href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><%# Eval("Title") %></a>
                 </div>
             </ItemTemplate>
@@ -40,7 +40,7 @@
           <asp:Repeater ID="rptPicShow3" runat="server">
             <ItemTemplate>
                 <div class="picshowinfo">
-                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/{0}") %>' /></a>
+                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/detailimg/{0}") %>' /></a>
                     <a class="aa" href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><%# Eval("Title") %></a>
                 </div>
             </ItemTemplate>
