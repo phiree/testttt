@@ -33,11 +33,12 @@ public partial class ScenicManager_sm : System.Web.UI.MasterPage
         }
         try
         {
+            
             liUserName.Text = mu.UserName;
             Scenic = scenicAdmin.Scenic;
             liScenicName.Text = Scenic.Name;
             IList<ScenicImg> list = bllscenicimg.GetSiByType(Scenic, 1);
-            imgScenic.Src ="/"+ System.Web.Configuration.WebConfigurationManager.AppSettings["ScenicImagePath"]+"/" + list[0].Name;
+            imgScenic.Src ="/"+ System.Web.Configuration.WebConfigurationManager.AppSettings["ScenicImagePath"]+"/mainimg/" + list[0].Name;
             if (!string.IsNullOrEmpty(Scenic.Position))
             {
                 HttpCookie httpcookie = new HttpCookie("unitposition", Scenic.Position);

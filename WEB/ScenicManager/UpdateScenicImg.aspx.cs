@@ -32,8 +32,15 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
         si.Title = txtTitle.Text;
         bool flag = false;
         string ss = "";
-        string strPath = Server.MapPath("\\ScenicImg");
-
+        string strPath = "";
+        if (si.ImgType == ImgType.主图)
+        {
+            strPath = Server.MapPath("\\ScenicImg\\mainimg");
+        }
+        else
+        {
+            strPath = Server.MapPath("\\ScenicImg\\detailimg");
+        }
         if (Request.QueryString["siid"] == null)
         {
             if (hfimgurl.Value == "")
@@ -109,7 +116,14 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
     {
         int siid = int.Parse(Request.QueryString["siid"]);
         ScenicImg si = bllsenicimg.GetSiBySiid(siid);
-        uploadimg.Src = "/ScenicImg/" + si.Name;
+        if (si.ImgType == ImgType.主图)
+        {
+            uploadimg.Src = "/ScenicImg/mainimg/" + si.Name;
+        }
+        else
+        {
+            uploadimg.Src = "/ScenicImg/detailimg/" + si.Name;
+        }
         ddlpictype.SelectedIndex = (int)si.ImgType - 1;
         txtTitle.Text = si.Title;
         txtDesc.Text = si.Description;

@@ -49,34 +49,39 @@
                 </h3>
             <p id="useridcard" runat="server" class="idcard">
                 身份证号码:&nbsp;</p>
-            <div class="onlinebuy" runat="server" id="idcardol">
-                在线支付购票&nbsp;<span id="olgpcount" class="num"><%= totalolcount %></span>&nbsp;张&nbsp;&nbsp;已使用了&nbsp;<span
-                    class="num" id="olgpusedcount"><%= useolcount %></span>&nbsp;张&nbsp;&nbsp;现用
-                <asp:TextBox ID="txtolusecount" runat="server" CssClass="bottom" Width="60px" onkeyup="return changeolcount(this)"></asp:TextBox>&nbsp;张
-            </div>
-            <div class="ydbuy" runat="server" id="idcardyuding">
-                预定门票&nbsp;<span id="ydmpcount" class="num"><%= totalyudingcount%></span>&nbsp;张&nbsp;&nbsp;已使用了&nbsp;<span
-                    class="num" id="ydmpusedcount"><%= usedyudingcount %></span>&nbsp;张&nbsp;&nbsp;现用
-                <asp:TextBox ID="txtUseCount" runat="server" Width="60px" CssClass="bottom" onkeyup="changesumprice()"></asp:TextBox>&nbsp;张&nbsp;&nbsp;预订单价为&nbsp;<span
-                    id="yddj" class="num"><%= yddj %>元</span>
+            <asp:Repeater ID="rptpayonline" runat="server" 
+                onitemdatabound="rptpayonline_ItemDataBound">
+                <ItemTemplate>
+                    <div class="onlinebuy" runat="server" id="idcardol">
+                        <asp:HiddenField ID="hfticketid" runat="server" Value='<%# Eval("Id") %>' />
+                        在线支付&nbsp;<span style="font-weight:bold"><%# Eval("Name") %></span>&nbsp;购票&nbsp;<span id="olgpcount" runat="server" class="num"></span>&nbsp;张&nbsp;&nbsp;已使用了&nbsp;<span
+                            class="num" id="olgpusedcount" runat="server"></span>&nbsp;张&nbsp;&nbsp;现用
+                        <asp:TextBox ID="txtolusecount" runat="server" CssClass="bottom" Width="60px" onkeyup="return changeolcount(this)"></asp:TextBox>&nbsp;张
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+
+            <asp:Repeater ID="rptpayyd" runat="server" 
+                onitemdatabound="rptpayyd_ItemDataBound">
+                <ItemTemplate>
+                    <asp:HiddenField ID="hfticketid" runat="server" Value='<%# Eval("Id") %>' />
+                    <div class="ydbuy" runat="server" id="idcardyuding">
+                预定&nbsp;<span id="ticketname" style="font-weight:bold"><%# Eval("Name") %></span>&nbsp;门票&nbsp;<span id="ydmpcount" class="num" runat="server"></span>&nbsp;张&nbsp;&nbsp;已使用了&nbsp;<span
+                    class="num" id="ydmpusedcount" runat="server"></span>&nbsp;张&nbsp;&nbsp;现用
+                <asp:TextBox ID="txtUseCount" runat="server" Width="60px" CssClass="bottom" onkeyup="changesumprice(this)"></asp:TextBox>&nbsp;张&nbsp;&nbsp;预订单价为&nbsp;<span
+                    id="yddj" runat="server" class="num"></span>
                 <img src="/theme/default/image/moneyicon.png" width="15px" height="20px" style="position: relative;
                     top: 4px;">需要支付&nbsp;<span id="sumprice" class="num">0元</span>
             </div>
             <div class="jxyd">
             </div>
+                </ItemTemplate>
+            </asp:Repeater>
+            
             <div class="yptg">
                 <asp:Button ID="Btnckpass" runat="server" CssClass="btnckpass" OnClick="Btnckpass_Click" />
             </div>
-            <div style="display: none">
-                <div>
-                    <h5>
-                        此身份证的预定信息
-                    </h5>
-                    <p>
-                        您总共预定了<span class="num"><%= totalyudingcount%></span>张，已使用了<span class="num"><%= usedyudingcount %></span>张，本次使用，<asp:Button
-                            ID="btnpay" runat="server" Text="支付" OnClick="btnpay_Click" OnClientClick="return querenpay();" /></p>
-                </div>
-            </div>
+            
         </div>
         <div runat="server" id="ywdiv" class="ywdiv">
             <span id="ywspan"><span style="display: block; float: left; padding: 0px; margin: 0px;cursor:pointer;" onmouseover="showywrecord()">

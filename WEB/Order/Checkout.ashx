@@ -139,16 +139,38 @@ public class CheckoutHandler : IHttpHandler
 
         foreach (CartItem item in cart)
         {
-            OrderDetail od = new OrderDetail();
-            od.Quantity = item.Qty;
+            //非套票类型的
+            if (!bllTickets.GetTicket(item.TicketId).IsPackage)
+            {
+                OrderDetail od = new OrderDetail();
+                od.Quantity = item.Qty;
 
-            Ticket t = bllTickets.GetTicket(item.TicketId);
-            TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
-            TicketAssign ta = new TicketAssign();
+                Ticket t = bllTickets.GetTicket(item.TicketId);
+                TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
+                TicketAssign ta = new TicketAssign();
 
-            od.TicketPrice = tp;
-            details.Add(od);
+                od.TicketPrice = tp;
+                details.Add(od);
+            }
+            //套票类型
+            else
+            {
+                Ticket t = bllTickets.GetTicket(item.TicketId);
+                string[] ids=bllTickets.GetTicket(item.TicketId).ScenicIds.Split(',');
+                foreach (string scid in ids)
+                {
+                    foreach (Ticket tt in new BLLScenic().GetScenicById(int.Parse(scid)).Tickets.Where(x => x.Name == t.Name))
+                    {
+                        OrderDetail od = new OrderDetail();
+                        od.Quantity = item.Qty;
+                        TicketPrice tp = tt.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
+                        TicketAssign ta = new TicketAssign();
 
+                        od.TicketPrice = tp;
+                        details.Add(od);
+                    }
+                }
+            }
         }
         return details;
 

@@ -31,7 +31,7 @@ namespace BLL
         public void SaveOrUpdateTicketPrice(Model.TicketPrice ticketprice)
         {
 
-            Model.TicketPrice tp = Iticketprice.GetTicketPriceByScenicandtypeid(ticketprice.Ticket.Scenic.Id, (int)ticketprice.PriceType);
+            Model.TicketPrice tp = Iticketprice.GetTicketPriceByScenicandtypeid(ticketprice.Ticket, (int)ticketprice.PriceType);
             if (tp == null)
             {
                 // ticketprice.Id = tp.Id;
@@ -61,13 +61,12 @@ namespace BLL
         /// <returns></returns>
         public Model.TicketPrice GetTicketPriceByScenicandtypeid(Model.Ticket ticket, Model.PriceType priceType)
         {
-            return GetTicketPriceByScenicandtypeid(ticket.Scenic.Id, (int)priceType);
+            return GetTicketPriceByScenicandtypeid(ticket, (int)priceType);
         }
 
-        public Model.TicketPrice GetTicketPriceByScenicandtypeid(int scenicid, int type)
+        public Model.TicketPrice GetTicketPriceByScenicandtypeid(Model.Ticket t, int type)
         {
-
-            return Iticketprice.GetTicketPriceByScenicandtypeid(scenicid, type);
+            return Iticketprice.GetTicketPriceByScenicandtypeid(t, type);
         }
         public IList<Model.TicketPrice> GetTicketPriceByAreaId(int areaid, int typeid, string level, out int sceniccount, int pageindex, int pagesize)
         {

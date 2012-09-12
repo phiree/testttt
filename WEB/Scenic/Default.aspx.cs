@@ -29,6 +29,7 @@ public partial class Scenic_Default : basepage
     public string transguid = "";
     public string scdesc = "";
     public string scshortdesc = "";
+    public string scmapname = "";
     public int scid;
     Scenic s;
     protected void Page_Load(object sender, EventArgs e)
@@ -43,8 +44,12 @@ public partial class Scenic_Default : basepage
             {
                 ErrHandler.Redirect(ErrType.UnknownError);
             }
-
             bind(s);
+            if (IsPackageScenic(s))
+            {
+                bindpackage(s);
+            }
+            
         }
         else
         {
@@ -70,6 +75,7 @@ public partial class Scenic_Default : basepage
         maintitlett.InnerHtml = scenic.Name;
         scpoint = scenic.Position;
         scbindname = scenic.Name;
+        scmapname = scenic.Name;
         scid = scenic.Id;
         areaname.HRef = "/Tickets/" + scenic.Area.SeoName;
         areaname.InnerHtml = scenic.Area.Name.Substring(3, scenic.Area.Name.Length - 3);
@@ -172,4 +178,36 @@ public partial class Scenic_Default : basepage
         }
     }
     #endregion
+
+    //判断是否为套票景区
+    public bool IsPackageScenic(Scenic s)
+    {
+        int packages=s.Tickets.Where(x => x.IsPackage== true).Count();
+        if(packages==s.Tickets.Count)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    //绑定套票所需要的内容
+    public void bindpackage(Scenic s)
+    {
+        string[] ids= s.Tickets[0].ScenicIds.Split(',');
+        bindimglist="";
+        for (int i = 0; i < ids.Length; i++)
+        {
+            if (i == 0)
+            {
+                scpoint = bllscenic.GetScenicById(int.Parse(ids[0])).Position;
+                scmapname = bllscenic.GetScenicById(int.Parse(ids[0])).Name;
+            }
+            else
+                bindimglist += bllscenic.GetScenicById(int.Parse(ids[i])).Position+"," +bllscenic.GetScenicById(int.Parse(ids[i])).Name+ ":";
+        }
+        bindimglist.Substring(0, bindimglist.Length - 1);
+        imgcount=ids.Length-1;
+        introordertk.Visible = false;
+    }
 }

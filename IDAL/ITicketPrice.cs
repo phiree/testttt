@@ -9,7 +9,7 @@ namespace IDAL
     {
         IList<Model.TicketPrice> GetTicketPriceByScenicId(int scenicid);
         void SaveOrUpdateTicketPrice(Model.TicketPrice ticketprice);
-        Model.TicketPrice GetTicketPriceByScenicandtypeid(int scenicid, int typeid);
+        Model.TicketPrice GetTicketPriceByScenicandtypeid(Model.Ticket t, int typeid);
         IList<Model.TicketPrice> GetTicketPriceByAreaId(int areaid, int typeid,string level,out int sceniccount,int pageindex,int pagesize);
     }
 }

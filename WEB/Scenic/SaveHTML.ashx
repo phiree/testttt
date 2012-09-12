@@ -12,6 +12,7 @@ public class SaveHTML : IHttpHandler {
         context.Response.ContentType = "text/plain";
         string type = context.Request.QueryString["type"]; 
         string scname = context.Request.QueryString["scname"];
+        scname = scname.Replace(' ', '+');
         string scfunctype = context.Request.QueryString["scfunctype"];
         string htmldata=context.Request.Form["html"];
         HTMLInfo htmlinfo = new HTMLInfo();

@@ -37,5 +37,9 @@ namespace Model
             if (tp == null) return 0 ;
             return tp.Price;
         }
+        //是否属于套票
+        public virtual bool IsPackage { get; set; }
+        //景区Id,以逗号隔开
+        public virtual string ScenicIds { get; set; }
     }
 }
