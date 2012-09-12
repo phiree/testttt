@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Model;
 using BLL;
-public partial class Scenic_CheckOut :  AuthPage
+public partial class Scenic_CheckOut : AuthPage
 {
-    
+
     BLLTicket bllTicket = new BLLTicket();
     BLLOrder bllOrder = new BLLOrder();
     BLLCommonUser bllCu = new BLLCommonUser();
@@ -27,7 +27,7 @@ public partial class Scenic_CheckOut :  AuthPage
         BindAssign();
 
     }
-  
+
     private void BindTickets()
     {
         rptCart.DataSource = tickets;
@@ -36,12 +36,17 @@ public partial class Scenic_CheckOut :  AuthPage
     BLLScenicTicket bllST = new BLLScenicTicket();
     private void BindAssign()
     {
-       // #unionticket
+        // #unionticket
         IList<AssignedScenic> assScenics = new List<AssignedScenic>();
         foreach (Ticket t in tickets)
         {
             IList<Scenic> scenics = bllST.GetScenicByTicket(t.Id);
-            bool isInUnion=scenics.Count>1;
+            bool isInUnion = scenics.Count >= 2;
+            if (!isInUnion)
+            {
+                scenics.Add(t.Scenic);
+            }
+
             foreach (Scenic s in scenics)
             {
 
@@ -57,18 +62,19 @@ public partial class Scenic_CheckOut :  AuthPage
                     assScenics.Add(assScenic);
                 }
             }
+
         }
         rptAssign.DataSource = assScenics;
-       // rptAssign.DataSource = tickets;
+        // rptAssign.DataSource = tickets;
         rptAssign.DataBind();
     }
 
-    private class AssignedScenic:IComparable
+    private class AssignedScenic : IComparable
     {
         public int TicketId { get; set; }
         public Scenic Scenic { get; set; }
         public bool IsInUnion { get; set; }
-      
+
 
 
         public int CompareTo(object obj)
@@ -77,10 +83,10 @@ public partial class Scenic_CheckOut :  AuthPage
             if (objAS.TicketId == TicketId && Scenic.Id == Scenic.Id)
                 return 0;
             else return 1;
-           
+
         }
     }
- 
+
     protected void rptCart_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -95,13 +101,13 @@ public partial class Scenic_CheckOut :  AuthPage
             //inputQty.
         }
     }
-    
+
     /*常用联系人*/
     private void BindContacts()
     {
-      IList<CommonUser> cu=  bllCu.GetCommonUserByUserIdandidcard(CurrentMember.Id);
-      rptContacts.DataSource = cu;
-      rptContacts.DataBind();
+        IList<CommonUser> cu = bllCu.GetCommonUserByUserIdandidcard(CurrentMember.Id);
+        rptContacts.DataSource = cu;
+        rptContacts.DataBind();
     }
     /// <summary>
     /// 绑定 门票分配里的 门票列表
