@@ -73,6 +73,7 @@
     <Compile Include="Mapping\TopicMap.cs" />
     <Compile Include="Mapping\TourismStatistics\TS_GroupConsumListMap.cs" />
     <Compile Include="Mapping\TicketUnionMap.cs" />
+    <Compile Include="Mapping\TourismStatistics\TS_TourEnterpriseMap.cs" />
     <Compile Include="PromotionStatic.cs" />
     <Compile Include="ScenicMap.cs" />
     <Compile Include="Mapping\CommonUserMap.cs" />

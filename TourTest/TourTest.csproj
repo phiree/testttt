@@ -114,8 +114,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLLTest\AreaTest.cs" />
-    <Compile Include="BLLTest\BackManagerTest.cs" />
     <Compile Include="BLLTest\ExcelOperTets.cs" />
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="BLLTest\OrderTest.cs" />
