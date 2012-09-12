@@ -7,6 +7,10 @@ namespace Model
 {
     public class Scenic
     {
+        public Scenic()
+        {
+            Tickets = new List<Ticket>();
+        }
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
         public virtual string SeoName { get; set; }

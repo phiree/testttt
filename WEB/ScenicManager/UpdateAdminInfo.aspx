@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true" CodeFile="UploadAdminInfo.aspx.cs" Inherits="ScenicManager_UploadAdminInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true" CodeFile="UpdateAdminInfo.aspx.cs" Inherits="ScenicManager_UploadAdminInfo" %>
 <%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" Runat="Server">
     <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
