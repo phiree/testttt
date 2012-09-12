@@ -33,13 +33,14 @@ public partial class Scenic_CheckOut :  AuthPage
         rptCart.DataSource = tickets;
         rptCart.DataBind();
     }
+    BLLScenicTicket bllST = new BLLScenicTicket();
     private void BindAssign()
     {
        // #unionticket
         IList<AssignedScenic> assScenics = new List<AssignedScenic>();
         foreach (Ticket t in tickets)
         {
-            IList<Scenic> scenics=t.GetScenics();
+            IList<Scenic> scenics = bllST.GetScenicByTicket(t.Id);
             bool isInUnion=scenics.Count>1;
             foreach (Scenic s in scenics)
             {
