@@ -92,12 +92,12 @@
 
         var inputname = $(nameinput);
         var inputidcard = $(idcardinput);
-       
-            $(inputname[currentCustomerIndex]).val(name);
-            $(inputidcard[currentCustomerIndex]).val(idcard);
-            $(inputidcard[currentCustomerIndex]).attr("cid", commuserId);
 
-        
+        $(inputname[currentCustomerIndex]).val(name);
+        $(inputidcard[currentCustomerIndex]).val(idcard);
+        $(inputidcard[currentCustomerIndex]).attr("cid", commuserId);
+
+
         $("#contactlist").hide();
         veriidcard();
 
@@ -152,6 +152,7 @@
             var tid = item.attr("tid");
             var cid = item.attr("cid");
             var idcardno = item.val();
+            var sid = item.attr("sid");
             var returnmsg = test(idcardno);
             if (returnmsg != "验证通过") {
                 item.focus();
@@ -161,7 +162,7 @@
 
             var name = item.parent().prev().children().val().trim();
             //验证数据有效性(身份证)
-            ap += tid + "-" + name + "-" + idcardno + "_";
+            ap += tid + "-" + name + "-" + idcardno + "-"+sid+"_";
 
 
 

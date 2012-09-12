@@ -8,7 +8,7 @@ namespace Model
     /// <summary>
     /// 团队信息
     /// </summary>
-    public class TS_GroupConsumeList
+    public class TS_GroupInfo
     {
         /// <summary>
         /// 旅行社所属区域的区域码

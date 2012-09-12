@@ -131,20 +131,21 @@
                 </FooterTemplate>
             </asp:Repeater>
         </div>
-        <asp:Repeater runat="server" ID="rptAssign">
+        <asp:Repeater runat="server" ID="rptAssign" 
+            onitemdatabound="rptAssign_ItemDataBound">
             <HeaderTemplate>
                 <table id="tilist">
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
                     <td style="padding-left: 20px; width: 25%">
-                        <%#Eval("Scenic.Name") %>
+                        <%#Eval("Scenic.Name") %> <%if (Convert.ToBoolean( Eval("IsInUnion"))){ %>(联票)<%} %> <asp:Label Visible="false" runat="server" ID="lblUnion">(联票)</asp:Label>
                     </td>
                     <td style="width: 35%;">
-                        游览者姓名:&nbsp;<input type="text" tid='<%#Eval("Id") %>' class="assignName" style="vertical-align: middle" />
+                        游览者姓名:&nbsp;<input type="text" tid='<%#Eval("TickedId") %>'  class="assignName" style="vertical-align: middle" />
                     </td>
                     <td style="width: 50%;">
-                        身份证号:&nbsp;<input type="text" tid='<%#Eval("Id")%>' onblur="veriidcard()" class="assignIdcard"
+                        身份证号:&nbsp;<input type="text" tid='<%#Eval("TickedId")%>'  sid='<%#Eval("Scenic.Id")%>'   onblur="veriidcard()" class="assignIdcard"
                             style="vertical-align: middle" />
                         <span class="veritext"></span>
                     </td>

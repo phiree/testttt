@@ -35,10 +35,46 @@ public partial class Scenic_CheckOut :  AuthPage
     }
     private void BindAssign()
     {
-        rptAssign.DataSource = tickets;
+       // #unionticket
+        IList<AssignedScenic> assScenics = new List<AssignedScenic>();
+        foreach (Ticket t in tickets)
+        {
+            IList<Scenic> scenics=t.GetScenics();
+            bool isInUnion=scenics.Count>1;
+            foreach (Scenic s in scenics)
+            {
+
+                AssignedScenic assScenic = new AssignedScenic();
+
+
+                assScenic.IsInUnion = isInUnion;
+                assScenic.TicketId = t.Id;
+                assScenic.Scenic = s;
+
+                if (!assScenics.Contains(assScenic))
+                {
+                    assScenics.Add(assScenic);
+                }
+            }
+        }
+        rptAssign.DataSource = assScenics;
+       // rptAssign.DataSource = tickets;
         rptAssign.DataBind();
     }
 
+    private class AssignedScenic
+    {
+        public int TicketId { get; set; }
+        public Scenic Scenic { get; set; }
+        public bool IsInUnion { get; set; }
+        public override bool Equals(object obj)
+        {
+            var objAS = (AssignedScenic)obj;
+            return objAS.TicketId == TicketId && Scenic.Id == Scenic.Id;
+            return base.Equals(obj);
+        }
+        
+    }
  
     protected void rptCart_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
@@ -65,5 +101,15 @@ public partial class Scenic_CheckOut :  AuthPage
     /// <summary>
     /// 绑定 门票分配里的 门票列表
     /// </summary>
-   
+
+    protected void rptAssign_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+
+            Label lbl = e.Item.FindControl("lblUnion") as Label;
+            lbl.Visible = t.GetScenics().Count > 1;
+        }
+    }
 }

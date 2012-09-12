@@ -71,6 +71,7 @@
     <Compile Include="DiscountCode.cs" />
     <Compile Include="Mapping\Order\RefundMap.cs" />
     <Compile Include="Mapping\TopicMap.cs" />
+    <Compile Include="Mapping\TourismStatistics\TS_GroupConsumListMap.cs" />
     <Compile Include="PromotionStatic.cs" />
     <Compile Include="ScenicMap.cs" />
     <Compile Include="Mapping\CommonUserMap.cs" />
@@ -132,9 +133,13 @@
     <Compile Include="Vote.cs" />
     <Compile Include="FormatSerialNo.cs" />
     <Compile Include="Refund.cs" />
+    <Compile Include="TicketMulti.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Check\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

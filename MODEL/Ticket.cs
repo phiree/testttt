@@ -37,5 +37,15 @@ namespace Model
             if (tp == null) return 0 ;
             return tp.Price;
         }
+        /// <summary>
+        /// 本门票对应的景区,联票需要重写此方法
+        /// </summary>
+        /// <returns></returns>
+        public virtual IList<Scenic> GetScenics()
+        {
+            IList<Scenic> ss = new List<Scenic>();
+            ss.Add(Scenic);
+            return ss;
+        }
     }
 }
