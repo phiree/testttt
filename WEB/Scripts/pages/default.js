@@ -22,8 +22,10 @@ $(function () {
 
     $(".t_sdiv a").each(function () {
         $(this).mouseover(function () {
-            $(".t_sdiv").find(".mark").css("display", "block");
-            $(this).find(".mark").css("display", "none");
+            if ($(this).attr("class") != "dj") {
+                $(".t_sdiv").find(".mark").css("display", "block");
+                $(this).find(".mark").css("display", "none");
+            }
         });
     });
     $(".t_sdiv").mouseout(function () {

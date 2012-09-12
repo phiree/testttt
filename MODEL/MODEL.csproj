@@ -70,9 +70,9 @@
     <Compile Include="ContractScenicPrice.cs" />
     <Compile Include="DiscountCode.cs" />
     <Compile Include="Mapping\Order\RefundMap.cs" />
+    <Compile Include="Mapping\ScenicTicketMap.cs" />
     <Compile Include="Mapping\TopicMap.cs" />
     <Compile Include="Mapping\TourismStatistics\TS_GroupConsumListMap.cs" />
-    <Compile Include="Mapping\TicketUnionMap.cs" />
     <Compile Include="Mapping\TourismStatistics\TS_TourEnterpriseMap.cs" />
     <Compile Include="PromotionStatic.cs" />
     <Compile Include="ScenicMap.cs" />
@@ -135,7 +135,6 @@
     <Compile Include="Vote.cs" />
     <Compile Include="FormatSerialNo.cs" />
     <Compile Include="Refund.cs" />
-    <Compile Include="TicketUnion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Check\" />

@@ -7,8 +7,8 @@ namespace Model
 {
     public class ScenicTicket
     {
-        public virtual Guid Id;
-        public virtual Scenic scenic;
-        public virtual TicketUnion ticketunion;
+        public virtual Guid Id {get;set;}
+        public virtual Scenic scenic {get;set;}
+        public virtual Ticket ticket {get;set;}
     }
 }

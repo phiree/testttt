@@ -215,10 +215,10 @@ namespace DAL
         }
 
 
-        public IList<Ticket> GetTicketTypeByIdCard(string idcard)
+        public IList<Ticket> GetTicketTypeByIdCard(string idcard,Scenic s)
         {
             string sql = "select ta.OrderDetail.TicketPrice.Ticket.Id,ta.OrderDetail.TicketPrice.Ticket.Name from TicketAssign ta";
-            sql += " where ta.IdCard='" + idcard + "' group by ta.OrderDetail.TicketPrice.Ticket.Id,ta.OrderDetail.TicketPrice.Ticket.Name";
+            sql += " where ta.IdCard='" + idcard + "' and ta.Scenic.Id="+s.Id+" group by ta.OrderDetail.TicketPrice.Ticket.Id,ta.OrderDetail.TicketPrice.Ticket.Name";
             IQuery query = session.CreateQuery(sql.ToString());
             IList<Object[]> list;
             list = query.List<object[]>();

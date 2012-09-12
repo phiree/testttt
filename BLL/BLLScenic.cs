@@ -106,42 +106,6 @@ namespace BLL
             IScenic.UpdateScenicInfo(slist);
         }
 
-        public List<Model.ScenicTicket> GetScenicTicket(int areaid, int scid)
-        {
-            List<Model.ScenicTicket> ScenicTicket = new List<ScenicTicket>();
-            IList<Ticket> list;
-            if (scid == 0)
-            {
-                list = iticket.GetTicketByAreaId(areaid);
-            }
-            else
-                list = iticket.GetTicketByscId(scid);
-            foreach (Ticket item in list)
-            {
-                Model.ScenicTicket st = new ScenicTicket();
-                st.Scenic = item.Scenic;
-                st.Ticket = item;
-                IList<TicketPrice> tp = ITicketprice.GetTicketPriceByScenicId(item.Scenic.Id);
-                foreach (TicketPrice items in tp)
-                {
-                    switch (items.PriceType)
-                    {
-                        case PriceType.Normal:
-                            st.Price1 = items.Price;
-                            break;
-
-                        case PriceType.PayOnline: st.Price2 = items.Price; break;
-
-                        case PriceType.PreOrder: st.Price3 = items.Price; break;
-                        case PriceType.PostCardDiscount: st.Price4 = items.Price; break;
-                        case PriceType.DigitalPostCardDiscount: st.Price5 = items.Price; break;
-                    }
-
-                }
-                ScenicTicket.Add(st);
-            }
-            return ScenicTicket;
-        }
 
         public ScenicCheckProgress GetStatus(int scenicId, ScenicModule module)
         {

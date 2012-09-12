@@ -117,7 +117,6 @@
     <Compile Include="BLLTest\ExcelOperTets.cs" />
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="BLLTest\OrderTest.cs" />
-    <Compile Include="BLLTest\ScenicTest.cs" />
     <Compile Include="BLLTest\TicketTest.cs" />
     <Compile Include="Common\ContentReader.cs" />
     <Compile Include="Common\testStringHelper.cs" />
@@ -129,7 +128,6 @@
     <Compile Include="TDD\order\CheckoutTEst.cs" />
     <Compile Include="TDD\Payment\TetsPayment.cs" />
     <Compile Include="TDD\RoleTest.cs" />
-    <Compile Include="ScenicTest.cs" />
     <Compile Include="TDD\ScenicCheck\TestCode.cs" />
     <Compile Include="TestDAL\TestDALRole.cs" />
     <Compile Include="TestData.cs" />

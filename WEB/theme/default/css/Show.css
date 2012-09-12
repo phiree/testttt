@@ -1,4 +1,13 @@
-﻿.fcolum
+﻿.lpcolum
+{
+    display:inline-block;
+    width:950px;
+    height:253px;
+    background:url("/theme/default/image/newversion/bottombg.png");
+    background-repeat:no-repeat;
+    background-position:bottom;
+}
+.fcolum
 {
     display:inline-block;
     width:950px;

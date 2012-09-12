@@ -68,6 +68,11 @@
                 下一张</div>
         </div>
     </div>
+    <div class="lpcolum">
+        <a href="">
+            <img width="100%" height="100%" src="/ScenicImg/套票江郎山.jpg" alt="套票江郎山" />
+        </a>
+    </div>
      <div class="fcolum">
         <div class="fcolum1">
             <span class="fcol1_scname">
@@ -249,7 +254,7 @@
                     <span style="margin:280px 0px 0px 0px;" class="t_s_span">江南大峡谷</span>
                     <div class="mark" style="width:100%; height:100%;"></div>
                 </a>
-                <a href="" style=" position:absolute; display:block; width:200px; height:150px; right:0px; top:0px">
+                <a href="" style=" position:absolute; display:block; width:200px; height:150px; right:0px; top:0px" class="dj">
                     <span style="margin:127px 0px 0px 115px;" class="t_s_span">江南古长城</span>
                 </a>
             </div>

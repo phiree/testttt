@@ -68,7 +68,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             string idcard = e.CommandArgument.ToString();
             ViewState["idcard"] = idcard;
             //bllticketassign.GetTicketInfoByIdCard(idcard, CurrentScenic, out totalyudingcount, out usedyudingcount,2);
-            rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+            rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(),CurrentScenic);
             rptpayyd.DataBind();
             if (rptpayyd.Items.Count== 0)
                 rptpayyd.Visible = false;
@@ -77,7 +77,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
             //在线购买
             //bllticketassign.GetOlTicketInfoByIdcard(idcard, CurrentScenic, out totalolcount, out useolcount, 3);
-            rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+            rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
             rptpayonline.DataBind();
             if (rptpayonline.Items.Count == 0)
                 rptpayonline.Visible = false;
@@ -139,7 +139,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         CurrentScenic = Master.Scenic;
         ViewState["idcard"] = idcard;
         //bllticketassign.GetTicketInfoByIdCard(idcard, CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
-        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
         rptpayyd.DataBind();
         if (rptpayyd.Items.Count == 0)
             rptpayyd.Visible = false;
@@ -148,7 +148,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
         //在线购买
         //bllticketassign.GetOlTicketInfoByIdcard(idcard, CurrentScenic, out totalolcount, out useolcount, 3);
-        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard);
+        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard, CurrentScenic);
         rptpayonline.DataBind();
         if (rptpayonline.Items.Count == 0)
             rptpayonline.Visible = false;
@@ -169,7 +169,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //预定
         CurrentScenic = Master.Scenic;
         ViewState["idcard"] = idcard;
-        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
         rptpayyd.DataBind();
         if (rptpayyd.Items.Count == 0)
             rptpayyd.Visible = false;
@@ -178,7 +178,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
         //在线购买
         //bllticketassign.GetOlTicketInfoByIdcard(idcard, CurrentScenic, out totalolcount, out useolcount, 3);
-        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard);
+        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard, CurrentScenic);
         rptpayonline.DataBind();
         if (rptpayonline.Items.Count == 0)
             rptpayonline.Visible = false;
@@ -252,6 +252,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     TicketAssign ta = list[0];
                     ta.IsUsed = true;
                     ta.UsedTime = DateTime.Now;
+                    ta.Scenic = CurrentScenic;
                     bllticketassign.SaveOrUpdate(ta);
                     //查询订单中所有的detail是否都已付完款
                     List<TicketAssign> listticketassign = bllticketassign.GetTaByIdCard(ViewState["idcard"].ToString()).ToList();
@@ -289,7 +290,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
                 //bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
-                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
                 rptpayyd.DataBind();
                 if (rptpayyd.Items.Count == 0)
                     rptpayyd.Visible = false;
@@ -297,7 +298,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     rptpayyd.Visible = true;
                 //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
                 //bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
-                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
                 rptpayonline.DataBind();
                 return;
             }
@@ -344,7 +345,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
                 //bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
-                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
                 rptpayyd.DataBind();
                 if (rptpayyd.Items.Count == 0)
                     rptpayyd.Visible = false;
@@ -352,7 +353,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     rptpayyd.Visible = true;
                 //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
                 //bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
-                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
                 rptpayonline.DataBind();
                 return;
             }
@@ -360,7 +361,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //txtUseCount.Text = "";
         //txtolusecount.Text = "";
         //bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
-        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
         rptpayyd.DataBind();
         if (rptpayyd.Items.Count == 0)
             rptpayyd.Visible = false;
@@ -368,7 +369,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             rptpayyd.Visible = true;
         //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
         //bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
-        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
         rptpayonline.DataBind();
     }
 
@@ -409,7 +410,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             //预定
             CurrentScenic = Master.Scenic;
             ViewState["idcard"] = idcard;
-            rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+            rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
             rptpayyd.DataBind();
             if (rptpayyd.Items.Count == 0)
                 rptpayyd.Visible = false;
@@ -418,7 +419,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
             //在线购买
             //bllticketassign.GetOlTicketInfoByIdcard(idcard, CurrentScenic, out totalolcount, out useolcount, 3);
-            rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard);
+            rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard, CurrentScenic);
             rptpayonline.DataBind();
             if (rptpayonline.Items.Count == 0)
                 rptpayonline.Visible = false;
