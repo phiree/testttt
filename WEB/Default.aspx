@@ -69,8 +69,8 @@
         </div>
     </div>
     <div class="lpcolum">
-        <a href="">
-            <img width="100%" height="100%" src="/ScenicImg/套票江郎山.jpg" alt="套票江郎山" />
+        <a href="/topic/jiangshanlianpiao.aspx">
+            <img width="100%" height="100%" src="/Img/jiangshanlianpiao_home.png" alt="套票江郎山" />
         </a>
     </div>
      <div class="fcolum">

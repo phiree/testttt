@@ -11,8 +11,8 @@ namespace Model.Mapping
         public ScenicTicketMap()
         {
             Id(x => x.Id);
-            References<Scenic>(x => x.scenic);
-            References<Ticket>(x => x.ticket);
+            References<Scenic>(x => x.Scenic);
+            References<Ticket>(x => x.Ticket);
         }
     }
 }

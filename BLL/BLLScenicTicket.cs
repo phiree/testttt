@@ -12,8 +12,7 @@ namespace BLL
     public class BLLScenicTicket
     {
         IScenicTicket iticket;
-        BLLScenic bllScenic = new BLLScenic();
-
+       
         public IScenicTicket IScenicTicket
         {
             get
@@ -29,7 +28,7 @@ namespace BLL
 
         public IList<Scenic> GetScenicByTicket(int ticketId)
         {
-            return iticket.GetScenicsByTicketId(ticketId);
+            return IScenicTicket.GetScenicsByTicketId(ticketId);
         }
 
     }

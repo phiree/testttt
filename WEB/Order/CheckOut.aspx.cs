@@ -63,18 +63,22 @@ public partial class Scenic_CheckOut :  AuthPage
         rptAssign.DataBind();
     }
 
-    private class AssignedScenic
+    private class AssignedScenic:IComparable
     {
         public int TicketId { get; set; }
         public Scenic Scenic { get; set; }
         public bool IsInUnion { get; set; }
-        public override bool Equals(object obj)
+      
+
+
+        public int CompareTo(object obj)
         {
             var objAS = (AssignedScenic)obj;
-            return objAS.TicketId == TicketId && Scenic.Id == Scenic.Id;
-            return base.Equals(obj);
+            if (objAS.TicketId == TicketId && Scenic.Id == Scenic.Id)
+                return 0;
+            else return 1;
+           
         }
-        
     }
  
     protected void rptCart_ItemDataBound(object sender, RepeaterItemEventArgs e)
