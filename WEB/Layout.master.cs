@@ -61,7 +61,7 @@ public partial class Layout : System.Web.UI.MasterPage
        // 绑定最近浏览过的记录
         if (scenic != null)
         {
-            if (Request.Cookies["visitedscenic"] == null)//如果没有cookie，则生成该cookie,并且添加当前的景区
+            if (Request.Cookies["visitedscenic"]==null)//如果没有cookie，则生成该cookie,并且添加当前的景区
             {
                 Response.Cookies.Add(new HttpCookie("visitedscenic", scenic.Id.ToString()));
             }
@@ -77,8 +77,11 @@ public partial class Layout : System.Web.UI.MasterPage
                 }
                 if (flag == 0)
                 {
-                    Request.Cookies["visitedscenic"].Value = Request.Cookies["visitedscenic"].Value + "," + scenic.Id.ToString();
-                    Response.Cookies["visitedscenic"].Value = Request.Cookies["visitedscenic"].Value;
+                    if (Request.Cookies["visitedscenic"].Value.Split(',').Length < 10)
+                    {
+                        Request.Cookies["visitedscenic"].Value = Request.Cookies["visitedscenic"].Value + "," + scenic.Id.ToString();
+                        Response.Cookies["visitedscenic"].Value = Request.Cookies["visitedscenic"].Value;
+                    }
                 }
             }
         }

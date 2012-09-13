@@ -1,0 +1,43 @@
+﻿body 
+{
+    font-size:12px;
+    padding:0px;
+    margin:0px;
+}
+#main
+{
+    width:960px;
+    margin:0px auto;
+}
+#top
+{
+    display:block;
+    height:115px;
+    width:100%;
+    background:url("/theme/default/image/12301.jpg");
+    background-repeat:no-repeat;
+}
+#top h3
+{
+    font-size:30px;
+    text-align:center;
+    padding:0px;
+    margin:0px;
+    line-height:140px;
+}
+#login
+{
+    width:250px;
+    margin:100px auto;
+}
+#chooselist
+{
+    width:400px;
+    margin:20px auto;
+    text-align:center;
+}
+.userinfo
+{
+    width:250px;
+    margin:50px auto;
+}

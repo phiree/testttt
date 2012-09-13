@@ -127,7 +127,7 @@
                 <ItemTemplate>
                     <tr>
                         <td style="width:80%;">
-                            <a tid='<%#Eval("Id") %>' href='/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html' style="margin-left:5px;">
+                            <a tid='<%#Eval("Id") %>' href='/Tickets/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html' style="margin-left:5px;">
                                 <%#Eval("Scenic.Name")%>-<%#Eval("Name")%></a>
                         </td>
                         <td style="width:40px;">
