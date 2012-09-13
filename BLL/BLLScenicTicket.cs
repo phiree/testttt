@@ -31,6 +31,11 @@ namespace BLL
             return IScenicTicket.GetScenicsByTicketId(ticketId);
         }
 
+
+        public IList<Ticket> GetTicketByScenicId(int scenicid)
+        {
+            return IScenicTicket.GetTicketByScenicId(scenicid);
+        }
     }
        
     

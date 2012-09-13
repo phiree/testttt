@@ -182,18 +182,16 @@ public partial class Scenic_Default : basepage
     //判断是否为套票景区
     public bool IsPackageScenic(Scenic s)
     {
-        //var temp = s.Tickets[0] as TicketUnion;
-        //if (temp!=null)
-        //{
-        //    return true;
-        //}
+        BLLScenicTicket bllscenicticket = new BLLScenicTicket();
+        if (bllscenicticket.GetScenicByTicket(s.Tickets[0].Id).Count > 0)
+            return true;
         return false;
     }
 
     //绑定套票所需要的内容
     public void bindpackage(Scenic s)
     {
-        List<Scenic> list= s.Tickets[0].GetScenics().ToList();
+        List<Scenic> list = new BLLScenicTicket().GetScenicByTicket(s.Tickets[0].Id).ToList();
         bindimglist="";
         for (int i = 0; i < list.Count; i++)
         {
