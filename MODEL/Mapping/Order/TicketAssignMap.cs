@@ -15,6 +15,7 @@ namespace Model.Mapping.Order
             Map(x => x.Name);
             Map(x => x.IsUsed);
             Map(x => x.UsedTime);
+            References<Scenic>(x => x.Scenic);
             References<OrderDetail>(x => x.OrderDetail);
         }
     }
