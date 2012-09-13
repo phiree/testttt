@@ -122,10 +122,10 @@ public class CheckoutHandler : IHttpHandler
     }
     private string DoPayment(Model.Order order)
     {
-        TourLog.LogPayment("**************准备支付订单:"+order.Id+"***************");
+        TourLog.LogPayment("**************准备支付订单:" + order.Id + "***************");
         BLLPayment payment = new BLLPayment(order);
         TourLog.LogPayment("跳转至支付宝开始支付:" + order.Id + "");
-      
+
         return payment.Pay();
     }
 
@@ -144,7 +144,35 @@ public class CheckoutHandler : IHttpHandler
 
             Ticket t = bllTickets.GetTicket(item.TicketId);
             TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
-            TicketAssign ta = new TicketAssign();
+            //TicketAssign ta = new TicketAssign();
+
+            od.TicketPrice = tp;
+            details.Add(od);
+
+        }
+        return details;
+
+    }
+
+    private List<OrderDetail> GetDetails(int ticketid)
+    {
+
+        IList<CartItem> cart = new List<CartItem>()
+        {
+            new CartItem(){TicketId=ticketid,Qty=1}
+        };
+
+
+        List<OrderDetail> details = new List<OrderDetail>();
+
+        foreach (CartItem item in cart)
+        {
+            OrderDetail od = new OrderDetail();
+            od.Quantity = item.Qty;
+
+            Ticket t = bllTickets.GetTicket(item.TicketId);
+            TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
+            //TicketAssign ta = new TicketAssign();
 
             od.TicketPrice = tp;
             details.Add(od);

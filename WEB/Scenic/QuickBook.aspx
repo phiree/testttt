@@ -11,6 +11,7 @@
 
         $(function () {
             $("#btnOK").click(function () {
+            
                 var pricetype = 2;
                 var name = $.trim($("#txtName").val());
                 var idcard = $.trim($("#txtIdcard").val());
@@ -43,10 +44,14 @@
                     return false;
                 }
 
-                var tid = "";
-                var sid = "";
+                var tid = "55";
+                var sid = "29";
                 var b = tid + "-" + name + "-" + idcard + "-" + sid + "_";
+                //注册
 
+                //订票
+
+                //分配票
                 //assign data
                 $.get("/order/checkout.ashx?pricetype=" + pricetype + "&a=" + escape(b), function (data) {
                     document.write(data);
