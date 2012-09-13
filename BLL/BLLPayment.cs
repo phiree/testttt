@@ -34,6 +34,7 @@ namespace BLL
         public BLLPayment(Model.Order order)
         {
             this.order = order;
+            TourLog.LogPayment("91");
         }
         public BLLPayment()
         { }
@@ -52,16 +53,19 @@ namespace BLL
         /// <returns></returns>
         public string  Pay()
         {
+            TourLog.LogPayment("93");
             //请与贵网站订单系统中的唯一订单号匹配
             string out_trade_no = order.Id.ToString();
+            TourLog.LogPayment("93");
             //订单名称，显示在支付宝收银台里的“商品名称”里，显示在支付宝的交易管理的“商品名称”的列表里。
             string subject ="中国旅游在线-在线购票-"+order.Description;
+            TourLog.LogPayment("-");
             //订单描述、订单详细、订单备注，显示在支付宝收银台里的“商品描述”里
             string body = order.Description;
             //订单总金额，显示在支付宝收银台里的“应付总额”里
             decimal total_fee =decimal.Parse( order.TotalPrice.ToString("0.00"));
        //扩展功能参数——默认支付方式//
-
+            TourLog.LogPayment("--");
             //默认支付方式，代码见“即时到帐接口”技术文档
             string paymethod = "";
             //默认网银代号，代号列表见“即时到帐接口”技术文档“附录”→“银行列表”
@@ -135,7 +139,7 @@ namespace BLL
             payment.PayType = PayType.AliPay;
             payment.EndPay = DateTime.Now;
             payment.RequestStringToPay = sHtmlText;
-
+           
             IDalPayment.Save(payment);
             
             

@@ -130,7 +130,7 @@ public class CheckoutHandler : IHttpHandler
         TourLog.LogPayment("**************准备支付订单:" + order.Id + "***************");
         BLLPayment payment = new BLLPayment(order);
         TourLog.LogPayment("跳转至支付宝开始支付:" + order.Id + "");
-
+        TourLog.LogPayment("90");
         return payment.Pay();
     }
 
