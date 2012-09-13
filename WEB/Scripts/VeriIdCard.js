@@ -48,3 +48,13 @@ var test= function (idcard) {
     }
 }
 
+
+//验证手机号码
+function isMobil(s) {
+    var patrn = /(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/;
+    if (!patrn.exec(s)) {
+        return false;
+    }
+    return true;
+}
+
