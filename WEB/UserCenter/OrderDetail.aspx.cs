@@ -228,7 +228,7 @@ public partial class UserCenter_MyOrder : basepage
             (e.Item.FindControl("sumprice") as HtmlContainerControl).InnerHtml = sumprice.ToString();
             int count = bllticketassign.GetIsUsedCountByAsodid(orderdetailid).Count;
             (e.Item.FindControl("notusedcount") as HtmlContainerControl).InnerHtml = count.ToString();
-            (e.Item.FindControl("usedcount") as HtmlContainerControl).InnerHtml = (od.Quantity - count).ToString();
+            (e.Item.FindControl("usedcount") as HtmlContainerControl).InnerHtml = (od.TicketAssignList.Count - count).ToString();
             if (count > 0)
             {
                 (e.Item.FindControl("usedstate") as HtmlContainerControl).InnerHtml = "未使用完";
