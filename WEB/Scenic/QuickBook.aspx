@@ -69,17 +69,9 @@
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="cphmain">
 
-    <div>
-        预定大优惠，景区取票打9折，快快抢订~
-    </div>
-    <div>
-        <asp:Image ID="Image1" runat="server" />
-    </div>
     <hr />
     <div>
-        <br />
-        江郎山位于浙江省衢州市江山市江郎乡境内。 江郎山景区由三爿石、十八曲、塔山、牛鼻峰、须女湖（青龙湖）和仙居寺等部分组成，面积11.86平方公里，景源类型以自然景观为主，
-        同时也有丰富的人文景观。江郎山景区为国家级重点风景名胜区和国家级AAAA级景区。 2010年8月作为“中国丹霞”的系列提名地之一列入世界自然遗产名录。
+        《江郎山+廿八都+青漾景区联票》
         <br />
     </div>
     <hr />
