@@ -33,7 +33,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         }
         if (!IsPostBack)
         {
-            bind(); 
+            bind();
             detailinfo.Visible = false;
             ywdiv.Visible = false;
         }
@@ -42,7 +42,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     private void bind()
     {
         CurrentScenic = Master.Scenic;
-        sss=Master.Scenic;
+        sss = Master.Scenic;
         //绑定预定信息
         rptpeopleinfo.DataSource = new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic);
         rptpeopleinfo.DataBind();
@@ -70,16 +70,16 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             string idcard = e.CommandArgument.ToString();
             ViewState["idcard"] = idcard;
             //bllticketassign.GetTicketInfoByIdCard(idcard, CurrentScenic, out totalyudingcount, out usedyudingcount,2);
-            rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(),CurrentScenic);
+            rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
             rptpayyd.DataBind();
-            if (rptpayyd.Items.Count== 0)
+            if (rptpayyd.Items.Count == 0)
                 rptpayyd.Visible = false;
             else
                 rptpayyd.Visible = true;
             //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
             //在线购买
             //bllticketassign.GetOlTicketInfoByIdcard(idcard, CurrentScenic, out totalolcount, out useolcount, 3);
-            rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
+            rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
             rptpayonline.DataBind();
             if (rptpayonline.Items.Count == 0)
                 rptpayonline.Visible = false;
@@ -94,8 +94,8 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     [WebMethod]
     public static string GetAllHints(string scid)
     {
-        Scenic s=new BLLScenic().GetScenicById(int.Parse(scid));
-        List<TicketAssign> list= new BLLTicketAssign().GetIdcardandname("", "",s);
+        Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
+        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s);
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (TicketAssign item in list)
         {
@@ -131,9 +131,9 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
             return;
         }
-        if(Request.Cookies["idcard"]!=null)
+        if (Request.Cookies["idcard"] != null)
             Request.Cookies["idcard"].Value = idcard;
-        if(Response.Cookies["idcard"]!=null)
+        if (Response.Cookies["idcard"] != null)
             Response.Cookies["idcard"].Value = idcard;
         username.InnerHtml = name;
         useridcard.InnerHtml = idcard;
@@ -141,7 +141,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         CurrentScenic = Master.Scenic;
         ViewState["idcard"] = idcard;
         //bllticketassign.GetTicketInfoByIdCard(idcard, CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
-        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
+        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayyd.DataBind();
         if (rptpayyd.Items.Count == 0)
             rptpayyd.Visible = false;
@@ -150,7 +150,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
         //在线购买
         //bllticketassign.GetOlTicketInfoByIdcard(idcard, CurrentScenic, out totalolcount, out useolcount, 3);
-        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard, CurrentScenic);
+        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard);
         rptpayonline.DataBind();
         if (rptpayonline.Items.Count == 0)
             rptpayonline.Visible = false;
@@ -171,7 +171,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //预定
         CurrentScenic = Master.Scenic;
         ViewState["idcard"] = idcard;
-        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
+        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayyd.DataBind();
         if (rptpayyd.Items.Count == 0)
             rptpayyd.Visible = false;
@@ -180,7 +180,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
         //在线购买
         //bllticketassign.GetOlTicketInfoByIdcard(idcard, CurrentScenic, out totalolcount, out useolcount, 3);
-        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard, CurrentScenic);
+        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard);
         rptpayonline.DataBind();
         if (rptpayonline.Items.Count == 0)
             rptpayonline.Visible = false;
@@ -204,86 +204,89 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         int yditems = 0;
         foreach (RepeaterItem rptitem in rptpayyd.Items)
         {
-            TextBox tb=rptitem.FindControl("txtUseCount") as TextBox;
+            TextBox tb = rptitem.FindControl("txtUseCount") as TextBox;
             tb.Text = Regex.Replace(tb.Text, "[^0-9]", "");
             if (tb.Text == "")
                 yditems++;
         }
-        int olrptitems=0;
+        int olrptitems = 0;
         foreach (RepeaterItem rpitem in rptpayonline.Items)
         {
             TextBox tb = rpitem.FindControl("txtolusecount") as TextBox;
             tb.Text = Regex.Replace(tb.Text, "[^0-9]", "");
             if (tb.Text == "")
                 olrptitems++;
-        } 
+        }
         CurrentScenic = Master.Scenic;
         if (yditems != rptpayyd.Items.Count)
         {
             foreach (RepeaterItem yditem in rptpayyd.Items)
             {
-                TextBox ydtb = yditem.FindControl("txtUseCount") as TextBox;
-                if (ydtb.Text == "")
-                    ydtb.Text = "0";
-                int wtusecount = int.Parse(ydtb.Text);
-                //bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
-                int ttcount = Convert.ToInt32((yditem.FindControl("ydmpcount") as HtmlContainerControl).InnerHtml);
-                int usedydcount = Convert.ToInt32((yditem.FindControl("ydmpusedcount") as HtmlContainerControl).InnerHtml);
-                if (wtusecount > ttcount - usedydcount)
+                if (yditem.Visible == true)
                 {
-                    int jxydcount = wtusecount - ttcount + usedydcount;
-                    TicketAssign ta = bllticketassign.GetLasetRecordByidcard(ViewState["idcard"].ToString(), new BLLTicket().GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value)), 2);
-                    OrderDetail od = ta.OrderDetail;
-                    od.Quantity = od.Quantity + jxydcount;
-                    od.Remark = "在景区预定" + jxydcount + "张门票";
-                    bllorderdetail.saveorupdate(od);
-                    for (int i = 0; i < jxydcount; i++)
+                    TextBox ydtb = yditem.FindControl("txtUseCount") as TextBox;
+                    if (ydtb.Text == "")
+                        ydtb.Text = "0";
+                    int wtusecount = int.Parse(ydtb.Text);
+                    //bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
+                    int ttcount = Convert.ToInt32((yditem.FindControl("ydmpcount") as HtmlContainerControl).InnerHtml);
+                    int usedydcount = Convert.ToInt32((yditem.FindControl("ydmpusedcount") as HtmlContainerControl).InnerHtml);
+                    if (wtusecount > ttcount - usedydcount)
                     {
-                        TicketAssign ticketassign = new TicketAssign();
-                        ticketassign.IdCard = ViewState["idcard"].ToString();
-                        ticketassign.IsUsed = false;
-                        ticketassign.Name = ta.Name;
-                        ticketassign.OrderDetail = od;
-                        ticketassign.UsedTime = DateTime.Now;
-                        bllticketassign.SaveOrUpdate(ticketassign);
-                    }
-                }
-                for (int i = 0; i < wtusecount; i++)
-                {
-                    IList<TicketAssign> list = bllticketassign.GetNotUsedTicketAssign(ViewState["idcard"].ToString(), new BLLTicket().GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value)), 2);
-                    TicketAssign ta = list[0];
-                    ta.IsUsed = true;
-                    ta.UsedTime = DateTime.Now;
-                    ta.Scenic = CurrentScenic;
-                    bllticketassign.SaveOrUpdate(ta);
-                    //查询订单中所有的detail是否都已付完款
-                    List<TicketAssign> listticketassign = bllticketassign.GetTaByIdCard(ViewState["idcard"].ToString()).ToList();
-                    foreach (TicketAssign taitem in listticketassign)
-                    {
-                        Order or = taitem.OrderDetail.Order;
-                        if (!or.IsPaid)
+                        int jxydcount = wtusecount - ttcount + usedydcount;
+                        TicketAssign ta = bllticketassign.GetLasetRecordByidcard(ViewState["idcard"].ToString(), new BLLTicket().GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value)), 2);
+                        OrderDetail od = ta.OrderDetail;
+                        od.Quantity = od.Quantity + jxydcount;
+                        od.Remark = "在景区预定" + jxydcount + "张门票";
+                        bllorderdetail.saveorupdate(od);
+                        for (int i = 0; i < jxydcount; i++)
                         {
-                            int flag = 0;
-                            foreach (OrderDetail oditem in or.OrderDetail)
+                            TicketAssign ticketassign = new TicketAssign();
+                            ticketassign.IdCard = ViewState["idcard"].ToString();
+                            ticketassign.IsUsed = false;
+                            ticketassign.Name = ta.Name;
+                            ticketassign.OrderDetail = od;
+                            ticketassign.UsedTime = DateTime.Now;
+                            bllticketassign.SaveOrUpdate(ticketassign);
+                        }
+                    }
+                    for (int i = 0; i < wtusecount; i++)
+                    {
+                        IList<TicketAssign> list = bllticketassign.GetNotUsedTicketAssign(ViewState["idcard"].ToString(), new BLLTicket().GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value)), 2);
+                        TicketAssign ta = list[0];
+                        ta.IsUsed = true;
+                        ta.UsedTime = DateTime.Now;
+                        bllticketassign.SaveOrUpdate(ta);
+                        //查询订单中所有的detail是否都已付完款
+                        List<TicketAssign> listticketassign = bllticketassign.GetTaByIdCard(ViewState["idcard"].ToString()).ToList();
+                        foreach (TicketAssign taitem in listticketassign)
+                        {
+                            Order or = taitem.OrderDetail.Order;
+                            if (!or.IsPaid)
                             {
-                                int allodta = oditem.TicketAssignList.Count;
-                                int usedodta = oditem.TicketAssignList.Where(x => x.IsUsed == true).Count();
-                                if (allodta != usedodta)
+                                int flag = 0;
+                                foreach (OrderDetail oditem in or.OrderDetail)
                                 {
-                                    flag = 1;
+                                    int allodta = oditem.TicketAssignList.Count;
+                                    int usedodta = oditem.TicketAssignList.Where(x => x.IsUsed == true).Count();
+                                    if (allodta != usedodta)
+                                    {
+                                        flag = 1;
+                                    }
+                                }
+                                if (flag == 0)
+                                {
+                                    or.IsPaid = true;
+                                    or.PayTime = DateTime.Now;
+                                    new BLLOrder().SaveOrUpdateOrder(or);
                                 }
                             }
-                            if (flag == 0)
-                            {
-                                or.IsPaid = true;
-                                or.PayTime = DateTime.Now;
-                                new BLLOrder().SaveOrUpdateOrder(or);
-                            }
+
                         }
                     }
                 }
             }
-            
+
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
         }
         else
@@ -292,7 +295,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
                 //bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
-                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
+                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
                 rptpayyd.DataBind();
                 if (rptpayyd.Items.Count == 0)
                     rptpayyd.Visible = false;
@@ -300,7 +303,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     rptpayyd.Visible = true;
                 //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
                 //bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
-                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
+                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
                 rptpayonline.DataBind();
                 return;
             }
@@ -310,27 +313,30 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             int flag = 0;
             foreach (RepeaterItem repitem in rptpayonline.Items)
             {
-                TextBox tb = repitem.FindControl("txtolusecount") as TextBox;
-                if (tb.Text == "")
-                    tb.Text = "0";
-                int oluse = int.Parse(tb.Text);
-                int gpcount = Convert.ToInt32((repitem.FindControl("olgpcount") as HtmlContainerControl).InnerHtml);
-                int usedcount = Convert.ToInt32((repitem.FindControl("olgpusedcount") as HtmlContainerControl).InnerHtml);
-                if (gpcount - usedcount < oluse)
+                if (repitem.Visible == true)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('超出购买张数，请检查购票数量')", true);
-                    flag = 1;
-                    break;
-                }
-                else
-                {
-                    for (int i = 0; i < oluse; i++)
+                    TextBox tb = repitem.FindControl("txtolusecount") as TextBox;
+                    if (tb.Text == "")
+                        tb.Text = "0";
+                    int oluse = int.Parse(tb.Text);
+                    int gpcount = Convert.ToInt32((repitem.FindControl("olgpcount") as HtmlContainerControl).InnerHtml);
+                    int usedcount = Convert.ToInt32((repitem.FindControl("olgpusedcount") as HtmlContainerControl).InnerHtml);
+                    if (gpcount - usedcount < oluse)
                     {
-                        IList<TicketAssign> list = bllticketassign.Getolnotusedticketassign(ViewState["idcard"].ToString(), int.Parse((repitem.FindControl("hfticketid") as HiddenField).Value), 3);
-                        TicketAssign ta = list[0];
-                        ta.IsUsed = true;
-                        ta.UsedTime = DateTime.Now;
-                        bllticketassign.SaveOrUpdate(ta);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('超出购买张数，请检查购票数量')", true);
+                        flag = 1;
+                        break;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < oluse; i++)
+                        {
+                            IList<TicketAssign> list = bllticketassign.Getolnotusedticketassign(ViewState["idcard"].ToString(), int.Parse((repitem.FindControl("hfticketid") as HiddenField).Value), 3);
+                            TicketAssign ta = list[0];
+                            ta.IsUsed = true;
+                            ta.UsedTime = DateTime.Now;
+                            bllticketassign.SaveOrUpdate(ta);
+                        }
                     }
                 }
             }
@@ -338,8 +344,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
             }
-            
-            
+
         }
         else
         {
@@ -347,7 +352,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
                 //bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
-                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
+                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
                 rptpayyd.DataBind();
                 if (rptpayyd.Items.Count == 0)
                     rptpayyd.Visible = false;
@@ -355,7 +360,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     rptpayyd.Visible = true;
                 //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
                 //bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
-                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
+                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
                 rptpayonline.DataBind();
                 return;
             }
@@ -363,7 +368,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //txtUseCount.Text = "";
         //txtolusecount.Text = "";
         //bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), CurrentScenic, out totalyudingcount, out usedyudingcount, 2);
-        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
+        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayyd.DataBind();
         if (rptpayyd.Items.Count == 0)
             rptpayyd.Visible = false;
@@ -371,7 +376,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             rptpayyd.Visible = true;
         //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
         //bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), CurrentScenic, out totalolcount, out useolcount, 3);
-        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
+        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayonline.DataBind();
     }
 
@@ -412,7 +417,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             //预定
             CurrentScenic = Master.Scenic;
             ViewState["idcard"] = idcard;
-            rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString(), CurrentScenic);
+            rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
             rptpayyd.DataBind();
             if (rptpayyd.Items.Count == 0)
                 rptpayyd.Visible = false;
@@ -421,7 +426,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             //yddj = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0");
             //在线购买
             //bllticketassign.GetOlTicketInfoByIdcard(idcard, CurrentScenic, out totalolcount, out useolcount, 3);
-            rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard, CurrentScenic);
+            rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard);
             rptpayonline.DataBind();
             if (rptpayonline.Items.Count == 0)
                 rptpayonline.Visible = false;
@@ -439,16 +444,23 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
-            Model.Ticket t= e.Item.DataItem as Model.Ticket;
-            int ttolcount=0;
-            int uscount=0;
-            t.Scenic = Master.Scenic;
-            bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 3);
-            HtmlContainerControl hcolgpcount = e.Item.FindControl("olgpcount") as HtmlContainerControl;
-            hcolgpcount.InnerHtml = ttolcount.ToString();
-            HtmlContainerControl hcolgpusedcount = e.Item.FindControl("olgpusedcount") as HtmlContainerControl;
-            hcolgpusedcount.InnerHtml = uscount.ToString();
-            if (ttolcount == 0)
+            Model.Ticket t = e.Item.DataItem as Model.Ticket;
+            if (IsCurrentScenicTicket(t) || IsCurrentScenicTp(t))
+            {
+                int ttolcount = 0;
+                int uscount = 0;
+                t.Scenic = Master.Scenic;
+                bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 3);
+                HtmlContainerControl hcolgpcount = e.Item.FindControl("olgpcount") as HtmlContainerControl;
+                hcolgpcount.InnerHtml = ttolcount.ToString();
+                HtmlContainerControl hcolgpusedcount = e.Item.FindControl("olgpusedcount") as HtmlContainerControl;
+                hcolgpusedcount.InnerHtml = uscount.ToString();
+                if (ttolcount == 0)
+                {
+                    e.Item.Visible = false;
+                }
+            }
+            else
             {
                 e.Item.Visible = false;
             }
@@ -459,20 +471,66 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             Model.Ticket t = e.Item.DataItem as Model.Ticket;
-            int ttolcount = 0;
-            int uscount = 0;
-            t.Scenic = Master.Scenic;
-            bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 2);
-            HtmlContainerControl hcydmpcount = e.Item.FindControl("ydmpcount") as HtmlContainerControl;
-            hcydmpcount.InnerHtml = ttolcount.ToString();
-            HtmlContainerControl hcydmpusedcount = e.Item.FindControl("ydmpusedcount") as HtmlContainerControl;
-            hcydmpusedcount.InnerHtml = uscount.ToString();
-            HtmlContainerControl hcyddj = e.Item.FindControl("yddj") as HtmlContainerControl;
-            hcyddj.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(t, PriceType.PreOrder).Price.ToString("0") + "元";
-            if (ttolcount == 0)
+            if (IsCurrentScenicTicket(t) || IsCurrentScenicTp(t))
+            {
+                int ttolcount = 0;
+                int uscount = 0;
+                t.Scenic = Master.Scenic;
+                bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 2);
+                HtmlContainerControl hcydmpcount = e.Item.FindControl("ydmpcount") as HtmlContainerControl;
+                hcydmpcount.InnerHtml = ttolcount.ToString();
+                HtmlContainerControl hcydmpusedcount = e.Item.FindControl("ydmpusedcount") as HtmlContainerControl;
+                hcydmpusedcount.InnerHtml = uscount.ToString();
+                HtmlContainerControl hcyddj = e.Item.FindControl("yddj") as HtmlContainerControl;
+                hcyddj.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(t, PriceType.PreOrder).Price.ToString("0") + "元";
+                if (ttolcount == 0)
+                {
+                    e.Item.Visible = false;
+                }
+            }
+            else
             {
                 e.Item.Visible = false;
             }
         }
     }
+
+
+
+    #region 判断是否是套票
+    public bool IsTp(Ticket t)
+    {
+        BLLScenicTicket bllscenicticket = new BLLScenicTicket();
+        IList<Scenic> list = bllscenicticket.GetScenicByTicket(t.Id);
+        if (list.Count > 0)
+            return true;
+        return false;
+    }
+    #endregion
+    #region 判断是否是这个景区的票
+    public bool IsCurrentScenicTicket(Ticket t)
+    {
+        t = new BLLTicket().GetTicket(t.Id);
+        if (t.Scenic.Id == Master.Scenic.Id)
+            return true;
+        else
+            return false;
+    }
+    #endregion
+    #region 判断是否是这个景区的套票
+    public bool IsCurrentScenicTp(Ticket t)
+    {
+        t = new BLLTicket().GetTicket(t.Id);
+        BLLScenicTicket bllscenicticket = new BLLScenicTicket();
+        List<Scenic> list = bllscenicticket.GetScenicByTicket(t.Id).ToList();
+        foreach (Scenic item in list)
+        {
+            if (item.Id == Master.Scenic.Id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    #endregion
 }

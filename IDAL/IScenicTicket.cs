@@ -9,5 +9,6 @@ namespace IDAL
     public interface IScenicTicket
     {
         IList<Scenic> GetScenicsByTicketId(int ticketId);
+        IList<Ticket> GetTicketByScenicId(int scenicId);
     }
 }

@@ -14,5 +14,13 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.Scenic>().ToList();
         }
+
+
+        public IList<Model.Ticket> GetTicketByScenicId(int scenicId)
+        {
+            string sql = "select st.Ticket from ScenicTicket st where st.Scenic.Id=" + scenicId;
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.Ticket>().ToList();
+        }
     }
 }

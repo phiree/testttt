@@ -35,6 +35,6 @@ namespace IDAL
         IList<TicketAssign> GetTaByIdcardandscenic(string idcard, Scenic scenic);
 
         //通过身份证，找出订过几种票
-        IList<Ticket> GetTicketTypeByIdCard(string idcard,Scenic s);
+        IList<Ticket> GetTicketTypeByIdCard(string idcard);
     }
 }
