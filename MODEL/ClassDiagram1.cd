@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Model.Area" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAQAAAAAAgAAQAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Area.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.CommonUser" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>CommonUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.ContractImg" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAIAgAAAA=</HashCode>
+      <FileName>ContractImg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.ContractScenicPrice" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>ContractScenicPrice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.DiscountCode" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAAAAAAABAAAAgAABQAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>DiscountCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.FormatSerialNo" Collapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAJAAAQAAEAAAAAACAAAAAAAAEAAAgAAAAAAA=</HashCode>
+      <FileName>FormatSerialNo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Lottery" Collapsed="true">
+    <Position X="17.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Lottery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.LottryResult" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAAEQA=</HashCode>
+      <FileName>LottryResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.MemberRole" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAEAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MemberRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Order">
+    <Position X="13.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAABBAEYBACBAAUQAIAAAABAAAAAA=</HashCode>
+      <FileName>Order\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.MonthOrder" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAQAAACAAAAAAABAAAAAAAAgAAAAAQAAAAA=</HashCode>
+      <FileName>Order\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.OrderDetail" Collapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAEgAAAAQA=</HashCode>
+      <FileName>Order\OrderDetail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.TicketAssign" Collapsed="true">
+    <Position X="7" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAAAAAAABAAAAQAAAAAAAAAAAAAABAAEAA=</HashCode>
+      <FileName>Order\TicketAssign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.checkticketassign" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Order\TicketAssign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Payment" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECQAQAAAAAAAAIAAgAEAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Payment\Payment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.PreferentialCode" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAA=</HashCode>
+      <FileName>PreferentialCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.PromotionStatic" Collapsed="true">
+    <Position X="15.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAACAAAAAAAAAAAAAAAAAAAAABAAAAAAAAQA=</HashCode>
+      <FileName>PromotionStatic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Qweiboinfo" Collapsed="true">
+    <Position X="19.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAQQAAAAAAA=</HashCode>
+      <FileName>Qweiboinfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.data" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBICAEggAAAAAgEAQBAAACAAAEABARCAAAAigAAAE=</HashCode>
+      <FileName>Qweiboinfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Qweibo_tadd" Collapsed="true">
+    <Position X="17.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAQQAAAAAAA=</HashCode>
+      <FileName>Qweiboinfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Refund" Collapsed="true">
+    <Position X="5.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMCAEAABAAAAAAAAAACBABAAAAIAAAAQAAAAgAAAAA=</HashCode>
+      <FileName>Refund.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Role" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Scenic" Collapsed="true">
+    <Position X="12.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAICAgAAAAAAQAACAAAAADIEAAQwAAAAA=</HashCode>
+      <FileName>Scenic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.ScenicCheckProgress" Collapsed="true">
+    <Position X="19.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCAAAAAAAAAAAAAAgIEABAAAAAAAAAAAAKAAAAAA=</HashCode>
+      <FileName>Scenic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.ScenicCheckImage" Collapsed="true">
+    <Position X="17.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAKAAAAAA=</HashCode>
+      <FileName>Scenic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.ScenicImg" Collapsed="true">
+    <Position X="7" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAABAAgAEAAAAAAAAQAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Scenic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.VoteRank" Collapsed="true">
+    <Position X="7" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAABAAAAAAAgACAAAAAAAAAAAAAAAAAAAAAAAgAAAAE=</HashCode>
+      <FileName>Scenic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.ScenicAdmin" Collapsed="true">
+    <Position X="13.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAACAAAAAAQAAAAAECAAAAIAAAAgA=</HashCode>
+      <FileName>ScenicAdmin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.ScenicMap" Collapsed="true">
+    <Position X="10.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAEAAEAAAEIAAAAAMEAABAAAAAAAAAAgA=</HashCode>
+      <FileName>ScenicMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.ScenicTicket" Collapsed="true">
+    <Position X="14" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAACAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>ScenicTicket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.SeoDescription" Collapsed="true">
+    <Position X="15.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAABAAA=</HashCode>
+      <FileName>SeoDescription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.SiteAdmin">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SiteAdmin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Ticket" Collapsed="true">
+    <Position X="5.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAAAAAAAAAAAAEAAAgAQAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Ticket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.TicketCount" Collapsed="true">
+    <Position X="10.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAgAAAgAAAAAAQAAAAAQAAhAAAAAAAAAAA=</HashCode>
+      <FileName>TicketCount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.TicketPrice" Collapsed="true">
+    <Position X="15.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAACAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TicketPrice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.TourMembership" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAEAAAAAAAQBAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>TourMembership.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.TransSatatis" Collapsed="true">
+    <Position X="5.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQABAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TransSatatis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.User" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAACAAAAIAAAEAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.UseRecord" Collapsed="true">
+    <Position X="7" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEDAAAAAAAAAAgCAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>UseRecord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.UserRole" Collapsed="true">
+    <Position X="12.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>UserRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.UserVoteAmount" Collapsed="true">
+    <Position X="15.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAAAAACAAAAAAEAAAAAAAAAgAAA=</HashCode>
+      <FileName>UserVoteAmount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.EarnWayAmount" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAACAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserVoteAmount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Vote" Collapsed="true">
+    <Position X="19.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAACAAAAAAAAAAAAAAAAAAAAAAAQAAIAEAEQA=</HashCode>
+      <FileName>Vote.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.AreaMap" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\AreaMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.CommonUserMap" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\CommonUserMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.ContractImgMap" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\ContractImgMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.ContractScenicPriceMap" Collapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\ContractScenicPriceMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.DiscountCodeMap" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\DiscountCodeMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.FormatSerialNoMap" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\FormatSerialNoMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.LotteryMap" Collapsed="true">
+    <Position X="19.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\LotteryMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.LottryResultMap" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\LottryResultMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.OrderDetailMap" Collapsed="true">
+    <Position X="17.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\Order\OrderDetailMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.OrderMap" Collapsed="true">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\Order\OrderMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.MonthOrderMap" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\Order\OrderMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.OrderIdGenerator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Mapping\Order\OrderMap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Model.Mapping.RefundMap" Collapsed="true">
+    <Position X="7" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\Order\RefundMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.PaymentMap" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\PaymentMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.PreferentialCodeMap" Collapsed="true">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\PreferentialCodeMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.PromotionStaticMap" Collapsed="true">
+    <Position X="15.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\PromotionStaticMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.RoleMap" Collapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\RoleMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.UserRoleMap" Collapsed="true">
+    <Position X="14" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\RoleMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.ScenicAdminMap" Collapsed="true">
+    <Position X="15.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\ScenicAdminMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.ScenicMap" Collapsed="true">
+    <Position X="12.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\ScenicMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.ScenicCheckProgressMap" Collapsed="true">
+    <Position X="5.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\ScenicMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.ScenicImgMap" Collapsed="true">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\ScenicMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.SeoDescriptionMap" Collapsed="true">
+    <Position X="17.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\SeoDescriptionMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.SiteAdminMap" Collapsed="true">
+    <Position X="19.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\SiteAdminMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.TicketCountMap" Collapsed="true">
+    <Position X="12.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\TicketCountMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.TicketMap" Collapsed="true">
+    <Position X="14" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\TicketMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.TicketPriceMap" Collapsed="true">
+    <Position X="17.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\TicketPriceMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.TourMembershipMap" Collapsed="true">
+    <Position X="19.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\TourMembershipMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.UseRecordMap" Collapsed="true">
+    <Position X="8.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\UseRecordMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.UserMap" Collapsed="true">
+    <Position X="10.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\UserMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.UserVoteAmountMap" Collapsed="true">
+    <Position X="17.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\UserVoteAmount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.EarnWayAmountMap" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\UserVoteAmount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.VoteMap" Collapsed="true">
+    <Position X="5.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\VoteMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Mapping.Order.TicketAssignMap" Collapsed="true">
+    <Position X="8.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapping\Order\TicketAssignMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Model.PayType" Collapsed="true">
+    <Position X="12.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Payment\Payment.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.ScenicModule" Collapsed="true">
+    <Position X="17.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAgAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Scenic.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.CheckStatus" Collapsed="true">
+    <Position X="5.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIQAAAAAAAAAAQAAAAAAAAAAAgAAAAEAAAA=</HashCode>
+      <FileName>Scenic.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.ImgType" Collapsed="true">
+    <Position X="8.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACACAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Scenic.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.ScenicAdminType" Collapsed="true">
+    <Position X="15.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAQAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>ScenicAdmin.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.PriceType" Collapsed="true">
+    <Position X="14" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAEAAAAAIAAAIAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>TicketPrice.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.Opentype" Collapsed="true">
+    <Position X="10.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAEgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TourMembership.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Model.EarnWay" Collapsed="true">
+    <Position X="7" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEACQBAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserVoteAmount.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>
