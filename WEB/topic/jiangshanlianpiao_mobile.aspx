@@ -21,7 +21,7 @@
 
 <!--用<map>标记设定图像地图的作用区域，并用name属性爲图像起一个名字-->
 
-<area shape=rect coords=600,95,830,148 href="/scenic/quickbook.aspx">
+<area shape=rect coords=230,38,310,60 href="/scenic/quickbook.aspx">
 </map>
 </asp:Content>
 
