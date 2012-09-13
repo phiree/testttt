@@ -54,9 +54,7 @@
                     window.location = "/Scenic/QuickError.aspx";
                 }
                 else {
-                    document.write("恭喜你，已成功预定江山联票1张。<br/> " +
-                        "详细信息请登陆网站<a href='http://www.tourol.cn'>http://www.tourol.cn</a><br/> " +
-                        "用户名:" + phone + "  密码:" + resultpsw);
+                    window.location = "/Scenic/QuickSuc.aspx?phone="+phone+"&psw="+resultpsw;
                 }
             });
 
