@@ -18,7 +18,7 @@ public partial class _12301_Default : System.Web.UI.Page
         string password = FormsAuthentication.HashPasswordForStoringInConfigFile(txtPwd.Text, "MD5");
         if (accountname == "12301_admin" && password == FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5"))
         {
-
+            Response.Redirect("/12301/Operation.aspx");
         }
     }
 }
