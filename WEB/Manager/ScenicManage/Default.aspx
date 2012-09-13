@@ -64,6 +64,7 @@
                 <td style="text-align: center">
                     <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a>
 <a href='EditScenic.aspx?id=<%#Eval("Id")%>'>编辑</a>
+<a href="">添加门票</a>
                 </td>
                 <%--<td >
                     <asp:Button ID="btnmake" runat="server" Text="生成" CommandName="make" CommandArgument='<%#Eval("Id") %>' />
