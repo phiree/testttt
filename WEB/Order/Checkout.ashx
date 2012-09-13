@@ -122,10 +122,10 @@ public class CheckoutHandler : IHttpHandler
     }
     private string DoPayment(Model.Order order)
     {
-        TourLog.LogPayment("**************准备支付订单:"+order.Id+"***************");
+        TourLog.LogPayment("**************准备支付订单:" + order.Id + "***************");
         BLLPayment payment = new BLLPayment(order);
         TourLog.LogPayment("跳转至支付宝开始支付:" + order.Id + "");
-      
+
         return payment.Pay();
     }
 
@@ -144,7 +144,7 @@ public class CheckoutHandler : IHttpHandler
 
             Ticket t = bllTickets.GetTicket(item.TicketId);
             TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
-            TicketAssign ta = new TicketAssign();
+            //TicketAssign ta = new TicketAssign();
 
             od.TicketPrice = tp;
             details.Add(od);
@@ -153,6 +153,7 @@ public class CheckoutHandler : IHttpHandler
         return details;
 
     }
+
     public bool IsReusable
     {
         get

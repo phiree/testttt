@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="mobile.master.cs" Inherits="mobile" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>中国旅游在线</title>
+    <meta content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=2.0;"
+        name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="width:480px; margin:0 auto; text-align:center;">
+    <form id="form1" runat="server">
+    <div >
+        <div>
+            <img class="logoleft" src="/theme/default/image/logo_mobile.png" />
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="cphmain" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
