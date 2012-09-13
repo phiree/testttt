@@ -3,29 +3,48 @@
 using System;
 using System.Web;
 
-public class RegistHandler : IHttpHandler {
+public class RegistHandler : IHttpHandler
+{
 
     BLL.BLLMembership bllMember = new BLL.BLLMembership();
-    
-    public void ProcessRequest (HttpContext context) {
+
+    public void ProcessRequest(HttpContext context)
+    {
 
         string username = context.Request["phone"];
+        string idcard=context.Request["idcard"];
+        
         //根据后两位的平方生成的密码
-        string password = Math.Pow(double.Parse(username.Substring(username.Length - 2, 2)), 2).ToString("D5");
+        int temp=Guid.NewGuid().GetHashCode();
+        string password = temp.ToString().Substring(temp.ToString().Length - 6, 6);
         string email = "";
         Model.TourMembership isexist = bllMember.GetMember(username);
         if (isexist != null)
         {
-            context.Response.Write("该用户名已注册，请直接登录。");
-            return;
+            //已经注册的用户  且身份证号码相同(用于排除输错号码的可能)
+            if (isexist.IdCard == idcard)
+            {
+                context.Response.Write(password);
+                return;
+            }
+            else
+            {
+                context.Response.Write("false");
+                return;
+            }
         }
-        bllMember.CreateUser(username, string.Empty, string.Empty,
-        string.Empty, username, password, email);
-        context.Response.Write("该用户名已注册，请直接登录。");
+        else
+        {
+            bllMember.CreateUser(username, string.Empty, string.Empty,
+            idcard, username, password, email);
+            context.Response.Write(password);
+        }
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }

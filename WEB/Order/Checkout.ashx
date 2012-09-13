@@ -154,33 +154,6 @@ public class CheckoutHandler : IHttpHandler
 
     }
 
-    private List<OrderDetail> GetDetails(int ticketid)
-    {
-
-        IList<CartItem> cart = new List<CartItem>()
-        {
-            new CartItem(){TicketId=ticketid,Qty=1}
-        };
-
-
-        List<OrderDetail> details = new List<OrderDetail>();
-
-        foreach (CartItem item in cart)
-        {
-            OrderDetail od = new OrderDetail();
-            od.Quantity = item.Qty;
-
-            Ticket t = bllTickets.GetTicket(item.TicketId);
-            TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
-            //TicketAssign ta = new TicketAssign();
-
-            od.TicketPrice = tp;
-            details.Add(od);
-
-        }
-        return details;
-
-    }
     public bool IsReusable
     {
         get

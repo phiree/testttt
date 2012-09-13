@@ -11,7 +11,7 @@
 
         $(function () {
             $("#btnOK").click(function () {
-            
+
                 var pricetype = 2;
                 var name = $.trim($("#txtName").val());
                 var idcard = $.trim($("#txtIdcard").val());
@@ -47,14 +47,24 @@
                 var tid = "55";
                 var sid = "29";
                 var b = tid + "-" + name + "-" + idcard + "-" + sid + "_";
+
+                var resultpsw;
                 //注册
+                $.get("/Account/RegistHandler.ashx?phone=" + phone + "&idcard=" + idcard, function (data) {
+                    resultpsw = data;
+                    if (resultpsw == "false") {
+                        window.location = "/Scenic/QuickError.aspx";
+                    }
+                    else {
+                        document.write("恭喜你，已成功预定江山联票1张。<br/> " +
+                        "详细信息请登陆网站<a href='http://www.tourol.cn'>http://www.tourol.cn</a><br/> " +
+                        "用户名:"+phone+"  密码:"+resultpsw);
+                    }
+                });
 
-                //订票
-
-                //分配票
-                //assign data
-                $.get("/order/checkout.ashx?pricetype=" + pricetype + "&a=" + escape(b), function (data) {
-                    document.write(data);
+                //票
+                $.get("/order/QuickorderHandler.ashx?ticketid=" + tid + "&phone=" + phone + "&pricetype=" + pricetype + "&a=" + escape(b), function (data) {
+                    
                 });
             });
         });
