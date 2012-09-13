@@ -11,7 +11,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body style=" margin:0 auto; text-align:center;">
+<body style="width:480px; margin:0 auto; text-align:center;">
     <form id="form1" runat="server">
     <div >
         <div>
