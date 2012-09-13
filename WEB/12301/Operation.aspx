@@ -54,11 +54,14 @@
             $.get("/Account/RegistHandler.ashx?phone=" + phone + "&idcard=" + idcard, function (data) {
                 resultpsw = data;
                 if (resultpsw == "false") {
-                    alert("对不起，你输入的手机号码已与其他身份证绑定，请重新输入!");
+                    $("#ydinfo").html("对不起，你输入的手机号码已与其他身份证绑定，请重新输入!");
                 }
                 else {
                     $.get("/order/QuickorderHandler.ashx?ticketid=" + tid + "&phone=" + phone + "&pricetype=" + pricetype + "&a=" + escape(b), function (data) {
-                        alert(" 手机号码: " + phone + " 密码: "+resultpsw);
+                        $("#ydinfo").html("预定成功<br/> 手机号码: " + phone + " 密码: " + resultpsw);
+                        $("#txtname").val("");
+                        $("#txtidcard").val("");
+                        $("#txtmobile").val("");
                     });
                 }
             });
@@ -71,15 +74,15 @@
     <form id="form1" runat="server">
     <div id="main">
         <div id="top">
-            <h3>12301帮助平台</h3>
+            <h3>12301协助订票平台</h3>
         </div>
         <div id="chooselist">
             <h3>请选择所需要预定的联票</h3>
-            <asp:CheckBox ID="Cbjltp" runat="server" />
+            <asp:RadioButton ID="rbjs" runat="server" Checked="true" />
             江郎山，江郎山-廿八都-清漾联票
         </div>
         <div class="userinfo">
-            <h3 style=" text-align:center">所需要填写的用户信息</h3>
+            <h3 style=" text-align:center">预定用户信息</h3>
             <table border="0" cellpadding="5" cellspacing="0">
                 <tr>
                     <td>
@@ -107,13 +110,15 @@
                 </tr>
             </table>
         </div>
+        <div id="ydinfo">
+            
+        </div>
         <input type="button"  ID="BtnOK" value="预定" style="margin:0px auto; margin-left:460px;"  />
         <div class="odinfo">
-            联票预订说明<br />
-1 开放时间:8:00-17:00<br />
-2 取票地点:江郎山,廿八都,清漾景区售票处均可取票<br />
-3 取票凭证:身份证<br />
-4 发票说明:网络预订的景区门票,网站不提供发票,敬请谅解.
+            告知用户提示<br />
+                1 此联票的所在景区开放时间为8:00-17:00<br />
+                2 取票时请用户务必携带本人身份证到联票中任意景区刷卡取票<br />
+                3 网络预订的景区门票,网站不提供发票,敬请谅解.
 
         </div>
     </div>
