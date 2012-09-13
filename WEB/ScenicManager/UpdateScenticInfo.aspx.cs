@@ -8,7 +8,7 @@ using BLL;
 using Model;
 using System.IO;
 
-public partial class ScenticManager_UpdateScenticInfo : basepage
+public partial class ScenticManager_UpdateScenticInfo :basepage
 {
     BLLScenic bllscenic = new BLLScenic();
     BLLMembership bllMember = BLLFactory.CreateBLLMember();
@@ -30,10 +30,9 @@ public partial class ScenticManager_UpdateScenticInfo : basepage
         ScenicLevel.Text = scenic.Level;
         ScenicArea.Text = scenic.Area.Name;
         Address.Text = scenic.Address;
-        Desc.Text = scenic.TransGuid;
-        IList<ScenicImg> list = bllscenicimg.GetSiByType(scenic, 1);
-        if (list.Count > 0)
-            ScenicImg.ImageUrl = "/ScenicImg/" + list[0].Name;
+        Desc.Text = scenic.Desec;
+        IList<ScenicImg> list= bllscenicimg.GetSiByType(scenic,1);
+        ScenicImg.ImageUrl = "/ScenicImg/" + list[0].Name;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -44,9 +43,11 @@ public partial class ScenticManager_UpdateScenticInfo : basepage
         scenic.Level = ScenicLevel.Text.Trim();
         scenic.Area.Name = ScenicArea.Text.Trim();
         scenic.Address = Address.Text;
-        scenic.TransGuid = Desc.Text;
+        scenic.Desec = Desc.Text;
         scenic.Photo = "";
         scenic.Position = hfposition.Value;
+        ScenicCheckProgress temp=scenic.CheckProgress.First<ScenicCheckProgress>(x => x.Module == ScenicModule.SellOnLine);
+        temp.CheckStatus = CheckStatus.NotApplied;
         bllscenic.UpdateScenicInfo(scenic);
 
         bind();

@@ -12,7 +12,6 @@ public class CheckoutHandler : IHttpHandler
 
 
     BLLTicket bllTickets = new BLLTicket();
-    BLLScenic bllScenic = new BLLScenic();
     PriceType pt = PriceType.PayOnline;
     MembershipUser mu = Membership.GetUser();
     public void ProcessRequest(HttpContext context)
@@ -77,20 +76,16 @@ public class CheckoutHandler : IHttpHandler
         foreach (string ta in arrTicketAssign)
         {
             string[] taValues = ta.Split('-');
-            //#uniontickets  
-            int scenicId = Convert.ToInt32(taValues[3]);
             int ticketId = Convert.ToInt32(taValues[0]);
             string name = taValues[1];
             string cardidNo = taValues[2];
-           
+
             OrderDetail detail = order.OrderDetail.Single<OrderDetail>(x => x.TicketPrice.Ticket.Id == ticketId);
-            Scenic scenic = bllScenic.GetScenicById(scenicId);
             TicketAssign modelTa = new TicketAssign();
             modelTa.IdCard = cardidNo;
             modelTa.IsUsed = false;
             modelTa.Name = name;
             modelTa.OrderDetail = detail;
-            modelTa.Scenic = scenic;
             new BLLTicketAssign().SaveOrUpdate(modelTa);
             //保存常用联系人
             CommonUser cu = new CommonUser();
@@ -127,10 +122,10 @@ public class CheckoutHandler : IHttpHandler
     }
     private string DoPayment(Model.Order order)
     {
-        TourLog.LogPayment("**************准备支付订单:" + order.Id + "***************");
+        TourLog.LogPayment("**************准备支付订单:"+order.Id+"***************");
         BLLPayment payment = new BLLPayment(order);
         TourLog.LogPayment("跳转至支付宝开始支付:" + order.Id + "");
-        TourLog.LogPayment("90");
+      
         return payment.Pay();
     }
 
@@ -153,7 +148,7 @@ public class CheckoutHandler : IHttpHandler
 
             od.TicketPrice = tp;
             details.Add(od);
-            
+
         }
         return details;
 

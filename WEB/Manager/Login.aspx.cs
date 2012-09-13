@@ -20,43 +20,22 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
     /// 登陆
     /// </summary>
     /// <remarks>
-    ///  原始逻辑混乱,修改之.
+    ///  原始裸机混乱,修改之.
     /// </remarks>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     protected void Login1_LoggingIn(object sender, EventArgs e)
     {
-        //Membership.ValidateUser(Login1.UserName, Login1.Password);
-        //tourmembership.ValidateUser(Login1.UserName, Login1.Password);
-        //MembershipUser member = (tourmembership.GetUser(Login1.UserName, true));
-        //if (member == null)
-        //{
-        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('未找到该用户名，请重新确认！');", true);
-        //}
-        //if (Roles.IsUserInRole(member.UserName, "SiteAdmin"))
-        //{
-        //    Response.Redirect("/Manager/ScenicManage/");
-        //}
-        //else
-        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或密码错误');", true);
-    }
-    protected void Login1_LoggedIn(object sender, EventArgs e)
-    {
-        Membership.ValidateUser(Login1.UserName, Login1.Password);
-        tourmembership.ValidateUser(Login1.UserName, Login1.Password);
         MembershipUser member = (tourmembership.GetUser(Login1.UserName, true));
         if (member == null)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('未找到该用户名，请重新确认！');", true);
-            return;
         }
         if (Roles.IsUserInRole(member.UserName, "SiteAdmin"))
         {
-            Response.Redirect("/Manager/ScenicManage/");
+            Response.Redirect("/default.aspx");
         }
         else
-        {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或密码错误');", true);
-        }
     }
 }
