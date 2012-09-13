@@ -6,6 +6,66 @@
 <head runat="server">
     <title></title>
     <link href="/theme/default/css/12301.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
+<script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#BtnOK").click(function () {
+
+            var pricetype = 2;
+            var name = $.trim($("#txtname").val());
+            var idcard = $.trim($("#txtidcard").val());
+            var phone = $.trim($("#txtmobile").val());
+
+            //姓名验证
+            if (name == "") {
+                alert("游览者姓名不能为空");
+                return false;
+            }
+
+            //id认证
+            if (idcard == "") {
+                alert("游览者身份证号码不能为空");
+                return false;
+            }
+            var vali_id = test(idcard);
+            if (vali_id != "验证通过") {
+                alert("身份证格式不正确，请重新输入！");
+                return false;
+            }
+
+            //手机号认证
+            if (phone == "") {
+                alert("游览者手机号码不能为空");
+                return false;
+            }
+            if (!isMobil(phone)) {
+                alert("手机号码不正确，请重新输入！");
+                return false;
+            }
+
+            var tid = "55";
+            var sid = "29";
+            var b = tid + "-" + name + "-" + idcard + "-" + sid + "_";
+
+            var resultpsw;
+            //注册
+            $.get("/Account/RegistHandler.ashx?phone=" + phone + "&idcard=" + idcard, function (data) {
+                resultpsw = data;
+                if (resultpsw == "false") {
+                    alert("对不起，你输入的手机号码已与其他身份证绑定，请重新输入!");
+                }
+                else {
+                    $.get("/order/QuickorderHandler.ashx?ticketid=" + tid + "&phone=" + phone + "&pricetype=" + pricetype + "&a=" + escape(b), function (data) {
+                        alert(" 手机号码: " + phone + " 密码: "+resultpsw);
+                    });
+                }
+            });
+        });
+    });
+
+</script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,7 +86,7 @@
                         姓名
                     </td>
                     <td>
-                        <asp:TextBox ID="txtname" runat="server"></asp:TextBox>
+                        <input type="text"  ID="txtname" runat="server" />
                     </td>
                 </tr>
                 <tr>
@@ -34,7 +94,7 @@
                         身份证号
                     </td>
                     <td>
-                        <asp:TextBox ID="txtidcard" runat="server"></asp:TextBox>
+                        <input type="text"  ID="txtidcard" runat="server" />
                     </td>
                 </tr>
                 <tr>
@@ -42,12 +102,12 @@
                         手机号
                     </td>
                     <td>
-                        <asp:TextBox ID="txtmobile" runat="server"></asp:TextBox>
+                        <input type="text" ID="txtmobile" runat="server" />
                     </td>
                 </tr>
             </table>
         </div>
-        <asp:Button ID="BtnOK" runat="server" Text="预定" style="margin:0px auto; margin-left:460px;"  />
+        <input type="button"  ID="BtnOK" value="预定" style="margin:0px auto; margin-left:460px;"  />
         <div class="odinfo">
             联票预订说明<br />
 1 开放时间:8:00-17:00<br />
