@@ -45,9 +45,9 @@ namespace BLL
         {
             return Iticketassign.GetIdcardandname(name, idcard, scenic);
         }
-        public void GetTicketInfoByIdCard(string idcard, Scenic scenic, out int ydcount, out int usedcount,int type)
+        public void GetTicketInfoByIdCard(string idcard, Ticket ticket, out int ydcount, out int usedcount,int type)
         {
-            Iticketassign.GetTicketInfoByIdCard(idcard, scenic,out ydcount,out usedcount,type);
+            Iticketassign.GetTicketInfoByIdCard(idcard, ticket,out ydcount,out usedcount,type);
         }
         public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, Ticket ticket,int type)
         {

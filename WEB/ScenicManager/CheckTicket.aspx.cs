@@ -458,7 +458,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             Model.Ticket t = e.Item.DataItem as Model.Ticket;
             int ttolcount = 0;
             int uscount = 0;
-            bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 2);
+            bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 2);
             HtmlContainerControl hcydmpcount = e.Item.FindControl("ydmpcount") as HtmlContainerControl;
             hcydmpcount.InnerHtml = ttolcount.ToString();
             HtmlContainerControl hcydmpusedcount = e.Item.FindControl("ydmpusedcount") as HtmlContainerControl;

@@ -20,7 +20,7 @@ namespace IDAL
         //验票
         IList<DataTable> GetTicketAssignBynameandidcard(string name, string idcard, Scenic scenic);
         List<TicketAssign> GetIdcardandname(string name, string idcard, Scenic scenic);
-        void GetTicketInfoByIdCard(string idcard, Scenic scenic, out int ydcount, out int usedcount,int type);
+        void GetTicketInfoByIdCard(string idcard, Ticket ticket, out int ydcount, out int usedcount,int type);
         IList<TicketAssign> GetNotUsedTicketAssign(string idcard, Ticket ticket,int type);
         TicketAssign GetLasetRecordByidcard(string idcard, Ticket ticket,int type);
         void GetOlTicketInfoByIdcard(string idcard, Ticket ticket, out int olcount, out int usedolcount, int type);
