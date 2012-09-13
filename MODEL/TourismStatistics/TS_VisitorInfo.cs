@@ -8,7 +8,7 @@ namespace Model
     /// <summary>
     /// 游客信息
     /// </summary>
-    public class TS_Manager : TourMembership
+    public class TS_VisitorInfo 
     {
         /// <summary>
         /// 
