@@ -86,10 +86,10 @@ namespace DAL
 
         public void GetTicketInfoByIdCard(string idcard, Ticket ticket, out int ydcount, out int usedcount,int type)
         {
-            string sqlyd = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.OrderDetail.TicketPrice.PriceType="+type+"";
+            string sqlyd = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.OrderDetail.TicketPrice.PriceType="+type+" and ta.Scenic.Id="+ticket.Scenic.Id+"";
             IQuery queryyd = session.CreateQuery(sqlyd);
             ydcount =(int)queryyd.FutureValue<long>().Value;
-            string sqlused = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.IsUsed=true and ta.OrderDetail.TicketPrice.PriceType=" + type + "";
+            string sqlused = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.IsUsed=true and ta.OrderDetail.TicketPrice.PriceType=" + type + " and ta.Scenic.Id=" + ticket.Scenic.Id + "";
             IQuery queryused = session.CreateQuery(sqlused);
             usedcount = (int)queryused.FutureValue<long>().Value;
         }
@@ -113,10 +113,10 @@ namespace DAL
 
         public void GetOlTicketInfoByIdcard(string idcard, Ticket ticket, out int olcount, out int usedolcount, int type)
         {
-            string sqlyd = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.OrderDetail.TicketPrice.PriceType=" + type + " and ta.OrderDetail.Order.IsPaid=true";
+            string sqlyd = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.OrderDetail.TicketPrice.PriceType=" + type + " and ta.OrderDetail.Order.IsPaid=true and  ta.Scenic.Id=" + ticket.Scenic.Id + "";
             IQuery queryyd = session.CreateQuery(sqlyd);
             olcount = (int)queryyd.FutureValue<long>().Value;
-            string sqlused = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.IsUsed=true and ta.OrderDetail.TicketPrice.PriceType=" + type + "";
+            string sqlused = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.IsUsed=true and ta.OrderDetail.TicketPrice.PriceType=" + type + " and  ta.Scenic.Id=" + ticket.Scenic.Id + "";
             IQuery queryused = session.CreateQuery(sqlused);
             usedolcount = (int)queryused.FutureValue<long>().Value;
         }

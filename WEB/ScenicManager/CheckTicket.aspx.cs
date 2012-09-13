@@ -23,6 +23,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     public int totalolcount;//在线支付总数
     public int useolcount;//在线支付已使用数
     public string yddj;
+    Scenic sss;
     protected void Page_Load(object sender, EventArgs e)
     {
         hfscid.Value = Master.Scenic.Id.ToString();
@@ -41,6 +42,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     private void bind()
     {
         CurrentScenic = Master.Scenic;
+        sss=Master.Scenic;
         //绑定预定信息
         rptpeopleinfo.DataSource = new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic);
         rptpeopleinfo.DataBind();
@@ -440,6 +442,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             Model.Ticket t= e.Item.DataItem as Model.Ticket;
             int ttolcount=0;
             int uscount=0;
+            t.Scenic = Master.Scenic;
             bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 3);
             HtmlContainerControl hcolgpcount = e.Item.FindControl("olgpcount") as HtmlContainerControl;
             hcolgpcount.InnerHtml = ttolcount.ToString();
@@ -458,6 +461,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             Model.Ticket t = e.Item.DataItem as Model.Ticket;
             int ttolcount = 0;
             int uscount = 0;
+            t.Scenic = Master.Scenic;
             bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 2);
             HtmlContainerControl hcydmpcount = e.Item.FindControl("ydmpcount") as HtmlContainerControl;
             hcydmpcount.InnerHtml = ttolcount.ToString();
