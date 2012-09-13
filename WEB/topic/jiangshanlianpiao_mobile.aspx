@@ -14,14 +14,14 @@
 </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
-<img usemap="#linkOrder" src="../Img/jiangshanlianpiao.jpg" alt="江山联票" />
-
+<img style="border:0;margin:0;padding:0;" usemap="#linkOrder" src="../Img/jiangshanlianpiao2.jpg" alt="江山联票" />
+<a href="../Scenic/QuickBook.aspx">现在订票</a>
 
 <map id="orderMap" name="linkOrder">
 
 <!--用<map>标记设定图像地图的作用区域，并用name属性爲图像起一个名字-->
 
-<area shape=rect coords=600,95,830,148 href="javascript:AddToCart();">
+<area shape=rect coords=600,95,830,148 href="/scenic/quickbook.aspx">
 </map>
 </asp:Content>
 

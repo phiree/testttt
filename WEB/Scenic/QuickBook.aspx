@@ -54,14 +54,15 @@
                     window.location = "/Scenic/QuickError.aspx";
                 }
                 else {
-                    window.location = "/Scenic/QuickSuc.aspx?phone="+phone+"&psw="+resultpsw;
+                    $.get("/order/QuickorderHandler.ashx?ticketid=" + tid + "&phone=" + phone + "&pricetype=" + pricetype + "&a=" + escape(b), function (data) {
+                 window.location = "/Scenic/QuickSuc.aspx?phone="+phone+"&psw="+resultpsw;
+                    });
+                 
                 }
             });
 
             //票
-            $.get("/order/QuickorderHandler.ashx?ticketid=" + tid + "&phone=" + phone + "&pricetype=" + pricetype + "&a=" + escape(b), function (data) {
-
-            });
+         
         });
     });
 
