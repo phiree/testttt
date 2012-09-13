@@ -47,9 +47,14 @@
                 </tr>
             </table>
         </div>
-        <asp:Button ID="BtnOK" runat="server" Text="预定" style="margin:20px auto; margin-left:460px;"  />
-        <div class="od">
-        
+        <asp:Button ID="BtnOK" runat="server" Text="预定" style="margin:0px auto; margin-left:460px;"  />
+        <div class="odinfo">
+            联票预订说明<br />
+1 开放时间:8:00-17:00<br />
+2 取票地点:江郎山,廿八都,清漾景区售票处均可取票<br />
+3 取票凭证:身份证<br />
+4 发票说明:网络预订的景区门票,网站不提供发票,敬请谅解.
+
         </div>
     </div>
     

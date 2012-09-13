@@ -41,3 +41,12 @@
     width:250px;
     margin:50px auto;
 }
+.odinfo
+{
+    width:360px;
+    margin:20px auto;
+    border:1px solid Gray;
+    height:150px;
+    padding:20px 0px 0px 40px;
+    line-height:20px;
+}
