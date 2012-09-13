@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/order.master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" MasterPageFile="~/order.master" AutoEventWireup="true"
     CodeFile="CheckOut.aspx.cs" Inherits="Scenic_CheckOut" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
@@ -59,7 +59,7 @@
                     <tr>
                         <td>
                             <input type="hidden" class="hdId" value='<%#Eval("Id") %>' />
-                            <a href='<%# "/Tickets/"+Eval("Scenic.Area.SeoName")+"/"+Eval("Scenic.SeoName")+".html"%>'>
+                            <a href='<%# "/"+Eval("Scenic.Area.SeoName")+"/"+Eval("Scenic.SeoName")+".html"%>'>
                                 <%#Eval("Scenic.Name") %></a>
                         </td>
                         <td>
@@ -131,21 +131,20 @@
                 </FooterTemplate>
             </asp:Repeater>
         </div>
-        <asp:Repeater runat="server" ID="rptAssign" 
-            onitemdatabound="rptAssign_ItemDataBound">
+        <asp:Repeater runat="server" ID="rptAssign">
             <HeaderTemplate>
                 <table id="tilist">
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
                     <td style="padding-left: 20px; width: 25%">
-                        <%#Eval("Scenic.Name") %><asp:Label Visible="false" runat="server" ID="lblUnion">(联票)</asp:Label>
+                        <%#Eval("Scenic.Name") %>
                     </td>
                     <td style="width: 35%;">
-                        游览者姓名:&nbsp;<input type="text" tid='<%#Eval("TicketId") %>'  class="assignName" style="vertical-align: middle" />
+                        游览者姓名:&nbsp;<input type="text" tid='<%#Eval("Id") %>' class="assignName" style="vertical-align: middle" />
                     </td>
                     <td style="width: 50%;">
-                        身份证号:&nbsp;<input type="text" tid='<%#Eval("TicketId")%>'  sid='<%#Eval("Scenic.Id")%>'   onblur="veriidcard()" class="assignIdcard"
+                        身份证号:&nbsp;<input type="text" tid='<%#Eval("Id")%>' onblur="veriidcard()" class="assignIdcard"
                             style="vertical-align: middle" />
                         <span class="veritext"></span>
                     </td>
