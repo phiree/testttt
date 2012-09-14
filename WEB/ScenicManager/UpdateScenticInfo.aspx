@@ -21,6 +21,10 @@
             var map = new BMap.Map("bigmap");            // 创建Map实例
             var position = $.cookie("unitposition");
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
+            if (point.lat == 0) {
+                position = "120.159033,30.28376";
+                point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
+            }
             map.centerAndZoom(point, 15);                     // 初始化地图,设置中心点坐标和地图级别。
             if (position != "120.159033,30.28376") {
                 $("[id$='hfposition']").val(position);
@@ -78,6 +82,10 @@
             var map = new BMap.Map("container");            // 创建Map实例
             var position = $.cookie("unitposition");
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
+            if (point.lat == 0) {
+                position = "120.159033,30.28376";
+                point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
+            }
             map.centerAndZoom(point, 15);                     // 初始化地图,设置中心点坐标和地图级别。
             if (position != "120.159033,30.28376") {
                 $("[id$='hfposition']").val(position);
@@ -131,6 +139,10 @@
             var map = new BMap.Map("container");            // 创建Map实例
             var position = $.cookie("unitposition");
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
+            if (point.lat == 0) {
+                position = "120.159033,30.28376";
+                point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
+            }
             map.centerAndZoom(point, 15);                     // 初始化地图,设置中心点坐标和地图级别。
             if (position != "120.159033,30.28376") {
                 $("[id$='hfposition']").val(position);
@@ -184,6 +196,10 @@
             var map = new BMap.Map("container");            // 创建Map实例
             var position = $.cookie("unitposition");
             var point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
+            if (point.lat == 0) {
+                position = "120.159033,30.28376";
+                point = new BMap.Point(position.split(",")[0], position.split(",")[1]);    // 创建点坐标
+            }
             map.centerAndZoom(point, 15);                     // 初始化地图,设置中心点坐标和地图级别。
             if (position != "120.159033,30.28376") {
                 $("[id$='hfposition']").val(position);

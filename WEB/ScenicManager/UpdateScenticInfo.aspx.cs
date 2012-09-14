@@ -32,7 +32,10 @@ public partial class ScenticManager_UpdateScenticInfo :basepage
         Address.Text = scenic.Address;
         Desc.Text = scenic.Desec;
         IList<ScenicImg> list= bllscenicimg.GetSiByType(scenic,1);
-        ScenicImg.ImageUrl = "/ScenicImg/" + list[0].Name;
+        if (list.Count > 0)
+        {
+            ScenicImg.ImageUrl = "/ScenicImg/" + list[0].Name;
+        }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
