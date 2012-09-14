@@ -52,7 +52,7 @@ public partial class Manager_ScenicManage_EditScenic : System.Web.UI.Page
     private void LoadForm()
     {
         tbxAddress.Text = scenic.Address;
-        tbxArea.Text = scenic.Area.Id;
+        tbxArea.Text = scenic.Area.Id.ToString();
         tbxBookNote.Text = scenic.BookNote;
         tbxDesc.Text = scenic.Desec;
         tbxDetail.Text = scenic.ScenicDetail;

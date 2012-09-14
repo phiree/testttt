@@ -31,11 +31,7 @@ namespace Model
         ,
         [Description("优惠价")]
         PayOnline//优惠价(网上支付)
-        ,
-        [Description("明信片优惠价")]
-        PostCardDiscount
-        ,
-        [Description("电子明信片优惠价")]
-        DigitalPostCardDiscount
+       
+       
     }
 }
