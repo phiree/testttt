@@ -8,6 +8,7 @@
     
     <div>
     <span id="spScenicName"><a href="/Scenic/?sname=<%=Scenic.SeoName %>"><%=Scenic.Name %></a>   </span>    门票列表</div>
+    <a href=AddTicket.aspx?scenicid=<%=Scenic.Id %>>添加门票</a>
     <asp:Repeater runat="server" ID="rptTickets">
         <HeaderTemplate>
             <table>
