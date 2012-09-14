@@ -82,7 +82,7 @@
                 </td>
             </tr>
             <tr>
-                <td>所属区域
+                <td>所属区域AreaCode
                 </td>
                 <td>
                 <asp:TextBox runat="server" ID="tbxArea"></asp:TextBox>

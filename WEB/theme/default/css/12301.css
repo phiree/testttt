@@ -48,5 +48,11 @@
     border:1px solid Gray;
     height:150px;
     padding:20px 0px 0px 40px;
-    line-height:20px;
+    line-height:25px;
+}
+#ydinfo
+{
+    text-align:center;
+    width:250px;
+    margin:5px auto;
 }

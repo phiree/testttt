@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
     <div id="main">
         <div id="top">
-            <h3>12301帮助平台</h3>
+            <h3>12301协助订票平台</h3>
         </div>
         <div id="login">
             <h3 style="text-align:center">12301用户登录</h3>
