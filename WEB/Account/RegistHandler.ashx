@@ -14,9 +14,8 @@ public class RegistHandler : IHttpHandler
         string username = context.Request["phone"];
         string idcard=context.Request["idcard"];
         
-        //根据后两位的平方生成的密码
-        int temp=Guid.NewGuid().GetHashCode();
-        string password = temp.ToString().Substring(temp.ToString().Length - 6, 6);
+        //身份证后6位为密码
+        string password = idcard.Substring(idcard.ToString().Length - 6, 6);
         string email = "";
         Model.TourMembership isexist = bllMember.GetMember(username);
         if (isexist != null)

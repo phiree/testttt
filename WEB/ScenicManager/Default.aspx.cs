@@ -13,33 +13,49 @@ public partial class ScenticManager_Default : bpScenicManager
     BLLScenic bllscenic = new BLLScenic();
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
     BLLMembership bllMember = new BLLMembership();
+    public string RoleNames = string.Empty;
+    public string ScenicName = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
+        ScenicName = this.CurrentScenic.Name;
+
         ScenicAdmin scenicAdmin = bllMember.GetScenicAdmin((Guid)CurrentMember.Id);
         switch ((int)scenicAdmin.AdminType)
         {
             case 1:
-                Response.Redirect("/scenicmanager/onlinesell/Pricesetting.aspx");
+                RoleNames = scenicAdmin.AdminType.ToString();
+                dvEditor.Visible = true;
+
                 break;
             case 2:
-                Response.Redirect("/scenicmanager/CheckTicket.aspx");
+                RoleNames = scenicAdmin.AdminType.ToString();
+                dvChecker.Visible = true;
                 break;
             case 4:
-                Response.Redirect("/scenicmanager/StatisInfo.aspx");
+                RoleNames = scenicAdmin.AdminType.ToString();
+                dvFinance.Visible = true;
                 break;
             case 3:
-                Response.Redirect("/scenicmanager/onlinesell/Pricesetting.aspx");
+                RoleNames = ScenicAdminType.景区资料员.ToString() + "," + ScenicAdminType.检票员.ToString();
+                dvEditor.Visible = dvChecker.Visible = true;
                 break;
             case 5:
-                 Response.Redirect("/scenicmanager/CheckTicket.aspx");
+                RoleNames = ScenicAdminType.景区资料员.ToString() + "," + ScenicAdminType.景区财务.ToString();
+                dvEditor.Visible = dvAccountManager.Visible = true;
+
                 break;
             case 6:
-                Response.Redirect("/scenicmanager/CheckTicket.aspx");break;
+             
+                 RoleNames = ScenicAdminType.检票员.ToString() + "," + ScenicAdminType.景区财务.ToString();
+                dvChecker.Visible = dvAccountManager.Visible = true;
+                break;
             case 7:
-                Response.Redirect("/scenicmanager/onlinesell/Pricesetting.aspx");
+                RoleNames = "超级管理员";
+                dvChecker.Visible = dvAccountManager.Visible = dvEditor.Visible = dvFinance.Visible = true;
                 break;
             default:
                 break;
         }
+
     }
 }
