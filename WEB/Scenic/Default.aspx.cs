@@ -183,7 +183,7 @@ public partial class Scenic_Default : basepage
     public bool IsPackageScenic(Scenic s)
     {
         BLLScenicTicket bllscenicticket = new BLLScenicTicket();
-        if (bllscenicticket.GetScenicByTicket(s.Tickets[0].Id).Count > 0)
+        if (s.Tickets.Count>0&&bllscenicticket.GetScenicByTicket(s.Tickets[0].Id).Count > 0)
             return true;
         return false;
     }
