@@ -17,9 +17,10 @@ public partial class ScenticManager_Default : bpScenicManager
     public string ScenicName = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
-        ScenicName = this.CurrentScenic.Name;
+        //ScenicName = this.CurrentScenic.Name;
 
         ScenicAdmin scenicAdmin = bllMember.GetScenicAdmin((Guid)CurrentMember.Id);
+        ScenicName = scenicAdmin.Scenic.Name;
         switch ((int)scenicAdmin.AdminType)
         {
             case 1:
