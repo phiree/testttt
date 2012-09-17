@@ -3,6 +3,18 @@ input,select
 {
     font-size:12px;
 }
+.weldiv
+{
+    margin: 15px 0px 0px 20px;
+}
+.weldiv div
+{
+    line-height:25px;
+}
+.weldiv span
+{
+    font-weight:bold;
+}
 .fuctitle
 {
     margin: 15px 0px 0px 20px;
