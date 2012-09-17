@@ -118,7 +118,7 @@ public partial class Layout : System.Web.UI.MasterPage
     {
         foreach (Scenic item in list)
         {
-            if (!string.IsNullOrEmpty(item.Position))
+            if (!string.IsNullOrEmpty(item.Position) && item.Position!="null")
             {
                 string[] str = scenic.Position.Split(',');
                 string[] str2 = item.Position.Split(',');

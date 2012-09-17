@@ -7,54 +7,67 @@ using System.Web.UI.WebControls;
 using Model;
 using BLL;
 
-public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
+public partial class ScenicManager_OnlineSell_Pricesetting2 : bpScenicManager
 {
     BLLScenic bllscenic = new BLLScenic();
-    BLLTicketPrice bllticketprice = new BLLTicketPrice();
-    BLLTicket bllticket = new BLLTicket();
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["stateurl"] = Request.Url;
-        CurrentScenic = Master.Scenic;
-        if (Request.QueryString["update"] == null)               //修改标志位
-            loadstate();
-        else
+        if (!IsPostBack)
         {
-            panelchangeprice.Visible = true;
-            panelpassstate.Visible = false;
-            panelshing.Visible = false;
-            panelnotpass.Visible = false;
+            bind();
         }
     }
 
-    private void BindPrice()
+    private void bind()
     {
-        IList<Model.Ticket> tickets = bllticket.GetTicketByscId(CurrentScenic.Id);
-        rptprice.DataSource = tickets;
-        rptprice.DataBind();
-    }
-
-    private void loadstate()
-    {
-        ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(CurrentScenic.Id, (int)Model.ScenicModule.SellOnLine);
-        if (scp != null)
+        Scenic scenic = Master.Scenic;
+        scenicname.InnerHtml = scenic.Name;
+        if (scenic.Tickets.Count > 0)
         {
-            panelpassstate.Visible = scp.CheckStatus == CheckStatus.Pass;
-            panelshing.Visible = scp.CheckStatus == CheckStatus.Applied;
-            panelnotpass.Visible = scp.CheckStatus == CheckStatus.NotPass;
-            panelchangeprice.Visible = scp.CheckStatus == CheckStatus.NotApplied;
-            BindPrice();
-            //lblyj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 1).Price.ToString("0") + "元";
-            //lblydj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 2).Price.ToString("0") + "元";
-            //lblyhj.Text = bllticketprice.GetTicketPriceByScenicandtypeid(CurrentScenic.Id, 3).Price.ToString("0") + "元";
+            weldiv.Visible = false;
         }
         else
         {
-            panelchangeprice.Visible = true;
-            panelpassstate.Visible = false;
-            panelshing.Visible = false;
-            panelnotpass.Visible = false;
+            weldiv.Visible = true;
+        }
+        ScenicCheckProgress scp = BllScenic.GetCheckProgressByscidandmouid(scenic.Id, 1);
+        if (scp.CheckStatus == CheckStatus.NotApplied || scp.CheckStatus == CheckStatus.NotPass || scp.CheckStatus == CheckStatus.Pass)
+        {
+            step_1.Style.Add("visibility", "visible");
+            step_2.Style.Add("visibility", "hidden");
+            step_3.Style.Add("visibility", "hidden");
+            step_4.Style.Add("visibility", "hidden");
+            astep_2.Attributes.Add("class", "unable");
+            astep_2.Attributes.Remove("href");
+            astep_3.Attributes.Add("class", "unable");
+            astep_3.Attributes.Remove("href");
+            btnApply.OnClientClick = "return btnunable()";
+        }
+        if (scp.CheckStatus == CheckStatus.Applied_1)
+        {
+            step_1.Style.Add("visibility", "hidden");
+            step_2.Style.Add("visibility", "visible");
+            step_3.Style.Add("visibility", "hidden");
+            step_4.Style.Add("visibility", "hidden");
+            astep_3.Attributes.Add("class", "unable");
+            astep_3.Attributes.Remove("href");
+            btnApply.OnClientClick = "return btnunable()";
+        }
+        if (scp.CheckStatus == CheckStatus.Applied_2)
+        {
+            step_1.Style.Add("visibility", "hidden");
+            step_2.Style.Add("visibility", "hidden");
+            step_3.Style.Add("visibility", "visible");
+            step_4.Style.Add("visibility", "hidden");
+            btnApply.OnClientClick = "return btnunable()";
+        }
+        if (scp.CheckStatus == CheckStatus.Applied_3)
+        {
+            step_1.Style.Add("visibility", "hidden");
+            step_2.Style.Add("visibility", "hidden");
+            step_3.Style.Add("visibility", "hidden");
+            step_4.Style.Add("visibility", "visible");
+            btnApply.Enabled = true;
         }
     }
     protected void btnApply_Click(object sender, EventArgs e)
@@ -64,6 +77,6 @@ public partial class ScenicManager_OnlineSell_Pricesetting : bpScenicManager
             bllscenic.Apply(CurrentScenic, CurrentMember, ScenicModule.SellOnLine);
         else
             bllscenic.Apply(CurrentScenic, CurrentMember, ScenicModule.SellOnLine, scp.Id);
-        loadstate();
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('上传票价成功');window.location='PriceState.aspx'", true);
     }
 }

@@ -388,29 +388,55 @@ h3
     color: #666666;
     margin: 20px 20px 0px 20px;
 }
+.stepstate
+{
+    margin: 10px 0px 0px 0px;
+}
 .step:link, .step:active, .step:visited
 {
     display: block;
-    margin: 10px 0px 0px 20px;
+    float:left;
+    margin: 10px 0px 0px 0px;
     text-decoration: none;
     color: Black;
     font-weight: 700;
     font-size: 14px;
+
 }
 .step:hover
 {
     display: block;
-    margin: 10px 0px 0px 20px;
+    float:left;
+    margin: 10px 0px 0px 0px;
     text-decoration: underline;
     color: Black;
     font-weight: 700;
     font-size: 14px;
 }
+.stepicon
+{
+    color:Green;
+    font-weight:bold;
+    font-size:20px;
+    display:block;
+    float:left;
+    line-height:35px;
+}
+.unable,.unable:link,.unable:active,.unable:visited,.unable:hover
+{
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 10px 0px 0px 0px;
+    cursor:inherit;
+    color:#666666;
+    line-height:30px;
+}
 .btnapply
 {
     width: 75px;
     height: 30px;
-    background: url("/theme/default/image/applybtn.png");
+    background: url("/theme/default/image/applyscticket.jpg");
     border: 0px none White;
     cursor: pointer;
 }

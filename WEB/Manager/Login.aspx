@@ -15,7 +15,7 @@
             </div>
             <div>
                 <asp:Login ID="Login1" runat="server" OnLoggingIn="Login1_LoggingIn" cellpadding="20"
-                    cellspacing="40" class="tablemain" >
+                    cellspacing="40" class="tablemain" onloggedin="Login1_LoggedIn" >
                     <LayoutTemplate>
                         <%--<table cellpadding="1" cellspacing="0" style="border-collapse: collapse;">--%>
                         <tr>

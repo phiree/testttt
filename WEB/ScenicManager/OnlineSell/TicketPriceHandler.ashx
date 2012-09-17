@@ -18,6 +18,7 @@ public class TicketPriceHandler : IHttpHandler
         //string scid = context.Request.Form["scid"];
         string[] datas = context.Request.Form[0].Split(new char[] { '{' }, StringSplitOptions.RemoveEmptyEntries);
         BLL.BLLTicket bllTicket = new BLL.BLLTicket();
+        BLL.BLLScenic bllscenic = new BLL.BLLScenic();
         foreach (var item in datas)
         {
             string[] tmp = item.Split(new char[] { ',' });
@@ -29,6 +30,9 @@ public class TicketPriceHandler : IHttpHandler
             string ticketid = tmp[4];
             string scid = tmp[5];
             bllTicket.SaveOrUpdateTicket(ticketname, yuanjia, xianfujia, zaixianjia, ticketid, scid);
+            Model.ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(int.Parse(scid), 1);
+            scp.CheckStatus = Model.CheckStatus.Applied_1;
+            bllscenic.UpdateCheckState(scp);
         }
     }
 

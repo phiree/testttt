@@ -26,6 +26,10 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
     /// <param name="e"></param>
     protected void Login1_LoggingIn(object sender, EventArgs e)
     {
+        
+    }
+    protected void Login1_LoggedIn(object sender, EventArgs e)
+    {
         MembershipUser member = (tourmembership.GetUser(Login1.UserName, true));
         if (member == null)
         {
@@ -33,7 +37,7 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
         }
         if (Roles.IsUserInRole(member.UserName, "SiteAdmin"))
         {
-            Response.Redirect("/default.aspx");
+            Response.Redirect("/Manager/default.aspx");
         }
         else
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或密码错误');", true);

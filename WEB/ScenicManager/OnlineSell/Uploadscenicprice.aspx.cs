@@ -13,8 +13,12 @@ public partial class ScenicManager_OnlineSell_Uploadscenicprice : basepage
     BLLScenic bllscenic = new BLLScenic();
     protected void Page_Load(object sender, EventArgs e)
     {
-        stateurl.HRef = Session["stateurl"].ToString();
-        gopay.HRef = Session["stateurl"].ToString();
+        if (Request.UrlReferrer.AbsolutePath == "/ScenicManager/OnlineSell/PrintScenicPrice.aspx")
+        {
+            ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(Master.Scenic.Id, 1);
+            scp.CheckStatus = CheckStatus.Applied_2;
+            bllscenic.UpdateCheckState(scp);
+        }
     }
     protected void btnok_Click(object sender, EventArgs e)
     {
@@ -59,5 +63,13 @@ public partial class ScenicManager_OnlineSell_Uploadscenicprice : basepage
         }
         ci.ScenicModule = ScenicModule.SellOnLine;
         bllscenic.UploadContractImg(ci);
+        
+    }
+    protected void btnchange_Click(object sender, EventArgs e)
+    {
+        ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(Master.Scenic.Id, 1);
+        scp.CheckStatus = CheckStatus.Applied_3;
+        bllscenic.UpdateCheckState(scp);
+        Response.Redirect("/ScenicManager/OnlineSell/Pricesetting.aspx");
     }
 }

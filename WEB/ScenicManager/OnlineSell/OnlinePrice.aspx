@@ -44,7 +44,6 @@
                 alert("修改成功！");
             else
                 alert("修改失败！");
-            window.navigate("/scenicmanager/onlinesell/Pricesetting.aspx?update=1");
             //return false;
         }
 
@@ -78,7 +77,7 @@
     <hr />
     <div id="updateprice">
         <div class="paystate">
-        <a href="/scenicmanager/onlinesell/OnlinePrice.aspx" class="nowstate">填写景区价格</a>><a href="/scenicmanager/onlinesell/PrintScenicPrice.aspx">打印价格表</a>><a href="">上传盖章后价格表</a>><a id="stateurl" runat="server" href="">申请</a>
+        <a href="/scenicmanager/onlinesell/OnlinePrice.aspx" class="nowstate">填写景区价格</a>><a>打印价格表</a>><a>上传盖章后价格表</a>><a>申请</a>
         </div>
         <div class="priceintroduction">
             门票价格介绍

@@ -102,7 +102,10 @@ namespace Model
        [Description("未申请")]
         NotApplied //尚未提交审核
         ,
+        
+        
         [Description("已申请,等待审核")]
+
         Applied //已经提交 等待审核
         ,
         [Description("审核通过")]
@@ -112,7 +115,13 @@ namespace Model
         NotPass//审核未通过
         ,
         [Description("无数据")]
-        None
+        None,
+        [Description("申请环节1")]
+        Applied_1,//申请环节1，提交价格
+        [Description("申请环节2")]
+        Applied_2,//申请环节2，打印票价
+        [Description("申请环节3")]
+        Applied_3//申请环节3，上传票价
     }
 
     //景区图片对应关系
