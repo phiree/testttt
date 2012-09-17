@@ -68,7 +68,7 @@ public partial class search_Default : System.Web.UI.Page
             liPriceOnline.Text = priceOnline.ToString("0");
             Image img = e.Item.FindControl("Image1") as Image;
             if (new BLLScenicImg().GetSiByType(s, 1).Count > 0)
-                img.ImageUrl = "/ScenicImg/" + new BLLScenicImg().GetSiByType(s, 1)[0].Name;
+                img.ImageUrl = "/ScenicImg/small/" + new BLLScenicImg().GetSiByType(s, 1)[0].Name;
 	        }
         }
     }
