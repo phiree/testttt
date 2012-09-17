@@ -17,5 +17,6 @@ namespace IDAL
         Ticket Get(int ticketId);
         Ticket GetByScenicSeo(string scenicSeoName);
         IList<Ticket> GetTp(int scid);
+        void Delete(Ticket t);
     }
 }

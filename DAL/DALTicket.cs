@@ -118,5 +118,12 @@ namespace DAL
             return query.Future<Model.Ticket>().OrderByDescending(x=>x.OrderNumber).ToList();
         }
 
+
+
+        public void Delete(Model.Ticket t)
+        {
+            session.Delete(t);
+            session.Flush();
+        }
     }
 }
