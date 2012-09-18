@@ -16,6 +16,10 @@ namespace Model
             Groups = new List<TourGroup>();
         }
         public virtual Guid Id { get; set; }
+        /// <summary>
+        /// 所属区域
+        /// </summary>
+        public virtual Area Area { get; set; }
         public virtual DijiesheInfo Dijieshe { get; set; }
         public virtual string Name { get; set; }
 

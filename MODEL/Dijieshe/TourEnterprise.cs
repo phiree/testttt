@@ -12,5 +12,13 @@ namespace Model
     {
        public virtual Guid Id { get; set; }
        public virtual string Name { get; set; }
+       public virtual EnterpriseType Type { get; set; }
+    }
+    public enum EnterpriseType
+    {
+     景点=1,
+        饭店,
+        宾馆,
+        购物点
     }
 }
