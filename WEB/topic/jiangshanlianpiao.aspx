@@ -14,7 +14,7 @@
 </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
-<div class="container"><img usemap="#linkOrder" src="../Img/jiangshanlianpiao.jpg" alt="江山联票" />
+<div class="container"><img usemap="#linkOrder" src="/Img/jiangshanlianpiao.jpg" alt="江山联票" />
 </div> 
 
 <map id="orderMap" name="linkOrder">
