@@ -88,7 +88,13 @@
                 <asp:TextBox runat="server" ID="tbxArea"></asp:TextBox>
                 </td>
             </tr>
-
+             <tr>
+                <td>是否隐藏
+                </td>
+                <td>
+                <asp:CheckBox  runat="server" ID="cbxHide"></asp:CheckBox>
+                </td>
+            </tr>
 
              <tr>
                 <td>简介

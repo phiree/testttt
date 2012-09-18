@@ -28,7 +28,7 @@ namespace DAL
 
         public IList<Model.Scenic> GetTicketByAreaIdAndLevel(int areaId, int level,string topic,int pageIndex,int pageSize ,out int totalRecord)
         {
-            string where = " where 1=1 ";
+            string where = " where IsHide<>true ";
             if (areaId > 0)
             {
                 where += " and  s.Area=" + areaId;
