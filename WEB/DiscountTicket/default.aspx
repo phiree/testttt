@@ -32,7 +32,7 @@
         <div id="countydiv" runat="server" class="countydiv">
             <span class="themedivspan" style="color: Black; font-weight: normal">所在区县:</span>
             <div style="float: left; width: 640px;">
-                <a runat="server" id="hrefCountyAll" style="margin-right: 10px;" class="hlc">全部</a>
+                <%--<a runat="server" id="hrefCountyAll" style="margin-right: 10px;" class="hlc">全部</a>--%>
                 <asp:Repeater ID="rptCounty" runat="server"  onitemdatabound="rptCounty_ItemDataBound">
                     <ItemTemplate>
                         <a runat="server" id="hlcounty" style="margin-right: 10px;">

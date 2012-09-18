@@ -168,7 +168,10 @@ namespace CommonLibrary
             {
                 if (DictParameters[s]!= "")
                 {
-                    r += "/" + DictParameters[s];
+                    if (s != "county")
+                        r += "/" + DictParameters[s];
+                    else
+                        r += "_" + DictParameters[s];
                 }
             }
             if (r == string.Empty)

@@ -9,6 +9,7 @@ using BLL;
 using BLL.SEO;
 using System.Configuration;
 using System.Web.UI.HtmlControls;
+using System.Text.RegularExpressions;
 
 
 public partial class DiscountTicket_DiscountTicket : basepage
@@ -23,7 +24,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
     /// </summary>
     string UrlQuery = string.Empty;
     int areaId = 0, level = 0;
-    string areaSeoName, levelname,topicname;
+    string areaSeoName, levelname,topicname,countyname;
     Area area;
     Topic topic;
     CommonLibrary.UrlParamHelper urlParamHelper;
@@ -46,7 +47,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         areaSeoName = Request["area"];
         levelname = Request.QueryString["level"];
         topicname = Request.QueryString["topic"];
-        
+        countyname = Request.QueryString["county"];
         if (topicname != null)
         {
             topicname = topicname.TrimEnd('/');
@@ -55,7 +56,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         }
         if (levelname != null)
         {
-            int.TryParse(levelname.TrimEnd('a'), out level);
+            int.TryParse(levelname.TrimEnd('a').TrimEnd('A'), out level);
 
         }
         if (!IsPostBack)
@@ -84,7 +85,11 @@ public partial class DiscountTicket_DiscountTicket : basepage
         {
             // ErrHandler.Redirect(ErrType.ParamIllegal);
         }
-
+        if (countyname != null)
+        {
+            Area areacounty = bllArea.GetAreaBySeoName(countyname);
+            areaId = areacounty.Id;
+        }
     }
 
     /// <summary>
@@ -241,6 +246,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
 
             HtmlAnchor hrefArea = e.Item.FindControl("hrefArea") as HtmlAnchor;
             hrefArea.HRef = BuildLink(queryArea, area.SeoName);
+            hrefArea.HRef = Regex.Replace(hrefArea.HRef, @"(?<="+area.SeoName+@")_\D+?/|(?<="+area.SeoName+@")_\D+", "/");
             if (string.IsNullOrEmpty(areaSeoName))
             {
                 hrefAllArea.Attributes["class"] = "hla";
@@ -361,14 +367,29 @@ public partial class DiscountTicket_DiscountTicket : basepage
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
-            Model.Area area = e.Item.DataItem as Model.Area;
+            Model.Area areacounty = e.Item.DataItem as Model.Area;
             HtmlAnchor hrefCounty = e.Item.FindControl("hlcounty") as HtmlAnchor;
             if (hrefCounty.InnerHtml.Trim().Length > 3)
             {
                 hrefCounty.InnerHtml = hrefCounty.InnerHtml.Trim().Substring(3);
-                
             }
-            //hrefCounty.Attributes["class"] = "hlc";
+            hrefCounty.HRef = BindHref(area, areacounty.SeoName, level, topicname);
+            if(countyname==areacounty.SeoName)
+                hrefCounty.Attributes["class"] = "hlc";
         }
+    }
+
+    private string BindHref(Area area,string countyname, int level, string themeseoname)
+    {
+        string url = "/Tickets";
+        if (area != null)
+            url += "/" + area.SeoName;
+        if (countyname != null)
+            url += "_" + countyname;
+        if (level != 0)
+            url += "/" + level+"A";
+        if (themeseoname != null)
+            url += "/t_" + themeseoname;
+        return url;
     }
 }
