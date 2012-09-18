@@ -117,7 +117,7 @@
         </div>
     </asp:Panel>
     <asp:Panel CssClass="emptycart" runat="server" ID="pnlEmptyCart">
-      <div style="padding:0; margin:20px auto; " > 
+      <div style=" text-align :center; margin:20px auto; " > 
        <span>您的购物车内还没有门票,<a href="/" style="color:Blue; font-size:large;">现在去挑选吧!</a></span>
       </div>
     </asp:Panel>
