@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager/manager.master" AutoEventWireup="true"
-    CodeFile="EditScenic.aspx.cs" Inherits="Manager_ScenicManage_EditScenic" %>
+    CodeFile="EditScenic.aspx.cs" Inherits="Manager_ScenicManage_EditScenic" ValidateRequest="false" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -88,7 +88,13 @@
                 <asp:TextBox runat="server" ID="tbxArea"></asp:TextBox>
                 </td>
             </tr>
-
+             <tr>
+                <td>是否隐藏
+                </td>
+                <td>
+                <asp:CheckBox  runat="server" ID="cbxHide"></asp:CheckBox>
+                </td>
+            </tr>
 
              <tr>
                 <td>简介

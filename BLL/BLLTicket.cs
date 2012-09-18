@@ -188,6 +188,11 @@ namespace BLL
         {
             return Iticket.GetTp(scid);
         }
+        public void Delete(int ticketId)
+        {
+            Ticket t = GetTicket(ticketId);
+            Iticket.Delete(t);
+        }
     }
 
     public class CartItem

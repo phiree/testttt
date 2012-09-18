@@ -61,6 +61,7 @@ public partial class Manager_ScenicManage_EditScenic : System.Web.UI.Page
         tbxSeoName.Text = scenic.SeoName;
         tbxTransfer.Text = scenic.Trafficintro;
         rblLevel.SelectedValue = scenic.Level;
+        cbxHide.Checked = scenic.IsHide;
     }
     public void UpdateForm()
     {
@@ -74,6 +75,7 @@ public partial class Manager_ScenicManage_EditScenic : System.Web.UI.Page
         scenic.SeoName = tbxSeoName.Text;
         scenic.Trafficintro = tbxTransfer.Text;
         scenic.Level = rblLevel.SelectedValue;
+        scenic.IsHide = cbxHide.Checked;
     }
     public void Save()
     {

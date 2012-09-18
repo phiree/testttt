@@ -36,6 +36,18 @@ namespace BLL
         {
             return IScenicTicket.GetTicketByScenicId(scenicid);
         }
+        public void Add(int scenicId,int ticketId)
+        {
+            ScenicTicket st=new ScenicTicket();
+            st.Scenic=new BLLScenic().GetScenicById(scenicId);
+            st.Ticket=new BLLTicket().GetTicket(ticketId);
+          
+            IScenicTicket.Add(st);
+        }
+        public void Delete(int scenicId, int ticketId)
+        {
+            IScenicTicket.Delete(IScenicTicket.Get(ticketId, scenicId));
+        }
     }
        
     

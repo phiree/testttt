@@ -16,7 +16,8 @@ namespace BLL
        }
        public static void LogError(object errorMsg)
        {
-           errLog.Error( System.Web.HttpContext.Current.Request.RawUrl+ errorMsg);
+           errLog.Error( System.Web.HttpContext.Current.Request.RawUrl+Environment.NewLine+ errorMsg);
+           
        }
     }
 }

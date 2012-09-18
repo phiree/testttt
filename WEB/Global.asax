@@ -27,8 +27,8 @@
         BLL.TourLog.LogError(ex);
 
         //  Server.Transfer("/err.aspx?err=0");
-
-        // BLL.ErrHandler.Redirect(BLL.ErrType.UnknownError);
+        Server.ClearError();
+         BLL.ErrHandler.Redirect(BLL.ErrType.UnknownError);
 
         // 在出现未处理的错误时运行的代码
 
