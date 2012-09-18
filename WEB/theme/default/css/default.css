@@ -561,7 +561,8 @@ div:246
 }
 .countydiv
 {
-    border-top:1px dashed #C1C1C1;
+    border-top:none;
+    padding-top:5px;
 }
 .searchbody
 {

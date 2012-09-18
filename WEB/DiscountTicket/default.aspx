@@ -21,8 +21,9 @@
                 <HeaderTemplate>
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <a t="area" runat="server" id="hrefArea" style="margin-right: 10px;">
+                    <a t="area" runat="server" id="hrefArea" style="margin-right: 10px; position:relative">
                         <%# Eval("Name").ToString().Substring(3,2).Trim() %>
+                        <span class="topicon">▲</span>
                     </a>
                 </ItemTemplate>
                 <FooterTemplate>
@@ -30,8 +31,8 @@
             </asp:Repeater>
         </div>
         <div id="countydiv" runat="server" class="countydiv">
-            <span class="themedivspan" style="color: Black; font-weight: normal">所在区县:</span>
-            <div style="float: left; width: 640px;">
+            <span class="themedivspan" style="color: Black; font-weight: normal; visibility:hidden">所在区县:</span>
+            <div style="float: left; width: 640px; background-color:#F3F2EE;padding-top:10px;">
                 <%--<a runat="server" id="hrefCountyAll" style="margin-right: 10px;" class="hlc">全部</a>--%>
                 <asp:Repeater ID="rptCounty" runat="server"  onitemdatabound="rptCounty_ItemDataBound">
                     <ItemTemplate>
