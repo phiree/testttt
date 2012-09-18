@@ -35,7 +35,7 @@
     <div class="Filldiv"></div>
     <div id="header">
             <div id="logo">
-                <div class="mainarea">
+                <div class="mainarea" style="padding-left:7px">
                     浙江省<span></span></div>
                 <a href="/">
                     <img class="logoleft" src="/theme/default/image/newversion/Logo2.png" />
