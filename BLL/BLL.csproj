@@ -100,6 +100,7 @@
     <Compile Include="BLLTopic.cs" />
     <Compile Include="BLLVote.cs" />
     <Compile Include="Checkout.cs" />
+    <Compile Include="Dijieshe\BLLDijiesheInfo.cs" />
     <Compile Include="ErrType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SEO\SeoTitle.cs" />
