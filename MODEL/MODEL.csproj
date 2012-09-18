@@ -58,6 +58,11 @@
     <Compile Include="CommonUser.cs" />
     <Compile Include="ContractImg.cs" />
     <Compile Include="ContractScenicPrice.cs" />
+    <Compile Include="Dijieshe\DijiesheInfo.cs" />
+    <Compile Include="Dijieshe\GroupConsumRecord.cs" />
+    <Compile Include="Dijieshe\TourEnterprise.cs" />
+    <Compile Include="Dijieshe\TourGroup.cs" />
+    <Compile Include="Dijieshe\TourGroupMember.cs" />
     <Compile Include="DiscountCode.cs" />
     <Compile Include="Mapping\Order\RefundMap.cs" />
     <Compile Include="Mapping\ScenicTicketMap.cs" />
