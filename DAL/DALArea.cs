@@ -52,15 +52,14 @@ namespace DAL
                 sql = "select a from Area a where a.Code like '" + searchCode
                     + "' and a.Code<>'" + bCode + "0000'";
             }
-            //else if (lCode == "00")
-            //{
-            //    //查找市内区、县级区域单位(并排除市和辖区)
-            //    searchCode = bCode + mCode + "__";
-            //    sql = "select u from Unit u where u.Area.Code like '" + searchCode
-            //        + "' AND u.Area.Code<>'" + bCode + mCode
-            //        + "00' AND u.Area.Code<>'"
-            //        + bCode + mCode + "01' ";
-            //}
+            else if (lCode == "00")
+            {
+                //查找市内区、县级区域单位(并排除市和辖区)
+                searchCode = bCode + mCode + "__";
+                sql = "select a from Area a where a.Code like '" + searchCode
+                    + "' AND a.Code<>'" + bCode + mCode
+                    + "00'";
+            }
             if (string.IsNullOrEmpty(sql)) return null;
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.Area>().ToList<Model.Area>();

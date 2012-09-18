@@ -62,6 +62,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         {
             GetAreaId();
             BindArea();
+            BindCounty();
             BindBread();
             BindLevelLinks();
             BindTicketList();
@@ -158,6 +159,19 @@ public partial class DiscountTicket_DiscountTicket : basepage
     {
         rptTopic.DataSource = blltopic.GetAllTopics();
         rptTopic.DataBind();
+    }
+
+    private void BindCounty()
+    {
+        if (area != null)
+        {
+            rptCounty.DataSource = new BLLArea().GetSubArea(area.Code);
+            rptCounty.DataBind();
+        }
+        else
+        {
+            countydiv.Visible = false;
+        }
     }
 
 
@@ -341,6 +355,20 @@ public partial class DiscountTicket_DiscountTicket : basepage
                 hreftopic.Attributes["class"] = "hlt";
             }
 
+        }
+    }
+    protected void rptCounty_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Model.Area area = e.Item.DataItem as Model.Area;
+            HtmlAnchor hrefCounty = e.Item.FindControl("hlcounty") as HtmlAnchor;
+            if (hrefCounty.InnerHtml.Trim().Length > 3)
+            {
+                hrefCounty.InnerHtml = hrefCounty.InnerHtml.Trim().Substring(3);
+                
+            }
+            //hrefCounty.Attributes["class"] = "hlc";
         }
     }
 }

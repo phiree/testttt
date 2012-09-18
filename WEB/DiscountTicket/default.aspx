@@ -29,6 +29,19 @@
                 </FooterTemplate>
             </asp:Repeater>
         </div>
+        <div id="countydiv" runat="server" class="countydiv">
+            <span class="themedivspan" style="color: Black; font-weight: normal">所在区县:</span>
+            <div style="float: left; width: 640px;">
+                <a runat="server" id="hrefCountyAll" style="margin-right: 10px;" class="hlc">全部</a>
+                <asp:Repeater ID="rptCounty" runat="server"  onitemdatabound="rptCounty_ItemDataBound">
+                    <ItemTemplate>
+                        <a runat="server" id="hlcounty" style="margin-right: 10px;">
+                            <%# Eval("Name").ToString().Substring(3).Trim() %>
+                        </a>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </div>
         <div class="themediv">
             <span class="themedivspan" style="color: Black; font-weight: normal">旅游主题:</span>
             <div style="float: left; width: 640px;">

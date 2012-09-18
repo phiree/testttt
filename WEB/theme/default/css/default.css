@@ -538,7 +538,7 @@ div:246
     padding:0px;
     display:inline-block;
 }
-.themediv
+.themediv,.countydiv
 {
     margin-left:10px;
     margin-right:10px;
@@ -559,7 +559,10 @@ div:246
     display:block !important;
     padding-bottom:15px;
 }
-
+.countydiv
+{
+    border-top:1px dashed #C1C1C1;
+}
 .searchbody
 {
     display:inline-block;
