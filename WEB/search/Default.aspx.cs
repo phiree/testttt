@@ -58,18 +58,18 @@ public partial class search_Default : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             Model.Scenic s = e.Item.DataItem as Model.Scenic;
-            foreach (Ticket item in s.Tickets.Where(x=>x.IsMain==true))
-	        {
-		        decimal priceNormal = item.GetPrice(Model.PriceType.Normal);
-            decimal priceOnline = item.GetPrice(Model.PriceType.PayOnline);  
+            foreach (Ticket item in s.Tickets.Where(x => x.IsMain == true))
+            {
+                decimal priceNormal = item.GetPrice(Model.PriceType.Normal);
+                decimal priceOnline = item.GetPrice(Model.PriceType.PayOnline);
                 Literal liPriceNormal = e.Item.FindControl("liPriceNormal") as Literal;
-            Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
-            liPriceNormal.Text = priceNormal.ToString("0");
-            liPriceOnline.Text = priceOnline.ToString("0");
-            Image img = e.Item.FindControl("Image1") as Image;
-            if (new BLLScenicImg().GetSiByType(s, 1).Count > 0)
-                img.ImageUrl = "/ScenicImg/small/" + new BLLScenicImg().GetSiByType(s, 1)[0].Name;
-	        }
+                Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
+                liPriceNormal.Text = priceNormal.ToString("0");
+                liPriceOnline.Text = priceOnline.ToString("0");
+                Image img = e.Item.FindControl("Image1") as Image;
+                if (new BLLScenicImg().GetSiByType(s, 1).Count > 0)
+                    img.ImageUrl = "/ScenicImg/small/" + new BLLScenicImg().GetSiByType(s, 1)[0].Name;
+            }
         }
     }
     private int GetPageIndex()
