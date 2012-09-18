@@ -2,12 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using FluentNHibernate.Mapping;
 namespace Model
 {
     //组员
-    public class TourGroupMember
+    public class TourGroupMemberMap:ClassMap<DJ_TourGroupMember>
     {
+        public TourGroupMemberMap()
+        {
+            Id(x => x.Id);
+            Map(x => x.IdCardNo);
+            Map(x => x.IsChild);
+
+            Map(x => x.Keeper);
+            Map(x => x.PhoneNum);
+            Map(x => x.RealName);
+            Map(x => x.Gender);
+         
+        }
         public virtual Guid Id { get; set; }
         /// <summary>
         /// 真实姓名
@@ -33,10 +45,5 @@ namespace Model
 
 
     }
-    public enum MemberType
-    {
-        游客 = 1,
-        导游,
-        司机
-    }
+  
 }

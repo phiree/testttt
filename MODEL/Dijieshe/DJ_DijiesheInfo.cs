@@ -8,19 +8,19 @@ namespace Model
     /// <summary>
     /// 地接社信息
     /// </summary>
-    public class DijiesheInfo
+    public class DJ_DijiesheInfo
     {
 
-        public DijiesheInfo()
+        public DJ_DijiesheInfo()
         {
-            Groups = new List<TourGroup>();
+            Groups = new List<DJ_TourGroup>();
         }
         public virtual Guid Id { get; set; }
         /// <summary>
         /// 所属区域
         /// </summary>
         public virtual Area Area { get; set; }
-        public virtual DijiesheInfo Dijieshe { get; set; }
+       
         public virtual string Name { get; set; }
 
         public virtual string Address { get; set; }
@@ -33,6 +33,6 @@ namespace Model
         /// <summary>
         /// 该地接社登记过的旅游团
         /// </summary>
-        public virtual IList<TourGroup> Groups { get; set; }
+        public virtual IList<DJ_TourGroup> Groups { get; set; }
     }
 }

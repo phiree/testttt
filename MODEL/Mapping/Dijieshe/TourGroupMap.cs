@@ -2,20 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FluentNHibernate.Mapping;
 
 namespace Model
 {
     //团队信息
-    public class TourGroup
+    public class TourGroupMap:ClassMap<DJ_TourGroup>
     {
-        public TourGroup()
+        public TourGroupMap()
         {
-            Members = new List<TourGroupMember>();
+            Id(x => x.Id);
+            References<DJ_DijiesheInfo>(x => x.Dijieshe);
+            Map(x => x.AdultsAmount);
+            Map(x => x.BeginDate);
+            Map(x => x.CarNo);
+            Map(x => x.ChildrenAmount);
+            Map(x => x.DaysAmount);
+            Map(x => x.DriverName);
+            Map(x => x.DriverPhone);
+            Map(x => x.GuideIdCardNo);
+
+            Map(x => x.GuideName);
+            Map(x => x.GuidePhone);
+            Map(x => x.RouteDescription);
+            HasMany<DJ_TourGroupMember>(x => x.Members);
         }
         /// <summary>
         /// 该团队所属的地接社
         /// </summary>
-        public DijiesheInfo Dijieshe { get; set; }
+        public DJ_DijiesheInfo Dijieshe { get; set; }
         public virtual Guid Id { get; set; }
         /// <summary>
         /// 出发日期
@@ -61,7 +76,7 @@ namespace Model
         /// </summary>
         public virtual int ChildrenAmount { get; set; }
 
-        public IList<TourGroupMember> Members { get; set; }
+        public IList<DJ_TourGroupMember> Members { get; set; }
 
 
     }
