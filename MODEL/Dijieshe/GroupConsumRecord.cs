@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Model.Dijieshe
+namespace Model
 {
     /// <summary>
     /// 团队消费信息,刷卡记录
