@@ -60,6 +60,7 @@
     <Compile Include="ContractScenicPrice.cs" />
     <Compile Include="Dijieshe\DJ_DijiesheInfo.cs" />
     <Compile Include="Dijieshe\DJ_GroupConsumRecord.cs" />
+    <Compile Include="Dijieshe\DJ_Route.cs" />
     <Compile Include="Dijieshe\DJ_TourEnterprise.cs" />
     <Compile Include="Dijieshe\DJ_TourGroup.cs" />
     <Compile Include="Dijieshe\DJ_TourGroupMember.cs" />

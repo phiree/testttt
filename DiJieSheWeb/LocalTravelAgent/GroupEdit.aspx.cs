@@ -11,4 +11,16 @@ public partial class LocalTravelAgent_GroupEdit : System.Web.UI.Page
     {
 
     }
+    protected void btnOK_Click(object sender, EventArgs e)
+    {
+        Model.DJ_TourGroup tg = new Model.DJ_TourGroup();
+        tg.Name = txtGroupname.Text;
+        tg.BeginDate = DateTime.Parse(txtBegintime.Text);
+        tg.EndDate = DateTime.Parse(txtGroupname.Text);
+        tg.GuideName = txtGuidename.Text;
+        tg.GuidePhone = txtGuidephone.Text;
+        tg.CarNo = txtCarid.Text;
+        tg.AdultsAmount = int.Parse(txtAdultnum.Text);
+        tg.ChildrenAmount = int.Parse(txtChildnum.Text);
+    }
 }

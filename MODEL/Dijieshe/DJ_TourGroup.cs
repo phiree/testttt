@@ -18,9 +18,17 @@ namespace Model
         public virtual DJ_DijiesheInfo Dijieshe { get; set; }
         public virtual Guid Id { get; set; }
         /// <summary>
+        /// 团队名称
+        /// </summary>
+        public virtual string Name { get; set; }
+        /// <summary>
         /// 出发日期
         /// </summary>
         public virtual DateTime BeginDate { get; set; }
+        /// <summary>
+        /// 结束日期
+        /// </summary>
+        public virtual DateTime EndDate { get; set; }
         /// <summary>
         /// 总天数
         /// </summary>
