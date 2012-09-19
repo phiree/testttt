@@ -13,5 +13,6 @@ namespace IDAL
         Model.Area GetAreaByAreaid(int areaid);
         Model.Area GetAreaByAreaname(string areaname);
         Model.Area GetAreaBySeoName(string seoName);
+        Model.Area GetAreaByCode(string code);
     }
 }

@@ -67,6 +67,8 @@
             您的位置:<a href="/tickets/">景点门票</a>
             <asp:PlaceHolder ID="phArea" runat="server">> <a href="" runat="server" id="breadareaurl">
             </a></asp:PlaceHolder>
+            <asp:PlaceHolder ID="phCounty" runat="server">> <a href="" runat="server" id="breadcountyurl">
+            </a></asp:PlaceHolder>
             <asp:PlaceHolder ID="phLevel" runat="server">><a href="" runat="server" id="breadlevelurl">
             </a></asp:PlaceHolder>
             <asp:PlaceHolder ID="phTopic" runat="server">><a href="" runat="server" id="breadtopic">

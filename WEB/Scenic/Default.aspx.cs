@@ -77,8 +77,22 @@ public partial class Scenic_Default : basepage
         scbindname = scenic.Name;
         scmapname = scenic.Name;
         scid = scenic.Id;
-        areaname.HRef = "/Tickets/" + scenic.Area.SeoName;
-        areaname.InnerHtml = scenic.Area.Name.Substring(3, scenic.Area.Name.Length - 3);
+        Area parentarea = new BLLArea().GetAreaByCode(scenic.Area.Code.Substring(0,4)+"00");
+        Area childarea = scenic.Area;
+        areaname.HRef = "/Tickets/" + parentarea.SeoName;
+        areaname.InnerHtml = parentarea.Name.Substring(3, parentarea.Name.Length - 3) + "&nbsp;>";
+        if (parentarea.Id != childarea.Id)
+        {
+            county.Visible = true;
+            string childname = childarea.Name.Substring(3);
+            if (childname.Length >= 6)
+                childname = childname.Substring(3);
+            county.HRef = "/Tickets/" + parentarea.Name.Substring(3, parentarea.Name.Length - 3) + "_" + childname + "&nbsp;>";
+        }
+        else
+        {
+            county.Visible = false;
+        }
         scenicname.HRef = "/Tickets/" + scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
         scenicname.InnerHtml = scenic.Name;
         scaddress = scenic.Address;
