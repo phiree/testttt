@@ -59,11 +59,13 @@
     <Compile Include="ContractImg.cs" />
     <Compile Include="ContractScenicPrice.cs" />
     <Compile Include="Dijieshe\DJ_DijiesheInfo.cs" />
+    <Compile Include="Dijieshe\DJ_GovManageDepartment.cs" />
     <Compile Include="Dijieshe\DJ_GroupConsumRecord.cs" />
     <Compile Include="Dijieshe\DJ_Route.cs" />
     <Compile Include="Dijieshe\DJ_TourEnterprise.cs" />
     <Compile Include="Dijieshe\DJ_TourGroup.cs" />
     <Compile Include="Dijieshe\DJ_TourGroupMember.cs" />
+    <Compile Include="Dijieshe\DJ_User.cs" />
     <Compile Include="DiscountCode.cs" />
     <Compile Include="Mapping\Dijieshe\DijiesheInfoMap.cs" />
     <Compile Include="Mapping\Dijieshe\GroupConsumRecordMap.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Mapping\Dijieshe\TourEnterpriseMap.cs" />
     <Compile Include="Mapping\Dijieshe\TourGroupMap.cs" />
     <Compile Include="Mapping\Dijieshe\TourGroupMemberMap.cs" />
+    <Compile Include="Mapping\Dijieshe\DJ_GovManageDepartmentMap.cs" />
     <Compile Include="Mapping\Order\RefundMap.cs" />
     <Compile Include="Mapping\ScenicTicketMap.cs" />
     <Compile Include="Mapping\TicketsTypeMap.cs" />

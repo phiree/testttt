@@ -13,7 +13,12 @@ namespace Model
        public TourEnterpriseMap()
        {
            Id(x => x.Id);
+           References<Area>(x => x.Area);
            Map(x => x.Name);
+           Map(x => x.Address);
+           Map(x => x.ChargePersonName);
+           Map(x => x.ChargePersonPhone);
+           Map(x => x.Phone);
            Map(x => x.Type).CustomType<int>();
        }
        public virtual Guid Id { get; set; }
