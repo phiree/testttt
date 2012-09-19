@@ -1,0 +1,11 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="admin.master.cs" Inherits="Admin_admin" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
+<ul>
+<li><a href="GovManagerList.aspx">旅游管理部门列表</a></li>
+</ul>
+<asp:ContentPlaceHolder ID="main" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
