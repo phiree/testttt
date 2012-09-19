@@ -26,12 +26,15 @@ namespace DAL
         }
 
 
-        public IList<Model.Scenic> GetTicketByAreaIdAndLevel(int areaId, int level,string topic,int pageIndex,int pageSize ,out int totalRecord)
+        public IList<Model.Scenic> GetTicketByAreaIdAndLevel(Model.Area area, int level,string topic,int pageIndex,int pageSize ,out int totalRecord)
         {
             string where = " where IsHide<>true ";
-            if (areaId > 0)
+            if (area!=null)
             {
-                where += " and  s.Area=" + areaId;
+                if (area.Code.Substring(4, 2) == "00")
+                    where += " and  s.Area.Code like '%" + area.Code.Substring(0, 4) + "%'";
+                else
+                    where += " and s.Area.Id=" + area.Id;
             }
             else
             {

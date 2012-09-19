@@ -158,9 +158,11 @@ public partial class DiscountTicket_DiscountTicket : basepage
         {
             level = int.Parse(levelname.Substring(0, 1));
         }
-        IList<Model.Scenic> ticketList = bllTicket.GetTicketByAreaIdAndLevel(areaId, level,topicname, pageIndex, pageSize, out totalRecord);
-
-
+        IList<Model.Scenic> ticketList;
+        if(countyname==null)
+             ticketList = bllTicket.GetTicketByAreaIdAndLevel(area, level,topicname, pageIndex, pageSize, out totalRecord);
+        else
+            ticketList = bllTicket.GetTicketByAreaIdAndLevel(areacounty, level, topicname, pageIndex, pageSize, out totalRecord);
 
         rptItems.DataSource = ticketList;
         rptItems.DataBind();
@@ -280,7 +282,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
     private void BindLevelLinks()
     {
 
-        hrefAllArea.HRef = BuildLink(queryArea, "", true);
+        hrefAllArea.HRef = BindHref(null, null, level, topicname);
         hrefTopicAll.HRef = BuildLink(queryTopic, "", true);
         hlLevelAll.HRef = BuildLink(queryLevel, "", true);
         hlLevel3.HRef = BuildLink(queryLevel, "3a");
@@ -344,7 +346,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
     /// </summary>
     private void SetSeo()
     {
-        BatchSeoData seodata = SeoHandler.GetSeoData_Home(area, level, topic,pageIndex);
+        BatchSeoData seodata = SeoHandler.GetSeoData_Home(area, areacounty, level, topic, pageIndex);
         this.Title = seodata.Title;
         this.MetaKeywords = seodata.KeyWord;
         if (level == 0 && topic == null&&area!=null)
