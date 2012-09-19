@@ -101,6 +101,7 @@
     <Compile Include="DalBase.cs" />
     <Compile Include="DALCommonUser.cs" />
     <Compile Include="DALContractScenicPrice.cs" />
+    <Compile Include="DALDijieshe.cs" />
     <Compile Include="DALDiscountCode.cs" />
     <Compile Include="DALMembership.cs" />
     <Compile Include="DALOrder.cs" />
