@@ -5,8 +5,26 @@ using System.Text;
 using Model;
 namespace BLL.Dijieshe
 {
-   public class BLLDijiesheInfo
+    public class BLLDijiesheInfo
     {
-       
+        public void Add()
+        { 
+        
+        }
+
+        public void Delete()
+        { 
+        
+        }
+
+        public void Modify()
+        { 
+        
+        }
+
+        public void GetDjs8all()
+        { 
+            
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true" CodeFile="GroupList.aspx.cs" Inherits="LocalTravelAgent_GroupList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="LocalTravelAgent_Default" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -37,3 +38,4 @@
     </asp:Repeater>
 
 </asp:Content>
+

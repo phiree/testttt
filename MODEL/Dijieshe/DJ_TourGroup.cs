@@ -28,8 +28,7 @@ namespace Model
         /// <summary>
         /// 路线描述
         /// </summary>
-        public virtual string RouteDescription { get; set; }
-
+        public virtual IList<DJ_Route> RouteDescription { get; set; }
         /// <summary>
         /// 导游姓名
         /// </summary>
@@ -46,7 +45,9 @@ namespace Model
         /// 司机信息
         /// </summary>
         public virtual string DriverName { get; set; }
-
+        /// <summary>
+        /// 司机电话
+        /// </summary>
         public virtual string DriverPhone { get; set; }
         /// <summary>
         /// 车牌号
@@ -60,7 +61,9 @@ namespace Model
         /// 儿童总人数
         /// </summary>
         public virtual int ChildrenAmount { get; set; }
-
+        /// <summary>
+        /// 成员详细信息
+        /// </summary>
         public virtual IList<DJ_TourGroupMember> Members { get; set; }
 
 
