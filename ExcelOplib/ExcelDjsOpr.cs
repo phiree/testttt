@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.OleDb;
+using System.IO;
 
 namespace ExcelOplib
 {
@@ -17,7 +18,7 @@ namespace ExcelOplib
                 DataTable dt = new DataTable();
                 #region 07
                 //path即是excel文档的路径。
-                string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+path+@";Extended Properties=""Excel 12.0;HDR=YES""";
+                string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+path.Replace('/','\\')+@";Extended Properties=""Excel 12.0;HDR=YES""";
                 //Sheet1为excel中表的名字
                 string sql = "select 类型,姓名,身份证号,电话号码 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
@@ -48,6 +49,8 @@ namespace ExcelOplib
                         MemPhone = dt.Rows[i][3].ToString().Replace("\n", "").Trim()
                     });
                 }
+                //如果获取到了list,就把上传上来的文件删除
+                File.Delete(path.Replace('/', '\\'));
                 return djslist;
             }
             catch (Exception ex)

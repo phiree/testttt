@@ -21,34 +21,35 @@ public partial class LocalTravelAgent_GroupMemberid : System.Web.UI.Page
         string fullname = FileUpload1.FileName.ToString();//直接取得文件名
         string url = FileUpload1.PostedFile.FileName.ToString();//取得上传文件路径
         string typ = FileUpload1.PostedFile.ContentType.ToString();//获取文件MIME内容类型
-        string typ2 = fullname.Substring(fullname.LastIndexOf(".") + 1);//获取文件名字 . 后面的字符作为文件类型
+        string typ2 = fullname.Substring(fullname.LastIndexOf(".") + 1);//后缀名, 不带".".
         int size = FileUpload1.PostedFile.ContentLength;
 
         #region 保存
-        if (File.Exists(url))
+        //if (File.Exists(url))
+        //{
+        //    Response.Write("<script>alert('文件已存在 !')</script>");
+        //}
+        //else
+        //{
+        if (typ2 == "xlsx" || typ2 == "xls")
         {
-            Response.Write("<script>alert('文件已存在 !')</script>");
-        }
-        else
-        {
-            if (typ2 == "xlsx" || typ2 == "xls")
+            if (size <= 4134904)
             {
-                if (size <= 4134904)
-                {
-                    FileUpload1.SaveAs(excelPath + fullname);
-                }
-                else
-                {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('你的文件超过限制大小!')", true);
-                    return;
-                }
+                FileUpload1.SaveAs(excelPath + "temp." + typ2);
+                Label1.Text=excelPath + "temp." + typ2;
             }
             else
             {
-                Label1.Text = "上传文件格式不正确.";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('你的文件超过限制大小!')", true);
                 return;
             }
         }
+        else
+        {
+            Label1.Text = "上传文件格式不正确.";
+            return;
+        }
+        //}
         #endregion
     }
 }
