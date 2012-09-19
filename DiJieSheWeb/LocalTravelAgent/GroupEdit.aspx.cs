@@ -23,4 +23,8 @@ public partial class LocalTravelAgent_GroupEdit : System.Web.UI.Page
         tg.AdultsAmount = int.Parse(txtAdultnum.Text);
         tg.ChildrenAmount = int.Parse(txtChildnum.Text);
     }
+    protected void btnNext_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/LocalTravelAgent/GroupMemberid.aspx");
+    }
 }

@@ -14,5 +14,6 @@
 车牌号：<asp:TextBox ID="txtCarid" runat="server" /><br />
 成人总数：<asp:TextBox ID="txtAdultnum" runat="server" /><br />
 儿童总数：<asp:TextBox ID="txtChildnum" runat="server" /><br />
-    <asp:Button ID="btnOK" Text="确定" runat="server" onclick="btnOK_Click" />
+    <asp:Button ID="btnOK" Text="保存" runat="server" onclick="btnOK_Click" />
+    <asp:Button ID="btnNext" Text="下一步" runat="server" onclick="btnNext_Click" />
 </asp:Content>

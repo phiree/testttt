@@ -13,13 +13,13 @@ namespace Model.Mapping
 
       public DijiesheInfoMap(){
           Id(x => x.Id);
-          Map(x => x.Address);
           References<Area>(x => x.Area);
+          Map(x => x.Name);
+          Map(x => x.Address);
           Map(x => x.ChargePersonName);
           Map(x => x.ChargePersonPhone);
           
           HasMany<DJ_TourGroup>(x => x.Groups);
-          Map(x => x.Name);
           Map(x => x.Phone);
 
        
