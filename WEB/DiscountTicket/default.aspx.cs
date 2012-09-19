@@ -24,7 +24,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
     /// </summary>
     string UrlQuery = string.Empty;
     int areaId = 0, level = 0;
-    string areaSeoName, levelname,topicname,countyname;
+    public string areaSeoName, levelname,topicname,countyname;
     Area area;
     Area areacounty;
     Topic topic;

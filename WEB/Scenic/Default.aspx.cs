@@ -87,13 +87,14 @@ public partial class Scenic_Default : basepage
             string childname = childarea.Name.Substring(3);
             if (childname.Length >= 6)
                 childname = childname.Substring(3);
-            county.HRef = "/Tickets/" + parentarea.Name.Substring(3, parentarea.Name.Length - 3) + "_" + childname + "&nbsp;>";
+            county.InnerHtml = childname+ "&nbsp;>";
+            county.HRef = "/Tickets/" + parentarea.SeoName + "_" + childarea.SeoName;
         }
         else
         {
             county.Visible = false;
         }
-        scenicname.HRef = "/Tickets/" + scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
+        scenicname.HRef = "/Tickets/" +parentarea.SeoName +"_"+ scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
         scenicname.InnerHtml = scenic.Name;
         scaddress = scenic.Address;
         booknote = scenic.BookNote;
