@@ -17,7 +17,7 @@ namespace ExcelOplib
                 DataTable dt = new DataTable();
                 #region 07
                 //path即是excel文档的路径。
-                string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + @";Extended Properties=""Excel 12.0;HDR=YES""";
+                string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+path+@";Extended Properties=""Excel 12.0;HDR=YES""";
                 //Sheet1为excel中表的名字
                 string sql = "select 类型,姓名,身份证号,电话号码 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
@@ -38,9 +38,6 @@ namespace ExcelOplib
                 {
                     //如果excel中的某行为空,跳过
                     if (string.IsNullOrEmpty(dt.Rows[i][1].ToString())) continue;
-
-                    //对景区详情处理
-                    string scdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim();
 
                     //如果excel中的行不为空,添加
                     djslist.Add(new Entity.DJSEntity()

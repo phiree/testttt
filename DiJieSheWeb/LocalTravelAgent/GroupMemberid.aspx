@@ -38,8 +38,8 @@
             $(obj).parent().parent().remove();
         }
 
-        //导入excel
-        function insertExcel() {
+        //检查是否在编辑状态
+        function checkEditing() {
             var body = $("#addrow").parent().parent().parent().next();
             var textboxList = $("table>tbody>tr>td>input:text");
             for (var i = 0; i < textboxList.size(); i++) {
@@ -50,6 +50,23 @@
             }
             return true;
         }
+
+        //导入excel
+        $(function () {
+            $("#btnExcel").click(function () {
+                var datas = "";
+                $.ajax({
+                    type: "Post",
+                    url: "ExcelHandler.ashx?filename=" + fullname,
+                    dataType: "text",
+                    data: datas,
+                    success: function (data, status) {
+                        var tbody = $("#addrow").parent().parent().parent().next();
+                        tbody.html(data);
+                    }
+                });
+            });
+        });
 
         //添加行
         $(function () {
@@ -114,6 +131,8 @@
     <input type="button" value="确定" onclick="calc()" />
     <input type="hidden" id="hidden_scid" runat="server" />
     <asp:FileUpload ID="FileUpload1" runat="server" />
-    <asp:Button ID="btnExcel" Text="导入数据" runat="server" OnClientClick="return insertExcel();" onclick="btnExcel_Click" />
+    <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
+        OnClick="btnUpload_Click" />
+    <input id="btnExcel" type="button" name="name" value="导入数据" />
     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-    </asp:Content>
+</asp:Content>
