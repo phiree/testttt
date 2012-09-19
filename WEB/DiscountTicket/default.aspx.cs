@@ -26,6 +26,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
     int areaId = 0, level = 0;
     string areaSeoName, levelname,topicname,countyname;
     Area area;
+    Area areacounty;
     Topic topic;
     CommonLibrary.UrlParamHelper urlParamHelper;
     protected void Page_Load(object sender, EventArgs e)
@@ -87,7 +88,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         }
         if (countyname != null)
         {
-            Area areacounty = bllArea.GetAreaBySeoName(countyname);
+            areacounty = bllArea.GetAreaBySeoName(countyname);
             areaId = areacounty.Id;
         }
     }
@@ -104,8 +105,19 @@ public partial class DiscountTicket_DiscountTicket : basepage
         {
            
             breadareaurl.InnerText = area.Name.Substring(3, 2);
-           urlBase= breadareaurl.HRef = urlBase + area.SeoName+"/";
-            
+           urlBase= breadareaurl.HRef = urlBase + area.SeoName;
+           if (countyname != null)
+           {
+               breadcountyurl.InnerText = areacounty.Name.Substring(3);
+               if (breadcountyurl.InnerText.Trim().Length>=6)
+                   breadcountyurl.InnerText = breadcountyurl.InnerText.Trim().Substring(3);
+               urlBase = breadcountyurl.HRef = urlBase + '_' + countyname + "/";
+           }
+           else
+           {
+               phCounty.Visible = false;
+               urlBase = breadareaurl.HRef = urlBase + "/";
+           }
         }
         else
         {

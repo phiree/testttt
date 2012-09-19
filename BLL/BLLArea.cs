@@ -50,5 +50,9 @@ namespace BLL
         {
             return Iarea.GetAreaBySeoName(seoName);
         }
+        public Model.Area GetAreaByCode(string code)
+        {
+            return Iarea.GetAreaByCode(code);
+        }
     }
 }

@@ -71,5 +71,13 @@ namespace DAL
             IQuery query = session.CreateQuery(strQuery);
             return query.Future<Model.Area>().ToList<Model.Area>();
         }
+
+
+        public Model.Area GetAreaByCode(string code)
+        {
+            string sql = "select a from Area a where a.Code='" + code + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Model.Area>().Value;
+        }
     }
 }
