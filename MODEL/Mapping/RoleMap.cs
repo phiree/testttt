@@ -12,7 +12,7 @@ namespace Model.Mapping
         { 
             Id(x=>x.Id);
             Map(x=>x.Name);
-          
+            Map(x => x.Description);
         }
     }
     public class UserRoleMap : ClassMap<UserRole>
@@ -22,6 +22,7 @@ namespace Model.Mapping
             Id(x => x.Id);
             Map(x => x.MemberName);
             Map(x => x.RoleName);
+           
         }
     }
 }
