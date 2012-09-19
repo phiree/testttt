@@ -30,23 +30,28 @@ namespace BLL.SEO
         //区域area, 主题topic, 等级level 与 title,keyword的组合
         const string AreaTitleFormat = @"{0}景点门票_{0}景点门票价格_{0}旅游景点门票 - 中国旅游在线";
         const string AreaKeywordFormat = @"{0}景点门票，{0}景点门票价格，{0}旅游景点门票";
+        const string Area_CountyTitleFormat = @"{0}{1}景区门票_{0}{1}景区门票价格_{0}{1}旅游景区门票-中国旅游在线";
+        const string Area_CountyKeywordFormat = @"{0}{1}景区门票_{0}{1}景区门票价格_{0}{1}旅游景区门票";
         const string LevelTitleFormat = "浙江{0}景区门票_浙江{0}级景区_浙江{0}及旅游景区 - 中国旅游在线";
         const string LevelKeywordFormat = "{0}景区门票，浙江{0}景区，浙江{0}级旅游景区";
         const string LevelDescriptionFormat = "中国旅游在线提供浙江{0}A景区门票预订服务，众多风景名胜区吸引无数游客观光，浙江{0}A级景区全力打造一流的休闲度假环境，可方便的在线预订浙江{0}A级旅游景区门票.";
         const string AreaAndLEvelTitleFormat = "{0}{1}景区门票_{0}{1}景点门票_{0}{1}景点门票价格 - 中国旅游在线  ";
         const string AreaAndLEvelKeywordFormat = "{0}{1}景区门票,{0}{1}景点门票,{0}{1}景点门票价格";
+        const string Area_CountyAndLEvelTitleFormat = "{0}{1}{2}景区门票_{0}{1}{2}景点门票_{0}{1}{2}景点门票价格 - 中国旅游在线  ";
+        const string Area_CountyAndLEvelKeywordFormat = "{0}{1}{2}景区门票,{0}{1}{2}景点门票,{0}{1}{2}景点门票价格";
         const string TopicTitleFormat = "浙江{0}风景区_浙江{0}景点门票预订 - 中国旅游在线";
         const string AreaAndTopicTitleFormat = "{0}{1}风景区_{0}{1}景点门票预订 - 中国旅游在线";
-
+        const string Area_CountyAndTopicTitleFormat = "{0}{1}{2}风景区_{0}{1}{2}景点门票预订 - 中国旅游在线";
         const string HomeTitle = "中国旅游在线_浙江旅游景点门票预订官网";
         const string HomeKeyword = "景点门票，门票预订，门票价格，旅游景点门票推荐";
 
        
         //区域--级别页面
-        public static BatchSeoData GetSeoData_Home(Area area, int level, Topic topic, int pageIndex)
+        public static BatchSeoData GetSeoData_Home(Area area, Area countyarea, int level, Topic topic, int pageIndex)
         {
             BLL.BLLArea bllarea = new BLLArea();
             int areaId = area == null ? 0 : area.Id;
+            int countyareaId = countyarea == null ? 0 : countyarea.Id;
             string topicid = topic == null ? string.Empty : topic.Id.ToString();
             BatchSeoData seoData = new BatchSeoData();
             TemplateType tt = TemplateType.Home;
@@ -73,7 +78,8 @@ namespace BLL.SEO
             int xorarea = areaId == 0 ? 0 : 4;
             int xortopic = topicid == string.Empty ? 0 : 2;
             int xorlevel = level > 0 ? 1 : 0;
-            int xoresult = xorarea ^ xortopic ^ xorlevel;
+            int xorcounty = countyareaId > 0 ? 8 : 0;
+            int xoresult = xorarea ^ xortopic ^ xorlevel^xorcounty;
             switch (xoresult)
             { 
                 case 1:
@@ -96,6 +102,18 @@ namespace BLL.SEO
                     break;
                 case 7:
                     tt = TemplateType.AreaAndTopic;
+                    break;
+                case 13:
+                    tt = TemplateType.Area_CountyAndLevel;
+                    break;
+                case 12:
+                    tt = TemplateType.OnlyArea_County;
+                    break;
+                case 14:
+                    tt = TemplateType.Area_CountyAndTopic;
+                    break;
+                case 15:
+                    tt = TemplateType.Area_CountyAndTopic;
                     break;
             }
 
@@ -146,6 +164,22 @@ namespace BLL.SEO
                     h1text = string.Format("浙江{0}景点门票", level+"A级");
                 
                     break;
+                case TemplateType.Area_CountyAndLevel:
+                    title = string.Format(Area_CountyAndLEvelTitleFormat, area.Name, countyarea.Name, level + "A");
+                    keyword = string.Format(Area_CountyAndLEvelKeywordFormat, area.Name, countyarea.Name, level + "A");
+                    description = bllarea.GetAreaByAreaid(countyarea.Id).MetaDescription;
+                    h1text = string.Format("{0}{1}景点门票", countyarea.Name, level + "A级");
+                    break;
+                case TemplateType.OnlyArea_County:
+                    title = string.Format(Area_CountyTitleFormat, area.Name, countyarea.Name);
+                    keyword = string.Format(Area_CountyKeywordFormat, area.Name, countyarea.Name);
+                    description = bllarea.GetAreaByAreaid(countyarea.Id).MetaDescription;
+                    h1text = string.Format("{0}景点门票", countyarea.Name);
+                    break;
+                case TemplateType.Area_CountyAndTopic:
+                    title = string.Format(Area_CountyAndTopicTitleFormat, area.Name, countyarea.Name, topic.Name);
+                    h1text = string.Format("{0}{1}景点门票",countyarea.Name,topic.Name);
+                    break;
                 default:
                     title = HomeTitle;
                     keyword = HomeKeyword;
@@ -171,10 +205,13 @@ namespace BLL.SEO
         {
             Home,
             OnlyArea,
+            OnlyArea_County,
             OnlyLevel,
             OnlyTopic,
             AreaAndLevel,
-            AreaAndTopic
+            Area_CountyAndLevel,
+            AreaAndTopic,
+            Area_CountyAndTopic
         }
     }
 }
