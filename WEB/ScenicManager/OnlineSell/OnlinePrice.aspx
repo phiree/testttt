@@ -55,11 +55,10 @@
         //添加行
         $(function () {
             $("#addrow").click(function () {
-                var tbody = $(this).parent().parent().parent().next().html();
-                tbody += "<tr><td><input type='text' style='width:150px' /></td><td><input type='text' /></td><td><input type='text' />" +
+                var tbody = $(this).parent().parent().parent().next();
+                tbody.append("<tr><td><input type='text' style='width:150px' /></td><td><input type='text' /></td><td><input type='text' />" +
                 "</td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />" +
-                "<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>";
-                $(this).parent().parent().parent().next().html(tbody);
+                "<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>");
             });
         });
     </script>

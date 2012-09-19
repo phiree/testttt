@@ -58,8 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\DJSEntity.cs" />
     <Compile Include="Entity\ScenicEntity.cs" />
     <Compile Include="Entity\TicketEntity.cs" />
+    <Compile Include="ExcelDjsOpr.cs" />
     <Compile Include="ExcelOpr.cs" />
     <Compile Include="Entity\ExcelEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
