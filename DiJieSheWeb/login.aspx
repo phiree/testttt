@@ -3,5 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
+    请选择入口
+<a href="">旅游管理部门</a>
+<a href="">地接社</a>
+<a href="">景点,酒店,宾馆,购物点</a>
+
+    <asp:Login ID="Login1" runat="server" onauthenticate="Login1_Authenticate" 
+        onloggedin="Login1_LoggedIn" onloggingin="Login1_LoggingIn">
+    </asp:Login>
 </asp:Content>
 

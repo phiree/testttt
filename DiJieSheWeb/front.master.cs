@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 /// <summary>
-/// 政府部门数据导入
+/// 非管理界面的母板
 /// </summary>
-public partial class Admin_GovManagerList : System.Web.UI.Page
+public partial class front : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {

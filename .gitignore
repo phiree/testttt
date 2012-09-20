@@ -4,3 +4,4 @@ obj
 *.suo
 WEB/config/connectionStrings.config
 WEB/config/app.config
+DiJieSheWEB/config/connectionStrings.config
