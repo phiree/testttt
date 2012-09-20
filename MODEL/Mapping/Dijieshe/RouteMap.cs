@@ -12,12 +12,13 @@ namespace Model
     public class RouteMap : ClassMap<DJ_Route>
     {
         public RouteMap()
-       {
-           Id(x => x.Id);
-           Map(x => x.BeginTime);
-           Map(x => x.EndTime);
-           References(x => x.Enterprice);
-           Map(x => x.Description);
-       }
+        {
+            Id(x => x.Id);
+            Map(x => x.BeginTime);
+            Map(x => x.EndTime);
+            Map(x => x.Gather);
+            References(x => x.Enterprice);
+            Map(x => x.Description);
+        }
     }
 }

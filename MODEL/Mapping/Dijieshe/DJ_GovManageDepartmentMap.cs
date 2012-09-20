@@ -13,14 +13,10 @@ namespace Model.Mapping
 
         public DJ_GovManageDepartmentMap()
         {
-
-
-
             Id(x => x.Id);
             Map(x => x.Name);
             References<Area>(x => x.Area);
             Map(x => x.Phone);
-
       }
     }
 }

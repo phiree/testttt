@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLLTest\DJS\DJSTest.cs" />
     <Compile Include="BLLTest\ExcelOperTets.cs" />
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="BLLTest\OrderTest.cs" />
@@ -177,9 +178,7 @@
     </Content>
     <Content Include="TDD\order\todo.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLLTest\DJS\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

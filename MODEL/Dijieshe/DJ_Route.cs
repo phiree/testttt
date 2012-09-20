@@ -16,6 +16,11 @@ namespace Model
 
         public virtual DateTime EndTime { get; set; }
 
+        /// <summary>
+        /// 集合地
+        /// </summary>
+        public virtual string Gather { get; set; }
+
         public virtual DJ_TourEnterprise Enterprice { get; set; }
 
         public virtual string Description { get; set; }

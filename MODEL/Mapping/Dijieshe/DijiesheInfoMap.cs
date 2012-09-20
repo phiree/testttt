@@ -8,18 +8,11 @@ namespace Model.Mapping
     /// <summary>
     /// 地接社信息
     /// </summary>
-    public class DijiesheInfoMap:SubclassMap<DJ_DijiesheInfo>
+    public class DijiesheInfoMap : SubclassMap<DJ_DijiesheInfo>
     {
-
-      public DijiesheInfoMap(){
-         
-         
-          
-          HasMany<DJ_TourGroup>(x => x.Groups);
-       
-
-       
-
-      }
+        public DijiesheInfoMap()
+        {
+            HasMany<DJ_TourGroup>(x => x.Groups);
+        }
     }
 }

@@ -8,23 +8,15 @@ namespace IDAL
     public interface IDijieshe
     {
         #region djs
-        Guid AddDJS(Model.DJ_DijiesheInfo djs);
+        Guid AddDJS(Model.DJ_TourEnterprise djs);
 
         void DeleteDJS();
 
         void UpdateDJS();
 
-        IList<Model.DJ_DijiesheInfo> GetDJS8All();
+        IList<Model.DJ_TourEnterprise> GetDJS8All();
 
-        IList<Model.DJ_DijiesheInfo> GetDJS8name();
-
-        IList<Model.DJ_DijiesheInfo> GetDJS8area(int areaid);
-
-        IList<Model.DJ_DijiesheInfo> GetDJS8type(string type);
-
-        IList<Model.DJ_DijiesheInfo> GetDJS8name(string name);
-
-        IList<Model.DJ_DijiesheInfo> GetDJS8Muti(int areaid, string type, string namelike);
+        IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike);
 
         #endregion
 

@@ -16,7 +16,7 @@ namespace Model
         /// <summary>
         /// 该团队所属的地接社
         /// </summary>
-        public virtual DJ_DijiesheInfo Dijieshe { get; set; }
+        public virtual DJ_DijiesheInfo DJ_DijiesheInfo { get; set; }
         /// <summary>
         /// 团队名称
         /// </summary>

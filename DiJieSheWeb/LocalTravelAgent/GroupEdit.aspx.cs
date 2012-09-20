@@ -16,7 +16,7 @@ public partial class LocalTravelAgent_GroupEdit : System.Web.UI.Page
 
     private void BindDJS()
     {
-        IList<Model.DJ_DijiesheInfo> djslist=blldjs.GetDjs8all();
+        IList<Model.DJ_TourEnterprise> djslist = blldjs.GetDjs8all();
         ddlDJS.DataSource = djslist;
         ddlDJS.DataTextField = "Name";
         ddlDJS.DataValueField = "Id";
@@ -34,8 +34,8 @@ public partial class LocalTravelAgent_GroupEdit : System.Web.UI.Page
         //tg.CarNo = txtCarid.Text;
         //tg.AdultsAmount = int.Parse(txtAdultnum.Text);
         //tg.ChildrenAmount = int.Parse(txtChildnum.Text);
-        
-        blldjs.AddBasicinfo(null, txtGroupname.Text, Calendar1.SelectedDate,
+        IList<Model.DJ_TourEnterprise> telist=blldjs.GetDJS8id(ddlDJS.Text);
+        blldjs.AddBasicinfo(telist[0] as Model.DJ_DijiesheInfo, txtGroupname.Text, Calendar1.SelectedDate,
             Calendar2.SelectedDate, int.Parse(txtDays.Text), int.Parse(txtAdultnum.Text), int.Parse(txtChildnum.Text));
     }
 
@@ -46,11 +46,11 @@ public partial class LocalTravelAgent_GroupEdit : System.Web.UI.Page
 
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
     {
-        txtBegintime.Text = Calendar1.SelectedDate.ToString();
+        txtBegintime.Text = Calendar1.SelectedDate.ToString("yyyy-MM-dd");
     }
 
     protected void Calendar2_SelectionChanged(object sender, EventArgs e)
     {
-        txtEndtime.Text = Calendar2.SelectedDate.ToString();
+        txtEndtime.Text = Calendar2.SelectedDate.ToString("yyyy-MM-dd");
     }
 }
