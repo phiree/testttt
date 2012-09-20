@@ -34,7 +34,7 @@ public class qiehuan : IHttpHandler {
                 m.address = item.Address;
                 m.position = item.Position;
                 m.scseoname = item.SeoName;
-                m.areaseoname = item.Area.SeoName;
+                m.areaseoname = new BLL.BLLArea().GetAreaByCode(item.Area.Code.Substring(0, 4) + "00").SeoName + "_" + item.Area.SeoName;
                 list2.Add(m);
             }
         }

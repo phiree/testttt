@@ -38,7 +38,7 @@ public class SearchBigMap : IHttpHandler {
             }
             //m.price = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(scenic.Id, 3).Price.ToString("0") + "元";
             m.scseoname = si.Scenic.SeoName;
-            m.areaseoname = si.Scenic.Area.SeoName;
+            m.areaseoname = new BLL.BLLArea().GetAreaByCode(si.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + si.Scenic.Area.SeoName;
             list.Add(m);
         }
         string JSON = new JavaScriptSerializer().Serialize(list);//把list转换为JSON格式的字符串

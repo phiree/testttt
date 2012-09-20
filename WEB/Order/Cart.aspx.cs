@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
 using Model;
+using System.Web.UI.HtmlControls;
 /// <summary>
 /// 页面功能:
 /// 1 购物车内的门票.
@@ -17,7 +18,7 @@ public partial class Scenic_Cart : System.Web.UI.Page
     /*购物车*/
     BLLTicket bllTicket = new BLLTicket();
     BLLOrder bllOrder = new BLLOrder();
-    
+    BLLArea bllArea = new BLLArea();
     protected void Page_Load(object sender, EventArgs e)
     {
         //
@@ -60,6 +61,8 @@ public partial class Scenic_Cart : System.Web.UI.Page
 
             System.Web.UI.HtmlControls.HtmlInputText inputQty = e.Item.FindControl("inputQty") as System.Web.UI.HtmlControls.HtmlInputText;
             //inputQty.
+            HtmlAnchor ha = e.Item.FindControl("ahref") as HtmlAnchor;
+            ha.HRef = "/Tickets/" + bllArea.GetAreaByCode(t.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + t.Scenic.Area.SeoName + "/" + t.Scenic.SeoName + ".html";
         }
     }
 

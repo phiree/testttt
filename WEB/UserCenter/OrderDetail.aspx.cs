@@ -15,6 +15,7 @@ public partial class UserCenter_MyOrder : basepage
     BLLOrder bllorder = new BLLOrder();
     BLLMembership bllMember = new BLLMembership();
     BLLCommonUser bllcommonuser = new BLLCommonUser();
+    BLLArea bllArea = new BLLArea();
     Order order;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -172,7 +173,9 @@ public partial class UserCenter_MyOrder : basepage
                 (e.Item.FindControl("usedetail") as HtmlAnchor).Visible = false;
             }
             (e.Item.FindControl("buytype") as HtmlContainerControl).InnerHtml = od.TicketPrice.PriceType == PriceType.PayOnline ? "在线购买" : "网上预订";
-
+            OrderDetail odd = e.Item.DataItem as OrderDetail;
+            HtmlAnchor haa = e.Item.FindControl("ahref") as HtmlAnchor;
+            haa.HRef = "/Tickets/" + bllArea.GetAreaByCode(odd.TicketPrice.Ticket.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + odd.TicketPrice.Ticket.Scenic.Area.SeoName + "/" + odd.TicketPrice.Ticket.Scenic.SeoName + ".html";
         }
 
     }
@@ -248,6 +251,9 @@ public partial class UserCenter_MyOrder : basepage
             {
                 (e.Item.FindControl("usedetail") as HtmlAnchor).Visible = false;
             }
+            OrderDetail odd = e.Item.DataItem as OrderDetail;
+            HtmlAnchor haa = e.Item.FindControl("ahref") as HtmlAnchor;
+            haa.HRef = "/Tickets/" + bllArea.GetAreaByCode(odd.TicketPrice.Ticket.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + odd.TicketPrice.Ticket.Scenic.Area.SeoName + "/" + odd.TicketPrice.Ticket.Scenic.SeoName + ".html";
         }
     }
     protected void rptOrderDetail3_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -256,6 +262,9 @@ public partial class UserCenter_MyOrder : basepage
         {
             (e.Item.FindControl("sumprice") as HtmlContainerControl).InnerHtml = (int.Parse((e.Item.FindControl("onlineprice") as HtmlContainerControl).InnerHtml) *
                 int.Parse((e.Item.FindControl("tp") as HtmlContainerControl).InnerHtml)).ToString();
+            OrderDetail odd = e.Item.DataItem as OrderDetail;
+            HtmlAnchor haa = e.Item.FindControl("ahref") as HtmlAnchor;
+            haa.HRef = "/Tickets/" + bllArea.GetAreaByCode(odd.TicketPrice.Ticket.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + odd.TicketPrice.Ticket.Scenic.Area.SeoName + "/" + odd.TicketPrice.Ticket.Scenic.SeoName + ".html";
         }
     }
     protected void Button2_Click(object sender, EventArgs e)

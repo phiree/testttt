@@ -78,7 +78,10 @@ namespace DAL
             string sqlstr = "";
             sqlstr = "select s from Scenic s where  s.Name like '%" + scenicname + "%'";
             if (areaid != 0)
-                sqlstr += " and s.Area.Id=" + areaid + "";
+            {
+                string areacode= new DALArea().GetAreaByAreaid(areaid).Code.Substring(0, 4);
+                sqlstr += " and s.Area.Code like '%" + areacode + "%'";
+            }
             if (level != "")
                 sqlstr += " and s.Level like '%" + level + "%'";
             if (!string.IsNullOrEmpty(topic))
