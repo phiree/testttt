@@ -8,7 +8,7 @@ namespace IDAL
     public interface IDijieshe
     {
         #region djs
-        Guid AddDJS(string name, string address, Model.Area area, string cpn, string cpp, string phone);
+        Guid AddDJS(Model.DJ_DijiesheInfo djs);
 
         void DeleteDJS();
 

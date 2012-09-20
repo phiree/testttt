@@ -10,18 +10,8 @@ namespace DAL
     {
         #region DJS
 
-        public Guid AddDJS(string name,string address,Model.Area area,string cpn,string cpp,string phone)
+        public Guid AddDJS(Model.DJ_DijiesheInfo djs)
         {
-            Model.DJ_DijiesheInfo djs = new Model.DJ_DijiesheInfo()
-            {
-                Name = name,
-                Address = address,
-                Area = area,
-                ChargePersonName = cpn,
-                ChargePersonPhone = cpp,
-                Phone = phone,
-                Type=Model.EnterpriseType.旅行社
-            };
             return (Guid)session.Save(djs);
         }
 

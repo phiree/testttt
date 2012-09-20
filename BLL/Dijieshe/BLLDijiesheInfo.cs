@@ -11,9 +11,19 @@ namespace BLL
 
         #region DJS
 
-        public Guid AddDjs()
-        { 
-            
+        public Guid AddDjs(string name, string address, Model.Area area, string cpn, string cpp, string phone)
+        {
+            Model.DJ_DijiesheInfo djs = new Model.DJ_DijiesheInfo()
+            {
+                Name = name,
+                Address = address,
+                Area = area,
+                ChargePersonName = cpn,
+                ChargePersonPhone = cpp,
+                Phone = phone,
+                Type = Model.EnterpriseType.旅行社
+            };
+            return daldjs.AddDJS(djs);
         }
 
         public IList<DJ_DijiesheInfo> GetDjs8all()

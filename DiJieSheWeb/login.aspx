@@ -9,7 +9,7 @@
 <a href="">景点,酒店,宾馆,购物点</a>
 
     <asp:Login ID="Login1" runat="server" onauthenticate="Login1_Authenticate" 
-        onloggedin="Login1_LoggedIn" onloggingin="Login1_LoggingIn">
+        onloggedin="Login1_LoggedIn">
     </asp:Login>
 </asp:Content>
 
