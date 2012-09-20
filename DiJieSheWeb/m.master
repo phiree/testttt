@@ -11,6 +11,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
+    <div><asp:LoginName runat="server" runat="server" /><asp:LoginStatus runat="server" /> </div>
         <asp:ContentPlaceHolder id="main" runat="server">
         
         </asp:ContentPlaceHolder>
