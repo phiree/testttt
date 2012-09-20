@@ -8,17 +8,19 @@ namespace DAL
 {
     public class DALDijieshe : DalBase,IDAL.IDijieshe
     {
-        public void Add()
+        #region DJS
+
+        public Guid AddDJS(Model.DJ_DijiesheInfo djs)
+        {
+            return (Guid)session.Save(djs);
+        }
+
+        public void DeleteDJS()
         {
             throw new NotImplementedException();
         }
 
-        public void Delete()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Modify()
+        public void UpdateDJS()
         {
             throw new NotImplementedException();
         }
@@ -65,5 +67,27 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_DijiesheInfo>().ToList<Model.DJ_DijiesheInfo>();
         }
+
+        #endregion
+
+        #region group
+
+        public Guid AddGroup(Model.DJ_TourGroup tg)
+        {
+            return (Guid)session.Save(tg);
+        }
+
+        public void UpdateGroup(Model.DJ_TourGroup tg)
+        {
+            using (var t = session.BeginTransaction())
+            {
+                session.Update(tg);
+                t.Commit();
+            }
+        }
+
+        #endregion
+
+
     }
 }

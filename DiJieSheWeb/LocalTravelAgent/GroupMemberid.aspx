@@ -10,18 +10,17 @@
             var result = true;
             var datas = '';
             tabledom.each(function () {
-                var ticketname = $(this).children().children().val();
-                var yuanjia = $(this).children().next().children().val();
-                var xianfujia = $(this).children().next().next().children().val();
-                var zaixianjia = $(this).children().next().next().next().children().val();
-                var ticketid = $(this).children().next().next().next().next().children().val();
+                var memtype = $(this).children().children().val();
+                var memname = $(this).children().next().children().val();
+                var memid = $(this).children().next().next().children().val();
+                var memphone = $(this).children().next().next().next().children().val();
                 var scid = $("input[id*=hidden_scid]").val();
-                datas += '{' + ticketname + ',' + yuanjia + ',' + xianfujia + ',' + zaixianjia + ',' + ticketid + ',' + scid;
+                datas += '{' + memtype + ',' + memname + ',' + memid + ',' + memphone;
             });
             $.ajax({
                 type: "Post",
-                url: "TicketPriceHandler.ashx",
-                dataType: "json",
+                url: "MemidHandler.ashx",
+                dataType: "text",
                 data: datas,
                 success: function (data, status) {
                 }
@@ -57,12 +56,17 @@
                 var datas = "";
                 $.ajax({
                     type: "Post",
-                    url: "ExcelHandler.ashx?filename=" + fullname,
+                    url: "ExcelHandler.ashx?filename=" + $("#<%=Label1.ClientID%>").html(),
                     dataType: "text",
                     data: datas,
                     success: function (data, status) {
                         var tbody = $("#addrow").parent().parent().parent().next();
-                        tbody.html(data);
+                        if (data == "") {
+                            alert('内容已导入!');
+                        }
+                        else {
+                            tbody.html(data);
+                        }
                     }
                 });
             });
@@ -128,11 +132,29 @@
             </tr>
         </tbody>
     </table>
-    <input type="button" value="确定" onclick="calc()" />
     <input type="hidden" id="hidden_scid" runat="server" />
+    <p>
+        导入信息操作步骤:
+    </p>
+    <ol>
+        <li>
+            点击“浏览”，选择要导入的excel文件
+        </li>
+           <br /> 注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题
+        <li>
+            点击“上传”，将文件上传到服务器
+        </li>
+        <li>
+            点击“导入数据”，将excel内容导入到表格中
+        </li>
+        <li>
+            点击“确定”，存储表格数据
+        </li>
+    </ol>
     <asp:FileUpload ID="FileUpload1" runat="server" />
     <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
         OnClick="btnUpload_Click" />
     <input id="btnExcel" type="button" name="name" value="导入数据" />
     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <input type="button" value="确定" onclick="calc()" />
 </asp:Content>

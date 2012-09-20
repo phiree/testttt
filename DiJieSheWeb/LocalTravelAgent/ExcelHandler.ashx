@@ -11,8 +11,12 @@ public class ExcelHandler : IHttpHandler {
         #region 导入
         string filename=context.Request["filename"];
         ExcelOplib.ExcelDjsOpr excel = new ExcelOplib.ExcelDjsOpr();
-        System.Collections.Generic.List<ExcelOplib.Entity.DJSEntity> djsresult = excel.getDJSlist(@"d:\upload\" + filename);
+        System.Collections.Generic.List<ExcelOplib.Entity.DJSEntity> djsresult = excel.getDJSlist(filename);
         string html = string.Empty;
+        if (djsresult==null || djsresult.Count < 1)
+        {
+            return ;
+        }
 
         foreach (ExcelOplib.Entity.DJSEntity item in djsresult)
         {

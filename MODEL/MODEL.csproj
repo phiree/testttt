@@ -74,6 +74,7 @@
     <Compile Include="Mapping\Dijieshe\TourGroupMap.cs" />
     <Compile Include="Mapping\Dijieshe\TourGroupMemberMap.cs" />
     <Compile Include="Mapping\Dijieshe\DJ_GovManageDepartmentMap.cs" />
+    <Compile Include="Mapping\Dijieshe\DJ_UserMap.cs" />
     <Compile Include="Mapping\Order\RefundMap.cs" />
     <Compile Include="Mapping\ScenicTicketMap.cs" />
     <Compile Include="Mapping\TicketsTypeMap.cs" />

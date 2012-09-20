@@ -136,7 +136,7 @@
                 </a>
             </div>
             <div class="sccol1row2">
-                <a href="/Tickets/lishui/suishangjingkuang.html">
+                <a href="/Tickets/lishui/suishangjinkuang.html">
                     <img alt="遂昌金矿" src="/ScenicImg/遂昌金矿.jpg" width="100%" height="100%" />
                     <p>
                     </p>
@@ -165,7 +165,7 @@
                 </a>
             </div>
             <div class="sccol2row2">
-                <a href="/Tickets/lishui/xiandufengjingmingshengqu.html">
+                <a href="/Tickets/lishui/xiandufengjing.html">
                     <img alt="仙都" src="/ScenicImg/仙都.jpg" width="100%" height="100%" />
                     <p>
                     </p>
@@ -182,7 +182,7 @@
                     <span>龙泉山</span>
                     <div class="mark" style="width: 50%">
                     </div>
-                </a><a href="/Tickets/lishui/xianduhuanglongshanjingqu.html">
+                </a><a href="/Tickets/lishui/xianduhuanglongshan.html">
                     <img alt="黄龙景区" src="/ScenicImg/黄龙景区.jpg" width="100%" height="100%" />
                     <p style="left: 163px;">
                     </p>
@@ -204,7 +204,7 @@
                 </a>
             </div>
             <div class="sccol3row2">
-                <a href="/Tickets/lishui/shimendongshenlinggongyuan.html">
+                <a href="/Tickets/lishui/shimendongsenlingongyuan.html">
                     <img alt="青田石门洞" src="/ScenicImg/青田石门洞.jpg" width="100%" height="100%" />
                     <p>
                     </p>
