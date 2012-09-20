@@ -7,12 +7,14 @@ using System.Web.UI.WebControls;
 using System.Web.Security;
 using Model;
 using BLL;
+using System.Web.UI.HtmlControls;
 public partial class MasterPage2 : System.Web.UI.MasterPage
 {
    BLLMembership bllMember = new BLLMembership();
    public string iconUrl = "";
    public string iconAlt = "";
    public string inlineTip = "输入景区或景点名称";
+   BLLArea bllArea = new BLLArea();
     protected void Page_Load(object sender, EventArgs e)
     {
         form1.Action = Request.RawUrl;
@@ -61,5 +63,14 @@ public partial class MasterPage2 : System.Web.UI.MasterPage
             Response.Redirect("/search/default.aspx?q=" + q,true);
         }
 
+    }
+    protected void rptPopCart_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+            HtmlAnchor haa = e.Item.FindControl("ahref") as HtmlAnchor;
+            haa.HRef = "/Tickets/" + bllArea.GetAreaByCode(t.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + t.Scenic.Area.SeoName + "/" + t.Scenic.SeoName + ".html";
+        }
     }
 }

@@ -120,16 +120,16 @@
             <p class="poptitle">我的购物车</p>
             <div id="cartsumhead">
                 <span style="margin-left:20px;">共有<span id="scenicSum"></span>个景区<span id="ticketsSum"></span>张门票</span></div>
-            <asp:Repeater runat="server" ID="rptPopCart">
+            <asp:Repeater runat="server" ID="rptPopCart" 
+                onitemdatabound="rptPopCart_ItemDataBound">
                 <HeaderTemplate>
                     <table class="poptable">
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
                         <td style="width:80%;">
-                            <a tid='<%#Eval("Id") %>' href='/Tickets/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html' style="margin-left:5px;">
-                                <%#Eval("Scenic.Name")%>-<%#Eval("Name")%></a>
-                        </td>
+                            <a runat="server" id="ahref" tid='<%#Eval("Id") %>' href='/Tickets/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html' style="margin-left:5px;">
+                                <%#Eval("Scenic.Name")%>-<%#Eval("Name")%></a></td>
                         <td style="width:40px;">
                             <span style="margin:0px; padding:0px;" class="cartdelete" tid='<%#Eval("Id")%>'>删除</span>
                         </td>

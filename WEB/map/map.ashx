@@ -67,7 +67,7 @@ public class map : IHttpHandler {
 	            } 
                         //string.Format("{0:f2}", new BLL.BLLTicketPrice().GetTicketPriceByScenicId(item.Id)[1].Price);
                 m.scseoname = item.SeoName;
-                m.areaseoname = item.Area.SeoName;
+                m.areaseoname = new BLL.BLLArea().GetAreaByCode(item.Area.Code.Substring(0,4)+"00").SeoName+"_"+item.Area.SeoName;
                 list2.Add(m);
             }
         //}

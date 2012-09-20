@@ -13,6 +13,7 @@ public partial class search_Default : System.Web.UI.Page
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
     BLLScenic bllscenic = new BLLScenic();
     BLLTicket bllTicket = new BLLTicket();
+    BLLArea bllArea = new BLLArea();
     public string q;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -69,6 +70,12 @@ public partial class search_Default : System.Web.UI.Page
                 Image img = e.Item.FindControl("Image1") as Image;
                 if (new BLLScenicImg().GetSiByType(s, 1).Count > 0)
                     img.ImageUrl = "/ScenicImg/small/" + new BLLScenicImg().GetSiByType(s, 1)[0].Name;
+                HtmlAnchor ha = e.Item.FindControl("schref") as HtmlAnchor;
+                ha.HRef = "/Tickets/" + bllArea.GetAreaByCode(item.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + item.Scenic.Area.SeoName + "/" + item.Scenic.SeoName + ".html";
+                HtmlAnchor ha2 = e.Item.FindControl("schref2") as HtmlAnchor;
+                ha2.HRef = "/Tickets/" + bllArea.GetAreaByCode(item.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + item.Scenic.Area.SeoName + "/" + item.Scenic.SeoName + ".html";
+                HtmlAnchor ha3 = e.Item.FindControl("schref3") as HtmlAnchor;
+                ha3.HRef = "/Tickets/" + bllArea.GetAreaByCode(item.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + item.Scenic.Area.SeoName + "/" + item.Scenic.SeoName + ".html";
             }
         }
     }
@@ -88,6 +95,8 @@ public partial class search_Default : System.Web.UI.Page
             {
                 HtmlContainerControl hc = e.Item.FindControl("nsinfosc_price") as HtmlContainerControl;
                 hc.InnerHtml = item.TicketPrice[2].Price.ToString("0");
+                HtmlAnchor ha = e.Item.FindControl("ahref") as HtmlAnchor;
+                ha.HRef = "/Tickets/" + bllArea.GetAreaByCode(item.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + item.Scenic.Area.SeoName + "/" + item.Scenic.SeoName + ".html";
             }
         }
     }

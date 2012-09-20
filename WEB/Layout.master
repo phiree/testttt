@@ -23,11 +23,12 @@
             <div class="moddiv" runat="server" id="likemod">
                 <p>类似景区推荐</p>
                 <table class="tbvisitedsc" border="0" cellpadding="0" cellspacing="0">
-                    <asp:Repeater ID="rptlikesc" runat="server">
+                    <asp:Repeater ID="rptlikesc" runat="server" 
+                        onitemdatabound="rptlikesc_ItemDataBound">
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <img src="/theme/default/image/newversion/jt2.gif" /><a href='<%# ResolveUrl(string.Format("/Tickets/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
+                                    <img src="/theme/default/image/newversion/jt2.gif" /><a runat="server" id="ahref" href='<%# ResolveUrl(string.Format("/Tickets/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -37,11 +38,12 @@
             <div class="moddiv" runat="server" id="zbmod">
                 <p>周边景点</p>
                 <table class="tbvisitedsc" border="0" cellpadding="0" cellspacing="0">
-                    <asp:Repeater ID="rptzbsc" runat="server">
+                    <asp:Repeater ID="rptzbsc" runat="server" 
+                        onitemdatabound="rptzbsc_ItemDataBound">
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <img src="/theme/default/image/newversion/jt2.gif" /><a href='<%# ResolveUrl(string.Format("/Tickets/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
+                                    <img src="/theme/default/image/newversion/jt2.gif" /><a runat="server" id="ahref" href='<%# ResolveUrl(string.Format("/Tickets/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -67,11 +69,12 @@
                 <p>
                     最近浏览</p>
                 <table class="tbvisitedsc" border="0" cellpadding="0" cellspacing="0">
-                    <asp:Repeater ID="rptvisited" runat="server">
+                    <asp:Repeater ID="rptvisited" runat="server" 
+                        onitemdatabound="rptvisited_ItemDataBound">
                         <ItemTemplate>
                             <tr>
                         <td>
-                            <img src="/theme/default/image/newversion/jt2.gif" /><a href='<%# ResolveUrl(string.Format("/Tickets/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
+                            <img src="/theme/default/image/newversion/jt2.gif" /><a runat="server" id="ahref" href='<%# ResolveUrl(string.Format("/Tickets/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
                         </td>
                     </tr>
                         </ItemTemplate>

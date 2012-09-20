@@ -33,7 +33,7 @@ public class mapscenic : IHttpHandler {
                 m.price = t.TicketPrice[0].Price.ToString("0") + "元";
             } 
             m.scseoname = item.SeoName;
-            m.areaseoname = item.Area.SeoName;
+            m.areaseoname = new BLL.BLLArea().GetAreaByCode(item.Area.Code.Substring(0, 4) + "00").SeoName + "_" + item.Area.SeoName;
             list2.Add(m);
         }
         string JSON = new JavaScriptSerializer().Serialize(list2);//把list转换为JSON格式的字符串

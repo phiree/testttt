@@ -17,7 +17,7 @@ public partial class UserCenter_MyTickets : basepage
 {
 
     BLLOrder bllOrder = new BLLOrder();
-
+    BLLArea bllArea = new BLLArea();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -67,6 +67,7 @@ public partial class UserCenter_MyTickets : basepage
         {
             string odid = (e.Item.FindControl("hfodid") as HiddenField).Value;
             Repeater r = e.Item.FindControl("rptod") as Repeater;
+            r.ItemDataBound+=new RepeaterItemEventHandler(r_ItemDataBound);
             r.DataSource = bllOrder.GetOrderByOrderid(int.Parse(odid)).OrderDetail;
             r.DataBind();
         }
@@ -92,10 +93,22 @@ public partial class UserCenter_MyTickets : basepage
                 //ha.HRef = "/UserCenter/Orderdetail.aspx?orderid=" + odid + "&type=3";
             }
         }
+        
     }
     protected void btnpayfor_Click(object sender, EventArgs e)
     {
         Order order = bllOrder.GetOrderByOrderid(int.Parse(ViewState["odid"].ToString()));
         Response.Write(new BLLPayment(order).Pay());
     }
+
+    protected void r_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            OrderDetail od = e.Item.DataItem as OrderDetail;
+            HtmlAnchor haa = e.Item.FindControl("ahref") as HtmlAnchor;
+            haa.HRef = "/Tickets/" + bllArea.GetAreaByCode(od.TicketPrice.Ticket.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + od.TicketPrice.Ticket.Scenic.Area.SeoName + "/" + od.TicketPrice.Ticket.Scenic.SeoName + ".html";
+        }
+    }
 }
+    

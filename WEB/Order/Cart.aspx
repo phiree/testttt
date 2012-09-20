@@ -59,7 +59,7 @@
                         <tr onmousemove="carttdon(this)" onmouseout="carttdout(this)">
                             <td>
                                 <input type="hidden" class="hdId" value='<%#Eval("Id") %>' />
-                                <a href='/Tickets/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
+                                <a runat="server" id="ahref" href='/Tickets/<%#Eval("Scenic.Area.SeoName") %>/<%#Eval("Scenic.SeoName") %>.html'>
                                     <%#Eval("Scenic.Name") %></a>
                             </td>
                             <td>
