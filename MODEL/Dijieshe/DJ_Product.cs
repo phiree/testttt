@@ -37,11 +37,19 @@ namespace Model
             product.IsTemplate = false;
             product.DaysAmount = this.DaysAmount;
 
-            IList<DJ_Route> Routs=new List<DJ_Route>();
-           // this.Routes.
+            DJ_Route[] routesArr = new DJ_Route[] { };
+            // this.Routes.
+            this.Routes.CopyTo(routesArr, 0);
+            IList<DJ_Route> newRoutes = new List<DJ_Route>();
+            foreach (DJ_Route r in routesArr)
+            {
+                newRoutes.Add(r);
+            }
+            product.Routes = newRoutes;
+           
 
             return product;
         }
     }
-    
+
 }
