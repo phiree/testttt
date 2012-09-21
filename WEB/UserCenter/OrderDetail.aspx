@@ -158,7 +158,7 @@
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;" onmouseover="changebg(this)"
                     onmouseout="changebg2(this)">
-                    <span class="osczero"><a style="color: #807940;" href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
+                    <span class="osczero"><a runat="server" id="ahref" style="color: #807940;" href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
                         <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span> <span class="oscfirst">
                             <%# Eval("TicketPrice.Ticket.Name")%></span><span class="oscsecond" runat="server"
                                 id="buytype"></span><span class="oscthird" runat="server" id="tp"><%# Eval("TicketPrice.Price","{0:0}")%></span><span
@@ -183,7 +183,7 @@
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;" onmouseover="changebg(this)"
                     onmouseout="changebg2(this)">
-                    <span class="osczero" style="margin: 0px;"><a style="color: #807940;" href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
+                    <span class="osczero" style="margin: 0px;"><a runat="server" id="ahref" style="color: #807940;" href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
                         <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span> <span class="oscfirst" style="margin: 0px;">
                             <%# Eval("TicketPrice.Ticket.Name")%></span> <span class="oscsecond" runat="server"
                                 id="ydprice" style="margin-left: 5px">
@@ -209,7 +209,7 @@
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;" onmouseover="changebg(this)"
                     onmouseout="changebg2(this)">
-                    <span class="osczero" style="width: 200px;"><a style="color: #807940;" href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
+                    <span class="osczero" style="width: 200px;"><a runat="server" id="ahref" style="color: #807940;" href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
                         <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span> <span class="oscfirst" style="width: 200px;">
                             <%# Eval("TicketPrice.Ticket.Name")%></span> <span class="oscsecond" runat="server"
                                 id="onlineprice" style="margin-left: 5px;">

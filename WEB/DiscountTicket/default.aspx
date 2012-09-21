@@ -80,11 +80,11 @@
             <ItemTemplate>
                 <div class="scenicdesc">
                     <div class="scenicimgdivbg">
-                        <a href='/Tickets/<%= areaSeoName %>_<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
+                        <a runat="server" id="schref" href='/Tickets/<%= areaSeoName %>_<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
                             <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='' /></a>
                     </div>
                     <div class="scenicname">
-                        <a style="display: block;font-size:14px;" href='/Tickets/<%= areaSeoName %>_<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
+                        <a runat="server" id="schref2" style="display: block;font-size:14px;" href='/Tickets/<%= areaSeoName %>_<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
                             <!---->
                             <%# Eval("Name")%></a>
                     </div>
@@ -94,7 +94,7 @@
                                 <asp:Literal runat="server" ID="liPriceNormal"></asp:Literal>元</em></span> <span
                                     class="onlinepr">在线价<em><asp:Literal runat="server" ID="liPriceOnline"></asp:Literal></em>元</span>
                         </div>
-                        <a class="linkorder" href='/Tickets/<%= areaSeoName %>_<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
+                        <a runat="server" id="schref3" class="linkorder" href='/Tickets/<%= areaSeoName %>_<%#Eval("Area.SeoName") %>/<%#Eval("SeoName") %>.html'>
                         </a>
                     </div>
                 </div>

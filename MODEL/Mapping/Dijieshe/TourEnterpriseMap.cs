@@ -21,9 +21,6 @@ namespace Model
            Map(x => x.Phone);
            Map(x => x.Type).CustomType<int>();
        }
-       public virtual Guid Id { get; set; }
-       public virtual string Name { get; set; }
-       public virtual EnterpriseType Type { get; set; }
     }
    
 }

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Model;
 using BLL;
+using System.Web.UI.HtmlControls;
 
 public partial class Layout : System.Web.UI.MasterPage
 {
@@ -13,6 +14,7 @@ public partial class Layout : System.Web.UI.MasterPage
     BLLScenic bllscenic = new BLLScenic();
     Scenic scenic = new Scenic();
     BLLTopic blltopic = new BLLTopic();
+    BLLArea bllArea = new BLLArea();
     protected void Page_Load(object sender, EventArgs e)
     {
         ChooseScenic();
@@ -38,6 +40,8 @@ public partial class Layout : System.Web.UI.MasterPage
         string url = Request.RawUrl;
         string[] keys = url.Split('/');
         string key1 = keys[keys.Length - 2];
+        if (key1.Split('_').Length > 1)
+            key1 = key1.Split('_')[1];
         string key2 = keys[keys.Length - 1].Split('.')[0];
         scenic= bllscenic.GetScenicBySeoName(key1, key2);
     }
@@ -208,4 +212,31 @@ public partial class Layout : System.Web.UI.MasterPage
         return s;
     }
     #endregion
+    protected void rptlikesc_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Model.Scenic t = e.Item.DataItem as Model.Scenic;
+            HtmlAnchor ha = e.Item.FindControl("ahref") as HtmlAnchor;
+            ha.HRef = "/Tickets/" + bllArea.GetAreaByCode(t.Area.Code.Substring(0, 4) + "00").SeoName + "_" + t.Area.SeoName + "/" + t.SeoName+".html";
+        }
+    }
+    protected void rptzbsc_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Model.Scenic t = e.Item.DataItem as Model.Scenic;
+            HtmlAnchor ha = e.Item.FindControl("ahref") as HtmlAnchor;
+            ha.HRef = "/Tickets/" + bllArea.GetAreaByCode(t.Area.Code.Substring(0, 4) + "00").SeoName + "_" + t.Area.SeoName + "/" + t.SeoName + ".html";
+        }
+    }
+    protected void rptvisited_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Model.Scenic t = e.Item.DataItem as Model.Scenic;
+            HtmlAnchor ha = e.Item.FindControl("ahref") as HtmlAnchor;
+            ha.HRef = "/Tickets/" + bllArea.GetAreaByCode(t.Area.Code.Substring(0, 4) + "00").SeoName + "_" + t.Area.SeoName + "/" + t.SeoName + ".html";
+        }
+    }
 }
