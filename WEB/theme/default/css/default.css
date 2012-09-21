@@ -141,6 +141,7 @@ div:246
 }
 .dvprice, .divOrder
 {
+       height:31px;
     float: left;
     padding-left: 0px;
     width: 230px;
