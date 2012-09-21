@@ -85,6 +85,7 @@
     <Compile Include="IUserVoteAmount.cs" />
     <Compile Include="IDALFormatSerialNo.cs" />
     <Compile Include="IScenicTicket.cs" />
+    <Compile Include="IDJProduct.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MODEL\MODEL.csproj">

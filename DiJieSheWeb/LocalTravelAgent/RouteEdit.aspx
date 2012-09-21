@@ -37,8 +37,8 @@
                                     <%#Eval("Behavior")%>
                                 </td>
                                 <td>
-                                    <a href='ProductEdit.aspx?pid=<%=ProductId %>&rid=<%Eval("Id") %>'>编辑</a>
-                                    <asp:Button runat="server" ID="btnDelete" CommandArgument='<%#Eval("Id") %>' CommandName="delete" />
+                                    <a href='ProductEdit.aspx?rid=<%#Eval("Id") %>'>编辑</a>
+                                    <asp:Button runat="server" ID="btnDelete"  CommandName="delete" />
                                 </td>
                             </tr>
                         </ItemTemplate>
