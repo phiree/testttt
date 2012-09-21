@@ -21,7 +21,7 @@ namespace Model
 
         public virtual DateTime EndTime { get; set; }
 
-        public virtual DJ_TourEnterprise Enterprice { get; set; }
+        public virtual DJ_TourEnterprise Enterprise { get; set; }
 
         public virtual string Description { get; set; }
        

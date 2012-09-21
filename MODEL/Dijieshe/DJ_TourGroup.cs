@@ -36,7 +36,7 @@ namespace Model
         /// <summary>
         /// 路线描述
         /// </summary>
-        public virtual IList<DJ_Route> RouteDescription { get; set; }
+        public virtual DJ_Product DJ_Product { get; set; }
         /// <summary>
         /// 导游姓名
         /// </summary>
