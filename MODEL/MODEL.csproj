@@ -66,6 +66,7 @@
     <Compile Include="Dijieshe\DJ_TourGroup.cs" />
     <Compile Include="Dijieshe\DJ_TourGroupMember.cs" />
     <Compile Include="Dijieshe\DJ_User.cs" />
+    <Compile Include="Dijieshe\DJ_Product.cs" />
     <Compile Include="DiscountCode.cs" />
     <Compile Include="Mapping\Dijieshe\DijiesheInfoMap.cs" />
     <Compile Include="Mapping\Dijieshe\GroupConsumRecordMap.cs" />
