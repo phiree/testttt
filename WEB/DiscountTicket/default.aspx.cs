@@ -214,13 +214,14 @@ public partial class DiscountTicket_DiscountTicket : basepage
                     string extention = new BLLScenicImg().GetSiByType(t, 1)[0].Name.Split('.')[1];
                     img.ImageUrl = "/ScenicImg/small/" + new BLLScenicImg().GetSiByType(t, 1)[0].Name.Split('.')[0]+"_s."+extention;
                 }
-                HtmlAnchor ha= e.Item.FindControl("schref") as HtmlAnchor;
-                ha.HRef = "/Tickets/" + bllArea.GetAreaByCode(item.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + item.Scenic.Area.SeoName + "/" + item.Scenic.SeoName+".html";
-                HtmlAnchor ha2 = e.Item.FindControl("schref2") as HtmlAnchor;
-                ha2.HRef = "/Tickets/" + bllArea.GetAreaByCode(item.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + item.Scenic.Area.SeoName + "/" + item.Scenic.SeoName + ".html";
-                HtmlAnchor ha3 = e.Item.FindControl("schref3") as HtmlAnchor;
-                ha3.HRef = "/Tickets/" + bllArea.GetAreaByCode(item.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + item.Scenic.Area.SeoName + "/" + item.Scenic.SeoName + ".html";
             }
+            string ahref="/Tickets/" + bllArea.GetAreaByCode(t.Area.Code.Substring(0, 4) + "00").SeoName + "_" + t.Area.SeoName + "/" + t.SeoName + ".html";
+            HtmlAnchor ha = e.Item.FindControl("schref") as HtmlAnchor;
+            ha.HRef = ahref;
+            HtmlAnchor ha2 = e.Item.FindControl("schref2") as HtmlAnchor;
+            ha2.HRef = ahref;
+            HtmlAnchor ha3 = e.Item.FindControl("schref3") as HtmlAnchor;
+            ha3.HRef = ahref;
         }
         if (e.Item.ItemType == ListItemType.Footer)
         {

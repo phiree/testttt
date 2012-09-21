@@ -36,10 +36,6 @@ public class map : IHttpHandler {
         else
         {
             string scname = HttpUtility.UrlDecode(context.Request.Cookies["scname"].Value, Encoding.GetEncoding("UTF-8"));
-            //string level = HttpUtility.UrlDecode(context.Request.Cookies["level"].Value, Encoding.GetEncoding("UTF-8"));
-            //if(level!="全部")
-            //    list = new BLLScenic().GetScenicByScenicName(scname,level);
-            //else if(scname!="")
             list = new BLLScenic().GetScenicByScenicName(scname, context.Request.Cookies["level"].Value, areaid, HttpUtility.UrlDecode(HttpUtility.UrlDecode(context.Request.Cookies["topic"].Value, Encoding.GetEncoding("UTF-8")), Encoding.GetEncoding("UTF-8")));
         }
         List<Model.ScenicMap> list2 = new List<Model.ScenicMap>();
@@ -48,8 +44,6 @@ public class map : IHttpHandler {
             context.Response.Cookies.Add(new HttpCookie("resultcount",((list.Count/15)+1).ToString()));
         else
             context.Response.Cookies.Add(new HttpCookie("resultcount", (list.Count/15).ToString()));
-        //if (list.Count <= 15)
-        //{
             foreach (Scenic item in list)
             {
                 Model.ScenicMap m = new Model.ScenicMap();
@@ -70,26 +64,6 @@ public class map : IHttpHandler {
                 m.areaseoname = new BLL.BLLArea().GetAreaByCode(item.Area.Code.Substring(0,4)+"00").SeoName+"_"+item.Area.SeoName;
                 list2.Add(m);
             }
-        //}
-        //else
-        //{
-        //    for (int i = 0; i < 15; i++)
-        //    {
-        //        if ((pageindex - 1) * 15 + i < list.Count)
-        //        {
-        //            Model.map m = new Model.map();
-        //            m.id = list[(pageindex - 1) * 15 + i].Scenic.Id;
-        //            m.name = list[(pageindex - 1) * 15 + i].Scenic.Name;
-        //            m.img = list[(pageindex - 1) * 15 + i].Scenic.Photo;
-        //            m.desc = list[(pageindex - 1) * 15 + i].Scenic.Desec;
-        //            m.address = list[(pageindex - 1) * 15 + i].Scenic.Address;
-        //            m.position = list[(pageindex - 1) * 15 + i].Scenic.Position;
-        //            m.level = list[(pageindex - 1) * 15 + i].Scenic.Level;
-        //            m.price = new BLLTicketPrice().GetTicketPriceByScenicandtypeid(list[(pageindex - 1) * 15 + i].Scenic.Id, 3).Price.ToString("0") + "元";
-        //            list2.Add(m);
-        //        }
-        //    }
-        //}
         string JSON = new JavaScriptSerializer().Serialize(list2);//把list转换为JSON格式的字符串
         context.Response.Write(JSON);
     }
