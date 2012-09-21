@@ -20,7 +20,5 @@ namespace Model
             Map(x => x.AdultsAmount);
             Map(x => x.ChildrenAmount);
         }
-     
-
     }
 }
