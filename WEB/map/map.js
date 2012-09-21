@@ -92,7 +92,7 @@ function ReadyDo2() {
                     var sContent =
                             "<div style='width:300px; height:100px;margin:0px; padding:0px;'>" +
                             "<div style='width:100px; height:100px; float:left; margin-right:10px;padding:0px; margin-bottom:0px'>" +
-                              "<a class='mapimg' style=' color:White;margin:0px;padding:0px;width:100%; height:100%;border:0px none White;' href='/Tickets/"+JSON[0].areaseoname+"/"+JSON[0].scseoname+".html '><img src='/ScenicImg/" + JSON[0].img + "' style='width:100%; height:100%;' /></a>" +
+                              "<a class='mapimg' style=' color:White;margin:0px;padding:0px;width:100%; height:100%;border:0px none White;' href='/Tickets/"+JSON[0].areaseoname+"/"+JSON[0].scseoname+".html '><img src='/ScenicImg/small/" + JSON[0].img + "' style='width:100%; height:100%;' /></a>" +
                             "</div>" +
                             "<div style='width:180px; float:left;padding:0px; margin:0px'>" +
                             "<div style='margin-top:5px;margin-bottom:0px; padding:0px'><a class='mapname' href='/Tickets/" + JSON[0].areaseoname + "/" + JSON[0].scseoname + ".html' font-size:14px;'>" + JSON[0].name + "</a></div>" +
@@ -336,7 +336,7 @@ function ReadyDo() {
                     var sContent =
                             "<div style='width:300px; height:100px;margin:0px; padding:0px;'>" +
                             "<div style='width:100px; height:100px; float:left; margin-right:10px;padding:0px; margin-bottom:0px'>" +
-                              "<a class='mapimg' style=' color:White;margin:0px;padding:0px;width:100%; height:100%;border:0px none White;' href='/Tickets/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html'><img src='/ScenicImg/" + allpoint[i].img + "' style='width:100%; height:100%;' /></a>" +
+                              "<a class='mapimg' style=' color:White;margin:0px;padding:0px;width:100%; height:100%;border:0px none White;' href='/Tickets/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html'><img src='/ScenicImg/small/" + allpoint[i].img + "' style='width:100%; height:100%;' /></a>" +
                             "</div>" +
                             "<div style='width:180px; float:left;padding:0px; margin:0px'>" +
                             "<div style='margin-top:5px;margin-bottom:0px; padding:0px'><a class='mapname' href='/Tickets/" + allpoint[i].areaseoname + "/" + allpoint[i].scseoname + ".html' font-size:14px;'>" + allpoint[i].name + "</a></div>" +
