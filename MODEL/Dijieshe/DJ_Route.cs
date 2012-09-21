@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,33 +33,3 @@ namespace Model
         
     }
 }
-=======
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Model
-{
-    /// <summary>
-    /// 行程信息
-    /// </summary>
-    public class DJ_Route
-    {
-        public virtual Guid Id { get; set; }
-
-        public virtual DateTime BeginTime { get; set; }
-
-        public virtual DateTime EndTime { get; set; }
-
-        /// <summary>
-        /// 集合地
-        /// </summary>
-        public virtual string Gather { get; set; }
-
-        public virtual DJ_TourEnterprise Enterprice { get; set; }
-
-        public virtual string Description { get; set; }
-    }
-}
->>>>>>> 9b1f1a0db62ffe8ca93501f8a573df5a01ef0479

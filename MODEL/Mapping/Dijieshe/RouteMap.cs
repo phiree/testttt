@@ -16,7 +16,7 @@ namespace Model
             Id(x => x.Id);
             Map(x => x.BeginTime);
             Map(x => x.EndTime);
-            Map(x => x.Gather);
+          //  Map(x => x.Gather);
             References(x => x.Enterprice);
             Map(x => x.Description);
         }
