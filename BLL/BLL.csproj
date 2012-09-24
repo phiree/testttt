@@ -103,6 +103,7 @@
     <Compile Include="Dijieshe\BLLDijiesheInfo.cs" />
     <Compile Include="Default\ErrType.cs" />
     <Compile Include="Dijieshe\BLLDJProduct.cs" />
+    <Compile Include="Dijieshe\BLLDJ_Route.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SEO\SeoTitle.cs" />
     <Compile Include="Default\TourConfig.cs" />
