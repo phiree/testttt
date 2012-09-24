@@ -24,6 +24,7 @@ public partial class LocalTravelAgent_ProductDetail : System.Web.UI.Page
         {
             IsNew = true;
             Product = new DJ_Product();
+            hyRoute.Visible = false;
         }
         else
         {

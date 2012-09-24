@@ -126,11 +126,6 @@
     <Compile Include="Mapping\VoteMap.cs" />
     <Compile Include="TicketsType.cs" />
     <Compile Include="Topic.cs" />
-    <Compile Include="TourismStatistics\TS_GroupConsumList.cs" />
-    <Compile Include="TourismStatistics\TS_GroupInfo.cs" />
-    <Compile Include="TourismStatistics\TS_Manager.cs" />
-    <Compile Include="TourismStatistics\TS_TourEnterprise.cs" />
-    <Compile Include="TourismStatistics\TS_VisitorInfo.cs" />
     <Compile Include="TourMembership.cs" />
     <Compile Include="PreferentialCode.cs" />
     <Compile Include="PromotionStatic.cs" />

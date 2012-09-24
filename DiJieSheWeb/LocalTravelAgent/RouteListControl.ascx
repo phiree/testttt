@@ -33,9 +33,10 @@
                                     <%#Eval("Behavior")%>
                                 </td>
                                 <td>
+                                <div style="">
                                     <a href='RouteEdit.aspx?rid=<%#Eval("Id") %>'>编辑</a>
                                     <asp:Button runat="server" ID="btnDelete" Text="删除"  CommandName="delete" />
-                                </td>
+                               </div> </td>
                             </tr>
                         </ItemTemplate>
                         <FooterTemplate>
