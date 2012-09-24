@@ -25,7 +25,7 @@ namespace Model
         /// </summary>
         public virtual IList<DJ_Route> Routes { get; set; }
 
-        public DJ_Product Copy()
+        public virtual DJ_Product Copy()
         {
             if (!IsTemplate)
             {
