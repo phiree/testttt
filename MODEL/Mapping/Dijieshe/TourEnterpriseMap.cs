@@ -8,9 +8,9 @@ namespace Model
     /// <summary>
     /// 旅游企业信息/饭店,宾馆,景点,购物点
     /// </summary>
-   public class TourEnterpriseMap:ClassMap<DJ_TourEnterprise>
+   public class DJ_TourEnterpriseMap:ClassMap<DJ_TourEnterprise>
     {
-       public TourEnterpriseMap()
+       public DJ_TourEnterpriseMap()
        {
            Id(x => x.Id);
            References<Area>(x => x.Area);

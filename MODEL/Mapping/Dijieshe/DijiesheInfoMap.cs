@@ -8,9 +8,9 @@ namespace Model.Mapping
     /// <summary>
     /// 地接社信息
     /// </summary>
-    public class DijiesheInfoMap : SubclassMap<DJ_DijiesheInfo>
+    public class DJ_DijiesheInfoMap : SubclassMap<DJ_DijiesheInfo>
     {
-        public DijiesheInfoMap()
+        public DJ_DijiesheInfoMap()
         {
             HasMany<DJ_TourGroup>(x => x.Groups);
         }

@@ -9,9 +9,9 @@ namespace Model
     /// <summary>
     /// 行程路线
     /// </summary>
-    public class RouteMap : ClassMap<DJ_Route>
+    public class DJ_RouteMap : ClassMap<DJ_Route>
     {
-        public RouteMap()
+        public DJ_RouteMap()
         {
             Id(x => x.Id);
             Map(x => x.BeginTime);

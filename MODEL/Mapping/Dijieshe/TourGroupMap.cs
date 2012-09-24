@@ -7,9 +7,9 @@ using FluentNHibernate.Mapping;
 namespace Model
 {
     //团队信息
-    public class TourGroupMap:ClassMap<DJ_TourGroup>
+    public class DJ_TourGroupMap:ClassMap<DJ_TourGroup>
     {
-        public TourGroupMap()
+        public DJ_TourGroupMap()
         {
             Id(x => x.Id);
             References<DJ_DijiesheInfo>(x => x.DJ_DijiesheInfo);

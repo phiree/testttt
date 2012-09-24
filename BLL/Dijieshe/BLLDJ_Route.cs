@@ -14,5 +14,9 @@ namespace BLL
        {
            throw new NotImplementedException();
        }
+       public void SaveOrUpdate(DJ_Route route)
+       {
+           throw new NotImplementedException();
+       }
     }
 }

@@ -6,9 +6,9 @@ using FluentNHibernate.Mapping;
 namespace Model
 {
     //组员
-    public class TourGroupMemberMap:ClassMap<DJ_TourGroupMember>
+    public class DJ_TourGroupMemberMap:ClassMap<DJ_TourGroupMember>
     {
-        public TourGroupMemberMap()
+        public DJ_TourGroupMemberMap()
         {
             Id(x => x.Id);
             Map(x => x.IdCardNo);

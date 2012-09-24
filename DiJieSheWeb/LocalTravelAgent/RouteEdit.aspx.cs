@@ -67,6 +67,7 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
             return false;
         }
         CurrentRoute.Enterprise = djs[0];
+        CurrentRoute.DJ_Product = CurrentProduct;
       
         return true;
     }
@@ -76,7 +77,11 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
         bool updateRst = UpdateForm();
         if (updateRst)
         {
-           
+
+        }
+        else
+        { 
+        
         }
 
     }
