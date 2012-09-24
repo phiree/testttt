@@ -19,6 +19,7 @@ namespace Model
           //  Map(x => x.Gather);
             References(x => x.Enterprise);
             Map(x => x.Description);
+            References<DJ_Product>(x => x.DJ_Product);
         }
     }
 }

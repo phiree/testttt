@@ -30,6 +30,8 @@ namespace Model
     /// </summary>
         public virtual string Behavior { get; set; }
 
+        public virtual DJ_Product DJ_Product { get; set; }
+
         
     }
 }
