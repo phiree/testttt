@@ -49,8 +49,8 @@ public partial class LocalTravelAgent_DjsEdit : System.Web.UI.Page
             Page.ClientScript.RegisterStartupScript(this.GetType(),"","alert('"+rh.sresult+"')",true);
             return;
         }
-        blldjs.AddDjs("新疆牙买提", "新疆乌鲁木齐", 
-            bllarea.GetAreaByCode("330100"), "阿凡提", "15988886666", "010-156489765");
+        blldjs.AddDjs(txtName.Text.Trim(),txtAddress.Text.Trim(),
+            bllarea.GetAreaByCode("330100"), txtCPN.Text.Trim(), txtCPP.Text.Trim(), "010-156489765");
     }
 
     private ResultHelper checkComplete()

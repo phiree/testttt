@@ -1,7 +1,11 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="TE.master.cs" Inherits="TourEnterprise_TE" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <asp:ContentPlaceHolder ID="cphhead" runat="server">
+    </asp:ContentPlaceHolder>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
+    <asp:ContentPlaceHolder ID="cphmain" runat="server">
+    </asp:ContentPlaceHolder>
 </asp:Content>
 
