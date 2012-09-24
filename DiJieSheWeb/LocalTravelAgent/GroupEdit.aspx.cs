@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
-public partial class LocalTravelAgent_GroupEdit : System.Web.UI.Page
+public partial class LocalTravelAgent_GroupEdit : basepage
 {
     BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -16,7 +18,21 @@ public partial class LocalTravelAgent_GroupEdit : System.Web.UI.Page
 
     private void BindDJS()
     {
-        IList<Model.DJ_TourEnterprise> djslist = blldjs.GetDjs8all();
+        //根据登陆用户的类型加载  ddl_enterprice
+        IList<Model.DJ_TourEnterprise> djslist=new List<Model.DJ_TourEnterprise>();
+        Model.DJ_User_Gov user_gov = CurrentMember as Model.DJ_User_Gov;
+        Model.DJ_User_TourEnterprise user_entp = CurrentMember as Model.DJ_User_TourEnterprise;
+        //1.如果是政府企业用户
+        if (user_gov != null)
+        {
+            djslist = blldjs.GetDjs8all();
+        }
+        //2.如果是地接社用户
+        if (user_entp != null)
+        {
+            djslist = blldjs.GetDJS8type(Model.EnterpriseType.旅行社.ToString());
+        }
+        //结束
         ddlDJS.DataSource = djslist;
         ddlDJS.DataTextField = "Name";
         ddlDJS.DataValueField = "Id";
@@ -26,15 +42,7 @@ public partial class LocalTravelAgent_GroupEdit : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         Model.DJ_TourGroup tg = new Model.DJ_TourGroup();
-        //tg.Name = txtGroupname.Text;
-        //tg.BeginDate = DateTime.Parse(txtBegintime.Text);
-        //tg.EndDate = DateTime.Parse(txtGroupname.Text);
-        //tg.GuideName = txtGuidename.Text;
-        //tg.GuidePhone = txtGuidephone.Text;
-        //tg.CarNo = txtCarid.Text;
-        //tg.AdultsAmount = int.Parse(txtAdultnum.Text);
-        //tg.ChildrenAmount = int.Parse(txtChildnum.Text);
-        IList<Model.DJ_TourEnterprise> telist=blldjs.GetDJS8id(ddlDJS.Text);
+        IList<Model.DJ_TourEnterprise> telist = blldjs.GetDJS8id(ddlDJS.Text);
         blldjs.AddBasicinfo(telist[0] as Model.DJ_DijiesheInfo, txtGroupname.Text, Calendar1.SelectedDate,
             Calendar2.SelectedDate, int.Parse(txtDays.Text), int.Parse(txtAdultnum.Text), int.Parse(txtChildnum.Text));
     }
