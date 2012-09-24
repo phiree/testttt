@@ -17,7 +17,7 @@ namespace Model
             Map(x => x.DaysAmount);
             Map(x => x.IsTemplate);
           //  Map(x => x.Gather);
-            References(x => x.Name);
+            Map(x => x.Name);
             HasMany<DJ_Route>(x => x.Routes);
         }
     }
