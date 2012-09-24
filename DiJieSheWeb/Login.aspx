@@ -3,6 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
-<asp:Login runat="server" ID="lg"></asp:Login>
+<asp:Login runat="server" ID="lg" onloggedin="lg_LoggedIn"></asp:Login>
 </asp:Content>
 

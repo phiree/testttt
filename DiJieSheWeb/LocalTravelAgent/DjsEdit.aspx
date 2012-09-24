@@ -15,5 +15,6 @@
     负责人名称:<asp:TextBox ID="txtCPN" runat="server" /><br />
     负责人电话:<asp:TextBox ID="txtCPP" runat="server" /><br />
     联系电话:<asp:TextBox ID="txtTel" runat="server" /><br />
-    <asp:Button ID="btnSave" Text="保存" runat="server" OnClick="btnSave_Click" />
+    <asp:Button ID="btnSave" Text="保存" runat="server" OnClick="btnSave_Click" 
+        style="height: 21px" />
 </asp:Content>
