@@ -63,6 +63,7 @@
     <Compile Include="IDALSeoDescription.cs" />
     <Compile Include="IDijieshe.cs" />
     <Compile Include="IDiscountCode.cs" />
+    <Compile Include="IDJ_User.cs" />
     <Compile Include="IMembership.cs" />
     <Compile Include="IOrder.cs" />
     <Compile Include="IOrderDetail.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="ITicketCount.cs" />
     <Compile Include="ITicketPrice.cs" />
     <Compile Include="ITopic.cs" />
+    <Compile Include="IDJTourGroup.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="IVistor.cs" />
     <Compile Include="IVote.cs" />

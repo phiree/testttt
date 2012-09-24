@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BLL;
 
 public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
 {
@@ -21,6 +22,10 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
 
     private void bind()
     {
+        string[] strinfos= txtTE_info.Text.Trim().Split('/');
+        string idcard = strinfos[0];
+        string name = strinfos[1];
+        string mobile = strinfos[2];
 
     }
 }
