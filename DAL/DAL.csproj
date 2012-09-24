@@ -103,6 +103,7 @@
     <Compile Include="DALContractScenicPrice.cs" />
     <Compile Include="DALDijieshe.cs" />
     <Compile Include="DALDiscountCode.cs" />
+    <Compile Include="DALDJTourGroup.cs" />
     <Compile Include="DALDJ_User.cs" />
     <Compile Include="DALMembership.cs" />
     <Compile Include="DALOrder.cs" />
