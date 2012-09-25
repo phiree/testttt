@@ -13,6 +13,6 @@ public partial class Login : System.Web.UI.Page
     }
     protected void lg_LoggedIn(object sender, EventArgs e)
     {
-        Response.Redirect("/Dijiesheweb/LocalTravelAgent/GroupEdit.aspx");
+        Response.Redirect("/Groups/GroupList.aspx");
     }
 }

@@ -18,9 +18,6 @@
     </asp:Calendar>
     <br />
     游玩天数：<asp:TextBox ID="txtDays" runat="server"></asp:TextBox><br />
-    <%--导游信息：<asp:TextBox ID="txtGuidename" runat="server" /><asp:TextBox ID="txtGuidephone" runat="server" /><br />
-司机信息：<asp:TextBox ID="txtDrivername" runat="server" /><asp:TextBox ID="txtDriverphone" runat="server" /><br />
-车牌号：<asp:TextBox ID="txtCarid" runat="server" /><br />--%>
     成人总数：<asp:TextBox ID="txtAdultnum" runat="server" /><br />
     儿童总数：<asp:TextBox ID="txtChildnum" runat="server" /><br />
     <asp:Button ID="btnOK" Text="保存" runat="server" OnClick="btnOK_Click" />

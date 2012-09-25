@@ -32,7 +32,7 @@
                     </td>
                     <td><%# Eval("BeginDate")%>
                     </td>
-                    <td><a href="/Groups/GroupEdit.aspx?id="+<%# Eval("Id") %>>修改基本信息</a> <a href="#">修改组员</a> <a href="#">修改行程</a>
+                    <td><a href='/Groups/GroupEdit.aspx?id=<%# Eval("Id") %>'>修改基本信息</a> <a href="#">修改组员</a> <a href="#">修改行程</a>
                     </td>
                     <td><a href="#">团队信息</a> <a href="#">消费记录</a>
                     </td>
