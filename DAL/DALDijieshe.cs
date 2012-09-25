@@ -103,6 +103,13 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_TourGroup>().Value;
         }
+
+        public IList<Model.DJ_TourGroup> GetGroup8all()
+        {
+            string sql = "select G from DJ_TourGroup G";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_TourGroup>().ToList<Model.DJ_TourGroup>();
+        }
         #endregion
     }
 }

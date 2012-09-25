@@ -10,6 +10,7 @@ public partial class LocalTravelAgent_GroupEdit : basepage
 {
     //VAR
     public const string GROUPID = "GROUPID";
+    private string groupid;
 
     //
     BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
@@ -17,7 +18,27 @@ public partial class LocalTravelAgent_GroupEdit : basepage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        groupid = Request["id"];
+        if (string.IsNullOrEmpty(groupid))
+        {
+            Response.Redirect("/default.aspx");
+            return;
+        }
+        HttpCookie cookie = new HttpCookie(GROUPID, groupid);
+        Response.Cookies.Add(cookie);
         BindDJS();
+        BindGroup();
+    }
+
+    private void BindGroup()
+    {
+        Model.DJ_TourGroup tg=blldjs.GetGroup8gid(groupid);
+        txtGroupname.Text = tg.Name;
+        txtBegintime.Text = tg.BeginDate.ToShortDateString();
+        txtEndtime.Text = tg.EndDate.ToShortDateString();
+        txtAdultnum.Text = tg.AdultsAmount.ToString();
+        txtChildnum.Text = tg.ChildrenAmount.ToString();
+        txtDays.Text = tg.DaysAmount.ToString();
     }
 
     private void BindDJS()
@@ -53,8 +74,6 @@ public partial class LocalTravelAgent_GroupEdit : basepage
         //}
         Guid djsid=blldjs.AddBasicinfo(telist[0] as Model.DJ_DijiesheInfo, txtGroupname.Text, Calendar1.SelectedDate,
             Calendar2.SelectedDate, int.Parse(txtDays.Text), int.Parse(txtAdultnum.Text), int.Parse(txtChildnum.Text));
-        HttpCookie cookie = new HttpCookie(GROUPID,djsid.ToString());
-        Response.Cookies.Add(cookie);
     }
 
     protected void btnNext_Click(object sender, EventArgs e)

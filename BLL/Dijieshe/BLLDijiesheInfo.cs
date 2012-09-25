@@ -127,6 +127,11 @@ namespace BLL
             return daldjs.GetGroup8gid(groupid);
         }
 
+        public IList<Model.DJ_TourGroup> GetGroup8all()
+        {
+            return daldjs.GetGroup8all();
+        }
+
         #endregion
     }
 }
