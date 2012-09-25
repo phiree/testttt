@@ -14,9 +14,9 @@ namespace IDAL
 
         void UpdateDJS();
 
-        IList<Model.DJ_TourEnterprise> GetDJS8All();
+        IList<Model.DJ_DijiesheInfo> GetDJS8All();
 
-        IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike);
+        IList<Model.DJ_DijiesheInfo> GetDJS8Muti(int areaid, string type, string id, string namelike);
 
         #endregion
 
@@ -25,6 +25,12 @@ namespace IDAL
         Guid AddGroup(Model.DJ_TourGroup tg);
 
         void UpdateGroup(Model.DJ_TourGroup tg);
+
+        Model.DJ_TourGroup GetGroup8name(string name);
+
+        Model.DJ_TourGroup GetGroup8gid(string groupid);
+
+        IList<Model.DJ_TourGroup> GetGroup8all();
 
         #endregion
     }

@@ -8,18 +8,43 @@ using System.Web.Security;
 
 public partial class LocalTravelAgent_GroupEdit : basepage
 {
+    //VAR
+    public const string GROUPID = "GROUPID";
+    private string groupid;
+
+    //
     BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
 
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        groupid = Request["id"];
+        if (string.IsNullOrEmpty(groupid))
+        {
+            Response.Redirect("/default.aspx");
+            return;
+        }
+        HttpCookie cookie = new HttpCookie(GROUPID, groupid);
+        Response.Cookies.Add(cookie);
         BindDJS();
+        BindGroup();
+    }
+
+    private void BindGroup()
+    {
+        Model.DJ_TourGroup tg=blldjs.GetGroup8gid(groupid);
+        txtGroupname.Text = tg.Name;
+        txtBegintime.Text = tg.BeginDate.ToShortDateString();
+        txtEndtime.Text = tg.EndDate.ToShortDateString();
+        txtAdultnum.Text = tg.AdultsAmount.ToString();
+        txtChildnum.Text = tg.ChildrenAmount.ToString();
+        txtDays.Text = tg.DaysAmount.ToString();
     }
 
     private void BindDJS()
     {
         //根据登陆用户的类型加载  ddl_enterprice
-        IList<Model.DJ_TourEnterprise> djslist=new List<Model.DJ_TourEnterprise>();
+        IList<Model.DJ_DijiesheInfo> djslist = new List<Model.DJ_DijiesheInfo>();
         Model.DJ_User_Gov user_gov = CurrentMember as Model.DJ_User_Gov;
         Model.DJ_User_TourEnterprise user_entp = CurrentMember as Model.DJ_User_TourEnterprise;
         //1.如果是政府企业用户
@@ -41,15 +66,20 @@ public partial class LocalTravelAgent_GroupEdit : basepage
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        Model.DJ_TourGroup tg = new Model.DJ_TourGroup();
-        IList<Model.DJ_TourEnterprise> telist = blldjs.GetDJS8id(ddlDJS.Text);
-        blldjs.AddBasicinfo(telist[0] as Model.DJ_DijiesheInfo, txtGroupname.Text, Calendar1.SelectedDate,
+        IList<Model.DJ_DijiesheInfo> telist = blldjs.GetDJS8id(ddlDJS.Text);
+        Model.DJ_TourGroup tg = blldjs.GetGroup8name(txtGroupname.Text.Trim());
+        //if (tg != null)
+        //{
+        //    Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('已存在该名称')", true);
+        //}
+        Guid djsid=blldjs.AddBasicinfo(telist[0] as Model.DJ_DijiesheInfo, txtGroupname.Text, Calendar1.SelectedDate,
             Calendar2.SelectedDate, int.Parse(txtDays.Text), int.Parse(txtAdultnum.Text), int.Parse(txtChildnum.Text));
     }
 
     protected void btnNext_Click(object sender, EventArgs e)
     {
-        Response.Redirect("/LocalTravelAgent/GroupMemberid.aspx");
+        btnOK_Click(null, null);
+        Response.Redirect("/Dijiesheweb/LocalTravelAgent/GroupMemberid.aspx");
     }
 
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)

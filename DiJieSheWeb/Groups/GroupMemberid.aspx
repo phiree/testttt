@@ -3,12 +3,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="../Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script type="text/javascript">
 
         function calc() {
             var tabledom = $("tbody>tr");
-            var result = true;
+            var result = false;
             var datas = '';
+            var djsid = $.cookie('DJSID');
             tabledom.each(function () {
                 var memtype = $(this).children().children().val();
                 var memname = $(this).children().next().children().val();
@@ -23,13 +25,12 @@
                 dataType: "text",
                 data: datas,
                 success: function (data, status) {
+                    if (data == "成功")
+                        alert("修改成功！");
+                    else
+                        alert("修改失败！");
                 }
             });
-            if (result)
-                alert("修改成功！");
-            else
-                alert("修改失败！");
-            //return false;
         }
 
         //删除行
@@ -155,6 +156,7 @@
     <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
         OnClick="btnUpload_Click" />
     <input id="btnExcel" type="button" name="name" value="导入数据" />
-    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-    <input type="button" value="确定" onclick="calc()" />
+    <asp:Label ID="Label1" runat="server" Text="Label" Visible="True"></asp:Label>
+    <input type="button" value="保存" onclick="calc()" />
+    <asp:Button ID="btnNext" Text="下一步" runat="server" onclick="btnNext_Click" />
 </asp:Content>
