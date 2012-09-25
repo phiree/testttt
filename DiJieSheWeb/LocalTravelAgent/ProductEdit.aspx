@@ -14,6 +14,7 @@
                     <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
                 </td>
             </tr>
+            
             <tr>
                 <td>
                     备注
@@ -25,5 +26,7 @@
            
         </table>
         <asp:Button runat="server" ID="btnSave" Text="保存" />
+
+        <asp:HyperLink runat="server" ID="hyRoute">选择路线</asp:HyperLink>
     </div>
 </asp:Content>

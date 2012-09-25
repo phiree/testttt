@@ -17,6 +17,7 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
     DJ_Product CurrentProduct;
     BLLDJ_Route bllDJRoute = new BLLDJ_Route();
     BLLDijiesheInfo bllDJS = new BLLDijiesheInfo();
+    BLLDJProduct bllProduct = new BLLDJProduct();
     protected void Page_Load(object sender, EventArgs e)
     {
         string strParam = Request["rid"];
@@ -30,6 +31,7 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
         if (Guid.TryParse(strParam, out routeId))
         {
             CurrentRoute = bllDJRoute.GetById(routeId);
+            CurrentProduct = bllProduct.GetById(productId);
         }
         else
         {
@@ -77,12 +79,15 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
         bool updateRst = UpdateForm();
         if (updateRst)
         {
+            bllDJRoute.SaveOrUpdate(CurrentRoute);
+            UpdateMsg = "保存成功";
+            if (IsNew)
+            {
+                tbxBeginTime.Text = tbxDayNo.Text = tbxEndTime.Text = tbxEnterprise.Text = string.Empty;
+            }
 
         }
-        else
-        { 
-        
-        }
+       
 
     }
 }
