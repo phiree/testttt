@@ -35,7 +35,7 @@ namespace BLL
             return daldjs.AddDJS(djs);
         }
 
-        public IList<DJ_TourEnterprise> GetDjs8all()
+        public IList<DJ_DijiesheInfo> GetDjs8all()
         {
             return daldjs.GetDJS8All();
         }
@@ -45,7 +45,7 @@ namespace BLL
         /// </summary>
         /// <param name="areaid">地区id</param>
         /// <returns></returns>
-        public IList<Model.DJ_TourEnterprise> GetDJS8area(int areaid)
+        public IList<Model.DJ_DijiesheInfo> GetDJS8area(int areaid)
         {
             return GetDJS8Muti(areaid, null, null, null);
         }
@@ -55,7 +55,7 @@ namespace BLL
         /// </summary>
         /// <param name="type">企业类型</param>
         /// <returns></returns>
-        public IList<Model.DJ_TourEnterprise> GetDJS8type(string type)
+        public IList<Model.DJ_DijiesheInfo> GetDJS8type(string type)
         {
             return GetDJS8Muti(0, type, null, null);
         }
@@ -65,7 +65,7 @@ namespace BLL
         /// </summary>
         /// <param name="id">企业id</param>
         /// <returns></returns>
-        public IList<Model.DJ_TourEnterprise> GetDJS8id(string id)
+        public IList<Model.DJ_DijiesheInfo> GetDJS8id(string id)
         {
             return GetDJS8Muti(0, null, id, null);
         }
@@ -75,7 +75,7 @@ namespace BLL
         /// </summary>
         /// <param name="name">名称查询</param>
         /// <returns></returns>
-        public IList<Model.DJ_TourEnterprise> GetDJS8name(string name)
+        public IList<Model.DJ_DijiesheInfo> GetDJS8name(string name)
         {
             return GetDJS8Muti(0, null, null, name);
         }
@@ -88,7 +88,7 @@ namespace BLL
         /// <param name="id"></param>
         /// <param name="namelike"></param>
         /// <returns></returns>
-        public IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike)
+        public IList<Model.DJ_DijiesheInfo> GetDJS8Muti(int areaid, string type, string id, string namelike)
         {
             return daldjs.GetDJS8Muti(areaid, type, id, namelike);
         }
@@ -110,6 +110,21 @@ namespace BLL
             tg.AdultsAmount = adults;
             tg.ChildrenAmount = children;
             return daldjs.AddGroup(tg);
+        }
+
+        public void UpdateGroup(Model.DJ_TourGroup tg)
+        {
+            daldjs.UpdateGroup(tg);
+        }
+
+        public Model.DJ_TourGroup GetGroup8name(string name)
+        {
+            return daldjs.GetGroup8name(name);
+        }
+
+        public Model.DJ_TourGroup GetGroup8gid(string groupid)
+        {
+            return daldjs.GetGroup8gid(groupid);
         }
 
         #endregion

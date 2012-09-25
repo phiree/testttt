@@ -32,35 +32,35 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public IList<Model.DJ_TourEnterprise> GetDJS8All()
+        public IList<Model.DJ_DijiesheInfo> GetDJS8All()
         {
             string sql = "select D from DJ_DijiesheInfo D";
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_TourEnterprise>().ToList<Model.DJ_TourEnterprise>();
+            return query.Future<Model.DJ_DijiesheInfo>().ToList<Model.DJ_DijiesheInfo>();
         }
 
-        public IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike)
+        public IList<Model.DJ_DijiesheInfo> GetDJS8Muti(int areaid, string type, string id, string namelike)
         {
-            string sql = "select TE from DJ_TourEnterprise TE where ";
+            string sql = "select D from DJ_DijiesheInfo D where ";
             if (areaid != 0)
             {
-                sql += " TE.Area.Id=" + areaid + " and";
+                sql += " D.Area.Id=" + areaid + " and";
             }
             if (!string.IsNullOrEmpty(type))
             {
-                sql += " TE.Type=" + (int)(Model.EnterpriseType)Enum.Parse(typeof(Model.EnterpriseType), type) + " and";
+                sql += " D.Type=" + (int)(Model.EnterpriseType)Enum.Parse(typeof(Model.EnterpriseType), type) + " and";
             }
             if (!string.IsNullOrEmpty(id))
             {
-                sql += " TE.Id='" + id + "' and";
+                sql += " D.Id='" + id + "' and";
             }
             if (!string.IsNullOrEmpty(namelike))
             {
-                sql += " TE.Name like '%" + namelike + "%' and";
+                sql += " D.Name like '%" + namelike + "%' and";
             }
             sql = sql.Substring(0, sql.Length - 3);
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_TourEnterprise>().ToList<Model.DJ_TourEnterprise>();
+            return query.Future<Model.DJ_DijiesheInfo>().ToList<Model.DJ_DijiesheInfo>();
         }
 
         #endregion
@@ -69,27 +69,40 @@ namespace DAL
 
         public Guid AddGroup(Model.DJ_TourGroup tg)
         {
-            Guid result = Guid.NewGuid();
-            tg.Id = result;
             using (var t = session.BeginTransaction())
             {
                 session.Save(tg);
                 t.Commit();
             }
-            return result;
+            return tg.Id;
         }
 
         public void UpdateGroup(Model.DJ_TourGroup tg)
         {
             using (var t = session.BeginTransaction())
             {
+                foreach (var item in tg.Members)
+                {
+                    session.Save(item);
+                }
                 session.Update(tg);
                 t.Commit();
             }
         }
 
+        public Model.DJ_TourGroup GetGroup8name(string name)
+        {
+            string sql = "select G from DJ_TourGroup G where G.Name='" + name + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Model.DJ_TourGroup>().Value;
+        }
+
+        public Model.DJ_TourGroup GetGroup8gid(string groupid)
+        {
+            string sql = "select G from DJ_TourGroup G where G.Id='" + groupid + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Model.DJ_TourGroup>().Value;
+        }
         #endregion
-
-
     }
 }

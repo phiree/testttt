@@ -52,4 +52,8 @@ public partial class LocalTravelAgent_GroupMemberid : System.Web.UI.Page
         //}
         #endregion
     }
+    protected void btnNext_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/Dijiesheweb/LocalTravelAgent/GroupRoute.aspx");
+    }
 }

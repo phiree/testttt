@@ -60,7 +60,7 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
         CurrentRoute.EndTime = Convert.ToDateTime(tbxEndTime.Text);
         CurrentRoute.Behavior = rblBehavior.SelectedValue;
         CurrentRoute.DayNo = Convert.ToInt16(tbxDayNo.Text);
-        IList<DJ_TourEnterprise> djs=bllDJS.GetDJS8name(tbxEnterprise.Text);
+        IList<DJ_DijiesheInfo> djs = bllDJS.GetDJS8name(tbxEnterprise.Text);
         if(djs.Count!=1)
         {
             UpdateMsg = "请输入正确的企业名称";
