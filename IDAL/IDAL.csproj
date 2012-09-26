@@ -63,6 +63,8 @@
     <Compile Include="IDALSeoDescription.cs" />
     <Compile Include="IDijieshe.cs" />
     <Compile Include="IDiscountCode.cs" />
+    <Compile Include="IDJGroupConsumRecord.cs" />
+    <Compile Include="IDJRoute.cs" />
     <Compile Include="IDJ_User.cs" />
     <Compile Include="IMembership.cs" />
     <Compile Include="IOrder.cs" />

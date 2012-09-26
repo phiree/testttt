@@ -15,5 +15,19 @@ namespace BLL
         {
             return Idjtourgroup.GetTourGroupByGuideIdcard(idcard);
         }
+
+        public Model.DJ_TourGroup GetTourGroupById(Guid id)
+        {
+            return Idjtourgroup.GetTourGroupById(id);
+        }
+
+        public IList<Model.DJ_TourGroup> GetTourGroupByTEId(Guid id)
+        {
+            return Idjtourgroup.GetTourGroupByTEId(id);
+        }
+        public Model.DJ_TourGroup GetTgByproductid(Guid proid)
+        {
+            return Idjtourgroup.GetTgByproductid(proid);
+        }
     }
 }

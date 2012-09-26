@@ -102,7 +102,9 @@
     <Compile Include="Default\Checkout.cs" />
     <Compile Include="Dijieshe\BLLDijiesheInfo.cs" />
     <Compile Include="Default\ErrType.cs" />
+    <Compile Include="Dijieshe\BLLDJConsumRecord.cs" />
     <Compile Include="Dijieshe\BLLDJProduct.cs" />
+    <Compile Include="Dijieshe\BLLDJRoute.cs" />
     <Compile Include="Dijieshe\BLLDJTourGroup.cs" />
     <Compile Include="Dijieshe\BLLDJ_Route.cs" />
     <Compile Include="Dijieshe\BLLDJ_User.cs" />

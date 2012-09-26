@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Model;
+
 namespace IDAL
 {
-    public interface IDJProduct
+    public interface IDJGroupConsumRecord
     {
-        DJ_Product GetById(Guid productId);
-        IList<DJ_Product> GetListByTEId(Guid TEId);
+        void Save(DJ_GroupConsumRecord group);
     }
 }
