@@ -74,7 +74,7 @@
                         </asp:Repeater>
                         <tr>
                             <td colspan="5">
-                                <asp:Button runat="server" ID="btnAdd" Text="增加地点" />
+                                <asp:Button runat="server" ID="btnAdd" Text="增加地点" onclick="btnAdd_Click" />
                             </td>
                         </tr>
                     </table>

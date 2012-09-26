@@ -14,6 +14,7 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
     BLLDJ_Route bllDJRoute = new BLLDJ_Route();
     BLLDijiesheInfo bllDJS = new BLLDijiesheInfo();
     BLLDJProduct bllProduct = new BLLDJProduct();
+    
 
     public Guid RouteId { get; set; }
     public Guid ProductId { get; set; }
@@ -63,7 +64,7 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
         CurrentRoute.Behavior = rblBehavior.SelectedValue;
 
         CurrentRoute.DayNo = Convert.ToInt16(tbxDayNo.Text);
-        IList<DJ_TourEnterprise> djs = bllDJS.GetDJS8name(tbxEnterprise.Text);
+        IList<DJ_DijiesheInfo> djs = bllDJS.GetDJS8name(tbxEnterprise.Text);
         if (djs.Count != 1)
         {
             UpdateMsg = "请输入正确的企业名称";
