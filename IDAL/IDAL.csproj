@@ -56,14 +56,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dijieshe\IDJRoute.cs" />
     <Compile Include="IArea.cs" />
     <Compile Include="IBackManager.cs" />
     <Compile Include="ICommonUser.cs" />
     <Compile Include="IContractScenicPrice.cs" />
     <Compile Include="IDALSeoDescription.cs" />
-    <Compile Include="IDijieshe.cs" />
-    <Compile Include="IDiscountCode.cs" />
-    <Compile Include="IDJ_User.cs" />
+    <Compile Include="Dijieshe\IDijieshe.cs" />
+    <Compile Include="Dijieshe\IDiscountCode.cs" />
+    <Compile Include="Dijieshe\IDJ_User.cs" />
     <Compile Include="IMembership.cs" />
     <Compile Include="IOrder.cs" />
     <Compile Include="IOrderDetail.cs" />
@@ -79,7 +80,7 @@
     <Compile Include="ITicketCount.cs" />
     <Compile Include="ITicketPrice.cs" />
     <Compile Include="ITopic.cs" />
-    <Compile Include="IDJTourGroup.cs" />
+    <Compile Include="Dijieshe\IDJTourGroup.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="IVistor.cs" />
     <Compile Include="IVote.cs" />
@@ -87,7 +88,7 @@
     <Compile Include="IUserVoteAmount.cs" />
     <Compile Include="IDALFormatSerialNo.cs" />
     <Compile Include="IScenicTicket.cs" />
-    <Compile Include="IDJProduct.cs" />
+    <Compile Include="Dijieshe\IDJProduct.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MODEL\MODEL.csproj">
