@@ -20,5 +20,6 @@ namespace Model
         /// 该地接社登记过的旅游团
         /// </summary>
         public virtual IList<DJ_TourGroup> Groups { get; set; }
+        public virtual IList<DJ_Product> Products { get; set; }
     }
 }

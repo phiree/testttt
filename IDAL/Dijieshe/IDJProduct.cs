@@ -8,5 +8,6 @@ namespace IDAL
     public interface IDJProduct
     {
         DJ_Product GetById(Guid productId);
+        void Save(DJ_Product product);
     }
 }

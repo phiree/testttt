@@ -58,8 +58,8 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
     protected string UpdateMsg = string.Empty;
     private bool UpdateForm()
     {
-        CurrentRoute.BeginTime = Convert.ToDateTime(tbxBeginTime.Text);
-        CurrentRoute.EndTime = Convert.ToDateTime(tbxEndTime.Text);
+        CurrentRoute.BeginTime = Convert.ToInt32(tbxBeginTime.Text);
+        CurrentRoute.EndTime = Convert.ToInt32(tbxEndTime.Text);
         CurrentRoute.Behavior = rblBehavior.SelectedValue;
         CurrentRoute.DayNo = Convert.ToInt16(tbxDayNo.Text);
         IList<DJ_TourEnterprise> djs = bllDJS.GetDJS8name(tbxEnterprise.Text);
