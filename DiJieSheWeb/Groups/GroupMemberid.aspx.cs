@@ -9,11 +9,17 @@ using System.Web.Services;
 
 public partial class LocalTravelAgent_GroupMemberid : System.Web.UI.Page
 {
+    //public const string GROUPID = "GROUPID";
     private string excelPath = "d:/upload/";
+    //private string groupid;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //groupid = Request["id"];
+        //if (!string.IsNullOrEmpty(groupid))
+        //{
+            
+        //}
     }
 
     protected void btnUpload_Click(object sender, EventArgs e)

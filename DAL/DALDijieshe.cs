@@ -32,16 +32,16 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public IList<Model.DJ_DijiesheInfo> GetDJS8All()
+        public IList<Model.DJ_TourEnterprise> GetDJS8All()
         {
             string sql = "select D from DJ_DijiesheInfo D";
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_DijiesheInfo>().ToList<Model.DJ_DijiesheInfo>();
+            return query.Future<Model.DJ_TourEnterprise>().ToList<Model.DJ_TourEnterprise>();
         }
 
-        public IList<Model.DJ_DijiesheInfo> GetDJS8Muti(int areaid, string type, string id, string namelike)
+        public IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike)
         {
-            string sql = "select D from DJ_DijiesheInfo D where ";
+            string sql = "select D from DJ_TourEnterprise D where ";
             if (areaid != 0)
             {
                 sql += " D.Area.Id=" + areaid + " and";
@@ -60,7 +60,7 @@ namespace DAL
             }
             sql = sql.Substring(0, sql.Length - 3);
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_DijiesheInfo>().ToList<Model.DJ_DijiesheInfo>();
+            return query.List<Model.DJ_TourEnterprise>();
         }
 
         #endregion

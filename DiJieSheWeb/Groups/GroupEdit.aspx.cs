@@ -44,7 +44,7 @@ public partial class LocalTravelAgent_GroupEdit : basepage
     private void BindDJS()
     {
         //根据登陆用户的类型加载  ddl_enterprice
-        IList<Model.DJ_DijiesheInfo> djslist = new List<Model.DJ_DijiesheInfo>();
+        IList<Model.DJ_TourEnterprise> djslist = new List<Model.DJ_TourEnterprise>();
         Model.DJ_User_Gov user_gov = CurrentMember as Model.DJ_User_Gov;
         Model.DJ_User_TourEnterprise user_entp = CurrentMember as Model.DJ_User_TourEnterprise;
         //1.如果是政府企业用户
@@ -58,7 +58,16 @@ public partial class LocalTravelAgent_GroupEdit : basepage
             djslist = blldjs.GetDJS8type(Model.EnterpriseType.旅行社.ToString());
         }
         //结束
-        ddlDJS.DataSource = djslist;
+        IList<Model.DJ_DijiesheInfo> djlist = new List<Model.DJ_DijiesheInfo>();
+        foreach (var item in djslist)
+        {
+            Model.DJ_DijiesheInfo dj = item as Model.DJ_DijiesheInfo;
+            if (dj != null)
+            {
+                djlist.Add(dj);
+            }
+        }
+        ddlDJS.DataSource = djlist;
         ddlDJS.DataTextField = "Name";
         ddlDJS.DataValueField = "Id";
         ddlDJS.DataBind();
@@ -66,7 +75,7 @@ public partial class LocalTravelAgent_GroupEdit : basepage
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        IList<Model.DJ_DijiesheInfo> telist = blldjs.GetDJS8id(ddlDJS.Text);
+        IList<Model.DJ_TourEnterprise> telist = blldjs.GetDJS8id(ddlDJS.Text);
         Model.DJ_TourGroup tg = blldjs.GetGroup8name(txtGroupname.Text.Trim());
         //if (tg != null)
         //{

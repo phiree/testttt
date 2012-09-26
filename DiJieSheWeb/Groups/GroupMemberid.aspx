@@ -51,6 +51,16 @@
             return true;
         }
 
+        //如果是编辑的话,加载制定group的数据
+        $(function () {
+            var tbody = $("#addrow").parent().parent().parent().next();
+            tbody.append("<tr><td><select>" +
+                "<option value='成人游客'>成人游客</option><option value='儿童游客'>儿童游客</option><option value='导游'>导游</option><option value='司机'>司机</option></select>" +
+                "</td><td><input type='text' />" +
+                "</td><td><input type='text' /></td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />" +
+                "<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>");
+        })
+
         //导入excel
         $(function () {
             $("#btnExcel").click(function () {
