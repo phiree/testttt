@@ -71,4 +71,10 @@ public partial class LocalTravelAgent_ProductDetail : System.Web.UI.Page
                 break;
         }
     }
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        ucRouteEditor.Visible = true;
+        
+    }
+
 }

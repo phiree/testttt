@@ -103,10 +103,16 @@
     <Compile Include="DALContractScenicPrice.cs" />
     <Compile Include="Dijieshe\DALDijieshe.cs" />
     <Compile Include="DALDiscountCode.cs" />
-    <Compile Include="Dijieshe\DALDJProduct.cs" />
+<<<<<<< HEAD
+    <Compile Include="DALDJProduct.cs" />
+    <Compile Include="DALDJRoute.cs" />
+    <Compile Include="DALDJTourGroup.cs" />
+    <Compile Include="DALDJ_GroupConsumRecord.cs" />
+    <Compile Include="DALDJ_User.cs" />
+=======
     <Compile Include="Dijieshe\DALDJTourGroup.cs" />
-    <Compile Include="Dijieshe\DALDJ_GroupConsumRecord.cs" />
     <Compile Include="Dijieshe\DALDJ_User.cs" />
+>>>>>>> f6b45c1a3c4943aeea439013ada2b4383b1711e8
     <Compile Include="DALMembership.cs" />
     <Compile Include="DALOrder.cs" />
     <Compile Include="DALOrderDetail.cs" />

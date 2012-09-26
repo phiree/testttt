@@ -26,7 +26,7 @@ namespace Model
 
             Map(x => x.GuideName);
             Map(x => x.GuidePhone);
-           
+            References(x => x.DJ_Product);
             HasMany<DJ_TourGroupMember>(x => x.Members);
         }
     }
