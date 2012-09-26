@@ -133,5 +133,14 @@ namespace BLL
         }
 
         #endregion
+
+        #region GroupMem
+
+        public IList<Model.DJ_Group_Base> GetGroupmem(string id)
+        {
+            return daldjs.GetGuide(id);
+        }
+
+        #endregion
     }
 }
