@@ -9,14 +9,18 @@ namespace BLL
 {
    public class BLLDJ_Route
     {
-      
+       IDAL.IDJRoute idalroute = new DAL.DALDJ_Route();
        public DJ_Route GetById(Guid routeid)
        {
-           throw new NotImplementedException();
+           return idalroute.GetById(routeid);
        }
        public void SaveOrUpdate(DJ_Route route)
        {
-           throw new NotImplementedException();
+           idalroute.SaveOrUpdate(route);
+       }
+       public void Delete(DJ_Route route)
+       {
+           idalroute.Delete(route);
        }
     }
 }

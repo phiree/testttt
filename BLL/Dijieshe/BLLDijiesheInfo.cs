@@ -112,6 +112,26 @@ namespace BLL
             return daldjs.AddGroup(tg);
         }
 
+        public void UpdateGroup(Model.DJ_TourGroup tg)
+        {
+            daldjs.UpdateGroup(tg);
+        }
+
+        public Model.DJ_TourGroup GetGroup8name(string name)
+        {
+            return daldjs.GetGroup8name(name);
+        }
+
+        public Model.DJ_TourGroup GetGroup8gid(string groupid)
+        {
+            return daldjs.GetGroup8gid(groupid);
+        }
+
+        public IList<Model.DJ_TourGroup> GetGroup8all()
+        {
+            return daldjs.GetGroup8all();
+        }
+
         #endregion
     }
 }

@@ -26,6 +26,12 @@ namespace IDAL
 
         void UpdateGroup(Model.DJ_TourGroup tg);
 
+        Model.DJ_TourGroup GetGroup8name(string name);
+
+        Model.DJ_TourGroup GetGroup8gid(string groupid);
+
+        IList<Model.DJ_TourGroup> GetGroup8all();
+
         #endregion
     }
 }

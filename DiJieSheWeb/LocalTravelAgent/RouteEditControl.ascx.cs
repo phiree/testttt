@@ -6,32 +6,32 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Model;
 using BLL;
-/// <summary>
-/// 编辑一个旅游点
-/// </summary>
-public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
+public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserControl
 {
-
     bool IsNew = false;
     DJ_Route CurrentRoute;
     DJ_Product CurrentProduct;
     BLLDJ_Route bllDJRoute = new BLLDJ_Route();
     BLLDijiesheInfo bllDJS = new BLLDijiesheInfo();
     BLLDJProduct bllProduct = new BLLDJProduct();
+    
+
+    public Guid RouteId { get; set; }
+    public Guid ProductId { get; set; }
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        string strParam = Request["rid"];
-        string strParamProduct = Request["pid"];
-        Guid routeId;
-        Guid productId;
-        if (!Guid.TryParse(strParamProduct, out productId))
+
+
+        if (ProductId == null)
         {
             ErrHandler.Redirect(ErrType.ParamIllegal);
         }
-        if (Guid.TryParse(strParam, out routeId))
+        if (RouteId != null)
         {
-            CurrentRoute = bllDJRoute.GetById(routeId);
-            CurrentProduct = bllProduct.GetById(productId);
+            CurrentRoute = bllDJRoute.GetById(RouteId);
+            CurrentProduct = bllProduct.GetById(ProductId);
         }
         else
         {
@@ -54,6 +54,7 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
         tbxEnterprise.Text = CurrentRoute.Enterprise.Name;
         rblBehavior.SelectedValue = CurrentRoute.Behavior;
 
+
     }
     protected string UpdateMsg = string.Empty;
     private bool UpdateForm()
@@ -61,19 +62,19 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
         CurrentRoute.BeginTime = Convert.ToDateTime(tbxBeginTime.Text);
         CurrentRoute.EndTime = Convert.ToDateTime(tbxEndTime.Text);
         CurrentRoute.Behavior = rblBehavior.SelectedValue;
+
         CurrentRoute.DayNo = Convert.ToInt16(tbxDayNo.Text);
         IList<DJ_TourEnterprise> djs = bllDJS.GetDJS8name(tbxEnterprise.Text);
-        if(djs.Count!=1)
+        if (djs.Count != 1)
         {
             UpdateMsg = "请输入正确的企业名称";
             return false;
         }
         CurrentRoute.Enterprise = djs[0];
         CurrentRoute.DJ_Product = CurrentProduct;
-      
+
         return true;
     }
-
     private void Save()
     {
         bool updateRst = UpdateForm();
@@ -86,8 +87,10 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
                 tbxBeginTime.Text = tbxDayNo.Text = tbxEndTime.Text = tbxEnterprise.Text = string.Empty;
             }
 
+            this.Visible = false;
+
         }
-       
+
 
     }
 }

@@ -1,0 +1,8 @@
+  INSERT [TourOnline].[dbo].[DJ_TourEnterprise] 
+  ([Id],[Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[Type],[Area_id])
+  VALUES
+  ('6A2071BB-F553-4BE4-91D6-A0D2010F78F1','旭日旅行社','杭州市西湖区','陈旭日','15988880000','0571-88886666',5,'1019')
+
+  
+  INSERT INTO [TourOnline].[dbo].[DJ_DijiesheInfo]
+  VALUES('6A2071BB-F553-4BE4-91D6-A0D2010F78F1')

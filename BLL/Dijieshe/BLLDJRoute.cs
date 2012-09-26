@@ -8,7 +8,7 @@ namespace BLL
     public class BLLDJRoute
     {
 
-        IDAL.IDJRoute Idjroute = new DAL.DALDJRoute();
+        IDAL.IDJRoute Idjroute = new DAL.DALDJ_Route();
         /// <summary>
         /// 根据预报时间得到当前的团队
         /// </summary>

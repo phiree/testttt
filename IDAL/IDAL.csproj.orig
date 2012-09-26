@@ -56,16 +56,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dijieshe\IDJGroupConsumRecord.cs" />
     <Compile Include="Dijieshe\IDJRoute.cs" />
     <Compile Include="IArea.cs" />
     <Compile Include="IBackManager.cs" />
     <Compile Include="ICommonUser.cs" />
     <Compile Include="IContractScenicPrice.cs" />
     <Compile Include="IDALSeoDescription.cs" />
+<<<<<<< HEAD
+    <Compile Include="IDijieshe.cs" />
+    <Compile Include="IDiscountCode.cs" />
+    <Compile Include="IDJGroupConsumRecord.cs" />
+    <Compile Include="IDJRoute.cs" />
+    <Compile Include="IDJ_User.cs" />
+=======
     <Compile Include="Dijieshe\IDijieshe.cs" />
     <Compile Include="Dijieshe\IDiscountCode.cs" />
     <Compile Include="Dijieshe\IDJ_User.cs" />
+>>>>>>> f6b45c1a3c4943aeea439013ada2b4383b1711e8
     <Compile Include="IMembership.cs" />
     <Compile Include="IOrder.cs" />
     <Compile Include="IOrderDetail.cs" />
