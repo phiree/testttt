@@ -18,10 +18,10 @@ namespace BLL
        {
            IDJProduc.Save(product);
        }
-
-       public IList<DJ_Product> GetList(DJ_DijiesheInfo dijieshe)
+       public IList<DJ_Product> GetListByDjsID(Guid dijiesheid)
        {
-           throw new NotImplementedException();
+           return IDJProduc.GetListByTEId(dijiesheid);
        }
+      
     }
 }

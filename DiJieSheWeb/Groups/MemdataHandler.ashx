@@ -6,7 +6,7 @@ using System.Linq;
 
 public class MemdataHandler : IHttpHandler {
 
-    BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
+    BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
     
     public void ProcessRequest (HttpContext context) {
         string id = context.Request.QueryString["id"];

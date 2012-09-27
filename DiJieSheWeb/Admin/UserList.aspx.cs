@@ -16,15 +16,16 @@ public partial class Admin_UserList : System.Web.UI.Page
     {
         Bind();
     }
+ 
+    private void Bind()
+    {
+        rptUsers.DataSource = GetUsers();
+        rptUsers.DataBind();
+    }  
     private IList<TourMembership> GetUsers()
     {
         IList<TourMembership> users = membership.GetAllUsers();
 
         return users;
-    }
-    private void Bind()
-    {
-        rptUsers.DataSource = GetUsers();
-        rptUsers.DataBind();
     }
 }

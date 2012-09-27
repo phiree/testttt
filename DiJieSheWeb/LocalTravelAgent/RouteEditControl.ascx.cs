@@ -14,7 +14,7 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
     { get; set; }
    public DJ_Route CurrentRoute { get; set; }
     BLLDJ_Route bllDJRoute = new BLLDJ_Route();
-    BLLDijiesheInfo bllDJS = new BLLDijiesheInfo();
+    BLLDJEnterprise bllDJS = new BLLDJEnterprise();
     BLLDJProduct bllProduct = new BLLDJProduct();
     
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IDAL
 {
-    public interface IDijieshe
+    public interface IDJEnterprise
     {
         #region djs
         Guid AddDJS(Model.DJ_TourEnterprise djs);

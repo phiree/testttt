@@ -8,7 +8,7 @@ public class MemidHandler : IHttpHandler {
     
     public void ProcessRequest (HttpContext context) {
         string[] datas = context.Request.Form[0].Split(new char[] { '{' }, StringSplitOptions.RemoveEmptyEntries);
-        BLL.BLLDijiesheInfo bllDJS = new BLL.BLLDijiesheInfo();
+        BLL.BLLDJEnterprise bllDJS = new BLL.BLLDJEnterprise();
         string groupid=context.Request.Cookies["GROUPID"].Value;
         Model.DJ_TourGroup tg = bllDJS.GetGroup8gid(groupid);
         //清除原有成员,重新加入成员

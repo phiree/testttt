@@ -11,7 +11,7 @@ public partial class LocalTravelAgent_GroupDetail : System.Web.UI.Page
     const string GID = "gid";
 
     //var
-    BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
+    BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
     string gid = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
