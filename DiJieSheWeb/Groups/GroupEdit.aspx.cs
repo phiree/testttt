@@ -13,21 +13,19 @@ public partial class LocalTravelAgent_GroupEdit : basepage
     private string groupid;
 
     //
-    BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
+    BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
 
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        groupid = Request["id"];
-        if (string.IsNullOrEmpty(groupid))
+        groupid = Request.QueryString["id"];
+        if (!string.IsNullOrEmpty(groupid))
         {
-            Response.Redirect("/default.aspx");
-            return;
+            HttpCookie cookie = new HttpCookie(GROUPID, groupid);
+            Response.Cookies.Add(cookie);
+            BindGroup();
         }
-        HttpCookie cookie = new HttpCookie(GROUPID, groupid);
-        Response.Cookies.Add(cookie);
         BindDJS();
-        BindGroup();
     }
 
     private void BindGroup()
@@ -88,7 +86,7 @@ public partial class LocalTravelAgent_GroupEdit : basepage
     protected void btnNext_Click(object sender, EventArgs e)
     {
         btnOK_Click(null, null);
-        Response.Redirect("/Dijiesheweb/LocalTravelAgent/GroupMemberid.aspx");
+        Response.Redirect("/Groups/GroupMemberid.aspx");
     }
 
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)

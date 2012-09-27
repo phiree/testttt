@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class LocalTravelAgent_GroupList : System.Web.UI.Page
 {
-    BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
+    BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
 
     protected void Page_Load(object sender, EventArgs e)
     {

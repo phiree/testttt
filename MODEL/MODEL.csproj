@@ -61,6 +61,9 @@
     <Compile Include="Dijieshe\DJ_DijiesheInfo.cs" />
     <Compile Include="Dijieshe\DJ_GovManageDepartment.cs" />
     <Compile Include="Dijieshe\DJ_GroupConsumRecord.cs" />
+    <Compile Include="Dijieshe\DJ_Group_Base.cs" />
+    <Compile Include="Dijieshe\DJ_Group_Driver.cs" />
+    <Compile Include="Dijieshe\DJ_Group_Guide.cs" />
     <Compile Include="Dijieshe\DJ_Route.cs" />
     <Compile Include="Dijieshe\DJ_TourEnterprise.cs" />
     <Compile Include="Dijieshe\DJ_TourGroup.cs" />
@@ -69,6 +72,9 @@
     <Compile Include="Dijieshe\DJ_Product.cs" />
     <Compile Include="DiscountCode.cs" />
     <Compile Include="Mapping\Dijieshe\DijiesheInfoMap.cs" />
+    <Compile Include="Mapping\Dijieshe\DJ_Group_BaseMap.cs" />
+    <Compile Include="Mapping\Dijieshe\DJ_Group_DriverMap.cs" />
+    <Compile Include="Mapping\Dijieshe\DJ_Group_GuideMap.cs" />
     <Compile Include="Mapping\Dijieshe\GroupConsumRecordMap.cs" />
     <Compile Include="Mapping\Dijieshe\DJRouteMap.cs" />
     <Compile Include="Mapping\Dijieshe\TourEnterpriseMap.cs" />

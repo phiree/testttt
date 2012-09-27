@@ -9,41 +9,41 @@ using BLL;
 public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserControl
 {
     bool IsNew = false;
-    DJ_Route CurrentRoute;
-    DJ_Product CurrentProduct;
+  
+   public DJ_Product CurrentProduct
+    { get; set; }
+   public DJ_Route CurrentRoute { get; set; }
     BLLDJ_Route bllDJRoute = new BLLDJ_Route();
-    BLLDijiesheInfo bllDJS = new BLLDijiesheInfo();
+    BLLDJEnterprise bllDJS = new BLLDJEnterprise();
     BLLDJProduct bllProduct = new BLLDJProduct();
     
 
     public Guid RouteId { get; set; }
-    public Guid ProductId { get; set; }
-
-
-    protected void Page_Load(object sender, EventArgs e)
+    protected override void OnPreRender(EventArgs e)
     {
-
-
-        if (ProductId == null)
+        if (CurrentProduct == null)
         {
             ErrHandler.Redirect(ErrType.ParamIllegal);
         }
-        if (RouteId != null)
-        {
-            CurrentRoute = bllDJRoute.GetById(RouteId);
-            CurrentProduct = bllProduct.GetById(ProductId);
-        }
-        else
+        if (CurrentRoute == null)
         {
             IsNew = true;
+
         }
-        if (!IsPostBack)
-        {
+
+       
             if (!IsNew)
             {
                 LoadForm();
             }
-        }
+        
+        base.OnPreRender(e);
+    }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+
+     
     }
 
     private void LoadForm()
@@ -59,8 +59,8 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
     protected string UpdateMsg = string.Empty;
     private bool UpdateForm()
     {
-        CurrentRoute.BeginTime = Convert.ToDateTime(tbxBeginTime.Text);
-        CurrentRoute.EndTime = Convert.ToDateTime(tbxEndTime.Text);
+        CurrentRoute.BeginTime = Convert.ToInt32(tbxBeginTime.Text);
+        CurrentRoute.EndTime = Convert.ToInt32(tbxEndTime.Text);
         CurrentRoute.Behavior = rblBehavior.SelectedValue;
 
         CurrentRoute.DayNo = Convert.ToInt16(tbxDayNo.Text);
@@ -92,5 +92,9 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
         }
 
 
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        Save();
     }
 }

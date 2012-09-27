@@ -16,7 +16,7 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
     DJ_Route CurrentRoute;
     DJ_Product CurrentProduct;
     BLLDJ_Route bllDJRoute = new BLLDJ_Route();
-    BLLDijiesheInfo bllDJS = new BLLDijiesheInfo();
+    BLLDJEnterprise bllDJS = new BLLDJEnterprise();
     BLLDJProduct bllProduct = new BLLDJProduct();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -58,8 +58,8 @@ public partial class LocalTravelAgent_RouteEdit : System.Web.UI.Page
     protected string UpdateMsg = string.Empty;
     private bool UpdateForm()
     {
-        CurrentRoute.BeginTime = Convert.ToDateTime(tbxBeginTime.Text);
-        CurrentRoute.EndTime = Convert.ToDateTime(tbxEndTime.Text);
+        CurrentRoute.BeginTime = Convert.ToInt32(tbxBeginTime.Text);
+        CurrentRoute.EndTime = Convert.ToInt32(tbxEndTime.Text);
         CurrentRoute.Behavior = rblBehavior.SelectedValue;
         CurrentRoute.DayNo = Convert.ToInt16(tbxDayNo.Text);
         IList<DJ_TourEnterprise> djs = bllDJS.GetDJS8name(tbxEnterprise.Text);

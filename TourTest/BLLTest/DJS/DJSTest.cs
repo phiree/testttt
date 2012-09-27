@@ -9,7 +9,7 @@ namespace TourTest.BLLTest
     [TestFixture]
     public class DJSTest
     {
-        BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
+        BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
         BLL.BLLArea bllarea = new BLL.BLLArea();
 
         [Test]

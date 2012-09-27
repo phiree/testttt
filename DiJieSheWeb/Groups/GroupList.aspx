@@ -48,7 +48,7 @@
                     <a href="#">修改行程</a>
                 </td>
                 <td>
-                    <a href="#">团队信息</a> 
+                    <a href='/Groups/GroupDetail.aspx?gid=<%# Eval("Id") %>'>团队信息</a> 
                     <a href="#">消费记录</a>
                 </td>
             </tr>
