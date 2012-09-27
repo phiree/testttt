@@ -9,5 +9,6 @@ namespace IDAL
     public interface IDJGroupConsumRecord
     {
         void Save(DJ_GroupConsumRecord group);
+        DJ_GroupConsumRecord GetGroupConsumRecordByRouteId(Guid RouteId);
     }
 }

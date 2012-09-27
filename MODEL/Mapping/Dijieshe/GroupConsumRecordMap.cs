@@ -15,7 +15,7 @@ namespace Model
         {
             Id(x => x.Id);
             References<DJ_TourEnterprise>(x => x.Enterprise);
-            References<DJ_TourGroup>(x => x.Group);
+            References<DJ_Route>(x => x.Route);
             Map(x => x.ConsumeTime);
             Map(x => x.AdultsAmount);
             Map(x => x.ChildrenAmount);
