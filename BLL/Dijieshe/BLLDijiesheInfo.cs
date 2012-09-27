@@ -136,9 +136,52 @@ namespace BLL
 
         #region GroupMem
 
-        public IList<Model.DJ_Group_Base> GetGroupmem(string id)
+        /// <summary>
+        /// 更新导游信息
+        /// </summary>
+        /// <param name="gg"></param>
+        public void UpdateGuide(Model.DJ_Group_Guide gg)
         {
-            return daldjs.GetGuide(id);
+            daldjs.UpdateGuide(gg);
+        }
+
+        /// <summary>
+        /// 更新司机信息
+        /// </summary>
+        /// <param name="gg"></param>
+        public void UpdateDriver(Model.DJ_Group_Driver gd)
+        {
+            daldjs.UpdateDriver(gd);
+        }
+
+        /// <summary>
+        /// 根据企业id获取
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IList<Model.DJ_Group_Base> GetGroupmem8epid(string id)
+        {
+            return daldjs.GetGroupmem8epid(id);
+        }
+        
+        /// <summary>
+        /// 根据id获取 导游
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IList<Model.DJ_Group_Guide> GetGuide8id(string id)
+        {
+            return daldjs.GetGuide8id(id);
+        }
+
+        /// <summary>
+        /// 根据id获取司机
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IList<Model.DJ_Group_Driver> GetDriver8id(string id)
+        {
+            return daldjs.GetDriver8id(id);
         }
 
         #endregion

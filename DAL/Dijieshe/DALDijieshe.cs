@@ -114,13 +114,55 @@ namespace DAL
 
         #region groupmem
 
-        public IList<Model.DJ_Group_Base> GetGuide(string id)
+        public void UpdateGuide(Model.DJ_Group_Guide gg)
         {
-            string sql = "select G from DJ_Group_Base G";
+            using (var t = session.BeginTransaction())
+            {
+                session.Update(gg);
+                t.Commit();
+            }
+        }
+
+        public void UpdateDriver(Model.DJ_Group_Driver gd)
+        {
+            using (var t = session.BeginTransaction())
+            {
+                session.Update(gd);
+                t.Commit();
+            }
+        }
+
+        public IList<Model.DJ_Group_Base> GetGroupmem8epid(string id)
+        {
+            string sql = "select G from DJ_Group_Base G where TourEnterprise.Id='" + id + "'";
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_Group_Base>().ToList<Model.DJ_Group_Base>();
         }
 
+
+        //public IList<Model.DJ_Group_Base> GetDriver(string id)
+        //{
+        //    string sql = "select G from DJ_Group_Base G where TourEnterprise.Id='" + id + "'";
+        //    IQuery query = session.CreateQuery(sql);
+        //    return query.Future<Model.DJ_Group_Base>().ToList<Model.DJ_Group_Base>();
+        //}
+
+
+        public IList<Model.DJ_Group_Guide> GetGuide8id(string id)
+        {
+            string sql = "select G from DJ_Group_Guide G where Id='" + id + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_Group_Guide>().ToList();
+        }
+
+        public IList<Model.DJ_Group_Driver> GetDriver8id(string id)
+        {
+            string sql = "select G from DJ_Group_Driver G where Id='" + id + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_Group_Driver>().ToList();
+        }
+
         #endregion
+
     }
 }
