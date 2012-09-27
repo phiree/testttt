@@ -31,13 +31,12 @@ public partial class LocalTravelAgent_ProductDetail : System.Web.UI.Page
         {
             Product = bllProduct.GetById(ProductId);
         }
-        ucRouteEditor.ProductId = Product.Id;
-        
+
         if (!IsPostBack)
         {
             LoadForm();
-            LoadList();
-            
+
+
         }
     }
 
@@ -46,11 +45,6 @@ public partial class LocalTravelAgent_ProductDetail : System.Web.UI.Page
         tbxName.Text = Product.Name;
 
     }
-    private void LoadList()
-    {
-        rptRoute.DataSource = Product.Routes;
-        rptRoute.DataBind();
-    }
     private void UpdateForm()
     {
         Product.Name = tbxName.Text;
@@ -58,23 +52,20 @@ public partial class LocalTravelAgent_ProductDetail : System.Web.UI.Page
 
     protected void rptRoute_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        DJ_Route route= e.Item.DataItem as DJ_Route;
 
-        switch (e.CommandName.ToLower())
-        {
-            case "edit":
-                ucRouteEditor.RouteId = route.Id;
-                ucRouteEditor.Visible = true;
-                break;
-            case "delete":
-                bllRoute.Delete(route);
-                break;
-        }
+        Guid routeId = Guid.Parse(e.CommandArgument.ToString());
+        DJ_Route route = bllRoute.GetById(routeId);
+
     }
-    protected void btnAdd_Click(object sender, EventArgs e)
+
+    protected void btnSaeProduct_Click(object sender, EventArgs e)
     {
-        ucRouteEditor.Visible = true;
-        
+        UpdateForm();
+        bllProduct.Save(Product);
+        if (IsNew)
+        {
+            Response.Redirect("ProductEdit.aspx?productid=" + Product.Id);
+        }
     }
 
 }

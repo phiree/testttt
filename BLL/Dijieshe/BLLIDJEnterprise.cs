@@ -5,9 +5,9 @@ using System.Text;
 using Model;
 namespace BLL
 {
-    public class BLLDijiesheInfo
+    public class BLLDJEnterprise
     {
-        IDAL.IDijieshe daldjs = new DAL.DALDijieshe();
+        IDAL.IDJEnterprise daldjs = new DAL.DALDJEnterprise();
 
         #region DJS
         /// <summary>

@@ -9,10 +9,19 @@ namespace BLL
 {
    public class BLLDJProduct
     {
-       IDAL.IDJProduct IDJProduct;
+       IDAL.IDJProduct IDJProduc = new DALDJProduct();
        public DJ_Product GetById(Guid productId)
        {
-           return IDJProduct.GetById(productId);
+           return IDJProduc.GetById(productId);
        }
+       public void Save(DJ_Product product)
+       {
+           IDJProduc.Save(product);
+       }
+       public IList<DJ_Product> GetListByDjsID(Guid dijiesheid)
+       {
+           return IDJProduc.GetListByTEId(dijiesheid);
+       }
+      
     }
 }

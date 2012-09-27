@@ -17,9 +17,9 @@ namespace Model
         /// 第几天.
         /// </summary>
         public virtual int DayNo { get; set; }
-        public virtual DateTime BeginTime { get; set; }
+        public virtual int BeginTime { get; set; }
 
-        public virtual DateTime EndTime { get; set; }
+        public virtual int EndTime { get; set; }
 
         public virtual DJ_TourEnterprise Enterprise { get; set; }
 

@@ -50,6 +50,8 @@ namespace Model
 
             return product;
         }
+
+        public virtual DJ_DijiesheInfo DJ_DijiesheInfo { get; set; }
     }
 
 }

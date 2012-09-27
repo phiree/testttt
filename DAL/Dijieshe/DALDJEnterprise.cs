@@ -6,7 +6,7 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALDijieshe : DalBase,IDAL.IDijieshe
+    public class DALDJEnterprise : DalBase,IDAL.IDJEnterprise
     {
         #region DJS
 
@@ -34,7 +34,7 @@ namespace DAL
 
         public IList<Model.DJ_TourEnterprise> GetDJS8All()
         {
-            string sql = "select D from DJ_DijiesheInfo D";
+            string sql = "select D from DJ_TourEnterprise D";
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_TourEnterprise>().ToList<Model.DJ_TourEnterprise>();
         }

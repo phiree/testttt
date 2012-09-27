@@ -29,11 +29,11 @@ namespace DAL
 
         public IList<Model.DJ_TourGroup> GetTourGroupByTEId(Guid id)
         {
-            List<Model.DJ_Product> listDJ_Product = new DALDJProduct().GetListByTEId(id).ToList();
+            List<Guid> listDJ_Product_Id = new DALDJProduct().GetListByTEId(id).ToList().GroupBy(x => x.Id).Select(x=>x.Key).ToList();
             List<Model.DJ_TourGroup> ListTg=new List<Model.DJ_TourGroup>();
-            foreach (Model.DJ_Product product in listDJ_Product)
+            foreach (Guid product_id in listDJ_Product_Id)
             {
-                Model.DJ_TourGroup tg = GetTgByproductid(product.Id);
+                Model.DJ_TourGroup tg = GetTgByproductid(product_id);
                 if (tg != null)
                 {
                     ListTg.Add(tg);

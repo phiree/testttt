@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class LocalTravelAgent_DjsEdit : System.Web.UI.Page
 {
 
-    BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
+    BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
     BLL.BLLArea bllarea = new BLL.BLLArea();
 
     protected void Page_Load(object sender, EventArgs e)

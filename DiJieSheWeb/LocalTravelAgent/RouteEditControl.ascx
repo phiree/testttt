@@ -6,8 +6,8 @@
             <td>
                 第<asp:TextBox runat="server" ID="tbxDayNo"></asp:TextBox>天
              
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                    ErrorMessage="必填"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"  ControlToValidate="tbxDayNo"
+                    ErrorMessage="必填" ValidationGroup="ucrouteedit"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -16,12 +16,12 @@
             </td>
             <td>
                 <asp:TextBox runat="server" ID="tbxBeginTime"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                    ErrorMessage="必填"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="tbxBeginTime" runat="server" 
+                    ErrorMessage="必填" ValidationGroup="ucrouteedit"></asp:RequiredFieldValidator>
                 至
                 <asp:TextBox runat="server" ID="tbxEndTime"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                    ErrorMessage="必填"></asp:RequiredFieldValidator>
+                    ErrorMessage="必填" ValidationGroup="ucrouteedit" ControlToValidate="tbxEndTime"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -30,8 +30,8 @@
             </td>
             <td>
                 <asp:TextBox runat="server" ID="tbxEnterprise"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
-                    ErrorMessage="必填"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"  ControlToValidate="tbxEnterprise"
+                    ErrorMessage="必填" ValidationGroup="ucrouteedit"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -49,4 +49,4 @@
             </td>
         </tr>
     </table>
-    <asp:Button runat="server" ID="btnSave" Text="保存" />
+    <asp:Button runat="server" ID="btnSave"  ValidationGroup="ucrouteedit" OnClick="btnSave_Click" Text="保存" />

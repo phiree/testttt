@@ -17,6 +17,7 @@ namespace DAL
         public void SaveOrUpdate(Model.DJ_Route route)
         {
             session.SaveOrUpdate(route);
+            session.Flush();
         }
 
         public void Delete(Model.DJ_Route route)

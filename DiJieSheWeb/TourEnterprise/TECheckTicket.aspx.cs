@@ -13,6 +13,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
 {
     BLLDJTourGroup blldjtourgroup = new BLLDJTourGroup();
     BLLDJConsumRecord blldjcr = new BLLDJConsumRecord();
+    BLLDJRoute blldjroute = new BLLDJRoute();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -35,6 +36,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         {
             string[] strinfos = txtTE_info.Text.Trim().Split('/');
             string idcard = strinfos[0];
+            ViewState["idcard"] = idcard;
             BindRptByIdcard(idcard);
         }
         else
@@ -59,6 +61,10 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             laAdultAmount.Text = dj_tourgroup.AdultsAmount.ToString();
             Literal laChildrenAmount = e.Item.FindControl("laChildrenAmount") as Literal;
             laChildrenAmount.Text = dj_tourgroup.ChildrenAmount.ToString();
+            Repeater rptRoute = e.Item.FindControl("rptRoute") as Repeater;
+            rptRoute.ItemDataBound += new RepeaterItemEventHandler(rptRoute_ItemDataBound);
+            rptRoute.DataSource = dj_tourgroup.DJ_Product.Routes;
+            rptRoute.DataBind();
         }
     }
 
@@ -78,19 +84,46 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 DJ_TourGroup group = blldjtourgroup.GetTourGroupById(Guid.Parse(hfGroupId.Value));
                 TextBox tbAdultAmount = rptitem.FindControl("txtAdultsAmount") as TextBox;
                 TextBox tbChildAmount = rptitem.FindControl("txtChildrenAmount") as TextBox;
+                Repeater rptRoute = rptitem.FindControl("rptRoute") as Repeater;
                 tbAdultAmount.Text = Regex.Replace(tbAdultAmount.Text, "[^0-9]", "");
                 tbChildAmount.Text = Regex.Replace(tbChildAmount.Text, "[^0-9]", "");
-                if (Verify(tbAdultAmount.Text, tbChildAmount.Text))
+                int IsHaveSelect = 0;
+                foreach (RepeaterItem routeitem in rptRoute.Items)
                 {
-                    blldjcr.Save(Master.CurrentTE, group, DateTime.Now,int.Parse(tbAdultAmount.Text), int.Parse(tbChildAmount.Text));
-                    ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('验证成功!')", true);
-                    init();
+                    CheckBox cbSelect = routeitem.FindControl("ChSelect") as CheckBox;
+                    if (cbSelect.Enabled && cbSelect.Checked)
+                    {
+                        if (Verify(tbAdultAmount.Text, tbChildAmount.Text))
+                        {
+                            HiddenField hfRouteId = routeitem.FindControl("hfRouteId") as HiddenField;
+                            DJ_Route route = blldjroute.GetById(Guid.Parse(hfRouteId.Value));
+                            blldjcr.Save(Master.CurrentTE, route, DateTime.Now, int.Parse(tbAdultAmount.Text), int.Parse(tbChildAmount.Text));
+                            ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('验证成功!')", true);
+                            BindRptByIdcard(ViewState["idcard"].ToString());
+                            return;
+                        }
+                    }
+                    if (cbSelect.Enabled && !cbSelect.Checked)
+                    {
+                        IsHaveSelect = 1;
+                    }
+                }
+                if (IsHaveSelect == 0)
+                {
+                    ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('都已验证成功，没有需要验证的行程!')", true);
+                    return;
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('请选择一个行程!')", true);
+                    return;
                 }
             }
+
         }
     }
 
-    private bool Verify(string adultamout,string childrenamout)
+    private bool Verify(string adultamout, string childrenamout)
     {
         if (adultamout == "" || childrenamout == "")
         {
@@ -124,6 +157,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
     protected void btnBind_Click(object sender, EventArgs e)
     {
         string idcard = hfidcard.Value;
+        ViewState["idcard"] = idcard;
         if (!string.IsNullOrEmpty(idcard))
         {
             BindRptByIdcard(idcard);
@@ -131,6 +165,27 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         else
         {
             ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+        }
+    }
+
+    protected void rptRoute_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            DJ_Route route = e.Item.DataItem as DJ_Route;
+            CheckBox cbSelect = e.Item.FindControl("ChSelect") as CheckBox;
+            Literal LaIsCheck = e.Item.FindControl("LaIsCheck") as Literal;
+            DJ_GroupConsumRecord gcr = blldjcr.GetGroupConsumRecordByRouteId(route.Id);
+            if (gcr != null)
+            {
+                cbSelect.Checked = true;
+                cbSelect.Enabled = false;
+                LaIsCheck.Text = "已验证";
+            }
+            else
+            {
+                LaIsCheck.Text = "未验证";
+            }
         }
     }
 }
