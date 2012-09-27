@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class Groups_GroupDriverDetail : System.Web.UI.Page
 {
     //var
-    BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
+    BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
     string driverid = string.Empty;
     Model.DJ_Group_Driver gd;
 

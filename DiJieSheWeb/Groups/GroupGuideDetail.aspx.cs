@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class Groups_GroupGuideDetail : System.Web.UI.Page
 {
     //var
-    BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
+    BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
     string guideid = string.Empty;
     Model.DJ_Group_Guide gg;
 

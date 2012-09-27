@@ -11,7 +11,7 @@ public partial class Groups_GroupDriver : System.Web.UI.Page
     const string DJSID = "djsid";
 
     //var
-    BLL.BLLDijiesheInfo blldjs = new BLL.BLLDijiesheInfo();
+    BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
     string djsid = string.Empty;//djsid
 
     protected void Page_Load(object sender, EventArgs e)
