@@ -11,6 +11,7 @@ public class basepage : System.Web.UI.Page
 {
     public MembershipUser CurrentUser;
     public TourMembership CurrentMember;
+    
     BLL.BLLMembership bllMember = new BLL.BLLMembership();
     protected bool NeedLogin { get; set; }
   
@@ -20,7 +21,14 @@ public class basepage : System.Web.UI.Page
         if (CurrentUser != null)
         {
             CurrentMember = bllMember.GetMemberById((Guid)CurrentUser.ProviderUserKey);
+            
         }
+        else
+        {
+            BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
+        }
+
         base.OnLoad(e);
     }
+
 }
