@@ -111,5 +111,16 @@ namespace DAL
             return query.Future<Model.DJ_TourGroup>().ToList<Model.DJ_TourGroup>();
         }
         #endregion
+
+        #region groupmem
+
+        public IList<Model.DJ_Group_Base> GetGuide(string id)
+        {
+            string sql = "select G from DJ_Group_Base G";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_Group_Base>().ToList<Model.DJ_Group_Base>();
+        }
+
+        #endregion
     }
 }

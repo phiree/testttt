@@ -22,5 +22,4 @@ namespace Model
            Map(x => x.Type).CustomType<int>();
        }
     }
-   
 }

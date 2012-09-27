@@ -33,5 +33,11 @@ namespace IDAL
         IList<Model.DJ_TourGroup> GetGroup8all();
 
         #endregion
+
+        #region groupmem
+
+        IList<Model.DJ_Group_Base> GetGuide(string id);
+
+        #endregion
     }
 }
