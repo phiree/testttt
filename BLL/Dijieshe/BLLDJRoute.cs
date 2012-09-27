@@ -29,5 +29,10 @@ namespace BLL
             }
             return ListTg;
         }
+
+        public Model.DJ_Route GetById(Guid routeId)
+        {
+            return Idjroute.GetById(routeId);
+        }
     }
 }

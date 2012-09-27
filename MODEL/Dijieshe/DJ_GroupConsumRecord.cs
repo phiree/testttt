@@ -16,9 +16,9 @@ namespace Model
         /// </summary>
         public virtual DJ_TourEnterprise Enterprise { get; set; }
         /// <summary>
-        /// 在此消费的团队
+        /// 在此消费的团队中的某条行程
         /// </summary>
-        public virtual DJ_TourGroup Group { get; set; }
+        public virtual DJ_Route Route { get; set; }
 
         public virtual DateTime ConsumeTime { get; set; }
         

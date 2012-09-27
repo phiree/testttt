@@ -8,6 +8,28 @@
             $("[id$='hfidcard']").val($(obj).find("td").eq(1).html());
             $("[id$='btnBind']").click();
         }
+        $(function () {
+            $(":checkbox").each(function () {
+                var that = this;
+                $(that).click(function () {
+                    if ($(that).attr("disabled") != "disabled" && $(that).attr("checked") == "checked") {
+                        var table = $(that).parent().parent().parent();
+                        var checkboxs = $(table).find(":checkbox");
+                        checkboxs.each(function () {
+                            if ($(this).attr("disabled") != "disabled") {
+                                $(this).removeAttr("checked");
+                            }
+                        });
+                        $(that).attr("checked", "checked");
+                    }
+                    else {
+                        if ($(that).attr("disabled") != "disabled" && $(that).attr("checked") != "checked") {
+                            $(that).removeAttr("checked");
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
@@ -63,9 +85,51 @@
                             实际信息：</h5>
                             实到人数:成人<asp:TextBox ID="txtAdultsAmount" runat="server"></asp:TextBox>儿童<asp:TextBox
                             ID="txtChildrenAmount" runat="server"></asp:TextBox>人
+                        <h5>行程安排</h5>
+                        <asp:Repeater runat="server" ID="rptRoute">
+                            <HeaderTemplate>
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td>
+                                            选择
+                                        </td>
+                                        <td>
+                                            行程时间
+                                        </td>
+                                        <td>
+                                            行程描述
+                                        </td>
+                                        <td>
+                                            验证信息
+                                        </td>
+                                    </tr>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:HiddenField ID="hfRouteId" runat="server" Value='<%# Eval("Id") %>' />
+                                <tr>
+                                    <td>
+                                        <asp:CheckBox ID="ChSelect" runat="server" />
+                                    </td>
+                                    <td>
+                                        起<%# Eval("BeginTime") %>至<%# Eval("EndTime") %></td>
+                                    <td>
+                                        <%# Eval("Description") %>
+                                    </td>
+                                    <td>
+                                        <asp:Literal ID="LaIsCheck" runat="server"></asp:Literal>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                </table>
+                            </FooterTemplate>
+                        </asp:Repeater>
                     </td>
                 </tr>
             </ItemTemplate>
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
         </asp:Repeater>
         <asp:Button ID="btnCheckOut" Text="验票通过" runat="server" OnClick="btnCheckOut_Click" />
     </div>
