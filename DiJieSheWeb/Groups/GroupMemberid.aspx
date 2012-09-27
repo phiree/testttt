@@ -51,19 +51,51 @@
             return true;
         }
 
-        //如果是编辑的话,加载制定group的数据
+        //加载制定group的数据
         $(function () {
-            var tbody = $("#addrow").parent().parent().parent().next();
-            tbody.append("<tr><td><select>" +
-                "<option value='成人游客'>成人游客</option><option value='儿童游客'>儿童游客</option><option value='导游'>导游</option><option value='司机'>司机</option></select>" +
-                "</td><td><input type='text' />" +
-                "</td><td><input type='text' /></td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />" +
-                "<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>");
-        })
+            var gid = getArgs("id");
+            if (gid != "") {
+                $.ajax({
+                    type: "Get",
+                    url: "MemdataHandler.ashx?id=" + gid,
+                    dataType: "text",
+                    success: function (data, status) {
+                        if (data != "") {
+                            var tbody = $("#addrow").parent().parent().parent().next();
+                            tbody.html(data);
+                        }
+//                        else {
+//                            var tbody = $("#addrow").parent().parent().parent().next();
+//                            tbody.append("<tr><td><select>" +
+//                            "<option value='成人游客'>成人游客</option><option value='儿童游客'>儿童游客</option><option value='导游'>导游</option><option value='司机'>司机</option></select>" +
+//                            "</td><td><input type='text' />" +
+//                            "</td><td><input type='text' /></td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />" +
+//                            "<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>");
+//                        }
+                    }
+                });
+            }
+        });
+
+        function getArgs(strParame) {
+            var args = new Object();
+            var query = location.search.substring(1); // Get query string
+            var pairs = query.split("&"); // Break at ampersand
+            for (var i = 0; i < pairs.length; i++) {
+                var pos = pairs[i].indexOf('='); // Look for "name=value"
+                if (pos == -1) continue; // If not found, skip
+                var argname = pairs[i].substring(0, pos); // Extract the name
+                var value = pairs[i].substring(pos + 1); // Extract the value
+                value = decodeURIComponent(value); // Decode it, if needed
+                args[argname] = value; // Store as a property
+            }
+            return args[strParame]; // Return the object
+        };
 
         //导入excel
         $(function () {
             $("#btnExcel").click(function () {
+                alert('btn');
                 var datas = "";
                 $.ajax({
                     type: "Post",
@@ -148,19 +180,12 @@
         导入信息操作步骤:
     </p>
     <ol>
-        <li>
-            点击“浏览”，选择要导入的excel文件
-        </li>
-           <br /> 注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题
-        <li>
-            点击“上传”，将文件上传到服务器
-        </li>
-        <li>
-            点击“导入数据”，将excel内容导入到表格中
-        </li>
-        <li>
-            点击“确定”，存储表格数据
-        </li>
+        <li>点击“浏览”，选择要导入的excel文件 </li>
+        <br />
+        注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题
+        <li>点击“上传”，将文件上传到服务器 </li>
+        <li>点击“导入数据”，将excel内容导入到表格中 </li>
+        <li>点击“确定”，存储表格数据 </li>
     </ol>
     <asp:FileUpload ID="FileUpload1" runat="server" />
     <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
@@ -168,5 +193,5 @@
     <input id="btnExcel" type="button" name="name" value="导入数据" />
     <asp:Label ID="Label1" runat="server" Text="Label" Visible="True"></asp:Label>
     <input type="button" value="保存" onclick="calc()" />
-    <asp:Button ID="btnNext" Text="下一步" runat="server" onclick="btnNext_Click" />
+    <asp:Button ID="btnNext" Text="下一步" runat="server" OnClick="btnNext_Click" />
 </asp:Content>

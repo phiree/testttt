@@ -19,9 +19,9 @@ namespace BLL
            IDJProduc.Save(product);
        }
 
-       public IList<DJ_Product> GetList()
-       { 
-        
+       public IList<DJ_Product> GetList(DJ_DijiesheInfo dijieshe)
+       {
+           throw new NotImplementedException();
        }
     }
 }

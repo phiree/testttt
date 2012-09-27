@@ -3,11 +3,37 @@
 
 <%@ MasterType VirtualPath="~/TourEnterprise/TE.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" runat="Server">
+    <script type="text/javascript">
+        function bindbylist(obj) {
+            $("[id$='hfidcard']").val($(obj).find("td").eq(1).html());
+            $("[id$='btnBind']").click();
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <asp:TextBox runat="server" ID="txtTE_info" /><asp:Button ID="BtnCheck" runat="server"
-        Text="确定" />
-    <div>
+        Text="确定" OnClick="txtTE_info_Click" />
+    <div id="grouplist">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    导游名称
+                </td>
+                <td>
+                    导游身份证号
+                </td>
+            </tr>
+            <asp:Repeater runat="server" ID="rptGroupList">
+                <ItemTemplate>
+                    <tr onclick="bindbylist(this)" style="cursor:pointer">
+                        <td><%# Eval("GuideName")%></td>
+                        <td><%# Eval("GuideIdCardNo")%></td>
+                    </tr>
+                </ItemTemplate>
+            </asp:Repeater>
+        </table>
+    </div>
+    <div runat="server" id="detailinfo">
         <asp:Repeater ID="rptTourGroupInfo" runat="server" 
             onitemdatabound="rptTourGroupInfo_ItemDataBound">
             <HeaderTemplate>
@@ -27,6 +53,7 @@
                         <input type="radio" name="selectTg" runat="server" id="rdoSelect" />
                     </td>
                     <td>
+                        <asp:HiddenField runat="server" ID="hfGroupId" Value='<%# Eval("Id") %>' />
                         <h5>
                             团队信息：</h5>
                             导游:<asp:Literal ID="laGuideName" runat="server"></asp:Literal><br />
@@ -40,5 +67,10 @@
                 </tr>
             </ItemTemplate>
         </asp:Repeater>
+        <asp:Button ID="btnCheckOut" Text="验票通过" runat="server" OnClick="btnCheckOut_Click" />
+    </div>
+    <div id="hiddendv" style="display:none">
+        <asp:HiddenField runat="server" ID="hfidcard" />
+        <asp:Button Text="text" runat="server" ID="btnBind" OnClick="btnBind_Click" />
     </div>
 </asp:Content>

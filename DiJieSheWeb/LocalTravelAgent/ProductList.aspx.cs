@@ -15,6 +15,6 @@ public partial class LocalTravelAgent_ProductList : System.Web.UI.Page
     }
     private void BindList()
     { 
-        bllProduct.get
+      //  bllProduct.get
     }
 }

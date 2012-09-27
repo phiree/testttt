@@ -21,7 +21,8 @@ namespace Model.Mapping
 
         public DJ_User_TourEnterpriseMap()
         {
-            References<DJ_TourEnterprise>(x => x.Enterprise);
+            References<DJ_TourEnterprise>(x => x.Enterprise).Not.LazyLoad();
+            
         }
     }
 }

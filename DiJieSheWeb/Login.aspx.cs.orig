@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Login : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void lg_LoggedIn(object sender, EventArgs e)
+    {
+<<<<<<< HEAD
+        Response.Redirect("/LocalTravelAgent/GroupEdit.aspx");
+=======
+        Response.Redirect("/Groups/GroupList.aspx");
+>>>>>>> f6b45c1a3c4943aeea439013ada2b4383b1711e8
+    }
+}

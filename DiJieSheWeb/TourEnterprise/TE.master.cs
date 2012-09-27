@@ -10,9 +10,9 @@ using System.Web.Security;
 
 public partial class TourEnterprise_TE : System.Web.UI.MasterPage
 {
-    private DJ_User_TourEnterprise currentTE;
+    private DJ_TourEnterprise currentTE;
 
-    public DJ_User_TourEnterprise CurrentTE
+    public DJ_TourEnterprise CurrentTE
     {
         get { return currentTE; }
         set { currentTE = value; }
@@ -33,7 +33,7 @@ public partial class TourEnterprise_TE : System.Web.UI.MasterPage
         }
         else
         {
-            currentTE = DJ_User_TE;
+            currentTE = DJ_User_TE.Enterprise;
         }
         base.OnInit(e);
     }
