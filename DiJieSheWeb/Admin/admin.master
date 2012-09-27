@@ -7,6 +7,7 @@
 <li><a href="GovManagerList.aspx">旅游管理部门列表</a></li>
 <li><a href="UserList.aspx">用户列表</a></li>
 <li><a href="EnterpriseList.aspx">企业列表</a></li>
+<li><a href="EnterpriseEdit.aspx">增加企业</a></li>
 </ul>
 <asp:ContentPlaceHolder ID="main" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>
