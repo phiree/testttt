@@ -6,16 +6,93 @@
 <head runat="server">
     <title></title>
     <script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
+    <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="/theme/default/css/MaterPage.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/MasterPage.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-   
-        <asp:ContentPlaceHolder id="main" runat="server">
-        
-        </asp:ContentPlaceHolder>
+    <div id="mainBody">
+        <div id="mainPage">
+            <div id="pageBody">
+                <div id="pageTop">
+                    <div class="userinfo">
+                        <div class="username">
+                            当前单位:<span style="color:#006E5A;margin-right:10px;">杭州米胖旅游社</span>
+                            用户:<asp:LoginName ID="LoginName1" runat="server" CssClass="userFontType" />
+                        </div>
+                        <div class="useraction">
+                            <a href="/Login.aspx">修改密码</a>
+                            <a href="#">退出系统</a>
+                        </div>
+                    </div>
+                    <h2>浙江旅游管理统计系统</h2>
+                    <div class="timeinfo">
+                        <img src="/theme/default/image/body_time.gif" /><span id="timer"></span>
+                    </div>
+                </div>
+                <div id="pageMid">
+                    <div class="pageMid_left">
+                        <div class="Func_Title">
+                            功能菜单
+                        </div>
+                        <ul class="nav">
+                            <li id="djsBlock">
+                                <ul class="nav">
+                                   <li><span>地接社</span></li>
+                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
+                                   <li><a href="">线路制定</a></li>
+                                   <li><a href="">线路列表</a></li>
+                                   <li><a href="">团队录入</a></li>
+                                   <li><a href="">团队列表</a></li>
+                                   <li><a href="">统计信息</a></li>
+                                   <li><a href="">协议单位录入</a></li>
+                                   <li><a href="">协议单位列表</a></li>
+                                   <li><a href="">工作人员录入</a></li>
+                                   <li><a href="">工作人员列表</a></li>
+                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
+                               </ul>
+                            </li>
+                            <li id="tourEnterprise">
+                                <ul class="nav">
+                                   <li><span>旅游单位</span></li>
+                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
+                                   <li><a href="">预知</a></li>
+                                   <li><a href="">刷卡</a></li>
+                                   <li><a href="">信息统计</a></li>
+                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
+                               </ul>
+                            </li>
+                            <li id="tourManager">
+                                <ul class="nav">
+                                   <li><span>旅游管理部门</span></li>
+                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
+                                   <li><a href="">旅游单位录入</a></li>
+                                   <li><a href="">单位列表</a></li>
+                                   <li><a href="">统计信息</a></li>
+                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
+                               </ul>
+                            </li>
+                        </ul>
+                        <div class="TechSupport">
+                            <p>技术支持</p>
+                            <span><img src="/theme/default/image/Func_Icon.gif" />Tel:0571-86933134</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;Mo:13868130983</span>
+                            <span><img src="/theme/default/image/Func_Icon.gif" />QQ:364819046</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;858580604</span>
+                            <span><img src="/theme/default/image/Func_Icon.gif" />E-Mail:lzq@tourol.cn</span>
+                        </div>
+                    </div>
+                    <div class="pageMid_right">
+                        <asp:ContentPlaceHolder id="main" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     </form>
 </body>
