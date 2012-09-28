@@ -114,7 +114,7 @@
         </table>
         <div style="margin-right: 10px; padding: 0px; height: 250px; width: 215px; overflow-x: hidden;
             overflow-y: auto;">
-            <asp:Repeater ID="rptpeopleinfo" runat="server" OnItemCommand="rptpeopleinfo_ItemCommand">
+            <asp:Repeater ID="rptpeopleinfo" runat="server">
             <HeaderTemplate>
                 <table cellpadding="0" cellspacing="0" style="display: block; margin-bottom: 0px;
                         border-top: 0px none; width: 200px; table-layout: fixed">
