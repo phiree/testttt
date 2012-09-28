@@ -13,6 +13,7 @@ namespace BLL
         {
             return Idj_user_enterprise.GetUser_TEbyId(id);
         }
+      //  public Model
         #endregion
     }
 }

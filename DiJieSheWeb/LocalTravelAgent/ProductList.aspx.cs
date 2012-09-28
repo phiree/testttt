@@ -12,6 +12,7 @@ public partial class LocalTravelAgent_ProductList : basepageDJS
     protected void Page_Load(object sender, EventArgs e)
     {
         BindList();
+        
     }
     private void BindList()
     {

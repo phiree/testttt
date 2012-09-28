@@ -100,7 +100,7 @@
     <Compile Include="Default\BLLTopic.cs" />
     <Compile Include="Default\BLLVote.cs" />
     <Compile Include="Default\Checkout.cs" />
-    <Compile Include="Dijieshe\BLLIDJEnterprise.cs" />
+    <Compile Include="Dijieshe\BLLDJEnterprise.cs" />
     <Compile Include="Default\ErrType.cs" />
     <Compile Include="Dijieshe\BLLDJConsumRecord.cs" />
     <Compile Include="Dijieshe\BLLDJProduct.cs" />

@@ -1,9 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true"
-    CodeFile="GroupGuideList.aspx.cs" Inherits="Groups_GroupGuide" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true" CodeFile="GroupDriverList.aspx.cs" Inherits="Groups_GroupDriver" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
     <asp:DropDownList ID="ddlDJS" runat="server" ontextchanged="ddlDJS_TextChanged" 
         AutoPostBack="True">
     </asp:DropDownList>
@@ -19,13 +18,13 @@
                 </td>
                 <td>性别
                 </td>
-                <td>导游号
+                <td>车牌号
                 </td>
             </tr>
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
-                <td><a href='/Groups/GroupGuideDetail.aspx?id=<%# Eval("Id")%>'><%# Eval("Name")%></a>
+                <td><a href='/Groups/GroupDriverDetail.aspx?id=<%# Eval("Id")%>'><%# Eval("Name")%></a>
                 </td>
                 <td><%# Eval("Idcard")%>
                 </td>
@@ -33,7 +32,7 @@
                 </td>
                 <td><%# Eval("Gender")%>
                 </td>
-                <td><%# Eval("GuideNo")%>
+                <td><%# Eval("Carno")%>
                 </td>
             </tr>
         </ItemTemplate>
@@ -42,3 +41,4 @@
         </FooterTemplate>
     </asp:Repeater>
 </asp:Content>
+

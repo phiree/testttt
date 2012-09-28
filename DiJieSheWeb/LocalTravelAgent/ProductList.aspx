@@ -10,4 +10,5 @@
            <a href='ProductEdit.aspx?productid=<%#Eval("Id") %>'><%#Eval("Name") %></a>
         </ItemTemplate>
     </asp:Repeater>
+    <a href="ProductEdit.aspx">新建路线</a>
 </asp:Content>

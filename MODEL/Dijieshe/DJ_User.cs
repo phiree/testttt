@@ -19,6 +19,7 @@ namespace Model
     /// </summary>
     public class DJ_User_TourEnterprise : TourMembership
     {
+      
         public virtual DJ_TourEnterprise Enterprise { get; set; }
         /// <summary>
         /// 权限枚举

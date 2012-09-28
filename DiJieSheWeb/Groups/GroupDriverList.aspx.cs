@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Groups_GroupGuide : System.Web.UI.Page
+public partial class Groups_GroupDriver : System.Web.UI.Page
 {
     //var
     const string DJSID = "djsid";
@@ -19,12 +19,13 @@ public partial class Groups_GroupGuide : System.Web.UI.Page
         if (!IsPostBack)
         {
             BindGuide();
+            ddlDJS_TextChanged(null, null);
         }
     }
 
     private void BindGuide()
     {
-        IList<Model.DJ_TourEnterprise> telist=blldjs.GetDjs8all();
+        IList<Model.DJ_TourEnterprise> telist = blldjs.GetDjs8all();
         ddlDJS.DataSource = telist;
         ddlDJS.DataTextField = "Name";
         ddlDJS.DataValueField = "Id";
@@ -34,16 +35,16 @@ public partial class Groups_GroupGuide : System.Web.UI.Page
     protected void ddlDJS_TextChanged(object sender, EventArgs e)
     {
         IList<Model.DJ_Group_Base> gblist = blldjs.GetGroupmem8epid(ddlDJS.Text);
-        IList<Model.DJ_Group_Guide> gglist = new List<Model.DJ_Group_Guide>();
+        IList<Model.DJ_Group_Driver> gdlist = new List<Model.DJ_Group_Driver>();
         foreach (var item in gblist)
         {
-            Model.DJ_Group_Guide gg = item as Model.DJ_Group_Guide;
-            if (gg != null)
+            Model.DJ_Group_Driver gd = item as Model.DJ_Group_Driver;
+            if (gd != null)
             {
-                gglist.Add(gg);
+                gdlist.Add(gd);
             }
         }
-        rptGuide.DataSource = gglist;
+        rptGuide.DataSource = gdlist;
         rptGuide.DataBind();
     }
 }
