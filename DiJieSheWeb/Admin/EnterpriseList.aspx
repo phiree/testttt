@@ -14,6 +14,7 @@
                 <td>
                     <%#Eval("Name") %>
                 </td>
+                <td><a href='enterpriseedit.aspx?entid=<%#Eval("Id") %>'>修改企业信息</a></td>
                 <td>
                     指派管理员<asp:TextBox runat="server" ID="tbxUserName"></asp:TextBox>
                     <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' Text="确定" ID="btnadmin"

@@ -34,6 +34,10 @@ namespace BLL
             };
             return daldjs.AddDJS(djs);
         }
+        public void Save(DJ_TourEnterprise enterprise)
+        {
+            daldjs.AddDJS(enterprise);
+        }
 
         public IList<DJ_TourEnterprise> GetDjs8all()
         {

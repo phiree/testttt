@@ -61,12 +61,20 @@ public partial class Admin_EnterpriseEdit : System.Web.UI.Page
     {
 
         UpdateForm();
-    //    bllEnterprise.Save(CurrentEnterprise);
-        if (IsNew)
-        {
-            Response.Redirect("enterpriseedit.aspx?entid=" + CurrentEnterprise.Id);
-        }
+       bllEnterprise.Save(CurrentEnterprise);
+       if (IsNew)
+       {
+           Response.Redirect("enterpriseedit.aspx?entid=" + CurrentEnterprise.Id);
+       }
+       else
+       { 
+       
+       }
 
         
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        Save();
     }
 }

@@ -12,14 +12,15 @@ namespace DAL
 
         public Guid AddDJS(Model.DJ_TourEnterprise djs)
         {
-            Guid result=Guid.NewGuid();
-            djs.Id = result;
+          
+        
             using (var t = session.BeginTransaction())
             {
-                session.Save(djs);
+                session.SaveOrUpdate(djs);
                 t.Commit();
             }
-            return result;
+            session.Flush();
+           return djs.Id;
         }
 
         public void DeleteDJS()
