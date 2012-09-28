@@ -1,13 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true"
     CodeFile="ProductEdit.aspx.cs" Inherits="LocalTravelAgent_ProductDetail" %>
 
 <%@ Register src="RouteEditControl.ascx" tagname="RouteEditControl" tagprefix="uc1" %>
 
 <%@ Register src="RouteListControl.ascx" tagname="RouteListControl" tagprefix="uc2" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div>
         <table>
             <tr>
