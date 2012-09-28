@@ -36,6 +36,10 @@ namespace BLL
         }
         public void Save(DJ_TourEnterprise enterprise)
         {
+            if (enterprise.Type == EnterpriseType.旅行社)
+            { 
+             
+            }
             daldjs.AddDJS(enterprise);
         }
 
