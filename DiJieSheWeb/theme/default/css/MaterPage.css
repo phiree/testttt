@@ -1,0 +1,189 @@
+﻿body 
+{
+    
+}
+#mainBody
+{
+    display:block;
+    width:960px;
+    background:url("/theme/default/image/body_bg.gif") repeat-x;
+    background-position:top;
+    margin:0px auto;
+    height:100px;
+    padding-top:15px;
+}
+#mainPage
+{
+    background:#00302D url("/theme/default/image/body_bg2.gif") repeat-x fixed top;
+    display:block;
+    padding-bottom:10px;
+}
+#pageBody
+{
+    width:945px;
+    margin:0px auto;
+}
+#pageTop
+{
+    background:url("/theme/default/image/body_top_bg.gif") repeat-x;
+    height:88px;
+}
+.userinfo,.timeinfo
+{
+    display:block;
+    height:25px;
+    margin-right:0px;
+}
+.userinfo
+{
+    width:570px;
+    height:21px;
+    margin-left:350px;
+    padding-top:5px;
+    
+}
+#pageTop h2
+{
+    font:20px;
+    font-weight:bold;
+    margin:0px;
+    margin-left:25px;
+}
+.timeinfo img
+{
+    margin-left:670px;
+    display:block;
+    float:left;
+    margin-right:10px;
+    _margin-left:335px;
+}
+.timeinfo span
+{
+    height:25px;
+    display:block;
+    float:left;
+    line-height:14px;
+}
+.username
+{
+    display:block;
+    float:left;
+}
+.username span
+{
+    font-size:14px;
+    font-weight:bold;
+    margin-left:5px;
+}
+.useraction
+{
+    display:block;
+    float:right;
+}
+.userFontType
+{
+    font-size:14px;
+    font-weight:bold;
+}
+a:link,a:visited, a:active
+{
+    text-decoration:none;
+    color:Black;
+}
+a:hover
+{
+    text-decoration:underline;
+}
+#pageMid
+{
+    width:100%;
+    display:inline-block;
+}
+.pageMid_left
+{
+    width:160px;
+    background-color:#CDCCCA;
+    display:block;
+    float:left;
+}
+.pageMid_right
+{
+    width:785px;
+    display:block;
+    float:left;
+
+}
+.Func_Title
+{
+    width:150px;
+    height:35px;
+    background:url("/theme/default/image/Func_Titlebg.gif") repeat-x;
+    color:White;
+    font-weight:bold;
+    line-height:35px;
+    text-align:center;
+    margin:0px;
+    padding:0px;
+    margin-bottom:-2px;
+}
+.nav,.nav li
+{
+    display:block;
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+    width:150px;
+}
+.nav,.nav li span
+{
+    display:block;
+    background:url("/theme/default/image/Func_Titlebg2.gif") repeat-x;
+    height:33px;
+    line-height:33px;
+    text-align:center;
+    color:#006B5E;
+    word-spacing:5px;
+    font-weight:bold;
+}
+.nav,.nav li a,.nav,.nav li a:link,.nav,.nav li a:active,.nav,.nav li a:hover,.nav,.nav li a:visited
+{
+    display:block;
+    border-bottom:1px solid #29A294;
+    height:33px;
+    line-height:33px;
+    text-align:center;
+    font-weight:bold;
+    background-color:#009383;
+    color:#444D5E;
+}
+.nav
+{
+    background-color:#009383;
+    display:block;
+    height:auto;
+}
+.TechSupport
+{
+    background-color:#E6E6E6;
+    color:#555555;
+    width:150px;
+    padding-bottom:30px;
+}
+.TechSupport p
+{
+    text-align:center;
+    padding-top:20px;
+    padding-bottom:15px;
+    margin:0px;
+}
+.TechSupport span
+{
+    display:block;
+    margin-left:10px;
+    margin-bottom:5px;
+}
+.TechSupport span img
+{
+    margin-right:7px;
+    vertical-align:middle;
+}

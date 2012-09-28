@@ -1,11 +1,23 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="LTA.master.cs" Inherits="LocalTravelAgent_LTA" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="LTA.master.cs"
+    Inherits="LocalTravelAgent_LTA" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
+    <div>
+        <ul>
+            <li><a href="/localtravelagent/djsedit.aspx">信息维护</a> </li>
+            <li><a href="/localtravelagent/productlist.aspx">路线列表</a> </li>
+            <li><a href="/localtravelagent/productedit.aspx">增加路线</a></li>
+            <li><a href="/Groups/GroupList.aspx">团队列表</a></li>
+            <li><a href="/Groups/GroupEdit.aspx">增加团队</a></li>
+              <li><a href="#">统计信息</a></li>
+              
+        </ul>
+
+    </div>
     <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
-

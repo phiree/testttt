@@ -17,10 +17,11 @@
             </td>
             <td>
                 <asp:RadioButtonList runat="server" ID="rblType">
-                    <asp:ListItem>旅行社</asp:ListItem>
-                    <asp:ListItem>旅行社</asp:ListItem>
-                    <asp:ListItem>旅行社</asp:ListItem>
-                    <asp:ListItem>旅行社</asp:ListItem>
+                    <asp:ListItem Value="5" Selected="True">旅行社</asp:ListItem>
+                    <asp:ListItem Value="1">景点</asp:ListItem>
+                    <asp:ListItem Value="2">饭店</asp:ListItem>
+                    <asp:ListItem Value="3">宾馆</asp:ListItem>
+                     <asp:ListItem Value="4">购物点</asp:ListItem>
                 </asp:RadioButtonList>
             </td>
         </tr>
@@ -71,5 +72,5 @@
             </td>
         </tr>
     </table>
-    <asp:Button runat="server" ID="btnSave"  Text="保存"/>
+    <asp:Button runat="server" ID="btnSave"  OnClick="btnSave_Click" Text="保存"/>
 </asp:Content>

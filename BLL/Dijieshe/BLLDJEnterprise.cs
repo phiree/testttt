@@ -34,6 +34,14 @@ namespace BLL
             };
             return daldjs.AddDJS(djs);
         }
+        public void Save(DJ_TourEnterprise enterprise)
+        {
+            if (enterprise.Type == EnterpriseType.旅行社)
+            { 
+             
+            }
+            daldjs.AddDJS(enterprise);
+        }
 
         public IList<DJ_TourEnterprise> GetDjs8all()
         {

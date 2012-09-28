@@ -55,7 +55,6 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
             djuserent.Enterprise = bllDJEnt.GetDJS8id(entId.ToString())[0];
             djuserent.Name = loginname;
             djuserent.Password=  System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
-
             bllMember.CreateUpdateMember(djuserent);
             BindList();
             
