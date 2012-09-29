@@ -78,6 +78,11 @@
                 </ItemTemplate>
             </asp:Repeater>
             
+
+            <asp:Repeater ID="rptguiderinfo" runat="server">
+                <ItemTemplate>
+                </ItemTemplate>
+            </asp:Repeater>
             <div class="yptg">
                 <asp:Button ID="Btnckpass" runat="server" CssClass="btnckpass" OnClick="Btnckpass_Click" />
             </div>

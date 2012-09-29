@@ -29,5 +29,10 @@ namespace BLL
         {
             return Idjtourgroup.GetTgByproductid(proid);
         }
+
+        public IList<Model.DJ_TourGroup> GetTgByIdcardAndTE(string idcard, Model.DJ_TourEnterprise TE)
+        {
+            return Idjtourgroup.GetTgByIdcardAndTE(idcard, TE);
+        }
     }
 }

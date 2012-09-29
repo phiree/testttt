@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Dijieshe\IDJGroupConsumRecord.cs" />
     <Compile Include="Dijieshe\IDJRoute.cs" />
+    <Compile Include="Dijieshe\IDJ_Group_Worker.cs" />
     <Compile Include="IArea.cs" />
     <Compile Include="IBackManager.cs" />
     <Compile Include="ICommonUser.cs" />

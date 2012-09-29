@@ -52,5 +52,20 @@ namespace DAL
         }
 
 
+
+
+        public IList<Model.DJ_TourGroup> GetTgByIdcardAndTE(string idcard, Model.DJ_TourEnterprise TE)
+        {
+            List<Model.DJ_TourGroup> ListTg = new DAL.DALDJ_Group_Worker().GetTgListByIdcard(idcard).ToList();
+            List<Model.DJ_TourGroup> ListSelectTg = new List<Model.DJ_TourGroup>();
+            foreach (Model.DJ_TourGroup Tgitem in ListTg)
+            {
+                if (Tgitem.Routes.Where(x => x.Enterprise.Id == TE.Id).Count() > 0)
+                {
+                    ListSelectTg.Add(Tgitem);
+                }
+            }
+            return ListSelectTg;
+        }
     }
 }
