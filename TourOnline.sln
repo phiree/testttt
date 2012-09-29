@@ -74,6 +74,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E2661A43-CFB5-46FC-8513-4EFEB0900776}"
 	ProjectSection(SolutionItems) = preProject
 		Area_sql.txt = Area_sql.txt
+		D:\demo.xlsx = D:\demo.xlsx
 		DJ_Enterprice_sql.txt = DJ_Enterprice_sql.txt
 	EndProjectSection
 EndProject

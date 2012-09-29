@@ -1,14 +1,18 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="admin.master.cs" Inherits="Admin_admin" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="admin.master.cs"
+    Inherits="Admin_admin" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
-<ul>
-<li><a href="GovManagerList.aspx">旅游管理部门列表</a></li>
-<li><a href="UserList.aspx">用户列表</a></li>
-<li><a href="EnterpriseList.aspx">企业列表</a></li>
-<li><a href="EnterpriseEdit.aspx">增加企业</a></li>
-</ul>
-<asp:ContentPlaceHolder ID="main" runat="server"></asp:ContentPlaceHolder>
-</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
+    <ul>
+               <li><a href="ManageDptList.aspx">旅游管理部门列表</a></li>
+        <li><a href="ManageDptList.aspx">增加旅游管理部门</a></li>
+        <li><a href="UserList.aspx">用户列表</a></li>
+        <li><a href="EnterpriseList.aspx">企业列表</a></li>
+        <li><a href="EnterpriseEdit.aspx">增加企业</a></li>
+      
 
+    </ul>
+    <asp:ContentPlaceHolder ID="main" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
