@@ -34,17 +34,17 @@ public partial class Groups_GroupDriver : System.Web.UI.Page
 
     protected void ddlDJS_TextChanged(object sender, EventArgs e)
     {
-        IList<Model.DJ_Group_Base> gblist = blldjs.GetGroupmem8epid(ddlDJS.Text);
-        IList<Model.DJ_Group_Driver> gdlist = new List<Model.DJ_Group_Driver>();
-        foreach (var item in gblist)
-        {
-            Model.DJ_Group_Driver gd = item as Model.DJ_Group_Driver;
-            if (gd != null)
-            {
-                gdlist.Add(gd);
-            }
-        }
-        rptGuide.DataSource = gdlist;
+        IList<Model.DJ_Group_Worker> gblist = blldjs.GetGroupmem8epid(ddlDJS.Text);
+        //IList<Model.DJ_Group_Driver> gdlist = new List<Model.DJ_Group_Driver>();
+        //foreach (var item in gblist)
+        //{
+        //    Model.DJ_Group_Driver gd = item as Model.DJ_Group_Driver;
+        //    if (gd != null)
+        //    {
+        //        gdlist.Add(gd);
+        //    }
+        //}
+        rptGuide.DataSource = gblist;
         rptGuide.DataBind();
     }
 }

@@ -7,6 +7,11 @@
     <script type="text/javascript">
 
         function calc() {
+            var gid = getArgs("id");
+            if (gid == undefined) {
+                alert("没有找到相应的团队, 请确定团队编号");
+                return;
+            }
             var tabledom = $("tbody>tr");
             var result = false;
             var datas = '';
@@ -16,7 +21,7 @@
                 var memname = $(this).children().next().children().val();
                 var memid = $(this).children().next().next().children().val();
                 var memphone = $(this).children().next().next().next().children().val();
-                var scid = $("input[id*=hidden_scid]").val();
+                //var scid = $("input[id*=hidden_scid]").val();
                 datas += '{' + memtype + ',' + memname + ',' + memid + ',' + memphone;
             });
             $.ajax({
@@ -54,7 +59,7 @@
         //加载制定group的数据
         $(function () {
             var gid = getArgs("id");
-            if (gid != "") {
+            if (gid != undefined) {
                 $.ajax({
                     type: "Get",
                     url: "MemdataHandler.ashx?id=" + gid,
@@ -87,7 +92,6 @@
         //导入excel
         $(function () {
             $("#btnExcel").click(function () {
-                alert('btn');
                 var datas = "";
                 $.ajax({
                     type: "Post",

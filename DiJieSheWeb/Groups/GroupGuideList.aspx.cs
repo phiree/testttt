@@ -33,17 +33,17 @@ public partial class Groups_GroupGuide : System.Web.UI.Page
 
     protected void ddlDJS_TextChanged(object sender, EventArgs e)
     {
-        IList<Model.DJ_Group_Base> gblist = blldjs.GetGroupmem8epid(ddlDJS.Text);
-        IList<Model.DJ_Group_Guide> gglist = new List<Model.DJ_Group_Guide>();
-        foreach (var item in gblist)
-        {
-            Model.DJ_Group_Guide gg = item as Model.DJ_Group_Guide;
-            if (gg != null)
-            {
-                gglist.Add(gg);
-            }
-        }
-        rptGuide.DataSource = gglist;
+        IList<Model.DJ_Group_Worker> gblist = blldjs.GetGroupmem8epid(ddlDJS.Text);
+        //IList<Model.DJ_Group_Worker> gwlist = new List<Model.DJ_Group_Worker>();
+        //foreach (var item in gblist)
+        //{
+        //    Model.DJ_Group_Worker gw = item as Model.DJ_Group_Worker;
+        //    if (gw != null)
+        //    {
+        //        gwlist.Add(gw);
+        //    }
+        //}
+        rptGuide.DataSource = gblist;
         rptGuide.DataBind();
     }
 }

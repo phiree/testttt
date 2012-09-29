@@ -148,7 +148,7 @@ namespace BLL
         /// 更新导游信息
         /// </summary>
         /// <param name="gg"></param>
-        public void UpdateGuide(Model.DJ_Group_Guide gg)
+        public void UpdateGuide(Model.DJ_Group_Worker gg)
         {
             daldjs.UpdateGuide(gg);
         }
@@ -157,7 +157,7 @@ namespace BLL
         /// 更新司机信息
         /// </summary>
         /// <param name="gg"></param>
-        public void UpdateDriver(Model.DJ_Group_Driver gd)
+        public void UpdateDriver(Model.DJ_Group_Worker gd)
         {
             daldjs.UpdateDriver(gd);
         }
@@ -167,7 +167,7 @@ namespace BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IList<Model.DJ_Group_Base> GetGroupmem8epid(string id)
+        public IList<Model.DJ_Group_Worker> GetGroupmem8epid(string id)
         {
             return daldjs.GetGroupmem8epid(id);
         }
@@ -177,7 +177,7 @@ namespace BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IList<Model.DJ_Group_Guide> GetGuide8id(string id)
+        public IList<Model.DJ_Group_Worker> GetGuide8id(string id)
         {
             return daldjs.GetGuide8id(id);
         }
@@ -187,7 +187,7 @@ namespace BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IList<Model.DJ_Group_Driver> GetDriver8id(string id)
+        public IList<Model.DJ_Group_Worker> GetDriver8id(string id)
         {
             return daldjs.GetDriver8id(id);
         }

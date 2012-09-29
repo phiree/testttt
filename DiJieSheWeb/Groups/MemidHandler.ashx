@@ -39,6 +39,7 @@ public class MemidHandler : IHttpHandler {
             });
         }
         bllDJS.UpdateGroup(tg);
+        context.Response.Write("成功");
     }
  
     public bool IsReusable {

@@ -10,7 +10,7 @@ public partial class Groups_GroupDriverDetail : System.Web.UI.Page
     //var
     BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
     string driverid = string.Empty;
-    Model.DJ_Group_Driver gd;
+    Model.DJ_Group_Worker gw;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,25 +23,25 @@ public partial class Groups_GroupDriverDetail : System.Web.UI.Page
 
     private void BindDriver()
     {
-        IList<Model.DJ_Group_Driver> gglist = blldjs.GetDriver8id(driverid);
-        if (gglist.Count > 0)
+        IList<Model.DJ_Group_Worker> gwlist = blldjs.GetDriver8id(driverid);
+        if (gwlist.Count > 0)
         {
-            gd = gglist[0];
-            lblName.Text = gd.Name;
-            txtIDcard.Text = gd.Idcard;
-            txtPhone.Text = gd.Phone;
-            txtCarno.Text = gd.Carno;
+            gw = gwlist[0];
+            lblName.Text = gw.Name;
+            txtIDcard.Text = gw.IDCard;
+            txtPhone.Text = gw.Phone;
+            txtCarno.Text = gw.SpecificIdCard;
         }
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        if (gd != null)
+        if (gw != null)
         {
-            gd.Idcard = txtIDcard.Text;
-            gd.Phone = txtPhone.Text;
-            gd.Carno = txtCarno.Text;
-            blldjs.UpdateDriver(gd);
+            gw.IDCard = txtIDcard.Text;
+            gw.Phone = txtPhone.Text;
+            gw.SpecificIdCard = txtCarno.Text;
+            blldjs.UpdateDriver(gw);
             Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('修改成功!')", true);
             Response.Redirect("/Groups/GroupDriverList.aspx");
         }

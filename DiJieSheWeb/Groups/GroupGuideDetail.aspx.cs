@@ -10,7 +10,7 @@ public partial class Groups_GroupGuideDetail : System.Web.UI.Page
     //var
     BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
     string guideid = string.Empty;
-    Model.DJ_Group_Guide gg;
+    Model.DJ_Group_Worker gw;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,26 +23,26 @@ public partial class Groups_GroupGuideDetail : System.Web.UI.Page
 
     private void BindGuide()
     {
-        IList<Model.DJ_Group_Guide> gglist=blldjs.GetGuide8id(guideid);
-        if (gglist.Count > 0)
+        IList<Model.DJ_Group_Worker> gwlist = blldjs.GetGuide8id(guideid);
+        if (gwlist.Count > 0)
         {
-            gg = gglist[0];
-            lblName.Text = gg.Name;
-            txtIDcard.Text = gg.Idcard;
-            txtPhone.Text = gg.Phone;
-            txtGuideno.Text = gg.GuideNo;
+            gw = gwlist[0];
+            lblName.Text = gw.Name;
+            txtIDcard.Text = gw.IDCard;
+            txtPhone.Text = gw.Phone;
+            txtGuideno.Text = gw.SpecificIdCard;
         }
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        gg = blldjs.GetGuide8id(guideid)[0];
-        if (gg != null)
+        gw = blldjs.GetGuide8id(guideid)[0];
+        if (gw != null)
         {
-            gg.Idcard = txtIDcard.Text;
-            gg.Phone = txtPhone.Text;
-            gg.GuideNo = txtGuideno.Text;
-            blldjs.UpdateGuide(gg);
+            gw.IDCard = txtIDcard.Text;
+            gw.Phone = txtPhone.Text;
+            gw.SpecificIdCard = txtGuideno.Text;
+            blldjs.UpdateGuide(gw);
             Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('修改成功!')", true);
             Response.Redirect("/Groups/GroupGuideList.aspx");
         }
