@@ -25,7 +25,10 @@ namespace Model
         public virtual string ChargePersonName { get; set; }
         public virtual string ChargePersonPhone { get; set; }
         public virtual string Phone { get; set; }
-
+        /// <summary>
+        /// 是否经过认证,成为奖励方位内的企业.
+        /// </summary>
+        public virtual string IsVeryfied { get; set; }
         public virtual EnterpriseType Type { get; set; }
     }
     public enum EnterpriseType

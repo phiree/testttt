@@ -19,6 +19,7 @@ namespace Model
            Map(x => x.ChargePersonName);
            Map(x => x.ChargePersonPhone);
            Map(x => x.Phone);
+           Map(x => x.IsVeryfied);
            Map(x => x.Type).CustomType<int>();
        }
     }

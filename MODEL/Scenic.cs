@@ -11,8 +11,7 @@ namespace Model
         {
             Tickets = new List<Ticket>();
         }
-        public virtual int Id { get; set; }
-        public virtual string Name { get; set; }
+       
         public virtual string SeoName { get; set; }
         public virtual int ScenicOrder { get; set; }
         public virtual string Level { get; set; }
@@ -23,7 +22,7 @@ namespace Model
         /// 交通信息
         /// </summary>
         public virtual string Trafficintro { get; set; }
-        public virtual Area Area { get; set; }
+       
         /// <summary>
         /// 景区详情
         /// </summary>
