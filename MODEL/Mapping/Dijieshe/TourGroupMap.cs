@@ -16,18 +16,16 @@ namespace Model
             Map(x => x.Name);
             Map(x => x.BeginDate);
             Map(x => x.EndDate);
-            Map(x => x.CarNo);
+          
             Map(x => x.DaysAmount);
-            Map(x => x.DriverName);
-            Map(x => x.DriverPhone);
-            Map(x => x.GuideIdCardNo);
+           
             Map(x => x.AdultsAmount);
             Map(x => x.ChildrenAmount);
 
-            Map(x => x.GuideName);
-            Map(x => x.GuidePhone);
-            References(x => x.DJ_Product);
             HasMany<DJ_TourGroupMember>(x => x.Members);
+            HasMany<DJ_Group_Vehicle>(x => x.Vehicles);
+            HasMany<DJ_Group_Worker>(x => x.Workers);
+            HasMany<DJ_Route>(x => x.Routes);
         }
     }
 }
