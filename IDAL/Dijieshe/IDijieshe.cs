@@ -36,15 +36,15 @@ namespace IDAL
 
         #region groupmem
 
-        void UpdateGuide(Model.DJ_Group_Guide gg);
+        void UpdateGuide(Model.DJ_Group_Worker gg);
 
-        void UpdateDriver(Model.DJ_Group_Driver gd);
+        void UpdateDriver(Model.DJ_Group_Worker gd);
 
-        IList<Model.DJ_Group_Base> GetGroupmem8epid(string id);
+        IList<Model.DJ_TourGroup> GetGroupmem8epid(string id);
 
-        IList<Model.DJ_Group_Guide> GetGuide8id(string id);
+        IList<Model.DJ_TourGroup> GetGuide8id(string id);
 
-        IList<Model.DJ_Group_Driver> GetDriver8id(string id);
+        IList<Model.DJ_TourGroup> GetDriver8id(string id);
         #endregion
     }
 }
