@@ -2,6 +2,7 @@
     CodeFile="EnterpriseEdit.aspx.cs" Inherits="Admin_EnterpriseEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
+
     <table>
         <tr>
             <td>
