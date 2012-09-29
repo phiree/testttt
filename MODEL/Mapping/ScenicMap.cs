@@ -7,11 +7,11 @@ using FluentNHibernate.Mapping;
 
 namespace Model.Mapping
 {
-    public class ScenicMap : ClassMap<Scenic>
+    public class ScenicMap : SubclassMap<Scenic>
     {
         public ScenicMap()
         {
-            Id(x => x.Id);
+           
             Map(x => x.IsHide);
             Map(x => x.Name);
             Map(x => x.Address);

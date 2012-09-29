@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 namespace Model
 {
-    public class Scenic
+    public class Scenic:DJ_TourEnterprise
     {
         public Scenic()
         {
@@ -14,7 +14,6 @@ namespace Model
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
         public virtual string SeoName { get; set; }
-        public virtual string Address { get; set; }
         public virtual int ScenicOrder { get; set; }
         public virtual string Level { get; set; }
         public virtual string Photo { get; set; }
