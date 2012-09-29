@@ -1,11 +1,22 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="TE.master.cs" Inherits="TourEnterprise_TE" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="TE.master.cs"
+    Inherits="TourEnterprise_TE" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <asp:ContentPlaceHolder ID="cphhead" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="cphFunction" runat="server">
+    <ul class="nav">
+        <li style="background-color: #009383; height: 15px; display: block; line-height: 0px">
+        </li>
+        <li><a href="">预知</a></li>
+        <li><a href="">刷卡</a></li>
+        <li><a href="">信息统计</a></li>
+        <li style="background-color: #009383; height: 15px; display: block; line-height: 0px">
+        </li>
+    </ul>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
     <asp:ContentPlaceHolder ID="cphmain" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
-
