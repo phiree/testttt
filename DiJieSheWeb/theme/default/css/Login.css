@@ -1,0 +1,79 @@
+﻿body {
+}
+table,table tr,table tr td
+{
+    margin:0px;
+    padding:0px;
+    width:900px;
+}
+table
+{
+    margin:0px auto;
+}
+table img
+{
+    margin:0px;
+    padding:0px;
+}
+.login_bottom
+{
+    margin:0px;
+    padding:0px;
+    background-color:#E6E8E8;
+    height:28px;
+    line-height:28px;
+}
+#login
+{
+    width:498px;
+    height:100%;
+    display:block;
+    border:10px solid #488891;
+    overflow:hidden;
+}
+#login table,#login table tr,#login table tr td
+{
+    padding:0px;
+    margin:0px;
+}
+#login table
+{
+    width:100%;
+    background:url("/theme/default/image/login_bg.gif");
+    overflow:hidden;
+}
+.LoginTilte
+{
+    text-align:center;
+    font-size:24px;
+    font-family:黑体;
+    color:#416561;
+    line-height:30px;
+    font-weight:900;
+    margin-top:15px;
+    padding:0px;
+    margin-bottom:0px;
+}
+.LalUserName
+{
+    margin-right:10px;
+    color:#416561;
+}
+.tblogin,.tblogin tr,.tblogin tr td
+{
+    margin:0px;
+    padding:0px;
+}
+.btn_login
+{
+    width:64px;
+    height:19px;
+    background:url("/theme/default/image/button_bg.gif");
+    font-weight:bold;
+    color:#2C84AC;
+    text-align:center;
+    line-height:19px;
+    border:none;
+    cursor:pointer;
+    margin-bottom:45px;
+}

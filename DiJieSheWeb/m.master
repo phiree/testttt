@@ -39,7 +39,7 @@
                         <div class="Func_Title">
                             功能菜单
                         </div>
-                        <ul class="nav">
+                        <%--<ul class="nav">
                             <li id="djsBlock">
                                 <ul class="nav">
                                    <li><span>地接社</span></li>
@@ -76,7 +76,9 @@
                                    <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
                                </ul>
                             </li>
-                        </ul>
+                        </ul>--%>
+                        <asp:ContentPlaceHolder ID="cphFunction" runat="server">
+                        </asp:ContentPlaceHolder>
                         <div class="TechSupport">
                             <p>技术支持</p>
                             <span><img src="/theme/default/image/Func_Icon.gif" />Tel:0571-86933134</span>
