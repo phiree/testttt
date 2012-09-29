@@ -26,12 +26,12 @@ public partial class LocalTravelAgent_GroupDetail : System.Web.UI.Page
         lblName.Text = tg.Name;
         lblBeginDate.Text = tg.BeginDate.ToShortDateString();
         lblEndDate.Text = tg.EndDate.ToShortDateString();
-        lblGuideName.Text = tg.GuideName;
-        lblGuidePhone.Text = tg.GuidePhone;
-        lblIdCardNo.Text = tg.GuideIdCardNo;
-        lblDriverName.Text = tg.DriverName;
-        lblDriverPhone.Text = tg.DriverPhone;
-        lblCarNo.Text = tg.CarNo;
+        //lblGuideName.Text = tg.GuideName;
+        //lblGuidePhone.Text = tg.GuidePhone;
+        //lblIdCardNo.Text = tg.GuideIdCardNo;
+        //lblDriverName.Text = tg.DriverName;
+        //lblDriverPhone.Text = tg.DriverPhone;
+        //lblCarNo.Text = tg;
         rptGrouplist.DataSource = tg.Members;
         rptGrouplist.DataBind();
     }

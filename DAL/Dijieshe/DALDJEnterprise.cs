@@ -115,7 +115,7 @@ namespace DAL
 
         #region groupmem
 
-        public void UpdateGuide(Model.DJ_Group_Guide gg)
+        public void UpdateGuide(Model.DJ_Group_Worker gg)
         {
             using (var t = session.BeginTransaction())
             {
@@ -124,20 +124,13 @@ namespace DAL
             }
         }
 
-        public void UpdateDriver(Model.DJ_Group_Driver gd)
+        public void UpdateDriver(Model.DJ_Group_Worker gd)
         {
             using (var t = session.BeginTransaction())
             {
                 session.Update(gd);
                 t.Commit();
             }
-        }
-
-        public IList<Model.DJ_Group_Base> GetGroupmem8epid(string id)
-        {
-            string sql = "select G from DJ_Group_Base G where TourEnterprise.Id='" + id + "'";
-            IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_Group_Base>().ToList<Model.DJ_Group_Base>();
         }
 
 
@@ -148,22 +141,28 @@ namespace DAL
         //    return query.Future<Model.DJ_Group_Base>().ToList<Model.DJ_Group_Base>();
         //}
 
-
-        public IList<Model.DJ_Group_Guide> GetGuide8id(string id)
+        public IList<Model.DJ_Group_Worker> GetGroupmem8epid(string id)
         {
-            string sql = "select G from DJ_Group_Guide G where Id='" + id + "'";
+            string sql = "select G from DJ_Group_Base G where TourEnterprise.Id='" + id + "'";
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_Group_Guide>().ToList();
+            return query.Future<Model.DJ_Group_Worker>().ToList<Model.DJ_Group_Worker>();
         }
 
-        public IList<Model.DJ_Group_Driver> GetDriver8id(string id)
+
+        public IList<Model.DJ_Group_Worker> GetGuide8id(string id)
         {
-            string sql = "select G from DJ_Group_Driver G where Id='" + id + "'";
+            string sql = "select G from DJ_Group_Worker G where Id='" + id + "'";
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_Group_Driver>().ToList();
+            return query.Future<Model.DJ_Group_Worker>().ToList();
+        }
+
+        public IList<Model.DJ_Group_Worker> GetDriver8id(string id)
+        {
+            string sql = "select G from DJ_Group_Worker G where Id='" + id + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_Group_Worker>().ToList();
         }
 
         #endregion
-
     }
 }

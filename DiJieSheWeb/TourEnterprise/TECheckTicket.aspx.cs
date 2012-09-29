@@ -52,7 +52,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         {
             DJ_TourGroup dj_tourgroup = e.Item.DataItem as DJ_TourGroup;
             Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
-            laGuideName.Text = dj_tourgroup.GuideName;
+            laGuideName.Text = dj_tourgroup.Name; //dj_tourgroup.GuideName;
             Literal laEnterpriceName = e.Item.FindControl("laEnterpriceName") as Literal;
             laEnterpriceName.Text = dj_tourgroup.DJ_DijiesheInfo.Name;
             Literal laGroupName = e.Item.FindControl("laGroupName") as Literal;
@@ -63,7 +63,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             laChildrenAmount.Text = dj_tourgroup.ChildrenAmount.ToString();
             Repeater rptRoute = e.Item.FindControl("rptRoute") as Repeater;
             rptRoute.ItemDataBound += new RepeaterItemEventHandler(rptRoute_ItemDataBound);
-            rptRoute.DataSource = dj_tourgroup.DJ_Product.Routes;
+            rptRoute.DataSource = null;//dj_tourgroup.DJ_Product.Routes;
             rptRoute.DataBind();
         }
     }
