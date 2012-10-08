@@ -26,9 +26,9 @@ namespace DAL
         }
 
 
-        public IList<DJ_Product> GetPdByTimeandTEId(DateTime time, Guid teid)
+        public IList<DJ_Product> GetPdByTimeandTEId(DateTime time, int teid)
         {
-            string sql = "select r.DJ_Product from DJ_Route r where r.Enterprise.Id='" + teid + "'";
+            string sql = "select r.DJ_Product from DJ_Route r where r.Enterprise.Id=" + teid + "";
             sql += " and BeginTime>'" + DateTime.Now.ToString() + "' and EndTime<'" + time + "'";
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_Product>().ToList<Model.DJ_Product>();

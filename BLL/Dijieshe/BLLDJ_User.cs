@@ -9,7 +9,7 @@ namespace BLL
     {
         IDAL.IDJ_User Idj_user_enterprise=new DAL.DALDJ_User();
         #region User_TourEnterprise
-        public Model.DJ_User_TourEnterprise GetUser_TEbyId(Guid id)
+        public Model.DJ_User_TourEnterprise GetUser_TEbyId(int id)
         {
             return Idj_user_enterprise.GetUser_TEbyId(id);
         }

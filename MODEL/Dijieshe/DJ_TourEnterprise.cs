@@ -10,7 +10,7 @@ namespace Model
     /// </summary>
     public class DJ_TourEnterprise
     {
-        public virtual Guid Id { get; set; }
+        public virtual int Id { get; set; }
         /// <summary>
         /// 所属区域
         /// </summary>

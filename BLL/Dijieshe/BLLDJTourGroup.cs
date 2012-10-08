@@ -21,7 +21,7 @@ namespace BLL
             return Idjtourgroup.GetTourGroupById(id);
         }
 
-        public IList<Model.DJ_TourGroup> GetTourGroupByTEId(Guid id)
+        public IList<Model.DJ_TourGroup> GetTourGroupByTEId(int id)
         {
             return Idjtourgroup.GetTourGroupByTEId(id);
         }

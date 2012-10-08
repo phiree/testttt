@@ -8,7 +8,7 @@ namespace IDAL
     public interface IDJ_User
     {
         #region User_TourEnterprise
-        Model.DJ_User_TourEnterprise GetUser_TEbyId(Guid id);
+        Model.DJ_User_TourEnterprise GetUser_TEbyId(int id);
         #endregion
     }
 }

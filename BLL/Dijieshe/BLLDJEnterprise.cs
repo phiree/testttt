@@ -20,7 +20,7 @@ namespace BLL
         /// <param name="cpp">管理人手机</param>
         /// <param name="phone"></param>
         /// <returns></returns>
-        public Guid AddDjs(string name, string address, Model.Area area, string cpn, string cpp, string phone)
+        public int AddDjs(string name, string address, Model.Area area, string cpn, string cpp, string phone)
         {
             Model.DJ_TourEnterprise djs = new Model.DJ_DijiesheInfo()
             {

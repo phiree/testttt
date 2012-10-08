@@ -11,7 +11,7 @@ namespace IDAL
         void SaveOrUpdate(DJ_Route route);
         void Delete(DJ_Route route);
         //预报时间
-        IList<Model.DJ_Product> GetPdByTimeandTEId(DateTime time, Guid teid);
+        IList<Model.DJ_Product> GetPdByTimeandTEId(DateTime time, int teid);
     }
   
 }
