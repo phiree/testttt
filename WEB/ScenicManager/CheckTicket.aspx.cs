@@ -133,6 +133,24 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 olrptitems++;
         }
         CurrentScenic = Master.Scenic;
+        //未输入票数
+        if (yditems == rptpayyd.Items.Count && olrptitems == rptpayonline.Items.Count)
+        {
+            if (rptpayyd.Visible == true || rptpayonline.Visible == true)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
+                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                rptpayyd.DataBind();
+                if (rptpayyd.Items.Count == 0)
+                    rptpayyd.Visible = false;
+                else
+                    rptpayyd.Visible = true;
+
+                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                rptpayonline.DataBind();
+                return;
+            }
+        }
         //预定
         if (yditems != rptpayyd.Items.Count)
         {
@@ -204,23 +222,6 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
         }
-        else
-        {
-            if (rptpayyd.Visible == true)
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
-                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                rptpayyd.DataBind();
-                if (rptpayyd.Items.Count == 0)
-                    rptpayyd.Visible = false;
-                else
-                    rptpayyd.Visible = true;
-
-                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                rptpayonline.DataBind();
-                return;
-            }
-        }
         //在线支付
         if (olrptitems != rptpayonline.Items.Count)
         {
@@ -259,22 +260,6 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
             }
 
-        }
-        else
-        {
-            if (rptpayonline.Visible == true)
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
-                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                rptpayyd.DataBind();
-                if (rptpayyd.Items.Count == 0)
-                    rptpayyd.Visible = false;
-                else
-                    rptpayyd.Visible = true;
-                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                rptpayonline.DataBind();
-                return;
-            }
         }
         rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayyd.DataBind();
