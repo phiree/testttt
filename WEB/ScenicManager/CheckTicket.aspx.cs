@@ -41,7 +41,22 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     {
         CurrentScenic = Master.Scenic;
         //绑定预定信息
-        rptpeopleinfo.DataSource = new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic);
+
+        //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
+        List<TicketAssign> list= new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic);
+        List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetGuiderWorkerByTE(CurrentScenic).ToList();
+        foreach (DJ_Group_Worker gw in listdjGW)
+        {
+            //排除以后的人员信息
+            if (list.Where(x => x.IdCard == gw.IDCard).Count() == 0)
+            {
+                TicketAssign ta = new TicketAssign();
+                ta.Name = gw.Name;
+                ta.IdCard = gw.IDCard;
+                list.Add(ta);
+            }
+        }
+        rptpeopleinfo.DataSource = list;
         rptpeopleinfo.DataBind();
         Request.Cookies.Add(new HttpCookie("idcard"));
         Response.Cookies.Add(new HttpCookie("idcard"));
@@ -49,6 +64,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         Response.Cookies["idcard"].Value = "";
         detailinfo.Visible = false;
         ywdiv.Visible = false;
+        rptguiderinfo.Visible = false;
     }
     
     /// <summary>
@@ -61,6 +77,19 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     {
         Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
         List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s);
+        //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
+        List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetGuiderWorkerByTE(s).ToList();
+        foreach (DJ_Group_Worker gw in listdjGW)
+        {
+            //排除以后的人员信息
+            if (list.Where(x => x.IdCard == gw.IDCard).Count() == 0)
+            {
+                TicketAssign ta = new TicketAssign();
+                ta.Name = gw.Name;
+                ta.IdCard = gw.IDCard;
+                list.Add(ta);
+            }
+        }
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (TicketAssign item in list)
         {
@@ -133,6 +162,24 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 olrptitems++;
         }
         CurrentScenic = Master.Scenic;
+        //未输入票数
+        if (yditems == rptpayyd.Items.Count && olrptitems == rptpayonline.Items.Count)
+        {
+            if (rptpayyd.Visible == true || rptpayonline.Visible == true)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
+                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                rptpayyd.DataBind();
+                if (rptpayyd.Items.Count == 0)
+                    rptpayyd.Visible = false;
+                else
+                    rptpayyd.Visible = true;
+
+                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                rptpayonline.DataBind();
+                return;
+            }
+        }
         //预定
         if (yditems != rptpayyd.Items.Count)
         {
@@ -204,23 +251,6 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
         }
-        else
-        {
-            if (rptpayyd.Visible == true)
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
-                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                rptpayyd.DataBind();
-                if (rptpayyd.Items.Count == 0)
-                    rptpayyd.Visible = false;
-                else
-                    rptpayyd.Visible = true;
-
-                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                rptpayonline.DataBind();
-                return;
-            }
-        }
         //在线支付
         if (olrptitems != rptpayonline.Items.Count)
         {
@@ -259,22 +289,6 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
             }
 
-        }
-        else
-        {
-            if (rptpayonline.Visible == true)
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
-                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                rptpayyd.DataBind();
-                if (rptpayyd.Items.Count == 0)
-                    rptpayyd.Visible = false;
-                else
-                    rptpayyd.Visible = true;
-                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                rptpayonline.DataBind();
-                return;
-            }
         }
         rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayyd.DataBind();
@@ -418,6 +432,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         tp_nav.Attributes.Add("style", "margin-top:20px;");
         ywdiv.Visible = true;
         detailinfo.Visible = true;
+        if (rptguiderinfo.Items.Count > 0)
+        {
+            rptguiderinfo.Visible = true;
+        }
         bindywrecord();
     }
     #endregion
@@ -448,4 +466,13 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         ShowResult();
     }
     #endregion
+    protected void rptguiderinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            DJ_TourGroup tourgroup= e.Item.DataItem as DJ_TourGroup;
+            Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
+            laGuideName.Text = tourgroup.Workers.Where(x => x.WorkerType == DJ_GroupWorkerType.导游).ToList<DJ_Group_Worker>()[0].Name;
+        }
+    }
 }

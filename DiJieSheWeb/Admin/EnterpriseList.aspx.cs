@@ -48,9 +48,9 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
     {
         if (e.CommandName.ToLower() == "addadmin")
         {
-            Guid entId = Guid.Parse(e.CommandArgument.ToString());
-            string hashcode = Math.Abs(entId.GetHashCode()).ToString() ;
-            string loginname = "entAdmin_" + hashcode.Substring(hashcode.Length - 4, 4);
+            int entId = int.Parse(e.CommandArgument.ToString());
+
+            string loginname = "entAdmin_" + entId;
             DJ_User_TourEnterprise djuserent = new DJ_User_TourEnterprise();
             djuserent.Enterprise = bllDJEnt.GetDJS8id(entId.ToString())[0];
             djuserent.Name = loginname;
