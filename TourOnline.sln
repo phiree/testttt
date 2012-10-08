@@ -73,9 +73,11 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "IDCardSetup", "IDCardSetup\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E2661A43-CFB5-46FC-8513-4EFEB0900776}"
 	ProjectSection(SolutionItems) = preProject
+		docs\1区域初始化.sql = docs\1区域初始化.sql
 		Area_sql.txt = Area_sql.txt
 		D:\demo.xlsx = D:\demo.xlsx
 		DJ_Enterprice_sql.txt = DJ_Enterprice_sql.txt
+		docs\初始化脚本.sql = docs\初始化脚本.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebTest", "WebTest", "{2EA52185-36B4-4ACB-A149-2C53E918CD9A}"
