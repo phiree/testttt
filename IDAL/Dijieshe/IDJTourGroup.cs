@@ -10,7 +10,7 @@ namespace IDAL
     {
         IList<DJ_TourGroup> GetTourGroupByGuideIdcard(string idcard);
         DJ_TourGroup GetTourGroupById(Guid id);
-        IList<DJ_TourGroup> GetTourGroupByTEId(Guid id);
+        IList<DJ_TourGroup> GetTourGroupByTEId(int id);
         Model.DJ_TourGroup GetTgByproductid(Guid proid);
     }
 }

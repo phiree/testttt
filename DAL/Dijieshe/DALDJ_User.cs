@@ -14,7 +14,7 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Model.DJ_User_TourEnterprise GetUser_TEbyId(Guid id)
+        public Model.DJ_User_TourEnterprise GetUser_TEbyId(int id)
         {
             string sql = "select u from DJ_User_TourEnterprise u where u.Enterprise.Id='" + id + "'";
             IQuery query = session.CreateQuery(sql);

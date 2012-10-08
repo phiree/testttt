@@ -11,7 +11,7 @@ namespace IDAL
 
         void Save(DJ_Product product);
 
-        IList<DJ_Product> GetListByTEId(Guid TEId);
+        IList<DJ_Product> GetListByTEId(int TEId);
 
     }
 }

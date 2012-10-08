@@ -10,7 +10,7 @@ namespace DAL
     {
         #region DJS
 
-        public Guid AddDJS(Model.DJ_TourEnterprise djs)
+        public int AddDJS(Model.DJ_TourEnterprise djs)
         {
           
         

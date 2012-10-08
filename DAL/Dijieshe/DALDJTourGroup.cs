@@ -27,7 +27,7 @@ namespace DAL
         }
 
 
-        public IList<Model.DJ_TourGroup> GetTourGroupByTEId(Guid id)
+        public IList<Model.DJ_TourGroup> GetTourGroupByTEId(int id)
         {
             List<Guid> listDJ_Product_Id = new DALDJProduct().GetListByTEId(id).ToList().GroupBy(x => x.Id).Select(x=>x.Key).ToList();
             List<Model.DJ_TourGroup> ListTg=new List<Model.DJ_TourGroup>();

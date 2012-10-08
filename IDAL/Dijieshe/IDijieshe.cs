@@ -8,7 +8,7 @@ namespace IDAL
     public interface IDJEnterprise
     {
         #region djs
-        Guid AddDJS(Model.DJ_TourEnterprise djs);
+        int AddDJS(Model.DJ_TourEnterprise djs);
 
         void DeleteDJS();
 

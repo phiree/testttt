@@ -18,7 +18,7 @@ namespace BLL
        {
            IDJProduc.Save(product);
        }
-       public IList<DJ_Product> GetListByDjsID(Guid dijiesheid)
+       public IList<DJ_Product> GetListByDjsID(int dijiesheid)
        {
            return IDJProduc.GetListByTEId(dijiesheid);
        }

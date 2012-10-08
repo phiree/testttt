@@ -24,9 +24,9 @@ namespace DAL
         }
 
 
-        public IList<Model.DJ_Product> GetListByTEId(Guid TEId)
+        public IList<Model.DJ_Product> GetListByTEId(int TEId)
         {
-            string sql = "select r.DJ_Product  from DJ_Route r where r.Enterprise.Id='" + TEId + "'";
+            string sql = "select r.DJ_Product  from DJ_Route r where r.Enterprise.Id=" + TEId + "";
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_Product>().ToList<Model.DJ_Product>();
 
