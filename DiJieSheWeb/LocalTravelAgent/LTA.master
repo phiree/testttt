@@ -5,8 +5,8 @@
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
-    <div>
+<asp:Content ContentPlaceHolderID="cphFunction" runat="server">
+  <div>
         <ul>
             <li><a href="/localtravelagent/djsedit.aspx">信息维护</a> </li>
             <li><a href="/localtravelagent/productlist.aspx">路线列表</a> </li>
@@ -18,6 +18,9 @@
         </ul>
 
     </div>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
+  
     <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>

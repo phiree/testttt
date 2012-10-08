@@ -1,0 +1,4 @@
+1.删除现有数据库, 并创建新数据库TourOnline
+2.复制 1.区域初始化.sql 代码到Sql Server执行
+3.复制 2.账户初始化.sql 代码到Sql Server执行
+4.登录后台管理员账户admin 执行excel初始化, (图片路径未处理)
