@@ -53,5 +53,14 @@ namespace BLL
             }
             return ListTyTg;
         }
+        /// <summary>
+        /// 查找当天该景区的导游信息
+        /// </summary>
+        /// <param name="TE"></param>
+        /// <returns></returns>
+        public IList<Model.DJ_Group_Worker> GetGuiderWorkerByTE(Model.DJ_TourEnterprise TE)
+        {
+            return Idjtourgroup.GetGuiderWorkerByTE(TE).Where(x => x.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>();
+        }
     }
 }

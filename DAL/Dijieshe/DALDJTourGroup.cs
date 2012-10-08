@@ -67,5 +67,21 @@ namespace DAL
             }
             return ListSelectTg;
         }
+
+
+        public IList<Model.DJ_Group_Worker> GetGuiderWorkerByTE(Model.DJ_TourEnterprise TE)
+        {
+            DAL.DALDJ_Route route = new DALDJ_Route();
+            IList<Model.DJ_Route> ListRoute= route.GetRouteByTEid(TE.Id);
+            List<Model.DJ_Group_Worker> Listgw = new List<Model.DJ_Group_Worker>();
+            foreach (Model.DJ_Route routeitem in ListRoute)
+            {
+                if (routeitem.TourGroup.BeginDate.AddDays(routeitem.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString())
+                {
+                    Listgw.AddRange(routeitem.TourGroup.Workers);
+                }
+            }
+            return Listgw;
+        }
     }
 }

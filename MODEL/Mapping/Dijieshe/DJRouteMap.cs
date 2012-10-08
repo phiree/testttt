@@ -20,6 +20,7 @@ namespace Model
             References(x => x.Enterprise);
             Map(x => x.Description);
             References<DJ_Product>(x => x.DJ_Product);
+            References<DJ_TourGroup>(x => x.TourGroup);
         }
     }
 }

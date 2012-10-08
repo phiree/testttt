@@ -80,7 +80,8 @@
             </asp:Repeater>
             
             <%--导游预定--%>
-            <asp:Repeater ID="rptguiderinfo" runat="server">
+            <asp:Repeater ID="rptguiderinfo" runat="server" 
+                onitemdatabound="rptguiderinfo_ItemDataBound">
                 <HeaderTemplate>
                     <table border="0" cellpadding="0" cellspacing="0">
                         <tr>
