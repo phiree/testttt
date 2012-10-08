@@ -76,9 +76,9 @@ namespace DAL
             List<Model.DJ_Group_Worker> Listgw = new List<Model.DJ_Group_Worker>();
             foreach (Model.DJ_Route routeitem in ListRoute)
             {
-                if (routeitem.TourGroup.BeginDate.AddDays(routeitem.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString())
+                if (routeitem.DJ_TourGroup.BeginDate.AddDays(routeitem.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString())
                 {
-                    Listgw.AddRange(routeitem.TourGroup.Workers);
+                    Listgw.AddRange(routeitem.DJ_TourGroup.Workers);
                 }
             }
             return Listgw;

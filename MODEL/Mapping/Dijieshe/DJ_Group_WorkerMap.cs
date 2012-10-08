@@ -16,7 +16,7 @@ namespace Model.Mapping
             Map(x => x.Phone);
             Map(x => x.SpecificIdCard);
             Map(x => x.WorkerType).CustomType<int>();
-            References<DJ_TourGroup>(x => x.Group);
+            References<DJ_TourGroup>(x => x.DJ_TourGroup);
         }
     }
 }

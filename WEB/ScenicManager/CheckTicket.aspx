@@ -101,7 +101,7 @@
                         <td>
                             <h5>团队信息：</h5>
                             导游:<asp:Literal ID="laGuideName" runat="server"></asp:Literal><br />
-                            <asp:Literal ID="laGroupName" runat="server"></asp:Literal><br />
+                            <%# Eval("Name") %><br />
                             人数:成人<%# Eval("AdultsAmount")%>人&nbsp;儿童<%# Eval("ChildrenAmount")%>人<br />
                             <h5>
                             实际信息：</h5>

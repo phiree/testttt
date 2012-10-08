@@ -14,13 +14,14 @@ namespace Model
         public DJ_RouteMap()
         {
             Id(x => x.Id);
+            Map(x => x.DayNo);
             Map(x => x.BeginTime);
             Map(x => x.EndTime);
           //  Map(x => x.Gather);
             References(x => x.Enterprise);
             Map(x => x.Description);
             References<DJ_Product>(x => x.DJ_Product);
-            References<DJ_TourGroup>(x => x.TourGroup);
+            References<DJ_TourGroup>(x => x.DJ_TourGroup);
         }
     }
 }
