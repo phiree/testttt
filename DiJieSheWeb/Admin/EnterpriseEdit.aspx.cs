@@ -16,8 +16,8 @@ public partial class Admin_EnterpriseEdit : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string param = Request["entId"];
-        Guid EntId;
-        if (!Guid.TryParse(param, out EntId))
+        int EntId;
+        if (!int.TryParse(param, out EntId))
         {
             IsNew = true;
             CurrentEnterprise = new DJ_TourEnterprise();
