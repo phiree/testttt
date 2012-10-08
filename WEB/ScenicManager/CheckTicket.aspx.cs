@@ -19,6 +19,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
     BLLOrderDetail bllorderdetail = new BLLOrderDetail();
     BLLCommonUser bllcommonuser = new BLLCommonUser();
+    BLLDJTourGroup blldjtourgroup = new BLLDJTourGroup();
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -441,6 +442,9 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             rptpayonline.Visible = false;
         else
             rptpayonline.Visible = true;
+        //导游信息
+        rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTE(idcard, CurrentScenic);
+        rptguiderinfo.DataBind();
         ShowResult();
     }
     #endregion
