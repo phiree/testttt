@@ -3,14 +3,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
-    <ul>
+<asp:Content ContentPlaceHolderID="cphFunction" runat="server"> <ul>
         <li><a href="ManageDptList.aspx">旅游管理部门列表</a></li>
         <li><a href="ManageDptList.aspx">增加旅游管理部门</a></li>
         <li><a href="UserList.aspx">用户列表</a></li>
         <li><a href="EnterpriseList.aspx">企业列表</a></li>
         <li><a href="EnterpriseEdit.aspx">增加企业</a></li>
-    </ul>
+    </ul></asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
+   <div style="background-color:#fff">
     <asp:ContentPlaceHolder ID="main" runat="server">
     </asp:ContentPlaceHolder>
+    </div>
 </asp:Content>
