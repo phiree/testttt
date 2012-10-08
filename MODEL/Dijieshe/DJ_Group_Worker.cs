@@ -34,7 +34,7 @@ namespace Model
         /// <summary>
         /// 所属团队. 简单起见,做成多对一的关系.
         /// </summary>
-        public virtual DJ_TourGroup Group { get; set; }
+        public virtual DJ_TourGroup DJ_TourGroup { get; set; }
 
        
     }

@@ -30,12 +30,12 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
-            TextBox tbx = e.Item.FindControl("tbxUserName") as TextBox;
+            Label lblAdmin = e.Item.FindControl("lblAdmin") as Label;
             DJ_User_TourEnterprise user = bllDjUser.GetUser_TEbyId(ent.Id);
             Button btn = e.Item.FindControl("btnadmin") as Button;
             if (user != null)
             {
-                tbx.Text = user.Name;
+                lblAdmin.Text = user.Name;
                 btn.Visible = false;
 
             }
