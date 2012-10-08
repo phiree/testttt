@@ -33,5 +33,13 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_Product>().ToList<Model.DJ_Product>();
         }
+
+
+        public IList<DJ_Route> GetRouteByTEid(int teid)
+        {
+            string sql = "select r from DJ_Route r where r.Enterprise.Id=" + teid;
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<DJ_Route>().ToList<DJ_Route>();
+        }
     }
 }

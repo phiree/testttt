@@ -49,6 +49,7 @@
                 </h3>
             <p id="useridcard" runat="server" class="idcard">
                 身份证号码:&nbsp;</p>
+            <%--在线支付--%>
             <asp:Repeater ID="rptpayonline" runat="server" 
                 onitemdatabound="rptpayonline_ItemDataBound">
                 <ItemTemplate>
@@ -60,7 +61,7 @@
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
-
+            <%--在线预定--%>
             <asp:Repeater ID="rptpayyd" runat="server" 
                 onitemdatabound="rptpayyd_ItemDataBound">
                 <ItemTemplate>
@@ -78,10 +79,40 @@
                 </ItemTemplate>
             </asp:Repeater>
             
-
-            <asp:Repeater ID="rptguiderinfo" runat="server">
+            <%--导游预定--%>
+            <asp:Repeater ID="rptguiderinfo" runat="server" 
+                onitemdatabound="rptguiderinfo_ItemDataBound">
+                <HeaderTemplate>
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td>
+                                选择
+                            </td>
+                            <td>
+                                导游信息
+                            </td>
+                        </tr>
+                </HeaderTemplate>
                 <ItemTemplate>
+                    <tr>
+                        <td>
+                            <input name="selectTour" runat="server" type="checkbox" />
+                        </td>
+                        <td>
+                            <h5>团队信息：</h5>
+                            导游:<asp:Literal ID="laGuideName" runat="server"></asp:Literal><br />
+                            <asp:Literal ID="laGroupName" runat="server"></asp:Literal><br />
+                            人数:成人<%# Eval("AdultsAmount")%>人&nbsp;儿童<%# Eval("ChildrenAmount")%>人<br />
+                            <h5>
+                            实际信息：</h5>
+                            实到人数:成人<asp:TextBox ID="txtAdultsAmount" runat="server"></asp:TextBox>儿童<asp:TextBox
+                            ID="txtChildrenAmount" runat="server"></asp:TextBox>人
+                        </td>
+                    </tr>
                 </ItemTemplate>
+                <FooterTemplate>
+                    </table>
+                </FooterTemplate>
             </asp:Repeater>
             <div class="yptg">
                 <asp:Button ID="Btnckpass" runat="server" CssClass="btnckpass" OnClick="Btnckpass_Click" />
