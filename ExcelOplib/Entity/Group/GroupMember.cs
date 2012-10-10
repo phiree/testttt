@@ -24,12 +24,8 @@ namespace ExcelOplib.Entity
         /// </summary>
         public string Memphone { get; set; }
         /// <summary>
-        /// 导游号
+        /// 证件号
         /// </summary>
-        public string GuideNo { get; set; }
-        /// <summary>
-        /// 车牌号
-        /// </summary>
-        public string Carno { get; set; }
+        public string Cardno { get; set; }
     }
 }
