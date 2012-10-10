@@ -3,6 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
 </asp:Content>
+<asp:Content ContentPlaceHolderID="cphFunction" runat="server">
+<ul>
+<li><a href="/tourmanagerdpt/default.aspx">企业列表</a></li>
+<li><a href="">地接社列表</a></li>
+</ul>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
+<asp:ContentPlaceHolder ID="main" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>
 
