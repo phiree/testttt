@@ -23,12 +23,6 @@ public partial class Groups_GroupInfo : System.Web.UI.Page
         int size = FileUpload1.PostedFile.ContentLength;
 
         #region 保存
-        //if (File.Exists(url))
-        //{
-        //    Response.Write("<script>alert('文件已存在 !')</script>");
-        //}
-        //else
-        //{
         if (typ2 == "xlsx" || typ2 == "xls")
         {
             if (size <= 4134904)
@@ -47,7 +41,6 @@ public partial class Groups_GroupInfo : System.Web.UI.Page
             Label1.Text = "上传文件格式不正确.";
             return;
         }
-        //}
         #endregion
     }
 }

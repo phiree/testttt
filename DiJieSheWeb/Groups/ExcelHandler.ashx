@@ -73,9 +73,18 @@ public class ExcelHandler : IHttpHandler {
                 "</td><td>" + item.Breakfast +
                 "</td><td>" + item.Lunch +
                 "</td><td>" + item.Dinner +
-                "</td><td>" + item.Hotel +
-                "</td><td>" + item.Scenic +
-                "</td><td>" + item.ShoppingPoint + "</td></tr>";
+                "</td><td>" + item.Hotel1
+                                         + (item.Hotel2 == string.Empty ? "" : "-" + item.Hotel2) +
+                "</td><td>" + item.Scenic1 
+                                         + (item.Scenic2 == string.Empty ? "" : "-" + item.Scenic2)
+                                         + (item.Scenic3 == string.Empty ? "" : "-" + item.Scenic3)
+                                         + (item.Scenic4 == string.Empty ? "" : "-" + item.Scenic4)
+                                         + (item.Scenic5 == string.Empty ? "" : "-" + item.Scenic5) +
+                "</td><td>" + item.ShoppingPoint1
+                                         + (item.ShoppingPoint2 == string.Empty ? "" : "-" + item.ShoppingPoint2)
+                                         + (item.ShoppingPoint3 == string.Empty ? "" : "-" + item.ShoppingPoint3)
+                                         + (item.ShoppingPoint4 == string.Empty ? "" : "-" + item.ShoppingPoint4)
+                                         + (item.ShoppingPoint5 == string.Empty ? "" : "-" + item.ShoppingPoint5) + "</td></tr>";
         }
         html += @"""}";
         #endregion

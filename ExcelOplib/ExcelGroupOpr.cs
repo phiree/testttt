@@ -167,9 +167,9 @@ namespace ExcelOplib
                         Breakfast = dt.Rows[i][1].ToString().Replace("\n", "").Trim(),
                         Lunch = dt.Rows[i][2].ToString().Replace("\n", "").Trim(),
                         Dinner = dt.Rows[i][3].ToString().Replace("\n", "").Trim(),
-                        Hotel = dt.Rows[i][4].ToString().Replace("\n", "").Trim(),
-                        Scenic = dt.Rows[i][5].ToString().Replace("\n", "").Trim(),
-                        ShoppingPoint = dt.Rows[i][6].ToString().Replace("\n", "").Trim()
+                        Hotel1 = dt.Rows[i][4].ToString().Replace("\n", "").Trim(),
+                        Scenic1 = dt.Rows[i][5].ToString().Replace("\n", "").Trim(),
+                        ShoppingPoint1 = dt.Rows[i][6].ToString().Replace("\n", "").Trim()
                     });
                 }
                 //如果获取到了list,就把上传上来的文件删除
@@ -242,7 +242,7 @@ namespace ExcelOplib
 
                 #region 行程信息
                 DataTable dt3 = new DataTable();
-                string sql3 = "select 日期,早餐,中餐,晚餐,住宿,景点,购物点 from [行程信息$]";
+                string sql3 = "select 日期,早餐,中餐,晚餐,住宿1,住宿2,景点1,景点2,景点3,景点4,景点5,购物点1,购物点2,购物点3,购物点4,购物点5 from [行程信息$]";
                 OleDbCommand cmd3 = new OleDbCommand(sql3, new OleDbConnection(conn));
                 OleDbDataAdapter ad3 = new OleDbDataAdapter(cmd3);
                 ad3.Fill(dt3);
@@ -259,9 +259,18 @@ namespace ExcelOplib
                         Breakfast = dt3.Rows[i][1].ToString().Replace("\n", "").Trim(),
                         Lunch = dt3.Rows[i][2].ToString().Replace("\n", "").Trim(),
                         Dinner = dt3.Rows[i][3].ToString().Replace("\n", "").Trim(),
-                        Hotel = dt3.Rows[i][4].ToString().Replace("\n", "").Trim(),
-                        Scenic = dt3.Rows[i][5].ToString().Replace("\n", "").Trim(),
-                        ShoppingPoint = dt3.Rows[i][6].ToString().Replace("\n", "").Trim()
+                        Hotel1 = dt3.Rows[i][4].ToString().Replace("\n", "").Trim(),
+                        Hotel2 = dt3.Rows[i][5].ToString().Replace("\n", "").Trim(),
+                        Scenic1 = dt3.Rows[i][6].ToString().Replace("\n", "").Trim(),
+                        Scenic2 = dt3.Rows[i][7].ToString().Replace("\n", "").Trim(),
+                        Scenic3 = dt3.Rows[i][8].ToString().Replace("\n", "").Trim(),
+                        Scenic4 = dt3.Rows[i][9].ToString().Replace("\n", "").Trim(),
+                        Scenic5 = dt3.Rows[i][10].ToString().Replace("\n", "").Trim(),
+                        ShoppingPoint1 = dt3.Rows[i][11].ToString().Replace("\n", "").Trim(),
+                        ShoppingPoint2 = dt3.Rows[i][12].ToString().Replace("\n", "").Trim(),
+                        ShoppingPoint3 = dt3.Rows[i][13].ToString().Replace("\n", "").Trim(),
+                        ShoppingPoint4 = dt3.Rows[i][14].ToString().Replace("\n", "").Trim(),
+                        ShoppingPoint5 = dt3.Rows[i][15].ToString().Replace("\n", "").Trim()
                     });
                 }
                 #endregion

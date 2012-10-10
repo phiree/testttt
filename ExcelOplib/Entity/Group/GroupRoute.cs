@@ -24,16 +24,52 @@ namespace ExcelOplib.Entity
         /// </summary>
         public string Dinner { get; set; }
         /// <summary>
-        /// 住宿
+        /// 住宿1
         /// </summary>
-        public string Hotel { get; set; }
+        public string Hotel1 { get; set; }
+        /// <summary>
+        /// 住宿2
+        /// </summary>
+        public string Hotel2 { get; set; }
         /// <summary>
         /// 景点
         /// </summary>
-        public string Scenic { get; set; }
+        public string Scenic1 { get; set; }
+        /// <summary>
+        /// 景点
+        /// </summary>
+        public string Scenic2 { get; set; }
+        /// <summary>
+        /// 景点
+        /// </summary>
+        public string Scenic3 { get; set; }
+        /// <summary>
+        /// 景点
+        /// </summary>
+        public string Scenic4 { get; set; }
+        /// <summary>
+        /// 景点
+        /// </summary>
+        public string Scenic5 { get; set; }
         /// <summary>
         /// 购物点
         /// </summary>
-        public string ShoppingPoint { get; set; }
+        public string ShoppingPoint1 { get; set; }
+        /// <summary>
+        /// 购物点
+        /// </summary>
+        public string ShoppingPoint2 { get; set; }
+        /// <summary>
+        /// 购物点
+        /// </summary>
+        public string ShoppingPoint3 { get; set; }
+        /// <summary>
+        /// 购物点
+        /// </summary>
+        public string ShoppingPoint4 { get; set; }
+        /// <summary>
+        /// 购物点
+        /// </summary>
+        public string ShoppingPoint5 { get; set; }
     }
 }
