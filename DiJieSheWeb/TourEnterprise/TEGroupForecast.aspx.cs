@@ -48,13 +48,13 @@ public partial class TourEnterprise_TEGroupForecast : System.Web.UI.Page
         {
             Literal laArriveTime = e.Item.FindControl("ArriveTime") as Literal;
             DJ_TourGroup group = e.Item.DataItem as DJ_TourGroup;
-            //foreach (DJ_Route route in group.DJ_Product.Routes)
-            //{
-            //    if (route.Enterprise.Id == Master.CurrentTE.Id)
-            //    {
-            //        laArriveTime.Text = route.BeginTime.ToString("yyyy年MM月dd日 hh:mm:ss");
-            //    }
-            //}
+            foreach (DJ_Route route in group.Routes)
+            {
+                if (route.Enterprise.Id == Master.CurrentTE.Id)
+                {
+                    laArriveTime.Text = group.BeginDate.AddDays(route.DayNo).ToString("yyyy年MM月dd日")+route.BeginTime+"点";
+                }
+            }
         }
     }
 }

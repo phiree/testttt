@@ -14,6 +14,8 @@ namespace IDAL
         IList<Model.DJ_Product> GetPdByTimeandTEId(DateTime time, int teid);
         //根据其他旅游单位id，选择行程
         IList<Model.DJ_Route> GetRouteByTEid(int teid);
+        //选择还没有结束的团队
+        IList<Model.DJ_TourGroup> GetNotendGroup();
     }
   
 }

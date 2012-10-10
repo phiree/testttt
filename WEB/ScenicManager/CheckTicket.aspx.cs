@@ -20,6 +20,8 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     BLLOrderDetail bllorderdetail = new BLLOrderDetail();
     BLLCommonUser bllcommonuser = new BLLCommonUser();
     BLLDJTourGroup blldjtourgroup = new BLLDJTourGroup();
+    BLLDJRoute blldjroute = new BLLDJRoute();
+    BLLDJConsumRecord bllrecord = new BLLDJConsumRecord();
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -141,44 +143,15 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     }
     protected void Btnckpass_Click(object sender, EventArgs e)
     {
+        int IsSuccess = 0;//是否验票成功
         if (txtinfo.Text != "录入游客身份证或名字")
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
         }
-        int yditems = 0;
-        foreach (RepeaterItem rptitem in rptpayyd.Items)
+        int yditems,olrptitems,guideritems,IsSelecttiem;
+        if (!IsCanChecked(out yditems, out olrptitems,out guideritems,out IsSelecttiem))
         {
-            TextBox tb = rptitem.FindControl("txtUseCount") as TextBox;
-            tb.Text = Regex.Replace(tb.Text, "[^0-9]", "");
-            if (tb.Text == "")
-                yditems++;
-        }
-        int olrptitems = 0;
-        foreach (RepeaterItem rpitem in rptpayonline.Items)
-        {
-            TextBox tb = rpitem.FindControl("txtolusecount") as TextBox;
-            tb.Text = Regex.Replace(tb.Text, "[^0-9]", "");
-            if (tb.Text == "")
-                olrptitems++;
-        }
-        CurrentScenic = Master.Scenic;
-        //未输入票数
-        if (yditems == rptpayyd.Items.Count && olrptitems == rptpayonline.Items.Count)
-        {
-            if (rptpayyd.Visible == true || rptpayonline.Visible == true)
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
-                rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                rptpayyd.DataBind();
-                if (rptpayyd.Items.Count == 0)
-                    rptpayyd.Visible = false;
-                else
-                    rptpayyd.Visible = true;
-
-                rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                rptpayonline.DataBind();
-                return;
-            }
+            return;
         }
         //预定
         if (yditems != rptpayyd.Items.Count)
@@ -248,8 +221,8 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     }
                 }
             }
-
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
+            IsSuccess = 1;
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
         }
         //在线支付
         if (olrptitems != rptpayonline.Items.Count)
@@ -286,9 +259,34 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             }
             if (flag == 0)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
+                IsSuccess = 1;
             }
-
+        }
+        //导游验票结果
+        if (IsSelecttiem != 0 && IsSelecttiem != guideritems)
+        {
+            foreach (RepeaterItem guideritem in rptguiderinfo.Items)
+            {
+                CheckBox hick = guideritem.FindControl("selectItem") as CheckBox;
+                if (hick.Checked&&hick.Enabled)
+                {
+                    TextBox tbAdult = guideritem.FindControl("txtAdultsAmount") as TextBox;
+                    TextBox tbChild = guideritem.FindControl("txtChildrenAmount") as TextBox;
+                    if (tbAdult.Text != "" && tbChild.Text != "")
+                    {
+                        HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
+                        DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
+                        bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
+                        IsSuccess = 1;
+                    }
+                }
+            }
+            
+        }
+        if (IsSuccess == 1)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
         }
         rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayyd.DataBind();
@@ -298,6 +296,8 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             rptpayyd.Visible = true;
         rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayonline.DataBind();
+        rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTE(ViewState["idcard"].ToString(), CurrentScenic);
+        rptguiderinfo.DataBind();
     }
 
     //绑定游玩记录
@@ -435,6 +435,12 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         if (rptguiderinfo.Items.Count > 0)
         {
             rptguiderinfo.Visible = true;
+            //设置第一个checkbox为选中状态
+            (rptguiderinfo.Items[0].FindControl("selectItem") as CheckBox).Checked = true;
+        }
+        else
+        {
+            rptguiderinfo.Visible = false;
         }
         bindywrecord();
     }
@@ -473,6 +479,132 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             DJ_TourGroup tourgroup= e.Item.DataItem as DJ_TourGroup;
             Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
             laGuideName.Text = tourgroup.Workers.Where(x => x.WorkerType == DJ_GroupWorkerType.导游).ToList<DJ_Group_Worker>()[0].Name;
+            HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
+            foreach (DJ_Route route in tourgroup.Routes)
+            {
+                if (tourgroup.BeginDate.AddDays(route.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == Master.Scenic.Id)
+                {
+                    hfroute.Value = route.Id.ToString();
+                    Literal laIsChecked = e.Item.FindControl("laIsChecked") as Literal;
+                    CheckBox selectItem=e.Item.FindControl("selectItem") as CheckBox;
+                    TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
+                    TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
+                    if (bllrecord.GetGroupConsumRecordByRouteId(route.Id) != null)
+                    {
+                        laIsChecked.Text = "已验证";
+                        selectItem.Enabled = false;
+                        tbAdult.Enabled = false;
+                        tbChild.Enabled = false;
+                    }
+                    else
+                    {
+                        laIsChecked.Text = "未验证";
+                    }
+                }
+            }
         }
     }
+
+    #region 验票通过前的审核内容
+    private bool IsCanChecked(out int yditems, out int olrptitems, out int guideritems, out int IsSelecttiem)
+    {
+        yditems = 0;
+        foreach (RepeaterItem rptitem in rptpayyd.Items)
+        {
+            TextBox tb = rptitem.FindControl("txtUseCount") as TextBox;
+            tb.Text = Regex.Replace(tb.Text, "[^0-9]", "");
+            if (tb.Text == "")
+                yditems++;
+        }
+        olrptitems = 0;
+        foreach (RepeaterItem rpitem in rptpayonline.Items)
+        {
+            TextBox tb = rpitem.FindControl("txtolusecount") as TextBox;
+            tb.Text = Regex.Replace(tb.Text, "[^0-9]", "");
+            if (tb.Text == "")
+                olrptitems++;
+        }
+        guideritems = 0;
+        IsSelecttiem = 0;
+        foreach (RepeaterItem rpitem in rptguiderinfo.Items)
+        {
+            CheckBox hick = rpitem.FindControl("selectItem") as CheckBox;
+            if (hick.Checked&&hick.Enabled)
+            {
+                IsSelecttiem++;
+                TextBox tbAdult = rpitem.FindControl("txtAdultsAmount") as TextBox;
+                TextBox tbChild = rpitem.FindControl("txtChildrenAmount") as TextBox;
+                tbAdult.Text = Regex.Replace(tbAdult.Text, "[^0-9]", "");
+                tbChild.Text = Regex.Replace(tbChild.Text, "[^0-9]", "");
+                if (tbAdult.Text == "" || tbChild.Text == "")
+                {
+                    guideritems++;
+                }
+            }
+        }
+        CurrentScenic = Master.Scenic;
+
+        //未输入票数
+        if (!rptguiderinfo.Visible)//没有导游信息时显示的提示信息
+        {
+            if (yditems == rptpayyd.Items.Count && olrptitems == rptpayonline.Items.Count)
+            {
+                if (rptpayyd.Visible == true || rptpayonline.Visible == true)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
+                    rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                    rptpayyd.DataBind();
+                    if (rptpayyd.Items.Count == 0)
+                        rptpayyd.Visible = false;
+                    else
+                        rptpayyd.Visible = true;
+
+                    rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                    rptpayonline.DataBind();
+                    return false;
+                }
+            }
+        }
+        else//有导游信息时显示的提示信息
+        {
+            if (rptpayyd.Items.Count == 0 && rptpayonline.Items.Count == 0)//表明只有导游信息
+            {
+                if (IsSelecttiem == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请选择一个未验证的团队信息')", true);
+                    return false;
+                }
+                else if (IsSelecttiem == guideritems)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入完整使用人数')", true);
+                    return false;
+                }
+            }
+            else
+            {
+                if (IsSelecttiem == 0 || IsSelecttiem == guideritems)
+                {
+                    if (yditems == rptpayyd.Items.Count && olrptitems == rptpayonline.Items.Count)
+                    {
+                        if (rptpayyd.Visible == true || rptpayonline.Visible == true)
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
+                            rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                            rptpayyd.DataBind();
+                            if (rptpayyd.Items.Count == 0)
+                                rptpayyd.Visible = false;
+                            else
+                                rptpayyd.Visible = true;
+
+                            rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                            rptpayonline.DataBind();
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    #endregion
 }

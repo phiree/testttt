@@ -8,6 +8,9 @@ using BLL;
 using Model;
 using System.Web.UI.HtmlControls;
 using System.Text.RegularExpressions;
+using System.Web.Services;
+using System.Runtime.Serialization.Json;
+using System.IO;
 
 public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
 {
@@ -27,6 +30,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         detailinfo.Visible = false;
         rptGroupList.DataSource = blldjtourgroup.GetTourGroupByTEId(Master.CurrentTE.Id);
         rptGroupList.DataBind();
+        hfetid.Value = Master.CurrentTE.Id.ToString();
     }
 
 
@@ -35,7 +39,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         if (txtTE_info.Text.Trim() != "")
         {
             string[] strinfos = txtTE_info.Text.Trim().Split('/');
-            string idcard = strinfos[0];
+            string idcard = strinfos[1];
             ViewState["idcard"] = idcard;
             BindRptByIdcard(idcard);
         }
@@ -52,19 +56,36 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         {
             DJ_TourGroup dj_tourgroup = e.Item.DataItem as DJ_TourGroup;
             Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
-            laGuideName.Text = dj_tourgroup.Name; //dj_tourgroup.GuideName;
-            Literal laEnterpriceName = e.Item.FindControl("laEnterpriceName") as Literal;
-            laEnterpriceName.Text = dj_tourgroup.DJ_DijiesheInfo.Name;
-            Literal laGroupName = e.Item.FindControl("laGroupName") as Literal;
-            laGroupName.Text = dj_tourgroup.Name;
-            Literal laAdultAmount = e.Item.FindControl("laAdultAmount") as Literal;
-            laAdultAmount.Text = dj_tourgroup.AdultsAmount.ToString();
-            Literal laChildrenAmount = e.Item.FindControl("laChildrenAmount") as Literal;
-            laChildrenAmount.Text = dj_tourgroup.ChildrenAmount.ToString();
-            Repeater rptRoute = e.Item.FindControl("rptRoute") as Repeater;
-            rptRoute.ItemDataBound += new RepeaterItemEventHandler(rptRoute_ItemDataBound);
-            rptRoute.DataSource = null;//dj_tourgroup.DJ_Product.Routes;
-            rptRoute.DataBind();
+            foreach (DJ_Group_Worker work in dj_tourgroup.Workers)
+            {
+                if (work.WorkerType == DJ_GroupWorkerType.导游)
+                {
+                    laGuideName.Text += work.Name;
+                }
+            }
+            HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
+            foreach (DJ_Route route in dj_tourgroup.Routes)
+            {
+                if (dj_tourgroup.BeginDate.AddDays(route.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString()&&route.Enterprise.Id==Master.CurrentTE.Id)
+                {
+                    hfroute.Value = route.Id.ToString();
+                    Literal laChecked = e.Item.FindControl("laChecked") as Literal;
+                    CheckBox selectItem = e.Item.FindControl("cbSelect") as CheckBox;
+                    TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
+                    TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
+                    if (blldjcr.GetGroupConsumRecordByRouteId(route.Id) != null)
+                    {
+                        laChecked.Text = "已验证";
+                        selectItem.Enabled = false;
+                        tbAdult.Enabled = false;
+                        tbChild.Enabled = false;
+                    }
+                    else
+                    {
+                        laChecked.Text = "未验证";
+                    }
+                }
+            }
         }
     }
 
@@ -75,48 +96,26 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
 
     protected void btnCheckOut_Click(object sender, EventArgs e)
     {
-        foreach (RepeaterItem rptitem in rptTourGroupInfo.Items)
+        int guideritems, IsSelecttiem;
+        IsCanChecked(out guideritems, out IsSelecttiem);
+        if (IsSelecttiem != 0 && IsSelecttiem != guideritems)
         {
-            HtmlInputRadioButton hirb = rptitem.FindControl("rdoSelect") as HtmlInputRadioButton;
-            if (hirb.Checked)
+            foreach (RepeaterItem guideritem in rptTourGroupInfo.Items)
             {
-                HiddenField hfGroupId = rptitem.FindControl("hfGroupId") as HiddenField;
-                DJ_TourGroup group = blldjtourgroup.GetTourGroupById(Guid.Parse(hfGroupId.Value));
-                TextBox tbAdultAmount = rptitem.FindControl("txtAdultsAmount") as TextBox;
-                TextBox tbChildAmount = rptitem.FindControl("txtChildrenAmount") as TextBox;
-                Repeater rptRoute = rptitem.FindControl("rptRoute") as Repeater;
-                tbAdultAmount.Text = Regex.Replace(tbAdultAmount.Text, "[^0-9]", "");
-                tbChildAmount.Text = Regex.Replace(tbChildAmount.Text, "[^0-9]", "");
-                int IsHaveSelect = 0;
-                foreach (RepeaterItem routeitem in rptRoute.Items)
+                CheckBox hick = guideritem.FindControl("cbSelect") as CheckBox;
+                if (hick.Checked && hick.Enabled)
                 {
-                    CheckBox cbSelect = routeitem.FindControl("ChSelect") as CheckBox;
-                    if (cbSelect.Enabled && cbSelect.Checked)
+                    TextBox tbAdult = guideritem.FindControl("txtAdultsAmount") as TextBox;
+                    TextBox tbChild = guideritem.FindControl("txtChildrenAmount") as TextBox;
+                    if (tbAdult.Text != "" && tbChild.Text != "")
                     {
-                        if (Verify(tbAdultAmount.Text, tbChildAmount.Text))
-                        {
-                            HiddenField hfRouteId = routeitem.FindControl("hfRouteId") as HiddenField;
-                            DJ_Route route = blldjroute.GetById(Guid.Parse(hfRouteId.Value));
-                            blldjcr.Save(Master.CurrentTE, route, DateTime.Now, int.Parse(tbAdultAmount.Text), int.Parse(tbChildAmount.Text));
-                            ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('验证成功!')", true);
-                            BindRptByIdcard(ViewState["idcard"].ToString());
-                            return;
-                        }
+                        HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
+                        DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
+                        blldjcr.Save(Master.CurrentTE, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
+                        ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('验票成功')", true);
+                        BindRptByIdcard(ViewState["idcard"].ToString());
+                        break;
                     }
-                    if (cbSelect.Enabled && !cbSelect.Checked)
-                    {
-                        IsHaveSelect = 1;
-                    }
-                }
-                if (IsHaveSelect == 0)
-                {
-                    ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('都已验证成功，没有需要验证的行程!')", true);
-                    return;
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('请选择一个行程!')", true);
-                    return;
                 }
             }
 
@@ -139,11 +138,11 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
     /// <param name="idcard"></param>
     private void BindRptByIdcard(string idcard)
     {
-        rptTourGroupInfo.DataSource = blldjtourgroup.GetTourGroupByGuideIdcard(idcard);
+        rptTourGroupInfo.DataSource = blldjtourgroup.GetTgByIdcardAndTE(idcard, Master.CurrentTE);
         rptTourGroupInfo.DataBind();
         if (rptTourGroupInfo.Items.Count > 0)
         {
-            HtmlInputRadioButton hirb = rptTourGroupInfo.Items[0].FindControl("rdoSelect") as HtmlInputRadioButton;
+            CheckBox hirb = rptTourGroupInfo.Items[0].FindControl("cbSelect") as CheckBox;
             hirb.Checked = true;
             detailinfo.Visible = true;
         }
@@ -186,6 +185,64 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             {
                 LaIsCheck.Text = "未验证";
             }
+        }
+    }
+
+    #region 验票通过前审核
+    public bool IsCanChecked(out int guideritems, out int IsSelecttiem)
+    {
+        guideritems = 0;
+        IsSelecttiem = 0;
+        foreach (RepeaterItem rpitem in rptTourGroupInfo.Items)
+        {
+            CheckBox hick = rpitem.FindControl("cbSelect") as CheckBox;
+            if (hick.Checked && hick.Enabled)
+            {
+                IsSelecttiem++;
+                TextBox tbAdult = rpitem.FindControl("txtAdultsAmount") as TextBox;
+                TextBox tbChild = rpitem.FindControl("txtChildrenAmount") as TextBox;
+                tbAdult.Text = Regex.Replace(tbAdult.Text, "[^0-9]", "");
+                tbChild.Text = Regex.Replace(tbChild.Text, "[^0-9]", "");
+                if (tbAdult.Text == "" || tbChild.Text == "")
+                {
+                    guideritems++;
+                }
+            }
+        }
+        if (IsSelecttiem == 0)
+        {
+            ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('请选择一个未验证的团队信息')", true);
+            return false;
+        }
+        else if (IsSelecttiem == guideritems)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入完整使用人数')", true);
+            return false;
+        }
+        return true;
+    }
+    #endregion
+
+
+    /// <summary>
+    /// 为前台autocomplete插件做的ajax方法
+    /// </summary>
+    /// <param name="scid">旅游单位id</param>
+    /// <returns></returns>
+    [WebMethod]
+    public static string GetAllHints(string etid)
+    {
+        List<DJ_Group_Worker> ListGw= new BLLDJTourGroup().GetTourGroupByTEId(int.Parse(etid)).ToList();
+        Dictionary<string, string> data = new Dictionary<string, string>();
+        foreach (DJ_Group_Worker item in ListGw)
+        {
+            data.Add(item.Name + "/" + item.IDCard, "");
+        }
+        DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
+        using (MemoryStream ms = new MemoryStream())
+        {
+            serializer.WriteObject(ms, data);
+            return System.Text.Encoding.UTF8.GetString(ms.ToArray());
         }
     }
 }

@@ -21,5 +21,13 @@ namespace DAL
             return query.FutureValue<Model.DJ_User_TourEnterprise>().Value;
         }
         #endregion
+
+
+        public Model.DJ_User_TourEnterprise GetByMemberId(Guid id)
+        {
+            string sql = "select u from DJ_User_TourEnterprise u where u.Id='" + id + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Model.DJ_User_TourEnterprise>().Value;
+        }
     }
 }

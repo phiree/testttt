@@ -63,7 +63,7 @@ hr
     margin: 40px auto;
     width: 650px;
     display: block;
-    height: 500px;
+    min-height: 550px;
 }
 .centerbig
 {
@@ -215,6 +215,16 @@ h3
 .ywdiv
 {
     margin: 15px 0px 0px 43px;
+}
+.guidertable
+{
+    margin-left:17px;
+}
+
+.guidertable h5
+{
+    margin-top:10px;
+    margin-bottom:10px;
 }
 /*工作人员列表*/
 #wlmain

@@ -21,9 +21,15 @@ namespace BLL
             return Idjtourgroup.GetTourGroupById(id);
         }
 
-        public IList<Model.DJ_TourGroup> GetTourGroupByTEId(int id)
+        public IList<Model.DJ_Group_Worker> GetTourGroupByTEId(int id)
         {
-            return Idjtourgroup.GetTourGroupByTEId(id);
+            List<Model.DJ_TourGroup> listTg= Idjtourgroup.GetTourGroupByTEId(id).ToList();
+            List<Model.DJ_Group_Worker> listGw = new List<Model.DJ_Group_Worker>();
+            foreach (Model.DJ_TourGroup tg in listTg)
+            {
+                listGw.AddRange(tg.Workers.Where(x => x.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>());
+            }
+            return listGw;
         }
         public Model.DJ_TourGroup GetTgByproductid(Guid proid)
         {

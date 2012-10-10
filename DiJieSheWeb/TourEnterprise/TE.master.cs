@@ -21,11 +21,11 @@ public partial class TourEnterprise_TE : System.Web.UI.MasterPage
     protected override void OnInit(EventArgs e)
     {
         MembershipUser mu = Membership.GetUser();
-        BLLMembership bllMember = new BLLMembership();
+        BLLDJ_User blldj_user = new BLLDJ_User();
         DJ_User_TourEnterprise DJ_User_TE=null;
         if (mu != null)
         {
-            DJ_User_TE = bllMember.GetMemberById((Guid)mu.ProviderUserKey) as DJ_User_TourEnterprise;
+            DJ_User_TE = new BLLMembership().GetMemberById((Guid)mu.ProviderUserKey) as DJ_User_TourEnterprise;
         }
         if (mu == null || mu.UserName == string.Empty||DJ_User_TE==null)
         {

@@ -1,0 +1,92 @@
+﻿.detail_titlebg
+{
+    display:block;
+    background:url("/theme/default/image/Detail_Titlebg.gif");
+    height:33px;
+    padding-left:10px;
+    color:#5E716B;
+    line-height:33px;
+    font-weight:bold;
+    font-size:13px;
+}
+.searchdiv
+{
+    padding:10px;
+    padding-bottom:0px;
+}
+h5
+{
+    margin-bottom:10px;
+}
+.searchdiv label
+{
+    font-weight:normal;
+}
+.detaillist
+{
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:5px;
+}
+.detailtitle
+{
+    border:1px solid #B2B2B2;
+    height:20px;
+    background-color:#CECECE;
+    padding-left:10px;
+    line-height:20px;
+}
+.detaillist table
+{
+    width:100%;
+    margin-top:2px;
+    border-left:1px solid #999999;
+    border-top:1px solid #999999;
+}
+.detaillist table tr td
+{
+    border-right:1px solid #999999;
+    border-bottom:1px solid #999999;
+    text-align:center;
+}
+.btn
+{
+    background:url("/theme/default/image/button_bg.gif");
+    height:19px;
+    width:64px;
+    color:#009383;
+    cursor:pointer;
+    border:none;
+}
+/*验票页面的样式*/
+.yklist
+{
+    width: 200px;
+    position: absolute;
+    z-index: 998;
+}
+.yklist table
+{
+    width: 100%;
+    border-left: 1px solid #C2C2C2;
+    border-top: 1px solid #C2C2C2;
+    text-align: center;
+    padding: 0px;
+}
+.yklist table tr
+{
+    text-align: center;
+}
+.yklist table td
+{
+    text-align: center;
+    border-bottom: 1px solid #C2C2C2;
+    border-right: 1px solid #C2C2C2;
+}
+.detailinfo
+{
+    margin-left:10px;
+    width:600px;
+    border:1px solid #999999;
+    margin-top:10px;
+}

@@ -41,5 +41,13 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<DJ_Route>().ToList<DJ_Route>();
         }
+
+
+        public IList<DJ_TourGroup> GetNotendGroup()
+        {
+            string sql = "select tg from DJ_TourGroup tg where tg.EndDate>" + DateTime.Now;
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<DJ_TourGroup>().ToList<DJ_TourGroup>();
+        }
     }
 }
