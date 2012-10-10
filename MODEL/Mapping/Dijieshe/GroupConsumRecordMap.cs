@@ -19,6 +19,7 @@ namespace Model
             Map(x => x.ConsumeTime);
             Map(x => x.AdultsAmount);
             Map(x => x.ChildrenAmount);
+            Map(x => x.Remarks);
         }
     }
 }

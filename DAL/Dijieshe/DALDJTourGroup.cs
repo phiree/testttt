@@ -29,14 +29,13 @@ namespace DAL
 
         public IList<Model.DJ_TourGroup> GetTourGroupByTEId(int id)
         {
-            List<Guid> listDJ_Product_Id = new DALDJProduct().GetListByTEId(id).ToList().GroupBy(x => x.Id).Select(x=>x.Key).ToList();
-            List<Model.DJ_TourGroup> ListTg=new List<Model.DJ_TourGroup>();
-            foreach (Guid product_id in listDJ_Product_Id)
+            List<Model.DJ_Route> list_route = new DALDJ_Route().GetRouteByTEid(id).ToList();
+            List<Model.DJ_TourGroup> ListTg = new List<Model.DJ_TourGroup>();
+            foreach (Model.DJ_Route route in list_route)
             {
-                Model.DJ_TourGroup tg = GetTgByproductid(product_id);
-                if (tg != null)
+                if (route.DJ_TourGroup.BeginDate.AddDays(route.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString())
                 {
-                    ListTg.Add(tg);
+                    ListTg.Add(route.DJ_TourGroup);
                 }
             }
             return ListTg;

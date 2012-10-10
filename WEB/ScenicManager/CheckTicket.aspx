@@ -6,7 +6,7 @@
     <meta   http-equiv= "expires "   content= "0 ">   
     <meta   http-equiv= "cache-control "   content= "no-cache ">   
     <meta   http-equiv= "pragma "   content= "no-cache ">  
-
+    <meta http-equiv="x-ua-compatible" content="ie=8" />
     <%--<script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
     <script src="../Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
     <script src="../Scripts/jqueryplugin/jquery.autoRedirect.js" type="text/javascript"></script>--%>
@@ -83,30 +83,37 @@
             <asp:Repeater ID="rptguiderinfo" runat="server" 
                 onitemdatabound="rptguiderinfo_ItemDataBound">
                 <HeaderTemplate>
-                    <table border="0" cellpadding="0" cellspacing="0">
-                        <tr>
+                    <table class="guidertable" border="0" cellpadding="0" cellspacing="0">
+                        <%--<tr>
                             <td>
                                 选择
                             </td>
                             <td>
                                 导游信息
                             </td>
-                        </tr>
+                            <td>
+                                验证情况
+                            </td>
+                        </tr>--%>
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <input name="selectTour" runat="server" type="checkbox" />
+                            <asp:CheckBox ID="selectItem" runat="server" />
                         </td>
                         <td>
+                            <asp:HiddenField ID="hfrouteId" runat="server" />
                             <h5>团队信息：</h5>
-                            导游:<asp:Literal ID="laGuideName" runat="server"></asp:Literal><br />
-                            <%# Eval("Name") %><br />
-                            人数:成人<%# Eval("AdultsAmount")%>人&nbsp;儿童<%# Eval("ChildrenAmount")%>人<br />
+                            <p>导游:<asp:Literal ID="laGuideName" runat="server"></asp:Literal></p>
+                            <p>团队名称:<%# Eval("Name") %></p>
+                            <p>人数:成人<%# Eval("AdultsAmount")%>人&nbsp;儿童<%# Eval("ChildrenAmount")%>人</p>
                             <h5>
                             实际信息：</h5>
-                            实到人数:成人<asp:TextBox ID="txtAdultsAmount" runat="server"></asp:TextBox>儿童<asp:TextBox
+                            实到人数:成人<asp:TextBox ID="txtAdultsAmount" runat="server"></asp:TextBox>&nbsp;儿童<asp:TextBox
                             ID="txtChildrenAmount" runat="server"></asp:TextBox>人
+                        </td>
+                        <td>
+                            <asp:Literal ID="laIsChecked" runat="server"></asp:Literal>
                         </td>
                     </tr>
                 </ItemTemplate>

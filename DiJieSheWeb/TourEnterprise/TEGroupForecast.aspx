@@ -3,7 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
-    <div>
+    <div class="detail_titlebg">
+        预知详情
+    </div>
+    <div class="searchdiv">
+        <h5>按时间进行查询</h5>
         <asp:RadioButtonList runat="server" RepeatDirection="Horizontal" ID="rbolistSelect" OnSelectedIndexChanged="rbolistSelect_SelectedIndexChanged" AutoPostBack="true">
             <asp:ListItem Text="3天内抵达" Selected="True" Value="type_1"  />
             <asp:ListItem Text="一周内抵达" Value="type_2" />
@@ -11,7 +15,10 @@
             <asp:ListItem Text="所有预报" Value="type_4" />
         </asp:RadioButtonList>
     </div>
-    <div>
+    <div class="detaillist">
+        <div class="detailtitle">
+            预定列表
+        </div>
         <table border="1" cellpadding="0" cellspacing="0">
             <tr>
                 <td>

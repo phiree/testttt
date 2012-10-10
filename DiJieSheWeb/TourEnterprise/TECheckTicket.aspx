@@ -3,138 +3,107 @@
 
 <%@ MasterType VirtualPath="~/TourEnterprise/TE.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" runat="Server">
+    <script src="/Scripts/CheckTicket.js" type="text/javascript"></script>
     <script type="text/javascript">
         function bindbylist(obj) {
-            $("[id$='hfidcard']").val($(obj).find("td").eq(1).html());
+            $("[id$='hfidcard']").val($.trim($(obj).find("td").eq(1).find("span").html()));
             $("[id$='btnBind']").click();
         }
-        $(function () {
-            $(":checkbox").each(function () {
-                var that = this;
-                $(that).click(function () {
-                    if ($(that).attr("disabled") != "disabled" && $(that).attr("checked") == "checked") {
-                        var table = $(that).parent().parent().parent();
-                        var checkboxs = $(table).find(":checkbox");
-                        checkboxs.each(function () {
-                            if ($(this).attr("disabled") != "disabled") {
-                                $(this).removeAttr("checked");
-                            }
-                        });
-                        $(that).attr("checked", "checked");
-                    }
-                    else {
-                        if ($(that).attr("disabled") != "disabled" && $(that).attr("checked") != "checked") {
-                            $(that).removeAttr("checked");
-                        }
-                    }
-                });
-            });
-        });
     </script>
+    <script src="/Scripts/jquery.autocomplete.js" type="text/javascript"></script>
+    <link href="/theme/default/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
-    <asp:TextBox runat="server" ID="txtTE_info" /><asp:Button ID="BtnCheck" runat="server"
-        Text="确定" OnClick="txtTE_info_Click" />
-    <div id="grouplist">
-        <table border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td>
-                    导游名称
-                </td>
-                <td>
-                    导游身份证号
-                </td>
-            </tr>
-            <asp:Repeater runat="server" ID="rptGroupList">
-                <ItemTemplate>
-                    <tr onclick="bindbylist(this)" style="cursor:pointer">
-                        <td><%# Eval("GuideName")%></td>
-                        <td><%# Eval("GuideIdCardNo")%></td>
-                    </tr>
-                </ItemTemplate>
-            </asp:Repeater>
-        </table>
+    <asp:HiddenField ID="hfetid" runat="server" />
+    <div class="detail_titlebg">
+        验票详情
     </div>
-    <div runat="server" id="detailinfo">
-        <asp:Repeater ID="rptTourGroupInfo" runat="server" 
-            onitemdatabound="rptTourGroupInfo_ItemDataBound">
+    <div class="searchdiv">
+        <h5>
+            按导游姓名或者身份证号查询</h5>
+        <asp:TextBox runat="server" ID="txtTE_info" Style="margin-right: 10px;width:250px;" /><asp:Button
+            ID="BtnCheck" runat="server" Text="确定" OnClick="txtTE_info_Click" CssClass="btn" />
+        <span id="yklistt"><span style="margin-left: 20px; padding-left: 0px; cursor: pointer; vertical-align: middle;"
+            onmouseover="showyklist()">导游列表&nbsp;&nbsp;</span><img onmouseover="showyklist()" height="15px"
+                width="10px" src="/theme/default/image/downicon.png" style="vertical-align: middle;
+                cursor: pointer;" /></span>
+    </div>
+    <div runat="server" id="detailinfo" class="detailinfo">
+        <asp:Repeater ID="rptTourGroupInfo" runat="server" OnItemDataBound="rptTourGroupInfo_ItemDataBound">
             <HeaderTemplate>
                 <table border="0" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td>
-                            选择
-                        </td>
-                        <td>
-                            团队信息
-                        </td>
-                    </tr>
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
                     <td>
-                        <input type="radio" name="selectTg" runat="server" id="rdoSelect" />
+                        <asp:CheckBox ID="cbSelect" runat="server" />
                     </td>
                     <td>
-                        <asp:HiddenField runat="server" ID="hfGroupId" Value='<%# Eval("Id") %>' />
-                        <h5>
-                            团队信息：</h5>
-                            导游:<asp:Literal ID="laGuideName" runat="server"></asp:Literal><br />
-                            <asp:Literal ID="laEnterpriceName" runat="server"></asp:Literal>&nbsp;<asp:Literal ID="laGroupName" runat="server"></asp:Literal><br />
-                            人数:成人<asp:Literal ID="laAdultAmount" runat="server"></asp:Literal>&nbsp;儿童<asp:Literal ID="laChildrenAmount" runat="server"></asp:Literal>人<br />
-                            <h5>
-                            实际信息：</h5>
-                            实到人数:成人<asp:TextBox ID="txtAdultsAmount" runat="server"></asp:TextBox>儿童<asp:TextBox
+                        <asp:HiddenField ID="hfrouteId" runat="server" />
+                        <h5>团队信息:</h5>
+                        <p>导游:<asp:Literal ID="laGuideName" runat="server"></asp:Literal></p>
+                        <p>团队名称:<%# Eval("Name") %></p>
+                        <p>人数:成人<%# Eval("AdultsAmount")%>人&nbsp;儿童<%# Eval("ChildrenAmount")%>人</p>
+                            <h5>实际信息：</h5>
+                            实到人数:成人<asp:TextBox ID="txtAdultsAmount" runat="server"></asp:TextBox>&nbsp;儿童<asp:TextBox
                             ID="txtChildrenAmount" runat="server"></asp:TextBox>人
-                        <h5>行程安排</h5>
-                        <asp:Repeater runat="server" ID="rptRoute">
-                            <HeaderTemplate>
-                                <table border="0" cellpadding="0" cellspacing="0">
-                                    <tr>
-                                        <td>
-                                            选择
-                                        </td>
-                                        <td>
-                                            行程时间
-                                        </td>
-                                        <td>
-                                            行程描述
-                                        </td>
-                                        <td>
-                                            验证信息
-                                        </td>
-                                    </tr>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <asp:HiddenField ID="hfRouteId" runat="server" Value='<%# Eval("Id") %>' />
-                                <tr>
-                                    <td>
-                                        <asp:CheckBox ID="ChSelect" runat="server" />
-                                    </td>
-                                    <td>
-                                        起<%# Eval("BeginTime") %>至<%# Eval("EndTime") %></td>
-                                    <td>
-                                        <%# Eval("Description") %>
-                                    </td>
-                                    <td>
-                                        <asp:Literal ID="LaIsCheck" runat="server"></asp:Literal>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                </table>
-                            </FooterTemplate>
-                        </asp:Repeater>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laChecked" runat="server"></asp:Literal>
                     </td>
                 </tr>
             </ItemTemplate>
-            <FooterTemplate>
-                </table>
-            </FooterTemplate>
         </asp:Repeater>
-        <asp:Button ID="btnCheckOut" Text="验票通过" runat="server" OnClick="btnCheckOut_Click" />
+        <tr>
+            <td></td>
+            <td>
+                <asp:Button ID="btnCheckOut" Text="验票通过" runat="server" OnClick="btnCheckOut_Click" CssClass="btn" />
+            </td>
+            <td></td>
+        </tr>
+        </table>
     </div>
-    <div id="hiddendv" style="display:none">
+    <div id="hiddendv" style="display: none">
         <asp:HiddenField runat="server" ID="hfidcard" />
         <asp:Button Text="text" runat="server" ID="btnBind" OnClick="btnBind_Click" />
+    </div>
+    <div id="listname" class="yklist" style="display: none;">
+        <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom: 0px;
+            width: 200px; table-layout: fixed">
+            <tr style="width: 150px; background-color: #E9E9E9">
+                <td style="width: 60px; padding: 0px; padding-right: 0px; padding-left: 0px; padding-right: 0px;">
+                    <span style="display: block; width: 60px; margin: 0px; margin-left: 0px; margin-right: 0px;">
+                        导游姓名</span>
+                </td>
+                <td style="width: 135px; padding-left: 0px; padding-right: 0px;">
+                    <span style="display: block; width: 135px">身份证号</span>
+                </td>
+            </tr>
+        </table>
+        <div style="margin-right: 10px; padding: 0px; height: 250px; width: 215px; overflow-x: hidden;
+            overflow-y: auto;">
+            <asp:Repeater ID="rptGroupList" runat="server">
+                <HeaderTemplate>
+                    <table cellpadding="0" cellspacing="0" style="display: block; margin-bottom: 0px;
+                        border-top: 0px none; width: 200px; table-layout: fixed">
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr onmouseover="cgbg(this)" onmouseout="cgbg2(this)" style="cursor: pointer;" onclick="bindbylist(this)">
+                        <td style="width: 60px; background-color: #F7F7F7; padding-left: 0px; padding-right: 0px;
+                            margin-left: 0px; margin-right: 0px;">
+                            <span style="display: block; width: 60px;">
+                                <%# Eval("Name") %></span>
+                        </td>
+                        <td style="width: 135px; background-color: #F7F7F7; padding: 0px;">
+                            <span style="display: block; width: 125px">
+                                <%# Eval("IdCard") %></span>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </table>
+                </FooterTemplate>
+            </asp:Repeater>
+        </div>
     </div>
 </asp:Content>

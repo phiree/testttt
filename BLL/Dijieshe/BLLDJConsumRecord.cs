@@ -19,7 +19,7 @@ namespace BLL
             dj_group.ChildrenAmount = ChildrenAmount;
             dj_group.ConsumeTime = consumtime;
             dj_group.Enterprise = Enterprise;
-            //dj_group.Route = route;
+            dj_group.Route = route;
             IDjgroup.Save(dj_group);
         }
 

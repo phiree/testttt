@@ -24,6 +24,7 @@ namespace Model
         
         public virtual int AdultsAmount { get; set; }
         public virtual int ChildrenAmount { get; set; }
-
+        //备注
+        public virtual string Remarks { get; set; }
     }
 }

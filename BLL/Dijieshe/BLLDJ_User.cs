@@ -13,6 +13,10 @@ namespace BLL
         {
             return Idj_user_enterprise.GetUser_TEbyId(id);
         }
+        public Model.DJ_User_TourEnterprise GetByMemberId(Guid id)
+        {
+            return Idj_user_enterprise.GetByMemberId(id);
+        }
       //  public Model
         #endregion
     }
