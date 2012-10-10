@@ -26,7 +26,7 @@
                         </div>
                         <div class="useraction">
                             <a href="/Login.aspx">修改密码</a>
-                            <a href="#">退出系统</a>
+                            <asp:LoginStatus  runat="server" />
                         </div>
                     </div>
                     <h2>浙江旅游管理统计系统</h2>
