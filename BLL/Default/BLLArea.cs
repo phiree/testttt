@@ -54,5 +54,26 @@ namespace BLL
         {
             return Iarea.GetAreaByCode(code);
         }
+        /// <summary>
+        /// 获取辖区范围内行政区域的areaid, 用逗号连接,用于 sql的 In 查询
+        /// </summary>
+        /// <param name="areaId"></param>
+        /// <returns></returns>
+        public string  GetChildAreaIds(string areacode)
+        {
+            string ids = string.Empty;
+            Model.Area currentArea = GetAreaByCode(areacode);
+            ids += currentArea.Id + ",";
+            IList<Model.Area> Areas = GetSubArea(areacode);
+            foreach (Model.Area a in Areas)
+            {
+                ids += a.Id + ",";
+            }
+            ids = ids.TrimEnd(',');
+            return ids;
+
+            
+            
+        }
     }
 }
