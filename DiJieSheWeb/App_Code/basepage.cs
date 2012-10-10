@@ -9,23 +9,29 @@ using Model;
 /// </summary>
 public class basepage : System.Web.UI.Page
 {
-    public MembershipUser CurrentUser;
-    public TourMembership CurrentMember;
-    
     BLL.BLLMembership bllMember = new BLL.BLLMembership();
-    protected bool NeedLogin { get; set; }
-  
+    public MembershipUser CurrentUser
+    {
+        get { return Membership.GetUser(); }
+    }
+    public TourMembership CurrentMember
+    {
+        get { return bllMember.GetMemberById((Guid)CurrentUser.ProviderUserKey); }
+    }
+
+
+    bool needLogin = true;
+    protected bool NeedLogin { get { return needLogin; } set { needLogin = value; } }
+
+
     protected override void OnLoad(EventArgs e)
     {
-        CurrentUser = Membership.GetUser();
-        if (CurrentUser != null)
+        if (NeedLogin)
         {
-            CurrentMember = bllMember.GetMemberById((Guid)CurrentUser.ProviderUserKey);
-            
-        }
-        else
-        {
-            BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
+            if (CurrentUser == null)
+            {
+                Response.Redirect("/login.aspx?returnUrl="+Request.RawUrl);
+            }
         }
 
         base.OnLoad(e);
