@@ -6,22 +6,23 @@ using System.Web.Security;
 using Model;
 /// <summary>
 ///basepage 的摘要说明
+/// 政府管理用户的basepage,提供当前用户的行政管辖范围
 /// </summary>
-public class basepageDJS : basepage
+public class basepageMgrDpt : basepage
 {
-    public DJ_DijiesheInfo CurrentDJS
+    public DJ_GovManageDepartment CurrentDpt
     {
         get
         {
             if (CurrentMember != null)
             {
-                DJ_User_TourEnterprise entUser = (DJ_User_TourEnterprise)CurrentMember;
-                DJ_DijiesheInfo dijieshe = (DJ_DijiesheInfo)entUser.Enterprise;
-                if (dijieshe == null)
+                DJ_User_Gov govUser = (DJ_User_Gov)CurrentMember;
+                DJ_GovManageDepartment govDpt = govUser.GovDpt;
+                if (govDpt == null)
                 {
                     BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
                 }
-                return dijieshe;
+                return govDpt;
             }
             else
             {

@@ -4,22 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.IO;
-using System.Web.Services;
 
-public partial class LocalTravelAgent_GroupMemberid : System.Web.UI.Page
+public partial class Groups_GroupInfo : System.Web.UI.Page
 {
-    //public const string GROUPID = "GROUPID";
     private string excelPath = "d:/upload/";
-    //private string groupid;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //groupid = Request["id"];
-        //if (!string.IsNullOrEmpty(groupid))
-        //{
-            
-        //}
+
     }
 
     protected void btnUpload_Click(object sender, EventArgs e)
@@ -31,18 +23,12 @@ public partial class LocalTravelAgent_GroupMemberid : System.Web.UI.Page
         int size = FileUpload1.PostedFile.ContentLength;
 
         #region 保存
-        //if (File.Exists(url))
-        //{
-        //    Response.Write("<script>alert('文件已存在 !')</script>");
-        //}
-        //else
-        //{
         if (typ2 == "xlsx" || typ2 == "xls")
         {
             if (size <= 4134904)
             {
                 FileUpload1.SaveAs(excelPath + "temp." + typ2);
-                Label1.Text=excelPath + "temp." + typ2;
+                Label1.Text = excelPath + "temp." + typ2;
             }
             else
             {
@@ -55,11 +41,6 @@ public partial class LocalTravelAgent_GroupMemberid : System.Web.UI.Page
             Label1.Text = "上传文件格式不正确.";
             return;
         }
-        //}
         #endregion
-    }
-    protected void btnNext_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("/Dijiesheweb/LocalTravelAgent/GroupRoute.aspx");
     }
 }

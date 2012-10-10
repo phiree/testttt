@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="Groups.master.cs"
+    Inherits="Groups_Groups" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFunction" runat="Server">
+    <ul class="nav">
+        <li id="djsBlock">
+            <ul class="nav">
+                <li><span>地接社</span></li>
+                <li style="background-color: #009383; height: 15px; display: block; line-height: 0px">
+                </li>
+                <li><a href="">线路制定</a></li>
+                <li><a href="">线路列表</a></li>
+                <li><a href="">团队录入</a></li>
+                <li><a href="">团队列表</a></li>
+                <li><a href="">统计信息</a></li>
+                <li><a href="">协议单位录入</a></li>
+                <li><a href="">协议单位列表</a></li>
+                <li><a href="">工作人员录入</a></li>
+                <li><a href="">工作人员列表</a></li>
+                <li style="background-color: #009383; height: 15px; display: block; line-height: 0px">
+                </li>
+            </ul>
+        </li>
+    </ul>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="main" runat="Server">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
