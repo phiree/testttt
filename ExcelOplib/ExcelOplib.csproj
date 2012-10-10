@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\DJSEntity.cs" />
+    <Compile Include="Entity\Group\GroupAll.cs" />
     <Compile Include="Entity\Group\GroupBasic.cs" />
     <Compile Include="Entity\Group\GroupMember.cs" />
     <Compile Include="Entity\Group\GroupRoute.cs" />
