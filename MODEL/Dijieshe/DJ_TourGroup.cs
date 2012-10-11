@@ -37,6 +37,23 @@ namespace Model
         /// </summary>
         public virtual int DaysAmount { get; set; }
         /// <summary>
+        /// 成人总人数
+        /// </summary>
+        public virtual int AdultsAmount { get; set; }
+        /// <summary>
+        /// 儿童总人数
+        /// </summary>
+        public virtual int ChildrenAmount { get; set; }
+        /// <summary>
+        /// 集合点
+        /// </summary>
+        public virtual string Gether { get; set; }
+        /// <summary>
+        /// 返程点
+        /// </summary>
+        public virtual string BackPlace { get; set; }
+
+        /// <summary>
         /// 路线描述
         /// </summary>
         public virtual IList<DJ_Route> Routes { get; set; }
@@ -50,14 +67,6 @@ namespace Model
         /// </summary>
         public virtual IList<DJ_Group_Vehicle> Vehicles { get; set; }
        
-        /// <summary>
-        /// 成人总人数
-        /// </summary>
-        public virtual int AdultsAmount { get; set; }
-        /// <summary>
-        /// 儿童总人数
-        /// </summary>
-        public virtual int ChildrenAmount { get; set; }
         /// <summary>
         /// 成员详细信息
         /// </summary>
