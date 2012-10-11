@@ -109,6 +109,7 @@
                 FirstPageText="首页" LastPageText="尾页" PageSize="12" NextPageText="下一页" CurrentPageButtonClass="cpb"
                 PrevPageText="上一页">
             </uc:AspNetPager>
+            
         </div>
     </div>
 </asp:Content>

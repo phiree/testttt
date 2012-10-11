@@ -90,3 +90,22 @@ h5
     border:1px solid #999999;
     margin-top:10px;
 }
+.remark
+{
+    padding:10px;
+}
+.remark p
+{
+    margin-top:5px;
+    margin-bottom:5px;
+    color:#999999;
+}
+.remark a,.remark a:link,.remark a:active,.remark a:visited
+{
+    color:#009383;
+    text-decoration:none;
+}
+.remark a:hover
+{
+    text-decoration:underline;
+}

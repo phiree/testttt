@@ -3,6 +3,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
+    
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="cphhead" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
@@ -10,7 +12,7 @@
     <ul class="nav">
         <li><a href="/TourEnterprise/TEGroupForecast.aspx">预知</a></li>
         <li><a href="/TourEnterprise/TECheckTicket.aspx">刷卡</a></li>
-        <li><a href="">信息统计</a></li>
+        <li><a href="/TourEnterprise/TEStatistics.aspx">信息统计</a></li>
     </ul>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">

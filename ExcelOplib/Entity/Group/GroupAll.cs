@@ -7,8 +7,8 @@ namespace ExcelOplib.Entity
 {
     public class GroupAll
     {
-        public Entity.GroupBasic gb { get; set; }
-        public List<Entity.GroupMember> gmlist { get; set; }
-        public List<Entity.GroupRoute> grlist { get; set; }
+        public Entity.GroupBasic GroupBasic { get; set; }
+        public List<Entity.GroupMember> GroupMemberList { get; set; }
+        public List<Entity.GroupRoute> GroupRouteList { get; set; }
     }
 }

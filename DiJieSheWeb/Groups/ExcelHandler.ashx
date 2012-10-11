@@ -40,24 +40,24 @@ public class ExcelHandler : IHttpHandler {
         ExcelOplib.Entity.GroupAll groupall = excel.getGroup(filename);
 
         string html = string.Empty;
-        if (groupall.gb == null ||
-            groupall.gmlist == null || groupall.gmlist.Count < 1 ||
-            groupall.grlist == null || groupall.grlist.Count < 1)
+        if (groupall.GroupBasic == null ||
+            groupall.GroupMemberList == null || groupall.GroupMemberList.Count < 1 ||
+            groupall.GroupRouteList == null || groupall.GroupRouteList.Count < 1)
         {
             return;
         }
 
-        html += @"{""Name"":""" +  groupall.gb.Name 
-            + @""",""Bedate"":""" +  groupall.gb.Bedate 
-            + @""",""Days"":""" +  groupall.gb.Days
-            + @""",""PeopleTotal"":""" + groupall.gb.PeopleTotal
-            + @""",""PeopleAdult"":""" + groupall.gb.PeopleAdult
-            + @""",""PeopleChild"":""" + groupall.gb.PeopleChild
-            + @""",""StartPlace"":""" + groupall.gb.StartPlace
-            + @""",""EndPlace"":""" + groupall.gb.EndPlace ;
+        html += @"{""Name"":""" +  groupall.GroupBasic.Name
+            + @""",""Bedate"":""" + groupall.GroupBasic.Begindate + "-" + groupall.GroupBasic.Enddate
+            + @""",""Days"":""" +  groupall.GroupBasic.Days
+            + @""",""PeopleTotal"":""" + groupall.GroupBasic.PeopleTotal
+            + @""",""PeopleAdult"":""" + groupall.GroupBasic.PeopleAdult
+            + @""",""PeopleChild"":""" + groupall.GroupBasic.PeopleChild
+            + @""",""StartPlace"":""" + groupall.GroupBasic.StartPlace
+            + @""",""EndPlace"":""" + groupall.GroupBasic.EndPlace ;
 
         html += @""",""Member"":""";
-        foreach (ExcelOplib.Entity.GroupMember item in groupall.gmlist)
+        foreach (ExcelOplib.Entity.GroupMember item in groupall.GroupMemberList)
         {
             html += @"<tr><td>" + item.Memtype +
                 "</td><td>" + item.Memname +
@@ -67,7 +67,7 @@ public class ExcelHandler : IHttpHandler {
         }
 
         html += @""",""Route"":""";
-        foreach (ExcelOplib.Entity.GroupRoute item in groupall.grlist)
+        foreach (ExcelOplib.Entity.GroupRoute item in groupall.GroupRouteList)
         {
             html += @"<tr><td>" + item.RouteDate +
                 "</td><td>" + item.Breakfast +

@@ -9,9 +9,13 @@ namespace ExcelOplib.Entity
     {
         public string Name { get; set; }
         /// <summary>
-        /// 起止时间
+        /// 开始时间
         /// </summary>
-        public string Bedate { get; set; }
+        public string Begindate { get; set; }
+        /// <summary>
+        /// 结束时间
+        /// </summary>
+        public string Enddate { get; set; }
         /// <summary>
         /// 天数
         /// </summary>

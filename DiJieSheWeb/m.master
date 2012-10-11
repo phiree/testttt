@@ -6,11 +6,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <meta http-equiv="x-ua-compatible" content="ie=8" />
     <script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
     <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
     <link href="/theme/default/css/MaterPage.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/MasterPage.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
      <script type="text/javascript">
          $(function () {
              $(".nav a").HighLightLink();

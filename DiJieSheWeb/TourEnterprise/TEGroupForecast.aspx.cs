@@ -52,7 +52,8 @@ public partial class TourEnterprise_TEGroupForecast : System.Web.UI.Page
             {
                 if (route.Enterprise.Id == Master.CurrentTE.Id)
                 {
-                    laArriveTime.Text = group.BeginDate.AddDays(route.DayNo).ToString("yyyy年MM月dd日")+route.BeginTime+"点";
+                    //laArriveTime.Text = group.BeginDate.AddDays(route.DayNo).ToString("yyyy年MM月dd日")+route.BeginTime+"点";
+                    laArriveTime.Text = group.BeginDate.AddDays(route.DayNo).ToString("yyyy年MM月dd日") + "点";
                 }
             }
         }
