@@ -42,18 +42,18 @@ namespace DAL
                 //IAutomappingConfiguration cfg = new MyAutoMappingCfg();
 
                 MsSqlConfiguration msconfg = MsSqlConfiguration.MsSql2008.ShowSql();
-                if (HttpContext.Current == null)
-                {
-                    msconfg = msconfg.ConnectionString(s => s.Server(".\\DbServer,7788")
-                            .Database("TourOnline")
-                            .Username("sa")
-                            .Password("admin"));
+                //if (HttpContext.Current == null)
+                //{
+                //    msconfg = msconfg.ConnectionString(s => s.Server(".\\DbServer,7788")
+                //            .Database("TourOnline")
+                //            .Username("sa")
+                //            .Password("admin"));
 
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     msconfg = msconfg.ConnectionString(s => s.FromConnectionStringWithKey("TourOnlineConn"));
-                }
+               // }
 
 
 

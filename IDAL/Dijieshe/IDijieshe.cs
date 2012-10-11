@@ -17,7 +17,7 @@ namespace IDAL
         IList<Model.DJ_TourEnterprise> GetDJS8All();
 
         IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike);
-
+        IList<Model.DJ_TourEnterprise> GetDJSInAreas(string areaids);
         #endregion
 
         #region group

@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true"
     CodeFile="EnterpriseEdit.aspx.cs" Inherits="Admin_EnterpriseEdit" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
 
     <table>
