@@ -27,5 +27,16 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_GroupConsumRecord>().Value;
         }
+
+
+        public IList<Model.DJ_TourGroup> GetFeRecordByETId(int etid)
+        {
+            //在dal中只查询出该旅游单位的记录
+            string sql = "select r.Route.DJ_TourGroup from DJ_GroupConsumRecord r where r.Enterprise.Id=" + etid + "";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_TourGroup>().ToList<Model.DJ_TourGroup>();
+        }
+
+        
     }
 }

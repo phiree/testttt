@@ -27,5 +27,26 @@ namespace BLL
         {
             return IDjgroup.GetGroupConsumRecordByRouteId(RouteId);
         }
+
+        public IList<Model.DJ_TourGroup> GetFeRecordByETId(int etid, int day, int pageIndex, int pageSize, out int totalRecord)
+        {
+            List<Model.DJ_TourGroup> ListTg = IDjgroup.GetFeRecordByETId(etid).ToList();
+            totalRecord = ListTg.Where(x => x.BeginDate.AddDays(day) <= DateTime.Now).Count();
+            ListTg = ListTg.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return ListTg;
+        }
+
+        public void GetCountInfoByETid(int etid,out int groupcount,out int adultcount,out int childrencount)
+        {
+            List<Model.DJ_TourGroup> ListTg = IDjgroup.GetFeRecordByETId(etid).ToList();
+            adultcount = 0;
+            childrencount = 0;
+            groupcount = ListTg.GroupBy(x => x.Id).Count();
+            foreach (DJ_TourGroup group in ListTg)
+            {
+                adultcount += group.AdultsAmount;
+                childrencount += group.ChildrenAmount;
+            }
+        }
     }
 }
