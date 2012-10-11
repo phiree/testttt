@@ -57,11 +57,11 @@ namespace DAL
             }
             if (!string.IsNullOrEmpty(namelike))
             {
-                sql += " D.Name like '%" + namelike + "%' and";
+                sql += " D.Name = '" + namelike + "' and";
             }
             sql = sql.Substring(0, sql.Length - 3);
             IQuery query = session.CreateQuery(sql);
-            return query.List<Model.DJ_TourEnterprise>();
+            return query.Future<Model.DJ_TourEnterprise>().ToList<Model.DJ_TourEnterprise>();
         }
 
         #endregion
@@ -72,6 +72,22 @@ namespace DAL
         {
             using (var t = session.BeginTransaction())
             {
+                foreach (var item in tg.Members)
+                {
+                    session.Save(item);
+                }
+                foreach (var item in tg.Workers)
+                {
+                    session.Save(item);
+                }
+                foreach (var item in tg.Vehicles)
+                {
+                    session.Save(item);
+                }
+                foreach (var item in tg.Routes)
+                {
+                    session.Save(item);
+                }
                 session.Save(tg);
                 t.Commit();
             }

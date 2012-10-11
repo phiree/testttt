@@ -7,25 +7,76 @@
 
         function calc() {
             var gid = getArgs("id");
-            if (gid == undefined) {
-                alert("没有找到相应的团队, 请确定团队编号");
-                return;
-            }
-            var tabledom = $("#tbMember>tbody>tr");
-            var result = false;
-            var datas = '';
+//            if (gid == undefined) {
+//                alert("没有找到相应的团队, 请确定团队编号");
+//                return;
+//            }
+
+            //新版本 2012-10-10
+            //基本信息
+            var datas = "";
             var djsid = $.cookie('DJSID');
+            datas += "{\"GroupBasic\":{\"Name\":\"" + $("#txtName").html();
+            var dateString = $("#txtDate").html();
+            var dateArray = dateString.split("-", 2);
+            datas += "\",\"Begindate\":\"" + dateArray[0];
+            datas += "\",\"Enddate\":\"" + dateArray[1];
+            datas += "\",\"Days\":\"" + $("#txtDays").html();
+            datas += "\",\"PeopleTotal\":\"" + $("#txtPnum").html();
+            datas += "\",\"PeopleAdult\":\"" + $("#txtPadult").html();
+            datas += "\",\"PeopleChild\":\"" + $("#txtPchild").html();
+            datas += "\",\"StartPlace\":\"" + $("#txtGether").html();
+            datas += "\",\"EndPlace\":\"" + $("#txtBack").html();
+
+            //人员信息
+            var tabledom = $("#tbMember>tbody>tr");
+            datas += "\"},\"GroupMemberList\":[";
             tabledom.each(function () {
-                var memtype = $(this).children().children().html();
-                var memname = $(this).children().next().children().html();
-                var memid = $(this).children().next().next().children().html();
-                var memphone = $(this).children().next().next().next().children().html();
-                //var scid = $("input[id*=hidden_scid]").val();
-                datas += '{' + memtype + ',' + memname + ',' + memid + ',' + memphone;
+                //alert('tbmem=' + $(this).children().next().html());
+                datas += "{\"Memtype\":\"" + $(this).children().html();
+                datas += "\",\"Memname\":\"" + $(this).children().next().html();
+                datas += "\",\"Memid\":\"" + $(this).children().next().next().html();
+                datas += "\",\"Memphone\":\"" + $(this).children().next().next().next().html();
+                datas += "\",\"Cardno\":\"" + $(this).children().next().next().next().next().children().html();
+                datas += "\"},";   //最后记得去掉这个,逗号
             });
+            datas = datas.substring(0, datas.length - 1) + "]";
+
+            //行程信息
+            var tbRoute = $("#tbRoute>tbody>tr");
+            datas += ",\"GroupRouteList\":[";
+            tbRoute.each(function () {
+                datas += "{\"RouteDate\":\"" + $(this).children().html();
+                datas += "\",\"Breakfast\":\"" + $(this).children().next().html();
+                datas += "\",\"Lunch\":\"" + $(this).children().next().next().html();
+                datas += "\",\"Dinner\":\"" + $(this).children().next().next().next().html();
+
+                var hotelString = $(this).children().next().next().next().next().html();
+                var hotelArray = hotelString.split("-", 5);
+                for (var i = 0; i < hotelArray.length; i++) {
+                    datas += "\",\"Hotel" + (i + 1) + "\":\"" + hotelArray[i];
+                }
+
+                var scString = $(this).children().next().next().next().next().next().html();
+                var scArray = scString.split("-", 5);
+                for (var i = 0; i < scArray.length; i++) {
+                    datas += "\",\"Scenic" + (i + 1) + "\":\"" + scArray[i];
+                }
+
+                var spString = $(this).children().next().next().next().next().next().next().html();
+                var spArray = spString.split("-", 5);
+                for (var i = 0; i < spArray.length; i++) {
+                    datas += "\",\"ShoppingPoint" + (i + 1) + "\":\"" + spArray[i];
+                }
+
+                datas += "\"},"; //最后记得去掉这个,逗号
+            });
+            datas = datas.substring(0, datas.length - 1) + "]}";
+            alert(datas);
+
             $.ajax({
                 type: "Post",
-                url: "MemidHandler.ashx",
+                url: "GroupHandler.ashx",
                 dataType: "json",
                 data: datas,
                 success: function (data, status) {
@@ -35,6 +86,31 @@
                         alert("修改失败！");
                 }
             });
+
+//           //老版本2012-9-29
+//            var tabledom = $("#tbMember>tbody>tr");
+//            var result = false;
+//            var djsid = $.cookie('DJSID');
+//            tabledom.each(function () {
+//                var memtype = $(this).children().children().html();
+//                var memname = $(this).children().next().children().html();
+//                var memid = $(this).children().next().next().children().html();
+//                var memphone = $(this).children().next().next().next().children().html();
+//                //var scid = $("input[id*=hidden_scid]").val();
+//                datas += '{' + memtype + ',' + memname + ',' + memid + ',' + memphone;
+//            });
+//            $.ajax({
+//                type: "Post",
+//                url: "MemidHandler.ashx",
+//                dataType: "json",
+//                data: datas,
+//                success: function (data, status) {
+//                    if (data == "成功")
+//                        alert("修改成功！");
+//                    else
+//                        alert("修改失败！");
+//                }
+//            });
         }
 
         //删除行
@@ -165,6 +241,9 @@
                 </td>
                 <td>
                     联系方式
+                </td>
+                <td>
+                    证件号
                 </td>
             </tr>
         </thead>

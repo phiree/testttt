@@ -17,9 +17,6 @@ namespace Model
         /// 第几天.
         /// </summary>
         public virtual int DayNo { get; set; }
-        public virtual int BeginTime { get; set; }
-
-        public virtual int EndTime { get; set; }
 
         public virtual DJ_TourEnterprise Enterprise { get; set; }
 
@@ -27,12 +24,8 @@ namespace Model
 
         public virtual DJ_TourGroup DJ_TourGroup { get; set; }
     /// <summary>
-    /// 在目标地点干嘛: 用餐/游览/集合/购物
+    /// 在目标地点干嘛: 饭店/景点/购物/住宿
     /// </summary>
         public virtual string Behavior { get; set; }
-
-        public virtual DJ_Product DJ_Product { get; set; }
-
-        
     }
 }

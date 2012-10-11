@@ -60,7 +60,7 @@ namespace ExcelOplib
                 gb = new Entity.GroupBasic()
                 {
                     Name = dt.Rows[0][0].ToString().Replace("\n", "").Trim(),
-                    Bedate = dt.Rows[0][1].ToString().Replace("\n", "").Trim(),
+                    Begindate = dt.Rows[0][1].ToString().Replace("\n", "").Trim(),
                     Days = dt.Rows[0][2].ToString().Replace("\n", "").Trim(),
                     PeopleTotal = dt.Rows[0][3].ToString().Replace("\n", "").Trim(),
                     PeopleAdult = dt.Rows[0][4].ToString().Replace("\n", "").Trim(),
@@ -194,7 +194,7 @@ namespace ExcelOplib
                 #region 基本信息
                 //Sheet1为excel中表的名字
                 DataTable dt1 = new DataTable();
-                string sql1 = "select 团队名称,起止时间,天数,人数,成人,儿童,上车集合点,返程点 from [基本信息$]";
+                string sql1 = "select 团队名称,开始时间,天数,人数,成人,儿童,上车集合点,返程点,结束时间 from [基本信息$]";
                 OleDbCommand cmd1 = new OleDbCommand(sql1, new OleDbConnection(conn));
                 OleDbDataAdapter ad1 = new OleDbDataAdapter(cmd1);
                 ad1.Fill(dt1);
@@ -206,13 +206,14 @@ namespace ExcelOplib
                 gb = new Entity.GroupBasic()
                 {
                     Name = dt1.Rows[0][0].ToString().Replace("\n", "").Trim(),
-                    Bedate = dt1.Rows[0][1].ToString().Replace("\n", "").Trim(),
+                    Begindate = dt1.Rows[0][1].ToString().Replace("\n", "").Trim(),
                     Days = dt1.Rows[0][2].ToString().Replace("\n", "").Trim(),
                     PeopleTotal = dt1.Rows[0][3].ToString().Replace("\n", "").Trim(),
                     PeopleAdult = dt1.Rows[0][4].ToString().Replace("\n", "").Trim(),
                     PeopleChild = dt1.Rows[0][5].ToString().Replace("\n", "").Trim(),
                     StartPlace = dt1.Rows[0][6].ToString().Replace("\n", "").Trim(),
-                    EndPlace = dt1.Rows[0][7].ToString().Replace("\n", "").Trim()
+                    EndPlace = dt1.Rows[0][7].ToString().Replace("\n", "").Trim(),
+                    Enddate = dt1.Rows[0][8].ToString().Replace("\n", "").Trim()
                 };
                 #endregion
 
@@ -277,7 +278,7 @@ namespace ExcelOplib
 
                 //如果获取到了list,就把上传上来的文件删除
                 File.Delete(path.Replace('/', '\\'));
-                return new Entity.GroupAll() { gb = gb, gmlist = gmlist, grlist = grlist };
+                return new Entity.GroupAll() { GroupBasic = gb, GroupMemberList = gmlist, GroupRouteList = grlist };
             }
             catch (Exception ex)
             {

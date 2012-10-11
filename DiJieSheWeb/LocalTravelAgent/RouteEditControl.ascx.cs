@@ -48,8 +48,8 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
 
     private void LoadForm()
     {
-        tbxBeginTime.Text = CurrentRoute.BeginTime.ToString();
-        tbxEndTime.Text = CurrentRoute.EndTime.ToString();
+        //tbxBeginTime.Text = CurrentRoute.BeginTime.ToString();
+        //tbxEndTime.Text = CurrentRoute.EndTime.ToString();
         tbxDayNo.Text = CurrentRoute.DayNo.ToString();
         tbxEnterprise.Text = CurrentRoute.Enterprise.Name;
         rblBehavior.SelectedValue = CurrentRoute.Behavior;
@@ -59,8 +59,8 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
     protected string UpdateMsg = string.Empty;
     private bool UpdateForm()
     {
-        CurrentRoute.BeginTime = Convert.ToInt32(tbxBeginTime.Text);
-        CurrentRoute.EndTime = Convert.ToInt32(tbxEndTime.Text);
+        //CurrentRoute.BeginTime = Convert.ToInt32(tbxBeginTime.Text);
+        //CurrentRoute.EndTime = Convert.ToInt32(tbxEndTime.Text);
         CurrentRoute.Behavior = rblBehavior.SelectedValue;
 
         CurrentRoute.DayNo = Convert.ToInt16(tbxDayNo.Text);
@@ -71,7 +71,7 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
             return false;
         }
         CurrentRoute.Enterprise = djs[0];
-        CurrentRoute.DJ_Product = CurrentProduct;
+        //CurrentRoute.DJ_Product = CurrentProduct;
 
         return true;
     }
