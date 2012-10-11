@@ -25,6 +25,7 @@
                 <asp:Label runat="server" ID="lblAdmin"></asp:Label>
                     <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' Text="指派管理员" ID="btnadmin"
                         CommandName="AddAdmin" />
+                       
                 </td>
             </tr>
         </ItemTemplate>
