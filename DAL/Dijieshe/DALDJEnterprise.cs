@@ -40,28 +40,48 @@ namespace DAL
             return query.Future<Model.DJ_TourEnterprise>().ToList<Model.DJ_TourEnterprise>();
         }
 
+        private IList<Model.DJ_TourEnterprise> GetDJS8Multi(string where)
+        {
+            string sql = "select D from DJ_TourEnterprise D where 1=1  ";
+            sql = sql + where;
+            IQuery query = session.CreateQuery(sql);
+            return query.List<Model.DJ_TourEnterprise>();
+        }
+        /// <summary>
+        /// 多个区域内的旅游企业
+        /// </summary>
+        ///      <param name="areaIds">辖区对应的areaid, 用逗号隔开</param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public IList<Model.DJ_TourEnterprise> GetDJSInAreas(string areaids)
+        {
+            string where = " D.Area.Id in ( "+areaids+")";
+
+            return GetDJS8Multi(where);
+
+        }
+
         public IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike)
         {
-            string sql = "select D from DJ_TourEnterprise D where ";
+            string where = string.Empty;
             if (areaid != 0)
             {
-                sql += " D.Area.Id=" + areaid + " and";
+                where += "and  D.Area.Id=" + areaid;
             }
             if (!string.IsNullOrEmpty(type))
             {
-                sql += " D.Type=" + (int)(Model.EnterpriseType)Enum.Parse(typeof(Model.EnterpriseType), type) + " and";
+                where += "and D.Type=" + (int)(Model.EnterpriseType)Enum.Parse(typeof(Model.EnterpriseType), type) + " and";
             }
             if (!string.IsNullOrEmpty(id))
             {
-                sql += " D.Id='" + id + "' and";
+                where += "and D.Id='" + id + "' and";
             }
             if (!string.IsNullOrEmpty(namelike))
             {
-                sql += " D.Name like '%" + namelike + "%' and";
+                where += "and D.Name like '%" + namelike + "%' and";
             }
-            sql = sql.Substring(0, sql.Length - 3);
-            IQuery query = session.CreateQuery(sql);
-            return query.List<Model.DJ_TourEnterprise>();
+
+            return GetDJS8Multi(where);
         }
 
         #endregion
