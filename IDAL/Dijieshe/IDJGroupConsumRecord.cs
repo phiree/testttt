@@ -10,5 +10,6 @@ namespace IDAL
     {
         void Save(DJ_GroupConsumRecord group);
         DJ_GroupConsumRecord GetGroupConsumRecordByRouteId(Guid RouteId);
+        IList<DJ_TourGroup> GetFeRecordByETId(int etid);
     }
 }

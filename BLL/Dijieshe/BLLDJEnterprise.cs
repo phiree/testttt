@@ -89,6 +89,18 @@ namespace BLL
         }
 
         /// <summary>
+        /// 旅游管理部门辖区的旅游企业
+        /// </summary>
+        /// <param name="areaCode"></param>
+        /// <returns></returns>
+        public IList<Model.DJ_TourEnterprise> GetDJSForDpt(string areaCode)
+        {
+            string ids = new BLLArea().GetChildAreaIds(areaCode);
+
+            return daldjs.GetDJSInAreas(ids);
+        }
+
+        /// <summary>
         /// 多条件查询地接社
         /// </summary>
         /// <param name="areaid"></param>

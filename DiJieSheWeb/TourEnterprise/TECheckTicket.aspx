@@ -12,6 +12,8 @@
     </script>
     <script src="/Scripts/jquery.autocomplete.js" type="text/javascript"></script>
     <link href="/theme/default/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+    <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d021" style=" height:0px;">
+    </object>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <asp:HiddenField ID="hfetid" runat="server" />
@@ -62,6 +64,15 @@
             <td></td>
         </tr>
         </table>
+    </div>
+    <div class="remark">
+         <p class="wkintr">
+        身份证读卡器的驱动下载地址:<a href="http://productbbs.it168.com/thread-67620-1-1.html">下载地址</a>
+        </p>
+        <p class="wkintr">
+            首次进入该页面，请先下载身份证读卡器程序，安装到本地电脑后，打开IE浏览器，进入该页面后浏览器会提示是否运行该加载项，点击允许，即可使用：
+            <a href="/ScenicManager/setup.exe">身份证读卡器程序下载</a>
+        </p>
     </div>
     <div id="hiddendv" style="display: none">
         <asp:HiddenField runat="server" ID="hfidcard" />

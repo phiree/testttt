@@ -17,6 +17,7 @@ namespace Model.Mapping
             Map(x => x.Name);
             References<Area>(x => x.Area);
             Map(x => x.Phone);
+            Map(x => x.Address);
       }
     }
 }
