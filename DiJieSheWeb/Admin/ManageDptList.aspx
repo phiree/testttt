@@ -7,7 +7,8 @@
         区域编码筛选<asp:TextBox runat="server" ID="tbxAreaCode"></asp:TextBox><asp:Button runat="server"
             Text="确定" OnClick="btn_Click" />
     </div>
-    <asp:GridView runat="server" ID="gv" AutoGenerateColumns="false">
+    <asp:GridView runat="server" ID="gv" AutoGenerateColumns="false" 
+        onrowcommand="gv_RowCommand" onrowdatabound="gv_RowDataBound">
         <Columns>
             <asp:BoundField DataField="Name" HeaderText="名称" />
             <asp:BoundField DataField="Address" HeaderText="地址" />
@@ -15,11 +16,12 @@
                 <ItemTemplate>
                     <%#((Model.Area)Eval("Area")).Name %></ItemTemplate>
             </asp:TemplateField>
-            <asp:HyperLinkField  HeaderText="操作" Text="编辑" DataNavigateUrlFields="Id" 
-            DataNavigateUrlFormatString="ManageDptEdit.aspx?dptid={0}"
-             />
-            
-
+            <asp:HyperLinkField HeaderText="操作" Text="编辑" DataNavigateUrlFields="Id" DataNavigateUrlFormatString="ManageDptEdit.aspx?dptid={0}" />
+            <asp:TemplateField>
+            <ItemTemplate>
+           <asp:Label runat="server" ID="lblAdmin"></asp:Label>  <asp:Button runat="server" ID="btnSetAdmin" CommandName="SetAdmin" CommandArgument='<%#Eval("Id") %>' />
+            </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
 </asp:Content>
