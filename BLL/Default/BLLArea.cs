@@ -63,6 +63,10 @@ namespace BLL
         {
             string ids = string.Empty;
             Model.Area currentArea = GetAreaByCode(areacode);
+            if (currentArea == null)
+            {
+                return ids;
+            }
             ids += currentArea.Id + ",";
             IList<Model.Area> Areas = GetSubArea(areacode);
             foreach (Model.Area a in Areas)

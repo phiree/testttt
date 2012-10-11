@@ -66,19 +66,19 @@ namespace DAL
             string where = string.Empty;
             if (areaid != 0)
             {
-                where += "and  D.Area.Id=" + areaid;
+                where += " and  D.Area.Id=" + areaid;
             }
             if (!string.IsNullOrEmpty(type))
             {
-                where += "and D.Type=" + (int)(Model.EnterpriseType)Enum.Parse(typeof(Model.EnterpriseType), type) + " and";
+                where += " and D.Type=" + (int)(Model.EnterpriseType)Enum.Parse(typeof(Model.EnterpriseType), type) + " and";
             }
             if (!string.IsNullOrEmpty(id))
             {
-                where += "and D.Id='" + id + "' and";
+                where += " and D.Id=" + id ;
             }
             if (!string.IsNullOrEmpty(namelike))
             {
-                where += "and D.Name like '%" + namelike + "%' and";
+                where += " and D.Name like '%" + namelike + "%'";
             }
 
             return GetDJS8Multi(where);
