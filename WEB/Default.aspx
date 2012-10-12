@@ -68,6 +68,9 @@
                 下一张</div>
         </div>
     </div>
+    <div class="adcolum">
+        <img src="/Img/农行.jpg" alt="农行优惠" />
+    </div>
     <div class="lpcolum">
         <a href="/topic/jiangshanlianpiao.aspx">
             <img src="/Img/jiangshanlianpiao_home.png" alt="套票江郎山" />
