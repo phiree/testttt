@@ -17,7 +17,8 @@
             //基本信息
             var datas = "";
             var djsid = $.cookie('DJSID');
-            datas += "{\"GroupBasic\":{\"Name\":\"" + $("#txtName").html();
+            datas += "{\"DjsId\":\""+djsid+"\","
+            datas += "\"GroupBasic\":{\"Name\":\"" + $("#txtName").html();
             var dateString = $("#txtDate").html();
             var dateArray = dateString.split("-", 2);
             datas += "\",\"Begindate\":\"" + dateArray[0];

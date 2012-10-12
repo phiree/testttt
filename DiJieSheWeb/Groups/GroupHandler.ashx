@@ -6,6 +6,7 @@ using System.Linq;
 
 public class GroupHandler : IHttpHandler
 {
+    BLL.BLLDJEnterprise bllenter = new BLL.BLLDJEnterprise();
 
     public void ProcessRequest(HttpContext context)
     {
@@ -18,6 +19,7 @@ public class GroupHandler : IHttpHandler
 
         //基本信息
         tg.Name = ga.GroupBasic.Name;
+        tg.DJ_DijiesheInfo = ga.DjsId != 0 ? bllenter.GetDJS8id(ga.DjsId.ToString())[0] as Model.DJ_DijiesheInfo : null;
         tg.BeginDate = DateTime.Parse(ga.GroupBasic.Begindate);
         tg.EndDate = DateTime.Parse(ga.GroupBasic.Enddate);
         tg.DaysAmount = int.Parse(ga.GroupBasic.Days);
@@ -91,7 +93,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Description="早餐",
+                    Description = "早餐",
                     Enterprise = bllDJS.GetDJS8name(item.Breakfast)[0]
                 });
             }
@@ -238,7 +240,7 @@ public class GroupHandler : IHttpHandler
             i++;
         }
         tg.Routes = routes;
-        
+
         //汇总信息
         djEnterprice.AddGroup(tg);
     }
