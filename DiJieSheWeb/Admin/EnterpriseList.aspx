@@ -10,6 +10,7 @@
             <td>名称</td>
                        <td></td>
                                   <td>管理员</td>
+                                  <td>认证状态</td>
             </tr>
         </HeaderTemplate>
         <ItemTemplate>
@@ -26,6 +27,11 @@
                     <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' Text="指派管理员" ID="btnadmin"
                         CommandName="AddAdmin" />
                        
+                </td>
+                <td>
+                <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>'
+                 CommandName="SetVerify" 
+                 />
                 </td>
             </tr>
         </ItemTemplate>

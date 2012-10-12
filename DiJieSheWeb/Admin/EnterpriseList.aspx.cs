@@ -39,6 +39,14 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
                 btn.Visible = false;
 
             }
+            Button btnVerify = e.Item.FindControl("btnSetVerify") as Button;
+            if (ent.IsVeryfied)
+            {
+                btnVerify.Text = "已认证,点击取消认证";
+            }
+            else{
+                btnVerify.Text = "尚未认证,点击认证";
+            }
         }
     }
     BLLDJ_User bllDjUser = new BLLDJ_User();
@@ -46,20 +54,29 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
     BLLMembership bllMember = new BLLMembership();
     protected void rpt_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
+        int entId = int.Parse(e.CommandArgument.ToString());
+
         if (e.CommandName.ToLower() == "addadmin")
         {
-            int entId = int.Parse(e.CommandArgument.ToString());
-
+          
             string loginname = "entAdmin_" + entId;
             DJ_User_TourEnterprise djuserent = new DJ_User_TourEnterprise();
             djuserent.Enterprise = bllDJEnt.GetDJS8id(entId.ToString())[0];
             djuserent.Name = loginname;
             djuserent.Password=  System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             bllMember.CreateUpdateMember(djuserent);
-            BindList();
-            
+         
 
 
         }
+
+        if (e.CommandName.ToLower() == "setverify")
+        {
+            DJ_TourEnterprise ent = bllDJEnt.GetDJS8id(entId.ToString())[0];
+            ent.IsVeryfied = !ent.IsVeryfied;
+            bllDJEnt.Save(ent);
+        }
+        BindList();
+            
     }
 }

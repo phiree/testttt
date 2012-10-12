@@ -23,7 +23,9 @@ public partial class Login2 :  Page
         string redirectUrl = string.Empty;
         Type UserType = CurrentMember.GetType();
         if (UserType == typeof(DJ_User_Gov))
-        { }
+        {
+            redirectUrl = "/TourManagerDpt/";
+        }
         else if (UserType == typeof(DJ_User_TourEnterprise))
         {
             DJ_User_TourEnterprise entUser = (DJ_User_TourEnterprise)CurrentMember;
