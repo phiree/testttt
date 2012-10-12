@@ -2,9 +2,13 @@
     CodeFile="ManageDptList.aspx.cs" Inherits="Admin_ManageDptList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
-    <a href="ManageDptImport.aspx">从excel文件导入</a>
+    <div class="detail_titlebg">
+        旅游管理部门列表
+    </div>
+    <div class="detaillist">
+        <a href="ManageDptImport.aspx">从excel文件导入</a>
     <div>
-        区域编码筛选<asp:TextBox runat="server" ID="tbxAreaCode"></asp:TextBox><asp:Button runat="server"
+        区域编码筛选<asp:TextBox runat="server" ID="tbxAreaCode"></asp:TextBox><asp:Button ID="Button1" runat="server"
             Text="确定" OnClick="btn_Click" />
     </div>
     <asp:GridView runat="server" ID="gv" AutoGenerateColumns="false" 
@@ -24,4 +28,6 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
+    </div>
+    
 </asp:Content>

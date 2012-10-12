@@ -1,7 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true" CodeFile="ManageDptEdit.aspx.cs" Inherits="Admin_ManageDptEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" Runat="Server">
- <table>
+<div class="detail_titlebg">
+        增加旅游管理部门
+    </div>
+    <div class="detaillist">
+        <div class="detailtitle">
+            增加旅游管理部门
+        </div>
+        <table>
         <tr>
             <td>
                 部门名称
@@ -42,6 +49,7 @@
         </tr>
          
     </table>
-    <asp:Button runat="server" ID="btnSave"  OnClick="btnSave_Click" Text="保存"/>
+    <asp:Button runat="server" ID="btnSave"  OnClick="btnSave_Click" Text="保存" CssClass="btn" style="margin-left:360px"/>
+    </div>
 </asp:Content>
 

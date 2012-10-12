@@ -2,7 +2,14 @@
     CodeFile="UserList.aspx.cs" Inherits="Admin_UserList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
-    <asp:Repeater runat="server" ID="rptUsers">
+        <div class="detail_titlebg">
+        用户列表
+    </div>
+    <div class="detaillist">
+        <div class="detailtitle">
+            用户列表
+        </div>
+        <asp:Repeater runat="server" ID="rptUsers">
         <HeaderTemplate>
             <table>
                 <tr>
@@ -33,4 +40,6 @@
         <FooterTemplate>
             </table></FooterTemplate>
     </asp:Repeater>
+    </div>
+    
 </asp:Content>

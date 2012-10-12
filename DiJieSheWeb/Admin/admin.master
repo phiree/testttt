@@ -2,8 +2,10 @@
     Inherits="Admin_admin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
 </asp:Content>
-<asp:Content ContentPlaceHolderID="cphFunction" runat="server"> <ul>
+<asp:Content ContentPlaceHolderID="cphFunction" runat="server"> 
+    <ul  class="nav">
         <li><a href="ManageDptList.aspx">旅游管理部门列表</a></li>
         <li><a href="ManageDptEdit.aspx">增加旅游管理部门</a></li>
         <li><a href="UserList.aspx">用户列表</a></li>

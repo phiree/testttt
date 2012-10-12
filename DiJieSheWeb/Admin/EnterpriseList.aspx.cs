@@ -42,10 +42,10 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
             Button btnVerify = e.Item.FindControl("btnSetVerify") as Button;
             if (ent.IsVeryfied)
             {
-                btnVerify.Text = "已认证,点击取消认证";
+                btnVerify.Text = "已认证";
             }
             else{
-                btnVerify.Text = "尚未认证,点击认证";
+                btnVerify.Text = "尚未认证";
             }
         }
     }
