@@ -191,7 +191,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Description = "购物点",
+                    Description = "购物点1",
                     Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint1)[0]
                 });
             }
