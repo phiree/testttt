@@ -40,13 +40,30 @@ namespace DAL
             return query.Future<Model.DJ_TourEnterprise>().ToList<Model.DJ_TourEnterprise>();
         }
 
-        private IList<Model.DJ_TourEnterprise> GetDJS8Multi(string where)
+        public IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike)
         {
-            string sql = "select D from DJ_TourEnterprise D where 1=1  ";
-            sql = sql + where;
+            string sql = "select D from DJ_TourEnterprise D where ";
+            if (areaid != 0)
+            {
+                sql += " D.Area.Id=" + areaid + " and";
+            }
+            if (!string.IsNullOrEmpty(type))
+            {
+                sql += " D.Type=" + (int)(Model.EnterpriseType)Enum.Parse(typeof(Model.EnterpriseType), type) + " and";
+            }
+            if (!string.IsNullOrEmpty(id))
+            {
+                sql += " D.Id='" + id + "' and";
+            }
+            if (!string.IsNullOrEmpty(namelike))
+            {
+                sql += " D.Name = '" + namelike + "' and";
+            }
+            sql = sql.Substring(0, sql.Length - 3);
             IQuery query = session.CreateQuery(sql);
-            return query.List<Model.DJ_TourEnterprise>();
+            return query.Future<Model.DJ_TourEnterprise>().ToList<Model.DJ_TourEnterprise>();
         }
+
         /// <summary>
         /// 多个区域内的旅游企业
         /// </summary>
@@ -55,33 +72,18 @@ namespace DAL
         /// <returns></returns>
         public IList<Model.DJ_TourEnterprise> GetDJSInAreas(string areaids)
         {
-            string where = " D.Area.Id in ( "+areaids+")";
+            string where = " D.Area.Id in ( " + areaids + ")";
 
             return GetDJS8Multi(where);
 
         }
 
-        public IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike)
+        private IList<Model.DJ_TourEnterprise> GetDJS8Multi(string where)
         {
-            string where = string.Empty;
-            if (areaid != 0)
-            {
-                where += " and  D.Area.Id=" + areaid;
-            }
-            if (!string.IsNullOrEmpty(type))
-            {
-                where += " and D.Type=" + (int)(Model.EnterpriseType)Enum.Parse(typeof(Model.EnterpriseType), type) + " and";
-            }
-            if (!string.IsNullOrEmpty(id))
-            {
-                where += " and D.Id=" + id ;
-            }
-            if (!string.IsNullOrEmpty(namelike))
-            {
-                where += " and D.Name like '%" + namelike + "%'";
-            }
-
-            return GetDJS8Multi(where);
+            string sql = "select D from DJ_TourEnterprise D where 1=1  ";
+            sql = sql + where;
+            IQuery query = session.CreateQuery(sql);
+            return query.List<Model.DJ_TourEnterprise>();
         }
 
         #endregion
@@ -92,6 +94,22 @@ namespace DAL
         {
             using (var t = session.BeginTransaction())
             {
+                foreach (var item in tg.Members)
+                {
+                    session.Save(item);
+                }
+                foreach (var item in tg.Workers)
+                {
+                    session.Save(item);
+                }
+                foreach (var item in tg.Vehicles)
+                {
+                    session.Save(item);
+                }
+                foreach (var item in tg.Routes)
+                {
+                    session.Save(item);
+                }
                 session.Save(tg);
                 t.Commit();
             }
@@ -184,5 +202,6 @@ namespace DAL
         }
 
         #endregion
+
     }
 }

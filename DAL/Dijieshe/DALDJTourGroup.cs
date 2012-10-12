@@ -9,6 +9,12 @@ namespace DAL
 {
     public class DALDJTourGroup:DalBase,IDJTourGroup
     {
+        public IList<Model.DJ_TourGroup> GetTourGroupByAll()
+        {
+            string sql = "select tg from DJ_TourGroup tg ";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_TourGroup>().ToList<Model.DJ_TourGroup>();
+        }
 
         public IList<Model.DJ_TourGroup> GetTourGroupByGuideIdcard(string idcard)
         {

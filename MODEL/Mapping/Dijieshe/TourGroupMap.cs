@@ -21,6 +21,8 @@ namespace Model
            
             Map(x => x.AdultsAmount);
             Map(x => x.ChildrenAmount);
+            Map(x => x.Gether);
+            Map(x => x.BackPlace);
 
             HasMany<DJ_TourGroupMember>(x => x.Members);
             HasMany<DJ_Group_Vehicle>(x => x.Vehicles);

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using Model;
 using System.Web.Security;
+using NHibernate;
 namespace BLL
 {
-    public class BLLMembership
+    public class BLLMembership:DAL.DalBase
     {
         IDAL.IMembership dal = new DAL.DALMembership();
 
@@ -172,6 +173,13 @@ namespace BLL
             dal.ChangeInfo(tm);
         }
 
+        public TourMembership GetMgrDptAdmin(Guid dptId)
+        {
+            string sqlstr = "select a from DJ_User_Gov a where a.GovDpt.Id = '" + dptId + "'";
+            IQuery query = session.CreateQuery(sqlstr);
+
+            return query.FutureValue<Model.TourMembership>().Value;
+        }
       
     }
 }

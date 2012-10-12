@@ -11,6 +11,11 @@ namespace BLL
     {
         IDJTourGroup Idjtourgroup = new DALDJTourGroup();
 
+        public IList<Model.DJ_TourGroup> GetTourGroupByAll()
+        {
+            return Idjtourgroup.GetTourGroupByAll();
+        }
+
         public IList<Model.DJ_TourGroup> GetTourGroupByGuideIdcard(string idcard)
         {
             return Idjtourgroup.GetTourGroupByGuideIdcard(idcard);

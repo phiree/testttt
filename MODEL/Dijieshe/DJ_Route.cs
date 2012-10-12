@@ -17,22 +17,11 @@ namespace Model
         /// 第几天.
         /// </summary>
         public virtual int DayNo { get; set; }
-        public virtual int BeginTime { get; set; }
-
-        public virtual int EndTime { get; set; }
 
         public virtual DJ_TourEnterprise Enterprise { get; set; }
 
         public virtual string Description { get; set; }
 
         public virtual DJ_TourGroup DJ_TourGroup { get; set; }
-    /// <summary>
-    /// 在目标地点干嘛: 用餐/游览/集合/购物
-    /// </summary>
-        public virtual string Behavior { get; set; }
-
-        public virtual DJ_Product DJ_Product { get; set; }
-
-        
     }
 }
