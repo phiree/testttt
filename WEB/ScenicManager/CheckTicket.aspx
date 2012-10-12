@@ -145,7 +145,7 @@
     <div id="listname" class="yklist" style="display: none;">
         <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom: 0px;
             width: 200px; table-layout: fixed">
-            <tr style="width: 150px; background-color: #E9E9E9">
+            <tr style="width: 170px; background-color: #E9E9E9">
                 <td style="width:60px;padding: 0px; padding-right: 0px; padding-left: 0px; padding-right: 0px;">
                     <span style="display: block; width: 60px; margin: 0px; margin-left: 0px; margin-right: 0px;">
                         姓名</span>
@@ -153,14 +153,18 @@
                 <td style="width: 135px; padding-left: 0px; padding-right: 0px;">
                     <span style="display: block; width: 135px">身份证号</span>
                 </td>
+                <td style="width: 40px; padding-left: 0px; padding-right: 0px;">
+                    类型
+                </td>
             </tr>
         </table>
-        <div style="margin-right: 10px; padding: 0px; height: 250px; width: 215px; overflow-x: hidden;
+        <div style="margin-right: 10px; padding: 0px; height: 250px; width: 245px; overflow-x: hidden;
             overflow-y: auto;">
-            <asp:Repeater ID="rptpeopleinfo" runat="server">
+            <asp:Repeater ID="rptpeopleinfo" runat="server" 
+                onitemdatabound="rptpeopleinfo_ItemDataBound">
             <HeaderTemplate>
                 <table cellpadding="0" cellspacing="0" style="display: block; margin-bottom: 0px;
-                        border-top: 0px none; width: 200px; table-layout: fixed">
+                        border-top: 0px none; width: 240px; table-layout: fixed">
             </HeaderTemplate>
             <ItemTemplate>
                 <tr  onmouseover="cgbg(this)" onmouseout="cgbg2(this)" style="cursor:pointer;">
@@ -172,6 +176,9 @@
                     <td style="width: 135px; background-color: #F7F7F7; padding: 0px;" onclick="btnselectname(this)">
                         <span style="display: block; width: 125px">
                             <%# Eval("IdCard") %></span>
+                    </td>
+                    <td style="width: 40px; padding-left: 0px; padding-right: 0px;">
+                        <asp:Literal ID="laType" runat="server"></asp:Literal>
                     </td>
                 </tr>
             </ItemTemplate>

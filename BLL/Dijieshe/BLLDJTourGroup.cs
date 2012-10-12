@@ -25,11 +25,17 @@ namespace BLL
         {
             List<Model.DJ_TourGroup> listTg= Idjtourgroup.GetTourGroupByTEId(id).ToList();
             List<Model.DJ_Group_Worker> listGw = new List<Model.DJ_Group_Worker>();
+            List<Model.DJ_Group_Worker> listGw2 = new List<Model.DJ_Group_Worker>();
             foreach (Model.DJ_TourGroup tg in listTg)
             {
                 listGw.AddRange(tg.Workers.Where(x => x.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>());
             }
-            return listGw;
+            foreach (IGrouping<Guid, Model.DJ_Group_Worker> item in listGw.GroupBy(x => x.Id).ToDictionary(x => x.Key).Values)
+	        {
+                listGw2.Add(new DALDJ_Group_Worker().GetById(item.Key));
+	        }
+            return listGw2;
+            
         }
         public Model.DJ_TourGroup GetTgByproductid(Guid proid)
         {
@@ -68,5 +74,6 @@ namespace BLL
         {
             return Idjtourgroup.GetGuiderWorkerByTE(TE).Where(x => x.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>();
         }
+
     }
 }

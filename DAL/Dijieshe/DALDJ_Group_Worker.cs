@@ -15,5 +15,13 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_TourGroup>().ToList<Model.DJ_TourGroup>();
         }
+
+
+
+
+        public Model.DJ_Group_Worker GetById(Guid id)
+        {
+            return session.Get<Model.DJ_Group_Worker>(id);
+        }
     }
 }
