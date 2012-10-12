@@ -52,7 +52,7 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
         //tbxEndTime.Text = CurrentRoute.EndTime.ToString();
         tbxDayNo.Text = CurrentRoute.DayNo.ToString();
         tbxEnterprise.Text = CurrentRoute.Enterprise.Name;
-        rblBehavior.SelectedValue = CurrentRoute.Behavior;
+        //rblBehavior.SelectedValue = CurrentRoute.Behavior;
 
 
     }
@@ -61,7 +61,7 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
     {
         //CurrentRoute.BeginTime = Convert.ToInt32(tbxBeginTime.Text);
         //CurrentRoute.EndTime = Convert.ToInt32(tbxEndTime.Text);
-        CurrentRoute.Behavior = rblBehavior.SelectedValue;
+        //CurrentRoute.Behavior = rblBehavior.SelectedValue;
 
         CurrentRoute.DayNo = Convert.ToInt16(tbxDayNo.Text);
         IList<DJ_TourEnterprise> djs = bllDJS.GetDJS8name(tbxEnterprise.Text);
