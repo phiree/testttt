@@ -38,8 +38,12 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
             DJ_GovManageDepartment mgrDpt = e.Row.DataItem as DJ_GovManageDepartment;
             TourMembership member = bllMember.GetMgrDptAdmin(mgrDpt.Id);
             Label lblAdmin = e.Row.FindControl("lblAdmin") as Label;
-            lblAdmin.Text = member.Name;
-
+            Button btnSetAdmin = e.Row.FindControl("btnSetAdmin") as Button;
+            if (member != null)
+            {
+                lblAdmin.Text = member.Name;
+                btnSetAdmin.Visible = false;
+            }
         }
     }
     protected void gv_RowCommand(object sender, GridViewCommandEventArgs e)

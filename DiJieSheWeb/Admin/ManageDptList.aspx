@@ -19,7 +19,7 @@
             <asp:HyperLinkField HeaderText="操作" Text="编辑" DataNavigateUrlFields="Id" DataNavigateUrlFormatString="ManageDptEdit.aspx?dptid={0}" />
             <asp:TemplateField>
             <ItemTemplate>
-           <asp:Label runat="server" ID="lblAdmin"></asp:Label>  <asp:Button runat="server" ID="btnSetAdmin" CommandName="SetAdmin" CommandArgument='<%#Eval("Id") %>' />
+           <asp:Label runat="server" ID="lblAdmin"></asp:Label>  <asp:Button runat="server" Text="生成管理员" ID="btnSetAdmin" CommandName="SetAdmin" CommandArgument='<%#Eval("Id") %>' />
             </ItemTemplate>
             </asp:TemplateField>
         </Columns>
