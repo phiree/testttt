@@ -18,7 +18,7 @@ h5
 {
     margin-bottom:10px;
 }
-.searchdiv label
+.searchdiv label,label
 {
     font-weight:normal;
 }
@@ -57,6 +57,10 @@ h5
     color:#009383;
     cursor:pointer;
     border:none;
+}
+.rbl td,.rbl table,.rbl
+{
+    border:none !important;
 }
 /*验票页面的样式*/
 .yklist

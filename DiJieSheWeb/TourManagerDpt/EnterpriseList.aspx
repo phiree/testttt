@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true"
-    CodeFile="EnterpriseList.aspx.cs" Inherits="Admin_EnterpriseList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master" AutoEventWireup="true"
+    CodeFile="EnterpriseList.aspx.cs" Inherits="TourManagerDpt_EnterpriseList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
     <div class="detail_titlebg">
@@ -15,8 +15,8 @@
             <tr>
             <td>企业类型</td>
             <td>名称</td>
-                       <td>修改</td>
-                                  <td>管理员</td>
+                       <td>查看</td>
+                                 
                                   <td>认证状态</td>
             </tr>
         </HeaderTemplate>
@@ -28,13 +28,8 @@
                 <td>
                     <%#Eval("Name") %>
                 </td>
-                <td><a href='enterpriseedit.aspx?entid=<%#Eval("Id") %>'>修改企业信息</a></td>
-                <td>
-                <asp:Label runat="server" ID="lblAdmin"></asp:Label>
-                    <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' Text="指派" ID="btnadmin"
-                        CommandName="AddAdmin" CssClass="btn" />
-                       
-                </td>
+                <td><a href='#'>查看企业信息</a></td>
+               
                 <td>
                 <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"
                  CommandName="SetVerify"  />

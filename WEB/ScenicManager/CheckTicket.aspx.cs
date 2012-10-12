@@ -607,4 +607,21 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         return true;
     }
     #endregion
+    protected void rptpeopleinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            TicketAssign ta = e.Item.DataItem as TicketAssign;
+            Literal laType = e.Item.FindControl("laType") as Literal;
+            List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList();
+            if (listdjGW.Where(x => x.IDCard == ta.IdCard).Count() > 0)
+            {
+                laType.Text = "导游";
+            }
+            else
+            {
+                laType.Text = "个人";
+            }
+        }
+    }
 }

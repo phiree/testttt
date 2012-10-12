@@ -9,5 +9,6 @@ namespace IDAL
     public interface IDJ_Group_Worker
     {
         IList<DJ_TourGroup> GetTgListByIdcard(string idcard);
+        DJ_Group_Worker GetById(Guid id);
     }
 }

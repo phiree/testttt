@@ -72,7 +72,7 @@ namespace DAL
         /// <returns></returns>
         public IList<Model.DJ_TourEnterprise> GetDJSInAreas(string areaids)
         {
-            string where = " D.Area.Id in ( " + areaids + ")";
+            string where = " and  D.Area.Id in ( " + areaids + ")";
 
             return GetDJS8Multi(where);
 

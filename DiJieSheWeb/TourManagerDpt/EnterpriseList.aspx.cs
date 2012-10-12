@@ -10,7 +10,7 @@ using CommonLibrary;
 /// <summary>
 /// 政府部门数据导入
 /// </summary>
-public partial class Admin_EnterpriseList : System.Web.UI.Page
+public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,7 +22,8 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
 
     protected void BindList()
     {
-        rpt.DataSource = bllDJEnt.GetDjs8all();
+        rpt.DataSource = bllDJEnt.GetDJSForDpt(CurrentDpt.Area.Code);
+     
         rpt.DataBind();
     }
     protected void rpt_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -30,15 +31,7 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
-            Label lblAdmin = e.Item.FindControl("lblAdmin") as Label;
-            DJ_User_TourEnterprise user = bllDjUser.GetUser_TEbyId(ent.Id);
-            Button btn = e.Item.FindControl("btnadmin") as Button;
-            if (user != null)
-            {
-                lblAdmin.Text = user.Name;
-                btn.Visible = false;
-
-            }
+           
             Button btnVerify = e.Item.FindControl("btnSetVerify") as Button;
             if (ent.IsVeryfied)
             {
@@ -56,20 +49,7 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
     {
         int entId = int.Parse(e.CommandArgument.ToString());
 
-        if (e.CommandName.ToLower() == "addadmin")
-        {
-          
-            string loginname = "entAdmin_" + entId;
-            DJ_User_TourEnterprise djuserent = new DJ_User_TourEnterprise();
-            djuserent.Enterprise = bllDJEnt.GetDJS8id(entId.ToString())[0];
-            djuserent.Name = loginname;
-            djuserent.Password=  System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
-            bllMember.CreateUpdateMember(djuserent);
-         
-
-
-        }
-
+       
         if (e.CommandName.ToLower() == "setverify")
         {
             DJ_TourEnterprise ent = bllDJEnt.GetDJS8id(entId.ToString())[0];

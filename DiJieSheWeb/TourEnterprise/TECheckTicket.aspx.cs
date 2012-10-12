@@ -39,13 +39,22 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         if (txtTE_info.Text.Trim() != "")
         {
             string[] strinfos = txtTE_info.Text.Trim().Split('/');
-            string idcard = strinfos[1];
-            ViewState["idcard"] = idcard;
-            BindRptByIdcard(idcard);
+            if (strinfos.Length > 1)
+            {
+                string idcard = strinfos[1];
+                ViewState["idcard"] = idcard;
+                BindRptByIdcard(idcard);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+                txtTE_info.Text = "";
+            }
         }
         else
         {
             ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+            txtTE_info.Text = "";
         }
     }
 

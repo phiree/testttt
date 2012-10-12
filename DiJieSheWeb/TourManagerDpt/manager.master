@@ -5,8 +5,9 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="cphFunction" runat="server">
 <ul>
-<li><a href="/tourmanagerdpt/default.aspx">企业列表</a></li>
-<li><a href="">地接社列表</a></li>
+<li><a href="/tourmanagerdpt/EnterpriseList.aspx">企业列表</a></li>
+<li><a href="DjsList.aspx">地接社列表</a></li>
+<li><a href="DjsList.aspx">制订奖励规则</a></li>
 </ul>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
