@@ -78,7 +78,6 @@ namespace ExcelOplib
             }
         }
 
-
         public List<Entity.GroupMember> getMemberlist(string path)
         {
             try
@@ -128,7 +127,6 @@ namespace ExcelOplib
                 return null;
             }
         }
-
 
         public List<Entity.GroupRoute> getRoutelist(string path)
         {

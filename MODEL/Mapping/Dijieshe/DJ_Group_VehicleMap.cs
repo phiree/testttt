@@ -14,7 +14,7 @@ namespace Model.Mapping
             Map(x=>x.Brand);
             Map(x => x.Capacity);
             Map(x => x.VehicleNo);
-            References<DJ_TourGroup>(x => x.Group);
+            References<DJ_TourGroup>(x => x.Group).Cascade.All();
            
            
         }

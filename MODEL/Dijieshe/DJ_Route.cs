@@ -23,9 +23,5 @@ namespace Model
         public virtual string Description { get; set; }
 
         public virtual DJ_TourGroup DJ_TourGroup { get; set; }
-    /// <summary>
-    /// 在目标地点干嘛: 饭店/景点/购物/住宿
-    /// </summary>
-        public virtual string Behavior { get; set; }
     }
 }

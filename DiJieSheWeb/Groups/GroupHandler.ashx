@@ -23,6 +23,8 @@ public class GroupHandler : IHttpHandler
         tg.DaysAmount = int.Parse(ga.GroupBasic.Days);
         tg.AdultsAmount = int.Parse(ga.GroupBasic.PeopleAdult);
         tg.ChildrenAmount = int.Parse(ga.GroupBasic.PeopleChild);
+        tg.Gether = ga.GroupBasic.StartPlace;
+        tg.BackPlace = ga.GroupBasic.EndPlace;
 
         //人员信息
         var tgmlist = new System.Collections.Generic.List<Model.DJ_TourGroupMember>();
@@ -89,7 +91,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "饭店",
+                    Description="早餐",
                     Enterprise = bllDJS.GetDJS8name(item.Breakfast)[0]
                 });
             }
@@ -99,7 +101,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "饭店",
+                    Description = "中餐",
                     Enterprise = bllDJS.GetDJS8name(item.Lunch)[0]
                 });
             }
@@ -109,7 +111,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "饭店",
+                    Description = "晚餐",
                     Enterprise = bllDJS.GetDJS8name(item.Dinner)[0]
                 });
             }
@@ -119,7 +121,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "住宿",
+                    Description = "住宿1",
                     Enterprise = bllDJS.GetDJS8name(item.Hotel1)[0]
                 });
             }
@@ -129,7 +131,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "住宿",
+                    Description = "住宿2",
                     Enterprise = bllDJS.GetDJS8name(item.Hotel2)[0]
                 });
             }
@@ -139,7 +141,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "景点",
+                    Description = "景点1",
                     Enterprise = bllDJS.GetDJS8name(item.Scenic1)[0]
                 });
             }
@@ -149,7 +151,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "景点",
+                    Description = "景点2",
                     Enterprise = bllDJS.GetDJS8name(item.Scenic2)[0]
                 });
             }
@@ -159,7 +161,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "景点",
+                    Description = "景点3",
                     Enterprise = bllDJS.GetDJS8name(item.Scenic3)[0]
                 });
             }
@@ -169,7 +171,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "景点",
+                    Description = "景点4",
                     Enterprise = bllDJS.GetDJS8name(item.Scenic4)[0]
                 });
             }
@@ -179,7 +181,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "景点",
+                    Description = "景点5",
                     Enterprise = bllDJS.GetDJS8name(item.Scenic5)[0]
                 });
             }
@@ -189,7 +191,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "购物",
+                    Description = "购物点",
                     Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint1)[0]
                 });
             }
@@ -199,7 +201,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "购物",
+                    Description = "购物点2",
                     Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint2)[0]
                 });
             }
@@ -209,7 +211,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "购物",
+                    Description = "购物点3",
                     Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint3)[0]
                 });
             }
@@ -219,7 +221,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "购物",
+                    Description = "购物点4",
                     Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint4)[0]
                 });
             }
@@ -229,7 +231,7 @@ public class GroupHandler : IHttpHandler
                 {
                     DayNo = i,
                     DJ_TourGroup = tg,
-                    Behavior = "购物",
+                    Description = "购物点5",
                     Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint5)[0]
                 });
             }

@@ -8,6 +8,7 @@ namespace IDAL
 {
     public interface IDJTourGroup
     {
+        IList<Model.DJ_TourGroup> GetTourGroupByAll();
         IList<DJ_TourGroup> GetTourGroupByGuideIdcard(string idcard);
         DJ_TourGroup GetTourGroupById(Guid id);
         IList<DJ_TourGroup> GetTourGroupByTEId(int id);

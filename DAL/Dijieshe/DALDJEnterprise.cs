@@ -64,6 +64,28 @@ namespace DAL
             return query.Future<Model.DJ_TourEnterprise>().ToList<Model.DJ_TourEnterprise>();
         }
 
+        /// <summary>
+        /// 多个区域内的旅游企业
+        /// </summary>
+        ///      <param name="areaIds">辖区对应的areaid, 用逗号隔开</param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public IList<Model.DJ_TourEnterprise> GetDJSInAreas(string areaids)
+        {
+            string where = " D.Area.Id in ( " + areaids + ")";
+
+            return GetDJS8Multi(where);
+
+        }
+
+        private IList<Model.DJ_TourEnterprise> GetDJS8Multi(string where)
+        {
+            string sql = "select D from DJ_TourEnterprise D where 1=1  ";
+            sql = sql + where;
+            IQuery query = session.CreateQuery(sql);
+            return query.List<Model.DJ_TourEnterprise>();
+        }
+
         #endregion
 
         #region group
@@ -180,5 +202,6 @@ namespace DAL
         }
 
         #endregion
+
     }
 }
