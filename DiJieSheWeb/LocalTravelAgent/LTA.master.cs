@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.Security;
 using Model;
 using BLL;
+using System.Web.UI.HtmlControls;
 
 public partial class LocalTravelAgent_LTA : System.Web.UI.MasterPage
 {
@@ -28,6 +29,7 @@ public partial class LocalTravelAgent_LTA : System.Web.UI.MasterPage
         {
             Response.Redirect("/Login.aspx");
         }
+        (Master.FindControl("changepwd") as HtmlAnchor).HRef = "/LocalTravelAgent/ChangePwd.aspx";
         base.OnInit(e);
     }
 }

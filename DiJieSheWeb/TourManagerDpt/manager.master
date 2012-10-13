@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="manager.master.cs"
     Inherits="TourManagerDpt_manager" %>
-
+<%@ MasterType VirtualPath="/m.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
 </asp:Content>

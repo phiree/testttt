@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="EnterpriseDetail.ascx.cs"
+﻿ <%@ Control Language="C#" AutoEventWireup="true" CodeFile="EnterpriseDetail.ascx.cs"
     Inherits="UC_EnterpriseDetail" %>
 <table>
     <tr>

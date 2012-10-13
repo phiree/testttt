@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="Groups.master.cs"
     Inherits="Groups_Groups" %>
-
+    <%@ MasterType VirtualPath="/m.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>

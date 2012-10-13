@@ -29,11 +29,11 @@
                 <div id="pageTop">
                     <div class="userinfo">
                         <div class="username">
-                            当前单位:<span style="color:#006E5A;margin-right:10px;">杭州米胖旅游社</span>
+                            当前单位:<span style="color:#006E5A;margin-right:10px;"><asp:Literal ID="laETName" runat="server"></asp:Literal></span>
                             用户:<asp:LoginName ID="LoginName1" runat="server" CssClass="userFontType" />
                         </div>
                         <div class="useraction">
-                            <a href="/Login.aspx">修改密码</a>
+                            <a runat="server" id="changepwd" href="/Login.aspx">修改密码</a>
                             <asp:LoginStatus  runat="server" />
                         </div>
                     </div>
