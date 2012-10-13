@@ -2,8 +2,7 @@
     CodeFile="GroupInfo.aspx.cs" Inherits="Groups_GroupInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script src="../Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
-    <script src="../Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script type="text/javascript">
 
         function calc() {
@@ -215,7 +214,11 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <!-- 基本信息begin -->
+    <div class="detail_titlebg">
+        基本信息导入
+    </div>
+    <div class="detaillist">
+        <!-- 基本信息begin -->
     <div>
         团队名称：<h6 id="txtName">
         </h6>
@@ -262,27 +265,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>
-                        <%--<select>
-                        <option value='成人游客'>成人游客</option>
-                        <option value='儿童游客'>儿童游客</option>
-                        <option value='导游'>导游</option>
-                        <option value='司机'>司机</option>
-                    </select>--%>
-                    </td>
-                    <td>
-                        <%--<input type='text' />--%>
-                    </td>
-                    <td>
-                        <%--<input type='text' />--%>
-                    </td>
-                    <td>
-                        <%--<input type='text' />--%>
-                    </td>
-                    <%--<td>
-                    <input type='hidden' /><input type='hidden' />
-                    <input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' />
-                </td>--%>
+                    
                 </tr>
             </tbody>
         </table>
@@ -328,18 +311,20 @@
         导入信息操作步骤:
     </p>
     <ol>
-        <li>点击“浏览”，选择要导入的excel文件 </li>
-        <br />
-        注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题
+        <li>点击“浏览”，选择要导入的excel文件 <br />
+        
+        注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题</li>
         <li>点击“上传”，将文件上传到服务器 </li>
         <li>点击“导入数据”，将excel内容导入到表格中 </li>
         <li>点击“确定”，存储表格数据 </li>
     </ol>
     <asp:FileUpload ID="FileUpload1" runat="server" />
     <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
-        OnClick="btnUpload_Click" />
-    <input id="btnExcel" type="button" name="name" value="导入数据" />
-    <asp:Label ID="Label1" runat="server" Text="Label" Visible="True"></asp:Label>
-    <input type="button" value="保存" onclick="calc()" />
+        OnClick="btnUpload_Click"  CssClass="btn"/>
+    <input id="btnExcel" type="button" name="name" value="导入数据" class="btn" />
+    <asp:Label ID="Label1" runat="server" Text="" Visible="True"></asp:Label>
+    <input type="button" value="保存" onclick="calc()" class="btn" />
     <!-- 操作end -->
+    </div>
+    
 </asp:Content>

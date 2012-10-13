@@ -2,6 +2,7 @@
     Inherits="Groups_Groups" %>
     <%@ MasterType VirtualPath="/m.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
@@ -9,13 +10,8 @@
     <ul class="nav">
         <li id="djsBlock">
             <ul class="nav">
-                <li><span>地接社</span></li>
-                <li style="background-color: #009383; height: 15px; display: block; line-height: 0px">
-                </li>
                 <li><a href="/Groups/GroupInfo.aspx">团队信息导入</a></li>
                 <li><a href="/Groups/Grouplist.aspx">团队信息列表</a></li>
-                <li style="background-color: #009383; height: 15px; display: block; line-height: 0px">
-                </li>
             </ul>
         </li>
     </ul>
