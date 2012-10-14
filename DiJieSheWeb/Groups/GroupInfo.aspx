@@ -73,7 +73,6 @@
                 datas += "\"},"; //最后记得去掉这个,逗号
             });
             datas = datas.substring(0, datas.length - 1) + "]}";
-            alert(datas);
 
             $.ajax({
                 type: "Post",
