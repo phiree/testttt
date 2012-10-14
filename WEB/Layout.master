@@ -16,8 +16,8 @@
             </asp:ContentPlaceHolder>
         </div>
         <div class="disright">
-            <a href="#">
-                <img src="/theme/default/image/newversion/discountticket.png" width="195px" height="132px"
+            <a>
+                <img src="/Img/农行2级.jpg" width="190px" height="140px"
                     alt="明信片优惠" />
             </a>
             <div class="moddiv" runat="server" id="likemod">

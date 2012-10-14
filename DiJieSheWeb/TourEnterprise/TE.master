@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="TE.master.cs"
     Inherits="TourEnterprise_TE" %>
-
+<%@ MasterType VirtualPath="/m.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
     

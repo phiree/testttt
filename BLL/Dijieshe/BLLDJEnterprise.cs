@@ -8,7 +8,7 @@ namespace BLL
     public class BLLDJEnterprise
     {
         IDAL.IDJEnterprise daldjs = new DAL.DALDJEnterprise();
-
+        DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
         #region DJS
         /// <summary>
         /// 
@@ -57,6 +57,7 @@ namespace BLL
         {
             return GetDJS8Muti(areaid, null, null, null);
         }
+        
 
         /// <summary>
         /// 查询地接社
@@ -111,6 +112,10 @@ namespace BLL
         public IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike)
         {
             return daldjs.GetDJS8Muti(areaid, type, id, namelike);
+        }
+        public IList<Model.DJ_TourEnterprise> GetEntListWithoutScenic()
+        {
+            return dalEnt.GetEnterpriseWithoutScenic(string.Empty);
         }
         #endregion
 

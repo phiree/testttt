@@ -482,7 +482,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
             foreach (DJ_Route route in tourgroup.Routes)
             {
-                if (tourgroup.BeginDate.AddDays(route.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == Master.Scenic.Id)
+                if (tourgroup.BeginDate.AddDays(route.DayNo-1).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == Master.Scenic.Id)
                 {
                     hfroute.Value = route.Id.ToString();
                     Literal laIsChecked = e.Item.FindControl("laIsChecked") as Literal;

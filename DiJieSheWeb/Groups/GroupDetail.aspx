@@ -4,6 +4,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+    <div class="detail_titlebg">
+        团队详细信息
+    </div>
+    <div class="detaillist">
     <!-- 基本信息begin -->
     <div>
         <p>
@@ -42,7 +46,7 @@
                             </td>
                             <td>
                                 联系方式
-                            </td
+                            </td>
                             <td>
                                 证件号
                             </td>
@@ -167,4 +171,5 @@
         </FooterTemplate>
     </asp:Repeater>
     <!-- 行程end -->
+    </div>
 </asp:Content>

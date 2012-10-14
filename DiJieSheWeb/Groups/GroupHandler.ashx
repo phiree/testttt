@@ -243,6 +243,7 @@ public class GroupHandler : IHttpHandler
 
         //汇总信息
         djEnterprice.AddGroup(tg);
+        context.Response.Write("成功");
     }
 
     public bool IsReusable

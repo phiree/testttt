@@ -23,9 +23,10 @@ namespace BLL
             {
                 foreach (Model.DJ_Route route in tg.Routes)
                 {
-                    if (tg.BeginDate.AddDays(route.DayNo) <= time &&tg.BeginDate.AddDays(route.DayNo)>=DateTime.Now&& route.Enterprise.Id == teid)
+                    if (DateTime.Parse(tg.BeginDate.AddDays(route.DayNo - 1).ToShortDateString()) <= DateTime.Parse(time.ToShortDateString()) && DateTime.Parse(tg.BeginDate.AddDays(route.DayNo - 1).ToShortDateString())>=DateTime.Parse(DateTime.Now.ToShortDateString()) && DateTime.Parse(tg.EndDate.ToShortDateString()) >= DateTime.Parse(DateTime.Now.ToShortDateString()) && route.Enterprise.Id == teid)
                     {
-                        ListTg.Add(tg);
+                        if (new DAL.DALDJ_GroupConsumRecord().GetGroupConsumRecordByRouteId(route.Id)==null)
+                            ListTg.Add(tg);
                     }
                 }
             }
