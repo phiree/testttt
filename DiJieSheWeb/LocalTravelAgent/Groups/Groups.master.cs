@@ -22,7 +22,7 @@ public partial class Groups_Groups : System.Web.UI.MasterPage
         DJ_User_TourEnterprise DJ_User_Ent = null;
         if (mu != null)
         {
-            DJ_User_Ent = new BLLMembership().GetMemberById((Guid)mu.ProviderUserKey) as DJ_User_TourEnterprise;
+            DJ_User_Ent = new BLLMembership().GetMemberById((Guid)mu.ProviderUserKey) as DJ_User_T ourEnterprise;
         }
         if (mu == null || mu.UserName == string.Empty || DJ_User_Ent == null)
         {
