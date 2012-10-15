@@ -9,8 +9,8 @@
   <div>
         <ul>
             <li><a href="/localtravelagent/djsedit.aspx">信息维护</a> </li>
-            <li><a href="/Groups/GroupList.aspx">团队列表</a></li>
-                <li><a href="/Groups/GroupInfo.aspx">团队信息导入</a></li>
+            <li><a href="/localtravelagent/Groups/GroupList.aspx">团队列表</a></li>
+                <li><a href="/localtravelagent/Groups/GroupInfo.aspx">团队信息导入</a></li>
               <li><a href="#">统计信息</a></li>
               
         </ul>
