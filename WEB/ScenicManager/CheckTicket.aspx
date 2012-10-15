@@ -123,6 +123,8 @@
             </asp:Repeater>
             <div class="yptg">
                 <asp:Button ID="Btnckpass" runat="server" CssClass="btnckpass" OnClick="Btnckpass_Click" />
+                <asp:Button ID="BtnPrint" runat="server" CssClass="btnckprint" 
+                    onclick="BtnPrint_Click" />
             </div>
             
         </div>

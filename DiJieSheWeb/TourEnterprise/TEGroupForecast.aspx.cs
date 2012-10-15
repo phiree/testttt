@@ -10,6 +10,7 @@ using Model;
 public partial class TourEnterprise_TEGroupForecast : System.Web.UI.Page
 {
     BLLDJRoute BLLDJRoute = new BLLDJRoute();
+    int Index = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -48,14 +49,9 @@ public partial class TourEnterprise_TEGroupForecast : System.Web.UI.Page
         {
             Literal laArriveTime = e.Item.FindControl("ArriveTime") as Literal;
             DJ_TourGroup group = e.Item.DataItem as DJ_TourGroup;
-            foreach (DJ_Route route in group.Routes)
-            {
-                if (route.Enterprise.Id == Master.CurrentTE.Id)
-                {
-                    //laArriveTime.Text = group.BeginDate.AddDays(route.DayNo).ToString("yyyy年MM月dd日")+route.BeginTime+"点";
-                    laArriveTime.Text = group.BeginDate.AddDays(route.DayNo-1).ToString("yyyy年MM月dd日") + "点";
-                }
-            }
+            List<DJ_Route> ListRoute = group.Routes.Where(x => x.Enterprise.Id == Master.CurrentTE.Id).ToList<DJ_Route>();
+            laArriveTime.Text = group.BeginDate.AddDays(ListRoute[Index].DayNo - 1).ToString("yyyy年MM月dd日");
+            Index++;
         }
     }
 }

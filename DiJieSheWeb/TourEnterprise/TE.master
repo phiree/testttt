@@ -10,9 +10,9 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphFunction" runat="server">
     <ul class="nav">
-        <li><a href="/TourEnterprise/TEGroupForecast.aspx">预知</a></li>
-        <li><a href="/TourEnterprise/TECheckTicket.aspx">刷卡</a></li>
-        <li><a href="/TourEnterprise/TEStatistics.aspx">信息统计</a></li>
+        <li><a href="/TourEnterprise/TEGroupForecast.aspx">预订单详情</a></li>
+        <li><a href="/TourEnterprise/TECheckTicket.aspx">验证</a></li>
+        <li><a href="/TourEnterprise/TEStatistics.aspx">统计</a></li>
     </ul>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">

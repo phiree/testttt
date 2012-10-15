@@ -67,6 +67,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         detailinfo.Visible = false;
         ywdiv.Visible = false;
         rptguiderinfo.Visible = false;
+        BtnPrint.Visible = false;
     }
     
     /// <summary>
@@ -279,6 +280,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                         DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
                         bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
                         IsSuccess = 1;
+                        BtnPrint.Visible = true;
                     }
                 }
             }
@@ -449,7 +451,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     public void bindTicketInfo(string name, string idcard)
     {
         username.InnerHtml = name;
-        useridcard.InnerHtml = idcard;
+        useridcard.InnerHtml = idcard.Substring(0,5)+"XXXXXXXXX"+idcard.Substring(14);
         //预定
         CurrentScenic = Master.Scenic;
         ViewState["idcard"] = idcard;
@@ -467,6 +469,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         else
             rptpayonline.Visible = true;
         //导游信息
+        BtnPrint.Visible = false;
         rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTE(idcard, CurrentScenic);
         rptguiderinfo.DataBind();
         ShowResult();
@@ -493,8 +496,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     {
                         laIsChecked.Text = "已验证";
                         selectItem.Enabled = false;
+                        selectItem.Checked = true;
                         tbAdult.Enabled = false;
                         tbChild.Enabled = false;
+                        BtnPrint.Visible = true;
                     }
                     else
                     {
@@ -623,5 +628,19 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 laType.Text = "个人";
             }
         }
+    }
+    protected void BtnPrint_Click(object sender, EventArgs e)
+    {
+        string routeids = "";
+        foreach (RepeaterItem item in rptguiderinfo.Items)
+        {
+            CheckBox selectItem = item.FindControl("selectItem") as CheckBox;
+            if (!selectItem.Enabled)
+            {
+                HiddenField hfrouteId = item.FindControl("hfrouteId") as HiddenField;
+                routeids += hfrouteId.Value;
+            }
+        }
+        Response.Redirect("/ScenicManager/PrintCer.aspx?routeids="+routeids);
     }
 }

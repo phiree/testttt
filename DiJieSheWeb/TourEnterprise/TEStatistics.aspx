@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
     <div class="detail_titlebg">
-        统计详情
+        统计
     </div>
         <div class="searchdiv">
         <h5>按时间进行查询</h5>
