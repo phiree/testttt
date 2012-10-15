@@ -48,7 +48,7 @@ public class ExcelHandler : IHttpHandler {
         }
 
         html += @"{""Name"":""" +  groupall.GroupBasic.Name
-            + @""",""Bedate"":""" + groupall.GroupBasic.Begindate + "-" + groupall.GroupBasic.Enddate
+            + @""",""Bedate"":""" + DateTime.Parse(groupall.GroupBasic.Begindate).ToShortDateString() + "-" + DateTime.Parse(groupall.GroupBasic.Enddate).ToShortDateString()
             + @""",""Days"":""" +  groupall.GroupBasic.Days
             + @""",""PeopleTotal"":""" + groupall.GroupBasic.PeopleTotal
             + @""",""PeopleAdult"":""" + groupall.GroupBasic.PeopleAdult

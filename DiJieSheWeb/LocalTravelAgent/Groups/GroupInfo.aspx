@@ -222,33 +222,76 @@
     <div class="detail_titlebg">
         基本信息导入
     </div>
-    <div class="detaillist">
         <!-- 基本信息begin -->
-    <div>
-        团队名称：<h6 id="txtName">
-        </h6>
-        <br />
-        起止时间：<h6 id="txtDate">
-        </h6>
-        天数：<h6 id="txtDays">
-        </h6>
-        <br />
-        人数：<h6 id="txtPnum">
-        </h6>
-        成人：<h6 id="txtPadult">
-        </h6>
-        儿童：<h6 id="txtPchild">
-        </h6>
-        <br />
-        上车集合点：<h6 id="txtGether">
-        </h6>
-        返程点：<h6 id="txtBack">
-        </h6>
-    </div>
+    <div class="detaillist">
+        <div class="detailtitle">
+            基本信息
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width:15%">
+                    团队名称：
+                </td>
+                <td>
+                    <h6 id="txtName"></h6>
+                </td>
+                <td style="width:15%">
+                   起止时间：
+                </td>
+                <td>
+                    <h6 id="txtDate"></h6>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    游玩天数：
+                </td>
+                <td>
+                    <h6 id="txtDays"></h6>
+                </td>
+                <td>
+                    游玩人数：
+                </td>
+                <td>
+                    <h6 id="txtPnum"> </h6>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    成人人数：
+                </td>
+                <td>
+                    <h6 id="txtPadult"></h6>
+                </td>
+                <td>
+                    儿童人数：
+                </td>
+                <td>
+                    <h6 id="txtPchild"></h6>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    上车集合点：
+                </td>
+                <td>
+                    <h6 id="txtGether">
+                </td>
+                <td>
+                    返程点：
+                </td>
+                <td>
+                    <h6 id="txtBack"></h6>
+                </td>
+            </tr>
+        </table>
+    
     <!-- 基本信息end -->
     <!-- 人员begin -->
-    <div>
-        <table class="tableMemberid" id="tbMember">
+    <div class="detailtitle">
+            人员信息
+        </div>
+        <table class="tableMemberid" id="tbMember" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
                     <td>
@@ -274,10 +317,11 @@
                 </tr>
             </tbody>
         </table>
-    </div>
     <!-- 人员end -->
     <!-- 行程begin -->
-    <div>
+    <div class="detailtitle">
+            行程信息
+        </div>
         <table id="tbRoute">
             <thead>
                 <tr>
@@ -312,10 +356,11 @@
     <!-- 操作begin -->
     <hr />
     <input type="hidden" id="hidden_scid" runat="server" />
-    <p>
+    <div class="detaillist">
+    <p style="margin-left:5px;margin-top:5px;margin-bottom:5px;color:#999999">
         导入信息操作步骤:
     </p>
-    <ol>
+    <ol style="margin-left:5px;color:#999999">
         <li>点击“浏览”，选择要导入的excel文件 <br />
         
         注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题</li>
@@ -327,7 +372,7 @@
     <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
         OnClick="btnUpload_Click"  CssClass="btn"/>
     <input id="btnExcel" type="button" name="name" value="导入数据" class="btn" />
-    <asp:Label ID="Label1" runat="server" Text="" Visible="True"></asp:Label>
+    <asp:Label ID="Label1" runat="server" Text="" Visible="True" style=" display:none"></asp:Label>
     <input type="button" value="保存" onclick="calc()" class="btn" />
     <!-- 操作end -->
     </div>
