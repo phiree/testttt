@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Groups/Groups.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true"
     CodeFile="Grouplist.aspx.cs" Inherits="Groups_Grouplist" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -38,10 +38,10 @@
             <tbody>
                 <tr>
                         <td>
-                            <a href='/Groups/GroupDetail.aspx?id=<%#Eval("Id")%>'><%#Eval("Name")%></a>
+                            <a href='/LocalTravelAgent/Groups/GroupDetail.aspx?id=<%#Eval("Id")%>'><%#Eval("Name")%></a>
                         </td>
                         <td>
-                        <%#Eval("BeginDate") + "-" + Eval("EndDate")%>
+                        <%#((DateTime)Eval("BeginDate")).ToShortDateString() + "-" + ((DateTime)Eval("EndDate")).ToShortDateString()%>
                         </td>
                         <td>
                         <%#int.Parse(Eval("AdultsAmount").ToString()) + int.Parse(Eval("AdultsAmount").ToString())%>

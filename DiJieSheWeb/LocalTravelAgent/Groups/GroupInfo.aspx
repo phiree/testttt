@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Groups/Groups.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true"
     CodeFile="GroupInfo.aspx.cs" Inherits="Groups_GroupInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -6,11 +6,15 @@
     <script type="text/javascript">
 
         function calc() {
+            var bool = window.confirm("请确定是否需要保存!");
+            if (!bool) {
+                return false;
+            }
             var gid = getArgs("id");
-            //            if (gid == undefined) {
-            //                alert("没有找到相应的团队, 请确定团队编号");
-            //                return;
-            //            }
+            if (gid == undefined) {
+                alert("没有找到相应的团队, 请确定团队编号");
+                return;
+            }
 
             //新版本 2012-10-10
             //基本信息
@@ -80,8 +84,10 @@
                 dataType: "json",
                 data: datas,
                 success: function (data, status) {
-                    if (data == "成功")
+                    if (data == "成功") {
                         alert("修改成功！");
+                        window.navigate("/LocalTravelAgent/Grouplist.aspx");
+                    }
                     else
                         alert("修改失败！");
                 }
