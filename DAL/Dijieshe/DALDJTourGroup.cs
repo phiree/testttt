@@ -39,7 +39,7 @@ namespace DAL
             List<Model.DJ_TourGroup> ListTg = new List<Model.DJ_TourGroup>();
             foreach (Model.DJ_Route route in list_route)
             {
-                if (route.DJ_TourGroup.BeginDate.AddDays(route.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString())
+                if (route.DJ_TourGroup.BeginDate.AddDays(route.DayNo-1).ToShortDateString() == DateTime.Now.ToShortDateString())
                 {
                     ListTg.Add(route.DJ_TourGroup);
                 }
@@ -81,7 +81,7 @@ namespace DAL
             List<Model.DJ_Group_Worker> Listgw = new List<Model.DJ_Group_Worker>();
             foreach (Model.DJ_Route routeitem in ListRoute)
             {
-                if (routeitem.DJ_TourGroup.BeginDate.AddDays(routeitem.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString())
+                if (routeitem.DJ_TourGroup.BeginDate.AddDays(routeitem.DayNo-1).ToShortDateString() == DateTime.Now.ToShortDateString())
                 {
                     Listgw.AddRange(routeitem.DJ_TourGroup.Workers);
                 }

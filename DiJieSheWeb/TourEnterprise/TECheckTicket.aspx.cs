@@ -75,7 +75,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
             foreach (DJ_Route route in dj_tourgroup.Routes)
             {
-                if (dj_tourgroup.BeginDate.AddDays(route.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString()&&route.Enterprise.Id==Master.CurrentTE.Id)
+                if (dj_tourgroup.BeginDate.AddDays(route.DayNo-1).ToShortDateString() == DateTime.Now.ToShortDateString()&&route.Enterprise.Id==Master.CurrentTE.Id)
                 {
                     hfroute.Value = route.Id.ToString();
                     Literal laChecked = e.Item.FindControl("laChecked") as Literal;

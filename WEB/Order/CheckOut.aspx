@@ -164,10 +164,17 @@
             <div class="clear">
             </div>
         </div>
-        <div id="preorder" pricetype="2" class="priceselection">
+        <div id="preorder" pricetype="2" class="priceselection" style="border-bottom: 2px solid #AAA;">
             <span class="price">
                 <input type="radio" name="price" />
                 景区现付总价:<em id="bpriceonline">234</em>元</span><span class="pricedesc">预订门票,无需立即支付,鼠标一点,实惠又方便</span>
+            <div class="clear">
+            </div>
+        </div>
+        <div id="nhorder" pricetype="2" class="priceselection">
+            <span class="price">
+                <input type="radio" name="price"  />
+                农行支付价:<em style="margin-left: 10px;margin-right: 10px;font-size: 24px;color: #EC6B9E;">50</em>元</span><span class="pricedesc">使用农行卡支付,享受更优惠价格</span>
             <div class="clear">
             </div>
         </div>

@@ -62,7 +62,7 @@ namespace BLL
                 DateTime dtBegin = Tg.BeginDate;
                 foreach (Model.DJ_Route route in Tg.Routes)
                 {
-                    if (dtBegin.AddDays(route.DayNo).ToShortDateString() == DateTime.Now.ToShortDateString()&&route.Enterprise.Id==TE.Id)
+                    if (dtBegin.AddDays(route.DayNo-1).ToShortDateString() == DateTime.Now.ToShortDateString()&&route.Enterprise.Id==TE.Id)
                     {
                         ListTyTg.Add(Tg);
                     }

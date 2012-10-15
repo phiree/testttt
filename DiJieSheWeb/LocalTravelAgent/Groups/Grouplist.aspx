@@ -4,6 +4,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+    <div class="detail_titlebg">
+        团队列表
+    </div>
+    <div class="detaillist">
+        <div class="detailtitle">
+            团队列表
+        </div>
     <asp:Repeater ID="rptGroups" runat="server">
         <HeaderTemplate>
             <table>
@@ -52,4 +59,5 @@
             </table>
         </FooterTemplate>
     </asp:Repeater>
+    </div>
 </asp:Content>
