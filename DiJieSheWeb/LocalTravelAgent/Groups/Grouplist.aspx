@@ -38,10 +38,10 @@
             <tbody>
                 <tr>
                         <td>
-                            <a href='/Groups/GroupDetail.aspx?id=<%#Eval("Id")%>'><%#Eval("Name")%></a>
+                            <a href='/LocalTravelAgent/Groups/GroupDetail.aspx?id=<%#Eval("Id")%>'><%#Eval("Name")%></a>
                         </td>
                         <td>
-                        <%#Eval("BeginDate") + "-" + Eval("EndDate")%>
+                        <%#((DateTime)Eval("BeginDate")).ToShortDateString() + "-" + ((DateTime)Eval("EndDate")).ToShortDateString()%>
                         </td>
                         <td>
                         <%#int.Parse(Eval("AdultsAmount").ToString()) + int.Parse(Eval("AdultsAmount").ToString())%>
