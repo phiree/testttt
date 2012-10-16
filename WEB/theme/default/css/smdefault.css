@@ -226,6 +226,14 @@ h3
     margin-top:10px;
     margin-bottom:10px;
 }
+.btnckprint
+{
+    background:url("/theme/default/image/btnckprint.png");
+    width:79px;
+    height:33px;
+    cursor:pointer;
+    border:none;
+}
 /*工作人员列表*/
 #wlmain
 {

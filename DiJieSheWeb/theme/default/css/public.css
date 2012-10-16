@@ -38,10 +38,11 @@ h5
 }
 .detaillist table
 {
-    width:100%;
+    width:99%;
     margin-top:2px;
     border-left:1px solid #999999;
     border-top:1px solid #999999;
+    margin-left:5px;
 }
 .detaillist table tr td
 {
@@ -122,4 +123,8 @@ h6
 .detaillist div
 {
     margin-left:5px;
+}
+h6
+{
+    font-weight:normal;
 }
