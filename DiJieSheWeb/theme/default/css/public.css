@@ -118,13 +118,14 @@ h6
 {
     margin-top:5px;
     margin-bottom:5px;
-    
+    font-weight:normal;
 }
 .detaillist div
 {
     margin-left:5px;
 }
-h6
+ul 
 {
-    font-weight:normal;
+    list-style-type:none;
+    color:#999999;
 }

@@ -2,10 +2,10 @@
     Inherits="TourManagerDpt_manager" %>
 <%@ MasterType VirtualPath="/m.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ContentPlaceHolderID="cphFunction" runat="server">
-    <ul>
+    <ul class="nav">
         <li><a href="/tourmanagerdpt/EnterpriseList.aspx">企业列表</a></li>
         <li><a href="DjsList.aspx">地接社列表</a></li>
         <li><a href="DjsList.aspx">制订奖励规则</a></li>
