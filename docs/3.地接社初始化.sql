@@ -57,43 +57,43 @@ insert into DJ_Route values(newid(),1,8,15,'参观江郎山景区',435,null,'e4fd78ba-9
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '西栅景区','杭州市西湖区','陈西栅','13877885211','0571-59876459',1,4,1019)
+  '西栅景区','杭州市西湖区','陈西栅','13877885211','0571-59876459',1,1,1019)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '鲁迅故里','杭州市西湖区','陈鲁迅','13877885211','0571-59876459',1,4,1076)
+  '鲁迅故里','杭州市西湖区','陈鲁迅','13877885211','0571-59876459',1,1,1076)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '沈园','杭州市西湖区','陈近南','13877885211','0571-59876459',1,4,1076)
+  '沈园','杭州市西湖区','陈近南','13877885211','0571-59876459',1,1,1076)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '兰亭','杭州市西湖区','陈近南','13877885211','0571-59876459',1,4,1076)
+  '兰亭','杭州市西湖区','陈近南','13877885211','0571-59876459',1,1,1076)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '船游西湖','杭州市西湖区','陈船游','13877885211','0571-59876459',1,4,1019)
+  '船游西湖','杭州市西湖区','陈船游','13877885211','0571-59876459',1,1,1019)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '花港观鱼','杭州市西湖区','陈华冈','13877885211','0571-59876459',1,4,1019)
+  '花港观鱼','杭州市西湖区','陈华冈','13877885211','0571-59876459',1,1,1019)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '苏提春晓','杭州市西湖区','陈速递','13877885211','0571-59876459',1,4,1019)
+  '苏提春晓','杭州市西湖区','陈速递','13877885211','0571-59876459',1,1,1019)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '龙井问茶','杭州市西湖区','陈龙井','13877885211','0571-59876459',1,4,1019)
+  '龙井问茶','杭州市西湖区','陈龙井','13877885211','0571-59876459',1,1,1019)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '六合塔','杭州市西湖区','陈六合','13877885211','0571-59876459',1,4,1019)
+  '六合塔','杭州市西湖区','陈六合','13877885211','0571-59876459',1,1,1019)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '飞来峰','杭州市西湖区','陈飞来','13877885211','0571-59876459',1,4,1019)
+  '飞来峰','杭州市西湖区','陈飞来','13877885211','0571-59876459',1,1,1019)
 
   --景点scenic
   INSERT INTO [TourOnline].[dbo].[Scenic](
@@ -161,9 +161,9 @@ insert into DJ_Route values(newid(),1,8,15,'参观江郎山景区',435,null,'e4fd78ba-9
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '乌镇客栈','杭州市西湖区','陈乌镇','13877885211','0571-59876459',1,4,1060)
+  '乌镇客栈','杭州市西湖区','陈乌镇','13877885211','0571-59876459',1,3,1060)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  '如家快捷酒店','杭州市西湖区','陈如家','13877885211','0571-59876459',1,4,1019)
+  '如家快捷酒店','杭州市西湖区','陈如家','13877885211','0571-59876459',1,3,1019)
 

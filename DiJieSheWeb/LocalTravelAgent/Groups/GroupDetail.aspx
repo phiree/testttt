@@ -13,13 +13,11 @@
                     url: "RouteHandler.ashx?enterpid="+$.trim($(this).html()),
                     dataType: "json",
                     success: function (data, status) {
-                        alert(data);
                         if (data == 'False') {
-                            alert('aaa');
                             $(this).parent().css("background-color", "Aqua");
                         }
                         else {
-                            alert('ttt');
+                            $(this).parent().css("background-color", "Yellow");
                         }
                     }
                 });
