@@ -78,9 +78,22 @@ namespace DAL
 
         }
 
+        public IList<Model.DJ_TourEnterprise> GetEnterpriseWithoutScenic(string areaIds)
+        {
+            string where = string.Empty;
+            if(!string.IsNullOrEmpty(areaIds))
+            {
+                where += " and D.Area.Id in (" + areaIds + ")";
+            }
+          where = " and D.Type<>"+(int) Model.EnterpriseType.景点;
+
+            return GetDJS8Multi(where);
+
+        }
+
         private IList<Model.DJ_TourEnterprise> GetDJS8Multi(string where)
         {
-            string sql = "select D from DJ_TourEnterprise D where 1=1  ";
+            string sql = "select D from DJ_TourEnterprise D where D.Type<>0 ";
             sql = sql + where;
             IQuery query = session.CreateQuery(sql);
             return query.List<Model.DJ_TourEnterprise>();
