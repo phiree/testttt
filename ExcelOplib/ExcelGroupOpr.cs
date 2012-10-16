@@ -53,7 +53,7 @@ namespace ExcelOplib
                 //        EndPlace = dt.Rows[i][7].ToString().Replace("\n", "").Trim()
                 //    });
                 //}
-                Entity.GroupBasic  gb = new Entity.GroupBasic();
+                Entity.GroupBasic gb = new Entity.GroupBasic();
                 if (string.IsNullOrEmpty(dt.Rows[0][1].ToString())) ;
 
                 //如果excel中的行不为空,添加
@@ -249,7 +249,7 @@ namespace ExcelOplib
                 for (int i = 0; i < dt3.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt3.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrEmpty(dt3.Rows[i][0].ToString())) continue;
 
                     //如果excel中的行不为空,添加
                     grlist.Add(new Entity.GroupRoute()
@@ -272,11 +272,49 @@ namespace ExcelOplib
                         ShoppingPoint5 = dt3.Rows[i][15].ToString().Replace("\n", "").Trim()
                     });
                 }
+                //合并route,相同routedate合并
+                List<Entity.GroupRoute> grlistNew = new List<Entity.GroupRoute>();
+                for (int i = 0; i < grlist.Count; i++)
+                {
+                    if (grlist.Where(x => x.RouteDate.ToUpper() == "D" + (i + 1)).Count() <= 0)
+                        continue;
+                    var temp = grlist.Where<Entity.GroupRoute>(x => x.RouteDate.ToUpper() == "D" + (i + 1)).ToList();
+                    //只有一行
+                    if (temp.Count == 1)
+                    {
+                        grlistNew.Add(grlist[i]);
+                    }
+                    //多行
+                    if (temp.Count > 1)
+                    {
+                        var zip1 = temp[0];
+                        var zip2 = temp[1];
+                        grlistNew.Add(new Entity.GroupRoute()
+                        {
+                            RouteDate = "D" + (i + 1),
+                            Breakfast = string.IsNullOrEmpty(zip1.Breakfast) ? zip2.Breakfast : zip1.Breakfast,
+                            Lunch = string.IsNullOrEmpty(zip1.Lunch) ? zip2.Lunch : zip1.Lunch,
+                            Dinner = string.IsNullOrEmpty(zip1.Dinner) ? zip2.Dinner : zip1.Dinner,
+                            Hotel1 = string.IsNullOrEmpty(zip1.Hotel1) ? zip2.Hotel1 : zip1.Hotel1,
+                            Hotel2 = string.IsNullOrEmpty(zip1.Hotel2) ? zip2.Hotel2 : zip1.Hotel2,
+                            Scenic1 = string.IsNullOrEmpty(zip1.Scenic1) ? zip2.Scenic1 : zip1.Scenic1,
+                            Scenic2 = string.IsNullOrEmpty(zip1.Scenic2) ? zip2.Scenic2 : zip1.Scenic2,
+                            Scenic3 = string.IsNullOrEmpty(zip1.Scenic3) ? zip2.Scenic3 : zip1.Scenic3,
+                            Scenic4 = string.IsNullOrEmpty(zip1.Scenic4) ? zip2.Scenic4 : zip1.Scenic4,
+                            Scenic5 = string.IsNullOrEmpty(zip1.Scenic5) ? zip2.Scenic5 : zip1.Scenic5,
+                            ShoppingPoint1 = string.IsNullOrEmpty(zip1.ShoppingPoint1) ? zip2.ShoppingPoint1 : zip1.ShoppingPoint1,
+                            ShoppingPoint2 = string.IsNullOrEmpty(zip1.ShoppingPoint2) ? zip2.ShoppingPoint2 : zip1.ShoppingPoint2,
+                            ShoppingPoint3 = string.IsNullOrEmpty(zip1.ShoppingPoint3) ? zip2.ShoppingPoint3 : zip1.ShoppingPoint3,
+                            ShoppingPoint4 = string.IsNullOrEmpty(zip1.ShoppingPoint4) ? zip2.ShoppingPoint4 : zip1.ShoppingPoint4,
+                            ShoppingPoint5 = string.IsNullOrEmpty(zip1.ShoppingPoint5) ? zip2.ShoppingPoint5 : zip1.ShoppingPoint5
+                        });
+                    }
+                }
                 #endregion
 
                 //如果获取到了list,就把上传上来的文件删除
                 File.Delete(path.Replace('/', '\\'));
-                return new Entity.GroupAll() { GroupBasic = gb, GroupMemberList = gmlist, GroupRouteList = grlist };
+                return new Entity.GroupAll() { GroupBasic = gb, GroupMemberList = gmlist, GroupRouteList = grlistNew };
             }
             catch (Exception ex)
             {

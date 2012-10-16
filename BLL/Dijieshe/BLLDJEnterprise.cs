@@ -90,7 +90,7 @@ namespace BLL
 
         /// <summary>
         /// 旅游管理部门辖区的旅游企业
-        /// </summary>
+        /// </summary> 
         /// <param name="areaCode"></param>
         /// <returns></returns>
         public IList<Model.DJ_TourEnterprise> GetDJSForDpt(string areaCode)
