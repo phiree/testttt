@@ -40,6 +40,10 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             else{
                 btnVerify.Text = "尚未认证";
             }
+            if (ent is DJ_DijiesheInfo)
+            {
+                e.Item.Visible = false;
+            }
         }
     }
     BLLDJ_User bllDjUser = new BLLDJ_User();

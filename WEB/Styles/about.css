@@ -23,8 +23,8 @@
 
 .normala a, .normala a:hover, .normala a:visited, .normala a:active
 {
-    background-color: #C1E2A5;
-    color: Black;
+    background-color: #D3E6D0;
+    color: #4D8141;
     display: block;
     width: 190px;
     height: 30px;
@@ -46,24 +46,37 @@
 #wenzi
 {
     border: 3px solid #DFEDD5;
-    width: 600px;
-    height: 350px;
+    width: 650px;
+    height: 550px;
     margin: 10px 0px 50px 30px;
 }
 .textareadiv
 {
-    width: 550px;
+    width: 600px;
     margin: 15px auto;
     line-height: 25px;
 }
 .highLightLink a, .highLightLink a:hover, .highLightLink a:active, .highLightLink a:visited, .highLightLink a:link
 {
-    background-color: #C1E2A5;
-    color: Black;
+    background-color: #6AA94E;
+    color: White;
     display: block;
     width: 190px;
     height: 30px;
     line-height: 30px;
     text-align: center;
     font-weight:600;
+}
+.title
+{
+    font-weight:bold;
+    font-size:14px;
+}
+ strong
+{
+    color:#6DA94F;
+}
+.content p
+{
+    font-size:13px !important;
 }
