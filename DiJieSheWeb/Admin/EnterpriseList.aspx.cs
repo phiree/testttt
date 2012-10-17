@@ -22,7 +22,7 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
 
     protected void BindList()
     {
-        rpt.DataSource = bllDJEnt.GetEntListWithoutScenic();
+        rpt.DataSource = bllDJEnt.GetDjs8all();
         rpt.DataBind();
     }
     protected void rpt_ItemDataBound(object sender, RepeaterItemEventArgs e)
