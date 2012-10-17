@@ -46,7 +46,7 @@
             var imgtop = $(".adcolum img").css("top");
             imgtop=imgtop.replace("px", "");
             if (imgtop >= 0) {
-                $(".adcolum img").css("top", "-180px");
+                $(".adcolum img").css("top", "-160px");
             }
             else {
                 imgtop = parseInt(imgtop) + parseInt(1);
@@ -87,9 +87,9 @@
         </div>
     </div>
     <div class="adcolum">
-        <img src="/Img/农行.jpg" alt="农行优惠" height="90px" />
-        <img src="/Img/农行.jpg" alt="农行优惠" height="90px" />
-        <img src="/Img/农行.jpg" alt="农行优惠" height="90px" />
+        <img src="/Img/农行(2).jpg" alt="农行优惠" height="80px" width="950px"  />
+        <img src="/Img/交通银行.jpg" alt="农行优惠" height="80px" width="950px" />
+        <img src="/Img/农行(2).jpg" alt="农行优惠" height="80px" width="950px" />
     </div>
     <div class="lpcolum">
         <a href="/topic/jiangshanlianpiao.aspx">
