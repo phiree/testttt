@@ -153,7 +153,6 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                         blldjcr.Save(Master.CurrentTE, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
                         ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('验证成功')", true);
                         btnPrint.Visible = true;
-                        BindPrintLink();
                         BindRptByIdcard(ViewState["idcard"].ToString());
                         break;
                     }
@@ -161,6 +160,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             }
 
         }
+        BindPrintLink();
     }
 
     private bool Verify(string adultamout, string childrenamout)
