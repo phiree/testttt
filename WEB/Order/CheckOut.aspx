@@ -160,7 +160,7 @@
         <div id="payonline" pricetype="3" class="priceselection">
             <span class="price">
                 <input type="radio" name="price" />
-                网上订购总价:<em id="bpricepreorder">123</em>元</span><span class="pricedesc">通过支付宝支付,享受最优惠价格.</span>
+                网上订购总价:<em id="bpricepreorder">123</em>元</span><span class="pricedesc">通过支付宝支付,享受网上订购优惠价.</span>
             <div class="clear">
             </div>
         </div>
@@ -171,10 +171,17 @@
             <div class="clear">
             </div>
         </div>
-        <div id="nhorder" pricetype="2" class="priceselection">
+        <div id="nhorder" pricetype="2" class="priceselection" style="border-bottom: 2px solid #AAA;">
             <span class="price">
                 <input type="radio" name="price"  />
-                农行支付价:<em style="margin-left: 10px;margin-right: 10px;font-size: 24px;color: #EC6B9E;">50</em>元</span><span class="pricedesc">使用农行卡支付,享受更优惠价格</span>
+                农行在线支付价:<em style="margin-left: 10px;margin-right: 10px;font-size: 24px;color: #EC6B9E;">50</em>元</span><span class="pricedesc">在线使用农行卡支付,享受农行在线支付价</span>
+            <div class="clear">
+            </div>
+        </div>
+        <div id="nhpreorder" pricetype="2" class="priceselection">
+            <span class="price">
+                <input type="radio" name="price"  />
+                农行网上预定价:<em style="margin-left: 10px;margin-right: 10px;font-size: 24px;color: #EC6B9E;">52</em>元</span><span class="pricedesc">预订门票，使用农行卡到景区现付，享受农行网上预定价</span>
             <div class="clear">
             </div>
         </div>
