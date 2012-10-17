@@ -7,12 +7,11 @@
             var tbody = $("#tbRoute>tbody>tr>td>span");
             tbody.each(function () {
                 //lert($.trim($(this).html()));//显示各个单元格内容
-                var datas = "{\"enterpid\":\"" + $.trim($(this).html()) + "\"}";
-                $.Post({
-                    type: "Post",
-                    url: "RouteHandler.ashx",
+                //var datas = "{\"enterpid\":\"" +  + "\"}";
+                $.ajax({
+                    type: "get",
+                    url: "RouteHandler.ashx?enterpid="+$.trim($(this).html()),
                     dataType: "json",
-                    data: datas,
                     success: function (data, status) {
                         alert(data);
                         if (data == 'False') {

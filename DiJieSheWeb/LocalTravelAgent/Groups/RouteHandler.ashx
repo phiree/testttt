@@ -8,7 +8,7 @@ public class RouteHandler : IHttpHandler {
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
         BLL.BLLDJConsumRecord bllDJCR = new BLL.BLLDJConsumRecord();
-        var gcr = bllDJCR.GetGroupConsumRecordByRouteId(context.Request["enterpid"]);
+        var gcr = bllDJCR.GetGroupConsumRecordByRouteId(context.Request["enterpid"].ToString());
         if (gcr == null)
         {
             context.Response.Write("False");
