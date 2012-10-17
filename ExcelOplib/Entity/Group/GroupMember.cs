@@ -27,5 +27,9 @@ namespace ExcelOplib.Entity
         /// 证件号
         /// </summary>
         public string Cardno { get; set; }
+        /// <summary>
+        /// 身份证校验结果
+        /// </summary>
+        public string IdValidate { get; set; }
     }
 }

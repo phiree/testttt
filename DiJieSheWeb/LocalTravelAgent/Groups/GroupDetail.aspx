@@ -5,27 +5,78 @@
     <script type="text/javascript">
         $(function () {
             var tbody = $("#tbRoute>tbody>tr>td>span");
+            var enternamelist = "";
             tbody.each(function () {
                 //lert($.trim($(this).html()));//显示各个单元格内容
                 //var datas = "{\"enterpid\":\"" +  + "\"}";
-                $.ajax({
-                    type: "get",
-                    url: "RouteHandler.ashx?enterpid="+$.trim($(this).html()),
-                    dataType: "json",
-                    success: function (data, status) {
-                        if (data == 'False') {
-                            $(this).parent().css("background-color", "Aqua");
+                enternamelist += $.trim($(this).html()) + "-";
+            });
+            var gid = getArgs("id");
+            $.ajax({
+                type: "get",
+                url: "RouteHandler.ashx?enternamelist=" + enternamelist + "&gid=" + gid,
+                dataType: "json",
+                success: function (data, status) {
+                    tbody.each(function () {
+                        for (var name in data) {
+                            if (name == $.trim($(this).html())) {
+                                if (data[name] == "0") {
+                                    $(this).parent().css("background-color", "Yellow");
+                                }
+                                else {
+                                    $(this).parent().css("background-color", "Aqua");
+                                }
+                            }
                         }
-                        else {
-                            $(this).parent().css("background-color", "Yellow");
-                        }
-                    }
-                });
+                    });
+                }
             });
         });
+
+        function getArgs(strParame) {
+            var args = new Object();
+            var query = location.search.substring(1); // Get query string
+            var pairs = query.split("&"); // Break at ampersand
+            for (var i = 0; i < pairs.length; i++) {
+                var pos = pairs[i].indexOf('='); // Look for "name=value"
+                if (pos == -1) continue; // If not found, skip
+                var argname = pairs[i].substring(0, pos); // Extract the name
+                var value = pairs[i].substring(pos + 1); // Extract the value
+                value = decodeURIComponent(value); // Decode it, if needed
+                args[argname] = value; // Store as a property
+            }
+            return args[strParame]; // Return the object
+        };
     </script>
     <style type="text/css">
-        
+        .colorpicker
+        {
+            display: block;
+            margin-left: 10px;
+            width: 12px;
+            height: 12px;
+            float:right;
+            border: 1px solid #000;
+            margin-right: 2px;
+            margin-top:4px;
+            cursor: pointer;
+        }
+        .colorWord
+        {
+            display: block;
+            margin-left: 2px;
+            float:right;
+            margin-right: 5px;
+            cursor: pointer;
+            }
+        #colorpicker1
+        {
+            background-color:Aqua;
+            }
+        #colorpicker3
+        {
+            background-color:Yellow;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
@@ -39,45 +90,59 @@
         <!-- 基本信息begin -->
         <table border="0" cellpadding="0" cellspacing="0">
             <tr>
-                <td style="width:15%">
+                <td style="width: 15%">
+                    团队编号：
+                </td>
+                <td>
+                    <asp:Label ID="lblGroupno" runat="server" />
+                </td>
+                <td style="width: 15%">
                     团队名称：
                 </td>
                 <td>
                     <asp:Label ID="lblName" runat="server" />
                 </td>
-                <td style="width:15%">
-                   起止时间：
+            </tr>
+            <tr>
+                <td style="width: 15%">
+                    起止时间：
                 </td>
                 <td>
                     <asp:Label ID="lblDate" runat="server" />
                 </td>
-            </tr>
-            <tr>
                 <td>
                     游玩天数：
                 </td>
                 <td>
                     <asp:Label ID="lblDays" runat="server" />
                 </td>
+            </tr>
+            <tr>
                 <td>
                     游玩人数：
                 </td>
                 <td>
                     <asp:Label ID="lblPnum" runat="server" />
                 </td>
-            </tr>
-            <tr>
                 <td>
                     成人人数：
                 </td>
                 <td>
                     <asp:Label ID="lblPadult" runat="server" />
                 </td>
+            </tr>
+            <tr>
                 <td>
                     儿童人数：
                 </td>
                 <td>
                     <asp:Label ID="lblPchild" runat="server" />
+                </td>
+                <td>
+                    外宾人数：
+                </td>
+                <td>
+                    <asp:Label ID="lblForeigners" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -102,27 +167,27 @@
         </div>
         <asp:Repeater ID="rptWorkers" runat="server">
             <HeaderTemplate>
-                    <table class="tableMemberid" id="tbMember">
-                        <thead>
-                            <tr>
-                                <td>
-                                    类型
-                                </td>
-                                <td>
-                                    姓名
-                                </td>
-                                <td>
-                                    身份证号
-                                </td>
-                                <td>
-                                    联系方式
-                                </td>
-                                <td>
-                                    证件号
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody>
+                <table class="tableMemberid" id="tbMember">
+                    <thead>
+                        <tr>
+                            <td>
+                                类型
+                            </td>
+                            <td>
+                                姓名
+                            </td>
+                            <td>
+                                身份证号
+                            </td>
+                            <td>
+                                联系方式
+                            </td>
+                            <td>
+                                证件号
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
@@ -168,13 +233,15 @@
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
-                </tbody> </table> 
+                </tbody> </table>
             </FooterTemplate>
         </asp:Repeater>
         <!-- 人员end -->
         <!-- 行程begin -->
         <div class="detailtitle">
             行程信息
+    <span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
+    <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>
         </div>
         <asp:Repeater ID="rptRoute" runat="server">
             <HeaderTemplate>
@@ -212,47 +279,43 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <span><%#Eval("RouteDate")%></span>
+                        <span>
+                            <%#Eval("RouteDate")%></span>
                     </td>
                     <td>
-                        <span><%#Eval("Breakfast")%></span>
+                        <span>
+                            <%#Eval("Breakfast")%></span>
                     </td>
                     <td>
-                        <span><%#Eval("Lunch")%></span>
+                        <span>
+                            <%#Eval("Lunch")%></span>
                     </td>
                     <td>
-                        <span><%#Eval("Dinner")%></span>
+                        <span>
+                            <%#Eval("Dinner")%></span>
                     </td>
                     <td>
-                        <span><%#Eval("Hotel1")%></span>
+                        <span>
+                            <%#Eval("Hotel1")%></span>
                         <%#(string.IsNullOrWhiteSpace(Eval("Hotel2").ToString()) ? "" : "-<span>" + Eval("Hotel2").ToString()) + "</span>"%>
                     </td>
                     <td>
                         <span>
-                            <%#Eval("Scenic1")%></span> 
-                                <%# (string.IsNullOrWhiteSpace(Eval("Scenic2").ToString()) ? "" : "-<span>" + Eval("Scenic2").ToString()) + "</span>"%>
-                        
-                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic3").ToString()) ? "" : "-<span>" + Eval("Scenic3").ToString()) + "</span>"%>
-                        
-                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic4").ToString()) ? "" : "-<span>" + Eval("Scenic4").ToString()) + "</span>"%>
-                       
-                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic5").ToString()) ? "" : "-<span>" + Eval("Scenic5").ToString()) + "</span>"%>
-                        
-                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic6").ToString()) ? "" : "-<span>" + Eval("Scenic6").ToString()) + "</span>"%>
-                        
-                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic7").ToString()) ? "" : "-<span>" + Eval("Scenic7").ToString()) + "</span>"%>
-                        
-                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic8").ToString()) ? "" : "-<span>" + Eval("Scenic8").ToString()) + "</span>"%>
-                        
-                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic9").ToString()) ? "" : "-<span>" + Eval("Scenic9").ToString()) + "</span>"%>
-                        
-                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic10").ToString()) ? "" : "-<span>" + Eval("Scenic10").ToString()) + "</span>"%>
+                            <%#Eval("Scenic1")%></span>
+                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic2").ToString()) ? "" : "-<span>" + Eval("Scenic2").ToString()) + "</span>"%>
+                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic3").ToString()) ? "" : "-<span>" + Eval("Scenic3").ToString()) + "</span>"%>
+                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic4").ToString()) ? "" : "-<span>" + Eval("Scenic4").ToString()) + "</span>"%>
+                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic5").ToString()) ? "" : "-<span>" + Eval("Scenic5").ToString()) + "</span>"%>
+                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic6").ToString()) ? "" : "-<span>" + Eval("Scenic6").ToString()) + "</span>"%>
+                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic7").ToString()) ? "" : "-<span>" + Eval("Scenic7").ToString()) + "</span>"%>
+                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic8").ToString()) ? "" : "-<span>" + Eval("Scenic8").ToString()) + "</span>"%>
+                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic9").ToString()) ? "" : "-<span>" + Eval("Scenic9").ToString()) + "</span>"%>
+                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic10").ToString()) ? "" : "-<span>" + Eval("Scenic10").ToString()) + "</span>"%>
                     </td>
                     <td>
                         <%#Eval("ShoppingPoint1")%></span>
-                            <%# (string.IsNullOrWhiteSpace(Eval("ShoppingPoint2").ToString()) ? "" : "-<span>" + Eval("ShoppingPoint2").ToString())+ "</span>"%>
-                        
-                            <%# (string.IsNullOrWhiteSpace(Eval("ShoppingPoint3").ToString()) ? "" : "-<span>" + Eval("ShoppingPoint3").ToString())+ "</span>"%>
+                        <%# (string.IsNullOrWhiteSpace(Eval("ShoppingPoint2").ToString()) ? "" : "-<span>" + Eval("ShoppingPoint2").ToString())+ "</span>"%>
+                        <%# (string.IsNullOrWhiteSpace(Eval("ShoppingPoint3").ToString()) ? "" : "-<span>" + Eval("ShoppingPoint3").ToString())+ "</span>"%>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -261,5 +324,6 @@
             </FooterTemplate>
         </asp:Repeater>
         <!-- 行程end -->
+    
     </div>
 </asp:Content>

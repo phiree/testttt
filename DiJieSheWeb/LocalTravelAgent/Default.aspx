@@ -4,7 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server" >
+<asp:Panel runat="server"  Visible="false">
 地区: 
 <asp:DropDownList ID="ddlArea" runat="server">
 </asp:DropDownList>
@@ -36,6 +37,10 @@
         </table>
         </FooterTemplate>
     </asp:Repeater>
+    </asp:Panel>
 
+   <div class="welcome">
+   
+   </div>
 </asp:Content>
 

@@ -12,6 +12,7 @@ namespace Model
         public DJ_TourGroupMap()
         {
             Id(x => x.Id);
+            Map(x => x.No);
             References<DJ_DijiesheInfo>(x => x.DJ_DijiesheInfo);
             Map(x => x.Name);
             Map(x => x.BeginDate);
@@ -21,6 +22,7 @@ namespace Model
            
             Map(x => x.AdultsAmount);
             Map(x => x.ChildrenAmount);
+            Map(x => x.ForeignersAmount);
             Map(x => x.Gether);
             Map(x => x.BackPlace);
 

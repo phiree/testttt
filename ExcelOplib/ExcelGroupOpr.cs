@@ -192,7 +192,7 @@ namespace ExcelOplib
                 #region 基本信息
                 //Sheet1为excel中表的名字
                 DataTable dt1 = new DataTable();
-                string sql1 = "select 团队名称,开始时间,天数,人数,成人,儿童,上车集合点,返程点,结束时间 from [基本信息$]";
+                string sql1 = "select 团队名称,开始时间,天数,人数,成人,儿童,上车集合点,返程点,结束时间,外宾,团队编号 from [基本信息$]";
                 OleDbCommand cmd1 = new OleDbCommand(sql1, new OleDbConnection(conn));
                 OleDbDataAdapter ad1 = new OleDbDataAdapter(cmd1);
                 ad1.Fill(dt1);
@@ -203,6 +203,7 @@ namespace ExcelOplib
                 //如果excel中的行不为空,添加
                 gb = new Entity.GroupBasic()
                 {
+                    GroupNo = dt1.Rows[0][10].ToString().Replace("\n", "").Trim(),
                     Name = dt1.Rows[0][0].ToString().Replace("\n", "").Trim(),
                     Begindate = dt1.Rows[0][1].ToString().Replace("\n", "").Trim(),
                     Days = dt1.Rows[0][2].ToString().Replace("\n", "").Trim(),
@@ -211,13 +212,14 @@ namespace ExcelOplib
                     PeopleChild = dt1.Rows[0][5].ToString().Replace("\n", "").Trim(),
                     StartPlace = dt1.Rows[0][6].ToString().Replace("\n", "").Trim(),
                     EndPlace = dt1.Rows[0][7].ToString().Replace("\n", "").Trim(),
-                    Enddate = dt1.Rows[0][8].ToString().Replace("\n", "").Trim()
+                    Enddate = dt1.Rows[0][8].ToString().Replace("\n", "").Trim(),
+                    Foreigners = dt1.Rows[0][9].ToString().Replace("\n", "").Trim()
                 };
                 #endregion
 
                 #region 人员信息
                 DataTable dt2 = new DataTable();
-                string sql2 = "select 类型,姓名,身份证号,电话号码,证号 from [团队信息$]";
+                string sql2 = "select 类型,姓名,身份证号,电话号码,证号,校验结果 from [团队信息$]";
                 OleDbCommand cmd2 = new OleDbCommand(sql2, new OleDbConnection(conn));
                 OleDbDataAdapter ad2 = new OleDbDataAdapter(cmd2);
                 ad2.Fill(dt2);
@@ -234,7 +236,8 @@ namespace ExcelOplib
                         Memname = dt2.Rows[i][1].ToString().Replace("\n", "").Trim(),
                         Memid = dt2.Rows[i][2].ToString().Replace("\n", "").Trim(),
                         Memphone = dt2.Rows[i][3].ToString().Replace("\n", "").Trim(),
-                        Cardno = dt2.Rows[i][4].ToString().Replace("\n", "").Trim()
+                        Cardno = dt2.Rows[i][4].ToString().Replace("\n", "").Trim(),
+                        IdValidate = dt2.Rows[i][5].ToString().Replace("\n", "").Trim()
                     });
                 }
                 #endregion

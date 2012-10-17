@@ -18,12 +18,14 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
     private void BindData(string guid)
     {
         Model.DJ_TourGroup tg = blltg.GetTourGroupById(Guid.Parse(guid));
+        lblGroupno.Text = tg.No;
         lblName.Text = tg.Name;
         lblDate.Text = tg.BeginDate.ToShortDateString() + "-" + tg.EndDate.ToShortDateString();
         lblDays.Text = tg.DaysAmount.ToString();
         lblPnum.Text = (tg.AdultsAmount + tg.ChildrenAmount).ToString();
         lblPadult.Text = tg.AdultsAmount.ToString();
         lblPchild.Text = tg.ChildrenAmount.ToString();
+        lblForeigners.Text = tg.ForeignersAmount.ToString();
         lblGether.Text = tg.Gether;
         lblBack.Text = tg.BackPlace;
 

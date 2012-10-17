@@ -1,34 +1,8 @@
-  
 
-
-
-<<<<<<< HEAD
-  INSERT INTO [dbo].[DJ_TourEnterprise](
-  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
-  VALUES(
-  '妈妈家','杭州市西湖区','陈近南','13877885211','0571-59876459',1,2,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
-  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
-  VALUES(
-  '外公家','杭州市西湖区','陈近南','13877885211','0571-59876459',1,2,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
-  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
-  VALUES(
-  '外婆家','杭州市西湖区','陈近南','13877885211','0571-59876459',1,2,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
-  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
-  VALUES(
-  '希尔顿酒店','杭州市西湖区','陈近南','13877885211','0571-59876459',1,3,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
-  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
-  VALUES(
-  '如家快捷酒店','杭州市西湖区','陈近南','13877885211','0571-59876459',1,3,1019)
   INSERT INTO [dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
   '杭州丝绸土特产','杭州市西湖区','陈近南','13877885211','0571-59876459',1,4,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
-=======
 
   --2012-10-16  杭州乌镇绍兴四日游 模拟数据
   --餐厅
@@ -95,7 +69,6 @@
   VALUES(
   '花港观鱼','杭州市西湖区','陈华冈','13877885211','0571-59876459',1,1,1019)
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
->>>>>>> 2ecf981c7ac73ed20ce5566ce12d4a54065d74ae
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
   '苏提春晓','杭州市西湖区','陈速递','13877885211','0571-59876459',1,1,1019)
