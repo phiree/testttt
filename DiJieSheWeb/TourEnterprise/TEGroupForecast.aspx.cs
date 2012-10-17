@@ -50,8 +50,11 @@ public partial class TourEnterprise_TEGroupForecast : System.Web.UI.Page
             Literal laArriveTime = e.Item.FindControl("ArriveTime") as Literal;
             DJ_TourGroup group = e.Item.DataItem as DJ_TourGroup;
             List<DJ_Route> ListRoute = group.Routes.Where(x => x.Enterprise.Id == Master.CurrentTE.Id).ToList<DJ_Route>();
-            laArriveTime.Text = group.BeginDate.AddDays(ListRoute[Index].DayNo - 1).ToString("yyyy年MM月dd日");
-            Index++;
+            if (ListRoute[Index] != null)
+            {
+                laArriveTime.Text = group.BeginDate.AddDays(ListRoute[Index].DayNo - 1).ToString("yyyy年MM月dd日");
+                Index++;
+            }
         }
     }
 }
