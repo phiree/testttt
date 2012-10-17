@@ -9,29 +9,74 @@
     </div>
     <div class="detaillist">
     <!-- 基本信息begin -->
-    <div>
-        <p>
-            团队名称：<asp:Label ID="lblName" runat="server" /></p>
-        <p>
-            起止时间：<asp:Label ID="lblDate" runat="server" /></p>
-        <p>
-            天数：<asp:Label ID="lblDays" runat="server" /></p>
-        <p>
-            人数：<asp:Label ID="lblPnum" runat="server" /></p>
-        <p>
-            成人：<asp:Label ID="lblPadult" runat="server" /></p>
-        <p>
-            儿童：<asp:Label ID="lblPchild" runat="server" /></p>
-        <p>
-            上车集合点：<asp:Label ID="lblGether" runat="server" /></p>
-        <p>
-            返程点：<asp:Label ID="lblBack" runat="server" /></p>
-    </div>
+    <div class="detailtitle">
+            基本信息
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width:15%">
+                    团队名称：
+                </td>
+                <td>
+                    <asp:Label ID="lblName" runat="server" />
+                </td>
+                <td style="width:15%">
+                   起止时间：
+                </td>
+                <td>
+                    <asp:Label ID="lblDate" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    游玩天数：
+                </td>
+                <td>
+                    <asp:Label ID="lblDays" runat="server" />
+                </td>
+                <td>
+                    游玩人数：
+                </td>
+                <td>
+                    <asp:Label ID="lblPnum" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    成人人数：
+                </td>
+                <td>
+                    <asp:Label ID="lblPadult" runat="server" />
+                </td>
+                <td>
+                    儿童人数：
+                </td>
+                <td>
+                   <asp:Label ID="lblPchild" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    上车集合点：
+                </td>
+                <td>
+                    <asp:Label ID="lblGether" runat="server" />
+                </td>
+                <td>
+                    返程点：
+                </td>
+                <td>
+                    <asp:Label ID="lblBack" runat="server" />
+                </td>
+            </tr>
+        </table>
     <!-- 基本信息end -->
     <!-- 工作人员begin -->
+        <div class="detailtitle">
+            人员信息
+        </div>
     <asp:Repeater ID="rptWorkers" runat="server">
         <HeaderTemplate>
-            <div>
                 <table class="tableMemberid" id="tbMember">
                     <thead>
                         <tr>
@@ -98,11 +143,14 @@
             </tr>
         </ItemTemplate>
         <FooterTemplate>
-            </tbody> </table> </div>
+            </tbody> </table> 
         </FooterTemplate>
     </asp:Repeater>
     <!-- 人员end -->
     <!-- 行程begin -->
+    <div class="detailtitle">
+            行程信息
+        </div>
     <asp:Repeater ID="rptRoute" runat="server">
         <HeaderTemplate>
             <table id="tbRoute">
