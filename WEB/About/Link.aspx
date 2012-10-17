@@ -1,26 +1,40 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/About/MasterPage.master" AutoEventWireup="true"
     CodeFile="Link.aspx.cs" Inherits="About_Link" %>
-
+<%@ Register TagPrefix="self" Namespace="TourControls" Assembly="TourControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+    <script type="text/javascript">
+
+        var boderwidth;
+        function EditHTMLInfo(obj) {
+            boderwidth = $(obj).css("boder-width");
+            $(obj).css("border", "1px solid #FAF707");
+        }
+        function CancelHTMLInfo(obj) {
+            if (boderwidth == undefined) {
+                $(obj).css("border-color", "");
+                if ($(obj).attr("id") == "aboutus") {
+                    $(obj).css("border-width", "0px");
+                }
+            }
+        }
+        function EditHTMLInfoBtn(obj, scname, scfunctype) {
+            var flag = $(obj).attr("class");
+            if (flag == "" || flag == undefined || flag == null) {
+                flag = $(obj).attr("id");
+                flag = "#" + flag;
+            }
+            else {
+                flag = "." + flag;
+            }
+            findDimensions();
+            var w = (winWidth - 740) / 2;
+            var h = (winHeight - 600) / 2;
+            window.open(encodeURI('/Scenic/EditHTMLInfo.aspx?scname=' + scname + '&scfunctype=' + scfunctype + '&type=联系我们&flag=' + flag + ''), 'newwindow', 'height=600,width=740,top=' + h + ',left=' + w + ',toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cc" runat="Server">
     <div id="wenzi">
-        <div class="textareadiv">
-            景点门票预订咨询：12301&nbsp;&nbsp;QQ:364819046
-            <A href="tencent://message/?uin=364819046&Menu=yes" target=blank><IMG alt=点击这里给我发消息 src="/Img/10_online.gif" border=0></A>
-            <br />
-            景区合作：0571-87801108&nbsp;&nbsp;手机:13868130297
-            <br />
-            网站技术支持：0571-87801108&nbsp&nbsp;QQ：550700860
-            <A href="tencent://message/?uin=550700860&Menu=yes" target=blank><IMG alt=点击这里给我发消息 src="/Img/10_online.gif" border=0></A>
-            <br />
-            <br />
-            公司名称：杭州笨牛信息技术有限公司<br />
-            公司地址：杭州西溪路628号福地创业园<br />
-            邮编：310023<br />
-            电话：0571-87801108<br />
-            传真：0571-87969607<br />
-            邮箱：Support@tourol.cn
-        </div>
+        <self:ContentReader runat="server" ID="aboutus" type="联系我们" CssClass="textareadiv"/>
     </div>
 </asp:Content>

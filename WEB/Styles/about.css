@@ -55,6 +55,8 @@
     width: 600px;
     margin: 15px auto;
     line-height: 25px;
+    min-height:100px;
+    _height:100px;
 }
 .highLightLink a, .highLightLink a:hover, .highLightLink a:active, .highLightLink a:visited, .highLightLink a:link
 {
