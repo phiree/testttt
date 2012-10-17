@@ -13,7 +13,7 @@ public partial class TourManagerDpt_Default : basepageMgrDpt
     {
         if (!IsPostBack)
         {
-            BindList();
+            Response.Redirect("EnterpriseList.aspx");
         }
     }
 
