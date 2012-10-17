@@ -96,7 +96,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (TicketAssign item in list)
         {
-            data.Add(item.Name + "/" + item.IdCard, "");
+            data.Add(item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14), "");
         }
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
         using (MemoryStream ms = new MemoryStream())
@@ -120,9 +120,21 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         int flag = 0;
         foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic).Where(x => x.Name == name))
         {
-            if (item.IdCard == idcard)
+            if (item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14)== idcard)
             {
                 flag = 1;
+                idcard = item.IdCard;
+            }
+        }
+        if (flag == 0)
+        {
+            foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList())
+            {
+                if (work.IDCard.Substring(0, 6) + "********" + work.IDCard.Substring(14) == idcard)
+                {
+                    flag = 1;
+                    idcard = work.IDCard;
+                }
             }
         }
         if (flag == 0)
@@ -140,6 +152,31 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     {
         string name = hfselectname.Value;
         string idcard = hfselectidcard.Value;
+        int flag = 0;
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic).Where(x => x.Name == name))
+        {
+            if (item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14) == idcard)
+            {
+                flag = 1;
+                idcard = item.IdCard;
+            }
+        }
+        if (flag == 0)
+        {
+            foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList())
+            {
+                if (work.IDCard.Substring(0, 6) + "********" + work.IDCard.Substring(14) == idcard)
+                {
+                    flag = 1;
+                    idcard = work.IDCard;
+                }
+            }
+        }
+        if (flag == 0)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
+            return;
+        }
         bindTicketInfo(name, idcard);
     }
     protected void Btnckpass_Click(object sender, EventArgs e)
@@ -451,7 +488,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     public void bindTicketInfo(string name, string idcard)
     {
         username.InnerHtml = name;
-        useridcard.InnerHtml = idcard.Substring(0,5)+"XXXXXXXXX"+idcard.Substring(14);
+        useridcard.InnerHtml = idcard.Substring(0,6)+"********"+idcard.Substring(14);
         //预定
         CurrentScenic = Master.Scenic;
         ViewState["idcard"] = idcard;
