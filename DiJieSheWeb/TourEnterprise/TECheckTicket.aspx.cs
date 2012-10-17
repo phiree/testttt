@@ -44,8 +44,25 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             {
                 btnPrint.Visible = false;
                 string idcard = strinfos[1];
-                ViewState["idcard"] = idcard;
-                BindRptByIdcard(idcard);
+                int flag = 0;
+                foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.CurrentTE).ToList())
+                {
+                    if (work.IDCard.Substring(0, 6) + "********" + work.IDCard.Substring(14) == idcard)
+                    {
+                        flag = 1;
+                        idcard = work.IDCard;
+                    }
+                }
+                if (flag == 1)
+                {
+                    ViewState["idcard"] = idcard;
+                    BindRptByIdcard(idcard);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+                    txtTE_info.Text = "";
+                }
             }
             else
             {
@@ -58,6 +75,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
             txtTE_info.Text = "";
         }
+        BindPrintLink();
     }
 
     int Index = 0;
@@ -135,6 +153,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                         blldjcr.Save(Master.CurrentTE, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
                         ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('验证成功')", true);
                         btnPrint.Visible = true;
+                        BindPrintLink();
                         BindRptByIdcard(ViewState["idcard"].ToString());
                         break;
                     }
@@ -178,15 +197,33 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
     protected void btnBind_Click(object sender, EventArgs e)
     {
         string idcard = hfidcard.Value;
-        ViewState["idcard"] = idcard;
-        if (!string.IsNullOrEmpty(idcard))
+        int flag = 0;
+        foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.CurrentTE).ToList())
         {
-            BindRptByIdcard(idcard);
+            if (work.IDCard.Substring(0, 6) + "********" + work.IDCard.Substring(14) == idcard)
+            {
+                flag = 1;
+                idcard = work.IDCard;
+            }
+        }
+        if (flag == 1)
+        {
+            ViewState["idcard"] = idcard;
+
+            if (!string.IsNullOrEmpty(idcard))
+            {
+                BindRptByIdcard(idcard);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+            }
         }
         else
         {
             ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
         }
+        BindPrintLink();
     }
 
     protected void rptRoute_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -258,7 +295,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (DJ_Group_Worker item in ListGw)
         {
-            data.Add(item.Name + "/" + item.IDCard, "");
+            data.Add(item.Name + "/" + item.IDCard.Substring(0, 6) + "********" + item.IDCard.Substring(14), "");
         }
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
         using (MemoryStream ms = new MemoryStream())
@@ -267,7 +304,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             return System.Text.Encoding.UTF8.GetString(ms.ToArray());
         }
     }
-    protected void btnPrint_Click(object sender, EventArgs e)
+    private void BindPrintLink()
     {
         string routeids = "";
         foreach (RepeaterItem item in rptTourGroupInfo.Items)
@@ -279,6 +316,6 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 routeids += hfrouteId.Value + ",";
             }
         }
-        Response.Redirect("/TourEnterprise/PrintCer.aspx?routeids="+routeids);
+        btnPrint.HRef="/TourEnterprise/PrintCer.aspx?routeids=" + routeids;
     }
 }

@@ -122,9 +122,10 @@
                 </FooterTemplate>
             </asp:Repeater>
             <div class="yptg">
-                <asp:Button ID="Btnckpass" runat="server" CssClass="btnckpass" OnClick="Btnckpass_Click" />
-                <asp:Button ID="BtnPrint" runat="server" CssClass="btnckprint" 
-                    onclick="BtnPrint_Click" />
+                <asp:Button ID="Btnckpass" runat="server" CssClass="btnckpass" OnClick="Btnckpass_Click" style="display:block;float:left" />
+                <%--<asp:Button ID="BtnPrint" runat="server" CssClass="btnckprint" onclick="BtnPrint_Click" />--%>
+                <a runat="server" target="_blank" class="btnckprint" style="display:block;float:left" id="BtnPrint"></a>
+                <div style="clear:both"></div>
             </div>
             
         </div>

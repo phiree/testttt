@@ -59,9 +59,8 @@
         <tr>
             <td></td>
             <td>
-                <asp:Button ID="btnCheckOut" Text="验证通过" runat="server" OnClick="btnCheckOut_Click" CssClass="btn" />
-                <asp:Button ID="btnPrint" runat="server" Text="打印凭证" CssClass="btn" 
-            onclick="btnPrint_Click" />
+                <asp:Button ID="btnCheckOut" Text="验证通过" runat="server" OnClick="btnCheckOut_Click" CssClass="btn" style=" display:block; float:left;margin-right:10px" />
+                <a id="btnPrint" runat="server"  class="btn" href="" target="_blank" style="display:block; text-decoration:none; text-align:center; line-height:20px;color:#009383; float:left;">打印凭证</a>
             </td>
             <td></td>
         </tr>
@@ -109,7 +108,7 @@
                         </td>
                         <td style="width: 135px; background-color: #F7F7F7; padding: 0px;">
                             <span style="display: block; width: 125px">
-                                <%# Eval("IdCard") %></span>
+                                <%# Eval("IdCard").ToString().Substring(0,6) %>********<%# Eval("IdCard").ToString().Substring(14) %></span>
                         </td>
                     </tr>
                 </ItemTemplate>

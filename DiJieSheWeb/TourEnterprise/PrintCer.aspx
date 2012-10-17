@@ -104,6 +104,8 @@
     <!--endprint-->
     <div style=" text-align:center">
         <input type="button" value="打印" class="btn" onclick="printInfo()" />
+        <asp:Button ID="BtnExit" runat="server" Text="关闭" CssClass="btn" 
+            onclick="BtnExit_Click" />
     </div>
     </form>
 </body>

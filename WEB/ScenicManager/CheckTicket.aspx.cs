@@ -147,6 +147,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         if (Response.Cookies["idcard"] != null)
             Response.Cookies["idcard"].Value = idcard;
         bindTicketInfo(name, idcard);
+        BindPrintLink();
     }
     protected void btnselect_Click(object sender, EventArgs e)
     {
@@ -178,6 +179,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             return;
         }
         bindTicketInfo(name, idcard);
+        BindPrintLink();
     }
     protected void Btnckpass_Click(object sender, EventArgs e)
     {
@@ -318,6 +320,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                         bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
                         IsSuccess = 1;
                         BtnPrint.Visible = true;
+                        BindPrintLink();
                     }
                 }
             }
@@ -371,6 +374,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             string name = bllticketassign.GetTaByIdCard(idcard)[0].Name;
             bindTicketInfo(name, idcard);
         }
+        BindPrintLink();
     }
     protected void rptpayonline_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
@@ -666,7 +670,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             }
         }
     }
-    protected void BtnPrint_Click(object sender, EventArgs e)
+    private void BindPrintLink()
     {
         string routeids = "";
         foreach (RepeaterItem item in rptguiderinfo.Items)
@@ -678,6 +682,6 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 routeids += hfrouteId.Value;
             }
         }
-        Response.Redirect("/ScenicManager/PrintCer.aspx?routeids="+routeids);
+        BtnPrint.HRef = "/ScenicManager/PrintCer.aspx?routeids=" + routeids;
     }
 }
