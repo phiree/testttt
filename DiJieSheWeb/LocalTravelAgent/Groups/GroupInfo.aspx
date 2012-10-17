@@ -11,10 +11,10 @@
                 return false;
             }
             var gid = getArgs("id");
-            if (gid == undefined) {
-                alert("没有找到相应的团队, 请确定团队编号");
-                return;
-            }
+//            if (gid == undefined) {
+//                alert("没有找到相应的团队, 请确定团队编号");
+//                return;
+//            }
 
             //新版本 2012-10-10
             //基本信息
@@ -52,23 +52,23 @@
             datas += ",\"GroupRouteList\":[";
             tbRoute.each(function () {
                 datas += "{\"RouteDate\":\"" + $(this).children().html();
-                datas += "\",\"Breakfast\":\"" + $(this).children().next().html();
-                datas += "\",\"Lunch\":\"" + $(this).children().next().next().html();
-                datas += "\",\"Dinner\":\"" + $(this).children().next().next().next().html();
+                datas += "\",\"Breakfast\":\"" + $(this).children().next().next().html();
+                datas += "\",\"Lunch\":\"" + $(this).children().next().next().next().html();
+                datas += "\",\"Dinner\":\"" + $(this).children().next().next().next().next().html();
 
-                var hotelString = $(this).children().next().next().next().next().html();
+                var hotelString = $(this).children().next().next().next().next().next().html();
                 var hotelArray = hotelString.split("-", 5);
                 for (var i = 0; i < hotelArray.length; i++) {
                     datas += "\",\"Hotel" + (i + 1) + "\":\"" + hotelArray[i];
                 }
 
-                var scString = $(this).children().next().next().next().next().next().html();
+                var scString = $(this).children().next().next().next().next().next().next().html();
                 var scArray = scString.split("-", 5);
                 for (var i = 0; i < scArray.length; i++) {
                     datas += "\",\"Scenic" + (i + 1) + "\":\"" + scArray[i];
                 }
 
-                var spString = $(this).children().next().next().next().next().next().next().html();
+                var spString = $(this).children().next().next().next().next().next().next().next().html();
                 var spArray = spString.split("-", 5);
                 for (var i = 0; i < spArray.length; i++) {
                     datas += "\",\"ShoppingPoint" + (i + 1) + "\":\"" + spArray[i];
@@ -84,7 +84,7 @@
                 dataType: "json",
                 data: datas,
                 success: function (data, status) {
-                    if (data == "成功") {
+                    if (data == '成功') {
                         alert("修改成功！");
                         window.navigate("/LocalTravelAgent/Grouplist.aspx");
                     }
@@ -134,6 +134,7 @@
                     return false;
                 }
             }
+            alert("上传成功, 请导入!");
             return true;
         }
 
@@ -187,9 +188,7 @@
                             alert('内容已导入!');
                         }
                         else {
-                            debugger;
                             var j = eval(data);
-                            //alert(j.Name);
                             $("#txtName").html(j.Name);
                             $("#txtDate").html(j.Bedate);
                             $("#txtDays").html(j.Days);
@@ -213,7 +212,6 @@
                 tbody.append("<tr><td>" +
                 "</td><td><input type='text' />" +
                 "</td><td><input type='text' /></td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />");
-                //                +"<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>");
             });
         });
     </script>
@@ -327,6 +325,9 @@
                 <tr>
                     <td>
                         日期
+                    </td>
+                    <td>
+                        地点
                     </td>
                     <td>
                         早餐

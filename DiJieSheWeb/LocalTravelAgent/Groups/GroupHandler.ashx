@@ -187,6 +187,56 @@ public class GroupHandler : IHttpHandler
                     Enterprise = bllDJS.GetDJS8name(item.Scenic5)[0]
                 });
             }
+            if (!string.IsNullOrWhiteSpace(item.Scenic6))
+            {
+                routes.Add(new Model.DJ_Route()
+                {
+                    DayNo = i,
+                    DJ_TourGroup = tg,
+                    Description = "景点6",
+                    Enterprise = bllDJS.GetDJS8name(item.Scenic6)[0]
+                });
+            }
+            if (!string.IsNullOrWhiteSpace(item.Scenic7))
+            {
+                routes.Add(new Model.DJ_Route()
+                {
+                    DayNo = i,
+                    DJ_TourGroup = tg,
+                    Description = "景点7",
+                    Enterprise = bllDJS.GetDJS8name(item.Scenic7)[0]
+                });
+            }
+            if (!string.IsNullOrWhiteSpace(item.Scenic8))
+            {
+                routes.Add(new Model.DJ_Route()
+                {
+                    DayNo = i,
+                    DJ_TourGroup = tg,
+                    Description = "景点8",
+                    Enterprise = bllDJS.GetDJS8name(item.Scenic8)[0]
+                });
+            }
+            if (!string.IsNullOrWhiteSpace(item.Scenic9))
+            {
+                routes.Add(new Model.DJ_Route()
+                {
+                    DayNo = i,
+                    DJ_TourGroup = tg,
+                    Description = "景点9",
+                    Enterprise = bllDJS.GetDJS8name(item.Scenic9)[0]
+                });
+            }
+            if (!string.IsNullOrWhiteSpace(item.Scenic10))
+            {
+                routes.Add(new Model.DJ_Route()
+                {
+                    DayNo = i,
+                    DJ_TourGroup = tg,
+                    Description = "景点10",
+                    Enterprise = bllDJS.GetDJS8name(item.Scenic10)[0]
+                });
+            }
             if (!string.IsNullOrWhiteSpace(item.ShoppingPoint1))
             {
                 routes.Add(new Model.DJ_Route()
@@ -215,26 +265,6 @@ public class GroupHandler : IHttpHandler
                     DJ_TourGroup = tg,
                     Description = "购物点3",
                     Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint3)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.ShoppingPoint4))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "购物点4",
-                    Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint4)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.ShoppingPoint5))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "购物点5",
-                    Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint5)[0]
                 });
             }
             i++;
