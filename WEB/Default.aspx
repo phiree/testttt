@@ -10,6 +10,7 @@
     <link href="/theme/default/css/Show.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
+            startscrolltime();
             $(".navlistnb a").attr("class", "");
             $(".navlistnb a:eq(0)").attr("class", "navhight");
             $(".navhight").next().attr("class", "");
@@ -36,6 +37,23 @@
                 }
             });
         });
+        function startscrolltime() {
+            scrollimg();
+            t = setTimeout("startscrolltime()", 50);
+        }
+
+        function scrollimg() {
+            var imgtop = $(".adcolum img").css("top");
+            imgtop=imgtop.replace("px", "");
+            if (imgtop >= 0) {
+                $(".adcolum img").css("top", "-180px");
+            }
+            else {
+                imgtop = parseInt(imgtop) + parseInt(1);
+                $(".adcolum img").css("top", imgtop+"px");
+            }
+        }
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
@@ -69,7 +87,9 @@
         </div>
     </div>
     <div class="adcolum">
-        <img src="/Img/农行.jpg" alt="农行优惠" />
+        <img src="/Img/农行.jpg" alt="农行优惠" height="90px" />
+        <img src="/Img/农行.jpg" alt="农行优惠" height="90px" />
+        <img src="/Img/农行.jpg" alt="农行优惠" height="90px" />
     </div>
     <div class="lpcolum">
         <a href="/topic/jiangshanlianpiao.aspx">
