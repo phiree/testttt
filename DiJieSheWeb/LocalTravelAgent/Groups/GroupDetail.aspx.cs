@@ -58,7 +58,7 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
                 ShoppingPoint3 = item.Where(x => x.Description == "购物点3").Count() > 0 ? item.First(x => x.Description == "购物点3").Enterprise.Name : string.Empty
             });
         }
-        rptRoute.DataSource = grlist;
+        rptRoute.DataSource = grlist.OrderBy(x=>x.RouteDate);
         rptRoute.DataBind();
     }
 }

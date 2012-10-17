@@ -2,6 +2,34 @@
     CodeFile="GroupDetail.aspx.cs" Inherits="Groups_GroupDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script type="text/javascript">
+        $(function () {
+            var tbody = $("#tbRoute>tbody>tr>td>span");
+            tbody.each(function () {
+                //lert($.trim($(this).html()));//显示各个单元格内容
+                var datas = "{\"enterpid\":\"" + $.trim($(this).html()) + "\"}";
+                $.Post({
+                    type: "Post",
+                    url: "RouteHandler.ashx",
+                    dataType: "json",
+                    data: datas,
+                    success: function (data, status) {
+                        alert(data);
+                        if (data == 'False') {
+                            alert('aaa');
+                            $(this).parent().css("background-color", "Aqua");
+                        }
+                        else {
+                            alert('ttt');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <style type="text/css">
+        
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
@@ -139,36 +167,47 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <%#Eval("RouteDate")%>
+                        <span><%#Eval("RouteDate")%></span>
                     </td>
                     <td>
-                        <%#Eval("Breakfast")%>
+                        <span><%#Eval("Breakfast")%></span>
                     </td>
                     <td>
-                        <%#Eval("Lunch")%>
+                        <span><%#Eval("Lunch")%></span>
                     </td>
                     <td>
-                        <%#Eval("Dinner")%>
+                        <span><%#Eval("Dinner")%></span>
                     </td>
                     <td>
-                        <%#Eval("Hotel1") + (string.IsNullOrWhiteSpace(Eval("Hotel2").ToString()) ? "" : "-"+Eval("Hotel2").ToString())%>
+                        <span><%#Eval("Hotel1")%></span>
+                        <%#(string.IsNullOrWhiteSpace(Eval("Hotel2").ToString()) ? "" : "-<span>" + Eval("Hotel2").ToString()) + "</span>"%>
                     </td>
                     <td>
-                        <%#Eval("Scenic1")
-                            + (string.IsNullOrWhiteSpace(Eval("Scenic2").ToString()) ? "" : "-" + Eval("Scenic2").ToString())
-                                                + (string.IsNullOrWhiteSpace(Eval("Scenic3").ToString()) ? "" : "-" + Eval("Scenic3").ToString())
-                                                                    + (string.IsNullOrWhiteSpace(Eval("Scenic4").ToString()) ? "" : "-" + Eval("Scenic4").ToString())
-                                                                                        + (string.IsNullOrWhiteSpace(Eval("Scenic5").ToString()) ? "" : "-" + Eval("Scenic5").ToString())
-                                                                    + (string.IsNullOrWhiteSpace(Eval("Scenic6").ToString()) ? "" : "-" + Eval("Scenic6").ToString())
-                                                                                        + (string.IsNullOrWhiteSpace(Eval("Scenic7").ToString()) ? "" : "-" + Eval("Scenic7").ToString())
-                                                                    + (string.IsNullOrWhiteSpace(Eval("Scenic8").ToString()) ? "" : "-" + Eval("Scenic8").ToString())
-                                                                                        + (string.IsNullOrWhiteSpace(Eval("Scenic9").ToString()) ? "" : "-" + Eval("Scenic9").ToString())
-                                                                    + (string.IsNullOrWhiteSpace(Eval("Scenic10").ToString()) ? "" : "-" + Eval("Scenic10").ToString())%>
+                        <span>
+                            <%#Eval("Scenic1")%></span> 
+                                <%# (string.IsNullOrWhiteSpace(Eval("Scenic2").ToString()) ? "" : "-<span>" + Eval("Scenic2").ToString()) + "</span>"%>
+                        
+                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic3").ToString()) ? "" : "-<span>" + Eval("Scenic3").ToString()) + "</span>"%>
+                        
+                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic4").ToString()) ? "" : "-<span>" + Eval("Scenic4").ToString()) + "</span>"%>
+                       
+                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic5").ToString()) ? "" : "-<span>" + Eval("Scenic5").ToString()) + "</span>"%>
+                        
+                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic6").ToString()) ? "" : "-<span>" + Eval("Scenic6").ToString()) + "</span>"%>
+                        
+                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic7").ToString()) ? "" : "-<span>" + Eval("Scenic7").ToString()) + "</span>"%>
+                        
+                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic8").ToString()) ? "" : "-<span>" + Eval("Scenic8").ToString()) + "</span>"%>
+                        
+                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic9").ToString()) ? "" : "-<span>" + Eval("Scenic9").ToString()) + "</span>"%>
+                        
+                            <%# (string.IsNullOrWhiteSpace(Eval("Scenic10").ToString()) ? "" : "-<span>" + Eval("Scenic10").ToString()) + "</span>"%>
                     </td>
                     <td>
-                        <%#Eval("ShoppingPoint1")
-                            + (string.IsNullOrWhiteSpace(Eval("ShoppingPoint2").ToString()) ? "" : "-" + Eval("ShoppingPoint2").ToString())
-                            + (string.IsNullOrWhiteSpace(Eval("ShoppingPoint3").ToString()) ? "" : "-" + Eval("ShoppingPoint3").ToString())%>
+                        <%#Eval("ShoppingPoint1")%></span>
+                            <%# (string.IsNullOrWhiteSpace(Eval("ShoppingPoint2").ToString()) ? "" : "-<span>" + Eval("ShoppingPoint2").ToString())+ "</span>"%>
+                        
+                            <%# (string.IsNullOrWhiteSpace(Eval("ShoppingPoint3").ToString()) ? "" : "-<span>" + Eval("ShoppingPoint3").ToString())+ "</span>"%>
                     </td>
                 </tr>
             </ItemTemplate>
