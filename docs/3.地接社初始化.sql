@@ -1,32 +1,169 @@
   
+  
+  INSERT [TourOnline].[dbo].[DJ_TourEnterprise] 
+  ([Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[Type],[Area_id])
+  VALUES
+  ('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','15988880000','0571-88886666',5,'1019')
 
 
+--ï¿½Å¶ï¿½ï¿½ï¿½Ï¢
+insert into DJ_TourEnterprise values('ï¿½ï¿½ï¿½ÝµØ½ï¿½ï¿½ï¿½','ï¿½ï¿½ÏªÂ·358ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½','330203515695','874569253',1,5,1019)
+insert into DJ_dijiesheInfo values(438)
+insert into DJ_TourGroup values('e4fd78ba-9ed6-49a4-9331-66f93d4f85b7','ï¿½ã½­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','2012-10-7','2012-10-9',3,20,3,438)
+insert into DJ_Group_Worker values(newid(),'330203198705265484','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','18992548675','54786523q',1,'e4fd78ba-9ed6-49a4-9331-66f93d4f85b7')
+insert into DJ_Route values(newid(),1,8,15,'ï¿½Î¹Û½ï¿½ï¿½ï¿½É½ï¿½ï¿½ï¿½ï¿½',435,null,'e4fd78ba-9ed6-49a4-9331-66f93d4f85b7')
 
-  INSERT INTO [dbo].[DJ_TourEnterprise](
+
+  --2012-10-16  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  --ï¿½ï¿½ï¿½ï¿½
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  'ÂèÂè¼Ò','º¼ÖÝÊÐÎ÷ºþÇø','³Â½üÄÏ','13877885211','0571-59876459',1,2,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
+  'ï¿½ï¿½ï¿½Å¼ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Âºï¿½ï¿½ï¿½','13877885211','0571-59876459',1,2,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  'Íâ¹«¼Ò','º¼ÖÝÊÐÎ÷ºþÇø','³Â½üÄÏ','13877885211','0571-59876459',1,2,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
+  'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','13877885211','0573-59876459',1,2,1076)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  'ÍâÆÅ¼Ò','º¼ÖÝÊÐÎ÷ºþÇø','³Â½üÄÏ','13877885211','0571-59876459',1,2,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
+  'ï¿½É¹ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Âºï¿½ï¿½ï¿½','13877885211','0571-59876459',1,2,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  'Ï£¶û¶Ù¾Æµê','º¼ÖÝÊÐÎ÷ºþÇø','³Â½üÄÏ','13877885211','0571-59876459',1,3,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
+  'ï¿½ï¿½Î¶ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Âºï¿½ï¿½ï¿½','13877885211','0571-59876459',1,2,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  'Èç¼Ò¿ì½Ý¾Æµê','º¼ÖÝÊÐÎ÷ºþÇø','³Â½üÄÏ','13877885211','0571-59876459',1,3,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
+  'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò©ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Âºï¿½ï¿½ï¿½','13877885211','0571-59876459',1,2,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  'º¼ÖÝË¿³ñÍÁÌØ²ú','º¼ÖÝÊÐÎ÷ºþÇø','³Â½üÄÏ','13877885211','0571-59876459',1,4,1019)
-  INSERT INTO [dbo].[DJ_TourEnterprise](
+  'ï¿½ï¿½Ò¿ï¿½Ý¾Æµï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Âºï¿½ï¿½ï¿½','13877885211','0571-59876459',1,2,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
   [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
   VALUES(
-  'Áú¾®²èÆì½¢µê','º¼ÖÝÊÐÎ÷ºþÇø','³Â½üÄÏ','13877885211','0571-59876459',1,4,1019)
+  'Ã·ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Âºï¿½ï¿½ï¿½','13877885211','0571-59876459',1,2,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Âºï¿½ï¿½ï¿½','13877885211','0571-59876459',1,2,1060)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½ï¿½ï¿½ï¿½Õ»','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Âºï¿½ï¿½ï¿½','13877885211','0571-59876459',1,2,1060)
+  
+  --ï¿½ï¿½ï¿½ï¿½
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½Õ¤ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½Õ¤','13877885211','0571-59876459',1,4,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'Â³Ñ¸ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½Â³Ñ¸','13877885211','0571-59876459',1,4,1076)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½Ô°','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Â½ï¿½ï¿½ï¿½','13877885211','0571-59876459',1,4,1076)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½Í¤','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Â½ï¿½ï¿½ï¿½','13877885211','0571-59876459',1,4,1076)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Â´ï¿½ï¿½ï¿½','13877885211','0571-59876459',1,4,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½ï¿½Û¹ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Â»ï¿½ï¿½ï¿½','13877885211','0571-59876459',1,4,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½ï¿½á´ºï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½Ùµï¿½','13877885211','0571-59876459',1,4,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½ï¿½ï¿½ï¿½Ê²ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','13877885211','0571-59876459',1,4,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','13877885211','0571-59876459',1,4,1019)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½Â·ï¿½ï¿½ï¿½','13877885211','0571-59876459',1,4,1019)
+
+  --ï¿½ï¿½ï¿½ï¿½scenic
+  INSERT INTO [TourOnline].[dbo].[Scenic](
+  [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
+      ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
+  VALUES(
+  454,0,'ï¿½ï¿½Õ¤ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','0','5A',NULL,'TRAFFIC','DETAIL',
+  'DESC','118.489189,28.296525','xizhajingqu','','',1060)
+  INSERT INTO [TourOnline].[dbo].[Scenic](
+  [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
+      ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
+  VALUES(
+  455,0,'Â³Ñ¸ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','0','5A',NULL,'TRAFFIC','DETAIL',
+  'DESC','118.489189,28.296525','xizhajingqu','','',1076)
+  INSERT INTO [TourOnline].[dbo].[Scenic](
+  [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
+      ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
+  VALUES(
+  456,0,'ï¿½ï¿½Ô°','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','0','5A',NULL,'TRAFFIC','DETAIL',
+  'DESC','118.489189,28.296525','xizhajingqu','','',1076)
+  INSERT INTO [TourOnline].[dbo].[Scenic](
+  [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
+      ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
+  VALUES(
+  457,0,'ï¿½ï¿½Í¤','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','0','5A',NULL,'TRAFFIC','DETAIL',
+  'DESC','118.489189,28.296525','xizhajingqu','','',1076)
+  INSERT INTO [TourOnline].[dbo].[Scenic](
+  [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
+      ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
+  VALUES(
+  458,0,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','0','5A',NULL,'TRAFFIC','DETAIL',
+  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  INSERT INTO [TourOnline].[dbo].[Scenic](
+  [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
+      ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
+  VALUES(
+  459,0,'ï¿½ï¿½ï¿½Û¹ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','0','5A',NULL,'TRAFFIC','DETAIL',
+  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  INSERT INTO [TourOnline].[dbo].[Scenic](
+  [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
+      ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
+  VALUES(
+  460,0,'ï¿½ï¿½ï¿½á´ºï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','0','5A',NULL,'TRAFFIC','DETAIL',
+  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  INSERT INTO [TourOnline].[dbo].[Scenic](
+  [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
+      ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
+  VALUES(
+  461,0,'ï¿½ï¿½ï¿½ï¿½ï¿½Ê²ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','0','5A',NULL,'TRAFFIC','DETAIL',
+  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  INSERT INTO [TourOnline].[dbo].[Scenic](
+  [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
+      ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
+  VALUES(
+  462,0,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','0','5A',NULL,'TRAFFIC','DETAIL',
+  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  INSERT INTO [TourOnline].[dbo].[Scenic](
+  [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
+      ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
+  VALUES(
+  463,0,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','0','5A',NULL,'TRAFFIC','DETAIL',
+  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+
+  --×¡ï¿½ï¿½
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½ï¿½ï¿½ï¿½Õ»','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','13877885211','0571-59876459',1,4,1060)
+  INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
+  [Name],[Address],[ChargePersonName],[ChargePersonPhone],[Phone],[IsVeryfied],[Type],[Area_id])
+  VALUES(
+  'ï¿½ï¿½Ò¿ï¿½Ý¾Æµï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½','13877885211','0571-59876459',1,4,1019)
+

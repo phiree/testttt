@@ -48,7 +48,7 @@ public class ExcelHandler : IHttpHandler {
         }
 
         html += @"{""Name"":""" +  groupall.GroupBasic.Name
-            + @""",""Bedate"":""" + groupall.GroupBasic.Begindate + "-" + groupall.GroupBasic.Enddate
+            + @""",""Bedate"":""" + DateTime.Parse(groupall.GroupBasic.Begindate).ToShortDateString() + "-" + DateTime.Parse(groupall.GroupBasic.Enddate).ToShortDateString()
             + @""",""Days"":""" +  groupall.GroupBasic.Days
             + @""",""PeopleTotal"":""" + groupall.GroupBasic.PeopleTotal
             + @""",""PeopleAdult"":""" + groupall.GroupBasic.PeopleAdult
@@ -70,6 +70,7 @@ public class ExcelHandler : IHttpHandler {
         foreach (ExcelOplib.Entity.GroupRoute item in groupall.GroupRouteList)
         {
             html += @"<tr><td>" + item.RouteDate +
+                "</td><td>" + item.City +
                 "</td><td>" + item.Breakfast +
                 "</td><td>" + item.Lunch +
                 "</td><td>" + item.Dinner +
@@ -79,12 +80,15 @@ public class ExcelHandler : IHttpHandler {
                                          + (item.Scenic2 == string.Empty ? "" : "-" + item.Scenic2)
                                          + (item.Scenic3 == string.Empty ? "" : "-" + item.Scenic3)
                                          + (item.Scenic4 == string.Empty ? "" : "-" + item.Scenic4)
-                                         + (item.Scenic5 == string.Empty ? "" : "-" + item.Scenic5) +
+                                         + (item.Scenic5 == string.Empty ? "" : "-" + item.Scenic5)
+                                         + (item.Scenic6 == string.Empty ? "" : "-" + item.Scenic6)
+                                         + (item.Scenic7 == string.Empty ? "" : "-" + item.Scenic7)
+                                         + (item.Scenic8 == string.Empty ? "" : "-" + item.Scenic8)
+                                         + (item.Scenic9 == string.Empty ? "" : "-" + item.Scenic9)
+                                         + (item.Scenic10 == string.Empty ? "" : "-" + item.Scenic10) +
                 "</td><td>" + item.ShoppingPoint1
                                          + (item.ShoppingPoint2 == string.Empty ? "" : "-" + item.ShoppingPoint2)
-                                         + (item.ShoppingPoint3 == string.Empty ? "" : "-" + item.ShoppingPoint3)
-                                         + (item.ShoppingPoint4 == string.Empty ? "" : "-" + item.ShoppingPoint4)
-                                         + (item.ShoppingPoint5 == string.Empty ? "" : "-" + item.ShoppingPoint5) + "</td></tr>";
+                                         + (item.ShoppingPoint3 == string.Empty ? "" : "-" + item.ShoppingPoint3)+ "</td></tr>";
         }
         html += @"""}";
         #endregion

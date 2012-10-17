@@ -31,6 +31,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         rptGroupList.DataSource = blldjtourgroup.GetTourGroupByTEId(Master.CurrentTE.Id);
         rptGroupList.DataBind();
         hfetid.Value = Master.CurrentTE.Id.ToString();
+        btnPrint.Visible = false;
     }
 
 
@@ -41,6 +42,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             string[] strinfos = txtTE_info.Text.Trim().Split('/');
             if (strinfos.Length > 1)
             {
+                btnPrint.Visible = false;
                 string idcard = strinfos[1];
                 ViewState["idcard"] = idcard;
                 BindRptByIdcard(idcard);
@@ -58,7 +60,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         }
     }
 
-
+    int Index = 0;
     protected void rptTourGroupInfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -73,25 +75,35 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 }
             }
             HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
+            int flag = 0;
             foreach (DJ_Route route in dj_tourgroup.Routes)
             {
                 if (dj_tourgroup.BeginDate.AddDays(route.DayNo-1).ToShortDateString() == DateTime.Now.ToShortDateString()&&route.Enterprise.Id==Master.CurrentTE.Id)
                 {
-                    hfroute.Value = route.Id.ToString();
-                    Literal laChecked = e.Item.FindControl("laChecked") as Literal;
-                    CheckBox selectItem = e.Item.FindControl("cbSelect") as CheckBox;
-                    TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
-                    TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
-                    if (blldjcr.GetGroupConsumRecordByRouteId(route.Id) != null)
+                    if (flag == Index)
                     {
-                        laChecked.Text = "已验证";
-                        selectItem.Enabled = false;
-                        tbAdult.Enabled = false;
-                        tbChild.Enabled = false;
+                        hfroute.Value = route.Id.ToString();
+                        Literal laChecked = e.Item.FindControl("laChecked") as Literal;
+                        CheckBox selectItem = e.Item.FindControl("cbSelect") as CheckBox;
+                        TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
+                        TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
+                        if (blldjcr.GetGroupConsumRecordByRouteId(route.Id) != null)
+                        {
+                            laChecked.Text = "已验证";
+                            selectItem.Enabled = false;
+                            tbAdult.Enabled = false;
+                            tbChild.Enabled = false;
+                            btnPrint.Visible = true;
+                        }
+                        else
+                        {
+                            laChecked.Text = "未验证";
+                        }
+                        Index++;
                     }
                     else
                     {
-                        laChecked.Text = "未验证";
+                        flag++;
                     }
                 }
             }
@@ -121,7 +133,8 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                         HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
                         DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
                         blldjcr.Save(Master.CurrentTE, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
-                        ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('验票成功')", true);
+                        ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('验证成功')", true);
+                        btnPrint.Visible = true;
                         BindRptByIdcard(ViewState["idcard"].ToString());
                         break;
                     }
@@ -253,5 +266,19 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             serializer.WriteObject(ms, data);
             return System.Text.Encoding.UTF8.GetString(ms.ToArray());
         }
+    }
+    protected void btnPrint_Click(object sender, EventArgs e)
+    {
+        string routeids = "";
+        foreach (RepeaterItem item in rptTourGroupInfo.Items)
+        {
+            CheckBox cbSelect = item.FindControl("cbSelect") as CheckBox;
+            if (!cbSelect.Enabled)
+            {
+                HiddenField hfrouteId = item.FindControl("hfrouteId") as HiddenField;
+                routeids += hfrouteId.Value + ",";
+            }
+        }
+        Response.Redirect("/TourEnterprise/PrintCer.aspx?routeids="+routeids);
     }
 }

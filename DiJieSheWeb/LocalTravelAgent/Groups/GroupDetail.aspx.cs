@@ -19,7 +19,7 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
     {
         Model.DJ_TourGroup tg = blltg.GetTourGroupById(Guid.Parse(guid));
         lblName.Text = tg.Name;
-        lblDate.Text = tg.BeginDate + "-" + tg.EndDate;
+        lblDate.Text = tg.BeginDate.ToShortDateString() + "-" + tg.EndDate.ToShortDateString();
         lblDays.Text = tg.DaysAmount.ToString();
         lblPnum.Text = (tg.AdultsAmount + tg.ChildrenAmount).ToString();
         lblPadult.Text = tg.AdultsAmount.ToString();
@@ -48,14 +48,17 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
                 Scenic3 = item.Where(x => x.Description == "景点3").Count() > 0 ? item.First(x => x.Description == "景点3").Enterprise.Name : string.Empty,
                 Scenic4 = item.Where(x => x.Description == "景点4").Count() > 0 ? item.First(x => x.Description == "景点4").Enterprise.Name : string.Empty,
                 Scenic5 = item.Where(x => x.Description == "景点5").Count() > 0 ? item.First(x => x.Description == "景点5").Enterprise.Name : string.Empty,
+                Scenic6 = item.Where(x => x.Description == "景点6").Count() > 0 ? item.First(x => x.Description == "景点6").Enterprise.Name : string.Empty,
+                Scenic7 = item.Where(x => x.Description == "景点7").Count() > 0 ? item.First(x => x.Description == "景点7").Enterprise.Name : string.Empty,
+                Scenic8 = item.Where(x => x.Description == "景点8").Count() > 0 ? item.First(x => x.Description == "景点8").Enterprise.Name : string.Empty,
+                Scenic9 = item.Where(x => x.Description == "景点9").Count() > 0 ? item.First(x => x.Description == "景点9").Enterprise.Name : string.Empty,
+                Scenic10 = item.Where(x => x.Description == "景点10").Count() > 0 ? item.First(x => x.Description == "景点10").Enterprise.Name : string.Empty,
                 ShoppingPoint1 = item.Where(x => x.Description == "购物点1").Count() > 0 ? item.First(x => x.Description == "购物点1").Enterprise.Name : string.Empty,
                 ShoppingPoint2 = item.Where(x => x.Description == "购物点2").Count() > 0 ? item.First(x => x.Description == "购物点2").Enterprise.Name : string.Empty,
-                ShoppingPoint3 = item.Where(x => x.Description == "购物点3").Count() > 0 ? item.First(x => x.Description == "购物点3").Enterprise.Name : string.Empty,
-                ShoppingPoint4 = item.Where(x => x.Description == "购物点4").Count() > 0 ? item.First(x => x.Description == "购物点4").Enterprise.Name : string.Empty,
-                ShoppingPoint5 = item.Where(x => x.Description == "购物点5").Count() > 0 ? item.First(x => x.Description == "购物点5").Enterprise.Name : string.Empty
+                ShoppingPoint3 = item.Where(x => x.Description == "购物点3").Count() > 0 ? item.First(x => x.Description == "购物点3").Enterprise.Name : string.Empty
             });
         }
-        rptRoute.DataSource = grlist;
+        rptRoute.DataSource = grlist.OrderBy(x=>x.RouteDate);
         rptRoute.DataBind();
     }
 }

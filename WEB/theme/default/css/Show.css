@@ -11,10 +11,16 @@
 {
     display:inline-block;
     width:950px;
-    height:95px;
+    height:93px;
     background:url("/theme/default/image/newversion/bottombg.png");
     background-repeat:no-repeat;
     background-position:bottom;
+    overflow:hidden;
+}
+.adcolum img
+{
+    position:relative;
+    top:-160px;
 }
 .fcolum
 {

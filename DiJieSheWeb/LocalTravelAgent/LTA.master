@@ -2,17 +2,16 @@
     Inherits="LocalTravelAgent_LTA" %>
 <%@ MasterType VirtualPath="/m.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="cphFunction" runat="server">
   <div>
-        <ul>
+        <ul class="nav">
             <li><a href="/localtravelagent/djsedit.aspx">信息维护</a> </li>
-            <li><a href="/localtravelagent/productlist.aspx">路线列表</a> </li>
-            <li><a href="/localtravelagent/productedit.aspx">增加路线</a></li>
-            <li><a href="/Groups/GroupList.aspx">团队列表</a></li>
-            <li><a href="/Groups/GroupEdit.aspx">增加团队</a></li>
+            <li><a href="/localtravelagent/Groups/GroupList.aspx">团队列表</a></li>
+                <li><a href="/localtravelagent/Groups/GroupInfo.aspx">团队信息导入</a></li>
               <li><a href="#">统计信息</a></li>
               
         </ul>

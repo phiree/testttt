@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Groups/Groups.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true"
     CodeFile="GroupInfo.aspx.cs" Inherits="Groups_GroupInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -6,11 +6,15 @@
     <script type="text/javascript">
 
         function calc() {
+            var bool = window.confirm("请确定是否需要保存!");
+            if (!bool) {
+                return false;
+            }
             var gid = getArgs("id");
-            //            if (gid == undefined) {
-            //                alert("没有找到相应的团队, 请确定团队编号");
-            //                return;
-            //            }
+//            if (gid == undefined) {
+//                alert("没有找到相应的团队, 请确定团队编号");
+//                return;
+//            }
 
             //新版本 2012-10-10
             //基本信息
@@ -48,23 +52,23 @@
             datas += ",\"GroupRouteList\":[";
             tbRoute.each(function () {
                 datas += "{\"RouteDate\":\"" + $(this).children().html();
-                datas += "\",\"Breakfast\":\"" + $(this).children().next().html();
-                datas += "\",\"Lunch\":\"" + $(this).children().next().next().html();
-                datas += "\",\"Dinner\":\"" + $(this).children().next().next().next().html();
+                datas += "\",\"Breakfast\":\"" + $(this).children().next().next().html();
+                datas += "\",\"Lunch\":\"" + $(this).children().next().next().next().html();
+                datas += "\",\"Dinner\":\"" + $(this).children().next().next().next().next().html();
 
-                var hotelString = $(this).children().next().next().next().next().html();
+                var hotelString = $(this).children().next().next().next().next().next().html();
                 var hotelArray = hotelString.split("-", 5);
                 for (var i = 0; i < hotelArray.length; i++) {
                     datas += "\",\"Hotel" + (i + 1) + "\":\"" + hotelArray[i];
                 }
 
-                var scString = $(this).children().next().next().next().next().next().html();
+                var scString = $(this).children().next().next().next().next().next().next().html();
                 var scArray = scString.split("-", 5);
                 for (var i = 0; i < scArray.length; i++) {
                     datas += "\",\"Scenic" + (i + 1) + "\":\"" + scArray[i];
                 }
 
-                var spString = $(this).children().next().next().next().next().next().next().html();
+                var spString = $(this).children().next().next().next().next().next().next().next().html();
                 var spArray = spString.split("-", 5);
                 for (var i = 0; i < spArray.length; i++) {
                     datas += "\",\"ShoppingPoint" + (i + 1) + "\":\"" + spArray[i];
@@ -80,8 +84,10 @@
                 dataType: "json",
                 data: datas,
                 success: function (data, status) {
-                    if (data == "成功")
+                    if (data == '成功') {
                         alert("修改成功！");
+                        window.navigate("/LocalTravelAgent/Grouplist.aspx");
+                    }
                     else
                         alert("修改失败！");
                 }
@@ -128,6 +134,7 @@
                     return false;
                 }
             }
+            alert("上传成功, 请导入!");
             return true;
         }
 
@@ -181,9 +188,7 @@
                             alert('内容已导入!');
                         }
                         else {
-                            debugger;
                             var j = eval(data);
-                            //alert(j.Name);
                             $("#txtName").html(j.Name);
                             $("#txtDate").html(j.Bedate);
                             $("#txtDays").html(j.Days);
@@ -207,7 +212,6 @@
                 tbody.append("<tr><td>" +
                 "</td><td><input type='text' />" +
                 "</td><td><input type='text' /></td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />");
-                //                +"<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>");
             });
         });
     </script>
@@ -216,33 +220,76 @@
     <div class="detail_titlebg">
         基本信息导入
     </div>
-    <div class="detaillist">
         <!-- 基本信息begin -->
-    <div>
-        团队名称：<h6 id="txtName">
-        </h6>
-        <br />
-        起止时间：<h6 id="txtDate">
-        </h6>
-        天数：<h6 id="txtDays">
-        </h6>
-        <br />
-        人数：<h6 id="txtPnum">
-        </h6>
-        成人：<h6 id="txtPadult">
-        </h6>
-        儿童：<h6 id="txtPchild">
-        </h6>
-        <br />
-        上车集合点：<h6 id="txtGether">
-        </h6>
-        返程点：<h6 id="txtBack">
-        </h6>
-    </div>
+    <div class="detaillist">
+        <div class="detailtitle">
+            基本信息
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="width:15%">
+                    团队名称：
+                </td>
+                <td>
+                    <h6 id="txtName"></h6>
+                </td>
+                <td style="width:15%">
+                   起止时间：
+                </td>
+                <td>
+                    <h6 id="txtDate"></h6>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    游玩天数：
+                </td>
+                <td>
+                    <h6 id="txtDays"></h6>
+                </td>
+                <td>
+                    游玩人数：
+                </td>
+                <td>
+                    <h6 id="txtPnum"> </h6>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    成人人数：
+                </td>
+                <td>
+                    <h6 id="txtPadult"></h6>
+                </td>
+                <td>
+                    儿童人数：
+                </td>
+                <td>
+                    <h6 id="txtPchild"></h6>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    上车集合点：
+                </td>
+                <td>
+                    <h6 id="txtGether">
+                </td>
+                <td>
+                    返程点：
+                </td>
+                <td>
+                    <h6 id="txtBack"></h6>
+                </td>
+            </tr>
+        </table>
+    
     <!-- 基本信息end -->
     <!-- 人员begin -->
-    <div>
-        <table class="tableMemberid" id="tbMember">
+    <div class="detailtitle">
+            人员信息
+        </div>
+        <table class="tableMemberid" id="tbMember" cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
                     <td>
@@ -268,15 +315,19 @@
                 </tr>
             </tbody>
         </table>
-    </div>
     <!-- 人员end -->
     <!-- 行程begin -->
-    <div>
+    <div class="detailtitle">
+            行程信息
+        </div>
         <table id="tbRoute">
             <thead>
                 <tr>
                     <td>
                         日期
+                    </td>
+                    <td>
+                        地点
                     </td>
                     <td>
                         早餐
@@ -306,10 +357,11 @@
     <!-- 操作begin -->
     <hr />
     <input type="hidden" id="hidden_scid" runat="server" />
-    <p>
+    <div class="detaillist">
+    <p style="margin-left:5px;margin-top:5px;margin-bottom:5px;color:#999999">
         导入信息操作步骤:
     </p>
-    <ol>
+    <ol style="margin-left:5px;color:#999999">
         <li>点击“浏览”，选择要导入的excel文件 <br />
         
         注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题</li>
@@ -321,7 +373,7 @@
     <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
         OnClick="btnUpload_Click"  CssClass="btn"/>
     <input id="btnExcel" type="button" name="name" value="导入数据" class="btn" />
-    <asp:Label ID="Label1" runat="server" Text="" Visible="True"></asp:Label>
+    <asp:Label ID="Label1" runat="server" Text="" Visible="True" style=" display:none"></asp:Label>
     <input type="button" value="保存" onclick="calc()" class="btn" />
     <!-- 操作end -->
     </div>

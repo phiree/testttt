@@ -53,7 +53,7 @@ namespace ExcelOplib
                 //        EndPlace = dt.Rows[i][7].ToString().Replace("\n", "").Trim()
                 //    });
                 //}
-                Entity.GroupBasic  gb = new Entity.GroupBasic();
+                Entity.GroupBasic gb = new Entity.GroupBasic();
                 if (string.IsNullOrEmpty(dt.Rows[0][1].ToString())) ;
 
                 //如果excel中的行不为空,添加
@@ -241,7 +241,7 @@ namespace ExcelOplib
 
                 #region 行程信息
                 DataTable dt3 = new DataTable();
-                string sql3 = "select 日期,早餐,中餐,晚餐,住宿1,住宿2,景点1,景点2,景点3,景点4,景点5,购物点1,购物点2,购物点3,购物点4,购物点5 from [行程信息$]";
+                string sql3 = "select 日期,地区,早餐,中餐,晚餐,住宿1,住宿2,景点1,景点2,景点3,景点4,景点5,景点6,景点7,景点8,景点9,景点10,购物点1,购物点2,购物点3 from [行程信息$]";
                 OleDbCommand cmd3 = new OleDbCommand(sql3, new OleDbConnection(conn));
                 OleDbDataAdapter ad3 = new OleDbDataAdapter(cmd3);
                 ad3.Fill(dt3);
@@ -249,34 +249,74 @@ namespace ExcelOplib
                 for (int i = 0; i < dt3.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt3.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrEmpty(dt3.Rows[i][0].ToString())) continue;
 
                     //如果excel中的行不为空,添加
                     grlist.Add(new Entity.GroupRoute()
                     {
                         RouteDate = dt3.Rows[i][0].ToString().Replace("\n", "").Trim(),
-                        Breakfast = dt3.Rows[i][1].ToString().Replace("\n", "").Trim(),
-                        Lunch = dt3.Rows[i][2].ToString().Replace("\n", "").Trim(),
-                        Dinner = dt3.Rows[i][3].ToString().Replace("\n", "").Trim(),
-                        Hotel1 = dt3.Rows[i][4].ToString().Replace("\n", "").Trim(),
-                        Hotel2 = dt3.Rows[i][5].ToString().Replace("\n", "").Trim(),
-                        Scenic1 = dt3.Rows[i][6].ToString().Replace("\n", "").Trim(),
-                        Scenic2 = dt3.Rows[i][7].ToString().Replace("\n", "").Trim(),
-                        Scenic3 = dt3.Rows[i][8].ToString().Replace("\n", "").Trim(),
-                        Scenic4 = dt3.Rows[i][9].ToString().Replace("\n", "").Trim(),
-                        Scenic5 = dt3.Rows[i][10].ToString().Replace("\n", "").Trim(),
-                        ShoppingPoint1 = dt3.Rows[i][11].ToString().Replace("\n", "").Trim(),
-                        ShoppingPoint2 = dt3.Rows[i][12].ToString().Replace("\n", "").Trim(),
-                        ShoppingPoint3 = dt3.Rows[i][13].ToString().Replace("\n", "").Trim(),
-                        ShoppingPoint4 = dt3.Rows[i][14].ToString().Replace("\n", "").Trim(),
-                        ShoppingPoint5 = dt3.Rows[i][15].ToString().Replace("\n", "").Trim()
+                        City = dt3.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Breakfast = dt3.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Lunch = dt3.Rows[i][3].ToString().Replace("\n", "").Trim(),
+                        Dinner = dt3.Rows[i][4].ToString().Replace("\n", "").Trim(),
+                        Hotel1 = dt3.Rows[i][5].ToString().Replace("\n", "").Trim(),
+                        Hotel2 = dt3.Rows[i][6].ToString().Replace("\n", "").Trim(),
+                        Scenic1 = dt3.Rows[i][7].ToString().Replace("\n", "").Trim(),
+                        Scenic2 = dt3.Rows[i][8].ToString().Replace("\n", "").Trim(),
+                        Scenic3 = dt3.Rows[i][9].ToString().Replace("\n", "").Trim(),
+                        Scenic4 = dt3.Rows[i][10].ToString().Replace("\n", "").Trim(),
+                        Scenic5 = dt3.Rows[i][11].ToString().Replace("\n", "").Trim(),
+                        Scenic6 = dt3.Rows[i][12].ToString().Replace("\n", "").Trim(),
+                        Scenic7 = dt3.Rows[i][13].ToString().Replace("\n", "").Trim(),
+                        Scenic8 = dt3.Rows[i][14].ToString().Replace("\n", "").Trim(),
+                        Scenic9 = dt3.Rows[i][15].ToString().Replace("\n", "").Trim(),
+                        Scenic10 = dt3.Rows[i][16].ToString().Replace("\n", "").Trim(),
+                        ShoppingPoint1 = dt3.Rows[i][17].ToString().Replace("\n", "").Trim(),
+                        ShoppingPoint2 = dt3.Rows[i][18].ToString().Replace("\n", "").Trim(),
+                        ShoppingPoint3 = dt3.Rows[i][19].ToString().Replace("\n", "").Trim()
                     });
+                }
+                //合并route,相同routedate合并
+                List<Entity.GroupRoute> grlistNew = new List<Entity.GroupRoute>();
+                for (int i = 0; i < grlist.Count; i++)
+                {
+                    if (grlist.Where(x => x.RouteDate.ToUpper() == "D" + (i + 1)).Count() <= 0)
+                        continue;
+                    var temp = grlist.Where<Entity.GroupRoute>(x => x.RouteDate.ToUpper() == "D" + (i + 1)).ToList();
+                    Entity.GroupRoute gr = new Entity.GroupRoute();
+                    gr.RouteDate = "D" + (i + 1);
+                    gr.City = string.Empty;
+                    //
+                    for (int j = 0; j < temp.Count; j++)
+                    {
+                        gr.City += temp[j].City + "-";
+                        gr.Breakfast = string.IsNullOrEmpty(gr.Breakfast) ? temp[j].Breakfast : gr.Breakfast;
+                        gr.Lunch = string.IsNullOrEmpty(gr.Lunch) ? temp[j].Lunch : gr.Lunch;
+                        gr.Dinner = string.IsNullOrEmpty(gr.Dinner) ? temp[j].Dinner : gr.Dinner;
+                        gr.Hotel1 = string.IsNullOrEmpty(gr.Hotel1) ? temp[j].Hotel1 : gr.Hotel1;
+                        gr.Hotel2 = string.IsNullOrEmpty(gr.Hotel2) ? temp[j].Hotel2 : gr.Hotel2;
+                        gr.Scenic1 = string.IsNullOrEmpty(gr.Scenic1) ? temp[j].Scenic1 : gr.Scenic1;
+                        gr.Scenic2 = string.IsNullOrEmpty(gr.Scenic2) ? temp[j].Scenic2 : gr.Scenic2;
+                        gr.Scenic3 = string.IsNullOrEmpty(gr.Scenic3) ? temp[j].Scenic3 : gr.Scenic3;
+                        gr.Scenic4 = string.IsNullOrEmpty(gr.Scenic4) ? temp[j].Scenic4 : gr.Scenic4;
+                        gr.Scenic5 = string.IsNullOrEmpty(gr.Scenic5) ? temp[j].Scenic5 : gr.Scenic5;
+                        gr.Scenic6 = string.IsNullOrEmpty(gr.Scenic6) ? temp[j].Scenic6 : gr.Scenic6;
+                        gr.Scenic7 = string.IsNullOrEmpty(gr.Scenic7) ? temp[j].Scenic7 : gr.Scenic7;
+                        gr.Scenic8 = string.IsNullOrEmpty(gr.Scenic8) ? temp[j].Scenic8 : gr.Scenic8;
+                        gr.Scenic9 = string.IsNullOrEmpty(gr.Scenic9) ? temp[j].Scenic9 : gr.Scenic9;
+                        gr.Scenic10 = string.IsNullOrEmpty(gr.Scenic10) ? temp[j].Scenic10 : gr.Scenic10;
+                        gr.ShoppingPoint1 = string.IsNullOrEmpty(gr.ShoppingPoint1) ? temp[j].ShoppingPoint1 : gr.ShoppingPoint1;
+                        gr.ShoppingPoint2 = string.IsNullOrEmpty(gr.ShoppingPoint2) ? temp[j].ShoppingPoint2 : gr.ShoppingPoint2;
+                        gr.ShoppingPoint3 = string.IsNullOrEmpty(gr.ShoppingPoint3) ? temp[j].ShoppingPoint3 : gr.ShoppingPoint3;
+                    }
+                    gr.City = gr.City.Substring(0, gr.City.Length - 1);
+                    grlistNew.Add(gr);
                 }
                 #endregion
 
                 //如果获取到了list,就把上传上来的文件删除
                 File.Delete(path.Replace('/', '\\'));
-                return new Entity.GroupAll() { GroupBasic = gb, GroupMemberList = gmlist, GroupRouteList = grlist };
+                return new Entity.GroupAll() { GroupBasic = gb, GroupMemberList = gmlist, GroupRouteList = grlistNew };
             }
             catch (Exception ex)
             {

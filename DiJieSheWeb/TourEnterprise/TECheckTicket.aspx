@@ -18,7 +18,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <asp:HiddenField ID="hfetid" runat="server" />
     <div class="detail_titlebg">
-        验票详情
+        验证
     </div>
     <div class="searchdiv">
         <h5>
@@ -59,7 +59,9 @@
         <tr>
             <td></td>
             <td>
-                <asp:Button ID="btnCheckOut" Text="验票通过" runat="server" OnClick="btnCheckOut_Click" CssClass="btn" />
+                <asp:Button ID="btnCheckOut" Text="验证通过" runat="server" OnClick="btnCheckOut_Click" CssClass="btn" />
+                <asp:Button ID="btnPrint" runat="server" Text="打印凭证" CssClass="btn" 
+            onclick="btnPrint_Click" />
             </td>
             <td></td>
         </tr>

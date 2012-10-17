@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Groups/Groups.master" AutoEventWireup="true" CodeFile="ChangePwd.aspx.cs" Inherits="Groups_ChangePwd" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true" CodeFile="ChangePwd.aspx.cs" Inherits="Groups_ChangePwd" %>
 
 
 <%@ Register TagPrefix="ucPwd" TagName="changepwd" Src="/UC/ChangePwd.ascx" %>

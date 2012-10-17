@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
     <div class="detail_titlebg">
-        预知详情
+        预订单详情
     </div>
     <div class="searchdiv">
         <h5>按时间进行查询</h5>
@@ -12,7 +12,7 @@
             <asp:ListItem Text="3天内抵达" Selected="True" Value="type_1"  />
             <asp:ListItem Text="一周内抵达" Value="type_2" />
             <asp:ListItem Text="一个月内抵达" Value="type_3" />
-            <asp:ListItem Text="所有预报" Value="type_4" />
+            <asp:ListItem Text="所有预订单(未验证)" Value="type_4" />
         </asp:RadioButtonList>
     </div>
     <div class="detaillist">

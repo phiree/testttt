@@ -12,6 +12,10 @@ namespace ExcelOplib.Entity
         /// </summary>
         public string RouteDate { get; set; }
         /// <summary>
+        /// 地区
+        /// </summary>
+        public string City { get; set; }
+        /// <summary>
         /// 早餐
         /// </summary>
         public string Breakfast { get;set;}
@@ -52,6 +56,26 @@ namespace ExcelOplib.Entity
         /// </summary>
         public string Scenic5 { get; set; }
         /// <summary>
+        /// 景点
+        /// </summary>
+        public string Scenic6 { get; set; }
+        /// <summary>
+        /// 景点
+        /// </summary>
+        public string Scenic7 { get; set; }
+        /// <summary>
+        /// 景点
+        /// </summary>
+        public string Scenic8 { get; set; }
+        /// <summary>
+        /// 景点
+        /// </summary>
+        public string Scenic9 { get; set; }
+        /// <summary>
+        /// 景点
+        /// </summary>
+        public string Scenic10 { get; set; }
+        /// <summary>
         /// 购物点
         /// </summary>
         public string ShoppingPoint1 { get; set; }
@@ -63,13 +87,5 @@ namespace ExcelOplib.Entity
         /// 购物点
         /// </summary>
         public string ShoppingPoint3 { get; set; }
-        /// <summary>
-        /// 购物点
-        /// </summary>
-        public string ShoppingPoint4 { get; set; }
-        /// <summary>
-        /// 购物点
-        /// </summary>
-        public string ShoppingPoint5 { get; set; }
     }
 }

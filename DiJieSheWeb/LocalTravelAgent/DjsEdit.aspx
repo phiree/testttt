@@ -4,17 +4,70 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    名称:<asp:TextBox ID="txtName" runat="server" /><br />
-    类型:<asp:DropDownList ID="ddlType" runat="server">
-    </asp:DropDownList>
-    <br />
-    地区:<asp:DropDownList ID="ddlArea" runat="server">
-    </asp:DropDownList>
-    <br />
-    地址:<asp:TextBox ID="txtAddress" runat="server" /><br />
-    负责人名称:<asp:TextBox ID="txtCPN" runat="server" /><br />
-    负责人电话:<asp:TextBox ID="txtCPP" runat="server" /><br />
-    联系电话:<asp:TextBox ID="txtTel" runat="server" /><br />
-    <asp:Button ID="btnSave" Text="保存" runat="server" OnClick="btnSave_Click" 
-        style="height: 21px" />
+    <div class="detail_titlebg">
+        信息维护
+    </div>
+    <div class="detaillist">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    名称:
+                </td>
+                <td>
+                    <asp:TextBox ID="txtName" runat="server" Width="80%" />
+                </td>
+                <td>
+                    类型:
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlType" runat="server" Width="80%">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    地区
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlArea" runat="server" Width="80%">
+                    </asp:DropDownList>
+                </td>
+                <td>
+                    联系电话:
+                </td>
+                <td>
+                    <asp:TextBox ID="txtTel" runat="server" Width="80%" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    负责人名称:
+                </td>
+                <td>
+                    <asp:TextBox ID="txtCPN" runat="server" Width="80%" />
+                </td>
+                <td>
+                    负责人电话:
+                </td>
+                <td>
+                    <asp:TextBox ID="txtCPP" runat="server" Width="80%" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    地址:
+                </td>
+                <td colspan="3">
+                    <asp:TextBox ID="txtAddress" runat="server" Width="92%" />
+                </td>
+            </tr>
+            <tr>
+                
+            </tr>
+        </table>
+    <div style="text-align:center">
+    <asp:Button ID="btnSave" Text="保存" runat="server" OnClick="btnSave_Click"  CssClass="btn"
+        />
+    </div>
+    </div>
 </asp:Content>

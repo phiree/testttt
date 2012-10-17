@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace BLL
     public class BLLDJEnterprise
     {
         IDAL.IDJEnterprise daldjs = new DAL.DALDJEnterprise();
-        DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
+
         #region DJS
         /// <summary>
         /// 
@@ -57,7 +57,6 @@ namespace BLL
         {
             return GetDJS8Muti(areaid, null, null, null);
         }
-        
 
         /// <summary>
         /// 查询地接社
@@ -91,7 +90,7 @@ namespace BLL
 
         /// <summary>
         /// 旅游管理部门辖区的旅游企业
-        /// </summary>
+        /// </summary> 
         /// <param name="areaCode"></param>
         /// <returns></returns>
         public IList<Model.DJ_TourEnterprise> GetDJSForDpt(string areaCode)
@@ -113,9 +112,51 @@ namespace BLL
         {
             return daldjs.GetDJS8Muti(areaid, type, id, namelike);
         }
-        public IList<Model.DJ_TourEnterprise> GetEntListWithoutScenic()
+
+        /// <summary>
+        /// 获取该地接社下旅游团队的奖励情况
+        /// </summary>
+        /// <param name="entid"></param>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        public IList<DJ_TourGroup> GetDJSRewordGroup(string entid, int day)
         {
-            return dalEnt.GetEnterpriseWithoutScenic(string.Empty);
+            IList<DJ_TourGroup> ListTg=(GetDJS8id(entid)[0] as DJ_DijiesheInfo).Groups;
+            List<DJ_TourGroup> List = new List<DJ_TourGroup>();
+            foreach (DJ_TourGroup group in ListTg)
+            {
+                //排除还没结束，和不再指定时间范围内的
+                if (DateTime.Parse(group.EndDate.ToShortDateString()) > DateTime.Parse(DateTime.Now.ToShortDateString()) && DateTime.Parse(group.EndDate.AddDays(day).ToShortDateString()) >= DateTime.Parse(DateTime.Now.ToShortDateString()))
+                {
+                    List.Add(group);
+                }
+            }
+            return List;
+        }
+
+        /// <summary>
+        /// 获取该企业的奖励情况
+        /// </summary>
+        /// <param name="entid">企业id</param>
+        /// <param name="day">天数</param>
+        public void GetDJSRewordEnt(string entid, int day,out int groupcount,out int peocount)
+        {
+            peocount = 0; groupcount = 0;
+            List<DJ_Route> ListRoute = new DAL.DALDJ_Route().GetRouteByentid(int.Parse(entid)).ToList();
+            List<DJ_TourGroup> ListGroup = new List<DJ_TourGroup>();
+            foreach (DJ_Route route in ListRoute)
+            {
+                Model.DJ_GroupConsumRecord record= new BLLDJConsumRecord().GetGroupConsumRecordByRouteId(route.Id);
+                if (record != null && DateTime.Parse(record.ConsumeTime.AddDays(day).ToShortDateString()) >= DateTime.Parse(DateTime.Now.ToShortDateString()))
+                {
+                    peocount += record.AdultsAmount + record.ChildrenAmount;
+                    if (ListGroup.Where(x => x.Id == route.DJ_TourGroup.Id).Count() == 0)
+                    {
+                        ListGroup.Add(route.DJ_TourGroup);
+                    }
+                }
+            }
+            groupcount = ListGroup.Count;
         }
         #endregion
 

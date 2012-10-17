@@ -28,6 +28,11 @@ namespace BLL
             return IDjgroup.GetGroupConsumRecordByRouteId(RouteId);
         }
 
+        public Model.DJ_GroupConsumRecord GetGroupConsumRecordByRouteId(string EnterpName)
+        {
+            return IDjgroup.GetGroupConsumRecordByRouteId(EnterpName);
+        }
+
         public IList<Model.DJ_TourGroup> GetFeRecordByETId(int etid, int day, int pageIndex, int pageSize, out int totalRecord)
         {
             List<Model.DJ_TourGroup> ListTg = IDjgroup.GetFeRecordByETId(etid).ToList();
