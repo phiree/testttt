@@ -69,6 +69,7 @@
     <Compile Include="ExcelGroupOpr.cs" />
     <Compile Include="ExcelOpr.cs" />
     <Compile Include="Entity\ExcelEntity.cs" />
+    <Compile Include="ExcelXlsmOpr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

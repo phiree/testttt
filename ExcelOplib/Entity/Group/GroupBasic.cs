@@ -7,6 +7,13 @@ namespace ExcelOplib.Entity
 {
     public class GroupBasic
     {
+        /// <summary>
+        /// 团队编号
+        /// </summary>
+        public string GroupNo { get; set; }
+        /// <summary>
+        /// 团队名称
+        /// </summary>
         public string Name { get; set; }
         /// <summary>
         /// 开始时间
@@ -32,6 +39,10 @@ namespace ExcelOplib.Entity
         /// 儿童人数
         /// </summary>
         public string PeopleChild { get; set; }
+        /// <summary>
+        /// 外宾人数
+        /// </summary>
+        public string Foreigners { get; set; }
         /// <summary>
         /// 开始集结地
         /// </summary>

@@ -17,6 +17,10 @@ namespace Model
         }
         public virtual Guid Id { get; set; }
         /// <summary>
+        /// 团队编号
+        /// </summary>
+        public virtual string No { get; set; }
+        /// <summary>
         /// 该团队所属的地接社
         /// </summary>
         public virtual DJ_DijiesheInfo DJ_DijiesheInfo { get; set; }
@@ -44,6 +48,10 @@ namespace Model
         /// 儿童总人数
         /// </summary>
         public virtual int ChildrenAmount { get; set; }
+        /// <summary>
+        /// 外宾人数
+        /// </summary>
+        public virtual int ForeignersAmount { get; set; }
         /// <summary>
         /// 集合点
         /// </summary>

@@ -28,9 +28,10 @@ namespace DAL
             return query.FutureValue<Model.DJ_GroupConsumRecord>().Value;
         }
 
-        public Model.DJ_GroupConsumRecord GetGroupConsumRecordByRouteId(string EnterpName)
+        public Model.DJ_GroupConsumRecord GetGcr8Name(string EnterpName,string Groupid)
         {
-            string sql = "select gcr from DJ_GroupConsumRecord gcr where gcr.Enterprise.Name='" + EnterpName + "'";
+            string sql = "select gcr from DJ_GroupConsumRecord gcr where gcr.Enterprise.Name='" + EnterpName
+                + "' and gcr.Route.DJ_TourGroup.Id='" + Groupid + "'";
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_GroupConsumRecord>().Value;
         }

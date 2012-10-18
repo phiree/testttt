@@ -10,7 +10,7 @@ namespace IDAL
     {
         void Save(DJ_GroupConsumRecord group);
         DJ_GroupConsumRecord GetGroupConsumRecordByRouteId(Guid RouteId);
-        DJ_GroupConsumRecord GetGroupConsumRecordByRouteId(string EnterpName);
+        DJ_GroupConsumRecord GetGcr8Name(string EnterpName,string Groupid);
         IList<DJ_TourGroup> GetFeRecordByETId(int etid);
     }
 }

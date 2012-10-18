@@ -23,7 +23,7 @@ public partial class Groups_GroupInfo : System.Web.UI.Page
         int size = FileUpload1.PostedFile.ContentLength;
 
         #region 保存
-        if (typ2 == "xlsx" || typ2 == "xls")
+        if (typ2 == "xlsx" || typ2 == "xls" || typ2 == "xlsm")
         {
             if (size <= 4134904)
             {

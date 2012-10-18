@@ -10,6 +10,7 @@ public partial class LocalTravelAgent_DjsEdit : System.Web.UI.Page
 
     BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
     BLL.BLLArea bllarea = new BLL.BLLArea();
+    Model.DJ_TourEnterprise djs;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -17,6 +18,22 @@ public partial class LocalTravelAgent_DjsEdit : System.Web.UI.Page
         {
             BindArea();
             BindType();
+            BindData();
+        }
+    }
+
+    private void BindData()
+    {
+        var datas = blldjs.GetDJS8id(Request.Cookies["DJSID"].Value.ToString());
+        if (datas.Count>0)
+        {
+            djs = datas[0];
+            txtName.Text = djs.Name;
+            txtCPP.Text = djs.ChargePersonPhone;
+            txtCPN.Text = djs.ChargePersonName;
+            txtTel.Text = djs.Phone;
+            txtAddress.Text = djs.Address;
+            ddlArea.SelectedIndex = ddlArea.Items.IndexOf(ddlArea.Items.FindByText(djs.Area.Name));
         }
     }
 
@@ -32,10 +49,11 @@ public partial class LocalTravelAgent_DjsEdit : System.Web.UI.Page
     private void BindType()
     {
         IList<string> types = new List<string>(){
-            Model.EnterpriseType.宾馆.ToString(),
-            Model.EnterpriseType.饭店.ToString(),
-            Model.EnterpriseType.购物点.ToString(),
-            Model.EnterpriseType.景点.ToString()
+            //Model.EnterpriseType.宾馆.ToString(),
+            //Model.EnterpriseType.饭店.ToString(),
+            //Model.EnterpriseType.购物点.ToString(),
+            //Model.EnterpriseType.景点.ToString()
+            "地接社"
         };
         ddlType.DataSource = types;
         ddlType.DataBind();
@@ -49,8 +67,15 @@ public partial class LocalTravelAgent_DjsEdit : System.Web.UI.Page
             Page.ClientScript.RegisterStartupScript(this.GetType(),"","alert('"+rh.sresult+"')",true);
             return;
         }
-        blldjs.AddDjs(txtName.Text.Trim(),txtAddress.Text.Trim(),
-            bllarea.GetAreaByCode("330100"), txtCPN.Text.Trim(), txtCPP.Text.Trim(), "010-156489765");
+        if (djs == null)
+        {
+            blldjs.AddDjs(txtName.Text.Trim(), txtAddress.Text.Trim(),
+                bllarea.GetAreaByCode("330100"), txtCPN.Text.Trim(), txtCPP.Text.Trim(), "010-156489765");
+        }
+        else
+        {
+            blldjs.Save(djs);
+        }
     }
 
     private ResultHelper checkComplete()

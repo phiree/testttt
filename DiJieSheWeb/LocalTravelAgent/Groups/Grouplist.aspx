@@ -35,13 +35,23 @@
         .colorpicker
         {
             display: block;
+            margin-left: 10px;
             width: 12px;
             height: 12px;
-            float: left;
+            float:right;
             border: 1px solid #000;
             margin-right: 2px;
+            margin-top:4px;
             cursor: pointer;
         }
+        .colorWord
+        {
+            display: block;
+            margin-left: 2px;
+            float:right;
+            margin-right: 5px;
+            cursor: pointer;
+            }
         #colorpicker1
         {
             background-color:Aqua;
@@ -63,6 +73,9 @@
     <div class="detaillist">
         <div class="detailtitle">
             团队列表
+    <span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
+    <span class="colorWord">进行中的行程</span><span class="colorpicker" id="colorpicker2"></span>
+    <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>
         </div>
         <asp:Repeater ID="rptGroups" runat="server">
             <HeaderTemplate>
@@ -113,8 +126,5 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
-    <span class="colorpicker" id="colorpicker1"></span>完成的行程<br />
-    <span class="colorpicker" id="colorpicker2"></span>进行中的行程<br />
-    <span class="colorpicker" id="colorpicker3"></span>未开始的行程<br />
     </div>
 </asp:Content>

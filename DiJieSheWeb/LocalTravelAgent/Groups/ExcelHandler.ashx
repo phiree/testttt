@@ -54,7 +54,9 @@ public class ExcelHandler : IHttpHandler {
             + @""",""PeopleAdult"":""" + groupall.GroupBasic.PeopleAdult
             + @""",""PeopleChild"":""" + groupall.GroupBasic.PeopleChild
             + @""",""StartPlace"":""" + groupall.GroupBasic.StartPlace
-            + @""",""EndPlace"":""" + groupall.GroupBasic.EndPlace ;
+            + @""",""EndPlace"":""" + groupall.GroupBasic.EndPlace
+            + @""",""Foreigners"":""" + groupall.GroupBasic.Foreigners
+            + @""",""GroupNo"":""" + groupall.GroupBasic.GroupNo;
 
         html += @""",""Member"":""";
         foreach (ExcelOplib.Entity.GroupMember item in groupall.GroupMemberList)

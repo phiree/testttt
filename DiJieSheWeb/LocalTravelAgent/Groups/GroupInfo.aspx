@@ -11,16 +11,16 @@
                 return false;
             }
             var gid = getArgs("id");
-//            if (gid == undefined) {
-//                alert("没有找到相应的团队, 请确定团队编号");
-//                return;
-//            }
+            //            if (gid == undefined) {
+            //                alert("没有找到相应的团队, 请确定团队编号");
+            //                return;
+            //            }
 
             //新版本 2012-10-10
             //基本信息
             var datas = "";
             var djsid = $.cookie('DJSID');
-            datas += "{\"DjsId\":\""+djsid+"\","
+            datas += "{\"DjsId\":\"" + djsid + "\","
             datas += "\"GroupBasic\":{\"Name\":\"" + $("#txtName").html();
             var dateString = $("#txtDate").html();
             var dateArray = dateString.split("-", 2);
@@ -81,7 +81,7 @@
             $.ajax({
                 type: "Post",
                 url: "GroupHandler.ashx",
-                dataType: "json",
+                dataType: "text",
                 data: datas,
                 success: function (data, status) {
                     if (data == '成功') {
@@ -197,6 +197,8 @@
                             $("#txtPchild").html(j.PeopleChild);
                             $("#txtGether").html(j.StartPlace);
                             $("#txtBack").html(j.EndPlace);
+                            $("#txtForeigners").html(j.Foreigners);
+                            $("txtGroupNo").html(j.GroupNo);
                             tbmember.html(j.Member);
                             tbroute.html(j.Route);
                         }
@@ -220,52 +222,74 @@
     <div class="detail_titlebg">
         基本信息导入
     </div>
-        <!-- 基本信息begin -->
+    <!-- 基本信息begin -->
     <div class="detaillist">
         <div class="detailtitle">
             基本信息
         </div>
         <table border="0" cellpadding="0" cellspacing="0">
             <tr>
-                <td style="width:15%">
+                <td style="width: 15%">
+                    团队编号：
+                </td>
+                <td>
+                    <h6 id="txtGroupNo">
+                    </h6>
+                </td>
+                <td style="width: 15%">
                     团队名称：
                 </td>
                 <td>
-                    <h6 id="txtName"></h6>
-                </td>
-                <td style="width:15%">
-                   起止时间：
-                </td>
-                <td>
-                    <h6 id="txtDate"></h6>
+                    <h6 id="txtName">
+                    </h6>
                 </td>
             </tr>
             <tr>
+                <td style="width: 15%">
+                    起止时间：
+                </td>
+                <td>
+                    <h6 id="txtDate">
+                    </h6>
+                </td>
                 <td>
                     游玩天数：
                 </td>
                 <td>
-                    <h6 id="txtDays"></h6>
-                </td>
-                <td>
-                    游玩人数：
-                </td>
-                <td>
-                    <h6 id="txtPnum"> </h6>
+                    <h6 id="txtDays">
+                    </h6>
                 </td>
             </tr>
             <tr>
                 <td>
+                    游玩人数：
+                </td>
+                <td>
+                    <h6 id="txtPnum">
+                    </h6>
+                </td>
+                <td>
                     成人人数：
                 </td>
                 <td>
-                    <h6 id="txtPadult"></h6>
+                    <h6 id="txtPadult">
+                    </h6>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     儿童人数：
                 </td>
                 <td>
-                    <h6 id="txtPchild"></h6>
+                    <h6 id="txtPchild">
+                    </h6>
+                </td>
+                <td>
+                    外宾人数：
+                </td>
+                <td>
+                    <h6 id="txtForeigners">
+                    </h6>
                 </td>
             </tr>
             <tr>
@@ -274,19 +298,20 @@
                 </td>
                 <td>
                     <h6 id="txtGether">
+                    </h6>
                 </td>
                 <td>
                     返程点：
                 </td>
                 <td>
-                    <h6 id="txtBack"></h6>
+                    <h6 id="txtBack">
+                    </h6>
                 </td>
             </tr>
         </table>
-    
-    <!-- 基本信息end -->
-    <!-- 人员begin -->
-    <div class="detailtitle">
+        <!-- 基本信息end -->
+        <!-- 人员begin -->
+        <div class="detailtitle">
             人员信息
         </div>
         <table class="tableMemberid" id="tbMember" cellpadding="0" cellspacing="0">
@@ -311,13 +336,12 @@
             </thead>
             <tbody>
                 <tr>
-                    
                 </tr>
             </tbody>
         </table>
-    <!-- 人员end -->
-    <!-- 行程begin -->
-    <div class="detailtitle">
+        <!-- 人员end -->
+        <!-- 行程begin -->
+        <div class="detailtitle">
             行程信息
         </div>
         <table id="tbRoute">
@@ -358,24 +382,24 @@
     <hr />
     <input type="hidden" id="hidden_scid" runat="server" />
     <div class="detaillist">
-    <p style="margin-left:5px;margin-top:5px;margin-bottom:5px;color:#999999">
-        导入信息操作步骤:
-    </p>
-    <ol style="margin-left:5px;color:#999999">
-        <li>点击“浏览”，选择要导入的excel文件 <br />
-        
-        注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题</li>
-        <li>点击“上传”，将文件上传到服务器 </li>
-        <li>点击“导入数据”，将excel内容导入到表格中 </li>
-        <li>点击“确定”，存储表格数据 </li>
-    </ol>
-    <asp:FileUpload ID="FileUpload1" runat="server" />
-    <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
-        OnClick="btnUpload_Click"  CssClass="btn"/>
-    <input id="btnExcel" type="button" name="name" value="导入数据" class="btn" />
-    <asp:Label ID="Label1" runat="server" Text="" Visible="True" style=" display:none"></asp:Label>
-    <input type="button" value="保存" onclick="calc()" class="btn" />
-    <!-- 操作end -->
+        <p style="margin-left: 5px; margin-top: 5px; margin-bottom: 5px; color: #999999">
+            导入信息操作步骤:
+        </p>
+        <ol style="margin-left: 5px; color: #999999">
+            <li>点击“浏览”，选择要导入的excel文件
+                <br />
+                注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题</li>
+            <li>点击“上传”，将文件上传到服务器 </li>
+            <li>点击“导入数据”，将excel内容导入到表格中 </li>
+            <li>点击“确定”，存储表格数据 </li>
+            <li>确保excel正确，保存后无法修改！ </li>
+        </ol>
+        <asp:FileUpload ID="FileUpload1" runat="server" />
+        <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
+            OnClick="btnUpload_Click" CssClass="btn" />
+        <input id="btnExcel" type="button" name="name" value="导入数据" class="btn" />
+        <asp:Label ID="Label1" runat="server" Text="" Style="display: none"></asp:Label>
+        <input type="button" value="保存" onclick="calc()" class="btn" />
+        <!-- 操作end -->
     </div>
-    
 </asp:Content>
