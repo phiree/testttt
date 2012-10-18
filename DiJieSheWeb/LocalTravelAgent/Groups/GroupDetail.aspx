@@ -21,10 +21,10 @@
                         for (var name in data) {
                             if (name == $.trim($(this).html())) {
                                 if (data[name] == "0") {
-                                    $(this).parent().css("background-color", "Aqua");
+                                    $(this).parent().css("background-color", "Yellow");
                                 }
                                 else {
-                                    $(this).parent().css("background-color", "Yellow");
+                                    $(this).parent().css("background-color", "Aqua");
                                 }
                             }
                         }
@@ -73,13 +73,9 @@
         {
             background-color:Aqua;
             }
-        #colorpicker2
-        {
-            background-color:Yellow;
-            }
         #colorpicker3
         {
-            background-color:red;
+            background-color:Yellow;
             }
     </style>
 </asp:Content>
@@ -245,7 +241,6 @@
         <div class="detailtitle">
             行程信息
     <span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
-    <span class="colorWord">进行中的行程</span><span class="colorpicker" id="colorpicker2"></span>
     <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>
         </div>
         <asp:Repeater ID="rptRoute" runat="server">
