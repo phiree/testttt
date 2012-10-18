@@ -592,3 +592,8 @@
 {
     overflow:hidden;
 }
+.editdiv
+{
+    min-height:100px;
+    _height:100px;
+}

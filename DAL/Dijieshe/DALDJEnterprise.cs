@@ -91,7 +91,7 @@ namespace DAL
 
         }
 
-        private IList<Model.DJ_TourEnterprise> GetDJS8Multi(string where)
+        public IList<Model.DJ_TourEnterprise> GetDJS8Multi(string where)
         {
             string sql = "select D from DJ_TourEnterprise D where D.Type<>0 ";
             sql = sql + where;

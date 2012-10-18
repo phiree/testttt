@@ -40,4 +40,8 @@ public partial class TourEnterprise_PrintCer : System.Web.UI.Page
             
         }
     }
+    protected void BtnExit_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(Request.UrlReferrer.AbsoluteUri);
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Model;
+using NHibernate;
 namespace BLL
 {
     public class BLLDJEnterprise
@@ -157,6 +158,18 @@ namespace BLL
                 }
             }
             groupcount = ListGroup.Count;
+        }
+        /// <summary>
+        /// 企业列表,排除景区
+        /// </summary>
+        /// <returns></returns>
+        /// <param name="areacode">当前用户所管辖的区域</param>
+        public IList<Model.DJ_TourEnterprise> GetEntList_ExcludeScenic(string areacode)
+        {
+            DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
+            BLLArea bllArea = new BLLArea();
+            string ids = bllArea.GetChildAreaIds(areacode);
+            return dalEnt.GetEnterpriseWithoutScenic(ids);
         }
         #endregion
 

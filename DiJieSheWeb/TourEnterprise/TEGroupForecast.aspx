@@ -41,13 +41,13 @@
                         <asp:Literal ID="ArriveTime" runat="server" />     
                     </td>
                     <td>
-                        <%# Eval("Name")%>
+                        <%# Eval("DJ_TourGroup.Name")%>
                     </td>
                     <td>
-                        <%# Eval("DJ_DijiesheInfo.Name")%>
+                        <%# Eval("DJ_TourGroup.DJ_DijiesheInfo.Name")%>
                     </td>
                     <td>
-                        成人<%# Eval("AdultsAmount")%>儿童<%# Eval("ChildrenAmount")%>
+                        成人<%# Eval("DJ_TourGroup.AdultsAmount")%>儿童<%# Eval("DJ_TourGroup.ChildrenAmount")%>
                     </td>
                 </tr>
             </ItemTemplate>
