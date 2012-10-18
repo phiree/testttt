@@ -219,7 +219,7 @@ namespace ExcelOplib
 
                 #region 人员信息
                 DataTable dt2 = new DataTable();
-                string sql2 = "select 类型,姓名,身份证号,电话号码,证号 from [团队信息$]";
+                string sql2 = "select 类型,姓名,身份证号,电话号码,证号,校验结果 from [团队信息$]";
                 OleDbCommand cmd2 = new OleDbCommand(sql2, new OleDbConnection(conn));
                 OleDbDataAdapter ad2 = new OleDbDataAdapter(cmd2);
                 ad2.Fill(dt2);
@@ -236,7 +236,8 @@ namespace ExcelOplib
                         Memname = dt2.Rows[i][1].ToString().Replace("\n", "").Trim(),
                         Memid = dt2.Rows[i][2].ToString().Replace("\n", "").Trim(),
                         Memphone = dt2.Rows[i][3].ToString().Replace("\n", "").Trim(),
-                        Cardno = dt2.Rows[i][4].ToString().Replace("\n", "").Trim()
+                        Cardno = dt2.Rows[i][4].ToString().Replace("\n", "").Trim(),
+                        IdValidate = dt2.Rows[i][5].ToString().Replace("\n", "").Trim()
                     });
                 }
                 #endregion

@@ -6,6 +6,22 @@
     <script type="text/javascript">
 
         function calc() {
+
+            //保存校验
+            var tbmem = $("#tbMember>tbody>tr");
+            var idvali = true;
+            tbmem.each(function () {
+                if ($(this).children().next().next().next().next().next().html() != "通过") {
+                    idvali = false;
+                    alert("请重新导入人员信息，身份证号码有误");
+                    return false;
+                }
+            });
+            if (!idvali) {
+                return false;
+            }
+
+            //保存提示
             var bool = window.confirm("请确定是否需要保存!");
             if (!bool) {
                 return false;
@@ -43,6 +59,7 @@
                 datas += "\",\"Memid\":\"" + $(this).children().next().next().html();
                 datas += "\",\"Memphone\":\"" + $(this).children().next().next().next().html();
                 datas += "\",\"Cardno\":\"" + $(this).children().next().next().next().next().html();
+                datas += "\",\"IdValidate\":\"" + $(this).children().next().next().next().next().next().html();
                 datas += "\"},";   //最后记得去掉这个,逗号
             });
             datas = datas.substring(0, datas.length - 1) + "]";
@@ -332,6 +349,9 @@
                     <td>
                         证件号
                     </td>
+                    <td>
+                        证件校验
+                    </td>
                 </tr>
             </thead>
             <tbody>
@@ -399,7 +419,7 @@
             OnClick="btnUpload_Click" CssClass="btn" />
         <input id="btnExcel" type="button" name="name" value="导入数据" class="btn" />
         <asp:Label ID="Label1" runat="server" Text="" Style="display: none"></asp:Label>
-        <input type="button" value="保存" onclick="calc()" class="btn" />
+        <input type="button" value="保存" onclick="return calc()" class="btn" />
         <!-- 操作end -->
     </div>
 </asp:Content>

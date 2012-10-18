@@ -65,7 +65,8 @@ public class ExcelHandler : IHttpHandler {
                 "</td><td>" + item.Memname +
                 "</td><td>" + item.Memid +
                 "</td><td>" + item.Memphone +
-                "</td><td>" + item.Cardno + @"</td></tr>";
+                "</td><td>" + item.Cardno +
+                "</td><td>" + item.IdValidate + @"</td></tr>";
         }
 
         html += @""",""Route"":""";
