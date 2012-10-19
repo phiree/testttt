@@ -111,16 +111,16 @@ namespace DAL
                 //如果还没开始就删除团队
                 if (tg_old.BeginDate <= DateTime.Now)
                 {
+                    return "保存失败，与该编号相同的团队已开始行程！";
+                }
+                //开始了的团队无法删除.
+                else
+                {
                     using (var t1 = session.BeginTransaction())
                     {
                         session.Delete(tg_old);
                         t1.Commit();
                     }
-                }
-                //开始了的团队无法删除.
-                else
-                {
-                    return "保存失败，与该编号相同的团队已开始行程！";
                 }
             }
             using (var t2= session.BeginTransaction())
