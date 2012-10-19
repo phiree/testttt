@@ -103,12 +103,7 @@
                 dataType: "text",
                 data: datas,
                 success: function (data, status) {
-                    if (data == '成功') {
-                        alert("修改成功！");
-                        window.navigate("/LocalTravelAgent/Grouplist.aspx");
-                    }
-                    else
-                        alert("修改失败！");
+                    alert(data);
                 }
             });
 
