@@ -35,6 +35,12 @@
         //            });
         //        });
 
+        $(function () {
+            var tbody = $("#tbRoute>tbody");
+            var count = tbody.html().split("★");
+            $("#veriEnt").html(count.length - 1);
+        });
+
         function getArgs(strParame) {
             var args = new Object();
             var query = location.search.substring(1); // Get query string
@@ -243,6 +249,7 @@
         <div class="detailtitle">
             行程信息 <span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
             <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>
+            【★企业共<span id="veriEnt"></span>个】
         </div>
         <%--<asp:Repeater ID="rptRoute" runat="server">
             <HeaderTemplate>
