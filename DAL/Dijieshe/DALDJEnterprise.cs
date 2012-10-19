@@ -6,21 +6,21 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALDJEnterprise : DalBase,IDAL.IDJEnterprise
+    public class DALDJEnterprise : DalBase, IDAL.IDJEnterprise
     {
         #region DJS
 
         public int AddDJS(Model.DJ_TourEnterprise djs)
         {
-          
-        
+
+
             using (var t = session.BeginTransaction())
             {
                 session.SaveOrUpdate(djs);
                 t.Commit();
             }
             session.Flush();
-           return djs.Id;
+            return djs.Id;
         }
 
         public void DeleteDJS()
@@ -81,11 +81,11 @@ namespace DAL
         public IList<Model.DJ_TourEnterprise> GetEnterpriseWithoutScenic(string areaIds)
         {
             string where = string.Empty;
-            if(!string.IsNullOrEmpty(areaIds))
+            if (!string.IsNullOrEmpty(areaIds))
             {
                 where += " and D.Area.Id in (" + areaIds + ")";
             }
-          where = " and D.Type<>"+(int) Model.EnterpriseType.景点;
+            where = " and D.Type<>" + (int)Model.EnterpriseType.景点;
 
             return GetDJS8Multi(where);
 
@@ -105,7 +105,16 @@ namespace DAL
 
         public Guid AddGroup(Model.DJ_TourGroup tg)
         {
-            using (var t = session.BeginTransaction())
+            Model.DJ_TourGroup tg_old = GetGroup8no(tg.No);
+            if (null != tg_old)
+            {
+                using (var t1 = session.BeginTransaction())
+                {
+                    session.Delete(tg_old);
+                    t1.Commit();
+                }
+            }
+            using (var t2= session.BeginTransaction())
             {
                 foreach (var item in tg.Members)
                 {
@@ -124,7 +133,7 @@ namespace DAL
                     session.Save(item);
                 }
                 session.Save(tg);
-                t.Commit();
+                t2.Commit();
             }
             return tg.Id;
         }
@@ -140,6 +149,13 @@ namespace DAL
                 session.Update(tg);
                 t.Commit();
             }
+        }
+
+        public Model.DJ_TourGroup GetGroup8no(string no)
+        {
+            string sql = "select G from DJ_TourGroup G where G.No='" + no + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Model.DJ_TourGroup>().Value;
         }
 
         public Model.DJ_TourGroup GetGroup8name(string name)

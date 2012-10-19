@@ -27,6 +27,7 @@ public class GroupHandler : IHttpHandler
         tg.ChildrenAmount = int.Parse(ga.GroupBasic.PeopleChild);
         tg.Gether = ga.GroupBasic.StartPlace;
         tg.BackPlace = ga.GroupBasic.EndPlace;
+        tg.No = ga.GroupBasic.GroupNo;
 
         //人员信息
         var tgmlist = new System.Collections.Generic.List<Model.DJ_TourGroupMember>();

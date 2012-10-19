@@ -113,30 +113,9 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
             Model.DJ_GroupConsumRecord gcrecord_break = group.Breakfast == null ? null : bllRecord.GetGroupConsumRecordByRouteId(group.Breakfast.Id);
             Model.DJ_GroupConsumRecord gcrecord_lunch = group.Lunch == null ? null : bllRecord.GetGroupConsumRecordByRouteId(group.Lunch.Id);
             Model.DJ_GroupConsumRecord gcrecord_dinner = group.Dinner == null ? null : bllRecord.GetGroupConsumRecordByRouteId(group.Dinner.Id);
-            if (null != gcrecord_break)
-            {
-                lblBreakfast.BackColor = System.Drawing.Color.Aqua;
-            }
-            else
-            {
-                lblBreakfast.BackColor = System.Drawing.Color.Yellow;
-            }
-            if (null != gcrecord_lunch)
-            {
-                lblLunch.BackColor = System.Drawing.Color.Aqua;
-            }
-            else
-            {
-                lblLunch.BackColor = System.Drawing.Color.Yellow;
-            }
-            if (null != gcrecord_dinner)
-            {
-                lblDinner.BackColor = System.Drawing.Color.Aqua;
-            }
-            else
-            {
-                lblDinner.BackColor = System.Drawing.Color.Yellow;
-            }
+            lblBreakfast.BackColor = gcrecord_break == null ? System.Drawing.Color.Yellow : System.Drawing.Color.Aqua;
+            lblLunch.BackColor = gcrecord_lunch == null ? System.Drawing.Color.Yellow : System.Drawing.Color.Aqua;
+            lblDinner.BackColor = gcrecord_dinner == null ? System.Drawing.Color.Yellow : System.Drawing.Color.Aqua;
         }
     }
 

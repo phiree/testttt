@@ -34,14 +34,16 @@
 
             //新版本 2012-10-10
             //基本信息
-            var datas = "";
-            var djsid = $.cookie('DJSID');
-            datas += "{\"DjsId\":\"" + djsid + "\","
-            datas += "\"GroupBasic\":{\"Name\":\"" + $("#txtName").html();
             var dateString = $("#txtDate").html();
             var dateArray = dateString.split("-", 2);
+            var datas = "";
+            var djsid = $.cookie('DJSID');
+            datas += "{\"DjsId\":\"" + djsid + "\",";
+            datas += "\"GroupBasic\":";
+            datas += "{\"Name\":\"" + $("#txtName").html();
             datas += "\",\"Begindate\":\"" + dateArray[0];
             datas += "\",\"Enddate\":\"" + dateArray[1];
+            datas += "\",\"GroupNo\":\"" + $("#txtGroupNo").html();
             datas += "\",\"Days\":\"" + $("#txtDays").html();
             datas += "\",\"PeopleTotal\":\"" + $("#txtPnum").html();
             datas += "\",\"PeopleAdult\":\"" + $("#txtPadult").html();
@@ -206,6 +208,7 @@
                         }
                         else {
                             var j = eval(data);
+                            $("#txtGroupNo").html(j.GroupNo);
                             $("#txtName").html(j.Name);
                             $("#txtDate").html(j.Bedate);
                             $("#txtDays").html(j.Days);
