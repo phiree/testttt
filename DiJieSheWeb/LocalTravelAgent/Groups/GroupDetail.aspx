@@ -3,35 +3,37 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
-        $(function () {
-            var tbody = $("#tbRoute>tbody>tr>td>span");
-            var enternamelist = "";
-            tbody.each(function () {
-                //lert($.trim($(this).html()));//显示各个单元格内容
-                //var datas = "{\"enterpid\":\"" +  + "\"}";
-                enternamelist += $.trim($(this).html()) + "-";
-            });
-            var gid = getArgs("id");
-            $.ajax({
-                type: "get",
-                url: "RouteHandler.ashx?enternamelist=" + enternamelist + "&gid=" + gid,
-                dataType: "json",
-                success: function (data, status) {
-                    tbody.each(function () {
-                        for (var name in data) {
-                            if (name == $.trim($(this).html())) {
-                                if (data[name] == "0") {
-                                    $(this).parent().css("background-color", "Yellow");
-                                }
-                                else {
-                                    $(this).parent().css("background-color", "Aqua");
-                                }
-                            }
-                        }
-                    });
-                }
-            });
-        });
+
+//ajax方式显色,已经由后台控制. 替换
+//        $(function () {
+//            var tbody = $("#tbRoute>tbody>tr>td>span");
+//            var enternamelist = "";
+//            tbody.each(function () {
+//                //lert($.trim($(this).html()));//显示各个单元格内容
+//                //var datas = "{\"enterpid\":\"" +  + "\"}";
+//                enternamelist += $.trim($(this).html()) + "-";
+//            });
+//            var gid = getArgs("id");
+//            $.ajax({
+//                type: "get",
+//                url: "RouteHandler.ashx?enternamelist=" + enternamelist + "&gid=" + gid,
+//                dataType: "json",
+//                success: function (data, status) {
+//                    tbody.each(function () {
+//                        for (var name in data) {
+//                            if (name == $.trim($(this).html())) {
+//                                if (data[name] == "0") {
+//                                    $(this).parent().css("background-color", "Yellow");
+//                                }
+//                                else {
+//                                    $(this).parent().css("background-color", "Aqua");
+//                                }
+//                            }
+//                        }
+//                    });
+//                }
+//            });
+//        });
 
         function getArgs(strParame) {
             var args = new Object();
@@ -55,28 +57,28 @@
             margin-left: 10px;
             width: 12px;
             height: 12px;
-            float:right;
+            float: right;
             border: 1px solid #000;
             margin-right: 2px;
-            margin-top:4px;
+            margin-top: 4px;
             cursor: pointer;
         }
         .colorWord
         {
             display: block;
             margin-left: 2px;
-            float:right;
+            float: right;
             margin-right: 5px;
             cursor: pointer;
-            }
+        }
         #colorpicker1
         {
-            background-color:Aqua;
-            }
+            background-color: Aqua;
+        }
         #colorpicker3
         {
-            background-color:Yellow;
-            }
+            background-color: Yellow;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
@@ -239,11 +241,10 @@
         <!-- 人员end -->
         <!-- 行程begin -->
         <div class="detailtitle">
-            行程信息
-    <span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
-    <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>
+            行程信息 <span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
+            <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>
         </div>
-        <asp:Repeater ID="rptRoute" runat="server">
+        <%--<asp:Repeater ID="rptRoute" runat="server">
             <HeaderTemplate>
                 <table id="tbRoute">
                     <thead>
@@ -251,9 +252,6 @@
                             <td>
                                 日期
                             </td>
-                            <%--<td>
-                            地点
-                        </td>--%>
                             <td>
                                 早餐
                             </td>
@@ -320,10 +318,92 @@
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
+    </tbody> </table> </div> </FooterTemplate> </asp:Repeater>--%>
+        <asp:Repeater ID="rptRoute" runat="server" 
+            onitemdatabound="rptRoute_ItemDataBound">
+            <HeaderTemplate>
+                <table id="tbRoute">
+                    <thead>
+                        <tr>
+                            <td>
+                                日期
+                            </td>
+                            <td>
+                                早餐
+                            </td>
+                            <td>
+                                中餐
+                            </td>
+                            <td>
+                                晚餐
+                            </td>
+                            <td>
+                                住宿
+                            </td>
+                            <td>
+                                景点
+                            </td>
+                            <td>
+                                购物点
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <span>
+                            <%#Eval("RouteDate")%></span>
+                    </td>
+                    <td>
+                        <span>
+                            <asp:Label  ID="lblBreakfast" 
+                            Text='<%#Eval("Breakfast.Enterprise")!=null?(((Model.DJ_TourEnterprise)Eval("Breakfast.Enterprise")).IsVeryfied.ToString() == "True" ? ("★" + Eval("Breakfast.Enterprise.Name")) : ""):""%>' 
+                            runat="server" /></span>
+                    </td>
+                    <td>
+                        <span>
+                            <asp:Label ID="lblLunch" 
+                            Text='<%#Eval("Lunch.Enterprise")!=null?(((Model.DJ_TourEnterprise)Eval("Lunch.Enterprise")).IsVeryfied.ToString() == "True" ? ("★" + Eval("Lunch.Enterprise.Name")) : ""):""%>' 
+                            runat="server" /></span>
+                    </td>
+                    <td>
+                        <span>
+                            <asp:Label ID="lblDinner" 
+                            Text='<%#Eval("Dinner.Enterprise")!=null?(((Model.DJ_TourEnterprise)Eval("Dinner.Enterprise")).IsVeryfied.ToString() == "True" ? ("★" + Eval("Dinner.Enterprise.Name")) : ""):""%>' 
+                            runat="server" /></span>
+                    </td>
+                    <td>
+                        <asp:Repeater ID="rptRouteHotel" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
+                            <ItemTemplate>
+                                <asp:Label ID="lblName" Text=
+                                '<%#((Model.DJ_TourEnterprise)Eval("Enterprise")).IsVeryfied.ToString()=="True"?("★"+Eval("Enterprise.Name")):""%>' runat="server" />
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </td>
+                    <td>
+                        <asp:Repeater ID="rptRouteScenic" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
+                            <ItemTemplate>
+                                <asp:Label ID="lblName" Text=
+                                '<%#((Model.DJ_TourEnterprise)Eval("Enterprise")).IsVeryfied.ToString()=="True"?("★"+Eval("Enterprise.Name")):""%>' runat="server" />
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </td>
+                    <td>
+                        <asp:Repeater ID="rptRouteShopping" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
+                            <ItemTemplate>
+                                <asp:Label ID="lblName" Text=
+                                '<%#((Model.DJ_TourEnterprise)Eval("Enterprise")).IsVeryfied.ToString()=="True"?("★"+Eval("Enterprise.Name")):""%>' runat="server" />
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <FooterTemplate>
                 </tbody> </table> </div>
             </FooterTemplate>
         </asp:Repeater>
         <!-- 行程end -->
-    
     </div>
 </asp:Content>

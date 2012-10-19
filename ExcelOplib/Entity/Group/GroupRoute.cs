@@ -88,4 +88,41 @@ namespace ExcelOplib.Entity
         /// </summary>
         public string ShoppingPoint3 { get; set; }
     }
+
+
+    public class GroupRouteNew
+    {
+        /// <summary>
+        /// 日期
+        /// </summary>
+        public string RouteDate { get; set; }
+        /// <summary>
+        /// 地区
+        /// </summary>
+        public string City { get; set; }
+        /// <summary>
+        /// 早餐
+        /// </summary>
+        public Model.DJ_Route Breakfast { get; set; }
+        /// <summary>
+        /// 午餐
+        /// </summary>
+        public Model.DJ_Route Lunch { get; set; }
+        /// <summary>
+        /// 晚餐
+        /// </summary>
+        public Model.DJ_Route Dinner { get; set; }
+        /// <summary>
+        /// 住宿1
+        /// </summary>
+        public IList<Model.DJ_Route> Hotel { get; set; }
+        /// <summary>
+        /// 景点
+        /// </summary>
+        public IList<Model.DJ_Route> Scenic { get; set; }
+        /// <summary>
+        /// 购物点
+        /// </summary>
+        public IList<Model.DJ_Route> ShoppingPoint { get; set; }
+    }
 }
