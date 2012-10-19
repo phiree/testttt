@@ -18,6 +18,11 @@
             window.print();
             window.document.body.innerHTML = hh;
         }
+        function wclose() {
+            window.opener = null;
+            window.open('', '_self');
+            window.close();
+        }
     </script>
 </head>
 <body>
@@ -104,8 +109,7 @@
     <!--endprint-->
     <div style=" text-align:center">
         <input type="button" value="打印" class="btn" onclick="printInfo()" />
-        <asp:Button ID="BtnExit" runat="server" Text="关闭" CssClass="btn" 
-            onclick="BtnExit_Click" />
+        <input id="Button1" type="button" value="关闭" class="btn" onclick="wclose()" />
     </div>
     </form>
 </body>
