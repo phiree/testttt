@@ -97,55 +97,55 @@
       ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
   VALUES(
   455,0,'鲁迅故里','杭州市西湖区','0','5A',NULL,'TRAFFIC','DETAIL',
-  'DESC','118.489189,28.296525','xizhajingqu','','',1076)
+  'DESC','118.489189,28.296525','luxunguli','','',1076)
   INSERT INTO [TourOnline].[dbo].[Scenic](
   [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
       ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
   VALUES(
   456,0,'沈园','杭州市西湖区','0','5A',NULL,'TRAFFIC','DETAIL',
-  'DESC','118.489189,28.296525','xizhajingqu','','',1076)
+  'DESC','118.489189,28.296525','shenyuan','','',1076)
   INSERT INTO [TourOnline].[dbo].[Scenic](
   [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
       ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
   VALUES(
   457,0,'兰亭','杭州市西湖区','0','5A',NULL,'TRAFFIC','DETAIL',
-  'DESC','118.489189,28.296525','xizhajingqu','','',1076)
+  'DESC','118.489189,28.296525','lanting','','',1076)
   INSERT INTO [TourOnline].[dbo].[Scenic](
   [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
       ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
   VALUES(
   458,0,'船游西湖','杭州市西湖区','0','5A',NULL,'TRAFFIC','DETAIL',
-  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  'DESC','118.489189,28.296525','chuanyouxihu','','',1019)
   INSERT INTO [TourOnline].[dbo].[Scenic](
   [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
       ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
   VALUES(
   459,0,'花港观鱼','杭州市西湖区','0','5A',NULL,'TRAFFIC','DETAIL',
-  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  'DESC','118.489189,28.296525','huguangguanyu','','',1019)
   INSERT INTO [TourOnline].[dbo].[Scenic](
   [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
       ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
   VALUES(
   460,0,'苏提春晓','杭州市西湖区','0','5A',NULL,'TRAFFIC','DETAIL',
-  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  'DESC','118.489189,28.296525','sudichunxiao','','',1019)
   INSERT INTO [TourOnline].[dbo].[Scenic](
   [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
       ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
   VALUES(
   461,0,'龙井问茶','杭州市西湖区','0','5A',NULL,'TRAFFIC','DETAIL',
-  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  'DESC','118.489189,28.296525','longjingwencha','','',1019)
   INSERT INTO [TourOnline].[dbo].[Scenic](
   [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
       ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
   VALUES(
   462,0,'六合塔','杭州市西湖区','0','5A',NULL,'TRAFFIC','DETAIL',
-  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  'DESC','118.489189,28.296525','liuheta','','',1019)
   INSERT INTO [TourOnline].[dbo].[Scenic](
   [DJ_TourEnterprise_id],[IsHide],[Name],[Address],[ScenicOrder],[Level],[Photo],[Trafficintro],[ScenicDetail]
       ,[Desec],[Position],[SeoName],[BookNote],[TransGuid],[Area_id])
   VALUES(
   463,0,'飞来峰','杭州市西湖区','0','5A',NULL,'TRAFFIC','DETAIL',
-  'DESC','118.489189,28.296525','xizhajingqu','','',1019)
+  'DESC','118.489189,28.296525','feilaifeng','','',1019)
 
   --住宿
   INSERT INTO [TourOnline].[dbo].[DJ_TourEnterprise](
