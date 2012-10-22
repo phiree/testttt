@@ -174,14 +174,14 @@
         <div id="nhorder" pricetype="2" class="priceselection" style="border-bottom: 2px solid #AAA;">
             <span class="price">
                 <input type="radio" name="price"  />
-                交行在线支付价:<em style="margin-left: 10px;margin-right: 10px;font-size: 24px;color: #EC6B9E;">50</em>元</span><span class="pricedesc">在线使用交行卡支付,享受交行在线支付价</span>
+                农行在线支付价:<em style="margin-left: 10px;margin-right: 10px;font-size: 24px;color: #EC6B9E;">50</em>元</span><span class="pricedesc">在线使用农行卡支付,享受农行在线支付价</span>
             <div class="clear">
             </div>
         </div>
         <div id="nhpreorder" pricetype="2" class="priceselection">
             <span class="price">
                 <input type="radio" name="price"  />
-                交行网上预定价:<em style="margin-left: 10px;margin-right: 10px;font-size: 24px;color: #EC6B9E;">52</em>元</span><span class="pricedesc">预订门票，使用农行卡到景区现付，享受交行网上预定价</span>
+                农行网上预定价:<em style="margin-left: 10px;margin-right: 10px;font-size: 24px;color: #EC6B9E;">52</em>元</span><span class="pricedesc">预订门票，使用农行卡到景区现付，享受农行网上预定价</span>
             <div class="clear">
             </div>
         </div>
