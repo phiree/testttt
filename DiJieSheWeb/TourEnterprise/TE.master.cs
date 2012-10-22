@@ -28,7 +28,7 @@ public partial class TourEnterprise_TE : System.Web.UI.MasterPage
         {
             DJ_User_TE = new BLLMembership().GetMemberById((Guid)mu.ProviderUserKey) as DJ_User_TourEnterprise;
         }
-        if (mu == null || mu.UserName == string.Empty||DJ_User_TE==null)
+        if (mu == null || mu.UserName == string.Empty||DJ_User_TE==null||DJ_User_TE.Enterprise is DJ_DijiesheInfo)
         {
             Response.Redirect("/Login.aspx");
         }

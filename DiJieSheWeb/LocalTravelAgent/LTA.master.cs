@@ -25,7 +25,7 @@ public partial class LocalTravelAgent_LTA : System.Web.UI.MasterPage
         {
             DJ_User_TourEnterprise = new BLLMembership().GetMemberById((Guid)mu.ProviderUserKey) as DJ_User_TourEnterprise;
         }
-        if (mu == null || mu.UserName == string.Empty || DJ_User_TourEnterprise == null)
+        if (mu == null || mu.UserName == string.Empty || DJ_User_TourEnterprise == null || !(DJ_User_TourEnterprise.Enterprise is DJ_DijiesheInfo))
         {
             Response.Redirect("/Login.aspx");
         }
