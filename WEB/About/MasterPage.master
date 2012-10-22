@@ -2,7 +2,7 @@
     CodeFile="MasterPage.master.cs" Inherits="About_MasterPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <script src="/Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.js" type="text/javascript"></script>
     <link href="/Styles/About.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>

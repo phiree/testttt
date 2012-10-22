@@ -5,7 +5,7 @@
 <head runat="server">
     <title></title>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
-    <script src="/Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.js" type="text/javascript"></script>
     <script src="/map/mapnav.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="../Styles/page.css" />
     <link href="/theme/default/css/map.css" rel="stylesheet" type="text/css" />

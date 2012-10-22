@@ -28,7 +28,6 @@
                     }
                 }
             });
-            alert(idvali);
             if (!idvali) {
                 alert('身份证输入错误, 请重新填写!');
                 return false;
