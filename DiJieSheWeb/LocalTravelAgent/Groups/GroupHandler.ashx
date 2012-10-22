@@ -25,6 +25,8 @@ public class GroupHandler : IHttpHandler
         tg.DaysAmount = int.Parse(ga.GroupBasic.Days);
         tg.AdultsAmount = int.Parse(ga.GroupBasic.PeopleAdult);
         tg.ChildrenAmount = int.Parse(ga.GroupBasic.PeopleChild);
+        tg.GangaotaisAmount = int.Parse(ga.GroupBasic.Gangaotais);
+        tg.ForeignersAmount = int.Parse(ga.GroupBasic.Foreigners);
         tg.Gether = ga.GroupBasic.StartPlace;
         tg.BackPlace = ga.GroupBasic.EndPlace;
         tg.No = ga.GroupBasic.GroupNo;

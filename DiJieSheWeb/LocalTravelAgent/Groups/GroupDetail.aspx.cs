@@ -27,6 +27,7 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
         lblPadult.Text = tg.AdultsAmount.ToString();
         lblPchild.Text = tg.ChildrenAmount.ToString();
         lblForeigners.Text = tg.ForeignersAmount.ToString();
+        lblGangaotais.Text = tg.GangaotaisAmount.ToString();
         lblGether.Text = tg.Gether;
         lblBack.Text = tg.BackPlace;
 

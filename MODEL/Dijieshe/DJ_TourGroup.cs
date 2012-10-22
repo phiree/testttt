@@ -49,6 +49,10 @@ namespace Model
         /// </summary>
         public virtual int ChildrenAmount { get; set; }
         /// <summary>
+        /// 港澳台人数
+        /// </summary>
+        public virtual int GangaotaisAmount { get; set; }
+        /// <summary>
         /// 外宾人数
         /// </summary>
         public virtual int ForeignersAmount { get; set; }

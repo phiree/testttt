@@ -40,6 +40,10 @@ namespace ExcelOplib.Entity
         /// </summary>
         public string PeopleChild { get; set; }
         /// <summary>
+        /// 港澳台人数
+        /// </summary>
+        public string Gangaotais { get; set; }
+        /// <summary>
         /// 外宾人数
         /// </summary>
         public string Foreigners { get; set; }

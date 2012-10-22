@@ -10,14 +10,27 @@
             //保存校验
             var tbmem = $("#tbMember>tbody>tr");
             var idvali = true;
+            var request_s = "";
             tbmem.each(function () {
-                if ($(this).children().next().next().next().next().next().html() != "通过") {
-                    idvali = false;
-                    alert("请重新导入人员信息，身份证号码有误");
-                    return false;
+                request_s += $(this).children().next().next().html() + "-";
+            });
+            $.ajax({
+                type: "Post",
+                async: false,
+                url: "ValidateHandler.ashx",
+                dataType: "text",
+                data: request_s,
+                success: function (data, status) {
+                    var dics = data.split("-");
+                    if (dics[0] != "true" && dics[0] != "True") {
+                        idvali = false;
+                        return false;
+                    }
                 }
             });
+            alert(idvali);
             if (!idvali) {
+                alert('身份证输入错误, 请重新填写!');
                 return false;
             }
 
@@ -48,6 +61,8 @@
             datas += "\",\"PeopleTotal\":\"" + $("#txtPnum").html();
             datas += "\",\"PeopleAdult\":\"" + $("#txtPadult").html();
             datas += "\",\"PeopleChild\":\"" + $("#txtPchild").html();
+            datas += "\",\"Gangaotais\":\"" + $("#txtGangaotais").html();
+            datas += "\",\"Foreigners\":\"" + $("#txtForeigners").html();
             datas += "\",\"StartPlace\":\"" + $("#txtGether").html();
             datas += "\",\"EndPlace\":\"" + $("#txtBack").html();
 
@@ -61,7 +76,7 @@
                 datas += "\",\"Memid\":\"" + $(this).children().next().next().html();
                 datas += "\",\"Memphone\":\"" + $(this).children().next().next().next().html();
                 datas += "\",\"Cardno\":\"" + $(this).children().next().next().next().next().html();
-                datas += "\",\"IdValidate\":\"" + $(this).children().next().next().next().next().next().html();
+//                datas += "\",\"IdValidate\":\"" + $(this).children().next().next().next().next().next().html();
                 datas += "\"},";   //最后记得去掉这个,逗号
             });
             datas = datas.substring(0, datas.length - 1) + "]";
@@ -188,6 +203,7 @@
         //导入excel
         $(function () {
             $("#btnExcel").click(function () {
+
                 var datas = "";
                 $.ajax({
                     type: "Post",
@@ -213,6 +229,7 @@
                             $("#txtGether").html(j.StartPlace);
                             $("#txtBack").html(j.EndPlace);
                             $("#txtForeigners").html(j.Foreigners);
+                            $("#txtGangaotais").html(j.Gangaotais);
                             $("txtGroupNo").html(j.GroupNo);
                             tbmember.html(j.Member);
                             tbroute.html(j.Route);
@@ -309,20 +326,28 @@
             </tr>
             <tr>
                 <td>
+                    港澳台人数：
+                </td>
+                <td>
+                    <h6 id="txtGangaotais">
+                    </h6>
+                </td>
+                <td>
                     上车集合点：
                 </td>
                 <td>
                     <h6 id="txtGether">
                     </h6>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     返程点：
                 </td>
                 <td>
                     <h6 id="txtBack">
                     </h6>
-                </td>
-            </tr>
+                </td></tr>
         </table>
         <!-- 基本信息end -->
         <!-- 人员begin -->
@@ -346,9 +371,6 @@
                     </td>
                     <td>
                         证件号
-                    </td>
-                    <td>
-                        证件校验
                     </td>
                 </tr>
             </thead>

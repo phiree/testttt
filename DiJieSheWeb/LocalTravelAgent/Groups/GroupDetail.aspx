@@ -155,18 +155,25 @@
             </tr>
             <tr>
                 <td>
+                    外宾人数：
+                </td>
+                <td>
+                    <asp:Label ID="lblGangaotais" runat="server" />
+                </td>
+                <td>
                     上车集合点：
                 </td>
                 <td>
                     <asp:Label ID="lblGether" runat="server" />
                 </td>
+            </tr>
+            <tr>
                 <td>
                     返程点：
                 </td>
                 <td>
                     <asp:Label ID="lblBack" runat="server" />
-                </td>
-            </tr>
+                </td></tr>
         </table>
         <!-- 基本信息end -->
         <!-- 工作人员begin -->
@@ -251,81 +258,6 @@
             <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>
             【★企业共<span id="veriEnt"></span>个】
         </div>
-        <%--<asp:Repeater ID="rptRoute" runat="server">
-            <HeaderTemplate>
-                <table id="tbRoute">
-                    <thead>
-                        <tr>
-                            <td>
-                                日期
-                            </td>
-                            <td>
-                                早餐
-                            </td>
-                            <td>
-                                中餐
-                            </td>
-                            <td>
-                                晚餐
-                            </td>
-                            <td>
-                                住宿
-                            </td>
-                            <td>
-                                景点
-                            </td>
-                            <td>
-                                购物点
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-            </HeaderTemplate>
-            <ItemTemplate>
-                <tr>
-                    <td>
-                        <span>
-                            <%#Eval("RouteDate")%></span>
-                    </td>
-                    <td>
-                        <span>
-                            <%#Eval("Breakfast")%></span>
-                    </td>
-                    <td>
-                        <span>
-                            <%#Eval("Lunch")%></span>
-                    </td>
-                    <td>
-                        <span>
-                            <%#Eval("Dinner")%></span>
-                    </td>
-                    <td>
-                        <span>
-                            <%#Eval("Hotel1")%></span>
-                        <%#(string.IsNullOrWhiteSpace(Eval("Hotel2").ToString()) ? "" : "-<span>" + Eval("Hotel2").ToString()) + "</span>"%>
-                    </td>
-                    <td>
-                        <span>
-                            <%#Eval("Scenic1")%></span>
-                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic2").ToString()) ? "" : "-<span>" + Eval("Scenic2").ToString()) + "</span>"%>
-                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic3").ToString()) ? "" : "-<span>" + Eval("Scenic3").ToString()) + "</span>"%>
-                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic4").ToString()) ? "" : "-<span>" + Eval("Scenic4").ToString()) + "</span>"%>
-                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic5").ToString()) ? "" : "-<span>" + Eval("Scenic5").ToString()) + "</span>"%>
-                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic6").ToString()) ? "" : "-<span>" + Eval("Scenic6").ToString()) + "</span>"%>
-                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic7").ToString()) ? "" : "-<span>" + Eval("Scenic7").ToString()) + "</span>"%>
-                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic8").ToString()) ? "" : "-<span>" + Eval("Scenic8").ToString()) + "</span>"%>
-                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic9").ToString()) ? "" : "-<span>" + Eval("Scenic9").ToString()) + "</span>"%>
-                        <%# (string.IsNullOrWhiteSpace(Eval("Scenic10").ToString()) ? "" : "-<span>" + Eval("Scenic10").ToString()) + "</span>"%>
-                    </td>
-                    <td>
-                        <%#Eval("ShoppingPoint1")%></span>
-                        <%# (string.IsNullOrWhiteSpace(Eval("ShoppingPoint2").ToString()) ? "" : "-<span>" + Eval("ShoppingPoint2").ToString())+ "</span>"%>
-                        <%# (string.IsNullOrWhiteSpace(Eval("ShoppingPoint3").ToString()) ? "" : "-<span>" + Eval("ShoppingPoint3").ToString())+ "</span>"%>
-                    </td>
-                </tr>
-            </ItemTemplate>
-            <FooterTemplate>
-    </tbody> </table> </div> </FooterTemplate> </asp:Repeater>--%>
         <asp:Repeater ID="rptRoute" runat="server" OnItemDataBound="rptRoute_ItemDataBound">
             <HeaderTemplate>
                 <table id="tbRoute">

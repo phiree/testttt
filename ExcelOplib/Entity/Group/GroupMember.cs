@@ -30,6 +30,6 @@ namespace ExcelOplib.Entity
         /// <summary>
         /// 身份证校验结果
         /// </summary>
-        public string IdValidate { get; set; }
+        //public string IdValidate { get; set; }
     }
 }

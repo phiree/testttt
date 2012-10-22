@@ -56,7 +56,8 @@ public class ExcelHandler : IHttpHandler {
             + @""",""StartPlace"":""" + groupall.GroupBasic.StartPlace
             + @""",""EndPlace"":""" + groupall.GroupBasic.EndPlace
             + @""",""Foreigners"":""" + groupall.GroupBasic.Foreigners
-            + @""",""GroupNo"":""" + groupall.GroupBasic.GroupNo;
+            + @""",""GroupNo"":""" + groupall.GroupBasic.GroupNo
+            + @""",""Gangaotais"":""" + groupall.GroupBasic.Gangaotais;
 
         html += @""",""Member"":""";
         foreach (ExcelOplib.Entity.GroupMember item in groupall.GroupMemberList)
@@ -66,7 +67,7 @@ public class ExcelHandler : IHttpHandler {
                 "</td><td>" + item.Memid +
                 "</td><td>" + item.Memphone +
                 "</td><td>" + item.Cardno +
-                "</td><td>" + item.IdValidate + @"</td></tr>";
+                "</td></tr>";
         }
 
         html += @""",""Route"":""";
