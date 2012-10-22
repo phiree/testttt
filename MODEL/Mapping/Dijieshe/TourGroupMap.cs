@@ -22,6 +22,7 @@ namespace Model
            
             Map(x => x.AdultsAmount);
             Map(x => x.ChildrenAmount);
+            Map(x => x.GangaotaisAmount);
             Map(x => x.ForeignersAmount);
             Map(x => x.Gether);
             Map(x => x.BackPlace);
