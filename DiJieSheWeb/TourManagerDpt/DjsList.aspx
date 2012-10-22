@@ -19,9 +19,9 @@
                         <td>
                             查看
                         </td>
-                        <td>
+                        <%--<td>
                             奖励情况
-                        </td>
+                        </td>--%>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
@@ -32,9 +32,9 @@
                     <td>
                         <a href='EnterpriseDetail.aspx?entid=<%#Eval("Id") %>'>查看企业信息</a>
                     </td>
-                    <td>
+                    <%--<td>
                         <a href='RewordInfo.aspx?entid=<%#Eval("Id") %>'>查看奖励信息</a>
-                    </td>
+                    </td>--%>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
