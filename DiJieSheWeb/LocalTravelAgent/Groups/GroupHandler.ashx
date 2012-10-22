@@ -273,8 +273,8 @@ public class GroupHandler : IHttpHandler
         tg.Routes = routes;
 
         //汇总信息
-        djEnterprice.AddGroup(tg);
-        context.Response.Write("成功");
+        string result=djEnterprice.AddGroup(tg);
+        context.Response.Write(result);
     }
 
     public bool IsReusable

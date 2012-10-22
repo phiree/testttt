@@ -103,15 +103,24 @@ namespace DAL
 
         #region group
 
-        public Guid AddGroup(Model.DJ_TourGroup tg)
+        public string AddGroup(Model.DJ_TourGroup tg)
         {
             Model.DJ_TourGroup tg_old = GetGroup8no(tg.No);
-            if (null != tg_old)
+            if (null != tg_old)//已经有该编号的团队
             {
-                using (var t1 = session.BeginTransaction())
+                //如果还没开始就删除团队
+                if (tg_old.BeginDate <= DateTime.Now)
                 {
-                    session.Delete(tg_old);
-                    t1.Commit();
+                    return "保存失败，与该编号相同的团队已开始行程！";
+                }
+                //开始了的团队无法删除.
+                else
+                {
+                    using (var t1 = session.BeginTransaction())
+                    {
+                        session.Delete(tg_old);
+                        t1.Commit();
+                    }
                 }
             }
             using (var t2= session.BeginTransaction())
@@ -135,7 +144,7 @@ namespace DAL
                 session.Save(tg);
                 t2.Commit();
             }
-            return tg.Id;
+            return "保存成功";
         }
 
         public void UpdateGroup(Model.DJ_TourGroup tg)
