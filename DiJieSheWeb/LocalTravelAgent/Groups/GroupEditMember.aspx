@@ -17,13 +17,9 @@
     <script src="/Scripts/json2.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
 
-        var __TEST_DATA__ = JSON.parse("<%=MemberJsonList %>");
-//[
-
-//["youkeid","1", "成人游客", "李爽", "13282151877", "520822198010103916",""],
-
-
-//];
+        var __TEST_DATA__ = 
+  JSON.parse("<%=MemberJsonList %>");
+//[["youkeid","1", "成人游客", "李爽", "13282151877", "520822198010103916",""]];
         var grid_demo_id = "myGrid1";
 
         var dsOption = {
@@ -41,7 +37,7 @@
 
 	],
 
-            recordType: 'object',
+            recordType: 'array',
            data: __TEST_DATA__
         }
 
@@ -63,25 +59,29 @@
        }
        },
 	   { id: 'othercardno', header: "其他证件号码", width: 160, editor: { type: "text"} },
-           { id: 'memberid', header: "id", width: 60, editor: { type: "text"} }
+           { id: 'memberid', header: "haoma", width: 60, editor: { type: "text"} }
   
 
 ];
 
-	   var gridOption = {
-	       id: grid_demo_id,
-	       width: "760", // 700,
-	       height: "350",  //"100%", // 330,
-	       container: 'gridbox',
-	       replaceContainer: true,
-	       dataset: dsOption,
-	       columns: colsOption,
-	       pageSize: 20,
-	       toolbarContent: 'nav | reload | add del save',
-	       saveURL: "GroupEditMemberHanlder.ashx",
-	     //  loadURL: "GroupEditMemberHanlder.ashx",
-	       parameters: {"groupid":"<%=CurrentGroup.Id %>"}
-	   };
+           var gridOption = {
+               id: grid_demo_id,
+               width: "760", // 700,
+               height: "350",  //"100%", // 330,
+               container: 'gridbox',
+               replaceContainer: true,
+               dataset: dsOption,
+               columns: colsOption,
+               pageSize: 20,
+               toolbarContent: 'nav | reload | add del save',
+               saveURL: "GroupEditMemberHanlder.ashx",
+               //  loadURL: "GroupEditMemberHanlder.ashx",
+               parameters: { "groupid": "<%=CurrentGroup.Id %>" },
+               saveResponseHandler: function (r, d) {
+                //   debugger;
+                   window.location.href = window.location.href;
+               }
+           };
         var mygrid = new Sigma.Grid(gridOption);
         Sigma.Util.onLoad(Sigma.Grid.render(mygrid));
     </script>

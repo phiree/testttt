@@ -20,6 +20,7 @@ namespace Model
             Map(x => x.TouristType);
             Map(x => x.SpecialCardNo);
             Map(x => x.MemberType).CustomType<int>();
+            References<DJ_TourGroup>(x => x.DJ_TourGroup);
         }
     }
   

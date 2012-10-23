@@ -5,13 +5,44 @@ using System.Web;
 using System.Web.Security;
 using Model;
 using DAL;
+using Newtonsoft.Json.Linq;
 /// <summary>
 ///sigmagrid xhr请求对象
 /// </summary>
 namespace BLL
 { 
 public class SigmaGridRequestObject : DalBase
-{
+{/*
+  {
+  "fieldsName": [
+    "no",
+    "tourertype",
+    "realname",
+    "phone",
+    "idcardno",
+    "othercardno",
+    "memberid"
+  ],
+  "recordType": "array",
+  "parameters": {
+    "groupid": "e0774e72-6cf8-4158-9f8e-a0f301187e0a"
+  },
+  "action": "save",
+  "insertedRecords": [],
+  "updatedRecords": [
+    [
+      "2",
+      "222",
+      "游客1",
+      "189546573331",
+      "330381198812164236",
+      "",
+      "c1f48dd0-bf4c-4b6c-acdf-a0f0010b34e5"
+    ]
+  ],
+  "deletedRecords": []
+}
+  */
 
     /*
      _gt_json:
@@ -22,49 +53,62 @@ public class SigmaGridRequestObject : DalBase
      * "insertedRecords":[],
      * "updatedRecords":[["1","成人游客","11111","13282151877","520822198010103916",""]],"deletedRecords":[]}
      */
-    public string[] fieldsName { get; set; }
+    public JObject JO { get; set; }
+    public SigmaGridRequestObject(Newtonsoft.Json.Linq.JObject jo)
+    {
+        JO = jo;
+    }
+    public JArray fieldsName { get; set; }
     public string recordType { get; set; }
     public ParametersObject parameters { get; set; }
     public string action { get; set; }
-    public IList<RecordObject> insertedRecords { get; set; }
-    public IList<RecordObject> updatedRecords { get; set; }
-    public IList<RecordObject> deletedRecords { get; set; }
+    public string[][] insertedRecords { get; set; }
+    public string[][] updatedRecords { get; set; }
+    public string[][] deletedRecords { get; set; }
 
-
+    BLL.BLLDJTourGroup bllGroup = new BLL.BLLDJTourGroup();
+    DJ_TourGroup group;
     public string Act()
     {
         string returnValue = string.Empty;
         Guid groupId;
-        string paramGroupId = parameters.groupid;
+        string paramGroupId =(string) JO["parameters"]["groupid"];
+        action = (string)JO["action"];
         if (!Guid.TryParse(paramGroupId, out groupId))
         {
             BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
         }
-       DJ_TourGroup group = new BLL.BLLDJTourGroup().GetTourGroupById(groupId);
+        group = bllGroup.GetTourGroupById(groupId);
         if (action == "save")
         {
             //delete/update/insert
             IList<Model.DJ_TourGroupMember> memberList = new List<Model.DJ_TourGroupMember>();
 
-            foreach (RecordObject ro in insertedRecords)
+            foreach (JToken ro in (JArray) JO["insertedRecords"])
             {
 
                 Model.DJ_TourGroupMember member = ConvertToMember(ro);
-
-            session.Save(member); session.Flush();
+                member.DJ_TourGroup = group;
+                group.Members.Add(member);
+                
+                //session.Save(group);
+            session.Save(member); 
+                session.Flush();
             }
-            foreach (RecordObject ro in updatedRecords)
+            foreach (JToken ro in JO["updatedRecords"])
             {
 
                 Model.DJ_TourGroupMember member = ConvertToMember(ro);
 
-                session.Update(member); session.Flush();
-            } foreach (RecordObject ro in deletedRecords)
+                session.Update(member);
+                session.Flush();
+            } foreach (JToken ro in JO["deletedRecords"])
             {
 
                 Model.DJ_TourGroupMember member = ConvertToMember(ro);
 
-                session.Delete(member); session.Flush();
+                session.Delete(member); 
+                session.Flush();
             }
            
         }
@@ -90,6 +134,44 @@ public class SigmaGridRequestObject : DalBase
         {
             member.Id = Guid.Parse(memberId);
         }
+        //  member.
+        return member;
+
+
+
+    }
+    public Model.DJ_TourGroupMember ConvertToMember(JToken t)
+    {
+
+        List<string> ro = new List<string>();
+        if (t.GetType() == typeof(JArray))
+        {
+            JArray ja = (JArray)t;
+            foreach (JToken jt in ja)
+            {
+                ro.Add(jt.ToString());
+            }
+        }
+        else
+        {
+            for (int i = 0; i <= 6; i++)
+            {
+                ro.Add(t[i.ToString()].ToString());
+            }
+        }
+
+        Model.DJ_TourGroupMember member = new DJ_TourGroupMember();
+        string memberId = ro[6];
+        if (!string.IsNullOrEmpty(memberId))
+        {
+            member= bllGroup.GetMemberById( Guid.Parse(memberId));
+        }
+      
+        member.IdCardNo = ro[4];
+        member.PhoneNum = ro[3];
+        member.RealName = ro[2];
+        member.SpecialCardNo=ro[5];
+        member.TouristType = ro[1];
         //  member.
         return member;
 

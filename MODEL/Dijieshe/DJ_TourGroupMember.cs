@@ -40,6 +40,7 @@ namespace Model
         /// </summary>
         public virtual string SpecialCardNo { get; set; }
         public virtual MemberType MemberType { get; set; }
+        public virtual DJ_TourGroup DJ_TourGroup { get; set; }
 
     }
     public enum MemberType

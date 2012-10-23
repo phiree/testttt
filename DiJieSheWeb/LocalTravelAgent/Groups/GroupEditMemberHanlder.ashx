@@ -3,6 +3,8 @@
 using System;
 using System.Web;
 using BLL;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 /*
  _gt_json:
  * {"fieldsName":["no","tourertype","realname","phone","idcardno","othercardno"],
@@ -18,7 +20,9 @@ public class GroupEditHanlder : IHttpHandler {
 
         var r = context.Request;
         string jsonR = r["_gt_json"];
-        SigmaGridRequestObject sro = CommonLibrary.JosnHelper.ParseFromJson<SigmaGridRequestObject>(jsonR);
+        Newtonsoft.Json.Linq.JObject jo = JObject.Parse(jsonR);
+
+        SigmaGridRequestObject sro = new SigmaGridRequestObject(jo);
         sro.Act();
     }
     public bool IsReusable {
