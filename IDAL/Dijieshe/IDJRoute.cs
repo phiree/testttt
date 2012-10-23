@@ -19,6 +19,16 @@ namespace IDAL
         IList<Model.DJ_TourGroup> GetNotendGroup();
         //通过DayNo和groupid
         IList<Model.DJ_Route> GetRouteByDayNoandGroupid(int dayno, Guid groupid,int entid);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="groupname">团队名称</param>
+        /// <param name="EntName">团队所在旅行社名称</param>
+        /// <param name="BeginTime">起始时间</param>
+        /// <param name="EndTime">结束时间</param>
+        /// <param name="enterid">验票企业id</param>
+        /// <returns></returns>
+        IList<Model.DJ_Route> GetRouteByAllCondition(string groupname, string EntName, string BeginTime, string EndTime,int enterid);
     }
   
 }

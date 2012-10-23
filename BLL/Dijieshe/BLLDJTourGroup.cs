@@ -86,5 +86,64 @@ namespace BLL
             session.Flush();
         }
 
+
+        /// <summary>
+        /// 将游客列表生成json字符串
+        /// </summary>
+        /// <param name="memberList"></param>
+        /// <param name="fieldsName"></param>
+        /// <returns></returns>
+        public static string BuildJsonForMemberList(IList<Model.DJ_TourGroupMember> memberList, string[] fieldsName)
+        {
+            System.Text.StringBuilder sbJson = new System.Text.StringBuilder();
+            sbJson.Append("{\"data\":[");
+            foreach (Model.DJ_TourGroupMember member in memberList)
+            {
+
+                sbJson.Append("{");
+                sbJson.Append(string.Format("\"{0}\":\"{1}\",", fieldsName[0], memberList.IndexOf(member)));
+                sbJson.Append(string.Format("\"{0}\":\"{1}\",", fieldsName[1], member.TouristType));
+                sbJson.Append(string.Format("\"{0}\":\"{1}\",", fieldsName[2], member.RealName));
+                sbJson.Append(string.Format("\"{0}\":\"{1}\",", fieldsName[3], member.PhoneNum));
+                sbJson.Append(string.Format("\"{0}\":\"{1}\",", fieldsName[4], member.IdCardNo));
+                sbJson.Append(string.Format("\"{0}\":\"{1}\",", fieldsName[5], member.SpecialCardNo));
+                sbJson.Append(string.Format("\"{0}\":\"{1}\"", fieldsName[6], member.Id));
+                sbJson.Append("}");
+                if (memberList.IndexOf(member) < memberList.Count - 1)
+                {
+                    sbJson.Append(",");
+                }
+            }
+
+            sbJson.Append("],pageInfo:null,exception:null}");
+            return sbJson.ToString();
+        }
+
+        public static string BuildJsonForMemberList(IList<Model.DJ_TourGroupMember> memberList)
+        {
+            System.Text.StringBuilder sbJson = new System.Text.StringBuilder();
+            sbJson.Append("[");
+            foreach (Model.DJ_TourGroupMember member in memberList)
+            {
+
+                sbJson.Append("[");
+                sbJson.Append( memberList.IndexOf(member)+",");
+                sbJson.Append(member.TouristType + ",");
+                sbJson.Append(member.RealName + ",");
+                sbJson.Append(member.PhoneNum + ",");
+                sbJson.Append(member.IdCardNo + ",");
+                sbJson.Append(member.SpecialCardNo + ",");
+                sbJson.Append(  member.Id);
+                sbJson.Append("]");
+                if (memberList.IndexOf(member) < memberList.Count - 1)
+                {
+                    sbJson.Append(",");
+                }
+            }
+
+            sbJson.Append("]");
+            return sbJson.ToString();
+        }
+
     }
 }

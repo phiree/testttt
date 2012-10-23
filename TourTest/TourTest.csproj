@@ -123,6 +123,7 @@
     <Compile Include="Common\ContentReader.cs" />
     <Compile Include="Common\testStringHelper.cs" />
     <Compile Include="Common\UrlParamHelperTest.cs" />
+    <Compile Include="Common\JsonHelperTest.cs" />
     <Compile Include="EnumTEst.cs" />
     <Compile Include="OrderTest.cs" />
     <Compile Include="PromStaticTest.cs" />

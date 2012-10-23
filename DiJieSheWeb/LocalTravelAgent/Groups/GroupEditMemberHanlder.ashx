@@ -2,7 +2,7 @@
 
 using System;
 using System.Web;
-
+using BLL;
 /*
  _gt_json:
  * {"fieldsName":["no","tourertype","realname","phone","idcardno","othercardno"],
@@ -17,9 +17,10 @@ public class GroupEditHanlder : IHttpHandler {
     public void ProcessRequest (HttpContext context) {
 
         var r = context.Request;
-        
+        string jsonR = r["_gt_json"];
+        SigmaGridRequestObject sro = CommonLibrary.JosnHelper.ParseFromJson<SigmaGridRequestObject>(jsonR);
+        sro.Act();
     }
- 
     public bool IsReusable {
         get {
             return false;
