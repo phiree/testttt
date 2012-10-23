@@ -20,6 +20,7 @@ namespace Model
             Map(x => x.AdultsAmount);
             Map(x => x.ChildrenAmount);
             Map(x => x.Remarks);
+            Map(x => x.No);
         }
     }
 }

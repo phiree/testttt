@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" Runat="Server">
     <div class="detail_titlebg">
-        奖励情况
+        统计情况
     </div>
     <div class="searchdiv">
         <h5>按时间进行查询</h5>
@@ -10,20 +10,20 @@
             <asp:ListItem Text="三个月内" Selected="True" Value="type_1"  />
             <asp:ListItem Text="半年内" Value="type_2" />
             <asp:ListItem Text="一年内" Value="type_3" />
-            <asp:ListItem Text="所有奖励" Value="type_4" />
+            <asp:ListItem Text="所有统计" Value="type_4" />
         </asp:RadioButtonList>
         </div>
     <ul style="margin-bottom:-5px">
         <li>
-            1.以下统计的景区和宾馆都是为认证通过在奖励范围内的企业
+            1.以下统计的景区和宾馆都是为认证通过在统计范围内的企业
         </li>
         <li>
-            2.团队统计的景区宾馆也都是为认证通过在奖励范围内的企业
+            2.团队统计的景区宾馆也都是为认证通过在统计范围内的企业
         </li>
     </ul>
     <div class="detaillist">
         <div class="detailtitle">
-            企业奖励列表
+            企业统计列表
         </div>
         <table border="0" cellpadding="0" cellspacing="0">
             <tr>

@@ -4,10 +4,22 @@
 <%@ MasterType VirtualPath="~/TourEnterprise/TE.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" runat="Server">
     <script src="/Scripts/CheckTicket.js" type="text/javascript"></script>
+    <%--<link href="/theme/default/css/Print.css" rel="stylesheet" type="text/css" />--%>
     <script type="text/javascript">
+        
         function bindbylist(obj) {
             $("[id$='hfidcard']").val($.trim($(obj).find("td").eq(1).find("span").html()));
             $("[id$='btnBind']").click();
+        }
+        function printTicket(info) {
+            if (confirm(info)) {
+                $("[id$='btnPrint']").click(function () {
+                    window.open($(this).attr("href"), $(this).attr("target"));
+                });
+
+                // 触发单击事件（会执行所有绑定的单击事件处理函数） 
+                $("[id$='btnPrint']").click(); 
+            }
         }
     </script>
     <script src="/Scripts/jquery.autocomplete.js" type="text/javascript"></script>
@@ -60,7 +72,8 @@
             <td></td>
             <td>
                 <asp:Button ID="btnCheckOut" Text="验证通过" runat="server" OnClick="btnCheckOut_Click" CssClass="btn" style=" display:block; float:left;margin-right:10px" />
-                <a id="btnPrint" runat="server"  class="btn" href="" target="_blank" style="display:block; text-decoration:none; text-align:center; line-height:20px;color:#009383; float:left;">打印凭证</a>
+                <a id="btnPrint" runat="server"  class="btn" href="" target="_blank" style="display:block; text-decoration:none; text-align:center; line-height:20px;color:#009383; float:left; display:none">打印凭证</a>
+                
             </td>
             <td></td>
         </tr>
@@ -108,8 +121,7 @@
                         </td>
                         <td style="width: 135px; background-color: #F7F7F7; padding: 0px;">
                             <span style="display: block; width: 125px">
-                                <%# Eval("IdCard").ToString().Substring(0,6) %>********<%# Eval("IdCard").ToString().Substring(14) %></span>
-                        </td>
+                                <%# Eval("IdCard").ToString().Substring(0,6) %>********<%# Eval("IdCard").ToString().Substring(14) %></span></td>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>

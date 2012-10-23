@@ -31,7 +31,6 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         rptGroupList.DataSource = blldjtourgroup.GetTourGroupByTEId(Master.CurrentTE.Id);
         rptGroupList.DataBind();
         hfetid.Value = Master.CurrentTE.Id.ToString();
-        btnPrint.Visible = false;
     }
 
 
@@ -42,7 +41,6 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             string[] strinfos = txtTE_info.Text.Trim().Split('/');
             if (strinfos.Length > 1)
             {
-                btnPrint.Visible = false;
                 string idcard = strinfos[1];
                 int flag = 0;
                 foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.CurrentTE).ToList())
@@ -111,7 +109,6 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                             selectItem.Enabled = false;
                             tbAdult.Enabled = false;
                             tbChild.Enabled = false;
-                            btnPrint.Visible = true;
                         }
                         else
                         {
@@ -151,16 +148,14 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                         HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
                         DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
                         blldjcr.Save(Master.CurrentTE, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
-                        ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('验证成功')", true);
-                        btnPrint.Visible = true;
+                        BindPrintLink();
+                        ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "printTicket('验证成功，是否需要打印？')", true);
                         BindRptByIdcard(ViewState["idcard"].ToString());
                         break;
                     }
                 }
             }
-
         }
-        BindPrintLink();
     }
 
     private bool Verify(string adultamout, string childrenamout)
@@ -252,6 +247,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
     {
         guideritems = 0;
         IsSelecttiem = 0;
+        int HaveYz = 0;
         foreach (RepeaterItem rpitem in rptTourGroupInfo.Items)
         {
             CheckBox hick = rpitem.FindControl("cbSelect") as CheckBox;
@@ -267,10 +263,17 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                     guideritems++;
                 }
             }
+            if (hick.Checked && !hick.Enabled)
+            {
+                HaveYz = 1;
+            }
         }
         if (IsSelecttiem == 0)
         {
-            ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('请选择一个未验证的团队信息')", true);
+            if(HaveYz==1)
+                ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "printTicket('请选择一个未验证的团队信息，是否对已验证的团队进行打印？')", true);
+            else
+                ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('请选择一个未验证的团队信息')", true);
             return false;
         }
         else if (IsSelecttiem == guideritems)
@@ -309,13 +312,34 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         string routeids = "";
         foreach (RepeaterItem item in rptTourGroupInfo.Items)
         {
-            CheckBox cbSelect = item.FindControl("cbSelect") as CheckBox;
-            if (!cbSelect.Enabled)
-            {
-                HiddenField hfrouteId = item.FindControl("hfrouteId") as HiddenField;
+            HiddenField hfrouteId = item.FindControl("hfrouteId") as HiddenField;
+            DJ_GroupConsumRecord record= blldjcr.GetGroupConsumRecordByRouteId(Guid.Parse(hfrouteId.Value));
+            if(record!=null)
                 routeids += hfrouteId.Value + ",";
-            }
         }
         btnPrint.HRef="/TourEnterprise/PrintCer.aspx?routeids=" + routeids;
+        //List<DJ_GroupConsumRecord> Listgcr = new List<DJ_GroupConsumRecord>();
+        //string[] routeidsting = routeids.Split(',');
+        //foreach (string routeid in routeidsting)
+        //{
+        //    if (routeid != "")
+        //        Listgcr.Add(blldjcr.GetGroupConsumRecordByRouteId(Guid.Parse(routeid)));
+        //}
+        //rptPrint.DataSource = Listgcr;
+        //rptPrint.DataBind();
+    }
+
+    protected void rptPrint_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Literal laGuiderName = e.Item.FindControl("laGuiderName") as Literal;
+            DJ_GroupConsumRecord gcr = e.Item.DataItem as DJ_GroupConsumRecord;
+            foreach (DJ_Group_Worker work in gcr.Route.DJ_TourGroup.Workers.Where(x => x.WorkerType == DJ_GroupWorkerType.导游))
+            {
+                laGuiderName.Text += work.Name + " ";
+            }
+
+        }
     }
 }

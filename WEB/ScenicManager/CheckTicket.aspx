@@ -7,10 +7,10 @@
     <meta   http-equiv= "cache-control "   content= "no-cache ">   
     <meta   http-equiv= "pragma "   content= "no-cache ">  
     <meta http-equiv="x-ua-compatible" content="ie=8" />
-    <%--<script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <%--<script src="../Scripts/jquery.js" type="text/javascript"></script>
     <script src="../Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
     <script src="../Scripts/jqueryplugin/jquery.autoRedirect.js" type="text/javascript"></script>--%>
-    <script src="/Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.js" type="text/javascript"></script>
     <script src="../Scripts/jquery.autocomplete.js" type="text/javascript"></script>
     <link href="../theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
     <link href="../Styles/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
@@ -123,8 +123,7 @@
             </asp:Repeater>
             <div class="yptg">
                 <asp:Button ID="Btnckpass" runat="server" CssClass="btnckpass" OnClick="Btnckpass_Click" style="display:block;float:left" />
-                <%--<asp:Button ID="BtnPrint" runat="server" CssClass="btnckprint" onclick="BtnPrint_Click" />--%>
-                <a runat="server" target="_blank" class="btnckprint" style="display:block;float:left" id="BtnPrint"></a>
+                <a runat="server" target="_blank" class="btnckprint" style="display:none;float:left" id="BtnPrint"></a>
                 <div style="clear:both"></div>
             </div>
             

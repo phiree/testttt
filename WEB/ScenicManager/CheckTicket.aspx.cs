@@ -67,7 +67,6 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         detailinfo.Visible = false;
         ywdiv.Visible = false;
         rptguiderinfo.Visible = false;
-        BtnPrint.Visible = false;
     }
     
     /// <summary>
@@ -318,9 +317,9 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                         HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
                         DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
                         bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
-                        IsSuccess = 1;
-                        BtnPrint.Visible = true;
                         BindPrintLink();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "printTicket('验票通过,是否需要打印凭证？')", true);
+                        
                     }
                 }
             }
@@ -510,7 +509,6 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         else
             rptpayonline.Visible = true;
         //导游信息
-        BtnPrint.Visible = false;
         rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTE(idcard, CurrentScenic);
         rptguiderinfo.DataBind();
         ShowResult();
@@ -540,7 +538,6 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                         selectItem.Checked = true;
                         tbAdult.Enabled = false;
                         tbChild.Enabled = false;
-                        BtnPrint.Visible = true;
                     }
                     else
                     {
@@ -572,6 +569,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         }
         guideritems = 0;
         IsSelecttiem = 0;
+        int HaveYz = 0;
         foreach (RepeaterItem rpitem in rptguiderinfo.Items)
         {
             CheckBox hick = rpitem.FindControl("selectItem") as CheckBox;
@@ -586,6 +584,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 {
                     guideritems++;
                 }
+            }
+            if (hick.Checked && !hick.Enabled)
+            {
+                HaveYz = 1;
             }
         }
         CurrentScenic = Master.Scenic;
@@ -617,7 +619,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             {
                 if (IsSelecttiem == 0)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请选择一个未验证的团队信息')", true);
+                    if(HaveYz==1)
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "printTicket('请选择一个已验证的团队信息，是否对已验证的团队进行打印？')", true);
+                    else
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请选择一个已验证的团队信息')", true);
                     return false;
                 }
                 else if (IsSelecttiem == guideritems)
@@ -675,13 +680,12 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         string routeids = "";
         foreach (RepeaterItem item in rptguiderinfo.Items)
         {
-            CheckBox selectItem = item.FindControl("selectItem") as CheckBox;
-            if (!selectItem.Enabled)
-            {
-                HiddenField hfrouteId = item.FindControl("hfrouteId") as HiddenField;
+            HiddenField hfrouteId = item.FindControl("hfrouteId") as HiddenField;
+            DJ_GroupConsumRecord record = bllrecord.GetGroupConsumRecordByRouteId(Guid.Parse(hfrouteId.Value));
+            if(record!=null)
                 routeids += hfrouteId.Value;
-            }
         }
         BtnPrint.HRef = "/ScenicManager/PrintCer.aspx?routeids=" + routeids;
     }
+
 }

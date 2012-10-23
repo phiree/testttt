@@ -135,3 +135,22 @@ function cgbg(obj) {
 function cgbg2(obj) {
     $(obj).find("td").css("background-color", "#F7F7F7");
 }
+
+function printTicket(info) {
+    if (confirm(info)) {
+        $("[id$='BtnPrint']").click(function () {
+            window.open($(this).attr("href"), $(this).attr("target"));
+            //noBorderWin($(this).attr("href"), 500, 300);
+        });
+
+        // 触发单击事件（会执行所有绑定的单击事件处理函数） 
+        $("[id$='BtnPrint']").click();
+    }
+}
+
+function noBorderWin(fileName,w,h) {
+  nbw=window.open(fileName,'','fullscreen=yes');
+  //nbw.resizeTo(w,h);
+  //nbw.moveTo((screen.width-w)/2,(screen.height-h)/2);
+  
+}
