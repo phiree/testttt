@@ -78,8 +78,9 @@ namespace ExcelOplib
             }
         }
 
-        public List<Entity.GroupMember> getMemberlist(string path)
+        public List<Model.DJ_TourGroupMember> getMemberlist(string path, out string message)
         {
+            message = string.Empty;
             try
             {
                 DataSet ds = new DataSet();
@@ -88,7 +89,7 @@ namespace ExcelOplib
                 //path即是excel文档的路径。
                 string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path.Replace('/', '\\') + @";Extended Properties=""Excel 12.0;HDR=YES""";
                 //Sheet1为excel中表的名字
-                string sql = "select 类型,姓名,身份证号,电话号码,导游证号,车牌号 from [团队信息$]";
+                string sql = "select 类型,姓名,身份证号,电话号码,备注 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                 OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
                 ad.Fill(dt);
@@ -102,21 +103,33 @@ namespace ExcelOplib
                     ad.Fill(dt);
                 }
                 #endregion
-                List<Entity.GroupMember> gmlist = new List<Entity.GroupMember>();
+                List<Model.DJ_TourGroupMember> gmlist = new List<Model.DJ_TourGroupMember>();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
                     if (string.IsNullOrEmpty(dt.Rows[i][1].ToString())) continue;
 
                     //如果excel中的行不为空,添加
-                    gmlist.Add(new Entity.GroupMember()
+                    gmlist.Add(new Model.DJ_TourGroupMember()
                     {
-                        Memtype = dt.Rows[i][0].ToString().Replace("\n", "").Trim(),
-                        Memname = dt.Rows[i][1].ToString().Replace("\n", "").Trim(),
-                        Memid = dt.Rows[i][2].ToString().Replace("\n", "").Trim(),
-                        Memphone = dt.Rows[i][3].ToString().Replace("\n", "").Trim(),
-                        Cardno = dt.Rows[i][4].ToString().Replace("\n", "").Trim()
+                        //Memtype = dt.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        RealName = dt.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        IdCardNo = dt.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        PhoneNum = dt.Rows[i][3].ToString().Replace("\n", "").Trim()
                     });
+                }
+                foreach (var item in gmlist)
+                {
+                    if (!CommonLibrary.ValidateHelper.verify_mobile(item.PhoneNum))
+                    {
+                        message = item.RealName + "手机号码验证失败!";
+                        return gmlist;
+                    }
+                    if (!CommonLibrary.ValidateHelper.verify_idcard(item.IdCardNo).bl)
+                    {
+                        message = item.RealName + "身份证号码验证失败!";
+                        return gmlist;
+                    }
                 }
                 //如果获取到了list,就把上传上来的文件删除
                 File.Delete(path.Replace('/', '\\'));
@@ -124,6 +137,7 @@ namespace ExcelOplib
             }
             catch (Exception ex)
             {
+                message = ex.ToString();
                 return null;
             }
         }

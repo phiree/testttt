@@ -11,8 +11,6 @@ using BLL;
 /// </summary>
 public partial class Admin_ManageDptEdit : basepage
 {
-
-
     bool IsNew = false;
     DJ_GovManageDepartment CurrentMgrDpt;
     BLLArea bllArea = new BLLArea();
@@ -43,8 +41,7 @@ public partial class Admin_ManageDptEdit : basepage
     private void LoadForm()
     {
         tbxAdress.Text = CurrentMgrDpt.Address;
-        tbxAreaCode.Text = CurrentMgrDpt.Area.Code;
-   
+        ddlarea.Areacode=CurrentMgrDpt.Area.Code;
         tbxName.Text = CurrentMgrDpt.Name;
         tbxPhone.Text = CurrentMgrDpt.Phone;
       
@@ -52,7 +49,7 @@ public partial class Admin_ManageDptEdit : basepage
     private void UpdateForm()
     {
         CurrentMgrDpt.Address = tbxAdress.Text;
-        CurrentMgrDpt.Area = bllArea.GetAreaByCode(tbxAreaCode.Text.Trim());
+        CurrentMgrDpt.Area = bllArea.GetAreaByCode(ddlarea.Areacode.Trim());
         CurrentMgrDpt.Name = tbxName.Text;
         CurrentMgrDpt.Phone = tbxPhone.Text;
     }
