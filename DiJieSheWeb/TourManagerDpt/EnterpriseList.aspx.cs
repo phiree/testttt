@@ -12,6 +12,10 @@ using CommonLibrary;
 /// </summary>
 public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
 {
+    public int i = 1;
+    public int j = 1;
+    public int k = 1;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -22,9 +26,12 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
 
     protected void BindList()
     {
-        rpt.DataSource = bllDJEnt.GetDJSForDpt(CurrentDpt.Area.Code);
-     
-        rpt.DataBind();
+        rptRestaurant.DataSource = bllDJEnt.GetDJS8Muti(CurrentDpt.Area.Id, Model.EnterpriseType.饭店.ToString(), null, null);
+        rptRestaurant.DataBind();
+        rptHotel.DataSource = bllDJEnt.GetDJS8Muti(CurrentDpt.Area.Id, Model.EnterpriseType.宾馆.ToString(), null, null);
+        rptHotel.DataBind();
+        rptShoppingp.DataSource = bllDJEnt.GetDJS8Muti(CurrentDpt.Area.Id, Model.EnterpriseType.购物点.ToString(), null, null);
+        rptShoppingp.DataBind();
     }
     protected void rpt_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {

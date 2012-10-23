@@ -33,6 +33,7 @@
                             用户:<asp:LoginName ID="LoginName1" runat="server" CssClass="userFontType" />
                         </div>
                         <div class="useraction">
+                            <a runat="server" id="changedetails" href="">修改资料</a>
                             <a runat="server" id="changepwd" href="/Login.aspx">修改密码</a>
                             <asp:LoginStatus  runat="server" />
                         </div>
