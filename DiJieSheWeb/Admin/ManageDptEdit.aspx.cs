@@ -54,23 +54,44 @@ public partial class Admin_ManageDptEdit : basepage
         CurrentMgrDpt.Phone = tbxPhone.Text;
     }
 
+    private bool Validatedata(out string message)
+    {
+        message = string.Empty;
+        if (!string.IsNullOrEmpty(tbxName.Text))
+        {
+            message = "请填写名称!";
+            return false;
+        }
+        //if (!string.IsNullOrEmpty(tbxPhone.Text))
+        //{
+        //    message = "请填写联系号码!";
+        //    return false;
+        //}
+        //if (!string.IsNullOrEmpty(tbxAdress.Text))
+        //{
+        //    message = "请填写详细地址!";
+        //    return false;
+        //}
+        return true;
+    }
     public void Save()
     {
-       
-
         UpdateForm();
-
         bllMgrDpt.Save(CurrentMgrDpt);
         if (IsNew)
         {
             Response.Redirect("ManageDptEdit.aspx?dptid=" + CurrentMgrDpt.Id);
         }
-       
-
-
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        string message = string.Empty;
+        bool result = Validatedata(out message);
+        if (!result)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('"+message+"')",true);
+            return;
+        }
         Save();
     }
 

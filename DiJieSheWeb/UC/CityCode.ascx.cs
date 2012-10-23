@@ -42,9 +42,13 @@ public partial class UC_CityCode : System.Web.UI.UserControl
     }
     private void BindSubArea()
     {
-        ddlAreaProvince.DataSource = bllArea.GetSubArea(ddlAreaProvince.SelectedValue);
+        ddlAreaCity.DataSource = bllArea.GetSubArea(ddlAreaProvince.SelectedValue);
         ddlAreaCity.DataTextField = "Name";
         ddlAreaCity.DataValueField = "Code";
         ddlAreaCity.DataBind();
+    }
+    protected void ddlAreaProvince_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        BindSubArea();
     }
 }

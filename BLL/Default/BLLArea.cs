@@ -69,6 +69,10 @@ namespace BLL
             }
             ids += currentArea.Id + ",";
             IList<Model.Area> Areas = GetSubArea(areacode);
+            if (Areas == null) {
+                ids += areacode;
+                return ids;
+            }
             foreach (Model.Area a in Areas)
             {
                 ids += a.Id + ",";

@@ -75,7 +75,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E2661A43-C
 	ProjectSection(SolutionItems) = preProject
 		docs\2.账户初始化.sql = docs\2.账户初始化.sql
 		docs\3.地接社初始化.sql = docs\3.地接社初始化.sql
-		docs\demo(杭州乌镇绍兴四日游).xlsm = docs\demo(杭州乌镇绍兴四日游).xlsm
 		docs\团员.xlsx = docs\团员.xlsx
 		docs\简洁.xlsx = docs\简洁.xlsx
 		说明.txt = 说明.txt
