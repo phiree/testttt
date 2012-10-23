@@ -35,6 +35,11 @@ namespace Model
         /// </summary>
         public virtual string TouristType { get; set; }
 
+        /// <summary>
+        /// 其他类型的证件号码:护照,
+        /// </summary>
+        public virtual string SpecialCardNo { get; set; }
+        public virtual MemberType MemberType { get; set; }
 
     }
     public enum MemberType

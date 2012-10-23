@@ -47,7 +47,8 @@ public class SigmaGridSaveObject
         member.IdCardNo = strMember[4];
         member.PhoneNum = strMember[3];
         member.RealName = strMember[2];
-
+        member.TouristType = strMember[1];
+      //  member.
         return member;
         
 
