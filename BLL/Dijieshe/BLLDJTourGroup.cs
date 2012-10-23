@@ -130,20 +130,8 @@ namespace BLL
             {
 
              
-                //sbJson.Append("{\\\"no\\\":\\\"");
-                
-                //sbJson.Append(memberList.IndexOf(member));
-                //sbJson.Append("\\\"},{\\\"tourertype\\\":\\\"");
-                //sbJson.Append(member.TouristType); sbJson.Append("\\\"},{\\\"realname\\\":\\\"");
-                //sbJson.Append(member.RealName); sbJson.Append("\\\"},{\\\"phone\\\":\\\"");
-                //sbJson.Append(member.PhoneNum); sbJson.Append("\\\"},{\\\"idcardno\\\":\\\"");
-                //sbJson.Append(member.IdCardNo); sbJson.Append("\\\"},{\\\"othercardno\\\":\\\"");
-                //sbJson.Append(member.SpecialCardNo); sbJson.Append("\\\"},{\\\"memberid\\\":\\\"");
-                //sbJson.Append(member.Id); sbJson.Append("\\\"}");
+              
                 sbJson.Append("[\\\"");
-
-                sbJson.Append(memberList.IndexOf(member));
-                sbJson.Append("\\\",\\\"");
                 sbJson.Append(member.TouristType); sbJson.Append("\\\",\\\"");
                 sbJson.Append(member.RealName); sbJson.Append("\\\",\\\"");
                 sbJson.Append(member.PhoneNum); sbJson.Append("\\\",\\\"");

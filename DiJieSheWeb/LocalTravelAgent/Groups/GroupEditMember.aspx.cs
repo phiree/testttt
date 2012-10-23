@@ -19,7 +19,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
 		{ name: 'idcardno' },
 		{ name: 'othercardno' }
      */
-    string[] fieldsName = { "no", "tourertype", "realname", "phone", "idcardno", "othercardno", "memberid" };
+    string[] fieldsName = { "tourertype", "realname", "phone", "idcardno", "othercardno", "memberid" };
     public string MemberJsonList = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
