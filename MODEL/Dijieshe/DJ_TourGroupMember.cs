@@ -30,7 +30,16 @@ namespace Model
         ///儿童监护者.如果多个,用逗号隔开
         /// </summary>
         public virtual string  Keeper { get; set; }
+        /// <summary>
+        /// 游客类型: 成人/儿童/外宾/港澳台
+        /// </summary>
+        public virtual string TouristType { get; set; }
 
+        /// <summary>
+        /// 其他类型的证件号码:护照,
+        /// </summary>
+        public virtual string SpecialCardNo { get; set; }
+        public virtual MemberType MemberType { get; set; }
 
     }
     public enum MemberType

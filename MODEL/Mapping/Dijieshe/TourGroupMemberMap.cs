@@ -17,6 +17,9 @@ namespace Model
             Map(x => x.PhoneNum);
             Map(x => x.RealName);
             Map(x => x.Gender);
+            Map(x => x.TouristType);
+            Map(x => x.SpecialCardNo);
+            Map(x => x.MemberType).CustomType<int>();
         }
     }
   

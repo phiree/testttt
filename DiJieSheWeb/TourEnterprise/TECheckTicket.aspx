@@ -60,8 +60,10 @@
                         <p>人数:成人<%# Eval("AdultsAmount")%>人&nbsp;儿童<%# Eval("ChildrenAmount")%>人</p>
                             <h5>实际信息：</h5>
                             实到人数:成人<asp:TextBox ID="txtAdultsAmount" runat="server"></asp:TextBox>&nbsp;儿童<asp:TextBox
-                            ID="txtChildrenAmount" runat="server"></asp:TextBox>人
+                            ID="txtChildrenAmount" runat="server"></asp:TextBox>人<br />
+                            住宿天数:<asp:TextBox ID="txtLiveDay" runat="server"></asp:TextBox>天
                     </td>
+                    
                     <td>
                         <asp:Literal ID="laChecked" runat="server"></asp:Literal>
                     </td>

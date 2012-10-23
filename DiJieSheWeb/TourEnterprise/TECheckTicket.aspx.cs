@@ -103,12 +103,14 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                         CheckBox selectItem = e.Item.FindControl("cbSelect") as CheckBox;
                         TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
                         TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
+                        TextBox tbLiveDay = e.Item.FindControl("txtLiveDay") as TextBox;
                         if (blldjcr.GetGroupConsumRecordByRouteId(route.Id) != null)
                         {
                             laChecked.Text = "已验证";
                             selectItem.Enabled = false;
                             tbAdult.Enabled = false;
                             tbChild.Enabled = false;
+                            tbLiveDay.Enabled = false;
                         }
                         else
                         {
@@ -143,11 +145,19 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 {
                     TextBox tbAdult = guideritem.FindControl("txtAdultsAmount") as TextBox;
                     TextBox tbChild = guideritem.FindControl("txtChildrenAmount") as TextBox;
-                    if (tbAdult.Text != "" && tbChild.Text != "")
+                    TextBox tbLiveDay = guideritem.FindControl("txtLiveDay") as TextBox;
+                    int MaxLiveDay;
+                    HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
+                    DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
+                    List<DJ_Route> listWroute= blldjcr.GetLiveRouteByDay(out MaxLiveDay, int.Parse(tbLiveDay.Text), Master.CurrentTE, route);
+                    if (MaxLiveDay < int.Parse(tbLiveDay.Text))
                     {
-                        HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
-                        DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
-                        blldjcr.Save(Master.CurrentTE, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
+                        ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('住宿天数大于预定天数，请重新填写')", true);
+                        break;
+                    }
+                    else if (tbAdult.Text != "" && tbChild.Text != "")
+                    {
+                        blldjcr.SaveList(listWroute, int.Parse(tbAdult.Text), int.Parse(tbChild.Text), int.Parse(tbLiveDay.Text));
                         BindPrintLink();
                         ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "printTicket('验证成功，是否需要打印？')", true);
                         BindRptByIdcard(ViewState["idcard"].ToString());
@@ -256,9 +266,11 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 IsSelecttiem++;
                 TextBox tbAdult = rpitem.FindControl("txtAdultsAmount") as TextBox;
                 TextBox tbChild = rpitem.FindControl("txtChildrenAmount") as TextBox;
+                TextBox tbLiveDay = rpitem.FindControl("txtLiveDay") as TextBox;
                 tbAdult.Text = Regex.Replace(tbAdult.Text, "[^0-9]", "");
                 tbChild.Text = Regex.Replace(tbChild.Text, "[^0-9]", "");
-                if (tbAdult.Text == "" || tbChild.Text == "")
+                tbLiveDay.Text = Regex.Replace(tbChild.Text, "[^0-9]", "");
+                if (tbAdult.Text == "" || tbChild.Text == "" || tbLiveDay.Text=="")
                 {
                     guideritems++;
                 }
@@ -278,7 +290,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         }
         else if (IsSelecttiem == guideritems)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入完整使用人数')", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入完整使用人数和住宿天数')", true);
             return false;
         }
         return true;

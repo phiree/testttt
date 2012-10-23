@@ -21,6 +21,7 @@ namespace Model
             Map(x => x.ChildrenAmount);
             Map(x => x.Remarks);
             Map(x => x.No);
+            Map(x => x.LiveDay);
         }
     }
 }

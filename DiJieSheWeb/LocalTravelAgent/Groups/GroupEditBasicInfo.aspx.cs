@@ -47,13 +47,17 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo : System.Web.UI.
     private void LoadForm()
     {
         tbxName.Text = Group.Name;
-     
+        tbxDateBegin.Text = Group.BeginDate.ToString("yyyy-MM-dd");
+        tbxDateEnd.Text = Group.EndDate.ToShortDateString();
+        tbxGroupNo.Text = Group.No;
 
     }
     private void UpdateForm()
     {
         Group.Name = tbxName.Text;
-      
+        Group.BeginDate = Convert.ToDateTime(tbxDateBegin.Text);
+        Group.EndDate = Convert.ToDateTime(tbxDateEnd.Text);
+        Group.No = tbxGroupNo.Text;
       
     }
 
@@ -68,10 +72,10 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo : System.Web.UI.
     protected void btnBasicInfo_Click(object sender, EventArgs e)
     {
         UpdateForm();
-      //  bllGroup.Save(Group);
+      bllGroup.Save(Group);
         if (IsNew)
         {
-            Response.Redirect("ProductEdit.aspx?productid=" + Group.Id);
+            Response.Redirect("GroupEditMember.aspx?groupid=" + Group.Id);
         }
     }
 

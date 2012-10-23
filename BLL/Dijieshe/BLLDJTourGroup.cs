@@ -7,7 +7,7 @@ using DAL;
 
 namespace BLL
 {
-    public class BLLDJTourGroup
+    public class BLLDJTourGroup:DalBase
     {
         IDJTourGroup Idjtourgroup = new DALDJTourGroup();
 
@@ -78,6 +78,12 @@ namespace BLL
         public IList<Model.DJ_Group_Worker> GetGuiderWorkerByTE(Model.DJ_TourEnterprise TE)
         {
             return Idjtourgroup.GetGuiderWorkerByTE(TE).Where(x => x.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>();
+        }
+
+        public void Save(Model.DJ_TourGroup group)
+        {
+            session.Save(group);
+            session.Flush();
         }
 
     }

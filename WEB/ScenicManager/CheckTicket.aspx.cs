@@ -316,7 +316,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     {
                         HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
                         DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
-                        bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
+                        bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text),0);
                         BindPrintLink();
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "printTicket('验票通过,是否需要打印凭证？')", true);
                         
