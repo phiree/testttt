@@ -18,18 +18,20 @@ public class GroupHandler : IHttpHandler
         Model.DJ_TourGroup tg = new Model.DJ_TourGroup();
 
         //基本信息
+        tg.No = ga.GroupBasic.GroupNo;
         tg.Name = ga.GroupBasic.Name;
         tg.DJ_DijiesheInfo = ga.DjsId != 0 ? bllenter.GetDJS8id(ga.DjsId.ToString())[0] as Model.DJ_DijiesheInfo : null;
         tg.BeginDate = DateTime.Parse(ga.GroupBasic.Begindate);
         tg.EndDate = DateTime.Parse(ga.GroupBasic.Enddate);
-        tg.DaysAmount = int.Parse(ga.GroupBasic.Days);
-        tg.AdultsAmount = int.Parse(ga.GroupBasic.PeopleAdult);
-        tg.ChildrenAmount = int.Parse(ga.GroupBasic.PeopleChild);
-        tg.GangaotaisAmount = int.Parse(ga.GroupBasic.Gangaotais);
-        tg.ForeignersAmount = int.Parse(ga.GroupBasic.Foreigners);
-        tg.Gether = ga.GroupBasic.StartPlace;
-        tg.BackPlace = ga.GroupBasic.EndPlace;
-        tg.No = ga.GroupBasic.GroupNo;
+        #region v.2012/10/09
+        //tg.DaysAmount = int.Parse(ga.GroupBasic.Days);
+        //tg.AdultsAmount = int.Parse(ga.GroupBasic.PeopleAdult);
+        //tg.ChildrenAmount = int.Parse(ga.GroupBasic.PeopleChild);
+        //tg.GangaotaisAmount = int.Parse(ga.GroupBasic.Gangaotais);
+        //tg.ForeignersAmount = int.Parse(ga.GroupBasic.Foreigners);
+        //tg.Gether = ga.GroupBasic.StartPlace;
+        //tg.BackPlace = ga.GroupBasic.EndPlace;
+        #endregion
 
         //人员信息
         var tgmlist = new System.Collections.Generic.List<Model.DJ_TourGroupMember>();
@@ -90,186 +92,188 @@ public class GroupHandler : IHttpHandler
         int i = 1;
         foreach (var item in ga.GroupRouteList)
         {
-            if (!string.IsNullOrWhiteSpace(item.Breakfast))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "早餐",
-                    Enterprise = bllDJS.GetDJS8name(item.Breakfast)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Lunch))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "中餐",
-                    Enterprise = bllDJS.GetDJS8name(item.Lunch)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Dinner))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "晚餐",
-                    Enterprise = bllDJS.GetDJS8name(item.Dinner)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Hotel1))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "住宿1",
-                    Enterprise = bllDJS.GetDJS8name(item.Hotel1)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Hotel2))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "住宿2",
-                    Enterprise = bllDJS.GetDJS8name(item.Hotel2)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Scenic1))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "景点1",
-                    Enterprise = bllDJS.GetDJS8name(item.Scenic1)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Scenic2))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "景点2",
-                    Enterprise = bllDJS.GetDJS8name(item.Scenic2)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Scenic3))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "景点3",
-                    Enterprise = bllDJS.GetDJS8name(item.Scenic3)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Scenic4))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "景点4",
-                    Enterprise = bllDJS.GetDJS8name(item.Scenic4)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Scenic5))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "景点5",
-                    Enterprise = bllDJS.GetDJS8name(item.Scenic5)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Scenic6))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "景点6",
-                    Enterprise = bllDJS.GetDJS8name(item.Scenic6)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Scenic7))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "景点7",
-                    Enterprise = bllDJS.GetDJS8name(item.Scenic7)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Scenic8))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "景点8",
-                    Enterprise = bllDJS.GetDJS8name(item.Scenic8)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Scenic9))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "景点9",
-                    Enterprise = bllDJS.GetDJS8name(item.Scenic9)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.Scenic10))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "景点10",
-                    Enterprise = bllDJS.GetDJS8name(item.Scenic10)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.ShoppingPoint1))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "购物点1",
-                    Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint1)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.ShoppingPoint2))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "购物点2",
-                    Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint2)[0]
-                });
-            }
-            if (!string.IsNullOrWhiteSpace(item.ShoppingPoint3))
-            {
-                routes.Add(new Model.DJ_Route()
-                {
-                    DayNo = i,
-                    DJ_TourGroup = tg,
-                    Description = "购物点3",
-                    Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint3)[0]
-                });
-            }
+            #region v.2010/10/09
+            //if (!string.IsNullOrWhiteSpace(item.Breakfast))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "早餐",
+            //        Enterprise = bllDJS.GetDJS8name(item.Breakfast)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Lunch))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "中餐",
+            //        Enterprise = bllDJS.GetDJS8name(item.Lunch)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Dinner))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "晚餐",
+            //        Enterprise = bllDJS.GetDJS8name(item.Dinner)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Hotel1))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "住宿1",
+            //        Enterprise = bllDJS.GetDJS8name(item.Hotel1)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Hotel2))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "住宿2",
+            //        Enterprise = bllDJS.GetDJS8name(item.Hotel2)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Scenic1))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "景点1",
+            //        Enterprise = bllDJS.GetDJS8name(item.Scenic1)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Scenic2))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "景点2",
+            //        Enterprise = bllDJS.GetDJS8name(item.Scenic2)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Scenic3))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "景点3",
+            //        Enterprise = bllDJS.GetDJS8name(item.Scenic3)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Scenic4))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "景点4",
+            //        Enterprise = bllDJS.GetDJS8name(item.Scenic4)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Scenic5))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "景点5",
+            //        Enterprise = bllDJS.GetDJS8name(item.Scenic5)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Scenic6))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "景点6",
+            //        Enterprise = bllDJS.GetDJS8name(item.Scenic6)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Scenic7))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "景点7",
+            //        Enterprise = bllDJS.GetDJS8name(item.Scenic7)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Scenic8))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "景点8",
+            //        Enterprise = bllDJS.GetDJS8name(item.Scenic8)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Scenic9))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "景点9",
+            //        Enterprise = bllDJS.GetDJS8name(item.Scenic9)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.Scenic10))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "景点10",
+            //        Enterprise = bllDJS.GetDJS8name(item.Scenic10)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.ShoppingPoint1))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "购物点1",
+            //        Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint1)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.ShoppingPoint2))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "购物点2",
+            //        Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint2)[0]
+            //    });
+            //}
+            //if (!string.IsNullOrWhiteSpace(item.ShoppingPoint3))
+            //{
+            //    routes.Add(new Model.DJ_Route()
+            //    {
+            //        DayNo = i,
+            //        DJ_TourGroup = tg,
+            //        Description = "购物点3",
+            //        Enterprise = bllDJS.GetDJS8name(item.ShoppingPoint3)[0]
+            //    });
+            //}
+            #endregion
             i++;
         }
         tg.Routes = routes;
