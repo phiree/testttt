@@ -13,34 +13,36 @@
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js"></script>
     <!--身份证正则验证-->
-    <script src="../../Scripts/VeriIdCard.js" type="text/javascript"></script>
+    <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
+    <script src="/Scripts/json2.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
 
-        var __TEST_DATA__ =
-[
+        var __TEST_DATA__ = JSON.parse("<%=MemberJsonList %>");
+//[
 
-["youkeid","1", "成人游客", "李爽", "13282151877", "520822198010103916",""],
+//["youkeid","1", "成人游客", "李爽", "13282151877", "520822198010103916",""],
 
 
-];
+//];
         var grid_demo_id = "myGrid1";
 
         var dsOption = {
 
             fields: [
-          { name: 'memberid' },
+        
 		{ name: 'no' },
 		{ name: 'tourertype' },
 		{ name: 'realname' },
 		{ name: 'phone' },
 		{ name: 'idcardno' },
-		{ name: 'othercardno' }
+		{ name: 'othercardno' },
+          { name: 'memberid' }
 		
 
 	],
 
-            recordType: 'array',
-            data: __TEST_DATA__
+            recordType: 'object',
+           data: __TEST_DATA__
         }
 
 
@@ -61,18 +63,8 @@
        }
        },
 	   { id: 'othercardno', header: "其他证件号码", width: 160, editor: { type: "text"} },
-           { id: 'memberid', header: "", width: 60, hideable: true }
-        //	   { id: 'homepage', header: "Url", width: 200, editor: { type: "text",
-        //	       validator: function (value, record, colObj, grid) {
-        //	           var re = new RegExp(/http:\/\/www.\w+([-+.]\w+)*.com/);
-        //	           if (re.test(value)) {
-        //	               return true;
-        //	           } else {
-        //	               return "Invalid URL Address";
-        //	           }
-        //	       }
-        //  }
-        // }
+           { id: 'memberid', header: "id", width: 60, editor: { type: "text"} }
+  
 
 ];
 
@@ -87,7 +79,7 @@
 	       pageSize: 20,
 	       toolbarContent: 'nav | reload | add del save',
 	       saveURL: "GroupEditMemberHanlder.ashx",
-	       locadURL: "GroupEditMemberHanlder.ashx",
+	     //  loadURL: "GroupEditMemberHanlder.ashx",
 	       parameters: {"groupid":"<%=CurrentGroup.Id %>"}
 	   };
         var mygrid = new Sigma.Grid(gridOption);
@@ -119,7 +111,7 @@
              <p>
              格式要求: 单个游客的信息用逗号分隔,不同游客用回车分隔.
              比如:<br />
-             "成人游客","张晓华","13287839485","331093199010103982",""<br />
+             "成人游客","张晓华","13287839485","51332919880321639X",""<br />
              "外宾","Jim Green","13287839485","","CH1034123"<br />
              "儿童","李晓彤","","",""<br />
              

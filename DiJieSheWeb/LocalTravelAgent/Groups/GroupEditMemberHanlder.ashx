@@ -2,8 +2,7 @@
 
 using System;
 using System.Web;
-using Newtonsoft.Json;
-
+using BLL;
 /*
  _gt_json:
  * {"fieldsName":["no","tourertype","realname","phone","idcardno","othercardno"],
