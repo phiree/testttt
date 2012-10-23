@@ -2,6 +2,7 @@
 
 using System;
 using System.Web;
+using Newtonsoft.Json;
 
 /*
  _gt_json:
@@ -17,9 +18,10 @@ public class GroupEditHanlder : IHttpHandler {
     public void ProcessRequest (HttpContext context) {
 
         var r = context.Request;
-        
+        string jsonR = r["_gt_json"];
+        SigmaGridRequestObject sro = CommonLibrary.JosnHelper.ParseFromJson<SigmaGridRequestObject>(jsonR);
+        sro.Act();
     }
- 
     public bool IsReusable {
         get {
             return false;
