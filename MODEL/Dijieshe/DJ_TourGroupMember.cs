@@ -30,6 +30,10 @@ namespace Model
         ///儿童监护者.如果多个,用逗号隔开
         /// </summary>
         public virtual string  Keeper { get; set; }
+        /// <summary>
+        /// 游客类型: 成人/儿童/外宾/港澳台
+        /// </summary>
+        public virtual string TouristType { get; set; }
 
 
     }
