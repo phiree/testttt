@@ -19,6 +19,7 @@ public partial class TourEnterprise_PrintCer : System.Web.UI.Page
     {
         string[] routeids = Request.QueryString["routeids"].Split(',');
         List<DJ_GroupConsumRecord> Listgcr = new List<DJ_GroupConsumRecord>();
+        title.InnerHtml = Listgcr[0].Enterprise.Name;
         foreach (string routeid in routeids)
         {
             if(routeid!="")

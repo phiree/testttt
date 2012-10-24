@@ -6,7 +6,11 @@
 <head runat="server">
     <title></title>
     <link href="/theme/default/css/Print.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
     <script type="text/javascript">
+        $(function () {
+            printInfo();
+        })
         function printInfo() {
             var bdhtml = window.document.body.innerHTML;
             var hh = bdhtml;
@@ -17,6 +21,7 @@
             window.document.body.innerHTML = prnhtml;
             window.print();
             window.document.body.innerHTML = hh;
+            window.onafterprint = wclose();
         }
         function wclose() {
             window.opener = null;
@@ -107,10 +112,7 @@
         </ItemTemplate>
     </asp:Repeater>
     <!--endprint-->
-    <div style=" text-align:center">
-        <input type="button" value="打印" class="btn" onclick="printInfo()" />
-        <input id="Button1" type="button" value="关闭" class="btn" onclick="wclose()" />
-    </div>
+    
     </form>
 </body>
 </html>

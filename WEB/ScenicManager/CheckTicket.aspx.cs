@@ -320,7 +320,6 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                         bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text));
                         IsSuccess = 1;
                         BtnPrint.Visible = true;
-                        BindPrintLink();
                     }
                 }
             }
@@ -340,6 +339,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         rptpayonline.DataBind();
         rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTE(ViewState["idcard"].ToString(), CurrentScenic);
         rptguiderinfo.DataBind();
+        BindPrintLink();
     }
 
     //绑定游玩记录
