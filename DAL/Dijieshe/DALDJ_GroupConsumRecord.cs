@@ -45,6 +45,44 @@ namespace DAL
             return query.Future<Model.DJ_TourGroup>().ToList<Model.DJ_TourGroup>();
         }
 
-        
+
+
+
+        public IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid)
+        {
+            bool ifcondition = false;
+            string sql = "select gcr from DJ_GroupConsumRecord gcr where";
+            if (!string.IsNullOrEmpty(areacode))
+            {
+                ifcondition = true;
+                sql += " gcr.Enterprise.Area.Code='" + areacode + "' and";
+            }
+            if (!string.IsNullOrEmpty(enterpname))
+            {
+                ifcondition = true;
+                sql += " gcr.Enterprise.Name='" + enterpname+"' and";
+            }
+            if (!string.IsNullOrEmpty(groupid))
+            {
+                ifcondition = true;
+                sql += " gcr.Route.DJ_TourGroup.Id='" + groupid + "' and";
+            }
+            if (!string.IsNullOrEmpty(routeid))
+            {
+                ifcondition = true;
+                sql += " gcr.Enterprise.Name='" + routeid + "' and";
+            }
+
+            if (ifcondition)//如果有条件的string截取方式
+            {
+                sql = sql.Substring(0, sql.Length - 3);
+            }
+            else//如果没条件的string截取方式
+            {
+                sql = sql.Substring(0, sql.Length - 5);
+            }
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_GroupConsumRecord>().ToList();
+        }
     }
 }

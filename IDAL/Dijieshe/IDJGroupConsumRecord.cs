@@ -12,5 +12,6 @@ namespace IDAL
         DJ_GroupConsumRecord GetGroupConsumRecordByRouteId(Guid RouteId);
         DJ_GroupConsumRecord GetGcr8Name(string EnterpName,string Groupid);
         IList<DJ_TourGroup> GetFeRecordByETId(int etid);
+        IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid);
     }
 }
