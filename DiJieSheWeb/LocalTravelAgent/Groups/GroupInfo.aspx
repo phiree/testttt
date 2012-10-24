@@ -28,6 +28,7 @@
                     }
                 }
             });
+            alert(idvali);
             if (!idvali) {
                 alert('身份证输入错误, 请重新填写!');
                 return false;
@@ -39,12 +40,8 @@
                 return false;
             }
             var gid = getArgs("id");
-            //            if (gid == undefined) {
-            //                alert("没有找到相应的团队, 请确定团队编号");
-            //                return;
-            //            }
 
-            //新版本 2012-10-10
+            //V.2012-10-10
             //基本信息
             var dateString = $("#txtDate").html();
             var dateArray = dateString.split("-", 2);
@@ -75,7 +72,6 @@
                 datas += "\",\"Memid\":\"" + $(this).children().next().next().html();
                 datas += "\",\"Memphone\":\"" + $(this).children().next().next().next().html();
                 datas += "\",\"Cardno\":\"" + $(this).children().next().next().next().next().html();
-//                datas += "\",\"IdValidate\":\"" + $(this).children().next().next().next().next().next().html();
                 datas += "\"},";   //最后记得去掉这个,逗号
             });
             datas = datas.substring(0, datas.length - 1) + "]";
@@ -207,32 +203,32 @@
                 $.ajax({
                     type: "Post",
                     url: "ExcelHandler.ashx?filename=" + $("#<%=Label1.ClientID%>").html(),
-                    dataType: "json",
+                    dataType: "text",
                     data: datas,
                     success: function (data, status) {
-                        //var tbody = $("#addrow").parent().parent().parent().next();
-                        var tbmember = $("#tbMember>tbody");
-                        var tbroute = $("#tbRoute>tbody");
-                        if (data == "") {
-                            alert('内容已导入!');
-                        }
-                        else {
-                            var j = eval(data);
-                            $("#txtGroupNo").html(j.GroupNo);
-                            $("#txtName").html(j.Name);
-                            $("#txtDate").html(j.Bedate);
-                            $("#txtDays").html(j.Days);
-                            $("#txtPnum").html(j.PeopleTotal);
-                            $("#txtPadult").html(j.PeopleAdult);
-                            $("#txtPchild").html(j.PeopleChild);
-                            $("#txtGether").html(j.StartPlace);
-                            $("#txtBack").html(j.EndPlace);
-                            $("#txtForeigners").html(j.Foreigners);
-                            $("#txtGangaotais").html(j.Gangaotais);
-                            $("txtGroupNo").html(j.GroupNo);
-                            tbmember.html(j.Member);
-                            tbroute.html(j.Route);
-                        }
+                        alert(data);
+                        //                        var tbmember = $("#tbMember>tbody");
+                        //                        var tbroute = $("#tbRoute>tbody");
+                        //                        if (data == "") {
+                        //                            alert('内容已导入!');
+                        //                        }
+                        //                        else {
+                        //                            var j = eval(data);
+                        //                            $("#txtGroupNo").html(j.GroupNo);
+                        //                            $("#txtName").html(j.Name);
+                        //                            $("#txtDate").html(j.Bedate);
+                        //                            $("#txtDays").html(j.Days);
+                        //                            $("#txtPnum").html(j.PeopleTotal);
+                        //                            $("#txtPadult").html(j.PeopleAdult);
+                        //                            $("#txtPchild").html(j.PeopleChild);
+                        //                            $("#txtGether").html(j.StartPlace);
+                        //                            $("#txtBack").html(j.EndPlace);
+                        //                            $("#txtForeigners").html(j.Foreigners);
+                        //                            $("#txtGangaotais").html(j.Gangaotais);
+                        //                            $("txtGroupNo").html(j.GroupNo);
+                        //                            tbmember.html(j.Member);
+                        //                            tbroute.html(j.Route);
+                        //                        }
                     }
                 });
             });
