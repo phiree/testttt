@@ -139,8 +139,8 @@ function cgbg2(obj) {
 function printTicket(info) {
     if (confirm(info)) {
         $("[id$='BtnPrint']").click(function () {
-            window.open($(this).attr("href"), '', 'fullscreen=yes');
-            
+            window.open($(this).attr("href"), $(this).attr("target"));
+            //noBorderWin($(this).attr("href"), 500, 300);
         });
 
         // 触发单击事件（会执行所有绑定的单击事件处理函数） 

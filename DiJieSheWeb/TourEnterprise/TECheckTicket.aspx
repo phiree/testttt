@@ -14,7 +14,7 @@
         function printTicket(info) {
             if (confirm(info)) {
                 $("[id$='btnPrint']").click(function () {
-                    window.open($(this).attr("href"), '', 'fullscreen=yes');
+                    window.open($(this).attr("href"), $(this).attr("target"));
                 });
 
                 // 触发单击事件（会执行所有绑定的单击事件处理函数） 

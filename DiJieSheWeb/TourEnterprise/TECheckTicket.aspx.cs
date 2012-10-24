@@ -247,6 +247,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
     {
         guideritems = 0;
         IsSelecttiem = 0;
+        int HaveYz = 0;
         foreach (RepeaterItem rpitem in rptTourGroupInfo.Items)
         {
             CheckBox hick = rpitem.FindControl("cbSelect") as CheckBox;
@@ -262,10 +263,17 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                     guideritems++;
                 }
             }
+            if (hick.Checked && !hick.Enabled)
+            {
+                HaveYz = 1;
+            }
         }
         if (IsSelecttiem == 0)
         {
-            ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "printTicket('请选择一个未验证的团队信息，是否对已验证的团队进行打印？')", true);
+            if(HaveYz==1)
+                ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "printTicket('请选择一个未验证的团队信息，是否对已验证的团队进行打印？')", true);
+            else
+                ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('请选择一个未验证的团队信息')", true);
             return false;
         }
         else if (IsSelecttiem == guideritems)

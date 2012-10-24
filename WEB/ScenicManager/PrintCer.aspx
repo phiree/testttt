@@ -38,6 +38,20 @@
         <ItemTemplate>
             <table border="0" cellpadding="0" cellspacing="0">
                 <tr>
+                    <td>
+                        编号:
+                    </td>
+                    <td>
+                        <%# Eval("No") %>
+                    </td>
+                    <td>
+                        验证企业：
+                    </td>
+                    <td>
+                        <%# Eval("Enterprise.Name")%>
+                    </td>
+                </tr>
+                <tr>
                     <td style="width:150px;">
                         团队名称:
                     </td>   
@@ -52,9 +66,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>游玩时间:</td>
+                    <td>
+                        验证时间:
+                    </td>
                     <td colspan="3">
-                        <%# Eval("Route.DJ_TourGroup.BeginDate", "{0:yyyy-MM-dd}")%>至<%# Eval("Route.DJ_TourGroup.EndDate", "{0:yyyy-MM-dd}")%></td>
+                        <%# Eval("ConsumeTime")%>
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -85,21 +102,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        验证时间:
-                    </td>
+                    <td>游玩时间:</td>
                     <td colspan="3">
-                        <%# Eval("ConsumeTime","{0:yyyy-MM-dd}")%>
-                    </td>
+                        <%# Eval("Route.DJ_TourGroup.BeginDate", "{0:yyyy-MM-dd}")%>至<%# Eval("Route.DJ_TourGroup.EndDate", "{0:yyyy-MM-dd}")%></td>
                 </tr>
-                <tr>
-                    <td>
-                        备注:
-                    </td>
-                    <td colspan="3">
-                        <asp:TextBox ID="txtRemark" runat="server" Text='<%# Eval("Remarks") %>' Width="95%" TextMode="MultiLine" Height="35px" style="margin-top:5px;;margin-bottom:5px;"></asp:TextBox>
-                    </td>
-                </tr>
+                
                 <tr>
                     <td colspan="2" style="text-align:left;padding-left:10px;">
                         旅游企业签名:

@@ -26,5 +26,7 @@ namespace Model
         public virtual int ChildrenAmount { get; set; }
         //备注
         public virtual string Remarks { get; set; }
+        //编号
+        public virtual string No { get; set; }
     }
 }

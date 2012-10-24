@@ -569,6 +569,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         }
         guideritems = 0;
         IsSelecttiem = 0;
+        int HaveYz = 0;
         foreach (RepeaterItem rpitem in rptguiderinfo.Items)
         {
             CheckBox hick = rpitem.FindControl("selectItem") as CheckBox;
@@ -583,6 +584,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 {
                     guideritems++;
                 }
+            }
+            if (hick.Checked && !hick.Enabled)
+            {
+                HaveYz = 1;
             }
         }
         CurrentScenic = Master.Scenic;
@@ -614,7 +619,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             {
                 if (IsSelecttiem == 0)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "printTicket('请选择一个已验证的团队信息，是否对已验证的团队进行打印？')", true);
+                    if(HaveYz==1)
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "printTicket('请选择一个已验证的团队信息，是否对已验证的团队进行打印？')", true);
+                    else
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请选择一个已验证的团队信息')", true);
                     return false;
                 }
                 else if (IsSelecttiem == guideritems)

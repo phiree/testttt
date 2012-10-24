@@ -20,7 +20,9 @@ namespace BLL
             dj_group.ConsumeTime = consumtime;
             dj_group.Enterprise = Enterprise;
             dj_group.Route = route;
-            IDjgroup.Save(dj_group);
+            dj_group.No = "Lv" + new Random((int)DateTime.Now.Ticks).Next(100000, 999999);
+            if (IDjgroup.GetGroupConsumRecordByRouteId(route.Id)==null)
+                IDjgroup.Save(dj_group);
         }
 
         public Model.DJ_GroupConsumRecord GetGroupConsumRecordByRouteId(Guid RouteId)
