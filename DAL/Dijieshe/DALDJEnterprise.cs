@@ -199,28 +199,7 @@ namespace DAL
             return GetList(sql, needPaging, pageIndex, pageSize, out totalRecord);
         }
 
-        /// <summary>
-        /// 通用查询入口
-        /// </summary>
-        /// <param name="where">查询条件</param>
-        /// <param name="needPaging">是否需要分页</param>
-        /// <param name="pageIndex">分页索引(当needPaging=ture时有效</param>
-        /// <param name="pageSize">每页数量</param>
-        /// <param name="totalRecords"></param>
-        /// <returns></returns>
-        private IList<Model.DJ_TourEnterprise> GetList(string where, bool needPaging, int pageIndex, int pageSize, out int totalRecords)
-        {
-            IQuery qry = session.CreateQuery(where);
-            IList<Model.DJ_TourEnterprise> ents = qry.Future<Model.DJ_TourEnterprise>().ToList() ;
-            totalRecords = ents.Count;
-            if (needPaging)
-            {
-                ents = GetPagedList(ents, pageIndex, pageSize);
-            }
-            return ents;
-            
-        }
-
+       
         #endregion
 
         #region group

@@ -16,6 +16,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
     /// </summary>
     public string EntNames = string.Empty;
     BLLDJEnterprise bllEnt = new BLLDJEnterprise();
+    BLLOperationLog bllOp = new BLLOperationLog();
     protected void Page_Load(object sender, EventArgs e)
     {
         lblMsg.Visible = false;
@@ -115,6 +116,12 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
             t = t == RewardType.纳入后移除 ? RewardType.已纳入 : RewardType.纳入后移除;
 
             bllEnt.SetVerify(CurrentDpt, ent, t);
+            Model.OperationLog log = new OperationLog();
+            log.Member = CurrentMember;
+            log.OperationTime = DateTime.Now;
+            log.OprationType = OperationType.管理部门管理纳入企业;
+            log.TargetId = entId.ToString();
+            bllOp.Save(log);
             BindList();
         }
     }

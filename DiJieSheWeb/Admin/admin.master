@@ -11,6 +11,7 @@
         <li><a href="UserList.aspx">用户列表</a></li>
         <li><a href="EnterpriseList.aspx">企业列表</a></li>
         <li><a href="EnterpriseEdit.aspx">增加企业</a></li>
+         <li><a href="LogViewer.aspx">日志查看</a></li>
     </ul></asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
    <div style="background-color:#fff">

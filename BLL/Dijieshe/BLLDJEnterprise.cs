@@ -238,14 +238,7 @@ namespace BLL
         /// <param name="target"></param>
         private RewardType GetFinalVeryfyState(RewardType original, RewardType target)
         {
-            if (original == null)
-            {
-                if (target == null)
-                {
-                    return original;
-                }
-                return target;
-            }
+            
 
             RewardType finalType = RewardType.从未纳入;
             switch (original)
@@ -286,6 +279,11 @@ namespace BLL
                     break;
             }
             return finalType;
+        }
+
+        public void Save(DJ_TourEnterprise ent)
+        {
+            daldjs.Save(ent);
         }
 
         #endregion

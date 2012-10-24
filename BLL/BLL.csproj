@@ -106,6 +106,7 @@
     <Compile Include="Default\Checkout.cs" />
     <Compile Include="Default\MipangTicket\TicketMover.cs" />
     <Compile Include="Default\MipangTicket\TicketXmlParser.cs" />
+    <Compile Include="Default\BLLOperationLog.cs" />
     <Compile Include="Dijieshe\BLLDJEnterprise.cs" />
     <Compile Include="Default\ErrType.cs" />
     <Compile Include="Dijieshe\BLLDJConsumRecord.cs" />
