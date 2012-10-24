@@ -28,14 +28,14 @@
                 <td>
                     <asp:Repeater ID="rptHotels" runat="server">
                         <ItemTemplate>
-                            <%#Eval("Enterprice.Name")%>:<%#Eval("Peoplenum")%>、
+                            <%#Eval("Enterprice.Name")%>：<%#Eval("Peoplenum")%>，
                         </ItemTemplate>
                     </asp:Repeater>
                 </td>
                 <td>
                     <asp:Repeater ID="rptScenics" runat="server">
                         <ItemTemplate>
-                            <%#Eval("Enterprice.Name")%>:<%#Eval("Peoplenum")%>、 
+                            <%#Eval("Enterprice.Name")%>：<%#Eval("Peoplenum")%>， 
                         </ItemTemplate>
                     </asp:Repeater>
                 </td>

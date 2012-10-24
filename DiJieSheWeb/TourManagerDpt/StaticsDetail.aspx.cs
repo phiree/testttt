@@ -34,7 +34,7 @@ public partial class TourManagerDpt_StaticsDetail : System.Web.UI.Page
             sd.ConsumeDate = item.Key;
             //添加宾馆
             foreach (var item2 in item
-                .Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆)
+                .Where(x => (x.Enterprise.Type == Model.EnterpriseType.宾馆 || x.Enterprise.Type == Model.EnterpriseType.饭店))
                 .GroupBy(y => y.Enterprise.Name))
             {
                 var temp = new statics_enterpeople()
