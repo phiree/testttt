@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true" CodeFile="TourEnterpriseStatistics.aspx.cs" Inherits="LocalTravelAgent_TourEnterpriseStatistics" %>
-
+<%@ MasterType VirtualPath="~/LocalTravelAgent/LTA.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
         rel="stylesheet" type="text/css" />

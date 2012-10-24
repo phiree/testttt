@@ -11,6 +11,13 @@ using System.Web.UI.HtmlControls;
 
 public partial class LocalTravelAgent_LTA : System.Web.UI.MasterPage
 {
+    private DJ_DijiesheInfo Currentdjs;
+
+    public DJ_DijiesheInfo CurrentDJS
+    {
+        get { return Currentdjs; }
+        set { Currentdjs = value; }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -29,6 +36,7 @@ public partial class LocalTravelAgent_LTA : System.Web.UI.MasterPage
         {
             Response.Redirect("/Login.aspx");
         }
+        CurrentDJS = DJ_User_TourEnterprise.Enterprise as DJ_DijiesheInfo;
         (Master.FindControl("changepwd") as HtmlAnchor).HRef = "/LocalTravelAgent/ChangePwd.aspx";
         base.OnInit(e);
     }

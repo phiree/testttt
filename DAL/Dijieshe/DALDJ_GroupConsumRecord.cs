@@ -108,5 +108,22 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_GroupConsumRecord>().ToList();
         }
+
+
+        public IList<Model.DJ_GroupConsumRecord> GetRecordByCondition(string dateyear, string EntName, int EntId)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select r from DJ_GroupConsumRecord r where 1=1");
+            sql.Append(" and r.Enterprise.Name like '%" + EntName + "%'");
+            sql.Append(" and r.Route.Enterprise.Id=" + EntId + "");
+            sql.Append(" order by ConsumeTime desc");
+            IQuery query = session.CreateQuery(sql.ToString());
+            List<Model.DJ_GroupConsumRecord> ListRecord = new List<Model.DJ_GroupConsumRecord>();
+            if(dateyear!="")
+                 ListRecord = query.Future<Model.DJ_GroupConsumRecord>().Where(x => x.ConsumeTime.Year == DateTime.Parse(dateyear).Year).ToList();
+            else
+                ListRecord = query.Future<Model.DJ_GroupConsumRecord>().Where(x => x.ConsumeTime.Year == DateTime.Now.Year).ToList();
+            return ListRecord;
+        }
     }
 }

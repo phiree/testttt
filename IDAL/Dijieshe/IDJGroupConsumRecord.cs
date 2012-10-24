@@ -14,5 +14,6 @@ namespace IDAL
         IList<DJ_TourGroup> GetFeRecordByETId(int etid);
         List<Model.DJ_GroupConsumRecord> GetRecordByAllCondition(string groupname, string EntName, string BeginTime, string EndTime, int enterid);
         IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid);
+        IList<DJ_GroupConsumRecord> GetRecordByCondition(string dateyear, string EntName, int EntId);
     }
 }
