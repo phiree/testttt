@@ -44,6 +44,9 @@
                 <td>
                     人数
                 </td>
+                <td>
+                    住宿天数
+                </td>
             </tr>
         <asp:Repeater runat="server" ID="rptTgInfo" OnItemDataBound="rptTgInfo_ItemDataBound">
             <ItemTemplate>
@@ -63,6 +66,9 @@
                     </td>
                     <td>
                         成人<%# Eval("DJ_TourGroup.AdultsAmount")%>儿童<%# Eval("DJ_TourGroup.ChildrenAmount")%>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laLiveCount" runat="server"></asp:Literal>
                     </td>
                 </tr>
             </ItemTemplate>

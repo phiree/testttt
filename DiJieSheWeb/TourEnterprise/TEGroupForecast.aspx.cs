@@ -10,6 +10,7 @@ using Model;
 public partial class TourEnterprise_TEGroupForecast : System.Web.UI.Page
 {
     BLLDJRoute BLLDJRoute = new BLLDJRoute();
+    BLLDJConsumRecord bllrecord = new BLLDJConsumRecord();
     int Index = 1;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -33,6 +34,10 @@ public partial class TourEnterprise_TEGroupForecast : System.Web.UI.Page
             laNo.Text = Index++.ToString();
             DJ_Route route = e.Item.DataItem as DJ_Route;
             laArriveTime.Text = route.DJ_TourGroup.BeginDate.AddDays(route.DayNo - 1).ToString("yyyy年MM月dd日");
+            int MaxLiveDay;
+            List<DJ_Route> listWroute = bllrecord.GetLiveRouteByDay(out MaxLiveDay, 1, Master.CurrentTE, route);
+            Literal laLiveCount = e.Item.FindControl("laLiveCount") as Literal;
+            laLiveCount.Text = MaxLiveDay.ToString();
         }
     }
     protected void BtnSearch_Click(object sender, EventArgs e)

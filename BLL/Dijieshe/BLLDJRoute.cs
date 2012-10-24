@@ -45,7 +45,41 @@ namespace BLL
 
         public IList<Model.DJ_Route> GetRouteByAllCondition(string groupname, string EntName, string BeginTime, string EndTime,int enterid)
         {
-            return Idjroute.GetRouteByAllCondition(groupname, EntName, BeginTime, EndTime,enterid);
+            IList<Model.DJ_Route> ListRoute= Idjroute.GetRouteByAllCondition(groupname, EntName, BeginTime, EndTime,enterid);
+            List<Model.DJ_Route> ListWroute = new List<Model.DJ_Route>();
+            if (ListRoute.Count > 1)
+            {
+                ListWroute.Add(ListRoute[0]);
+                for (int i = 1; i < ListRoute.Count; i++)
+                {
+                    if (ListRoute[i].DJ_TourGroup.Id == ListRoute[i - 1].DJ_TourGroup.Id && (ListRoute[i - 1].DayNo - ListRoute[i].DayNo) <= 1)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        ListWroute.Add(ListRoute[i]);
+                        break;
+                    }
+                }
+
+            }
+            else
+                ListWroute.AddRange(ListRoute);
+            //去掉验证过的
+            for (int i = 0;; i++)
+            {
+                if (i < ListWroute.Count)
+                {
+                    if (new BLLDJConsumRecord().GetGroupConsumRecordByRouteId(ListWroute[i].Id) != null)
+                    {
+                        ListWroute.Remove(ListWroute[i]);
+                    }
+                }
+                else
+                    break;
+            }
+            return ListWroute;
         }
     }
 }
