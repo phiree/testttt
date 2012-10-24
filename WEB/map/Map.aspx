@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <%--<link href="../Styles/DefaultMapCss.css" rel="stylesheet" type="text/css" />--%>
-    <script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>

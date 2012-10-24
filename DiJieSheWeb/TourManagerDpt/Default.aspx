@@ -18,7 +18,7 @@
                             地址
                         </td>
                         <td>
-                            奖励计划企业
+                            统计计划企业
                         </td>
                         <td>
                             操作
@@ -42,7 +42,7 @@
                     <asp:CheckBox runat="server" ID="cbx" Checked='<%#Eval("IsVeryfied") %>' />
                 </td>
                 <td>
-                    <asp:Button runat="server" ID="btnSetVerify" Text="设为奖励范围内" CommandName="SetVerify"
+                    <asp:Button runat="server" ID="btnSetVerify" Text="设为统计范围内" CommandName="SetVerify"
                         CommandArgument='<%#Eval("Id") %>' />
                 </td>
             </tr>

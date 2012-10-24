@@ -22,9 +22,9 @@
                         <td>
                             查看
                         </td>
-                        <%--<td>
-                            奖励情况
-                        </td>--%>
+                        <td>
+                            统计情况
+                        </td>
                         <td>
                             认证状态
                         </td>
@@ -41,9 +41,9 @@
                     <td>
                         <a href='EnterpriseDetail.aspx?entid=<%#Eval("Id") %>'>查看企业信息</a>
                     </td>
-                    <%--<td>
-                        <a href='RewordEnt.aspx?entid=<%#Eval("Id") %>'>查看奖励情况</a>
-                    </td>--%>
+                   <td>
+                        <a href='RewordEnt.aspx?entid=<%#Eval("Id") %>'>查看数据情况</a>
+                    </td>
                     <td>
                         <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"
                             CommandName="SetVerify" />
