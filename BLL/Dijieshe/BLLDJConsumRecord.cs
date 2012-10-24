@@ -99,9 +99,9 @@ namespace BLL
             return IDjgroup.GetRecordByAllCondition(groupname, EntName, BeginTime, EndTime, enterid);
         }
 
-        public IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid)
+        public IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid, string djsname)
         {
-            return IDjgroup.GetGCR8Multi(areacode, enterpname, groupid, routeid);
+            return IDjgroup.GetGCR8Multi(areacode, enterpname, groupid, routeid,djsname);
         }
     }
 }

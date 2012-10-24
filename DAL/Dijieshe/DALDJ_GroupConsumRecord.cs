@@ -72,7 +72,16 @@ namespace DAL
             return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
         }
 
-        public IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid)
+        /// <summary>
+        /// 多条件查询
+        /// </summary>
+        /// <param name="areacode"></param>
+        /// <param name="enterpname">消费场所</param>
+        /// <param name="groupid"></param>
+        /// <param name="routeid"></param>
+        /// <param name="djsname">所属地接社</param>
+        /// <returns></returns>
+        public IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid,string djsname)
         {
             bool ifcondition = false;
             string sql = "select gcr from DJ_GroupConsumRecord gcr where";
@@ -86,6 +95,11 @@ namespace DAL
                 ifcondition = true;
                 sql += " gcr.Enterprise.Name='" + enterpname + "' and";
             }
+            if (!string.IsNullOrEmpty(djsname))
+            {
+                ifcondition = true;
+                sql += " gcr.Route.DJ_TourGroup.DJ_DijiesheInfo.Name='" + djsname + "' and";
+            }
             if (!string.IsNullOrEmpty(groupid))
             {
                 ifcondition = true;
@@ -94,7 +108,7 @@ namespace DAL
             if (!string.IsNullOrEmpty(routeid))
             {
                 ifcondition = true;
-                sql += " gcr.Enterprise.Name='" + routeid + "' and";
+                sql += " gcr.Route.Id='" + routeid + "' and";
             }
 
             if (ifcondition)//如果有条件的string截取方式
