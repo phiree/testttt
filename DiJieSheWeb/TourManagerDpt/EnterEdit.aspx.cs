@@ -78,7 +78,7 @@ public partial class TourManagerDpt_EnterEdit : System.Web.UI.Page
         bllEnterprise.Save(CurrentEnterprise);
         if (IsNew)
         {
-            Response.Redirect("enterpriseedit.aspx?entid=" + CurrentEnterprise.Id);
+            Response.Redirect("EnterpriseDetail.aspx?entid=" + CurrentEnterprise.Id);
         }
         else
         {

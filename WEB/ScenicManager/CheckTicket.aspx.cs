@@ -80,7 +80,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
         List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s);
         //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
-        List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetGuiderWorkerByTE(s).ToList();
+        List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetTourGroupByTEId(s.Id).ToList();
         foreach (DJ_Group_Worker gw in listdjGW)
         {
             //排除以后的人员信息
@@ -95,7 +95,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (TicketAssign item in list)
         {
-            data.Add(item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14), "");
+            data.Add(new Guid().ToString(), item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
         }
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
         using (MemoryStream ms = new MemoryStream())

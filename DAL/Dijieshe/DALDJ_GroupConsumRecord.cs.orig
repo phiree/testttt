@@ -48,30 +48,7 @@ namespace DAL
 
 
 
-        public List<Model.DJ_GroupConsumRecord> GetRecordByAllCondition(string groupname, string EntName, string BeginTime, string EndTime, int enterid)
-        {
-            StringBuilder sql = new StringBuilder();
-            sql.Append("select d from DJ_GroupConsumRecord d where 1=1");
-            sql.Append(" and d.Route.DJ_TourGroup.Name like '%" + groupname + "%'");
-            sql.Append(" and d.Route.DJ_TourGroup.DJ_DijiesheInfo.Name like '%" + EntName + "%'");
-            sql.Append(" and d.Enterprise.Id=" + enterid + "");
-            if (BeginTime != "" && EndTime == "")
-            {
-                sql.Append(" and d.ConsumeTime>='" + BeginTime + "'");
-            }
-            if (BeginTime == "" && EndTime != "")
-            {
-                sql.Append(" and d.ConsumeTime<='" + DateTime.Parse(EndTime).AddDays(1).ToShortDateString() + "'");
-            }
-            if (BeginTime != "" && EndTime != "")
-            {
-                sql.Append(" and d.ConsumeTime>='" + BeginTime + "' and d.ConsumeTime<='" + DateTime.Parse(EndTime).AddDays(1).ToShortDateString() + "'");
-            }
-            sql.Append(" order by d.ConsumeTime desc");
-            IQuery query = session.CreateQuery(sql.ToString());
-            return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
-        }
-
+<<<<<<< HEAD
         public IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid)
         {
             bool ifcondition = false;
@@ -84,7 +61,7 @@ namespace DAL
             if (!string.IsNullOrEmpty(enterpname))
             {
                 ifcondition = true;
-                sql += " gcr.Enterprise.Name='" + enterpname + "' and";
+                sql += " gcr.Enterprise.Name='" + enterpname+"' and";
             }
             if (!string.IsNullOrEmpty(groupid))
             {
@@ -107,6 +84,30 @@ namespace DAL
             }
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_GroupConsumRecord>().ToList();
+=======
+        public List<Model.DJ_GroupConsumRecord> GetRecordByAllCondition(string groupname, string EntName, string BeginTime, string EndTime, int enterid)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select d from DJ_GroupConsumRecord d where 1=1");
+            sql.Append(" and d.Route.DJ_TourGroup.Name like '%" + groupname + "%'");
+            sql.Append(" and d.Route.DJ_TourGroup.DJ_DijiesheInfo.Name like '%" + EntName + "%'");
+            sql.Append(" and d.Enterprise.Id=" + enterid + "");
+            if (BeginTime != "" && EndTime == "")
+            {
+                sql.Append(" and d.ConsumeTime>='" + BeginTime + "'");
+            }
+            if (BeginTime == "" && EndTime != "")
+            {
+                sql.Append(" and d.ConsumeTime<='" + DateTime.Parse(EndTime).AddDays(1).ToShortDateString() + "'");
+            }
+            if (BeginTime != "" && EndTime != "")
+            {
+                sql.Append(" and d.ConsumeTime>='" + BeginTime + "' and d.ConsumeTime<='" + DateTime.Parse(EndTime).AddDays(1).ToShortDateString() + "'");
+            }
+            sql.Append(" order by d.ConsumeTime desc");
+            IQuery query = session.CreateQuery(sql.ToString());
+            return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+>>>>>>> ff0954926d3eca83ccd7ff349ec49011c845bfc9
         }
     }
 }

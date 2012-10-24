@@ -8,7 +8,8 @@
     <ul class="nav">
         <li><a href="/tourmanagerdpt/EnterEdit.aspx">添加企业</a></li>
         <li><a href="/tourmanagerdpt/EnterpriseList.aspx">企业列表</a></li>
-        <li><a href="DjsList.aspx">地接社列表</a></li>
+        <li><a href="/tourmanagerdpt/DjsList.aspx">地接社列表</a></li>
+        <li><a href="/tourmanagerdpt/Statics.aspx">统计信息</a></li>
         <%--<li><a href="DjsList.aspx">制订统计规则</a></li>--%>
     </ul>
 </asp:Content>

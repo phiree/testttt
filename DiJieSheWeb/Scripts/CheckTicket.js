@@ -15,10 +15,10 @@ $(function () {
             var datas = eval('(' + msg.d + ')');
             $("[id$='txtTE_info']").autocomplete(
                     datas, { formatItem: function (row, i, max) {
-                        return "<table width='200px' cellpadding='0' cellspacing='0'><tr><td align='left' height='10px' style='padding-top:10px;line-height:10px;'>" + row.Key + "</td></tr></table>";
+                        return "<table width='200px' cellpadding='0' cellspacing='0'><tr><td align='left' height='10px' style='padding-top:10px;line-height:10px;'>" + row.Value + "</td></tr></table>";
                     },
                         formatMatch: function (row, i, max) {
-                            return row.Key;
+                            return row.Value;
                         },
                         matchContains: true
                     }).result(function (event, data, formatted) { $("[id$='txtTE_info']").val(data.Key); $("[id$='BtnCheck']").click(); });
