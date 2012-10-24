@@ -24,7 +24,7 @@ public partial class TourEnterprise_PrintCer : System.Web.UI.Page
             if(routeid!="")
                 Listgcr.Add(blldjcr.GetGroupConsumRecordByRouteId(Guid.Parse(routeid)));
         }
-        title.InnerHtml = Listgcr[0].Enterprise.Name;
+        title.InnerHtml = Listgcr[0].Enterprise.Name+"验证凭证";
         rptPrint.DataSource = Listgcr;
         rptPrint.DataBind();
     }
