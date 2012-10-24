@@ -95,11 +95,9 @@
                                 人数
                             </td>
                             <td>
-                                集合点
+                                操作
                             </td>
-                            <td>
-                                返程点
-                            </td>
+                            
                         </tr>
                     </thead>
             </HeaderTemplate>
@@ -120,10 +118,12 @@
                             <%#int.Parse(Eval("AdultsAmount").ToString()) + int.Parse(Eval("AdultsAmount").ToString())%>
                         </td>
                         <td>
-                            <%#Eval("Gether")%>
+                           <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改基本信息</a>
+<a href='GroupEditMember.aspx?groupid=<%#Eval("id") %>'>修改人员信息</a>
+                           <a href='GroupEditRoute.aspx?groupid=<%#Eval("id") %>'>修改线路信息</a>
                         </td>
                         <td>
-                            <%#Eval("BackPlace")%>
+                            
                         </td>
                     </tr>
                 </tbody>

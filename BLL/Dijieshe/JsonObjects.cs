@@ -153,7 +153,7 @@ public class SigmaGridRequestObject : DalBase
         member.PhoneNum = ro[2];
         member.RealName = ro[1];
         member.SpecialCardNo=ro[4];
-        member.TouristType = ro[0];
+        member.MemberType =(MemberType)Enum.Parse(typeof(MemberType), ro[0]);
         //  member.
         return member;
 
