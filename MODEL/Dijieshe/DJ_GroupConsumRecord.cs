@@ -28,5 +28,7 @@ namespace Model
         public virtual string Remarks { get; set; }
         //编号
         public virtual string No { get; set; }
+        //如果是住宿的，需要的居住天数
+        public virtual int LiveDay { get; set; }
     }
 }

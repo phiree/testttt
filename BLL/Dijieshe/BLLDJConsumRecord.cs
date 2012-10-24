@@ -12,7 +12,7 @@ namespace BLL
     {
         IDJGroupConsumRecord IDjgroup = new DALDJ_GroupConsumRecord();
 
-        public void Save(DJ_TourEnterprise Enterprise, DJ_Route route, DateTime consumtime, int AdultsAmount, int ChildrenAmount)
+        public void Save(DJ_TourEnterprise Enterprise, DJ_Route route, DateTime consumtime, int AdultsAmount, int ChildrenAmount,int LiveDay)
         {
             DJ_GroupConsumRecord dj_group = new DJ_GroupConsumRecord();
             dj_group.AdultsAmount = AdultsAmount;
@@ -20,9 +20,18 @@ namespace BLL
             dj_group.ConsumeTime = consumtime;
             dj_group.Enterprise = Enterprise;
             dj_group.Route = route;
+            dj_group.LiveDay = LiveDay;
             dj_group.No = "Lv" + new Random((int)DateTime.Now.Ticks).Next(100000, 999999);
             if (IDjgroup.GetGroupConsumRecordByRouteId(route.Id)==null)
                 IDjgroup.Save(dj_group);
+        }
+
+        public void SaveList(List<DJ_Route> listroute,int AdultsAmount, int ChildrenAmount,int LiveDay)
+        {
+            foreach (DJ_Route route in listroute)
+            {
+                Save(route.Enterprise, route, DateTime.Now, AdultsAmount, ChildrenAmount, LiveDay);
+            }
         }
 
         public Model.DJ_GroupConsumRecord GetGroupConsumRecordByRouteId(Guid RouteId)
@@ -54,6 +63,36 @@ namespace BLL
                 adultcount += group.AdultsAmount;
                 childrencount += group.ChildrenAmount;
             }
+        }
+        /// <summary>
+        /// 获得需求天数的route
+        /// </summary>
+        /// <param name="MaxLiveDay">最大的天数</param>
+        /// <param name="WLiveDay">需求的天数</param>
+        /// <param name="ent">住宿企业</param>
+        /// <param name="route">行程信息</param>
+        /// <returns>route的List</returns>
+        public List<Model.DJ_Route> GetLiveRouteByDay(out int MaxLiveDay, int WLiveDay, DJ_TourEnterprise ent,DJ_Route route)
+        {
+            List<Model.DJ_Route> ListRoute = new List<DJ_Route>();
+            MaxLiveDay = 0;
+            if (WLiveDay > 0)
+            {
+                for (int i = route.DayNo;; i++)
+			    {
+                    List<DJ_Route> list= new BLLDJRoute().GetRouteByDayNoandGroupid(i, route.DJ_TourGroup.Id,route.Enterprise.Id).ToList();
+                    if (list.Count > 0)
+                    {
+                        ListRoute.AddRange(list);
+                    }
+                    else
+                    {
+                        MaxLiveDay = i - route.DayNo;
+                        break;
+                    }
+			    }
+            }
+            return ListRoute;
         }
     }
 }

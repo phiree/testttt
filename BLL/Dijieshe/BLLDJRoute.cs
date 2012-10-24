@@ -37,5 +37,10 @@ namespace BLL
         {
             return Idjroute.GetById(routeId);
         }
+
+        public IList<Model.DJ_Route> GetRouteByDayNoandGroupid(int dayno, Guid groupid ,int entid)
+        {
+            return Idjroute.GetRouteByDayNoandGroupid(dayno, groupid,entid);
+        }
     }
 }

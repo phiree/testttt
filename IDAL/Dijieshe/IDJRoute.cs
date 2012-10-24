@@ -17,6 +17,8 @@ namespace IDAL
         IList<Model.DJ_Route> GetRouteByTEid(int teid);
         //选择还没有结束的团队
         IList<Model.DJ_TourGroup> GetNotendGroup();
+        //通过DayNo和groupid
+        IList<Model.DJ_Route> GetRouteByDayNoandGroupid(int dayno, Guid groupid,int entid);
     }
   
 }
