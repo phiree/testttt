@@ -6,7 +6,7 @@ using Model;
 using NHibernate;
 namespace BLL
 {
-    public class BLLDJEnterprise
+    public class BLLDJEnterprise:DAL.DalBase
     {
         IDAL.IDJEnterprise daldjs = new DAL.DALDJEnterprise();
 
@@ -171,6 +171,20 @@ namespace BLL
             string ids = bllArea.GetChildAreaIds(areacode);
             return dalEnt.GetEnterpriseWithoutScenic(ids);
         }
+        /// <summary>
+        /// 辖区在奖励范围内的企业
+        /// </summary>
+        /// <param name="areacode"></param>
+        /// <returns></returns>
+        public IList<Model.DJ_TourEnterprise> GetRecEnt(string areacode)
+        {
+            DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
+            BLLArea bllArea = new BLLArea();
+            string ids = bllArea.GetChildAreaIds(areacode);
+
+            return dalEnt.GetEnterpriseList(ids,true,false,true);
+        }
+
         #endregion
 
         #region group
