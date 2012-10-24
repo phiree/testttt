@@ -18,6 +18,7 @@
                         </td>
                     </tr>
                 </thead>
+                <tbody>
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
@@ -41,7 +42,7 @@
             </tr>
         </ItemTemplate>
         <FooterTemplate>
-                <tbody>
+                </tbody>
             </table>
         </FooterTemplate>
     </asp:Repeater>
