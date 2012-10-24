@@ -42,5 +42,10 @@ namespace BLL
         {
             return Idjroute.GetRouteByDayNoandGroupid(dayno, groupid,entid);
         }
+
+        public IList<Model.DJ_Route> GetRouteByAllCondition(string groupname, string EntName, string BeginTime, string EndTime,int enterid)
+        {
+            return Idjroute.GetRouteByAllCondition(groupname, EntName, BeginTime, EndTime,enterid);
+        }
     }
 }
