@@ -135,3 +135,14 @@ function cgbg(obj) {
 function cgbg2(obj) {
     $(obj).find("td").css("background-color", "#F7F7F7");
 }
+
+function printTicket(info) {
+    if (confirm(info)) {
+        $("[id$='btnPrint']").click(function () {
+            window.open($(this).attr("href"), $(this).attr("target"));
+        });
+
+        // 触发单击事件（会执行所有绑定的单击事件处理函数） 
+        $("[id$='btnPrint']").click();
+    }
+}

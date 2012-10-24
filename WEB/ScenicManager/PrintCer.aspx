@@ -7,6 +7,9 @@
     <title></title>
     <link href="/theme/default/css/Print.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
+        $(function () {
+            printInfo();
+        });
         function printInfo() {
             var bdhtml = window.document.body.innerHTML;
             var hh = bdhtml;
@@ -17,6 +20,7 @@
             window.document.body.innerHTML = prnhtml;
             window.print();
             window.document.body.innerHTML = hh;
+            window.onafterprint = wclose();
         }
         function wclose() {
             window.opener = null;
