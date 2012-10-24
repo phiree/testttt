@@ -6,10 +6,11 @@ using Model;
 using NHibernate;
 namespace BLL
 {
-    public class BLLDJEnterprise 
+    public class BLLDJEnterprise
     {
         DAL.DALDJEnterprise daldjs = new DAL.DALDJEnterprise();
-       
+        BLLArea bllArea = new BLLArea();
+
         #region DJS
         /// <summary>
         /// 
@@ -35,14 +36,14 @@ namespace BLL
             };
             return daldjs.AddDJS(djs);
         }
-        public void Save(DJ_TourEnterprise enterprise)
-        {
-            if (enterprise.Type == EnterpriseType.旅行社)
-            {
+        //public void Save(DJ_TourEnterprise enterprise)
+        //{
+        //    if (enterprise.Type == EnterpriseType.旅行社)
+        //    {
 
-            }
-            daldjs.AddDJS(enterprise);
-        }
+        //    }
+        //    daldjs.AddDJS(enterprise);
+        //}
 
         public IList<DJ_TourEnterprise> GetDjs8all()
         {
@@ -212,22 +213,23 @@ namespace BLL
                     ent.ProvinceVeryfyState = GetFinalVeryfyState(ent.ProvinceVeryfyState, targetType);
                     break;
             }
-            Save(ent);
+            ent.LastUpdateTime = DateTime.Now;
+            daldjs.Save(ent);
         }
-        public void SetVerify(DJ_GovManageDepartment gov, string entName, RewardType targetType,out string errMsg)
+        public void SetVerify(DJ_GovManageDepartment gov, string entName, RewardType targetType, out string errMsg)
         {
             errMsg = string.Empty;
-           IList<DJ_TourEnterprise> ents=  GetDJS8name(entName);
-           if (ents.Count > 0)
-           {
-               TourLog.LogError(this.GetType() + ":"+ents.Count+"个企业 重名:" + entName);
-               SetVerify(gov, ents[0], targetType);
+            IList<DJ_TourEnterprise> ents = GetDJS8name(entName);
+            if (ents.Count > 0)
+            {
+                TourLog.LogError(this.GetType() + ":" + ents.Count + "个企业 重名:" + entName);
+                SetVerify(gov, ents[0], targetType);
 
-           }
-           else if(ents.Count==0)
-           { 
-              //创建这个企业,并设置为已纳入.
-           }
+            }
+            else if (ents.Count == 0)
+            {
+                //创建这个企业,并设置为已纳入.
+            }
         }
         /// <summary>
         /// 根据原有认证状态和目标状态 计算 应该设置的状态
@@ -290,7 +292,21 @@ namespace BLL
 
         #region group
 
-     
+        /// <summary>
+        /// 管理部门辖区的纳入/已移除 企业列表
+        /// </summary>
+        /// <param name="gov"></param>
+        /// <returns></returns>
+        public IList<DJ_TourEnterprise> GetRewardEntList(DJ_GovManageDepartment gov, EnterpriseType entType, RewardType rewardType)
+        {
+
+
+            int totalRecord;
+            IList<DJ_TourEnterprise> entList = daldjs.GetList(gov.Area.Code, entType, rewardType, false, 0, 0, out totalRecord);
+
+            return entList;
+        }
+
 
         public void UpdateGroup(Model.DJ_TourGroup tg)
         {

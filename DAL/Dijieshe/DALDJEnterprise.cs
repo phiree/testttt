@@ -113,6 +113,113 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.List<Model.DJ_TourEnterprise>();
         }
+        DALArea dalArea = new DALArea();
+       /// <summary>
+       /// 各种条件组合成查询条件
+       /// </summary>
+       /// <param name="govArea">辖区 1:构造"属于此辖区"查询条件 2: 通过area的行政等级(县,市,省)来判断奖励类型是哪一种.</param>
+       /// <param name="type"></param>
+       /// <param name="rewardType"></param>
+       /// <param name="needPaging"></param>
+       /// <param name="pageIndex"></param>
+       /// <param name="pageSize"></param>
+       /// <param name="totalRecord"></param>
+       /// <returns></returns>
+        public IList<Model.DJ_TourEnterprise> GetList( string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType,
+            bool needPaging,int pageIndex,int pageSize,out int totalRecord
+            )
+        {
+            string sql = "select D from DJ_TourEnterprise D where 1=1 ";
+
+            Model.Area govArea = dalArea.GetAreaByCode(areacode);
+            string areaIds = dalArea.GetSubAreaIds(areacode);
+
+            if (!string.IsNullOrEmpty(areaIds))
+            {
+
+                sql += " and  D.Area.Id in (" + areaIds + ")";
+            }
+            if (type.HasValue)
+            {
+                string typeInts = string.Empty;
+                if ((type.Value & Model.EnterpriseType.宾馆) == Model.EnterpriseType.宾馆)
+                {
+                    typeInts += (int)Model.EnterpriseType.宾馆 + ",";
+                }
+                if ((type.Value & Model.EnterpriseType.饭店) == Model.EnterpriseType.饭店)
+                {
+                    typeInts += (int)Model.EnterpriseType.饭店 + ",";
+                }
+                if ((type.Value & Model.EnterpriseType.购物点) == Model.EnterpriseType.购物点)
+                {
+                    typeInts += (int)Model.EnterpriseType.购物点 + ",";
+                }
+                if ((type.Value & Model.EnterpriseType.景点) == Model.EnterpriseType.景点)
+                {
+                    typeInts += (int)Model.EnterpriseType.景点 + ",";
+                }
+                if ((type.Value & Model.EnterpriseType.旅行社) == Model.EnterpriseType.旅行社)
+                {
+                    typeInts += (int)Model.EnterpriseType.旅行社 + ",";
+                }
+                typeInts = typeInts.TrimEnd(',');
+                sql += " and  D.Type in (" + typeInts + ")";
+            }
+
+
+            if (rewardType.HasValue)
+            {
+                string rewardPropertyName = string.Empty;
+                switch (govArea.Level)
+                {
+                    case Model.AreaLevel.市: rewardPropertyName = "CityVeryfyState"; break;
+                    case Model.AreaLevel.区县: rewardPropertyName = "CountryVeryfyState"; break;
+                    case Model.AreaLevel.省: rewardPropertyName = "ProvinceVeryfyState"; break;
+                }
+
+                string rewardTypeInts = string.Empty;
+                if ((rewardType.Value & Model.RewardType.从未纳入) == Model.RewardType.从未纳入)
+                {
+                    rewardTypeInts += (int)Model.RewardType.从未纳入 + ",";
+                }
+                if ((rewardType.Value & Model.RewardType.纳入后移除) == Model.RewardType.纳入后移除)
+                {
+                    rewardTypeInts += (int)Model.RewardType.纳入后移除 + ",";
+                }
+                if ((rewardType.Value & Model.RewardType.已纳入) == Model.RewardType.已纳入)
+                {
+                    rewardTypeInts += (int)Model.RewardType.已纳入 + ",";
+                }
+                rewardTypeInts = rewardTypeInts.TrimEnd(',');
+                if (!string.IsNullOrEmpty(rewardTypeInts))
+                {
+                    sql += " and D." + rewardPropertyName + " in (" + rewardTypeInts + ")";
+                }
+            }
+            return GetList(sql, needPaging, pageIndex, pageSize, out totalRecord);
+        }
+
+        /// <summary>
+        /// 通用查询入口
+        /// </summary>
+        /// <param name="where">查询条件</param>
+        /// <param name="needPaging">是否需要分页</param>
+        /// <param name="pageIndex">分页索引(当needPaging=ture时有效</param>
+        /// <param name="pageSize">每页数量</param>
+        /// <param name="totalRecords"></param>
+        /// <returns></returns>
+        private IList<Model.DJ_TourEnterprise> GetList(string where, bool needPaging, int pageIndex, int pageSize, out int totalRecords)
+        {
+            IQuery qry = session.CreateQuery(where);
+            IList<Model.DJ_TourEnterprise> ents = qry.Future<Model.DJ_TourEnterprise>().ToList() ;
+            totalRecords = ents.Count;
+            if (needPaging)
+            {
+                ents = GetPagedList(ents, pageIndex, pageSize);
+            }
+            return ents;
+            
+        }
 
         #endregion
 

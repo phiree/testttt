@@ -64,6 +64,28 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.Area>().ToList<Model.Area>();
         }
+        public string GetSubAreaIds(string areacode)
+        {
+            string ids = string.Empty;
+            Model.Area currentArea = GetAreaByCode(areacode);
+            if (currentArea == null)
+            {
+                return ids;
+            }
+            ids += currentArea.Id + ",";
+            IList<Model.Area> Areas = GetSubArea(areacode);
+            if (Areas == null)
+            {
+                ids += areacode;
+                return ids;
+            }
+            foreach (Model.Area a in Areas)
+            {
+                ids += a.Id + ",";
+            }
+            ids = ids.TrimEnd(',');
+            return ids;
+        }
 
         public IList<Model.Area> GetAreaProvince()
         {

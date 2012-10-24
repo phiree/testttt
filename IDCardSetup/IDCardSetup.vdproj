@@ -129,6 +129,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -327,7 +340,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:IDCardSetup"
         "ProductCode" = "8:{24F7F1D2-2BF8-46A4-8D63-75AA5F6CEFD4}"
-        "PackageCode" = "8:{C5D28C08-FAEE-48B7-A457-D99576401E25}"
+        "PackageCode" = "8:{A6D9B9B5-34CB-4A31-AC2B-E3E62262B79C}"
         "UpgradeCode" = "8:{F420D6C6-2B2B-488C-AF1F-717153D9F5DD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

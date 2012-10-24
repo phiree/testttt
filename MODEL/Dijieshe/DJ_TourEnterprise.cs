@@ -10,6 +10,10 @@ namespace Model
     /// </summary>
     public class DJ_TourEnterprise
     {
+        public DJ_TourEnterprise()
+        {
+            lastUpdateTime = DateTime.Now;
+        }
         public virtual int Id { get; set; }
         /// <summary>
         /// 所属区域
@@ -40,20 +44,33 @@ namespace Model
         public virtual string Email { get; set; }
         public virtual string Buslicense { get; set; }
         public virtual string Level { get; set; }
+        private DateTime lastUpdateTime;
+        public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
+        public virtual RewardType GetRewart(DJ_GovManageDepartment gov)
+        {
+            RewardType t = 0;
+            switch (gov.Area.Level)
+            {
+                case AreaLevel.区县: t = CountryVeryfyState; break;
+                case AreaLevel.省: t = ProvinceVeryfyState; break;
+                case AreaLevel.市: t = CityVeryfyState; break;
+            }
+            return t;
+        }
     }
     public enum EnterpriseType
     {
         景点 = 1,
-        饭店,
-        宾馆,
-        购物点,
-        旅行社
+        饭店 = 2,
+        宾馆 = 4,
+        购物点 = 8,
+        旅行社 = 16
     }
 
     public enum RewardType
     {
-        已纳入=1,
-        从未纳入,
-        纳入后移除
+        已纳入 = 1,
+        从未纳入 = 2,
+        纳入后移除 = 4
     }
 }
