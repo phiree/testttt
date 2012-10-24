@@ -31,7 +31,7 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
                 Name=item.Key,
                 AdultsAmount=item.Sum(x=>x.AdultsAmount),
                 ChildrenAmount=item.Sum(x=>x.ChildrenAmount),
-                LiveDays=item.Sum(x=>x.LiveDay)
+                LiveDays=item.Sum(x=>(x.AdultsAmount+x.ChildrenAmount)*x.LiveDay)
             });
         }
         rptGov1.DataSource = sm;

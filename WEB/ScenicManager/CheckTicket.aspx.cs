@@ -518,30 +518,40 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
+            int Index = 0;
             DJ_TourGroup tourgroup= e.Item.DataItem as DJ_TourGroup;
             Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
             laGuideName.Text = tourgroup.Workers.Where(x => x.WorkerType == DJ_GroupWorkerType.导游).ToList<DJ_Group_Worker>()[0].Name;
             HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
+            int flag = 0;
             foreach (DJ_Route route in tourgroup.Routes)
             {
                 if (tourgroup.BeginDate.AddDays(route.DayNo-1).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == Master.Scenic.Id)
                 {
-                    hfroute.Value = route.Id.ToString();
-                    Literal laIsChecked = e.Item.FindControl("laIsChecked") as Literal;
-                    CheckBox selectItem=e.Item.FindControl("selectItem") as CheckBox;
-                    TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
-                    TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
-                    if (bllrecord.GetGroupConsumRecordByRouteId(route.Id) != null)
+                    if (flag == Index)
                     {
-                        laIsChecked.Text = "已验证";
-                        selectItem.Enabled = false;
-                        selectItem.Checked = true;
-                        tbAdult.Enabled = false;
-                        tbChild.Enabled = false;
+                        hfroute.Value = route.Id.ToString();
+                        Literal laIsChecked = e.Item.FindControl("laIsChecked") as Literal;
+                        CheckBox selectItem = e.Item.FindControl("selectItem") as CheckBox;
+                        TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
+                        TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
+                        if (bllrecord.GetGroupConsumRecordByRouteId(route.Id) != null)
+                        {
+                            laIsChecked.Text = "已验证";
+                            selectItem.Enabled = false;
+                            selectItem.Checked = true;
+                            tbAdult.Enabled = false;
+                            tbChild.Enabled = false;
+                        }
+                        else
+                        {
+                            laIsChecked.Text = "未验证";
+                        }
+                        Index++;
                     }
                     else
                     {
-                        laIsChecked.Text = "未验证";
+                        flag++;
                     }
                 }
             }

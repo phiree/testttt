@@ -96,12 +96,53 @@ namespace BLL
 
         public List<Model.DJ_GroupConsumRecord> GetRecordByAllCondition(string groupname,string EntName,string BeginTime,string EndTime,int enterid)
         {
-            return IDjgroup.GetRecordByAllCondition(groupname, EntName, BeginTime, EndTime, enterid);
+            List<Model.DJ_GroupConsumRecord> ListRecord=IDjgroup.GetRecordByAllCondition(groupname, EntName, BeginTime, EndTime, enterid);
+            List<Model.DJ_GroupConsumRecord> List=new List<DJ_GroupConsumRecord>();
+            foreach (Model.DJ_GroupConsumRecord item in ListRecord)
+	        {
+		        if(List.Where(x=>x.Route.DJ_TourGroup.Id==item.Route.DJ_TourGroup.Id).Count()==0)
+                {
+                    List.Add(item);
+                }
+	        }
+            return List;
         }
 
         public IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid, string djsname)
         {
             return IDjgroup.GetGCR8Multi(areacode, enterpname, groupid, routeid,djsname);
+        }
+
+        /// <summary>
+        /// 地接社其他企业统计信息
+        /// </summary>
+        /// <param name="dateyear">查询年份</param>
+        /// <param name="EntName">查询企业名称</param>
+        /// <param name="EntId">所在地接社id</param>
+        /// <returns>查询出的企业列表</returns>
+        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string dateyear, string EntName, int EntId)
+        {
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(dateyear, EntName, EntId).ToList();
+            //过滤掉有相同团队的记录
+            List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
+            foreach (DJ_GroupConsumRecord item in ListRecord)
+            {
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Count() == 0)
+                {
+                    List.Add(item);
+                }
+            }
+            List<DJ_TourEnterprise> ListTE=new List<DJ_TourEnterprise>();
+            foreach (IGrouping<DJ_TourEnterprise,DJ_GroupConsumRecord> item in List.GroupBy(x => x.Enterprise).ToList())
+	        {
+                ListTE.Add(item.Key);
+	        }
+            return ListTE;
+        }
+
+        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string dateyear, string EntName, int EntId)
+        {
+            return IDjgroup.GetRecordByCondition(dateyear, EntName, EntId);
         }
     }
 }
