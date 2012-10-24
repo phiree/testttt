@@ -120,6 +120,7 @@
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="BLLTest\OrderTest.cs" />
     <Compile Include="BLLTest\TicketTest.cs" />
+    <Compile Include="BLLTest\TicketXmlParserTest.cs" />
     <Compile Include="Common\ContentReader.cs" />
     <Compile Include="Common\testStringHelper.cs" />
     <Compile Include="Common\UrlParamHelperTest.cs" />
