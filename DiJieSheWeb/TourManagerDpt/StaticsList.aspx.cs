@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
 {
     BLL.BLLDJConsumRecord bllCustomRecord = new BLL.BLLDJConsumRecord();
+    public int xuhao_orig = 1;
     public int xuhao = 1;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -17,7 +18,12 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
 
     private void BindData()
     {
-        IList<Model.DJ_GroupConsumRecord> gcrlist = bllCustomRecord.GetGCR8Multi(null, null, null, null);
+        //原数据
+        rptOrigin.DataSource = bllCustomRecord.GetGCR8Multi(null, null, null, null,null);
+        rptOrigin.DataBind();
+
+        //整理后数据
+        IList<Model.DJ_GroupConsumRecord> gcrlist = bllCustomRecord.GetGCR8Multi(null, null, null,null, null);
         IList<statics_model> sm = new List<statics_model>();
         foreach (var item in gcrlist.GroupBy(x=>x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name))
         {
@@ -31,7 +37,6 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
         rptGov1.DataSource = sm;
         rptGov1.DataBind();
     }
-
 }
 
 class statics_model

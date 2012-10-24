@@ -93,6 +93,8 @@ namespace BLL
             return session.Get<Model.DJ_TourGroupMember>(id);
         }
 
+        
+
         /// <summary>
         /// 将游客列表生成json字符串
         /// </summary>
@@ -108,7 +110,7 @@ namespace BLL
 
                 sbJson.Append("{");
                 sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[0], memberList.IndexOf(member)));
-                sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[1], member.TouristType));
+                sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[1], member.MemberType.ToString()));
                 sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[2], member.RealName));
                 sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[3], member.PhoneNum));
                 sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[4], member.IdCardNo));
@@ -135,7 +137,7 @@ namespace BLL
              
               
                 sbJson.Append("[\\\"");
-                sbJson.Append(member.TouristType); sbJson.Append("\\\",\\\"");
+                sbJson.Append(member.MemberType.ToString()); sbJson.Append("\\\",\\\"");
                 sbJson.Append(member.RealName); sbJson.Append("\\\",\\\"");
                 sbJson.Append(member.PhoneNum); sbJson.Append("\\\",\\\"");
                 sbJson.Append(member.IdCardNo); sbJson.Append("\\\",\\\"");
