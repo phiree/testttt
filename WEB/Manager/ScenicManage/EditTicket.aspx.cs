@@ -67,6 +67,9 @@ public partial class Manager_ScenicManage_AddTicket : System.Web.UI.Page
     }
     private void UpdateForm()
     {
+       
+        
+
         IList<TicketPrice> prices = new List<TicketPrice>();
         TicketPrice priceOriginal = new TicketPrice
         { PriceType= Model.PriceType.Normal, Ticket=CurrentTicket, Price= Convert.ToDecimal(tbxOriginal.Text) };
@@ -80,7 +83,29 @@ public partial class Manager_ScenicManage_AddTicket : System.Web.UI.Page
         CurrentTicket.IsMain = cbxIsMainPrice.Checked;
         CurrentTicket.Name = tbxName.Text;
         CurrentTicket.Scenic = Scenic;
+        /*
+         指定到新的景区.
+         */
+        string strScenic = tbxTargetScenic.Text.Trim();
+        if (!string.IsNullOrEmpty(strScenic))
+        {
+            Scenic targetScenic;
+            int targetScenicId;
+            if (int.TryParse(strScenic, out targetScenicId))
+            {
+                targetScenic = bllScenic.GetScenicById(targetScenicId);
+            }
+            else
+            {
+                targetScenic = bllScenic.GetScenicBySeoName(strScenic);
+            }
+            if (targetScenic != null)
+            {
+                CurrentTicket.Scenic = targetScenic;
+            }
+        }
         CurrentTicket.TicketPrice = prices;
+        
     }
 
     private void Save()

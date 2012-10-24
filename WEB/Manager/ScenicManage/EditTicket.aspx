@@ -103,6 +103,15 @@
                     <!--如果是联票,创建之后 在上面的列表中会出现 指派景区的链接-->
                 </td>
             </tr>
+            <tr>
+                <td>
+                    将门票移到其他景区下
+                </td>
+                <td>
+                   输入景区SeoName,或者id <asp:TextBox runat="server" ID="tbxTargetScenic" />
+                    <!--如果是联票,创建之后 在上面的列表中会出现 指派景区的链接-->
+                </td>
+            </tr>
         </table>
         <div><asp:Button runat="server" ID="btnSave"   OnClick="btnSave_Click" Text="保存" /> </div>
     </div>
