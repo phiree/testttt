@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Runtime.Serialization.Json;
+using System.Web.Script.Serialization;
 public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupEdit
 {
 
@@ -18,7 +19,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
 		{ name: 'idcardno' },
 		{ name: 'othercardno' }
      */
-    string[] fieldsName = { "memberid", "no", "touretype", "realname", "phone", "idcardno", "othercardno" };
+    string[] fieldsName = { "tourertype", "realname", "phone", "idcardno", "othercardno", "memberid" };
     public string MemberJsonList = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -30,5 +31,8 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     private void BuildJsonData()
     {
         MemberJsonList = BLL.BLLDJTourGroup.BuildJsonForMemberList(CurrentGroup.Members);
+       // JavaScriptSerializer serializer = new JavaScriptSerializer();
+       //MemberJsonList= serializer.Serialize(CurrentGroup.Members);
+        
     }
 }

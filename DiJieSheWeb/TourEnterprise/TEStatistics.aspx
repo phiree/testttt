@@ -1,19 +1,27 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourEnterprise/TE.master" AutoEventWireup="true" CodeFile="TEStatistics.aspx.cs" Inherits="TourEnterprise_TEStatistics" %>
 <%@ MasterType VirtualPath="~/TourEnterprise/TE.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" Runat="Server">
+<link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
+        rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[id$='txtBeginTime']").datepicker();
+            $("[id$='txtEndTime']").datepicker();
+        })
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
     <div class="detail_titlebg">
         统计
     </div>
         <div class="searchdiv">
-        <h5>按时间进行查询</h5>
-        <asp:RadioButtonList runat="server" RepeatDirection="Horizontal" ID="rbolistSelect" OnSelectedIndexChanged="rbolistSelect_SelectedIndexChanged" AutoPostBack="true">
-            <asp:ListItem Text="一个月内" Selected="True" Value="type_1"  />
-            <asp:ListItem Text="三个月内" Value="type_2" />
-            <asp:ListItem Text="半年内" Value="type_3" />
-            <asp:ListItem Text="一年内" Value="type_4" />
-        </asp:RadioButtonList>
+        <h5>按条件查询</h5>
+        团队名称&nbsp;&nbsp;<asp:TextBox ID="txtGroupName" runat="server"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;旅行社名称&nbsp;&nbsp;<asp:TextBox ID="txtEntName" runat="server"></asp:TextBox><br />
+        验证时间&nbsp;&nbsp;<asp:TextBox ID="txtBeginTime" runat="server"></asp:TextBox>&nbsp;&nbsp;至&nbsp;&nbsp;<asp:TextBox ID="txtEndTime" runat="server"></asp:TextBox>&nbsp;&nbsp;<asp:Button
+            ID="Button1" runat="server" Text="查询" CssClass="btn" onclick="Button1_Click" />
     </div>
     <div class="detaillist">
         <div class="detailtitle">
@@ -22,7 +30,10 @@
         <table border="1" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
-                    游玩时间
+                    序号
+                </td>
+                <td>
+                    住宿时间
                 </td>
                 <td>
                     团队名称
@@ -38,13 +49,17 @@
                 onitemdatabound="rptTgRecord_ItemDataBound">
                 <ItemTemplate>
                    <tr>
+                        <td>
+                            <asp:Literal ID="laNo" runat="server"></asp:Literal>
+                        </td>
                        <td>
-                           <%# Eval("BeginDate","{0:yyyy-MM-dd}")%>至<%# Eval("EndDate", "{0:yyyy-MM-dd}")%></td>
+                           <%# Eval("ConsumeTime")%>
                        <td>
-                           <%# Eval("Name") %>
+                           <a href='/TourEnterprise/GroupDetail.aspx?id=<%# Eval("Route.DJ_TourGroup.Id")%>'>
+                           <%# Eval("Route.DJ_TourGroup.Name")%></a>
                        </td>
                        <td>
-                           <%# Eval("DJ_DijiesheInfo.Name")%>
+                           <%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>
                        </td>
                        <td>
                            成人<%# Eval("AdultsAmount")%>儿童<%# Eval("ChildrenAmount")%></td>
@@ -52,11 +67,9 @@
                 </ItemTemplate>
                 <FooterTemplate>
                     <tr>
-                        <td colspan="4">
+                        <td>
                             总计
                         </td>                    
-                    </tr>
-                    <tr>
                         <td colspan="4">
                             共接待团队数<asp:Literal ID="laGuiderCount" runat="server"></asp:Literal>&nbsp;&nbsp;&nbsp;&nbsp;
                             其中包括成人<asp:Literal ID="laAdultCount" runat="server"></asp:Literal>儿童<asp:Literal ID="laChildrenCount" runat="server"></asp:Literal>
@@ -65,14 +78,7 @@
                 </FooterTemplate>
             </asp:Repeater>
         </table>
-        <div id="pager">
-            <uc:aspnetpager runat="server" EnableUrlRewriting="true" ID="pagerGot"
-                UrlPaging="true" UrlPageIndexName="pgotindex"
-                FirstPageText="首页" LastPageText="尾页" PageSize="10" NextPageText="下一页" CurrentPageButtonClass="cpb"
-                PrevPageText="上一页">
-            </uc:aspnetpager>
-            
-        </div>
+       
     </div>
 </asp:Content>
 

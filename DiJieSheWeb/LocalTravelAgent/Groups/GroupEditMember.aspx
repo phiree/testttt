@@ -3,85 +3,80 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!--SigmaGrid-->
-    <link href="/Scripts/sigmagrid/gt_grid_height.css" rel="stylesheet" type="text/css" />
-    <link href="/Scripts/sigmagrid/gt_grid.css" rel="stylesheet" type="text/css" />
+  
     <script src="/Scripts/sigmagrid/gt_msg_en.js" type="text/javascript"></script>
     <script src="/Scripts/sigmagrid/gt_grid_all.js" type="text/javascript"></script>
     <script src="/Scripts/sigmagrid/gt_msg_cn.js" type="text/javascript"></script>
     <!--jQueryUI-->
-    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
+  <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
         rel="stylesheet" type="text/css" />
+          <link href="/Scripts/sigmagrid/gt_grid_height.css" rel="stylesheet" type="text/css" />
+    <link href="/Scripts/sigmagrid/gt_grid.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js"></script>
     <!--身份证正则验证-->
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
     <script src="/Scripts/json2.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
 
-        var __TEST_DATA__ = JSON.parse("<%=MemberJsonList %>");
-//[
-
-//["youkeid","1", "成人游客", "李爽", "13282151877", "520822198010103916",""],
-
-
-//];
+        var __TEST_DATA__ = 
+  JSON.parse("<%=MemberJsonList %>");
+//[["youkeid","1", "成人游客", "李爽", "13282151877", "520822198010103916",""]];
         var grid_demo_id = "myGrid1";
 
         var dsOption = {
 
             fields: [
-        
-		{ name: 'no' },
 		{ name: 'tourertype' },
 		{ name: 'realname' },
 		{ name: 'phone' },
 		{ name: 'idcardno' },
 		{ name: 'othercardno' },
           { name: 'memberid' }
-		
-
 	],
 
-            recordType: 'object',
+            recordType: 'array',
            data: __TEST_DATA__
         }
 
 
 
-        var colsOption = [
-      
-      { id: 'no', header: "序号", width: 60, editor: { type: "text", validRule: ['R', 'N']} },
-      { id: 'tourertype', header: "游客类型", width: 60, editor: { type: "text", validRule: ['R']} },
-	   { id: 'realname', header: "姓名", width: 60, editor: { type: "text", validRule: ['R']} },
+        var colsOption = [{ id: 'tourertype', header: "游客类型", width: 80, editor: { type: "text", validRule: ['R']} },
+	   { id: 'realname', header: "姓名", width: 80, editor: { type: "text", validRule: ['R']} },
 	   { id: 'phone', header: "电话号码", width: 100, editor: { type: "text", validRule: ['R', 'F']} },
        { id: 'idcardno', header: "身份证号码", width: 140, editor: { type: "text",
            validator: function (value, record, colObj, grid) {
-               var result = test(value) == "验证通过";
-              
-               return result;
-           }
+               var testResult = test(value);
+               var result = testResult == "验证通过";
 
+               if (result) return result;
+               else return testResult;
+           }
        }
        },
-	   { id: 'othercardno', header: "其他证件号码", width: 160, editor: { type: "text"} },
-           { id: 'memberid', header: "id", width: 60, editor: { type: "text"} }
-  
-
+	   { id: 'othercardno', header: "其他证件号码", width: 120, editor: { type: "text"} },
+        { id: 'memberid',hideable:"true", header: "haoma", width: 100, editor: { type: "text"} }
 ];
 
-	   var gridOption = {
-	       id: grid_demo_id,
-	       width: "760", // 700,
-	       height: "350",  //"100%", // 330,
-	       container: 'gridbox',
-	       replaceContainer: true,
-	       dataset: dsOption,
-	       columns: colsOption,
-	       pageSize: 20,
-	       toolbarContent: 'nav | reload | add del save',
-	       saveURL: "GroupEditMemberHanlder.ashx",
-	     //  loadURL: "GroupEditMemberHanlder.ashx",
-	       parameters: {"groupid":"<%=CurrentGroup.Id %>"}
-	   };
+           var gridOption = {
+               id: grid_demo_id,
+               width: "750", // 700,
+               height: "350",  //"100%", // 330,
+             
+               container: 'gridbox',
+               replaceContainer: true,
+               dataset: dsOption,
+               columns: colsOption,
+              
+               toolbarContent: 'add del save',
+               saveURL: "GroupEditMemberHanlder.ashx",
+               //  loadURL: "GroupEditMemberHanlder.ashx",
+               parameters: { "groupid": "<%=CurrentGroup.Id %>" },
+              
+               saveResponseHandler: function (r, d) {
+                //   debugger;
+                   window.location.href = window.location.href;
+               }
+           };
         var mygrid = new Sigma.Grid(gridOption);
         Sigma.Util.onLoad(Sigma.Grid.render(mygrid));
     </script>

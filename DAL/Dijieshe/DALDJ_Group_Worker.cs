@@ -23,5 +23,13 @@ namespace DAL
         {
             return session.Get<Model.DJ_Group_Worker>(id);
         }
+
+
+        public Model.DJ_Group_Worker GetByIdCard(string idcard)
+        {
+            string sql = "select gw from DJ_Group_Worker gw where gw.IDCard='" + idcard + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Model.DJ_Group_Worker>().Value;
+        }
     }
 }

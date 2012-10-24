@@ -115,7 +115,12 @@ td {	font-size:12px;	}
 .gt-head-table  , .gt-table {
   margin-left:0px;
   table-layout: fixed;
+
 }
+.gt-head-table  
+{
+   
+    }
 
 
 

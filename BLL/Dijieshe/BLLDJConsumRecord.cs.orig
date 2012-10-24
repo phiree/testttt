@@ -63,6 +63,7 @@ namespace BLL
                 childrencount += record.ChildrenAmount;
             }
         }
+
         /// <summary>
         /// 获得需求天数的route
         /// </summary>
@@ -94,9 +95,15 @@ namespace BLL
             return ListRoute;
         }
 
+<<<<<<< HEAD
+        public IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode,string enterpname,string groupid,string routeid)
+        {
+            return IDjgroup.GetGCR8Multi(areacode, enterpname, groupid, routeid);
+=======
         public List<Model.DJ_GroupConsumRecord> GetRecordByAllCondition(string groupname,string EntName,string BeginTime,string EndTime,int enterid)
         {
             return IDjgroup.GetRecordByAllCondition(groupname, EntName, BeginTime, EndTime, enterid);
+>>>>>>> ff0954926d3eca83ccd7ff349ec49011c845bfc9
         }
     }
 }
