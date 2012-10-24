@@ -31,7 +31,12 @@ public partial class Manager_ScenicinList : System.Web.UI.Page
     }
     private void BindList()
     {
-        IList<Model.Scenic> scenicList = bllmanager.GetScenicList(" where s.Area.Code=" + ddlArea.SelectedValue);
+        string where= " where s.Area.Code=" + ddlArea.SelectedValue;
+        if (rblFrom.SelectedValue != "0")
+        {
+            where += " and s.MipangId is not null";
+        }
+        IList<Model.Scenic> scenicList = bllmanager.GetScenicList(where);
         rptScenic.DataSource = scenicList;
         rptScenic.DataBind();
     }

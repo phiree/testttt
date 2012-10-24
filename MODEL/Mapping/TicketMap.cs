@@ -13,6 +13,7 @@ namespace Model.Mapping
         {
             Id(x => x.Id);
             Map(x => x.Name);
+            Map(x => x.MipangId);
             Map(x => x.Lock);
             Map(x => x.OrderNumber);
             //References<TicketsType>(x => x.TicketsType);
