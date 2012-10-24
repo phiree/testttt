@@ -11,6 +11,21 @@ namespace DAL
     {
         protected DALMembership mtms = new DALMembership();
         protected ISession session = new HybridSessionBuilder().GetSession();
+        public void Delete(object o)
+        {
+            session.Delete(o);
+            session.Flush();
+        }
+        public void Save(object o)
+        {
+            session.Save(o);
+            session.Flush();
+        }
+        public void Update(object o)
+        {
+            session.Update(o);
+            session.Flush();
+        }
         
     }
 }

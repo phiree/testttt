@@ -13,7 +13,7 @@ namespace DAL
         {
             string sql = "select tg from DJ_TourGroup tg ";
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_TourGroup>().ToList<Model.DJ_TourGroup>();
+            return query.Future<Model.DJ_TourGroup>().OrderByDescending(x=>x.BeginDate).ToList();
         }
 
         public IList<Model.DJ_TourGroup> GetTourGroupByGuideIdcard(string idcard)
