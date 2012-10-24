@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true" CodeFile="DptStatistic.aspx.cs" Inherits="LocalTravelAgent_DptStatistic" %>
 <%@ MasterType VirtualPath="~/LocalTravelAgent/LTA.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/Sequence.js" type="text/javascript"></script>
@@ -15,7 +15,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
-<div class="detail_titlebg">
+    <div class="detail_titlebg">
         旅游管理部门统计信息
     </div>
 <div class="searchdiv">
