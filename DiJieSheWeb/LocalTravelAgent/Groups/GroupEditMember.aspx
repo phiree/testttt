@@ -19,7 +19,7 @@
         var __TEST_DATA__ =
 [
 
-["1", "成人游客", "李爽", "13282151877", "520822198010103916",""],
+["youkeid","1", "成人游客", "李爽", "13282151877", "520822198010103916",""],
 
 
 ];
@@ -28,6 +28,7 @@
         var dsOption = {
 
             fields: [
+          { name: 'memberid' },
 		{ name: 'no' },
 		{ name: 'tourertype' },
 		{ name: 'realname' },
@@ -45,7 +46,8 @@
 
 
         var colsOption = [
-     { id: 'no', header: "序号", width: 60, editor: { type: "text", validRule: ['R', 'N']} },
+      
+      { id: 'no', header: "序号", width: 60, editor: { type: "text", validRule: ['R', 'N']} },
       { id: 'tourertype', header: "游客类型", width: 60, editor: { type: "text", validRule: ['R']} },
 	   { id: 'realname', header: "姓名", width: 60, editor: { type: "text", validRule: ['R']} },
 	   { id: 'phone', header: "电话号码", width: 100, editor: { type: "text", validRule: ['R', 'F']} },
@@ -58,7 +60,8 @@
 
        }
        },
-	   { id: 'othercardno', header: "其他证件号码", width: 160, editor: { type: "text", validRule: ['R', 'I']} },
+	   { id: 'othercardno', header: "其他证件号码", width: 160, editor: { type: "text"} },
+           { id: 'memberid', header: "", width: 60, hideable: true }
         //	   { id: 'homepage', header: "Url", width: 200, editor: { type: "text",
         //	       validator: function (value, record, colObj, grid) {
         //	           var re = new RegExp(/http:\/\/www.\w+([-+.]\w+)*.com/);
@@ -73,18 +76,20 @@
 
 ];
 
-        var gridOption = {
-            id: grid_demo_id,
-            width: "760", // 700,
-            height: "350",  //"100%", // 330,
-            container: 'gridbox',
-            replaceContainer: true,
-            dataset: dsOption,
-            columns: colsOption,
-            pageSize: 20,
-            toolbarContent: 'nav | reload | add del save',
-            saveURL: "GroupEditMemberHanlder.ashx?id=22",
-        };
+	   var gridOption = {
+	       id: grid_demo_id,
+	       width: "760", // 700,
+	       height: "350",  //"100%", // 330,
+	       container: 'gridbox',
+	       replaceContainer: true,
+	       dataset: dsOption,
+	       columns: colsOption,
+	       pageSize: 20,
+	       toolbarContent: 'nav | reload | add del save',
+	       saveURL: "GroupEditMemberHanlder.ashx",
+	       locadURL: "GroupEditMemberHanlder.ashx",
+	       parameters: {"groupid":"<%=CurrentGroup.Id %>"}
+	   };
         var mygrid = new Sigma.Grid(gridOption);
         Sigma.Util.onLoad(Sigma.Grid.render(mygrid));
     </script>
