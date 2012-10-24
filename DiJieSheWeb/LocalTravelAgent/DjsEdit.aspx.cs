@@ -74,7 +74,7 @@ public partial class LocalTravelAgent_DjsEdit : System.Web.UI.Page
         }
         else
         {
-            blldjs.Save(djs);
+            //blldjs.Save(djs);
         }
     }
 

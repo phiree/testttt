@@ -69,7 +69,7 @@ public partial class Admin_EnterpriseEdit : System.Web.UI.Page
 
         UpdateForm();
 
-        bllEnterprise.Save(CurrentEnterprise);
+        //bllEnterprise.Save(CurrentEnterprise);
         if (IsNew)
         {
             Response.Redirect("enterpriseedit.aspx?entid=" + CurrentEnterprise.Id);
