@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
         rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/Scripts/Sequence.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
     <script type="text/javascript">
@@ -44,7 +46,7 @@
                     企业类型
                 </td>
                 <td rowspan="2">
-                    企业名称
+                    <a class="sequence">企业名称<span class="orderspan">↓</span></a>
                 </td>
                 <td colspan="3">
                     本月
@@ -55,54 +57,54 @@
             </tr>
             <tr>
                 <td>
-                    总人数
+                    <a class="sequence">总人数<span class="orderspan">↓</span></a>
                 </td>
                 <td>
-                    住宿人天数
+                    <a class="sequence">住宿人天数<span class="orderspan">↓</span></a>
                 </td>
                 <td>
-                    游玩人数
+                    <a class="sequence">游玩人数<span class="orderspan">↓</span></a>
                 </td>
                 <td>
-                    总人数
+                    <a class="sequence">总人数<span class="orderspan">↓</span></a>
                 </td>
                 <td>
-                    住宿人天数
+                    <a class="sequence">住宿人天数<span class="orderspan">↓</span></a>
                 </td>
                 <td>
-                    游玩人数
+                    <a class="sequence">游玩人数<span class="orderspan">↓</span></a>
                 </td>
             </tr>
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
                     <td>
-                        <asp:Literal ID="laNo" runat="server"></asp:Literal>
+                        <%# Eval("Id")%>
                     </td>
                     <td>
-                        <asp:Literal ID="laType" runat="server"></asp:Literal>
+                        <%# Eval("Type")%>
                     </td>
                     <td>
                         <a href="" runat="server" id="aname">
-                        <%# Eval("Name") %></a>
+                        <%# Eval("Name")%></a>
                     </td>
                     <td>
-                        <asp:Literal ID="laCount_Month" runat="server"></asp:Literal>
+                        <%# Eval("month_total")%>
                     </td>
                     <td>
-                        <asp:Literal ID="laLive_Month" runat="server"></asp:Literal>
+                        <%# Eval("month_live")%>
                     </td>
                     <td>
-                        <asp:Literal ID="laVisited_Month" runat="server"></asp:Literal>
+                        <%# Eval("month_visited")%>
                     </td>
                     <td>
-                        <asp:Literal ID="laCount_Year" runat="server"></asp:Literal>
+                        <%# Eval("year_total")%>
                     </td>
                     <td>
-                        <asp:Literal ID="laLive_Year" runat="server"></asp:Literal>
+                         <%# Eval("year_live")%>
                     </td>
                     <td>
-                        <asp:Literal ID="laVisited_Year" runat="server"></asp:Literal>
+                        <%# Eval("year_visited")%>
                     </td>
                 </tr>
             </ItemTemplate>

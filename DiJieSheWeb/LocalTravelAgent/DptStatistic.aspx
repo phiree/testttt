@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
         rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/Scripts/Sequence.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
     <script type="text/javascript">
@@ -35,7 +37,7 @@
                             序号
                         </td>
                         <td rowspan="2">
-                            旅游管理部门名称
+                            <a class="sequence">旅游管理部门名称<span class="orderspan">↓</span></a>
                         </td>
                         <td colspan="3">
                             本月
@@ -46,52 +48,52 @@
                     </tr>
                     <tr>
                         <td>
-                            总人数
+                            <a class="sequence">总人数<span class="orderspan">↓</span></a>
                         </td>
                         <td>
-                            住宿人天数
+                            <a class="sequence">住宿人天数<span class="orderspan">↓</span></a>
                         </td>
                         <td>
-                            游玩人数
+                            <a class="sequence">游玩人数<span class="orderspan">↓</span></a>
                         </td>
                         <td>
-                            总人数
+                             <a class="sequence">总人数<span class="orderspan">↓</span></a>
                         </td>
                         <td>
-                            住宿人天数
+                            <a class="sequence">住宿人天数<span class="orderspan">↓</span></a>
                         </td>
                         <td>
-                            游玩人数
+                            <a class="sequence">游玩人数<span class="orderspan">↓</span></a>
                         </td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
                     <tr>
                         <td>
-                            <%= Index++ %>
+                            <%#　Eval("Id") %>
                         </td>
                         <td>
                             <a runat="server" id="anamehref" href='/LocalTravelAgent/DptDetailStatistic.aspx?dptid=<%# Eval("Id") %>'>
-                            <%# Eval("Name") %>
+                            <%# Eval("dptName")%>
                             </a>
                         </td>
                         <td>
-                            <asp:Literal ID="laTotal_Month" runat="server"></asp:Literal>
+                            <%# Eval("month_total")%>
                         </td>
                         <td>
-                            <asp:Literal ID="laLive_Month" runat="server"></asp:Literal>
+                            <%# Eval("month_live")%>
                         </td>
                         <td>
-                            <asp:Literal ID="laVisited_Month" runat="server"></asp:Literal>
+                            <%# Eval("month_visited")%>
                         </td>
                         <td>
-                            <asp:Literal ID="laTotal_Year" runat="server"></asp:Literal>
+                            <%# Eval("year_total")%>
                         </td>
                         <td>
-                            <asp:Literal ID="laLive_Year" runat="server"></asp:Literal>
+                            <%# Eval("year_live")%>
                         </td>
                         <td>
-                            <asp:Literal ID="laVisited_Year" runat="server"></asp:Literal>
+                            <%# Eval("year_visited")%>
                         </td>
                     </tr>
             </ItemTemplate>
