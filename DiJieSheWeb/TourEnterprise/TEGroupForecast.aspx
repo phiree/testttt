@@ -41,7 +41,7 @@
                         <asp:Literal ID="ArriveTime" runat="server" />     
                     </td>
                     <td>
-                        <a href='/LocalTravelAgent/Groups/GroupDetail.aspx?id=<%# Eval("DJ_TourGroup.Id")%>'>
+                        <a href='/TourEnterprise/GroupDetail.aspx?id=<%# Eval("DJ_TourGroup.Id")%>'>
                         <%# Eval("DJ_TourGroup.Name")%></a>
                     </td>
                     <td>
