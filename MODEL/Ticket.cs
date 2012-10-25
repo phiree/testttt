@@ -16,6 +16,10 @@ namespace Model
             TicketPrice = new List<TicketPrice>();
         }
         public virtual int Id { get; set; }
+        /// <summary>
+        /// 米胖的门票
+        /// </summary>
+        public virtual string MipangId { get; set; }
         public virtual string Name { get; set; }
         //public virtual TicketsType TicketsType { get; set; }
         public virtual Scenic Scenic { get; set; }

@@ -4,13 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using BLL;
-public partial class LocalTravelAgent_Groups_GroupEditRoute :basepageDjsGroupEdit
+
+public partial class Manager_ImportMipangTicket : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        ucrecomment.AreaCode = CurrentDJS.Area.Code;
-    }
 
-   
+    }
 }

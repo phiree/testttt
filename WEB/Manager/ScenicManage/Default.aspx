@@ -9,7 +9,10 @@
         <span>筛选:&nbsp;&nbsp;</span>
         <asp:DropDownList runat="server" ID="ddlArea">
         </asp:DropDownList>
-        &nbsp;
+       来源:<asp:RadioButtonList runat="server" ID="rblFrom"  RepeatLayout="Flow" RepeatDirection="Horizontal">
+            <asp:ListItem Value="0">所有</asp:ListItem>
+            <asp:ListItem Value="1">米胖</asp:ListItem>
+        </asp:RadioButtonList>
         <asp:Button runat="server" ID="btnSearch" OnClick="btnSearch_Click" CssClass="btnok" />
         <a href="EditScenic.aspx">新建景区</a>
     </div>
@@ -62,9 +65,8 @@
                     </asp:Repeater>
                 </td>
                 <td style="text-align: center">
-                    <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a>
-<a href='EditScenic.aspx?id=<%#Eval("Id")%>'>编辑</a>
-<a href='EditTicket.aspx?scenicid=<%#Eval("Id")%>'>管理门票</a>
+                    <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a> <a href='EditScenic.aspx?id=<%#Eval("Id")%>'>
+                        编辑</a> <a href='EditTicket.aspx?scenicid=<%#Eval("Id")%>'>管理门票</a>
                 </td>
                 <%--<td >
                     <asp:Button ID="btnmake" runat="server" Text="生成" CommandName="make" CommandArgument='<%#Eval("Id") %>' />
@@ -96,7 +98,7 @@
                 </td>
                 <td style="text-align: center">
                     <a href='ScenicDetail.aspx?id=<%#Eval("Id") %>'>审核</a><a href='EditScenic.aspx?id=<%#Eval("Id")%>'>编辑</a>
-                    <a href='AddTicket.aspx?scenicid=<%#Eval("Id")%>'>管理门票</a>
+                    <a href='EditTicket.aspx?scenicid=<%#Eval("Id")%>'>管理门票</a>
                 </td>
                 <%--<td >
                     <asp:Button ID="btnmake" runat="server" Text="生成" CommandName="make" CommandArgument='<%#Eval("Id") %>' />

@@ -16,6 +16,7 @@ namespace Model.Mapping
             Map(x => x.Name);
             Map(x => x.Address);
             Map(x => x.ScenicOrder);
+            Map(x => x.MipangId);
             Map(x => x.Level);
             Map(x => x.Photo);
             //Map(x => x.ActiveTime);

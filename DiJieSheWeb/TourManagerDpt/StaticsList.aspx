@@ -2,25 +2,27 @@
     AutoEventWireup="true" CodeFile="StaticsList.aspx.cs" Inherits="TourManagerDpt_StaticsList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
+    <h3>
+        <b>原数据</b></h3>
     <asp:Repeater ID="rptOrigin" runat="server">
         <HeaderTemplate>
             <table border="1" cellpadding="1" cellspacing="1">
                 <thead>
                     <tr>
                         <td>
-                        序号
+                            序号
                         </td>
                         <td>
-                        地接社名称
+                            地接社名称
                         </td>
                         <td>
-                        成人数
+                            成人数
                         </td>
                         <td>
-                        儿童数
+                            儿童数
                         </td>
                         <td>
-                        住宿天数
+                            住宿天数
                         </td>
                     </tr>
                 </thead>
@@ -49,25 +51,90 @@
             </tbody> </table>
         </FooterTemplate>
     </asp:Repeater>
-    <asp:Repeater ID="rptGov1" runat="server">
+    <hr />
+    <h3>
+        <b>已接待情况</b></h3>
+    <table border="1" cellpadding="1" cellspacing="1">
+        <thead>
+            <tr>
+                <td rowspan="2">
+                    序号
+                </td>
+                <td rowspan="2">
+                    地接社名称
+                </td>
+                <td colspan="3">
+                    本月
+                </td>
+                <td colspan="3">
+                    本年
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    总人数
+                </td>
+                <td>
+                    住宿人天数
+                </td>
+                <td>
+                    浏览人数
+                </td>
+                <td>
+                    总人数
+                </td>
+                <td>
+                    住宿人天数
+                </td>
+                <td>
+                    浏览人数
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <asp:Repeater ID="rptGov1" runat="server">
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <%=xuhao_1++ %>
+                        </td>
+                        <td>
+                            <a href='/TourManagerDpt/StaticsDetail.aspx?=<%#Eval("Name")%>'>
+                                <%#Eval("Name")%></a>
+                        </td>
+                        <td>
+                            <%#(int)Eval("AdultsAmount")+(int)Eval("ChildrenAmount")%>
+                        </td>
+                        <td>
+                            <%#Eval("LiveDays")%>
+                        </td>
+                        <td>
+                            <%#Eval("Playnums")%>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:Repeater>
+        </tbody>
+    </table>
+    <hr />
+    <h3>
+        <b>旅游企业接待情况明细表</b></h3>
+    <asp:Repeater ID="rptGov2" runat="server">
         <HeaderTemplate>
             <table border="1" cellpadding="1" cellspacing="1">
                 <thead>
                     <tr>
                         <td>
-                        序号
+                            序号
                         </td>
                         <td>
-                        地接社名称
+                            地接社名称
                         </td>
                         <td>
-                        成人数
+                            拟接待人数
                         </td>
                         <td>
-                        儿童数
-                        </td>
-                        <td>
-                        住宿天数
+                            实际接待人数
                         </td>
                     </tr>
                 </thead>
@@ -76,20 +143,63 @@
         <ItemTemplate>
             <tr>
                 <td>
-                    <%=xuhao++ %>
+                    <%=xuhao_2++%>
                 </td>
                 <td>
-                    <a href='/TourManagerDpt/StaticsDetail.aspx?=<%#Eval("Name")%>'><%#Eval("Name")%></a>
-                    
+                    <a href='/TourManagerDpt/StaticsDetail.aspx?=<%#Eval("Name")%>'>
+                        <%#Eval("Name")%></a>
                 </td>
                 <td>
-                    <%#Eval("AdultsAmount")%>
+                    共<%#(int)Eval("AdultsAmount_pre") + (int)Eval("ChildrenAmount_pre")%>人：
+                    成人<%#Eval("AdultsAmount_pre")%>人，儿童<%#Eval("ChildrenAmount_pre")%>人
                 </td>
                 <td>
-                    <%#Eval("ChildrenAmount")%>
+                    共<%#(int)Eval("AdultsAmount_act") + (int)Eval("ChildrenAmount_act")%>人：
+                    成人<%#Eval("AdultsAmount_act")%>人，儿童<%#Eval("ChildrenAmount_act")%>人
+                </td>
+            </tr>
+        </ItemTemplate>
+        <FooterTemplate>
+            </tbody> </table>
+        </FooterTemplate>
+    </asp:Repeater>
+    <hr />
+    <h3>
+        <b>团队旅游情况表</b></h3>
+    <asp:Repeater ID="rptGov3" runat="server">
+        <HeaderTemplate>
+            <table border="1" cellpadding="1" cellspacing="1">
+                <thead>
+                    <tr>
+                        <td>
+                            序号
+                        </td>
+                        <td>
+                            地接社名称
+                        </td>
+                        <td>
+                            团队名称
+                        </td>
+                        <td>
+                            浏览情况
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+        </HeaderTemplate>
+        <ItemTemplate>
+            <tr>
+                <td>
+                    <%=xuhao_3++ %>
                 </td>
                 <td>
-                    <%#Eval("LiveDays")%>
+                        <%#Eval("Name")%></a>
+                </td>
+                <td>
+                    <a href='/TourManagerDpt/GroupDetail.aspx?gid=<%#Eval("GId")%>'><%#Eval("Gname")%></a>
+                </td>
+                <td>
+                    <a href='/TourManagerDpt/GroupDetail.aspx?gid=<%#Eval("GId")%>'>查看详情</a>
                 </td>
             </tr>
         </ItemTemplate>

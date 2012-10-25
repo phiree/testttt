@@ -3,6 +3,8 @@
 <%@ MasterType VirtualPath="/m.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="cphFunction" runat="server">
     <ul class="nav">

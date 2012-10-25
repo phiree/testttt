@@ -80,13 +80,28 @@ namespace DAL
 
         public IList<Model.DJ_TourEnterprise> GetEnterpriseWithoutScenic(string areaIds)
         {
+            return GetEnterpriseList(areaIds, false,null, null);
+
+        }
+        public IList<Model.DJ_TourEnterprise> GetEnterpriseList(string areaIds,bool includeScenic,bool? includeDJS, bool? isRecomm)
+        {
             string where = string.Empty;
             if (!string.IsNullOrEmpty(areaIds))
             {
                 where += " and D.Area.Id in (" + areaIds + ")";
             }
-            where = " and D.Type<>" + (int)Model.EnterpriseType.景点;
-
+            if (!includeScenic)
+            {
+                where += " and D.Type<>" + (int)Model.EnterpriseType.景点;
+            }
+            if (includeDJS != null)
+            {
+                where += " and D.Type<>" + (int)Model.EnterpriseType.旅行社;
+            }
+            if (isRecomm!=null)
+            {
+                where += " and D.IsVeryfied='"+isRecomm+"'";
+            }
             return GetDJS8Multi(where);
 
         }
