@@ -26,7 +26,10 @@
                             统计情况
                         </td>
                         <td>
-                            认证状态
+                            账号管理
+                        </td>
+                        <td>
+                            是否纳入奖励范围
                         </td>
                     </tr>
             </HeaderTemplate>
@@ -43,6 +46,10 @@
                     </td>
                    <td>
                         <a href='RewordEnt.aspx?entid=<%#Eval("Id") %>'>查看数据情况</a>
+                    </td>
+                    <td>
+                        <asp:Button ID="BtnCreate" runat="server" Text="创建账号" CssClass="btn" CommandName="SetAdmin" CommandArgument='<%# Eval("Id") %>' />
+                        <asp:Literal ID="laAccount" runat="server"></asp:Literal>
                     </td>
                     <td>
                         <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"
@@ -74,7 +81,10 @@
                             统计情况
                         </td>
                         <td>
-                            认证状态
+                            创建账号
+                        </td>
+                        <td>
+                            是否纳入奖励范围
                         </td>
                     </tr>
             </HeaderTemplate>
@@ -91,6 +101,10 @@
                     </td>
                    <td>
                         <a href='RewordEnt.aspx?entid=<%#Eval("Id") %>'>查看数据情况</a>
+                    </td>
+                    <td>
+                        <asp:Button ID="BtnCreate" runat="server" Text="创建账号" CssClass="btn" CommandName="SetAdmin" CommandArgument='<%# Eval("Id") %>' />
+                        <asp:Literal ID="laAccount" runat="server"></asp:Literal>
                     </td>
                     <td>
                         <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"
@@ -122,7 +136,10 @@
                             统计情况
                         </td>
                         <td>
-                            认证状态
+                            创建账号
+                        </td>
+                        <td>
+                            是否纳入奖励范围
                         </td>
                     </tr>
             </HeaderTemplate>
@@ -139,6 +156,10 @@
                     </td>
                    <td>
                         <a href='RewordEnt.aspx?entid=<%#Eval("Id") %>'>查看数据情况</a>
+                    </td>
+                    <td>
+                        <asp:Button ID="BtnCreate" runat="server" Text="创建账号" CssClass="btn" CommandName="SetAdmin" CommandArgument='<%# Eval("Id") %>' />
+                        <asp:Literal ID="laAccount" runat="server"></asp:Literal>
                     </td>
                     <td>
                         <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"

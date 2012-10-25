@@ -10,6 +10,7 @@ namespace IDAL
         #region User_TourEnterprise
         Model.DJ_User_TourEnterprise GetUser_TEbyId(int id);
         Model.DJ_User_TourEnterprise GetByMemberId(Guid id);
+        Model.DJ_User_TourEnterprise GetUser_TEbyId(int id, int permis);
         #endregion
     }
 }

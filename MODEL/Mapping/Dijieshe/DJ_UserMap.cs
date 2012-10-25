@@ -22,7 +22,7 @@ namespace Model.Mapping
         public DJ_User_TourEnterpriseMap()
         {
             References<DJ_TourEnterprise>(x => x.Enterprise).Not.LazyLoad();
-            
+            Map(x => x.PermissionMask).CustomType<int>(); 
         }
     }
 }

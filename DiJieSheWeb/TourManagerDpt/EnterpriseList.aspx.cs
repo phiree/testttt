@@ -15,7 +15,8 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
     public int i = 1;
     public int j = 1;
     public int k = 1;
-
+    BLLDJEnterprise bllDjEnt = new BLLDJEnterprise();
+    BLLDJ_User bllUser = new BLLDJ_User();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -42,15 +43,32 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             Button btnVerify = e.Item.FindControl("btnSetVerify") as Button;
             if (ent.IsVeryfied)
             {
-                btnVerify.Text = "已认证";
+                btnVerify.Attributes.CssStyle.Add("color", "#009383");
+                btnVerify.Text = "已纳入";
             }
             else{
-                btnVerify.Text = "尚未认证";
+                btnVerify.Attributes.CssStyle.Add("color", "Red");
+                btnVerify.Text = "未纳入";
             }
             if (ent is DJ_DijiesheInfo)
             {
                 e.Item.Visible = false;
             }
+            Button BtnCreate = e.Item.FindControl("BtnCreate") as Button;
+            Literal laAccount = e.Item.FindControl("laAccount") as Literal;
+            DJ_User_TourEnterprise user= bllUser.GetUser_TEbyId(ent.Id,1);
+            if (user != null && user.PermissionMask == Model.DJ_User_TourEnterprisePermission.DJS创建团队)
+            {
+                laAccount.Visible = true;
+                laAccount.Text = user.Name;
+                BtnCreate.Visible = false;
+            }
+            else
+            {
+                laAccount.Visible = false;
+                BtnCreate.Visible = true;
+            }
+
         }
     }
     BLLDJ_User bllDjUser = new BLLDJ_User();
@@ -66,6 +84,18 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             DJ_TourEnterprise ent = bllDJEnt.GetDJS8id(entId.ToString())[0];
             ent.IsVeryfied = !ent.IsVeryfied;
             bllDJEnt.Save(ent);
+        }
+
+        if (e.CommandName.ToLower() == "setadmin")
+        {
+            string loginname = "EntAdmin_" + entId.ToString();
+            DJ_TourEnterprise ent = bllDjEnt.GetDJS8id(entId.ToString())[0];
+            DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
+            mgrUser.Enterprise = ent;
+            mgrUser.Name = loginname;
+            mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.DJS创建团队;
+            mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
+            bllMember.CreateUpdateMember(mgrUser);
         }
         BindList();
             
