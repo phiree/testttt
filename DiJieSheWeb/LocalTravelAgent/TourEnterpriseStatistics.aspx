@@ -21,11 +21,12 @@
         日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;旅游企业名称&nbsp;&nbsp;<asp:TextBox
             ID="txtEntName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;企业类型;&nbsp;&nbsp;<asp:DropDownList
                 ID="ddlType" runat="server">
-             <asp:ListItem>全部</asp:ListItem>
-             <asp:ListItem>景区</asp:ListItem>
-             <asp:ListItem>宾馆</asp:ListItem>
+             <asp:ListItem Value="0">全部</asp:ListItem>
+             <asp:ListItem Value="1">景区</asp:ListItem>
+             <asp:ListItem Value="3">宾馆</asp:ListItem>
             </asp:DropDownList>&nbsp;&nbsp;&nbsp;&nbsp;
-         <asp:Button ID="Button1" runat="server" Text="搜索" CssClass="btn" />
+         <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn" 
+             onclick="BtnSearch_Click" />
     </div>
     <div class="detaillist">
         <div class="detailtitle">
@@ -57,7 +58,7 @@
                     游玩或住宿人数
                 </td>
                 <td>
-                    游玩或住宿人数
+                    游玩或住宿人天数
                 </td>
             </tr>
             </HeaderTemplate>
@@ -66,6 +67,18 @@
                     <td>
                         <asp:Literal ID="laNo" runat="server"></asp:Literal>
                     </td>
+                    <td>
+                        <asp:Literal ID="laType" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <%# Eval("Name") %>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laMonthCount" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laYearCount" runat="server"></asp:Literal>
+                    </td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
@@ -73,10 +86,13 @@
                     <td>
                         总计
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <asp:Literal ID="laTotalMonth" runat="server"></asp:Literal></td>
+                    <td>
+                        <asp:Literal ID="laTotalYear" runat="server"></asp:Literal>
+                    </td>
                 </tr>
             </FooterTemplate>
         </asp:Repeater>

@@ -4,9 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using Model;
-namespace BLL.Default.MipangTicket
+using System.Collections;
+namespace BLL
 {
     /*
+     * <?xml version="1.0" encoding="utf-8" ?>
+<tourism_response>
+<data>
+     * -------------------
+<header>
+<result_code>0</result_code>
+<result_message></result_message>
+</header>
  Scenic    <tourism_item>
  Name  <title>【门票】东平国家森林公园门票&lt;景区取票，请至少提早一天预订，下订单时备注出游日期&gt;</title>
  <price>60</price>
@@ -20,6 +29,9 @@ TicketPrice(type,price) <ticket_price>60</ticket_price>
 </ticket>
 </tickets>
 </tourism_item>
+     * ------------------------
+     * </tourism_response>
+</data>
 
      */
     /// <summary>
@@ -32,23 +44,22 @@ TicketPrice(type,price) <ticket_price>60</ticket_price>
         {
             this.Doc = doc;
         }
-        public bool Parse()
+        public List<Scenic> Parse()
         {
-            bool result = true;
+            List<Scenic> scenicList = new List<Scenic>();
             foreach (XmlNode node in Doc.ChildNodes)
             {
-                Ticket t = ParseTicket(node);
+                Scenic s = ParseTicket(node);
                 //save ticket
             }
-            return result;
+            return scenicList;
         }
 
-        public Ticket ParseTicket(XmlNode node)
+        public Scenic ParseTicket(XmlNode node)
         {
-            Ticket t = new Ticket();
-
-            //xml里每种门票只有一个价格--> 将三种价格都设置为一样
-            return t;
+            Scenic s = new Scenic();
+            
+            return s;
         }
         //
     }

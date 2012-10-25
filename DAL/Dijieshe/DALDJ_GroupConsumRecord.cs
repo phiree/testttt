@@ -124,12 +124,14 @@ namespace DAL
         }
 
 
-        public IList<Model.DJ_GroupConsumRecord> GetRecordByCondition(string dateyear, string EntName, int EntId)
+        public IList<Model.DJ_GroupConsumRecord> GetRecordByCondition(string dateyear, string EntName,int type, int EntId)
         {
             StringBuilder sql = new StringBuilder();
             sql.Append("select r from DJ_GroupConsumRecord r where 1=1");
             sql.Append(" and r.Enterprise.Name like '%" + EntName + "%'");
-            sql.Append(" and r.Route.Enterprise.Id=" + EntId + "");
+            sql.Append(" and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + EntId + "");
+            if (type != 0)
+                sql.Append(" and r.Enterprise.Type=" + type + "");
             sql.Append(" order by ConsumeTime desc");
             IQuery query = session.CreateQuery(sql.ToString());
             List<Model.DJ_GroupConsumRecord> ListRecord = new List<Model.DJ_GroupConsumRecord>();
