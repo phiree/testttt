@@ -10,7 +10,12 @@ namespace BLL
 {
     public class BLLDJ_GovManageDepartment
     {
-        IDAL.IDJ_GovManageDepartment Idepart = new DALDJ_GovManageDepartment();
+        DALDJ_GovManageDepartment Idepart = new DALDJ_GovManageDepartment();
+
+        public void Save(DJ_GovManageDepartment obj)
+        {
+            Idepart.Save(obj);
+        }
 
         public IList<DJ_GovManageDepartment> GetGovDptByName(string name)
         {

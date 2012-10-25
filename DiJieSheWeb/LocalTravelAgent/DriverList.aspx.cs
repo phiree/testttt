@@ -110,10 +110,11 @@ public partial class LocalTravelAgent_DriverList : basepageDJS
             }
             ViewState["text"] = lkbtnSort.Text;
             ViewState["id"] = e.CommandName.Trim();
-            IList<Model.DJ_Group_Worker> workerlist = (IList<Model.DJ_Group_Worker>)rptDrivers.DataSource;
+            IList<Model.DJ_Group_Worker> workerlist = 
+                bllworker.Get8Multi(null, txtName.Text, null, txtIdcardid.Text, txtDrivercardid.Text, Model.DJ_GroupWorkerType.司机, null, null);
             switch (e.CommandName.Trim())
             {
-                case "lbname":
+                case "lblname":
                     if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
                         workerlist = workerlist.OrderBy(x => x.Name).ToList();
                     else

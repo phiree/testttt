@@ -110,7 +110,8 @@ public partial class LocalTravelAgent_GuideList : basepageDJS
             }
             ViewState["text"] = lkbtnSort.Text;
             ViewState["id"] = e.CommandName.Trim();
-            IList<Model.DJ_Group_Worker> workerlist = (IList<Model.DJ_Group_Worker>)rptGuides.DataSource;
+            IList<Model.DJ_Group_Worker> workerlist =
+                bllworker.Get8Multi(null, txtName.Text, null, txtIdcardid.Text, txtGuidecardid.Text, Model.DJ_GroupWorkerType.导游, null, null);
             switch (e.CommandName.Trim())
             {
                 case "lbname":
