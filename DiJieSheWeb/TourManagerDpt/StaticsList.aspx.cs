@@ -47,15 +47,15 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
     protected void BindGov1()
     {
         IList<Model.DJ_GroupConsumRecord> gcrlist = bllCustomRecord.GetGCR8Multi(null, null, null, null, null);
-        if (CurrentDptLevel == "1")
+        if (CurrentDpt.Area.Level == Model.AreaLevel.省)
         {
             gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 2))).ToList();
         }
-        else if (CurrentDptLevel == "2")
+        else if (CurrentDpt.Area.Level == Model.AreaLevel.市)
         {
             gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 4))).ToList();
         }
-        else if (CurrentDptLevel == "3")
+        else if (CurrentDpt.Area.Level == Model.AreaLevel.区县)
         {
             gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6))).ToList();
         }
@@ -139,15 +139,15 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
     protected void BindGov2()
     {
         IList<Model.DJ_GroupConsumRecord> gcrlist = bllCustomRecord.GetGCR8Multi(null, null, null, null, null);
-        if (CurrentDptLevel == "1")
+        if (CurrentDpt.Area.Level == Model.AreaLevel.省)
         {
             gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 2))).ToList();
         }
-        else if (CurrentDptLevel == "2")
+        else if (CurrentDpt.Area.Level == Model.AreaLevel.市)
         {
             gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 4))).ToList();
         }
-        else if (CurrentDptLevel == "3")
+        else if (CurrentDpt.Area.Level == Model.AreaLevel.区县)
         {
             gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6))).ToList();
         }
@@ -200,19 +200,19 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
     {
         //整理后数据Gov3
         IList<Model.DJ_TourGroup> tglist = blltg.GetTourGroupByAll();
-        if (CurrentDptLevel == "1")
+        if (CurrentDpt.Area.Level == Model.AreaLevel.省)
         {
             tglist = tglist
                 .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 2)))
                 .ToList();
         }
-        if (CurrentDptLevel == "2")
+        if (CurrentDpt.Area.Level == Model.AreaLevel.市)
         {
             tglist = tglist
                 .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 4)))
                 .ToList();
         }
-        if (CurrentDptLevel == "3")
+        if (CurrentDpt.Area.Level == Model.AreaLevel.区县)
         {
             tglist = tglist
                 .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6)))

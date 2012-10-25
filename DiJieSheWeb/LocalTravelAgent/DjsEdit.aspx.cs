@@ -24,8 +24,8 @@ public partial class LocalTravelAgent_DjsEdit : basepageDJS
 
     private void BindData()
     {
-       
-            djs = CurrentDJS
+
+        djs = CurrentDJS;
             txtName.Text = djs.Name;
             txtCPP.Text = djs.ChargePersonPhone;
             txtCPN.Text = djs.ChargePersonName;
