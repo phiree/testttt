@@ -58,6 +58,42 @@ public partial class Manager_ScenicManage_AddTicket : System.Web.UI.Page
         rptTickets.DataSource = Scenic.Tickets;
         rptTickets.DataBind();
     }
+
+    private void MoveTickets()
+    {
+        /*
+           指定到新的景区.
+           */
+        string strScenic = tbxTargetScenic.Text.Trim();
+        if (!string.IsNullOrEmpty(strScenic))
+        {
+            Scenic targetScenic;
+            int targetScenicId;
+            if (int.TryParse(strScenic, out targetScenicId))
+            {
+                targetScenic = bllScenic.GetScenicById(targetScenicId);
+            }
+            else
+            {
+                targetScenic = bllScenic.GetScenicBySeoName(strScenic);
+            }
+            if (targetScenic != null)
+            {
+                foreach (Ticket t in Scenic.Tickets)
+                {
+                    t.Scenic = targetScenic;
+
+                    bllTicket.SaveOrUpdateTicket(t);
+                }
+            }
+        }
+    }
+    protected void btnMove_Click(object sender, EventArgs e)
+    {
+        MoveTickets();
+        BindTickets();
+    }
+
     private void LoadForm()
     {
         tbxName.Text = CurrentTicket.Name;
@@ -83,27 +119,7 @@ public partial class Manager_ScenicManage_AddTicket : System.Web.UI.Page
         CurrentTicket.IsMain = cbxIsMainPrice.Checked;
         CurrentTicket.Name = tbxName.Text;
         CurrentTicket.Scenic = Scenic;
-        /*
-         指定到新的景区.
-         */
-        string strScenic = tbxTargetScenic.Text.Trim();
-        if (!string.IsNullOrEmpty(strScenic))
-        {
-            Scenic targetScenic;
-            int targetScenicId;
-            if (int.TryParse(strScenic, out targetScenicId))
-            {
-                targetScenic = bllScenic.GetScenicById(targetScenicId);
-            }
-            else
-            {
-                targetScenic = bllScenic.GetScenicBySeoName(strScenic);
-            }
-            if (targetScenic != null)
-            {
-                CurrentTicket.Scenic = targetScenic;
-            }
-        }
+       
         CurrentTicket.TicketPrice = prices;
         
     }
