@@ -19,7 +19,7 @@ public partial class TourManagerDpt_StaticsDetail : System.Web.UI.Page
 
     private void BindData()
     {
-        IList<Model.DJ_GroupConsumRecord> recordList = bllrecord.GetGCR8Multi(null, null, null, null, enterp_name,DBNull.Value,DBNull.Value);
+        IList<Model.DJ_GroupConsumRecord> recordList = bllrecord.GetGCR8Multi(null, null, null, null, enterp_name);
         IList<statics_detail> sdlist = new List<statics_detail>();
         statics_detail sd = null;
         IList<statics_enterpeople> hotellist = new List<statics_enterpeople>();
