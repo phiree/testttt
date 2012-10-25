@@ -295,7 +295,7 @@ namespace BLL
         /// </summary>
         /// <param name="gov"></param>
         /// <returns></returns>
-        public IList<DJ_TourEnterprise> GetRewardEntList(DJ_GovManageDepartment gov, EnterpriseType entType, RewardType rewardType)
+        public IList<DJ_TourEnterprise> GetRewardEntList(DJ_GovManageDepartment gov, EnterpriseType? entType, RewardType rewardType)
         {
 
 

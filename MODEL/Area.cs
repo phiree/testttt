@@ -21,20 +21,17 @@ namespace Model
         {
             get
             {
-                if (level == null)
+                if (Code.EndsWith("0000"))
                 {
-                    if (Code.EndsWith("0000"))
-                    {
-                        level = AreaLevel.省;
-                    }
-                    else if (Code.EndsWith("00"))
-                    {
-                        level = AreaLevel.市;
-                    }
-                    else
-                    {
-                        level = AreaLevel.区县;
-                    }
+                    level = AreaLevel.省;
+                }
+                else if (Code.EndsWith("00"))
+                {
+                    level = AreaLevel.市;
+                }
+                else
+                {
+                    level = AreaLevel.区县;
                 }
                 return level;
             }

@@ -2,7 +2,7 @@
     Inherits="LocalTravelAgent_Groups_RecommentEnt" %>
 
 <div class="detail_titlebg">
-
+    奖励政策
 </div>
 <div class="searchdiv">
 <h5>筛选条件</h5>
@@ -18,7 +18,8 @@
 <div class="detailtitle">
             列表统计
         </div>
-<asp:Repeater runat="server" ID="rptRecomEnt">
+<asp:Repeater runat="server" ID="rptRecomEnt" 
+        onitemdatabound="rptRecomEnt_ItemDataBound">
     <HeaderTemplate>
         <table>
             <tr>
@@ -39,7 +40,7 @@
                 <%# Container.ItemIndex+1 %>
             </td>
             <td>
-                <a href='#'><%#Eval("Name")%></a>
+                <a runat="server"  id="redirtLink"><%#Eval("Name")%></a>
             </td>
             <td>
                 &nbsp;
