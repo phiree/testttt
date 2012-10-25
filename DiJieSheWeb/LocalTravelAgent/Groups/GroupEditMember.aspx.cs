@@ -171,7 +171,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         }
         #endregion
     }
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnExcel_Click(object sender, EventArgs e)
     {
         UpdateSimple(tbxExcel);
         BuildJsonData();

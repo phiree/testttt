@@ -195,7 +195,7 @@
                 <asp:FileUpload runat="server" ID="fuMemberExcel" />
                 <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" />
                 <asp:Label ID="Label1" runat="server" />
-            <asp:Button runat="server" ID="Button1" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
+            <asp:Button runat="server" ID="Button1" OnClick="btnExcel_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
                 Text="保存" />
             </p>
         </div>
