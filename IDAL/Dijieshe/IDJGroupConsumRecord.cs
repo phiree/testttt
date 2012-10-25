@@ -15,5 +15,6 @@ namespace IDAL
         List<Model.DJ_GroupConsumRecord> GetRecordByAllCondition(string groupname, string EntName, string BeginTime, string EndTime, int enterid);
         IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid, string djsname);
         IList<DJ_GroupConsumRecord> GetRecordByCondition(string dateyear, string EntName,int type, int EntId);
+        IList<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid);
     }
 }

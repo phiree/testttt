@@ -157,5 +157,14 @@ namespace DAL
                 ListRecord = query.Future<Model.DJ_GroupConsumRecord>().Where(x => x.ConsumeTime.Year == DateTime.Now.Year).ToList();
             return ListRecord;
         }
+
+
+        public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, int entid)
+        {
+            string sql = "select r from DJ_GroupConsumRecord r where Enterprise.Id=" + entid + "";
+            sql += " and ConsumeTime>='" + year.ToString() + "-" + month.ToString() + "-01 00:00:00" + "' and  ConsumeTime<'" + year.ToString() + "-" + (month == 12 ? 1 :++month).ToString() + "-01 00:00:00" + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+        }
     }
 }

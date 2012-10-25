@@ -55,7 +55,7 @@
             </tr>
             <tr>
                 <td>
-                    游玩或住宿人数
+                    游玩或住宿人天数
                 </td>
                 <td>
                     游玩或住宿人天数
@@ -71,7 +71,8 @@
                         <asp:Literal ID="laType" runat="server"></asp:Literal>
                     </td>
                     <td>
-                        <%# Eval("Name") %>
+                        <a href="" runat="server" id="aname">
+                        <%# Eval("Name") %></a>
                     </td>
                     <td>
                         <asp:Literal ID="laMonthCount" runat="server"></asp:Literal>

@@ -7,7 +7,7 @@ using Model;
 
 namespace BLL
 {
-    public class BLLScenic
+    public class BLLScenic:DAL.DalBase
     {
         IDAL.IScenic iscenic;
         public IScenic IScenic
