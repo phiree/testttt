@@ -7,10 +7,12 @@ using System.Web.UI.WebControls;
 using System.Runtime.Serialization.Json;
 using System.Web.Script.Serialization;
 using Model;
+using System.Text;
 public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupEdit
 {
     string[] fieldsName = { "tourertype", "realname", "phone", "idcardno", "othercardno", "memberid" };
     public string MemberJsonList = string.Empty;
+    ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
 
     BLL.BLLDJTourGroup bllGroup = new BLL.BLLDJTourGroup();
     protected void Page_Load(object sender, EventArgs e)
@@ -59,7 +61,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     }
 
 
-    private void UpdateSimple()
+    private void UpdateSimple(TextBox tbx)
     {
         ///删除所有成员先--首先要做提醒
         foreach (DJ_TourGroupMember member in CurrentGroup.Members)
@@ -67,7 +69,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
             bllGroup.Delete(member);
         }
        //保存新的成员
-       string[] arrStrMember=tbxSimple.Text.Split(Environment.NewLine.ToCharArray());
+        string[] arrStrMember = tbx.Text.Split(Environment.NewLine.ToCharArray());
 
         string errMsg=string.Empty;
        foreach (string s in arrStrMember)
@@ -76,7 +78,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
            DJ_TourGroupMember member = ParseMember(s, out errMsg);
            if (!string.IsNullOrEmpty(errMsg))
            {
-               lblSimpleMsg.ForeColor = System.Drawing.Color.Red;
+               lblSimpleMsg.ForeColor = System.Drawing.Color.Red;   
                lblSimpleMsg.Text = errMsg;
                break; 
            }
@@ -122,10 +124,56 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-
-        UpdateSimple();
+        UpdateSimple(tbxSimple);
         BuildJsonData();
-      //  LoadData();
-       // lblSimpleMsg.Text = "保存成功";
+    }
+    protected void btnUpload_Click(object sender, EventArgs e)
+    {
+        string excelPath="d:/";
+        string fullname = fuMemberExcel.FileName.ToString();//直接取得文件名
+        string url = fuMemberExcel.PostedFile.FileName.ToString();//取得上传文件路径
+        string typ = fuMemberExcel.PostedFile.ContentType.ToString();//获取文件MIME内容类型
+        string typ2 = fullname.Substring(fullname.LastIndexOf(".") + 1);//后缀名, 不带".".
+        int size = fuMemberExcel.PostedFile.ContentLength;
+        string message=string.Empty;
+
+        #region 保存
+        if (typ2 == "xlsx" || typ2 == "xls" || typ2 == "xlsm")
+        {
+            if (size <= 4134904)
+            {
+                fuMemberExcel.SaveAs(excelPath + "temp." + typ2);
+                IList<ExcelOplib.Entity.GroupMember> memlist=excel.getMemberlist(excelPath + "temp." + typ2, out message);
+                if (string.IsNullOrEmpty(message))
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var item in memlist)
+                    {
+                        sb.Append(item.Memtype + "," + item.Memname + "," + item.Memphone + "," + item.Memid + ",\n");
+                    }
+                    tbxExcel.Text = sb.ToString();
+                }
+                else
+                {
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('" + message + "')", true);
+                }
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('你的文件超过限制大小!')", true);
+                return;
+            }
+        }
+        else
+        {
+            Label1.Text = "上传文件格式不正确.";
+            return;
+        }
+        #endregion
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        UpdateSimple(tbxExcel);
+        BuildJsonData();
     }
 }
