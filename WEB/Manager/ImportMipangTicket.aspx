@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
-<asp:TextBox runat="server" ID="tbxAddress"></asp:TextBox>
+<asp:TextBox runat="server" ID="tbxAddress"  Text="http://www.mipang.com/var/res/benniu/routes-1.xml"></asp:TextBox>
 <asp:Button runat="server" ID="btnImport" Text="导入"  OnClick="btnImport_Click"/>
 <asp:Label runat="server" ID="lblDesc"></asp:Label>
  <asp:Repeater runat="server" ID="rptScenic" >

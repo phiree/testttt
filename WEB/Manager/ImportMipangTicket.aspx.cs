@@ -26,6 +26,11 @@ public partial class Manager_ImportMipangTicket : System.Web.UI.Page
         }
     }
 
+    private void BindList()
+    { 
+
+    }
+
     IList<Scenic> ParseXml()
     {
         string address = tbxAddress.Text;
