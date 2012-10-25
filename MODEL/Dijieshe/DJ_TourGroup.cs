@@ -39,7 +39,12 @@ namespace Model
         /// <summary>
         /// 总天数
         /// </summary>
-        public virtual int DaysAmount { get; set; }
+        private int daysAmount;
+        public virtual int DaysAmount { get {
+
+            TimeSpan ts = EndDate - BeginDate;
+            return ts.Days;
+        } set { daysAmount = value; } }
         /// <summary>
         /// 成人总人数
         /// </summary>

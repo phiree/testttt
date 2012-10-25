@@ -4,36 +4,36 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
 
-        //ajax方式显色,已经由后台控制. 替换
-        //        $(function () {
-        //            var tbody = $("#tbRoute>tbody>tr>td>span");
-        //            var enternamelist = "";
-        //            tbody.each(function () {
-        //                //lert($.trim($(this).html()));//显示各个单元格内容
-        //                //var datas = "{\"enterpid\":\"" +  + "\"}";
-        //                enternamelist += $.trim($(this).html()) + "-";
-        //            });
-        //            var gid = getArgs("id");
-        //            $.ajax({
-        //                type: "get",
-        //                url: "RouteHandler.ashx?enternamelist=" + enternamelist + "&gid=" + gid,
-        //                dataType: "json",
-        //                success: function (data, status) {
-        //                    tbody.each(function () {
-        //                        for (var name in data) {
-        //                            if (name == $.trim($(this).html())) {
-        //                                if (data[name] == "0") {
-        //                                    $(this).parent().css("background-color", "Yellow");
-        //                                }
-        //                                else {
-        //                                    $(this).parent().css("background-color", "Aqua");
-        //                                }
-        //                            }
-        //                        }
-        //                    });
-        //                }
-        //            });
-        //        });
+//       // ajax方式显色,已经由后台控制. 替换
+//                $(function () {
+//                    var tbody = $("#tbRoute>tbody>tr>td>span");
+//                    var enternamelist = "";
+//                    tbody.each(function () {
+//                        //lert($.trim($(this).html()));//显示各个单元格内容
+//                        //var datas = "{\"enterpid\":\"" +  + "\"}";
+//                        enternamelist += $.trim($(this).html()) + "-";
+//                    });
+//                    var gid = getArgs("id");
+//                    $.ajax({
+//                        type: "get",
+//                        url: "RouteHandler.ashx?enternamelist=" + enternamelist + "&gid=" + gid,
+//                        dataType: "json",
+//                        success: function (data, status) {
+//                            tbody.each(function () {
+//                                for (var name in data) {
+//                                    if (name == $.trim($(this).html())) {
+//                                        if (data[name] == "0") {
+//                                            $(this).parent().css("background-color", "Yellow");
+//                                        }
+//                                        else {
+//                                            $(this).parent().css("background-color", "Aqua");
+//                                        }
+//                                    }
+//                                }
+//                            });
+//                        }
+//                    });
+//                });
 
         $(function () {
             var tbody = $("#tbRoute>tbody");

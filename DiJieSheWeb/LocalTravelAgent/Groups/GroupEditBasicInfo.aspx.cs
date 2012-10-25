@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using BLL;
 using Model;
 
-public partial class LocalTravelAgent_Groups_GroupEditBasicInfo : System.Web.UI.Page
+public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGroupEdit
 {
     bool IsNew = false;
     private Guid groupId;
@@ -58,6 +58,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo : System.Web.UI.
         Group.BeginDate = Convert.ToDateTime(tbxDateBegin.Text);
         Group.EndDate = Convert.ToDateTime(tbxDateEnd.Text);
         Group.No = tbxGroupNo.Text;
+        Group.DJ_DijiesheInfo = CurrentDJS;
       
     }
 
