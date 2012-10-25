@@ -5,7 +5,7 @@
     <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("[id$='txt_yijiedai']").datepicker();
@@ -124,6 +124,15 @@
                         </td>
                         <td>
                             <%#Eval("Playnums")%>
+                        </td>
+                        <td>
+                            <%#(int)Eval("y_AdultsAmount") + (int)Eval("y_ChildrenAmount")%>
+                        </td>
+                        <td>
+                            <%#Eval("y_LiveDays")%>
+                        </td>
+                        <td>
+                            <%#Eval("y_Playnums")%>
                         </td>
                     </tr>
                 </ItemTemplate>
