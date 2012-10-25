@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 using BLL;
 using Model;
 
@@ -17,6 +18,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
     {
         if (!IsPostBack)
         {
+            txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             bind();
         }
     }
@@ -29,7 +31,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
         }
         else
         {
-            txtDate.Text="";
+            txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
         listEnt = bllrecord.GetDJStaticsEnt(txtDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id).ToList();
         rptStatistic.DataSource = listEnt;
@@ -46,6 +48,8 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
             Literal laMonthCount = e.Item.FindControl("laMonthCount") as Literal;
             Literal laYearCount = e.Item.FindControl("laYearCount") as Literal;
             laType.Text = (int)ent.Type == 1 ? "景区" : "宾馆";
+            HtmlAnchor aname = e.Item.FindControl("aname") as HtmlAnchor;
+            aname.HRef = "/LocalTravelAgent/TEDetailStatistics.aspx?year=" + DateTime.Parse(txtDate.Text).Year + "&entid=" + ent.Id;
             DateTime date;
             if (!DateTime.TryParse(txtDate.Text, out date))
             {

@@ -181,5 +181,20 @@ namespace BLL
         {
             return IDjgroup.GetRecordByCondition(dateyear, EntName,type, EntId);
         }
+
+        public List<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid)
+        {
+            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, entid).ToList();
+            //过滤掉有相同团队的记录
+            List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
+            foreach (DJ_GroupConsumRecord item in ListRecord)
+            {
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                {
+                    List.Add(item);
+                }
+            }
+            return List;
+        }
     }
 }
