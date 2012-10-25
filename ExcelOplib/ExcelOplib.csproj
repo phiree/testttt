@@ -80,6 +80,10 @@
       <Project>{F6166241-9344-49CC-8787-36FA08000B34}</Project>
       <Name>CommonLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{81A65767-666A-4C51-A374-EE9AC1A1E4C3}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MODEL\MODEL.csproj">
       <Project>{9D0253F0-B0A7-4D66-BE57-7C32C4953340}</Project>
       <Name>MODEL</Name>
