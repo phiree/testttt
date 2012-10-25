@@ -149,7 +149,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
                     StringBuilder sb = new StringBuilder();
                     foreach (var item in memlist)
                     {
-                        sb.Append(item.Memtype + "," + item.Memname + "," + item.Memphone + "," + item.Memid + ",\n");
+                        sb.Append(item.Memtype + "," + item.Memname + "," + item.Memphone + "," + item.Memid + ","+item.Cardno+"\n");
                     }
                     tbxExcel.Text = sb.ToString();
                 }

@@ -16,7 +16,10 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindData();
+        if (!IsPostBack)
+        {
+            BindData();
+        }
     }
 
     private void BindData()
@@ -60,19 +63,86 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
         rptGov2.DataBind();
 
         //整理后数据Gov3
-        IList<Model.DJ_TourGroup> tglist=blltg.GetTourGroupByAll();
+        IList<Model.DJ_TourGroup> tglist = blltg.GetTourGroupByAll();
         IList<statics_Gov3> sm3 = new List<statics_Gov3>();
         foreach (var item3 in tglist)
         {
             sm3.Add(new statics_Gov3()
             {
                 Name = item3.DJ_DijiesheInfo.Name,
-                Gname=item3.Name,
-                GId=item3.Id.ToString()
+                Gname = item3.Name,
+                GId = item3.Id.ToString()
             });
         }
         rptGov3.DataSource = sm3;
         rptGov3.DataBind();
+    }
+
+    protected void btn_yijiedai_Click(object sender, EventArgs e)
+    {
+        IList<Model.DJ_GroupConsumRecord> gcrlist = bllCustomRecord.GetGCR8Multi(null, null, null, null, null);
+        IList<statics_model> sm1 = new List<statics_model>();
+        string[] temp = txt_yijiedai.Text.Split(new char[] { '-', '/' });
+        if (!string.IsNullOrEmpty(txt_yijiedai.Text) && temp.Length >= 2)
+        {
+            var begin_date = new DateTime(int.Parse(temp[0]), int.Parse(temp[1]), 1);
+            var end_date = begin_date.AddMonths(1).AddDays(-1);
+            gcrlist = gcrlist.Where(x => x.ConsumeTime >= begin_date && x.ConsumeTime < end_date).ToList();
+        }
+        else
+        {
+            var begin_date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            var end_date = begin_date.AddMonths(1).AddDays(-1);
+            gcrlist = gcrlist.Where(x => x.ConsumeTime >= begin_date && x.ConsumeTime < end_date).ToList();
+        }
+        foreach (var item in gcrlist.GroupBy(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name))
+        {
+            sm1.Add(new statics_model()
+            {
+                Name = item.Key,
+                AdultsAmount = item.Sum(x => x.AdultsAmount),
+                ChildrenAmount = item.Sum(x => x.ChildrenAmount),
+                LiveDays = item.Sum(x => (x.AdultsAmount + x.ChildrenAmount) * x.LiveDay),
+                Playnums = item.Sum(x => x.AdultsAmount + x.ChildrenAmount)
+            });
+        }
+        rptGov1.DataSource = sm1;
+        rptGov1.DataBind();
+    }
+
+    protected void btn_yijiedai2_Click(object sender, EventArgs e)
+    {
+        IList<Model.DJ_GroupConsumRecord> gcrlist = bllCustomRecord.GetGCR8Multi(null, null, null, null, null);
+        IList<statics_model> sm1 = new List<statics_model>();
+        string[] temp = txt_yijiedai2.Text.Split(new char[] { '-', '/' });
+        if (!string.IsNullOrEmpty(txt_yijiedai2.Text) && temp.Length >= 2)
+        {
+            var begin_date = new DateTime(int.Parse(temp[0]), int.Parse(temp[1]), 1);
+            var end_date = begin_date.AddMonths(1).AddDays(-1);
+            gcrlist = gcrlist.Where(x => x.ConsumeTime >= begin_date && x.ConsumeTime < end_date).ToList();
+        }
+        else
+        {
+            var begin_date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            var end_date = begin_date.AddMonths(1).AddDays(-1);
+            gcrlist = gcrlist.Where(x => x.ConsumeTime >= begin_date && x.ConsumeTime < end_date).ToList();
+        }
+        //整理后数据Gov2
+        IList<statics_Gov2> sm2 = new List<statics_Gov2>();
+        foreach (var item2 in gcrlist.GroupBy(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name))
+        {
+            sm2.Add(new statics_Gov2()
+            {
+                Name = item2.Key,
+                AdultsAmount_pre = item2.Sum(x => x.Route.DJ_TourGroup.AdultsAmount),
+                ChildrenAmount_pre = item2.Sum(x => x.Route.DJ_TourGroup.ChildrenAmount),
+                AdultsAmount_act = item2.Sum(x => x.AdultsAmount),
+                ChildrenAmount_act = item2.Sum(x => x.ChildrenAmount)
+
+            });
+        }
+        rptGov2.DataSource = sm2;
+        rptGov2.DataBind();
     }
 }
 

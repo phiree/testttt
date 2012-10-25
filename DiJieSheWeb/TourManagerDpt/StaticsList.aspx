@@ -1,6 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master"
     AutoEventWireup="true" CodeFile="StaticsList.aspx.cs" Inherits="TourManagerDpt_StaticsList" %>
 
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
+        rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[id$='txt_yijiedai']").datepicker();
+            $("[id$='txt_yijiedai2']").datepicker();
+        });
+    </script>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
     <h3>
         <b>原数据</b></h3>
@@ -54,6 +66,8 @@
     <hr />
     <h3>
         <b>已接待情况</b></h3>
+    日期：<asp:TextBox ID="txt_yijiedai" runat="server" />
+    <asp:Button ID="btn_yijiedai" Text="查询" runat="server" OnClick="btn_yijiedai_Click"/>
     <table border="1" cellpadding="1" cellspacing="1">
         <thead>
             <tr>
@@ -119,6 +133,8 @@
     <hr />
     <h3>
         <b>旅游企业接待情况明细表</b></h3>
+    日期：<asp:TextBox ID="txt_yijiedai2" runat="server" />
+    <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click"/>
     <asp:Repeater ID="rptGov2" runat="server">
         <HeaderTemplate>
             <table border="1" cellpadding="1" cellspacing="1">
@@ -150,12 +166,10 @@
                         <%#Eval("Name")%></a>
                 </td>
                 <td>
-                    共<%#(int)Eval("AdultsAmount_pre") + (int)Eval("ChildrenAmount_pre")%>人：
-                    成人<%#Eval("AdultsAmount_pre")%>人，儿童<%#Eval("ChildrenAmount_pre")%>人
+                    共<%#(int)Eval("AdultsAmount_pre") + (int)Eval("ChildrenAmount_pre")%>人： 成人<%#Eval("AdultsAmount_pre")%>人，儿童<%#Eval("ChildrenAmount_pre")%>人
                 </td>
                 <td>
-                    共<%#(int)Eval("AdultsAmount_act") + (int)Eval("ChildrenAmount_act")%>人：
-                    成人<%#Eval("AdultsAmount_act")%>人，儿童<%#Eval("ChildrenAmount_act")%>人
+                    共<%#(int)Eval("AdultsAmount_act") + (int)Eval("ChildrenAmount_act")%>人： 成人<%#Eval("AdultsAmount_act")%>人，儿童<%#Eval("ChildrenAmount_act")%>人
                 </td>
             </tr>
         </ItemTemplate>
@@ -193,10 +207,11 @@
                     <%=xuhao_3++ %>
                 </td>
                 <td>
-                        <%#Eval("Name")%></a>
+                    <%#Eval("Name")%></a>
                 </td>
                 <td>
-                    <a href='/TourManagerDpt/GroupDetail.aspx?gid=<%#Eval("GId")%>'><%#Eval("Gname")%></a>
+                    <a href='/TourManagerDpt/GroupDetail.aspx?gid=<%#Eval("GId")%>'>
+                        <%#Eval("Gname")%></a>
                 </td>
                 <td>
                     <a href='/TourManagerDpt/GroupDetail.aspx?gid=<%#Eval("GId")%>'>查看详情</a>

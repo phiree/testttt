@@ -89,7 +89,7 @@ namespace ExcelOplib
                 //path即是excel文档的路径。
                 string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path.Replace('/', '\\') + @";Extended Properties=""Excel 12.0;HDR=YES""";
                 //Sheet1为excel中表的名字
-                string sql = "select 类型,姓名,证件号,电话号码 from [Sheet1$]";
+                string sql = "select 类型,姓名,证件号,电话号码,其他证件 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                 OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
                 ad.Fill(dt);
@@ -115,7 +115,8 @@ namespace ExcelOplib
                         Memtype=dt.Rows[i][0].ToString().Replace("\n", "").Trim(),
                         Memname = dt.Rows[i][1].ToString().Replace("\n", "").Trim(),
                         Memid= dt.Rows[i][2].ToString().Replace("\n", "").Trim(),
-                        Memphone  = dt.Rows[i][3].ToString().Replace("\n", "").Trim()
+                        Memphone  = dt.Rows[i][3].ToString().Replace("\n", "").Trim(),
+                        Cardno=dt.Rows[i][4].ToString().Replace("\n","").Trim()
                     });
                 }
                 //如果获取到了list,就把上传上来的文件删除

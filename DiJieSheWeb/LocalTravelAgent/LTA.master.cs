@@ -38,6 +38,7 @@ public partial class LocalTravelAgent_LTA : System.Web.UI.MasterPage
         }
         CurrentDJS = DJ_User_TourEnterprise.Enterprise as DJ_DijiesheInfo;
         (Master.FindControl("changepwd") as HtmlAnchor).HRef = "/LocalTravelAgent/ChangePwd.aspx";
+        (Master.FindControl("changedetails") as HtmlAnchor).HRef = "/localtravelagent/djsedit.aspx";
         base.OnInit(e);
     }
 }

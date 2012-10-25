@@ -81,7 +81,7 @@ namespace DAL
         /// <param name="routeid"></param>
         /// <param name="djsname">所属地接社</param>
         /// <returns></returns>
-        public IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid,string djsname)
+        public IList<Model.DJ_GroupConsumRecord> GetGCR8Multi(string areacode, string enterpname, string groupid, string routeid, string djsname)
         {
             bool ifcondition = false;
             string sql = "select gcr from DJ_GroupConsumRecord gcr where";
@@ -110,6 +110,22 @@ namespace DAL
                 ifcondition = true;
                 sql += " gcr.Route.Id='" + routeid + "' and";
             }
+            //if (!string.IsNullOrEmpty(b_date))
+            //{
+            //    string[] temp = b_date.Split(new char[] { '-'});
+            //    if (temp.Length >= 2)
+            //    {
+            //        ifcondition = true;
+            //        sql += " gcr.ConsumeTime>=" + new DateTime(int.Parse(temp[0]), int.Parse(temp[1]), 1) +
+            //            " and gcr.ConsumeTime<" + new DateTime(int.Parse(temp[0]), int.Parse(temp[1]) + 1, 1) + " and";
+            //    }
+            //}
+            //if (string.IsNullOrEmpty(b_date))
+            //{
+            //    ifcondition = true;
+            //    sql += " gcr.ConsumeTime>=" + new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) +
+            //        " and gcr.ConsumeTime<" + new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1) + " and";
+            //}
 
             if (ifcondition)//如果有条件的string截取方式
             {
