@@ -21,22 +21,24 @@ namespace Model
         {
             get
             {
+                AreaLevel level;
                 if (Code.EndsWith("0000"))
-                {
-                    level = AreaLevel.省;
-                }
-                else if (Code.EndsWith("00"))
-                {
-                    level = AreaLevel.市;
-                }
-                else
-                {
-                    level = AreaLevel.区县;
-                }
+                    {
+                        level = AreaLevel.省;
+                    }
+                    else if (Code.EndsWith("00"))
+                    {
+                        level = AreaLevel.市;
+                    }
+                    else
+                    {
+                        level = AreaLevel.区县;
+                    }
+                
                 return level;
             }
         }
-        private AreaLevel level;
+     
     }
     public enum AreaLevel
     {

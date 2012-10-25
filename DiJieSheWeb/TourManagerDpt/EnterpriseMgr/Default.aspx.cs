@@ -46,7 +46,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
         //todo:优化:bllenterprise优化.
         string entName = tbxName.Text.Trim();
         string errMsg;
-        bllEnt.SetVerify(CurrentDpt, entName, RewardType.已纳入, out errMsg);
+        bllEnt.SetVerify(CurrentDpt.Area, entName, RewardType.已纳入,ParamEntType, out errMsg);
 
         lblMsg.Visible = true;
         cbxState.SelectedIndex = 1;
@@ -112,15 +112,16 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
         {
             DJ_TourEnterprise ent = bllEnt.GetDJS8id(entId.ToString())[0];
 
-            RewardType t = ent.GetRewart(CurrentDpt);
-            t = t == RewardType.纳入后移除 ? RewardType.已纳入 : RewardType.纳入后移除;
+            RewardType currentType = ent.GetRewart(CurrentDpt);
+            RewardType t = currentType == RewardType.纳入后移除 ? RewardType.已纳入 : RewardType.纳入后移除;
 
-            bllEnt.SetVerify(CurrentDpt, ent, t);
+            bllEnt.SetVerify( ent, t);
             Model.OperationLog log = new OperationLog();
             log.Member = CurrentMember;
             log.OperationTime = DateTime.Now;
             log.OprationType = OperationType.管理部门管理纳入企业;
             log.TargetId = entId.ToString();
+            log.Content = "从:" + currentType.ToString() + "变为:" + t.ToString();
             bllOp.Save(log);
             BindList();
         }

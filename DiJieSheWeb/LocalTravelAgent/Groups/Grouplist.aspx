@@ -2,7 +2,7 @@
     CodeFile="Grouplist.aspx.cs" Inherits="Groups_Grouplist" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         $(function () {
             var tbody = $("#routeList>tr");
             tbody.each(function () {
@@ -11,7 +11,7 @@
                 var myDate = new Date();
                 var today = myDate.getFullYear() + "/" + (myDate.getMonth() + 1) + "/" + myDate.getDate();
                 //行程日期
-                var dateperiod = $(this).children().next().next().html();
+                var dateperiod = $(this).children().next().html();
                 var date1 = Date.parse(dateperiod.split("-")[0]).toString(); //转成秒格式进行比较
                 var date2 = Date.parse(dateperiod.split("-")[1]).toString(); //转成秒格式进行比较
                 var tempday = Date.parse(today); //转成秒格式进行比较
@@ -30,7 +30,7 @@
                 }
             });
         });
-    </script>
+    </script>--%>
     <style type="text/css">
         .colorpicker
         {
@@ -38,32 +38,32 @@
             margin-left: 10px;
             width: 12px;
             height: 12px;
-            float:right;
+            float: right;
             border: 1px solid #000;
             margin-right: 2px;
-            margin-top:4px;
+            margin-top: 4px;
             cursor: pointer;
         }
         .colorWord
         {
             display: block;
             margin-left: 2px;
-            float:right;
+            float: right;
             margin-right: 5px;
             cursor: pointer;
-            }
+        }
         #colorpicker1
         {
-            background-color:Aqua;
-            }
+            background-color: Aqua;
+        }
         #colorpicker2
         {
-            background-color:Yellow;
-            }
+            background-color: Yellow;
+        }
         #colorpicker3
         {
-            background-color:red;
-            }
+            background-color: red;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
@@ -72,32 +72,30 @@
     </div>
     <div class="detaillist">
         <div class="detailtitle">
-            团队列表
-    <span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
-    <span class="colorWord">进行中的行程</span><span class="colorpicker" id="colorpicker2"></span>
-    <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>
+            团队列表 <span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
+            <span class="colorWord">进行中的行程</span><span class="colorpicker" id="colorpicker2"></span>
+            <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>
         </div>
-        <asp:Repeater ID="rptGroups" runat="server">
+        <asp:Repeater ID="rptGroups" runat="server" OnItemDataBound="rptGroups_ItemDataBound" OnItemCommand="rptGroups_ItemCommand">
             <HeaderTemplate>
                 <table>
                     <thead>
                         <tr>
                             <td>
-                                编号
+                                <asp:LinkButton ID="lbname" Runat="server" text="名称" CommandName="lbname"></asp:LinkButton>
                             </td>
                             <td>
-                                名称
+                                <asp:LinkButton ID="lbdate" Runat="server" text="时间" CommandName="lbdate"></asp:LinkButton>
                             </td>
                             <td>
-                                时间
-                            </td>
-                            <td>
-                                人数
+                                <asp:LinkButton ID="lbdays" Runat="server" text="天数" CommandName="lbdays"></asp:LinkButton>
                             </td>
                             <td>
                                 操作
                             </td>
-                            
+                            <td>
+                                备注
+                            </td>
                         </tr>
                     </thead>
             </HeaderTemplate>
@@ -105,25 +103,22 @@
                 <tbody id="routeList">
                     <tr>
                         <td>
-                            <%#Eval("No")%>
-                        </td>
-                        <td>
                             <a href='/LocalTravelAgent/Groups/GroupDetail.aspx?id=<%#Eval("Id")%>'>
                                 <%#Eval("Name")%></a>
                         </td>
                         <td>
-                            <%#((DateTime)Eval("BeginDate")).ToShortDateString() + "-" + ((DateTime)Eval("EndDate")).ToShortDateString()%>
+                            <%#((DateTime)Eval("BeginDate")).ToShortDateString() %><%---<%#((DateTime)Eval("EndDate")).ToShortDateString()%>--%>
                         </td>
                         <td>
-                            <%#Eval("TotalTourist")%><br />[外宾:<%#Eval("ForeignersAmount")%>]
+                            <%#((DateTime)Eval("EndDate")-(DateTime)Eval("BeginDate")).Days+1%>日游
                         </td>
                         <td>
-                           <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改基本信息</a>
-<a href='GroupEditMember.aspx?groupid=<%#Eval("id") %>'>修改人员信息</a>
-                           <a href='GroupEditRoute.aspx?groupid=<%#Eval("id") %>'>修改线路信息</a>
+                            <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>
+                                修改</a>
                         </td>
                         <td>
-                            
+                            <asp:LinkButton ID="lblMember_bz" Text="" runat="server" /><br />
+                            <asp:LinkButton ID="lblRoute_bz" Text="" runat="server" />
                         </td>
                     </tr>
                 </tbody>

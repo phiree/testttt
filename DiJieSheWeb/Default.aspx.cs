@@ -9,6 +9,6 @@ public partial class _Default : basepage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Response.Redirect(Redirector.RedirectForUser(CurrentMember) );
     }
 }
