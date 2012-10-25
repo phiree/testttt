@@ -100,7 +100,7 @@ namespace BLL
             List<Model.DJ_GroupConsumRecord> List=new List<DJ_GroupConsumRecord>();
             foreach (Model.DJ_GroupConsumRecord item in ListRecord)
 	        {
-		        if(List.Where(x=>x.Route.DJ_TourGroup.Id==item.Route.DJ_TourGroup.Id).Count()==0)
+		        if(List.Where(x=>x.Route.DJ_TourGroup.Id==item.Route.DJ_TourGroup.Id).Where(x=>x.ConsumeTime.ToShortDateString()==item.ConsumeTime.ToShortDateString()).Count()==0)
                 {
                     List.Add(item);
                 }
@@ -120,14 +120,14 @@ namespace BLL
         /// <param name="EntName">查询企业名称</param>
         /// <param name="EntId">所在地接社id</param>
         /// <returns>查询出的企业列表</returns>
-        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string dateyear, string EntName, int EntId)
+        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string dateyear, string EntName,int type, int EntId)
         {
-            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(dateyear, EntName, EntId).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(dateyear, EntName, type, EntId).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
             {
-                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Count() == 0)
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x=>x.ConsumeTime.ToShortDateString()==item.ConsumeTime.ToShortDateString()).Count() == 0)
                 {
                     List.Add(item);
                 }
@@ -140,9 +140,61 @@ namespace BLL
             return ListTE;
         }
 
-        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string dateyear, string EntName, int EntId)
+        public int GetCountByStatics(string dateyear, string EntName, int type, int EntId,int Enttype,bool IsMonth,int Wentid)
         {
-            return IDjgroup.GetRecordByCondition(dateyear, EntName, EntId);
+            int Count = 0;
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(dateyear, EntName, type, EntId).ToList();
+            //过滤掉有相同团队的记录
+            List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
+            foreach (DJ_GroupConsumRecord item in ListRecord)
+            {
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                {
+                    List.Add(item);
+                }
+            }
+            List = List.Where(x => x.Enterprise.Id == Wentid).ToList();
+            if (IsMonth&&dateyear != "")
+            {
+                List = List.Where(x => x.ConsumeTime.Month == DateTime.Parse(dateyear).Month).ToList();
+            }
+            if (Enttype == 1)
+            {
+                foreach (DJ_GroupConsumRecord item in List)
+                {
+                    Count += item.AdultsAmount + item.ChildrenAmount;
+                }
+                return Count;
+            }
+            if (Enttype == 2)
+            {
+                foreach (DJ_GroupConsumRecord item in List)
+                {
+                    Count+=(item.AdultsAmount + item.ChildrenAmount)*item.LiveDay;
+                }
+                return Count;
+            }
+            return Count;
+        }
+
+        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string dateyear, string EntName,int type, int EntId)
+        {
+            return IDjgroup.GetRecordByCondition(dateyear, EntName,type, EntId);
+        }
+
+        public List<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid)
+        {
+            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, entid).ToList();
+            //过滤掉有相同团队的记录
+            List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
+            foreach (DJ_GroupConsumRecord item in ListRecord)
+            {
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                {
+                    List.Add(item);
+                }
+            }
+            return List;
         }
     }
 }

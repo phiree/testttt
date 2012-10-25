@@ -48,13 +48,11 @@ namespace ExcelOplib.Entity
         /// </summary>
         public string Memphone { get; set; }
         /// <summary>
-        /// 证件号
-        /// </summary>
-        public string Cardno { get; set; }
-        /// <summary>
         /// 类型
         /// </summary>
         public string Memtype { get; set; }
+
+        public string Cardno { get; set; }
         #endregion
     }
 }

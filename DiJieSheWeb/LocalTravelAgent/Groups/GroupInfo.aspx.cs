@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class Groups_GroupInfo : System.Web.UI.Page
 {
-    private string excelPath = "d:/upload/";
+    private string excelPath = "d:/";
 
     protected void Page_Load(object sender, EventArgs e)
     {

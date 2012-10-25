@@ -137,6 +137,23 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnExcel").click(function () {
+
+                var datas = "";
+                $.ajax({
+                    type: "Post",
+                    url: "ExcelHandler.ashx?filename=" + $("#<%=Label1.ClientID%>").html(),
+                    dataType: "text",
+                    data: datas,
+                    success: function (data, status) {
+                        alert(data);
+                    }
+                });
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div>
@@ -156,16 +173,15 @@
                 将游客信息按照一定的格式输入,一次性导入系统
             </p>
             <p>
-                格式要求: 1)单个游客的资料用逗号分隔,按序依次为:成员类型,姓名,电话号码,身份证号,其他证件号.如果没有对应信息,请保留逗号.
-                2)成员类型:成人游客,儿童,外宾,港澳台,导游,司机
-                   不同游客用回车分隔. 比如:<br />
+                格式要求: 1)单个游客的资料用逗号分隔,按序依次为:成员类型,姓名,电话号码,身份证号,其他证件号.如果没有对应信息,请保留逗号. 2)成员类型:成人游客,儿童,外宾,港澳台,导游,司机
+                不同游客用回车分隔. 比如:<br />
                 成人游客,张晓华,13287839485,51332919880321639X,<br />
                 外宾,Jim Green,13287839485,,CH1034123<br />
                 儿童,李晓彤,,,<br />
             </p>
-
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText"></asp:TextBox>
-            <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');" Text="保存" />
+            <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
+                Text="保存" />
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>
         <div id="tabs-3">
@@ -174,8 +190,13 @@
             <p>
                 <a href="">Excel模板文件下载</a>
             </p>
+            <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxExcel" CssClass="tbMemberSingleText"></asp:TextBox>
             <p>
-                <asp:FileUpload runat="server" ID="fuMemberExcel" /><asp:Button runat="server" Text="导入" />
+                <asp:FileUpload runat="server" ID="fuMemberExcel" />
+                <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" />
+                <asp:Label ID="Label1" runat="server" />
+            <asp:Button runat="server" ID="Button1" OnClick="btnExcel_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
+                Text="保存" />
             </p>
         </div>
     </div>
