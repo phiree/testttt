@@ -197,6 +197,30 @@ namespace BLL
         {
             return IScenic.GetScenicBySeoName(aseoname, sseoname);
         }
+        public IList<Scenic> GetList_Mipang()
+        {
+            string where = " s.MipangId>0";
+            return GetListByConditions(where);
+        }
+        private IList<Scenic> GetListByConditions(string where)
+        {
+            List<Scenic> scenicList = new List<Scenic>();
+
+            string sql = "select s from Scenic s "+where;
+            var query = session.CreateQuery(sql);
+             scenicList=  query.Future<Scenic>().ToList();
+
+            return scenicList;
+        }
+        public Scenic GetByMipangId(int mipangId)
+        {
+            string sql = "select s from Scenic s where s.MipangId=" + mipangId; 
+            var query = session.CreateQuery(sql);
+            NHibernate.IFutureValue<Scenic> fScenic = query.FutureValue<Scenic>();
+            if (fScenic == null) return null;
+            else return fScenic.Value;
+
+        }
 
         #region Contract
 
