@@ -20,6 +20,13 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_User_TourEnterprise>().Value;
         }
+
+        public Model.DJ_User_TourEnterprise GetUser_TEbyId(int id,int permis)
+        {
+            string sql = "select u from DJ_User_TourEnterprise u where u.Enterprise.Id='" + id + "' and PermissionMask="+permis+"";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Model.DJ_User_TourEnterprise>().Value;
+        }
         #endregion
 
 

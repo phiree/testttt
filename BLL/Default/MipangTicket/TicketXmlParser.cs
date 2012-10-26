@@ -91,19 +91,22 @@ TicketPrice(type,price) <ticket_price>60</ticket_price>
                 TicketPrice tp3 = new TicketPrice();
                 tp1.Price = ticket.ticket_price;
                 tp1.PriceType = PriceType.Normal;
+                tp1.Ticket = t;
 
                 tp2.Price = ticket.ticket_price;
                 tp2.PriceType = PriceType.PreOrder;
+                tp2.Ticket = t;
 
                 tp3.Price = ticket.ticket_price;
                 tp3.PriceType = PriceType.PayOnline;
+                tp3.Ticket = t;
 
                 t.TicketPrice.Add(tp1);
                 t.TicketPrice.Add(tp2);
                 t.TicketPrice.Add(tp3);
 
               //  t.TicketPrice = tps;
-
+                t.Scenic = s;
                 s.Tickets.Add(t);
             }
 

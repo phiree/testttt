@@ -77,7 +77,9 @@
             return myd;
         }
 
-        var colsOption = [{ id: 'tourertype', header: "游客类型", width: 80, editor: { type: "select", options: { '成人游客': '成人游客', '导游': '导游', '司机': '司机', '儿童': '儿童', '外宾': '外宾', '港澳台': '港澳台' }
+        var colsOption = [
+        {id:"",width:5},
+        { id: 'tourertype', header: "游客类型", width: 80, editor: { type: "select", options: { '成人游客': '成人游客', '导游': '导游', '司机': '司机', '儿童': '儿童', '外宾': '外宾', '港澳台': '港澳台' }
      , defaultText: '成人游客'
         }
         },
@@ -94,7 +96,7 @@
        }
        },
 	   { id: 'othercardno', header: "其他证件号码", width: 120, editor: { type: "text"} },
-        { id: 'memberid', hideable: "true", header: "haoma", width: 100, editor: { type: "text"} }
+        { id: 'memberid', hideable: true, header: "", width: 100, editor: { type: "text"} }
 ];
 
 
@@ -114,11 +116,12 @@
             saveURL: "GroupEditMemberHanlder.ashx",
             //  loadURL: "GroupEditMemberHanlder.ashx",
             parameters: { "groupid": "<%=CurrentGroup.Id %>" },
-
+      
             saveResponseHandler: function (r, d) {
                 //   debugger;
                 window.location.href = window.location.href;
-            }
+            },
+                showIndexColumn : true
         };
         var mygrid = new Sigma.Grid(gridOption);
         Sigma.Util.onLoad(Sigma.Grid.render(mygrid));

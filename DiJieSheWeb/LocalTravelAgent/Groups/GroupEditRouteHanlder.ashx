@@ -1,4 +1,4 @@
-﻿<%@ WebHandler Language="C#" Class="GroupEditMemberHanlder" %>
+﻿<%@ WebHandler Language="C#" Class="GroupEditHanlder" %>
 
 using System;
 using System.Web;
@@ -14,8 +14,7 @@ using Newtonsoft.Json.Linq;
  * "insertedRecords":[],
  * "updatedRecords":[["1","成人游客","11111","13282151877","520822198010103916",""]],"deletedRecords":[]}
  */
-public class GroupEditMemberHanlder : IHttpHandler
-{
+public class GroupEditHanlder : IHttpHandler {
     
     public void ProcessRequest (HttpContext context) {
 

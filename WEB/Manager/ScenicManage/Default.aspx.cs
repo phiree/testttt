@@ -34,7 +34,7 @@ public partial class Manager_ScenicinList : System.Web.UI.Page
         string where= " where s.Area.Code=" + ddlArea.SelectedValue;
         if (rblFrom.SelectedValue != "0")
         {
-            where += " and s.MipangId is not null";
+            where = " where s.MipangId is not null";
         }
         IList<Model.Scenic> scenicList = bllmanager.GetScenicList(where);
         rptScenic.DataSource = scenicList;

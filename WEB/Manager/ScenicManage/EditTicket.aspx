@@ -8,7 +8,19 @@
     
     <div>
     <span id="spScenicName"><a href="/Scenic/?sname=<%=Scenic.SeoName %>"><%=Scenic.Name %></a>   </span>    门票列表</div>
-    <a href=EditTicket.aspx?scenicid=<%=Scenic.Id %>>添加门票</a>
+    <a href="EditTicket.aspx?scenicid=<%=Scenic.Id %>">添加门票</a>
+    <a href="/manager/scenicmanage/">返回列表</a>
+  
+    <div>
+     
+                    将所有门票移到其他景区下:
+
+                   输入景区SeoName,或者id <asp:TextBox runat="server" ID="tbxTargetScenic" />
+
+                   <asp:Button runat="server" ID="btnMove" Text="将门票移至指定的景区" OnClick="btnMove_Click" />
+                    <!--如果是联票,创建之后 在上面的列表中会出现 指派景区的链接-->
+               
+    </div>
     <asp:Repeater runat="server" ID="rptTickets" 
         onitemcommand="rptTickets_ItemCommand">
         <HeaderTemplate>
@@ -103,15 +115,7 @@
                     <!--如果是联票,创建之后 在上面的列表中会出现 指派景区的链接-->
                 </td>
             </tr>
-            <tr>
-                <td>
-                    将门票移到其他景区下
-                </td>
-                <td>
-                   输入景区SeoName,或者id <asp:TextBox runat="server" ID="tbxTargetScenic" />
-                    <!--如果是联票,创建之后 在上面的列表中会出现 指派景区的链接-->
-                </td>
-            </tr>
+           
         </table>
         <div><asp:Button runat="server" ID="btnSave"   OnClick="btnSave_Click" Text="保存" /> </div>
     </div>
