@@ -18,5 +18,6 @@ namespace IDAL
         IList<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid,int djsid);
         IList<DJ_GroupConsumRecord> GetByDate(int year, int month, string code, int djsid);
         IList<DJ_GroupConsumRecord> GetDptRecordByCondition(string begintime, string endtime, string dptname,int entid);
+        IList<DJ_GroupConsumRecord> GetListByConditions(string modelShortName, string conditions, string orderField, bool isDesc, int pageIndex, int pageSize, out int totalRecord);
     }
 }

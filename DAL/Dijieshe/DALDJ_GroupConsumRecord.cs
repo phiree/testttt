@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using IDAL;
 using NHibernate;
-
+using Model;
 namespace DAL
 {
     public class DALDJ_GroupConsumRecord:DalBase,IDJGroupConsumRecord
@@ -214,6 +214,47 @@ namespace DAL
             sql += " and ConsumeTime>='" + year.ToString() + "-" + month.ToString() + "-01 00:00:00" + "' and  ConsumeTime<'" + DateTime.Parse(year + "-" + month + "-" + "1").AddMonths(1) + "'";
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+        }
+
+        public IList<DJ_GroupConsumRecord> GetList_DemoRecords(string groupNamePrefix)
+        {
+            string modelShortName = "gr";
+            string conditions = " and gr.Route.DJ_TourGroup.Name like '"+groupNamePrefix+"%'";
+            int totalRecord;
+            return GetListByConditions(modelShortName, conditions, "", true, 1, 99999, out totalRecord);
+        }
+
+        /// <summary>
+        /// 针对DJ_GroupConsumRecord的通用查询
+        /// </summary>
+        /// <param name="modelShortName">该对象在nql里的简称,传空或null则使用默认值"GR"</param>
+        /// <param name="where"></param>
+        /// <param name="orderField"></param>
+        /// <param name="isDesc"></param>
+        /// <param name="pageIndex">起始值为1</param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalRecord"></param>
+        /// <returns></returns>
+        public IList<DJ_GroupConsumRecord> GetListByConditions(string modelShortName, string conditions, string orderField, bool isDesc, int pageIndex, int pageSize, out int totalRecord)
+        {
+            totalRecord = 0;
+            if (string.IsNullOrEmpty(modelShortName))
+            {
+                modelShortName = "GR";
+            }
+            if (string.IsNullOrEmpty(orderField))
+            {
+                orderField = "ConsumeTime";
+            }
+            List<DJ_GroupConsumRecord> records = new List<DJ_GroupConsumRecord>();
+            string className = "DJ_GroupConsumRecord";
+            string whereStr = " where 1=1 " + conditions;
+            string orderStr = " order by  " + modelShortName + "." + orderField;
+            if (isDesc) orderStr += " desc ";
+            string qryString = string.Format("select {0} from {1} as {2} where 1=1 " + whereStr + orderStr, modelShortName, className,modelShortName);
+            NHibernate.IQuery qry = session.CreateQuery(qryString);
+            records = qry.Future<DJ_GroupConsumRecord>().Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return records;
         }
     }
 }

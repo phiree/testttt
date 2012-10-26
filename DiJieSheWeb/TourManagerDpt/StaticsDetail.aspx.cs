@@ -25,8 +25,8 @@ public partial class TourManagerDpt_StaticsDetail : System.Web.UI.Page
         IList<statics_enterpeople> hotellist = new List<statics_enterpeople>();
         IList<statics_enterpeople> sceniclist = new List<statics_enterpeople>();
 
-        var resutl_list = recordList.GroupBy(x => (x.ConsumeTime.Year.ToString() +
-            x.ConsumeTime.Month.ToString() +
+        var resutl_list = recordList.GroupBy(x => (x.ConsumeTime.Year.ToString() +"-"+
+            x.ConsumeTime.Month.ToString() +"-"+
             x.ConsumeTime.Day.ToString()));
         foreach (var item in resutl_list)
         {
