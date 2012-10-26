@@ -10,12 +10,15 @@
 <fieldset>
 <legend>获得景区信息</legend>
 <asp:Button runat="server" ID="btnGetMipangList" Text="查看米胖景区列表" OnClick="btnGetMipangList_Click" />
-<asp:Repeater runat="server" ID="rptMipangList">
+<table><asp:Repeater runat="server" ID="rptMipangList">
 <ItemTemplate>
-<%#Eval("Name") %>
+
+<tr><td><%#Eval("Name") %></td><td><%#Eval("MipangId")%></td><td><%#Eval("desec") %></td></tr></li>
 </ItemTemplate>
 </asp:Repeater>
+</table>
 </fieldset>
+
 
 <div style="border:solid 1px black">
  <div>将mipangticket 批量移到tourol对应的景区.</div>
