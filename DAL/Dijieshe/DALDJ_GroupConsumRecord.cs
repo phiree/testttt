@@ -45,6 +45,31 @@ namespace DAL
             return query.Future<Model.DJ_TourGroup>().ToList<Model.DJ_TourGroup>();
         }
 
-        
+
+
+
+        public List<Model.DJ_GroupConsumRecord> GetRecordByAllCondition(string groupname, string EntName, string BeginTime, string EndTime, int enterid)
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select d from DJ_GroupConsumRecord d where 1=1");
+            sql.Append(" and d.Route.DJ_TourGroup.Name like '%" + groupname + "%'");
+            sql.Append(" and d.Route.DJ_TourGroup.DJ_DijiesheInfo.Name like '%" + EntName + "%'");
+            sql.Append(" and d.Enterprise.Id=" + enterid + "");
+            if (BeginTime != "" && EndTime == "")
+            {
+                sql.Append(" and d.ConsumeTime>='" + BeginTime + "'");
+            }
+            if (BeginTime == "" && EndTime != "")
+            {
+                sql.Append(" and d.ConsumeTime<='" + DateTime.Parse(EndTime).AddDays(1).ToShortDateString() + "'");
+            }
+            if (BeginTime != "" && EndTime != "")
+            {
+                sql.Append(" and d.ConsumeTime>='" + BeginTime + "' and d.ConsumeTime<='" + DateTime.Parse(EndTime).AddDays(1).ToShortDateString() + "'");
+            }
+            sql.Append(" order by d.ConsumeTime desc");
+            IQuery query = session.CreateQuery(sql.ToString());
+            return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+        }
     }
 }

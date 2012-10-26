@@ -10,5 +10,6 @@ namespace IDAL
     {
         IList<DJ_TourGroup> GetTgListByIdcard(string idcard);
         DJ_Group_Worker GetById(Guid id);
+        DJ_Group_Worker GetByIdCard(string idcard);
     }
 }

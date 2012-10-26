@@ -52,16 +52,15 @@ namespace BLL
             return ListTg;
         }
 
-        public void GetCountInfoByETid(int etid,out int groupcount,out int adultcount,out int childrencount)
+        public void GetCountInfoByETid(int etid,out int groupcount,out int adultcount,out int childrencount,List<DJ_GroupConsumRecord> Listrecord)
         {
-            List<Model.DJ_TourGroup> ListTg = IDjgroup.GetFeRecordByETId(etid).ToList();
             adultcount = 0;
             childrencount = 0;
-            groupcount = ListTg.GroupBy(x => x.Id).Count();
-            foreach (DJ_TourGroup group in ListTg)
+            groupcount = Listrecord.GroupBy(x => x.Route.DJ_TourGroup.Id).Count();
+            foreach (DJ_GroupConsumRecord record in Listrecord)
             {
-                adultcount += group.AdultsAmount;
-                childrencount += group.ChildrenAmount;
+                adultcount += record.AdultsAmount;
+                childrencount += record.ChildrenAmount;
             }
         }
         /// <summary>
@@ -93,6 +92,11 @@ namespace BLL
 			    }
             }
             return ListRoute;
+        }
+
+        public List<Model.DJ_GroupConsumRecord> GetRecordByAllCondition(string groupname,string EntName,string BeginTime,string EndTime,int enterid)
+        {
+            return IDjgroup.GetRecordByAllCondition(groupname, EntName, BeginTime, EndTime, enterid);
         }
     }
 }

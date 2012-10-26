@@ -35,10 +35,13 @@ namespace BLL
             {
                 listGw.AddRange(tg.Workers.Where(x => x.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>());
             }
-            foreach (IGrouping<Guid, Model.DJ_Group_Worker> item in listGw.GroupBy(x => x.Id).ToDictionary(x => x.Key).Values)
-	        {
-                listGw2.Add(new DALDJ_Group_Worker().GetById(item.Key));
-	        }
+            foreach (Model.DJ_Group_Worker item in listGw)
+            {
+                if (listGw2.Where(x => x.IDCard == item.IDCard).Count() == 0)
+                {
+                    listGw2.Add(item);
+                }
+            }
             return listGw2;
             
         }

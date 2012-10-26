@@ -76,11 +76,11 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         BindPrintLink();
     }
 
-    int Index = 0;
     protected void rptTourGroupInfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
+            int Index = 0;
             DJ_TourGroup dj_tourgroup = e.Item.DataItem as DJ_TourGroup;
             Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
             foreach (DJ_Group_Worker work in dj_tourgroup.Workers)
@@ -269,7 +269,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 TextBox tbLiveDay = rpitem.FindControl("txtLiveDay") as TextBox;
                 tbAdult.Text = Regex.Replace(tbAdult.Text, "[^0-9]", "");
                 tbChild.Text = Regex.Replace(tbChild.Text, "[^0-9]", "");
-                tbLiveDay.Text = Regex.Replace(tbChild.Text, "[^0-9]", "");
+                tbLiveDay.Text = Regex.Replace(tbLiveDay.Text, "[^0-9]", "");
                 if (tbAdult.Text == "" || tbChild.Text == "" || tbLiveDay.Text=="")
                 {
                     guideritems++;
@@ -310,7 +310,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (DJ_Group_Worker item in ListGw)
         {
-            data.Add(item.Name + "/" + item.IDCard.Substring(0, 6) + "********" + item.IDCard.Substring(14), "");
+            data.Add(new Guid().ToString(), item.Name + "/" + item.IDCard.Substring(0, 6) + "********" + item.IDCard.Substring(14));
         }
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
         using (MemoryStream ms = new MemoryStream())
