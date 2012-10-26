@@ -30,7 +30,7 @@ namespace Model
             HasMany<DJ_TourGroupMember>(x => x.Members);
             HasMany<DJ_Group_Vehicle>(x => x.Vehicles);
             HasMany<DJ_Group_Worker>(x => x.Workers);
-            HasMany<DJ_Route>(x => x.Routes);
+            HasMany<DJ_Route>(x => x.Routes).Cascade.All().Inverse();
         }
     }
 }

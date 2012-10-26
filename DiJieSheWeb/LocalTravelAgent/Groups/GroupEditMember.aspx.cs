@@ -20,7 +20,6 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         if (!IsPostBack)
         {
             LoadData();
-
         }
     }
 
@@ -50,7 +49,6 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
             }
         }
         tbxSimple.Text = sb.ToString();
-
     }
     private void BuildJsonData()
     {
@@ -89,8 +87,6 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
            lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
            lblSimpleMsg.Text = "保存成功";
        }
-
-
     }
     private Model.DJ_TourGroupMember ParseMember(string strMember, out string errMsg)
     {
@@ -110,9 +106,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
             return null;
         }
         member.MemberType = memberType;
-
         member.RealName = strArrMember[1];
-
         member.PhoneNum = strArrMember[2];
         member.IdCardNo = strArrMember[3];
         member.SpecialCardNo = strArrMember[4];

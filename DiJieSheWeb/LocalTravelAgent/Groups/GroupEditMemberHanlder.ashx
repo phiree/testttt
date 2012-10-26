@@ -24,7 +24,7 @@ public class GroupEditMemberHanlder : IHttpHandler
         Newtonsoft.Json.Linq.JObject jo = JObject.Parse(jsonR);
 
         SigmaGridRequestObject sro = new SigmaGridRequestObject(jo);
-        sro.Act();
+        sro.Act4Member();
     }
     public bool IsReusable {
         get {

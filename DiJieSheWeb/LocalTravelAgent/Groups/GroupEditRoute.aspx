@@ -13,34 +13,27 @@
         rel="stylesheet" type="text/css" />
     <link href="/Scripts/sigmagrid/gt_grid_height.css" rel="stylesheet" type="text/css" />
     <link href="/Scripts/sigmagrid/gt_grid.css" rel="stylesheet" type="text/css" />
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <!--身份证正则验证-->
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
     <script src="/Scripts/json2.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
 
-        var __TEST_DATA__ = JSON.parse("<%=MemberJsonList %>");
-        //[["youkeid","1", "成人游客", "李爽", "13282151877", "520822198010103916",""]];
+        var __TEST_DATA__ = JSON.parse("<%=RouteJsonList %>");
         var grid_demo_id = "myGrid1";
-
         var dsOption = {
-
             fields: [
-		        { name: 'tourertype' },
-		        { name: 'realname' },
-		        { name: 'phone' },
-		        { name: 'idcardno' },
-		        { name: 'othercardno' },
-                  { name: 'memberid' }
-	        ],
-
+                { name: 'dayno' },
+                { name: 'scenic' },
+                { name: 'hotel' },
+                { name: 'routeid' }
+            ],
             recordType: 'array',
             data: __TEST_DATA__
         }
 
         var membertypeEditorCreator = function () {
-
             var myd = new Sigma.Dialog({
                 id: "membertypeEditor",
                 gridId: "myGrid1",
@@ -48,23 +41,10 @@
                 height: 150,
                 title: '选择成员类型',
                 body: [
-                //                       '<select id="selMemberType">',
-                //                       '<option value=1 selected>成人游客</option>',
-                //                       '<option value=5>导游</option>',
-                //                       '<option value=6>司机</option>',
-                //                       '<option value=2>儿童</option>',
-                //                       '<option value=3>外宾</option>',
-                //                       '<option value=4>港澳台</option>',
-                //                       '</select>',
-'<input type="text" id="inputte" />',
-                         '<input type="button" value="OK" ',
-        'onclick="Sigma.$grid(\'myGrid1\').activeDialog.confirm()"/>']
-
-        .join(''),
+                    '<input type="text" id="inputte" />',
+                    '<input type="button" value="OK" ',
+                    'onclick="Sigma.$grid(\'myGrid1\').activeDialog.confirm()"/>'].join(''),
                 getValue: function () {
-
-                    //   var sel = Sigma.$("selMemberType");
-                    // return sel.options[sel.selectedIndex].text;
                     return Sigma.$("inputte").value;
                 },
                 setValue: function (value) {
@@ -73,35 +53,21 @@
                 active: function () {
                     Sigma.Util.focus(Sigma.$("inputte"));
                 }
-
             });
             return myd;
         }
 
         var colsOption = [
         { id: "", width: 5 },
-        { id: 'tourertype', header: "游客类型", width: 80, editor: { type: "select", options: { '成人游客': '成人游客', '导游': '导游', '司机': '司机', '儿童': '儿童', '外宾': '外宾', '港澳台': '港澳台' }
-     , defaultText: '成人游客'
-        }
+        { id: 'dayno',
+            header: "行程日",
+            width: 80,
+            editor: { type: "text" }
         },
-	   { id: 'realname', header: "姓名", width: 80, editor: { type: "text", validRule: ['R']} },
-	   { id: 'phone', header: "电话号码", width: 100, editor: { type: "text", validRule: ['R', 'F']} },
-       { id: 'idcardno', header: "身份证号码", width: 140, editor: { type: "text",
-           validator: function (value, record, colObj, grid) {
-               var testResult = test(value);
-               var result = testResult == "验证通过";
-
-               if (result) return result;
-               else return testResult;
-           }
-       }
-       },
-	   { id: 'othercardno', header: "其他证件号码", width: 120, editor: { type: "text"} },
-        { id: 'memberid', hideable: true, header: "", width: 100, editor: { type: "text"} }
-];
-
-
-
+        { id: 'scenic', header: "景点", width: 200,editor: { type: "text"}},
+        { id: 'hotel', header: "住宿", width: 200, editor: { type: "text"} },
+        { id: 'routeid', header: "id", width: 200, editor: { type: "text"} }
+        ];
 
         var gridOption = {
             id: grid_demo_id,
@@ -114,13 +80,12 @@
             columns: colsOption,
 
             toolbarContent: 'add del save',
-            saveURL: "GroupEditMemberHanlder.ashx",
-            //  loadURL: "GroupEditMemberHanlder.ashx",
+            saveURL: "GroupEditRouteHanlder.ashx",
             parameters: { "groupid": "<%=CurrentGroup.Id %>" },
 
             saveResponseHandler: function (r, d) {
-                //debugger;
-                window.location.href = window.location.href;
+                alert(r);
+                window.location.href = "/localtravelagent/Groups/GroupList.aspx";
             },
             showIndexColumn: true
         };
@@ -134,7 +99,6 @@
                 active: $.cookie(cookieName),
                 activate: function (event, ui) {
                     $.cookie(cookieName, ui.newTab.index(), { expires: 365 });
-
                 }
             });
         });
@@ -154,7 +118,7 @@
         </div>
         <div id="tabs-2">
             <p>
-                将游客信息按照一定的格式输入,一次性导入系统
+                将行程信息按照一定的格式输入,一次性导入系统
             </p>
             <p>
                 格式要求: 1)单个游客的资料用逗号分隔,按序依次为:成员类型,姓名,电话号码,身份证号,其他证件号.如果没有对应信息,请保留逗号. 2)成员类型:成人游客,儿童,外宾,港澳台,导游,司机
