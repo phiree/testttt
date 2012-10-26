@@ -10,6 +10,7 @@ using Model;
 public partial class TourEnterprise_PrintCer : System.Web.UI.Page
 {
     BLLDJConsumRecord blldjcr = new BLLDJConsumRecord();
+    public int i = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         bind();

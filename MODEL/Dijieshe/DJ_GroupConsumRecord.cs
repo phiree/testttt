@@ -30,5 +30,9 @@ namespace Model
         public virtual string No { get; set; }
         //如果是住宿的，需要的居住天数
         public virtual int LiveDay { get; set; }
+        //如果是住宿的，需要的房间数
+        public virtual int RoomNum { get; set; }
+        //如果是住宿的，房间详情
+        public virtual string RoomDetailInfo { get; set; }
     }
 }

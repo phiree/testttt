@@ -104,13 +104,24 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                         TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
                         TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
                         TextBox tbLiveDay = e.Item.FindControl("txtLiveDay") as TextBox;
-                        if (blldjcr.GetGroupConsumRecordByRouteId(route.Id) != null)
+                        TextBox txtRoom = e.Item.FindControl("txtRoom") as TextBox;
+                        TextBox txtRoomInfo = e.Item.FindControl("txtRoomInfo") as TextBox;
+                        DJ_GroupConsumRecord record= blldjcr.GetGroupConsumRecordByRouteId(route.Id);
+                        if ( record!= null)
                         {
+                            selectItem.Checked = true;
                             laChecked.Text = "已验证";
                             selectItem.Enabled = false;
                             tbAdult.Enabled = false;
                             tbChild.Enabled = false;
                             tbLiveDay.Enabled = false;
+                            txtRoom.Enabled = false;
+                            txtRoomInfo.Enabled = false;
+                            tbAdult.Text = record.AdultsAmount.ToString();
+                            tbChild.Text = record.ChildrenAmount.ToString();
+                            tbLiveDay.Text = record.LiveDay.ToString();
+                            txtRoom.Text = record.RoomNum.ToString();
+                            txtRoomInfo.Text = record.RoomDetailInfo;
                         }
                         else
                         {
@@ -134,9 +145,8 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
 
     protected void btnCheckOut_Click(object sender, EventArgs e)
     {
-        int guideritems, IsSelecttiem;
-        IsCanChecked(out guideritems, out IsSelecttiem);
-        if (IsSelecttiem != 0 && IsSelecttiem != guideritems)
+        int guideritems, IsSelecttiem ,success=0;
+        if (IsCanChecked(out guideritems, out IsSelecttiem))
         {
             foreach (RepeaterItem guideritem in rptTourGroupInfo.Items)
             {
@@ -146,6 +156,8 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                     TextBox tbAdult = guideritem.FindControl("txtAdultsAmount") as TextBox;
                     TextBox tbChild = guideritem.FindControl("txtChildrenAmount") as TextBox;
                     TextBox tbLiveDay = guideritem.FindControl("txtLiveDay") as TextBox;
+                    TextBox txtRoom = guideritem.FindControl("txtRoom") as TextBox;
+                    TextBox txtRoomInfo = guideritem.FindControl("txtRoomInfo") as TextBox;
                     int MaxLiveDay;
                     HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
                     DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
@@ -157,13 +169,16 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                     }
                     else if (tbAdult.Text != "" && tbChild.Text != "")
                     {
-                        blldjcr.SaveList(listWroute, int.Parse(tbAdult.Text), int.Parse(tbChild.Text), int.Parse(tbLiveDay.Text));
+                        blldjcr.SaveList(listWroute, int.Parse(tbAdult.Text), int.Parse(tbChild.Text), int.Parse(tbLiveDay.Text),int.Parse(txtRoom.Text),txtRoomInfo.Text);
                         BindPrintLink();
-                        ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "printTicket('验证成功，是否需要打印？')", true);
-                        BindRptByIdcard(ViewState["idcard"].ToString());
-                        break;
+                        success = 1;
                     }
                 }
+            }
+            if (success == 1)
+            {
+                ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "printTicket('验证成功，是否需要打印？')", true);
+                BindRptByIdcard(ViewState["idcard"].ToString());
             }
         }
     }
@@ -267,10 +282,12 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 TextBox tbAdult = rpitem.FindControl("txtAdultsAmount") as TextBox;
                 TextBox tbChild = rpitem.FindControl("txtChildrenAmount") as TextBox;
                 TextBox tbLiveDay = rpitem.FindControl("txtLiveDay") as TextBox;
+                TextBox txtRoom = rpitem.FindControl("txtRoom") as TextBox;
                 tbAdult.Text = Regex.Replace(tbAdult.Text, "[^0-9]", "");
                 tbChild.Text = Regex.Replace(tbChild.Text, "[^0-9]", "");
                 tbLiveDay.Text = Regex.Replace(tbLiveDay.Text, "[^0-9]", "");
-                if (tbAdult.Text == "" || tbChild.Text == "" || tbLiveDay.Text=="")
+                txtRoom.Text = Regex.Replace(txtRoom.Text, "[^0-9]", "");
+                if (tbAdult.Text == "" || tbChild.Text == "" || tbLiveDay.Text==""||txtRoom.Text=="")
                 {
                     guideritems++;
                 }
@@ -288,9 +305,9 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('请选择一个未验证的团队信息')", true);
             return false;
         }
-        else if (IsSelecttiem == guideritems)
+        else if (guideritems!=0)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入完整使用人数和住宿天数')", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入完整使用人数、住宿天数和房间数')", true);
             return false;
         }
         return true;

@@ -12,6 +12,8 @@ namespace Model
     public class DJ_User_Gov : TourMembership
     {
         public virtual DJ_GovManageDepartment GovDpt { get; set; }
+
+        public virtual DJ_User_GovPermission PermissionMask { get; set; }
     }
 
     /// <summary>
@@ -33,5 +35,10 @@ namespace Model
     public enum DJ_User_TourEnterprisePermission
     {
         DJS创建团队 = 1
+    }
+
+    public enum DJ_User_GovPermission
+    {
+        超级管理员=1
     }
 }

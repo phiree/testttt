@@ -107,6 +107,26 @@
                         <%# Eval("Route.DJ_TourGroup.BeginDate", "{0:yyyy-MM-dd}")%>至<%# Eval("Route.DJ_TourGroup.EndDate", "{0:yyyy-MM-dd}")%></td>
                 </tr>
                 <tr>
+                    <td>房间数</td>
+                    <td>
+                        <%# Eval("RoomNum")%>
+                    </td>
+                    <td>
+                    &nbsp;
+                    </td>
+                    <td>
+                    &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        房间信息
+                    </td>
+                    <td colspan="3">
+                        <%# Eval("RoomDetailInfo")%>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2" style="text-align:left;padding-left:10px;">
                         旅游企业签名:
                     </td>
