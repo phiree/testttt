@@ -7,14 +7,14 @@
     </div>
     <div class="detaillist">
         <div class="detailtitle">
-            企业列表
+            餐饮
         </div>
-        <asp:Repeater runat="server" ID="rpt" OnItemCommand="rpt_ItemCommand" OnItemDataBound="rpt_ItemDataBound">
+        <asp:Repeater runat="server" ID="rptRestaurant" OnItemCommand="rpt_ItemCommand" OnItemDataBound="rpt_ItemDataBound">
             <HeaderTemplate>
                 <table>
                     <tr>
                         <td>
-                            企业类型
+                            序号
                         </td>
                         <td>
                             名称
@@ -33,7 +33,103 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <%#Eval("Type").ToString()%>
+                        <%=i++ %>
+                    </td>
+                    <td>
+                        <%#Eval("Name") %>
+                    </td>
+                    <td>
+                        <a href='EnterpriseDetail.aspx?entid=<%#Eval("Id") %>'>查看企业信息</a>
+                    </td>
+                   <td>
+                        <a href='RewordEnt.aspx?entid=<%#Eval("Id") %>'>查看数据情况</a>
+                    </td>
+                    <td>
+                        <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"
+                            CommandName="SetVerify" />
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <FooterTemplate>
+                </table></FooterTemplate>
+        </asp:Repeater>
+        
+        <div class="detailtitle">
+            住宿
+        </div>
+        <asp:Repeater runat="server" ID="rptHotel" OnItemCommand="rpt_ItemCommand" OnItemDataBound="rpt_ItemDataBound">
+            <HeaderTemplate>
+                <table>
+                    <tr>
+                        <td>
+                            序号
+                        </td>
+                        <td>
+                            名称
+                        </td>
+                        <td>
+                            查看
+                        </td>
+                        <td>
+                            统计情况
+                        </td>
+                        <td>
+                            认证状态
+                        </td>
+                    </tr>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <%=j++ %>
+                    </td>
+                    <td>
+                        <%#Eval("Name") %>
+                    </td>
+                    <td>
+                        <a href='EnterpriseDetail.aspx?entid=<%#Eval("Id") %>'>查看企业信息</a>
+                    </td>
+                   <td>
+                        <a href='RewordEnt.aspx?entid=<%#Eval("Id") %>'>查看数据情况</a>
+                    </td>
+                    <td>
+                        <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"
+                            CommandName="SetVerify" />
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <FooterTemplate>
+                </table></FooterTemplate>
+        </asp:Repeater>
+        
+        <div class="detailtitle">
+            购物点
+        </div>
+        <asp:Repeater runat="server" ID="rptShoppingp" OnItemCommand="rpt_ItemCommand" OnItemDataBound="rpt_ItemDataBound">
+            <HeaderTemplate>
+                <table>
+                    <tr>
+                        <td>
+                            序号
+                        </td>
+                        <td>
+                            名称
+                        </td>
+                        <td>
+                            查看
+                        </td>
+                        <td>
+                            统计情况
+                        </td>
+                        <td>
+                            认证状态
+                        </td>
+                    </tr>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <%=k++ %>
                     </td>
                     <td>
                         <%#Eval("Name") %>
