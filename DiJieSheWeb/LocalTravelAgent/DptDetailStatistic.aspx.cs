@@ -33,13 +33,13 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
         }
         rptETDetail.DataSource = List;
         rptETDetail.DataBind();
-        Year = DateTime.Now.Year.ToString();
+        Year = Request.QueryString["year"];
         dptid = Request.QueryString["dptid"];
         ETName.InnerHtml = bllgovdepart.GetById(Guid.Parse(dptid)).Name;
     }
     protected void rptETDetail_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        Year = DateTime.Now.Year.ToString();
+        Year = Request.QueryString["year"];
         dptid = Request.QueryString["dptid"];
         DJ_GovManageDepartment depart=bllgovdepart.GetById(Guid.Parse(dptid));
         Literal laMonthVTotal = e.Item.FindControl("laMonthVTotal") as Literal;
