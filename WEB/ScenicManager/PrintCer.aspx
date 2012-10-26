@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <script src="/Scripts/jquery.js" type="text/javascript"></script>
     <link href="/theme/default/css/Print.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
@@ -111,10 +112,6 @@
         </ItemTemplate>
     </asp:Repeater>
     <!--endprint-->
-    <div style=" text-align:center">
-        <input type="button" value="打印" class="btn" onclick="printInfo()" />
-        <input type="button" value="关闭" class="btn" onclick="wclose()" />
-    </div>
     </form>
 </body>
 </html>
