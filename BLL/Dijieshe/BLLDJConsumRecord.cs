@@ -12,7 +12,7 @@ namespace BLL
     {
         IDJGroupConsumRecord IDjgroup = new DALDJ_GroupConsumRecord();
 
-        public void Save(DJ_TourEnterprise Enterprise, DJ_Route route, DateTime consumtime, int AdultsAmount, int ChildrenAmount, int LiveDay,int roomNum,string roominfo)
+        public void Save(DJ_TourEnterprise Enterprise, DJ_Route route, DateTime consumtime, int AdultsAmount, int ChildrenAmount, int LiveDay,int roomNum)
         {
             DJ_GroupConsumRecord dj_group = new DJ_GroupConsumRecord();
             dj_group.AdultsAmount = AdultsAmount;
@@ -22,17 +22,16 @@ namespace BLL
             dj_group.Route = route;
             dj_group.LiveDay = LiveDay;
             dj_group.RoomNum = roomNum;
-            dj_group.RoomDetailInfo = roominfo;
             dj_group.No = "Lv" + new Random((int)DateTime.Now.Ticks).Next(100000, 999999);
             if (IDjgroup.GetGroupConsumRecordByRouteId(route.Id) == null)
                 IDjgroup.Save(dj_group);
         }
 
-        public void SaveList(List<DJ_Route> listroute, int AdultsAmount, int ChildrenAmount, int LiveDay,int roomNum,string roominfo)
+        public void SaveList(List<DJ_Route> listroute, int AdultsAmount, int ChildrenAmount, int LiveDay,int roomNum)
         {
             foreach (DJ_Route route in listroute)
             {
-                Save(route.Enterprise, route, DateTime.Now, AdultsAmount, ChildrenAmount, LiveDay,roomNum,roominfo);
+                Save(route.Enterprise, route, DateTime.Now, AdultsAmount, ChildrenAmount, LiveDay,roomNum);
             }
         }
 

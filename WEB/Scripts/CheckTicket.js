@@ -50,16 +50,16 @@ $(document).ready(function () {
                             return row.Value;
                         },
                         matchContains: true
-                    }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Key); $("[id$='btnbind']").click(); });
+                    }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Value); $("[id$='btnbind']").click(); });
         }
     });
     $("[id$='txtinfo']").InlineTip({ "tip": "录入游客身份证或名字" });
-    $("body").click(function () {
-        $("#listname").attr("style", "display:none");
-        var list = $("#yklistt");
-        $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
-        $("#listyw").attr("style", "display:none");
-    });
+//    $("body").click(function () {
+//        $("#listname").attr("style", "display:none");
+//        var list = $("#yklistt");
+//        $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
+//        $("#listyw").attr("style", "display:none");
+//    });
     if ($.cookie("idcard") == null)
         $.cookie("idcard", "");
     timedCount();
@@ -68,8 +68,8 @@ $(document).ready(function () {
 var state = 0;
 function showyklist() {
     $("#listname").attr("style", "display:block");
-    var list = $("#yklistt");
-    $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
+    //var list = $("#yklistt");
+    $("#listname").css({ left: "100px", top: list.position().top + 25 + "px" });
     state = 1;
 }
 
@@ -138,8 +138,10 @@ function cgbg2(obj) {
 
 function printTicket(info) {
     if (confirm(info)) {
-            window.open($(this).attr("href"), $(this).attr("target"));
-            //noBorderWin($(this).attr("href"), 500, 300);
+        //$("[id$='btnPrint']").click(function () {
+        window.open($("[id$='BtnPrint']").attr("href"), $("[id$='BtnPrint']").attr("target"));
+        //});
+        //$("[id$='btnPrint']").click();
         }
 }
 

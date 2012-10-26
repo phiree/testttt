@@ -33,89 +33,47 @@
 <body>
     <form id="form1" runat="server">
     <!--startprint-->
-        <h2 id="title" runat="server">西湖宾馆验证凭证</h2>
+        <h2>游玩凭证</h2>
     <asp:Repeater ID="rptPrint" runat="server" onitemdatabound="rptPrint_ItemDataBound">
         <ItemTemplate>
             <table border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td>
-                        编号:
-                    </td>
-                    <td>
-                        <%# Eval("No") %>
-                    </td>
-                    <td>
-                        验证企业：
-                    </td>
-                    <td>
-                        <%# Eval("Enterprise.Name")%>
-                    </td>
-                </tr>
-                <tr>
                     <td style="width:150px;">
-                        团队名称:
-                    </td>   
+                        单位名称:
+                    </td>
                     <td style="width:250px;">
-                        <%# Eval("Route.DJ_TourGroup.Name")%>
+                        <%# Eval("Enterprise.Name")%>
+                        <%--<%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>--%>
                     </td>
                     <td style="width:150px;">
-                        地接社名称:
+                         验证时间:
                     </td>
-                    <td style="width:200px;">
-                        <%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        验证时间:
-                    </td>
-                    <td>
+                    <td  style="width:200px;">
                         <%# Eval("ConsumeTime")%>
                     </td>
-                    <td>
-                        导游姓名:
-                    </td>
-                    <td>
-                        <asp:Literal ID="laGuiderName" runat="server"></asp:Literal>
-                    </td>
                 </tr>
                 <tr>
-                    <td>
-                        预订成人人数:
-                    </td>
-                    <td>
-                        <%# Eval("Route.DJ_TourGroup.AdultsAmount")%>
-                    </td>
-                    <td>
-                        预订儿童人数:
-                    </td>
-                    <td>
-                        <%# Eval("Route.DJ_TourGroup.ChildrenAmount")%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        实到成人人数:
-                    </td>
-                    <td>
-                        <%# Eval("AdultsAmount")%>
-                    </td>
-                    <td>
-                        实到儿童人数:
-                    </td>
-                    <td>
-                        <%# Eval("ChildrenAmount")%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>游玩时间:</td>
+                    <td >
+                        人数:
+                    </td>   
                     <td colspan="3">
-                        <%# Eval("Route.DJ_TourGroup.BeginDate", "{0:yyyy-MM-dd}")%>至<%# Eval("Route.DJ_TourGroup.EndDate", "{0:yyyy-MM-dd}")%></td>
+                        成人<%# Eval("AdultsAmount")%>人&nbsp;&nbsp;儿童<%# Eval("ChildrenAmount")%>人
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        备注:
+                    </td>
+                    <td colspan="3" style="height:100px; text-align:left; vertical-align:top;">
+                        团队编号:<%# Eval("Route.DJ_TourGroup.No")%>&nbsp;&nbsp;团队名称:<%# Eval("Route.DJ_TourGroup.Name")%>
+                        &nbsp;&nbsp;地接社名称:<%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>
+                    </td>
+                    
                 </tr>
                 
                 <tr>
                     <td colspan="2" style="text-align:left;padding-left:10px;">
-                        旅游企业签名:
+                        景区签名或盖章:
                     </td>
                     <td colspan="2" style="text-align:left;padding-left:10px;">
                         团队负责人签名:
