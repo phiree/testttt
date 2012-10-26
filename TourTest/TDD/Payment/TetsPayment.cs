@@ -17,7 +17,6 @@ namespace TourTest.TDD.Payment
         [Test]
        public void TestPay()
        {
-           int totalFee = 100;
            string orderId = Guid.NewGuid().ToString();
            TestCodePayment payment = new TestCodePayment();
        }

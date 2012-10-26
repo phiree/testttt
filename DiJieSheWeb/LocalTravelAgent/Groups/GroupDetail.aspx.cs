@@ -39,22 +39,22 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
 
         #region v.2012/10/9
 
-        //IList<ExcelOplib.Entity.GroupRouteNew> grlist = new List<ExcelOplib.Entity.GroupRouteNew>();
-        //foreach (var item in tg.Routes.GroupBy(x => x.DayNo))
-        //{
-        //    grlist.Add(new ExcelOplib.Entity.GroupRouteNew()
-        //    {
-        //        RouteDate = item.First().DayNo.ToString(),
-        //        Breakfast = item.Where(x => x.Description == "早餐").Count() > 0 ? item.First(x => x.Description == "早餐") : null,
-        //        Lunch = item.Where(x => x.Description == "中餐").Count() > 0 ? item.First(x => x.Description == "中餐") : null,
-        //        Dinner = item.Where(x => x.Description == "晚餐").Count() > 0 ? item.First(x => x.Description == "晚餐") : null,
-        //        Hotel = item.Where(x => x.Description.StartsWith("住宿")).Count() > 0 ? item.Where(x => x.Description.StartsWith("住宿")).ToList<Model.DJ_Route>() : null,
-        //        Scenic = item.Where(x => x.Description.StartsWith("景点")).Count() > 0 ? item.Where(x => x.Description.StartsWith("景点")).ToList<Model.DJ_Route>() : null,
-        //        ShoppingPoint = item.Where(x => x.Description.StartsWith("购物点")).Count() > 0 ? item.Where(x => x.Description.StartsWith("购物点")).ToList<Model.DJ_Route>() : null
-        //    });
-        //}
-        //rptRoute.DataSource = grlist.OrderBy(x => x.RouteDate);
-        //rptRoute.DataBind();
+        IList<ExcelOplib.Entity.GroupRouteNew> grlist = new List<ExcelOplib.Entity.GroupRouteNew>();
+        foreach (var item in tg.Routes.GroupBy(x => x.DayNo))
+        {
+            grlist.Add(new ExcelOplib.Entity.GroupRouteNew()
+            {
+                RouteDate = item.First().DayNo.ToString(),
+                //Breakfast = item.Where(x => x.Description == "早餐").Count() > 0 ? item.First(x => x.Description == "早餐") : null,
+                //Lunch = item.Where(x => x.Description == "中餐").Count() > 0 ? item.First(x => x.Description == "中餐") : null,
+                //Dinner = item.Where(x => x.Description == "晚餐").Count() > 0 ? item.First(x => x.Description == "晚餐") : null,
+                Hotel = item.Where(x => x.Description.StartsWith("住宿")).Count() > 0 ? item.Where(x => x.Description.StartsWith("住宿")).ToList<Model.DJ_Route>() : null,
+                Scenic = item.Where(x => x.Description.StartsWith("景点")).Count() > 0 ? item.Where(x => x.Description.StartsWith("景点")).ToList<Model.DJ_Route>() : null
+                //ShoppingPoint = item.Where(x => x.Description.StartsWith("购物点")).Count() > 0 ? item.Where(x => x.Description.StartsWith("购物点")).ToList<Model.DJ_Route>() : null
+            });
+        }
+        rptRoute.DataSource = grlist.OrderBy(x => x.RouteDate);
+        rptRoute.DataBind();
         #endregion
     }
 
@@ -80,8 +80,8 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
             //找到分类Repeater关联的数据项 
             ExcelOplib.Entity.GroupRouteNew grnrptRouteShopping = (ExcelOplib.Entity.GroupRouteNew)e.Item.DataItem;
             //根据分类ID查询该分类下的产品，并绑定产品Repeater 
-            rptRouteShopping.DataSource = grnrptRouteShopping.ShoppingPoint;
-            rptRouteShopping.DataBind();
+            //rptRouteShopping.DataSource = grnrptRouteShopping.ShoppingPoint;
+            //rptRouteShopping.DataBind();
 
             Label lblBreakfast = (Label)e.Item.FindControl("lblBreakfast");
             Label lblLunch = (Label)e.Item.FindControl("lblLunch");
@@ -112,6 +112,7 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
             if (null != gcrecord)
             {
                 label.BackColor = System.Drawing.Color.Aqua;
+                label.Text += "【"+gcrecord.ConsumeTime+"】";
             }
             else
             {

@@ -131,7 +131,7 @@ namespace ExcelOplib.Entity
         /// </summary>
         public Model.DJ_Route Dinner { get; set; }
         /// <summary>
-        /// 住宿1
+        /// 住宿
         /// </summary>
         public IList<Model.DJ_Route> Hotel { get; set; }
         /// <summary>

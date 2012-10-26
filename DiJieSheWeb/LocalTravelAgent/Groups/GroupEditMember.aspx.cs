@@ -126,6 +126,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     {
         UpdateSimple(tbxSimple);
         BuildJsonData();
+        Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
     protected void btnUpload_Click(object sender, EventArgs e)
     {
@@ -175,5 +176,6 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     {
         UpdateSimple(tbxExcel);
         BuildJsonData();
+        Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
 }

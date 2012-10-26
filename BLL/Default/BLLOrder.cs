@@ -144,8 +144,6 @@ namespace BLL
             IList<MonthOrder> molist = new List<MonthOrder>();
              int idatebegin = int.Parse(dateBegin);
             int idateend = int.Parse(dateEnd);
-            int totalnum = 0;
-            decimal totalprice = 0;
             for (int i = idatebegin; i <= idateend && i % 100 < 13; i++)
             {
 

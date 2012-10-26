@@ -35,15 +35,14 @@
                 <td>
                     <asp:Repeater ID="rptScenics" runat="server">
                         <ItemTemplate>
-                            <%#Eval("Enterprice.Name")%>：<%#Eval("Peoplenum")%>， 
+                            <%#Eval("Enterprice.Name")%>：<%#Eval("Peoplenum")%>，
                         </ItemTemplate>
                     </asp:Repeater>
                 </td>
             </tr>
         </ItemTemplate>
         <FooterTemplate>
-                </tbody>
-            </table>
+            </tbody> </table>
         </FooterTemplate>
     </asp:Repeater>
 </asp:Content>

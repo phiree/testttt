@@ -342,7 +342,8 @@
                 <td>
                     <h6 id="txtBack">
                     </h6>
-                </td></tr>
+                </td>
+            </tr>
         </table>
         <!-- 基本信息end -->
         <!-- 人员begin -->
