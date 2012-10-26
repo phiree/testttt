@@ -21,7 +21,20 @@ namespace BLL
         {
             return Idj_user_enterprise.GetUser_TEbyId(id, permis);
         }
+
+        public IList<Model.DJ_User_Gov> GetAllGov_User()
+        {
+            return Idj_user_enterprise.GetAllGov_User();
+        }
       //  public Model
+        public void DeleteGov_User(Guid userid)
+        {
+            Idj_user_enterprise.DeleteGov_User(userid);
+        }
+        public Model.DJ_User_Gov GetGov_UserById(Guid id)
+        {
+            return Idj_user_enterprise.GetGov_UserById(id);
+        }
         #endregion
     }
 }

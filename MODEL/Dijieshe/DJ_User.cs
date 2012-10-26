@@ -39,6 +39,7 @@ namespace Model
 
     public enum DJ_User_GovPermission
     {
-        超级管理员=1
+        企业编辑员=1,
+        企业统计员=2
     }
 }

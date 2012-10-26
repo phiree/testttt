@@ -58,6 +58,7 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
                 DJ_User_Gov mgrUser = new DJ_User_Gov();
                 mgrUser.GovDpt = mgrDpt;
                 mgrUser.Name = loginname;
+                mgrUser.PermissionMask = DJ_User_GovPermission.企业编辑员 | DJ_User_GovPermission.企业统计员;
                 mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
                 bllMember.CreateUpdateMember(mgrUser);
                 BindList();
