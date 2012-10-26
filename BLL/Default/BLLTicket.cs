@@ -202,6 +202,10 @@ namespace BLL
         {
 
             //删除目标景区下的所有门票先!
+            foreach (Ticket st in target.Tickets)
+            {
+                bllScenic.Delete(st);
+            }
             foreach (Ticket t in source.Tickets)
             {
                 t.Scenic = target;
