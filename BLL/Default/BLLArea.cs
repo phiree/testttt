@@ -7,7 +7,7 @@ using IDAL;
 
 namespace BLL
 {
-    public class BLLArea
+    public class BLLArea:DalBase
     {
         IArea iarea;
 
@@ -82,6 +82,18 @@ namespace BLL
 
             
             
+        }
+        public Model.Area ParseArea(string  cityname)
+        {
+            Model.Area area = new Model.Area();
+            if (!cityname.EndsWith("市"))
+            {
+                cityname += "市";
+            }
+
+
+
+            return area;
         }
     }
 }

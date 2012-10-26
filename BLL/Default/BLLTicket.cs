@@ -55,9 +55,9 @@ namespace BLL
         {
             return Iticket.GetTicketByAreaId(areaid);
         }
-        public IList<Model.Scenic> GetTicketByAreaIdAndLevel(Area area, int level,string topic, int pageIndex, int pageSize, out int totalRecord)
+        public IList<Model.Scenic> GetTicketByAreaIdAndLevel(Area area, int level, string topic, int pageIndex, int pageSize, out int totalRecord)
         {
-            return Iticket.GetTicketByAreaIdAndLevel(area, level,topic, pageIndex - 1, pageSize, out totalRecord);
+            return Iticket.GetTicketByAreaIdAndLevel(area, level, topic, pageIndex - 1, pageSize, out totalRecord);
         }
         public IList<Model.Ticket> GetTicketByscId(int scid)
         {
@@ -192,6 +192,55 @@ namespace BLL
         {
             Ticket t = GetTicket(ticketId);
             Iticket.Delete(t);
+        }
+        /// <summary>
+        /// 将 source的门票 移至 target
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        public void Move(Scenic source, Scenic target)
+        {
+
+            //删除目标景区下的所有门票先!
+            IList<Ticket> tobeRemoved = new List<Ticket>();
+            foreach (Ticket st in target.Tickets)
+            {
+               
+                tobeRemoved.Add(st);
+            }
+            target.Tickets.Clear();
+            foreach (Ticket removedT in tobeRemoved)
+            {
+                Iticket.Delete(removedT);
+            }
+            foreach (Ticket t in source.Tickets)
+            {
+                t.Scenic = target;
+                SaveOrUpdateTicket(t);
+            }
+        }
+        public void Move(int mipangId, string targetScenicSEOName,out string err)
+        {
+            err = string.Empty;
+            Scenic source=   bllScenic.GetByMipangId(mipangId);
+            Scenic target = bllScenic.GetScenicBySeoName(targetScenicSEOName);
+
+            bool isOk = true;
+            if (source == null )
+            {
+                err += mipangId + "-不存在";
+                isOk = false;
+            }
+            if (target == null)
+            {
+                err += targetScenicSEOName + "-不存在";
+                isOk = false;
+            }
+            if (!isOk)
+            {
+                return;
+            }
+            Move(source, target);
         }
     }
 

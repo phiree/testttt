@@ -36,5 +36,32 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_User_TourEnterprise>().Value;
         }
+
+
+        public IList<Model.DJ_User_Gov> GetAllGov_User()
+        {
+            string sql = "select u from DJ_User_Gov u";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_User_Gov>().ToList<Model.DJ_User_Gov>();
+        }
+
+
+        public void DeleteGov_User(Guid userid)
+        {
+            using (var x=session.Transaction)
+            {
+                x.Begin();
+                session.Delete(userid);
+                x.Commit();
+            }
+        }
+
+
+        public Model.DJ_User_Gov GetGov_UserById(Guid id)
+        {
+            string sql = "select u from DJ_User_Gov u where u.Id='" + id + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Model.DJ_User_Gov>().Value;
+        }
     }
 }

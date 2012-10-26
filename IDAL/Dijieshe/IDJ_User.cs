@@ -11,6 +11,10 @@ namespace IDAL
         Model.DJ_User_TourEnterprise GetUser_TEbyId(int id);
         Model.DJ_User_TourEnterprise GetByMemberId(Guid id);
         Model.DJ_User_TourEnterprise GetUser_TEbyId(int id, int permis);
+
+        IList<Model.DJ_User_Gov> GetAllGov_User();
+        void DeleteGov_User(Guid userid);
+        Model.DJ_User_Gov GetGov_UserById(Guid id);
         #endregion
     }
 }

@@ -104,6 +104,7 @@
     <Compile Include="Default\BLLTopic.cs" />
     <Compile Include="Default\BLLVote.cs" />
     <Compile Include="Default\Checkout.cs" />
+    <Compile Include="Default\MipangTicket\TicketMover.cs" />
     <Compile Include="Default\MipangTicket\TicketXmlParser.cs" />
     <Compile Include="Dijieshe\BLLDJEnterprise.cs" />
     <Compile Include="Default\ErrType.cs" />

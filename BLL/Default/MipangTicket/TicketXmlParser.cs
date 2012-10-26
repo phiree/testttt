@@ -77,6 +77,13 @@ TicketPrice(type,price) <ticket_price>60</ticket_price>
             s.Phone = item.photo;
             s.Type = EnterpriseType.景点;
             s.IsHide = true;
+            s.Area = new BLLArea().GetAreaByCode("330000");
+
+            ///构造景点的area对象
+            ///现有数据: 浙江/江苏/All/杭州/建德
+            ///目标数据:浙江省杭州市
+            s.Desec = item.city;
+            
 
 
             foreach (ticket ticket in item.tickets)
@@ -133,6 +140,7 @@ TicketPrice(type,price) <ticket_price>60</ticket_price>
     {
         public string title { get; set; }
         public string price { get; set; }
+        public string city { get; set; }
         public string mipang_id { get; set; }
         public string photo { get; set; }
         public string pic_more { get; set; }
