@@ -116,7 +116,8 @@
             saveURL: "GroupEditMemberHanlder.ashx",
             //  loadURL: "GroupEditMemberHanlder.ashx",
             parameters: { "groupid": "<%=CurrentGroup.Id %>" },
-      
+      
+
             saveResponseHandler: function (r, d) {
                 //   debugger;
                 window.location.href = window.location.href;
@@ -140,27 +141,11 @@
             });
         });
     </script>
-    <script type="text/javascript">
-        $(function () {
-            $("#btnExcel").click(function () {
-
-                var datas = "";
-                $.ajax({
-                    type: "Post",
-                    url: "ExcelHandler.ashx?filename=" + $("#<%=Label1.ClientID%>").html(),
-                    dataType: "text",
-                    data: datas,
-                    success: function (data, status) {
-                        alert(data);
-                    }
-                });
-            });
-        });
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <div>
-        <%=CurrentGroup.Name %>游客列表</div>
+    <br />
+    <h3><b>
+        <%=CurrentGroup.Name %>游客列表</b></h3>
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">表格录入</a></li>

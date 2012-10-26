@@ -129,7 +129,7 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
         //整理后数据Gov3
         IList<Model.DJ_TourGroup> tglist = blltg.GetTourGroupByAll();
         IList<statics_Gov3> sm3 = new List<statics_Gov3>();
-        foreach (var item3 in tglist)
+        foreach (var item3 in tglist.Where(x=>x.DJ_DijiesheInfo!=null))
         {
             sm3.Add(new statics_Gov3()
             {

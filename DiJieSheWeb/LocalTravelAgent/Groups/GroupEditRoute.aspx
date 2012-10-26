@@ -1,8 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true"
     CodeFile="GroupEditRoute.aspx.cs" Inherits="LocalTravelAgent_Groups_GroupEditRoute" %>
-<%@ Register Src="~/LocalTravelAgent/Groups/RecommentEnt.ascx" TagName="recomment" TagPrefix="uc" %>
+
+<%@ Register Src="~/LocalTravelAgent/Groups/RecommentEnt.ascx" TagName="recomment"
+    TagPrefix="uc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-<!--SigmaGrid-->
+    <!--SigmaGrid-->
     <script src="/Scripts/sigmagrid/gt_msg_en.js" type="text/javascript"></script>
     <script src="/Scripts/sigmagrid/gt_grid_all.js" type="text/javascript"></script>
     <script src="/Scripts/sigmagrid/gt_msg_cn.js" type="text/javascript"></script>
@@ -18,21 +20,20 @@
     <script src="/Scripts/json2.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
 
-        var __TEST_DATA__ =
-  JSON.parse("<%=MemberJsonList %>");
+        var __TEST_DATA__ = JSON.parse("<%=MemberJsonList %>");
         //[["youkeid","1", "成人游客", "李爽", "13282151877", "520822198010103916",""]];
         var grid_demo_id = "myGrid1";
 
         var dsOption = {
 
             fields: [
-		{ name: 'tourertype' },
-		{ name: 'realname' },
-		{ name: 'phone' },
-		{ name: 'idcardno' },
-		{ name: 'othercardno' },
-          { name: 'memberid' }
-	],
+		        { name: 'tourertype' },
+		        { name: 'realname' },
+		        { name: 'phone' },
+		        { name: 'idcardno' },
+		        { name: 'othercardno' },
+                  { name: 'memberid' }
+	        ],
 
             recordType: 'array',
             data: __TEST_DATA__
@@ -138,7 +139,6 @@
             });
         });
     </script>
-  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div>
@@ -147,7 +147,6 @@
         <ul>
             <li><a href="#tabs-1">表格录入</a></li>
             <li><a href="#tabs-2">简单文本录入</a></li>
-        
         </ul>
         <div id="tabs-1">
             <div id="gridbox" style="border: 0px solid #cccccc; background-color: #f3f3f3;">
@@ -169,6 +168,5 @@
                 Text="保存" />
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>
-       
     </div>
 </asp:Content>

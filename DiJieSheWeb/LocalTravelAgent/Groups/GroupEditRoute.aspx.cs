@@ -7,10 +7,14 @@ using System.Web.UI.WebControls;
 using BLL;
 public partial class LocalTravelAgent_Groups_GroupEditRoute :basepageDjsGroupEdit
 {
+    public string MemberJsonList;
     protected void Page_Load(object sender, EventArgs e)
     {
-        ucrecomment.AreaCode = CurrentDJS.Area.Code;
+        //ucrecomment.AreaCode = CurrentDJS.Area.Code;
     }
 
-   
+    protected void btnSave_Click(object sender, EventArgs e)
+    { 
+    
+    }
 }
