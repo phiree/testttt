@@ -34,12 +34,12 @@ namespace Model
     /// </summary>
     public enum DJ_User_TourEnterprisePermission
     {
-        DJS创建团队 = 1
+        管理员 = 1
     }
 
     public enum DJ_User_GovPermission
     {
-        企业编辑员=1,
-        企业统计员=2
+        行业管理员=1,
+        信息维护员=2
     }
 }

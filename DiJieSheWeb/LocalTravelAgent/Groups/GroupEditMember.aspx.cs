@@ -33,16 +33,16 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
         foreach (Model.DJ_TourGroupMember member in CurrentGroup.Members)
         {
-            sb.Append(member.MemberType.ToString());
+            sb.Append(member.MemberType);
             sb.Append(",");
-            sb.Append(member.RealName.ToString());
+            sb.Append(member.RealName);
             sb.Append(",");
-            sb.Append(member.PhoneNum.ToString());
+            sb.Append(member.PhoneNum);
             sb.Append(",");
 
-            sb.Append(member.IdCardNo.ToString());
+            sb.Append(member.IdCardNo);
             sb.Append(",");
-            sb.Append(member.SpecialCardNo.ToString());
+            sb.Append(member.SpecialCardNo);
             if (CurrentGroup.Members.IndexOf(member) < CurrentGroup.Members.Count - 1)
             {
                 sb.AppendLine(Environment.NewLine);

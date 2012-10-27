@@ -88,8 +88,9 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
 
         if (e.CommandName.ToLower() == "setadmin")
         {
-            string loginname = "EntAdmin_" + entId.ToString();
+            
             DJ_TourEnterprise ent = bllDjEnt.GetDJS8id(entId.ToString())[0];
+            string loginname = "EntAdmin_" + ent.seoname;
             DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
             mgrUser.Enterprise = ent;
             mgrUser.Name = loginname;

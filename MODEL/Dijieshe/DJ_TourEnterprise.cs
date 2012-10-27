@@ -30,6 +30,7 @@ namespace Model
         /// </summary>
         public virtual bool IsVeryfied { get; set; }
         public virtual EnterpriseType Type { get; set; }
+        public virtual string seoname { get; set; }
     }
     public enum EnterpriseType
     {

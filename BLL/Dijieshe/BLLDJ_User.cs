@@ -27,14 +27,29 @@ namespace BLL
             return Idj_user_enterprise.GetAllGov_User();
         }
       //  public Model
-        public void DeleteGov_User(Guid userid)
+        public void DeleteGov_User(Model.TourMembership m)
         {
-            Idj_user_enterprise.DeleteGov_User(userid);
+            Idj_user_enterprise.DeleteGov_User(m);
         }
         public Model.DJ_User_Gov GetGov_UserById(Guid id)
         {
             return Idj_user_enterprise.GetGov_UserById(id);
         }
+
+        public void SaveOrUpdate(Model.TourMembership m)
+        {
+            Idj_user_enterprise.SaveOrUpdate(m);
+        }
         #endregion
+
+        public List<Model.DJ_User_TourEnterprise> GetAllEnt_User()
+        {
+            return Idj_user_enterprise.GetAllEnt_User().Where(x => x.Enterprise.Type != Model.EnterpriseType.旅行社).ToList<Model.DJ_User_TourEnterprise>();
+        }
+
+        public List<Model.DJ_User_TourEnterprise> GetAllLocal_User()
+        {
+            return Idj_user_enterprise.GetAllEnt_User().Where(x => x.Enterprise.Type == Model.EnterpriseType.旅行社).ToList<Model.DJ_User_TourEnterprise>();
+        }
     }
 }

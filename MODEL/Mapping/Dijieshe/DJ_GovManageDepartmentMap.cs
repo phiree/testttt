@@ -18,6 +18,7 @@ namespace Model.Mapping
             References<Area>(x => x.Area);
             Map(x => x.Phone);
             Map(x => x.Address);
+            Map(x => x.seoname);
       }
     }
 }
