@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true" CodeFile="LTAUserEdit.aspx.cs" Inherits="LocalTravelAgent_LTAUserEdit" %>
-
+<%@ MasterType  VirtualPath="~/LocalTravelAgent/LTA.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
 </asp:Content>

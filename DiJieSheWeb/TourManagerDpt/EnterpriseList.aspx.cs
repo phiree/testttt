@@ -57,7 +57,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             Button BtnCreate = e.Item.FindControl("BtnCreate") as Button;
             Literal laAccount = e.Item.FindControl("laAccount") as Literal;
             DJ_User_TourEnterprise user= bllUser.GetUser_TEbyId(ent.Id,1);
-            if (user != null && user.PermissionMask == Model.DJ_User_TourEnterprisePermission.DJS创建团队)
+            if (user != null && user.PermissionMask == Model.DJ_User_TourEnterprisePermission.管理员)
             {
                 laAccount.Visible = true;
                 laAccount.Text = user.Name;
@@ -94,7 +94,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
             mgrUser.Enterprise = ent;
             mgrUser.Name = loginname;
-            mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.DJS创建团队;
+            mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.管理员;
             mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             bllMember.CreateUpdateMember(mgrUser);
         }
