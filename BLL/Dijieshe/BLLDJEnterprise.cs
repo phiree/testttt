@@ -187,6 +187,13 @@ namespace BLL
 
         #endregion
 
+
+        #region 设置地接社的奖励范围情况
+
+      //public void Set
+
+        #endregion
+
         #region group
 
         /// <summary>

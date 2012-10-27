@@ -194,7 +194,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
     }
 
 
-
+    BLLScenicImg bllSI = new BLLScenicImg();
     protected void rptscenic_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -208,12 +208,33 @@ public partial class DiscountTicket_DiscountTicket : basepage
                 Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
                 liPriceNormal.Text = priceNormal.ToString("0");
                 liPriceOnline.Text = priceOnline.ToString("0");
-                Image img = e.Item.FindControl("Image1") as Image;
-                if (new BLLScenicImg().GetSiByType(t, 1).Count > 0)
+               
+               
+            }
+            //设置图片
+            Image img = e.Item.FindControl("Image1") as Image;
+
+            IList<ScenicImg> mainImg = bllSI.GetSiByType(t, 1);
+            string targetImageUrl = string.Empty;
+            if (mainImg.Count > 0)
+            {
+                targetImageUrl = mainImg[0].Name;
+                string extention = bllSI.GetSiByType(t, 1)[0].Name.Split('.')[1];
+                img.ImageUrl = "/ScenicImg/small/" + bllSI.GetSiByType(t, 1)[0].Name.Split('.')[0] + "_s." + extention;
+            }
+            else { //如果没有主图 则选择副图第一章
+                IList<ScenicImg> viceImg = bllSI.GetSiByType(t, 2);
+                if (viceImg.Count > 0)
                 {
-                    string extention = new BLLScenicImg().GetSiByType(t, 1)[0].Name.Split('.')[1];
-                    img.ImageUrl = "/ScenicImg/small/" + new BLLScenicImg().GetSiByType(t, 1)[0].Name.Split('.')[0]+"_s."+extention;
+                    targetImageUrl = viceImg[0].Name;
                 }
+            }
+            if (!string.IsNullOrEmpty(targetImageUrl))
+            {
+              //  string extention = System.IO.Path.GetExtension(targetImageUrl);
+                targetImageUrl = targetImageUrl.Insert(targetImageUrl.IndexOf("."), "_s");
+
+                img.ImageUrl = "/ScenicImg/small/" + targetImageUrl;
             }
             string ahref="/Tickets/" + bllArea.GetAreaByCode(t.Area.Code.Substring(0, 4) + "00").SeoName + "_" + t.Area.SeoName + "/" + t.SeoName + ".html";
             HtmlAnchor ha = e.Item.FindControl("schref") as HtmlAnchor;

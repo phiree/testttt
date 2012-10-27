@@ -30,11 +30,11 @@ namespace Model
         ///// </summary>
         //public virtual bool IsVeryfied { get; set; }
         //是否是省级奖励方位内的企业
-        public virtual RewardType IsProvinceVeryFied { get; set; }
+        public virtual RewardType ProvinceVeryfyState { get; set; }
         //是否是市级奖励范围内的企业
-        public virtual RewardType IsCityVeryFied { get; set; }
+        public virtual RewardType CityVeryfyState { get; set; }
         //是否是县级奖励范围内的企业
-        public virtual RewardType IsCountyVeryFied { get; set; }
+        public virtual RewardType CountryVeryfyState { get; set; }
         public virtual EnterpriseType Type { get; set; }
         public virtual string Seoname { get; set; }
         public virtual string Email { get; set; }
