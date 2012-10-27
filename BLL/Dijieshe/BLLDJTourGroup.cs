@@ -7,7 +7,7 @@ using DAL;
 
 namespace BLL
 {
-    public class BLLDJTourGroup:DalBase
+    public class BLLDJTourGroup : DalBase
     {
         IDJTourGroup Idjtourgroup = new DALDJTourGroup();
 
@@ -28,7 +28,7 @@ namespace BLL
 
         public IList<Model.DJ_Group_Worker> GetTourGroupByTEId(int id)
         {
-            List<Model.DJ_TourGroup> listTg= Idjtourgroup.GetTourGroupByTEId(id).ToList();
+            List<Model.DJ_TourGroup> listTg = Idjtourgroup.GetTourGroupByTEId(id).ToList();
             List<Model.DJ_Group_Worker> listGw = new List<Model.DJ_Group_Worker>();
             List<Model.DJ_Group_Worker> listGw2 = new List<Model.DJ_Group_Worker>();
             foreach (Model.DJ_TourGroup tg in listTg)
@@ -43,7 +43,7 @@ namespace BLL
                 }
             }
             return listGw2;
-            
+
         }
         public Model.DJ_TourGroup GetTgByproductid(Guid proid)
         {
@@ -58,14 +58,14 @@ namespace BLL
         /// <returns></returns>
         public IList<Model.DJ_TourGroup> GetTgByIdcardAndTE(string idcard, Model.DJ_TourEnterprise TE)
         {
-            List<Model.DJ_TourGroup> ListTg= Idjtourgroup.GetTgByIdcardAndTE(idcard, TE).ToList();
+            List<Model.DJ_TourGroup> ListTg = Idjtourgroup.GetTgByIdcardAndTE(idcard, TE).ToList();
             List<Model.DJ_TourGroup> ListTyTg = new List<Model.DJ_TourGroup>();
             foreach (Model.DJ_TourGroup Tg in ListTg)
             {
                 DateTime dtBegin = Tg.BeginDate;
                 foreach (Model.DJ_Route route in Tg.Routes)
                 {
-                    if (dtBegin.AddDays(route.DayNo-1).ToShortDateString() == DateTime.Now.ToShortDateString()&&route.Enterprise.Id==TE.Id)
+                    if (dtBegin.AddDays(route.DayNo - 1).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == TE.Id)
                     {
                         ListTyTg.Add(Tg);
                     }
@@ -93,7 +93,7 @@ namespace BLL
             return session.Get<Model.DJ_TourGroupMember>(id);
         }
 
-        
+
 
         /// <summary>
         /// 将游客列表生成json字符串
@@ -121,7 +121,7 @@ namespace BLL
                     sbJson.Append(",");
                 }
             }
-            sbJson.Append("],\\\"pageInfo\\\":{\\\"totalRowNum\\\":"+memberList.Count+"},\\\"exception\\\":\\\"\\\"}");
+            sbJson.Append("],\\\"pageInfo\\\":{\\\"totalRowNum\\\":" + memberList.Count + "},\\\"exception\\\":\\\"\\\"}");
             return sbJson.ToString();
         }
 
@@ -149,21 +149,31 @@ namespace BLL
 
         public static string BuildJsonForRouteList(IList<Model.DJ_Route> routeList)
         {
-            System.Text.StringBuilder sbJson = new System.Text.StringBuilder();
-            sbJson.Append("[");
-            foreach (Model.DJ_Route route in routeList)
+            string sbJson = string.Empty;
+            sbJson+="[";
+            foreach (var routes in routeList.OrderBy(x=>x.DayNo).GroupBy(x => x.DayNo))
             {
-                sbJson.Append("[\\\"");
-                sbJson.Append(route.DayNo.ToString()); sbJson.Append("\\\",\\\"");
-                sbJson.Append(route.Enterprise.Name); sbJson.Append("\\\",\\\"");
-                sbJson.Append(route.Description); sbJson.Append("\\\",\\\"");
-                sbJson.Append(route.Id); sbJson.Append("\\\"]");
-                if (routeList.IndexOf(route) < routeList.Count - 1)
+                sbJson+="[\\\"";
+                sbJson+=routes.Key.ToString();
+                sbJson+="\\\",\\\"";
+                foreach (var item in routes.Where(x => x.Description.StartsWith("景点")))
                 {
-                    sbJson.Append(",");
+                    sbJson+=item.Enterprise.Name;
+                    sbJson+="-";
                 }
+                sbJson = sbJson.Substring(0, sbJson.Length - 1);
+                sbJson+="\\\",\\\"";
+                foreach (var item in routes.Where(x => x.Description.StartsWith("住宿")))
+                {
+                    sbJson+=item.Enterprise.Name;
+                    sbJson+="-";
+                }
+                sbJson = sbJson.ToString().Substring(0, sbJson.Length - 1);
+                sbJson+="\\\"]";
+                sbJson+=",";
             }
-            sbJson.Append("]");
+            sbJson = sbJson.ToString().Substring(0, sbJson.Length - 1);
+            sbJson+="]";
             return sbJson.ToString();
         }
 

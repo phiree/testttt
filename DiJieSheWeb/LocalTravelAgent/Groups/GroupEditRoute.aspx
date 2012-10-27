@@ -26,8 +26,7 @@
             fields: [
                 { name: 'dayno' },
                 { name: 'scenic' },
-                { name: 'hotel' },
-                { name: 'routeid' }
+                { name: 'hotel' }
             ],
             recordType: 'array',
             data: __TEST_DATA__
@@ -65,8 +64,7 @@
             editor: { type: "text" }
         },
         { id: 'scenic', header: "景点", width: 200,editor: { type: "text"}},
-        { id: 'hotel', header: "住宿", width: 200, editor: { type: "text"} },
-        { id: 'routeid', header: "id", width: 200, editor: { type: "text"} }
+        { id: 'hotel', header: "住宿", width: 200, editor: { type: "text"} }
         ];
 
         var gridOption = {
