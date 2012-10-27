@@ -19,7 +19,10 @@ namespace Model
            Map(x => x.ChargePersonName);
            Map(x => x.ChargePersonPhone);
            Map(x => x.Phone);
-           Map(x => x.IsVeryfied);
+           //Map(x => x.IsVeryfied);
+           Map(x => x.IsProvinceVeryFied).CustomType<int>();
+           Map(x => x.IsCityVeryFied).CustomType<int>();
+           Map(x => x.IsCountyVeryFied).CustomType<int>(); 
            Map(x => x.Type).CustomType<int>();
            Map(x => x.Seoname);
            Map(x => x.Buslicense);

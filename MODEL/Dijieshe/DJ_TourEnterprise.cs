@@ -25,10 +25,16 @@ namespace Model
         public virtual string ChargePersonName { get; set; }
         public virtual string ChargePersonPhone { get; set; }
         public virtual string Phone { get; set; }
-        /// <summary>
-        /// 是否经过认证,成为奖励方位内的企业.
-        /// </summary>
-        public virtual bool IsVeryfied { get; set; }
+        ///// <summary>
+        ///// 是否经过认证,成为奖励方位内的企业.
+        ///// </summary>
+        //public virtual bool IsVeryfied { get; set; }
+        //是否是省级奖励方位内的企业
+        public virtual RewardType IsProvinceVeryFied { get; set; }
+        //是否是市级奖励范围内的企业
+        public virtual RewardType IsCityVeryFied { get; set; }
+        //是否是县级奖励范围内的企业
+        public virtual RewardType IsCountyVeryFied { get; set; }
         public virtual EnterpriseType Type { get; set; }
         public virtual string Seoname { get; set; }
         public virtual string Email { get; set; }
@@ -42,5 +48,12 @@ namespace Model
         宾馆,
         购物点,
         旅行社
+    }
+
+    public enum RewardType
+    {
+        已纳入=1,
+        从未纳入,
+        纳入后移除
     }
 }

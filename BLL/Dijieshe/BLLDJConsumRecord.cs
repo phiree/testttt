@@ -164,9 +164,9 @@ namespace BLL
             return ListTE;
         }
 
-        public int GetCountByStatics(string begintime, string endtime, string EntName, int type, int EntId, int Enttype, int Wentid)
+        public void GetCountByStatics(string begintime, string endtime, string EntName, int type, int EntId, int Enttype, int Wentid,out int count,out int livecount,out int visitedcount)
         {
-            int Count = 0;
+            count = livecount = visitedcount = 0;
             List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(begintime, endtime, EntName, type, EntId).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
@@ -182,19 +182,17 @@ namespace BLL
             {
                 foreach (DJ_GroupConsumRecord item in List)
                 {
-                    Count += item.AdultsAmount + item.ChildrenAmount;
+                    count += item.AdultsAmount + item.ChildrenAmount;
+                    visitedcount += item.AdultsAmount + item.ChildrenAmount;
                 }
-                return Count;
             }
-            if (Enttype == 2)
+            if (Enttype == 3)
             {
                 foreach (DJ_GroupConsumRecord item in List)
                 {
-                    Count += (item.AdultsAmount + item.ChildrenAmount) * item.LiveDay;
+                    livecount += (item.AdultsAmount + item.ChildrenAmount) * item.LiveDay;
                 }
-                return Count;
             }
-            return Count;
         }
 
         public IList<DJ_GroupConsumRecord> GetRecordByCondition(string begintime, string endtime, string EntName, int type, int EntId)

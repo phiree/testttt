@@ -21,7 +21,7 @@
                 已认证:
             </td>
             <td>
-                <%=Ent.IsVeryfied?"是":"否" %>
+                <%--<%=Ent.IsVeryfied?"是":"否" %>--%>
             </td>
         </tr>
         <tr>
