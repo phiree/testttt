@@ -21,6 +21,7 @@ namespace Model
            Map(x => x.Phone);
            Map(x => x.IsVeryfied);
            Map(x => x.Type).CustomType<int>();
+           Map(x => x.seoname);
        }
     }
 }

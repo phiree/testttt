@@ -46,12 +46,12 @@ namespace DAL
         }
 
 
-        public void DeleteGov_User(Guid userid)
+        public void DeleteGov_User(Model.TourMembership m)
         {
             using (var x=session.Transaction)
             {
                 x.Begin();
-                session.Delete(userid);
+                session.Delete(m);
                 x.Commit();
             }
         }
@@ -62,6 +62,25 @@ namespace DAL
             string sql = "select u from DJ_User_Gov u where u.Id='" + id + "'";
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_User_Gov>().Value;
+        }
+
+
+        public void SaveOrUpdate(Model.TourMembership m)
+        {
+            using (var x=session.Transaction)
+            {
+                x.Begin();
+                session.SaveOrUpdate(m);
+                x.Commit();
+            }
+        }
+
+
+        public IList<Model.DJ_User_TourEnterprise> GetAllEnt_User()
+        {
+            string sql = "select u from DJ_User_TourEnterprise u ";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_User_TourEnterprise>().ToList<Model.DJ_User_TourEnterprise>();
         }
     }
 }

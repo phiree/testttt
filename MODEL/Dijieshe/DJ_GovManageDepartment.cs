@@ -17,6 +17,6 @@ namespace Model
        public virtual string Address { get; set; }
        public virtual Area Area { get; set; }
        public virtual string Phone { get; set; }
-
+       public virtual string seoname { get; set; }
     }
 }

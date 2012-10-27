@@ -35,17 +35,17 @@ public partial class TourManagerDpt_UserManager : System.Web.UI.Page
             {
                 case 1:
                     {
-                        laPermis.Text = "企业编辑员";
+                        laPermis.Text = "行业管理员";
                         break;
                     }
                 case 2:
                     {
-                        laPermis.Text = "企业统计员";
+                        laPermis.Text = "信息维护员";
                         break;
                     }
                 case 3:
                     {
-                        laPermis.Text = "企业编辑员、企业统计员";
+                        laPermis.Text = "行业管理员、信息维护员";
                         break;
                     }
             }
@@ -58,7 +58,8 @@ public partial class TourManagerDpt_UserManager : System.Web.UI.Page
         if (e.CommandName == "delete")
         {
             Guid userid = Guid.Parse(e.CommandArgument.ToString());
-            blldj_user.DeleteGov_User(userid);
+            DJ_User_Gov user = blldj_user.GetGov_UserById(userid);
+            blldj_user.DeleteGov_User(user);
             bind();
         }
     }

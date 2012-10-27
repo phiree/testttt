@@ -1,11 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master" AutoEventWireup="true" CodeFile="UserEdit.aspx.cs" Inherits="TourManagerDpt_UserEdit" %>
-<%@ MasterType VirtualPath="~/TourManagerDpt/manager.master" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true" CodeFile="LTAUserEdit.aspx.cs" Inherits="LocalTravelAgent_LTAUserEdit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <style type="text/css"> 
-    </style>
+
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
-    <div class="detail_titlebg">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+<div class="detail_titlebg">
         用户编辑
     </div>
     <div class="detaillist">
@@ -24,8 +23,7 @@
                 </td>
                 <td >
                     <asp:CheckBoxList ID="cbList" runat="server" CssClass="rbl" style="border:none !important">
-                        <asp:ListItem Value="1" >行业管理员</asp:ListItem>
-                        <asp:ListItem Value="2" >信息维护员</asp:ListItem>
+                        <asp:ListItem Value="1" >管理员</asp:ListItem>
                     </asp:CheckBoxList>
                 </td>
             </tr>

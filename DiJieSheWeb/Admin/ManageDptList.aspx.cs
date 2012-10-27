@@ -53,12 +53,13 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
         {
             case "setadmin":
 
-                string loginname = "GovAdmin_" + govId.GetHashCode().ToString().Substring(0,6);
+                
                 DJ_GovManageDepartment mgrDpt = bllDpt.GetMgrDpt(govId);
+                string loginname = "GovAdmin_" + mgrDpt.seoname;
                 DJ_User_Gov mgrUser = new DJ_User_Gov();
                 mgrUser.GovDpt = mgrDpt;
                 mgrUser.Name = loginname;
-                mgrUser.PermissionMask = DJ_User_GovPermission.企业编辑员 | DJ_User_GovPermission.企业统计员;
+                mgrUser.PermissionMask = DJ_User_GovPermission.行业管理员 | DJ_User_GovPermission.信息维护员;
                 mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
                 bllMember.CreateUpdateMember(mgrUser);
                 BindList();
