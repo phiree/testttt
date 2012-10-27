@@ -95,10 +95,10 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             }
             //权限判断
             DJ_User_Gov govUser = (DJ_User_Gov)CurrentMember;
-            switch ((int)govUser.PermissionMask)
-            {
-                case 2: btnVerify.Visible = false; laIsVerify.Visible = true; BtnCreate.Visible = false; BtnUpdate.Visible = false; laAccount.Visible = false; labAccount.Visible = true; break;
-            }
+            //switch ((int)govUser.PermissionMask)
+            //{
+            //    case 2: btnVerify.Visible = false; laIsVerify.Visible = true; BtnCreate.Visible = false; BtnUpdate.Visible = false; laAccount.Visible = false; labAccount.Visible = true; break;
+            //}
         }
     }
     BLLDJ_User bllDjUser = new BLLDJ_User();
@@ -123,7 +123,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
             mgrUser.Enterprise = ent;
             mgrUser.Name = loginname;
-            mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.信息管理员 | Model.DJ_User_TourEnterprisePermission.信息维护员;
+            //mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.信息管理员 | Model.DJ_User_TourEnterprisePermission.信息维护员;
             mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             bllMember.CreateUpdateMember(mgrUser);
         }

@@ -20,6 +20,7 @@ namespace Model.Mapping
             Map(x => x.Address);
             Map(x => x.IdCard);
             Map(x => x.Email);
+            Map(x => x.PermissionType).CustomType<int>();
         }
     }
 }

@@ -26,10 +26,10 @@ public partial class LocalTravelAgent_LTAUserEdit : System.Web.UI.Page
             Guid.TryParse(Request.QueryString["userid"], out userid);
             DJ_User_TourEnterprise user = blldj_user.GetByMemberId(userid);
             txtName.Text = user.Name;
-            switch ((int)user.PermissionMask)
-            {
-                case 1: cbList.Items[0].Selected = true; break;
-            }
+            //switch ((int)user.PermissionMask)
+            //{
+            //    case 1: cbList.Items[0].Selected = true; break;
+            //}
         }
     }
     protected void BtnSave_Click(object sender, EventArgs e)
@@ -46,16 +46,16 @@ public partial class LocalTravelAgent_LTAUserEdit : System.Web.UI.Page
         }
         mgrUser.Enterprise = Master.CurrentDJS;
         mgrUser.Name = txtName.Text;
-        Model.DJ_User_TourEnterprisePermission sat = 0;
-        foreach (ListItem item in cbList.Items)
-        {
-            if (item.Selected)
-            {
-                Model.DJ_User_TourEnterprisePermission permisson = (Model.DJ_User_TourEnterprisePermission)Enum.Parse(typeof(Model.DJ_User_TourEnterprisePermission), item.Text);
-                sat = sat | permisson;
-            }
-        }
-        mgrUser.PermissionMask = sat;
+        //Model.DJ_User_TourEnterprisePermission sat = 0;
+        //foreach (ListItem item in cbList.Items)
+        //{
+        //    if (item.Selected)
+        //    {
+        //        Model.DJ_User_TourEnterprisePermission permisson = (Model.DJ_User_TourEnterprisePermission)Enum.Parse(typeof(Model.DJ_User_TourEnterprisePermission), item.Text);
+        //        sat = sat | permisson;
+        //    }
+        //}
+        //mgrUser.PermissionMask = sat;
         mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
         blldj_user.SaveOrUpdate(mgrUser);
         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功');window.location='/LocalTravelAgent/LTAUserManager.aspx'", true);

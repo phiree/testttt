@@ -13,7 +13,6 @@ namespace Model
     {
         public virtual DJ_GovManageDepartment GovDpt { get; set; }
 
-        public virtual DJ_User_GovPermission PermissionMask { get; set; }
     }
 
     /// <summary>
@@ -23,25 +22,7 @@ namespace Model
     {
       
         public virtual DJ_TourEnterprise Enterprise { get; set; }
-        /// <summary>
-        /// 权限枚举
-        /// </summary>
-        public virtual DJ_User_TourEnterprisePermission PermissionMask { get; set; }
     }
 
-    /// <summary>
-    /// 企业用户权限
-    /// </summary>
-    public enum DJ_User_TourEnterprisePermission
-    {
-        信息维护员 = 1,
-        信息管理员=2
 
-    }
-
-    public enum DJ_User_GovPermission
-    {
-        行业管理员=1,
-        信息维护员=2
-    }
 }

@@ -34,46 +34,46 @@ public partial class TourManagerDpt_manager : System.Web.UI.MasterPage
             {
                 dptid = (tm as DJ_User_Gov).GovDpt.Id.ToString();
                 //laETName.Text = (tm as DJ_User_Gov).GovDpt.Name;
-                switch ((int)(tm as DJ_User_Gov).PermissionMask)
-                {
-                    case 1:
-                        {
-                            li_1.Visible = false;
-                            li_2.Visible = true;
-                            li_3.Visible = true;
-                            li_4.Visible = true;
-                            li_5.Visible = false;
-                            break;
-                        }
-                    case 2:
-                        {
-                            li_1.Visible = true;
-                            li_2.Visible = true;
-                            li_3.Visible = true;
-                            li_4.Visible = true;
-                            li_5.Visible = true;
-                            break;
-                        }
-                    case 3:
-                        {
-                            li_1.Visible = true;
-                            li_2.Visible = true;
-                            li_3.Visible = true;
-                            li_4.Visible = true;
-                            li_5.Visible = true;
-                            break;
-                        }
+                //switch ((int)(tm as DJ_User_Gov).PermissionMask)
+                //{
+                //    case 1:
+                //        {
+                //            li_1.Visible = false;
+                //            li_2.Visible = true;
+                //            li_3.Visible = true;
+                //            li_4.Visible = true;
+                //            li_5.Visible = false;
+                //            break;
+                //        }
+                //    case 2:
+                //        {
+                //            li_1.Visible = true;
+                //            li_2.Visible = true;
+                //            li_3.Visible = true;
+                //            li_4.Visible = true;
+                //            li_5.Visible = true;
+                //            break;
+                //        }
+                //    case 3:
+                //        {
+                //            li_1.Visible = true;
+                //            li_2.Visible = true;
+                //            li_3.Visible = true;
+                //            li_4.Visible = true;
+                //            li_5.Visible = true;
+                //            break;
+                //        }
 
-                    default:
-                        {
-                            li_1.Visible = false;
-                            li_2.Visible = false;
-                            li_3.Visible = false;
-                            li_4.Visible = false;
-                            li_5.Visible = false;
-                            break;
-                        }
-                }
+                //    default:
+                //        {
+                //            li_1.Visible = false;
+                //            li_2.Visible = false;
+                //            li_3.Visible = false;
+                //            li_4.Visible = false;
+                //            li_5.Visible = false;
+                //            break;
+                //        }
+                //}
             }
         }
         else
