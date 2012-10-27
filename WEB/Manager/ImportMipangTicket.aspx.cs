@@ -19,16 +19,16 @@ public partial class Manager_ImportMipangTicket : System.Web.UI.Page
     BLLTicket bllTicket = new BLLTicket();
     protected void btnImport_Click(object sender, EventArgs e)
     {
-        IList<Scenic> scenicList = ParseXml();
+       
 
-        ///删除所有米胖导入的门票
+        ///删除所有米胖导入的景区
         IList<Scenic> importedMipangScenic = bllScenic.GetList_Mipang();
         foreach (Scenic mipangScenic in importedMipangScenic)
         {
             bllScenic.Delete(mipangScenic);
             
         }
-
+        IList<Scenic> scenicList = ParseXml();
         foreach (Scenic s in scenicList)
         {
             bllScenic.Save(s);
@@ -63,19 +63,19 @@ public partial class Manager_ImportMipangTicket : System.Web.UI.Page
         {
             if (string.IsNullOrEmpty(s)) continue;
             string[] pair = s.Split(',');
-            if (pair.Length != 2)
+            if (pair.Length != 4)
             {
                 sbErr.AppendLine(s+":格式有误");
                 continue;
             }
             int mipangId=0;
-            if (!int.TryParse(pair[0], out mipangId))
+            if (!int.TryParse(pair[1], out mipangId))
             {
                 sbErr.AppendLine(s+":mipangid不是数字");
                 continue;
             }
             string moveResult;
-            bllTicket.Move(mipangId, pair[1], out moveResult);
+            bllTicket.Move(mipangId, pair[3], out moveResult);
             if (!string.IsNullOrEmpty(moveResult))
             {
                 sbErr.AppendLine(moveResult);

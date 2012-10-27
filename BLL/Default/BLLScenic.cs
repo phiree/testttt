@@ -206,7 +206,7 @@ namespace BLL
         {
             List<Scenic> scenicList = new List<Scenic>();
 
-            string sql = "select s from Scenic s "+where;
+            string sql = "select s from Scenic s where "+where;
             var query = session.CreateQuery(sql);
              scenicList=  query.Future<Scenic>().ToList();
 

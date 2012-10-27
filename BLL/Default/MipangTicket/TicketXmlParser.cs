@@ -77,6 +77,7 @@ TicketPrice(type,price) <ticket_price>60</ticket_price>
             s.Phone = item.photo;
             s.Type = EnterpriseType.景点;
             s.IsHide = true;
+            s.Area = new BLLArea().GetAreaByCode("330000");
 
             ///构造景点的area对象
             ///现有数据: 浙江/江苏/All/杭州/建德

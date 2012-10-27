@@ -107,7 +107,6 @@ namespace BLL
             sbJson.Append("{\\\"data\\\":[");
             foreach (Model.DJ_TourGroupMember member in memberList)
             {
-
                 sbJson.Append("{");
                 sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[0], memberList.IndexOf(member)));
                 sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[1], member.MemberType.ToString()));
@@ -122,7 +121,6 @@ namespace BLL
                     sbJson.Append(",");
                 }
             }
-
             sbJson.Append("],\\\"pageInfo\\\":{\\\"totalRowNum\\\":"+memberList.Count+"},\\\"exception\\\":\\\"\\\"}");
             return sbJson.ToString();
         }
@@ -133,9 +131,6 @@ namespace BLL
             sbJson.Append("[");
             foreach (Model.DJ_TourGroupMember member in memberList)
             {
-
-             
-              
                 sbJson.Append("[\\\"");
                 sbJson.Append(member.MemberType.ToString()); sbJson.Append("\\\",\\\"");
                 sbJson.Append(member.RealName); sbJson.Append("\\\",\\\"");
@@ -143,13 +138,31 @@ namespace BLL
                 sbJson.Append(member.IdCardNo); sbJson.Append("\\\",\\\"");
                 sbJson.Append(member.SpecialCardNo); sbJson.Append("\\\",\\\"");
                 sbJson.Append(member.Id); sbJson.Append("\\\"]");
-
                 if (memberList.IndexOf(member) < memberList.Count - 1)
                 {
                     sbJson.Append(",");
                 }
             }
+            sbJson.Append("]");
+            return sbJson.ToString();
+        }
 
+        public static string BuildJsonForRouteList(IList<Model.DJ_Route> routeList)
+        {
+            System.Text.StringBuilder sbJson = new System.Text.StringBuilder();
+            sbJson.Append("[");
+            foreach (Model.DJ_Route route in routeList)
+            {
+                sbJson.Append("[\\\"");
+                sbJson.Append(route.DayNo.ToString()); sbJson.Append("\\\",\\\"");
+                sbJson.Append(route.Enterprise.Name); sbJson.Append("\\\",\\\"");
+                sbJson.Append(route.Description); sbJson.Append("\\\",\\\"");
+                sbJson.Append(route.Id); sbJson.Append("\\\"]");
+                if (routeList.IndexOf(route) < routeList.Count - 1)
+                {
+                    sbJson.Append(",");
+                }
+            }
             sbJson.Append("]");
             return sbJson.ToString();
         }

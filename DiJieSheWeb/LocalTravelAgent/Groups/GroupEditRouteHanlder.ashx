@@ -23,12 +23,12 @@ public class GroupEditHanlder : IHttpHandler {
         Newtonsoft.Json.Linq.JObject jo = JObject.Parse(jsonR);
 
         SigmaGridRequestObject sro = new SigmaGridRequestObject(jo);
-        sro.Act();
+        string result=sro.Act4Routes();
+        context.Response.Write(result);
     }
     public bool IsReusable {
         get {
             return false;
         }
     }
-
 }

@@ -114,7 +114,6 @@
 
             toolbarContent: 'add del save',
             saveURL: "GroupEditMemberHanlder.ashx",
-            //  loadURL: "GroupEditMemberHanlder.ashx",
             parameters: { "groupid": "<%=CurrentGroup.Id %>" },
       
 

@@ -18,19 +18,14 @@ namespace Model
             Map(x => x.BeginDate);
             Map(x => x.EndDate);
           
-            Map(x => x.DaysAmount);
            
-            Map(x => x.AdultsAmount);
-            Map(x => x.ChildrenAmount);
-            Map(x => x.GangaotaisAmount);
-            Map(x => x.ForeignersAmount);
             Map(x => x.Gether);
             Map(x => x.BackPlace);
 
-            HasMany<DJ_TourGroupMember>(x => x.Members);
+            HasMany<DJ_TourGroupMember>(x => x.Members).Cascade.All().Inverse();
             HasMany<DJ_Group_Vehicle>(x => x.Vehicles);
             HasMany<DJ_Group_Worker>(x => x.Workers);
-            HasMany<DJ_Route>(x => x.Routes);
+            HasMany<DJ_Route>(x => x.Routes).Cascade.All().Inverse();
         }
     }
 }
