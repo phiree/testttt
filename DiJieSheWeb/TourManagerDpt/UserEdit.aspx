@@ -24,8 +24,9 @@
                 </td>
                 <td >
                     <asp:CheckBoxList ID="cbList" runat="server" CssClass="rbl" style="border:none !important">
-                        <asp:ListItem Value="1" >行业管理员</asp:ListItem>
-                        <asp:ListItem Value="2" >信息维护员</asp:ListItem>
+                        <asp:ListItem Value="1" >信息编辑员</asp:ListItem>
+                        <asp:ListItem Value="2" >报表查看员</asp:ListItem>
+                        <asp:ListItem Value="4" >用户管理员</asp:ListItem>
                     </asp:CheckBoxList>
                 </td>
             </tr>

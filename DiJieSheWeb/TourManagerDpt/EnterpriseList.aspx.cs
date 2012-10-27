@@ -77,7 +77,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             TextBox laAccount = e.Item.FindControl("laAccount") as TextBox;
             HiddenField hfuserid = e.Item.FindControl("hfuserid") as HiddenField;
             
-            DJ_User_TourEnterprise user= bllUser.GetUser_TEbyId(ent.Id,3);
+            DJ_User_TourEnterprise user= bllUser.GetUser_TEbyId(ent.Id,15);
             if (user != null)
             {
                 laAccount.Visible = true;
@@ -123,7 +123,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
             mgrUser.Enterprise = ent;
             mgrUser.Name = loginname;
-            //mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.信息管理员 | Model.DJ_User_TourEnterprisePermission.信息维护员;
+            mgrUser.PermissionType = PermissionType.报表查看员 | PermissionType.团队录入员 | PermissionType.信息编辑员 | PermissionType.用户管理员;
             mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             bllMember.CreateUpdateMember(mgrUser);
         }

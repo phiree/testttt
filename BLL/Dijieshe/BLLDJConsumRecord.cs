@@ -286,7 +286,7 @@ namespace BLL
                     //市
                 else if (code.Substring(4, 2) == "00")
                 {
-                    if (item.Enterprise.Area.Code.Substring(0, 4) == code.Substring(0, 4) && item.Enterprise.IsCityVeryFied == RewardType.已纳入)
+                    if (item.Enterprise.Area.Code.Substring(0, 4) == code.Substring(0, 4) && item.Enterprise.CityVeryfyState == RewardType.已纳入)
                     {
                         totalcount += item.AdultsAmount + item.ChildrenAmount;
                         if (item.LiveDay > 0)
@@ -302,7 +302,7 @@ namespace BLL
                     //县
                 else
                 {
-                    if (item.Enterprise.Area.Code.Substring(0, 6) == code.Substring(0, 6) && item.Enterprise.IsCountyVeryFied == RewardType.已纳入)
+                    if (item.Enterprise.Area.Code.Substring(0, 6) == code.Substring(0, 6) && item.Enterprise.CountryVeryfyState == RewardType.已纳入)
                     {
                         totalcount += item.AdultsAmount + item.ChildrenAmount;
                         if (item.LiveDay > 0)
@@ -335,14 +335,14 @@ namespace BLL
                     }
                     else if (code.Substring(4, 2) == "00")
                     {
-                        if (item.Enterprise.Area.Code.Substring(0,4) == code.Substring(0,4) && item.Enterprise.IsCityVeryFied == RewardType.已纳入)
+                        if (item.Enterprise.Area.Code.Substring(0,4) == code.Substring(0,4) && item.Enterprise.CityVeryfyState == RewardType.已纳入)
                         {
                             List.Add(item);
                         }
                     }
                     else
                     {
-                        if (item.Enterprise.Area.Code == code && item.Enterprise.IsCountyVeryFied == RewardType.已纳入)
+                        if (item.Enterprise.Area.Code == code && item.Enterprise.CountryVeryfyState == RewardType.已纳入)
                         {
                             List.Add(item);
                         }
