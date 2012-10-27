@@ -233,15 +233,13 @@ namespace BLL
             {
                 foreach (DJ_GroupConsumRecord record in List)
                 {
+                    //省
                     if (item.Area.Code.Substring(2) == "0000")
                     {
-                        if (item.Area.Code.Substring(0, 2) == record.Enterprise.Area.Code.Substring(0, 2))
-                        {
-                            ListGovWdpt.Add(item);
-                            break;
-                        }
+                        //省的暂时不做处理
                     }
-                    else
+                    //市
+                    else if (item.Area.Code.Substring(4,2) == "00")
                     {
                         if (item.Area.Code.Substring(0, 4) == record.Enterprise.Area.Code.Substring(0, 4))
                         {
@@ -249,48 +247,18 @@ namespace BLL
                             break;
                         }
                     }
-                }
-            }
-            //过滤掉不是子属的
-            List<DJ_GovManageDepartment> ListGovDpt2 = new List<DJ_GovManageDepartment>();
-            /*第一步*/
-            foreach (DJ_GovManageDepartment dep in ListGovWdpt)
-            {
-                if (dep.Area.Code.Substring(4, 2) != "00")
-                {
-                    ListGovDpt2.Add(dep);
-                }
-            }
-            /*第二步*/
-            foreach (DJ_GovManageDepartment dep in ListGovWdpt)
-            {
-                if (dep.Area.Code.Substring(4, 2) == "00")
-                {
-                    int flag = 0;
-                    foreach (DJ_GovManageDepartment dep2 in ListGovDpt2)
+                    //县
+                    else
                     {
-                        if (dep2.Area.Code.Substring(0, 4) == dep.Area.Code.Substring(0, 4))
-                            flag = 1;
+                        if (item.Area.Code.Substring(0, 6) == record.Enterprise.Area.Code.Substring(0, 6))
+                        {
+                            ListGovWdpt.Add(item);
+                            break;
+                        }
                     }
-                    if (flag == 0)
-                        ListGovDpt2.Add(dep);
                 }
             }
-            /*第三步*/
-            foreach (DJ_GovManageDepartment dep in ListGovWdpt)
-            {
-                if (dep.Area.Code.Substring(2) == "0000")
-                {
-                    int flag = 0;
-                    foreach (DJ_GovManageDepartment dep2 in ListGovDpt2)
-                    {
-                        if (dep2.Area.Code.Substring(0, 2) == dep.Area.Code.Substring(0, 2))
-                            flag = 1;
-                    }
-                    if (flag == 0)
-                        ListGovDpt2.Add(dep);
-                }
-            }
+           
             return ListGovWdpt;
         }
 
@@ -313,7 +281,12 @@ namespace BLL
             {
                 if (code.Substring(2) == "0000")
                 {
-                    if (item.Enterprise.Area.Code.Substring(0, 2) == code.Substring(0, 2))
+                    //省的不会出现
+                }
+                    //市
+                else if (code.Substring(4, 2) == "00")
+                {
+                    if (item.Enterprise.Area.Code.Substring(0, 4) == code.Substring(0, 4) && item.Enterprise.IsCityVeryFied == RewardType.已纳入)
                     {
                         totalcount += item.AdultsAmount + item.ChildrenAmount;
                         if (item.LiveDay > 0)
@@ -326,9 +299,10 @@ namespace BLL
                         }
                     }
                 }
+                    //县
                 else
                 {
-                    if (item.Enterprise.Area.Code.Substring(0, 4) == code.Substring(0, 4))
+                    if (item.Enterprise.Area.Code.Substring(0, 6) == code.Substring(0, 6) && item.Enterprise.IsCountyVeryFied == RewardType.已纳入)
                     {
                         totalcount += item.AdultsAmount + item.ChildrenAmount;
                         if (item.LiveDay > 0)
@@ -346,7 +320,6 @@ namespace BLL
 
         public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, string code, int djsid)
         {
-            code = code.Substring(2) == "0000" ? code.Substring(0, 2) : code.Substring(0, 4);
             List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, code, djsid).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
@@ -354,7 +327,26 @@ namespace BLL
             {
                 if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
                 {
-                    List.Add(item);
+                    //加入省市县的判断
+                    //省
+                    if (code.Substring(2) == "0000")
+                    {
+
+                    }
+                    else if (code.Substring(4, 2) == "00")
+                    {
+                        if (item.Enterprise.Area.Code.Substring(0,4) == code.Substring(0,4) && item.Enterprise.IsCityVeryFied == RewardType.已纳入)
+                        {
+                            List.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        if (item.Enterprise.Area.Code == code && item.Enterprise.IsCountyVeryFied == RewardType.已纳入)
+                        {
+                            List.Add(item);
+                        }
+                    }
                 }
             }
             return List;
