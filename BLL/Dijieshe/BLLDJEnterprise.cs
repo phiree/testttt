@@ -6,10 +6,10 @@ using Model;
 using NHibernate;
 namespace BLL
 {
-    public class BLLDJEnterprise:DAL.DalBase
+    public class BLLDJEnterprise : DAL.DalBase
     {
         IDAL.IDJEnterprise daldjs = new DAL.DALDJEnterprise();
-
+       
         #region DJS
         /// <summary>
         /// 
@@ -38,8 +38,8 @@ namespace BLL
         public void Save(DJ_TourEnterprise enterprise)
         {
             if (enterprise.Type == EnterpriseType.旅行社)
-            { 
-             
+            {
+
             }
             daldjs.AddDJS(enterprise);
         }
@@ -122,7 +122,7 @@ namespace BLL
         /// <returns></returns>
         public IList<DJ_TourGroup> GetDJSRewordGroup(string entid, int day)
         {
-            IList<DJ_TourGroup> ListTg=(GetDJS8id(entid)[0] as DJ_DijiesheInfo).Groups;
+            IList<DJ_TourGroup> ListTg = (GetDJS8id(entid)[0] as DJ_DijiesheInfo).Groups;
             List<DJ_TourGroup> List = new List<DJ_TourGroup>();
             foreach (DJ_TourGroup group in ListTg)
             {
@@ -140,14 +140,14 @@ namespace BLL
         /// </summary>
         /// <param name="entid">企业id</param>
         /// <param name="day">天数</param>
-        public void GetDJSRewordEnt(string entid, int day,out int groupcount,out int peocount)
+        public void GetDJSRewordEnt(string entid, int day, out int groupcount, out int peocount)
         {
             peocount = 0; groupcount = 0;
             List<DJ_Route> ListRoute = new DAL.DALDJ_Route().GetRouteByentid(int.Parse(entid)).ToList();
             List<DJ_TourGroup> ListGroup = new List<DJ_TourGroup>();
             foreach (DJ_Route route in ListRoute)
             {
-                Model.DJ_GroupConsumRecord record= new BLLDJConsumRecord().GetGroupConsumRecordByRouteId(route.Id);
+                Model.DJ_GroupConsumRecord record = new BLLDJConsumRecord().GetGroupConsumRecordByRouteId(route.Id);
                 if (record != null && DateTime.Parse(record.ConsumeTime.AddDays(day).ToShortDateString()) >= DateTime.Parse(DateTime.Now.ToShortDateString()))
                 {
                     peocount += record.AdultsAmount + record.ChildrenAmount;
@@ -182,15 +182,109 @@ namespace BLL
             BLLArea bllArea = new BLLArea();
             string ids = bllArea.GetChildAreaIds(areacode);
 
-            return dalEnt.GetEnterpriseList(ids,true,false,true);
+            return dalEnt.GetEnterpriseList(ids, true, false, true);
         }
 
         #endregion
 
 
-        #region 设置地接社的奖励范围情况
+        #region 设置企业奖励范围情况
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="govLevel">设置的级别:省市区</param>
+        /// <param name="ent">需要设置的企业</param>
+        /// <param name="targetType">目标值</param>
+        public void SetVerify(DJ_GovManageDepartment gov, DJ_TourEnterprise ent, RewardType targetType)
+        {
+            AreaLevel level = gov.Area.Level;
+            switch (level)
+            {
+                case AreaLevel.区县:
+                    ent.CountryVeryfyState = GetFinalVeryfyState(ent.CountryVeryfyState, targetType);
+                    break;
 
-      //public void Set
+                case AreaLevel.市:
+                    ent.CityVeryfyState = GetFinalVeryfyState(ent.CityVeryfyState, targetType);
+
+                    break;
+                case AreaLevel.省:
+                    ent.ProvinceVeryfyState = GetFinalVeryfyState(ent.ProvinceVeryfyState, targetType);
+                    break;
+            }
+            Save(ent);
+        }
+        public void SetVerify(DJ_GovManageDepartment gov, string entName, RewardType targetType,out string errMsg)
+        {
+            errMsg = string.Empty;
+           IList<DJ_TourEnterprise> ents=  GetDJS8name(entName);
+           if (ents.Count > 0)
+           {
+               TourLog.LogError(this.GetType() + ":"+ents.Count+"个企业 重名:" + entName);
+               SetVerify(gov, ents[0], targetType);
+
+           }
+           else if(ents.Count==0)
+           { 
+              //创建这个企业,并设置为已纳入.
+           }
+        }
+        /// <summary>
+        /// 根据原有认证状态和目标状态 计算 应该设置的状态
+        /// </summary>
+        /// <param name="original"></param>
+        /// <param name="target"></param>
+        private RewardType GetFinalVeryfyState(RewardType original, RewardType target)
+        {
+            if (original == null)
+            {
+                if (target == null)
+                {
+                    return original;
+                }
+                return target;
+            }
+
+            RewardType finalType = RewardType.从未纳入;
+            switch (original)
+            {
+                case RewardType.从未纳入:
+                    switch (target)
+                    {
+                        case RewardType.从未纳入:
+                        case RewardType.纳入后移除:
+                            break;
+                        case RewardType.已纳入:
+                            finalType = RewardType.已纳入;
+                            break;
+                    }
+                    break;
+
+                case RewardType.纳入后移除:
+                    switch (target)
+                    {
+                        case RewardType.从未纳入:
+                        case RewardType.纳入后移除:
+                            break;
+                        case RewardType.已纳入:
+                            finalType = RewardType.已纳入;
+                            break;
+                    }
+                    break;
+                case RewardType.已纳入:
+                    switch (target)
+                    {
+                        case RewardType.从未纳入:
+                        case RewardType.纳入后移除:
+                            finalType = RewardType.纳入后移除;
+                            break;
+                        case RewardType.已纳入:
+                            break;
+                    }
+                    break;
+            }
+            return finalType;
+        }
 
         #endregion
 
@@ -263,7 +357,7 @@ namespace BLL
         {
             return daldjs.GetGroupmem8epid(id);
         }
-        
+
         /// <summary>
         /// 根据id获取 导游
         /// </summary>

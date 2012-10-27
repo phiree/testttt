@@ -4,18 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+ using System.Web.Script.Serialization;
 using BLL;
 using Model;
-public partial class TourManagerDpt_EnterpriseMgr_Default : System.Web.UI.Page
+public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
 {
 
 
-
+    /// <summary>
+    /// 该部门辖区内所有企业名称列表,用于输入时的智能提示
+    /// </summary>
+    public string EntNames = string.Empty;
     BLLDJEnterprise bllEnt = new BLLDJEnterprise();
     protected void Page_Load(object sender, EventArgs e)
     {
+        lblMsg.Visible = false;
+        BuildEntNames();
+    }
 
-       
+    private void BuildEntNames()
+    {
+       IList<DJ_TourEnterprise> ents= bllEnt.GetDJSForDpt(CurrentDpt.Area.Code);
+     JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+     EntNames= js.Serialize(ents);
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     { 
@@ -23,12 +34,10 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : System.Web.UI.Page
         //CHECK if the enterprise exists
         //todo:优化:bllenterprise优化.
         string entName=tbxName.Text.Trim();
-        IList<DJ_TourEnterprise> entL = bllEnt.GetDJS8name(entName);
-        if (entL.Count == 0)
-        { 
-        
-        }
-       
+        string errMsg;
+        bllEnt.SetVerify(CurrentDpt, entName, RewardType.已纳入, out errMsg);
+
+        lblMsg.Visible = true;
 
     }
 
