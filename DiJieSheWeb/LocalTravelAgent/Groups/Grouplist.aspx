@@ -115,7 +115,7 @@
                             <%#((DateTime)Eval("BeginDate")).ToShortDateString() + "-" + ((DateTime)Eval("EndDate")).ToShortDateString()%>
                         </td>
                         <td>
-                            <%#int.Parse(Eval("AdultsAmount").ToString()) + int.Parse(Eval("AdultsAmount").ToString())%>
+                            <%#Eval("TotalTourist")%><br />[外宾:<%#Eval("ForeignersAmount")%>]
                         </td>
                         <td>
                            <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改基本信息</a>

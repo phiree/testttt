@@ -48,23 +48,26 @@ namespace Model
         /// <summary>
         /// 成人总人数
         /// </summary>
-        public virtual int AdultsAmount { get; set; }
+     
+        public virtual int AdultsAmount { 
+            get { return Members.Where(x => x.MemberType == MemberType.成人游客).Count(); } }
         /// <summary>
         /// 儿童总人数
         /// </summary>
-        public virtual int ChildrenAmount { get; set; }
+        public virtual int ChildrenAmount { get { return Members.Where(x => x.MemberType == MemberType.儿童).Count(); } }
         /// <summary>
         /// 港澳台人数
         /// </summary>
-        public virtual int GangaotaisAmount { get; set; }
+        public virtual int GangaotaisAmount { get { return Members.Where(x => x.MemberType == MemberType.港澳台).Count(); } }
         /// <summary>
         /// 外宾人数
         /// </summary>
-        public virtual int ForeignersAmount { get; set; }
+        public virtual int ForeignersAmount { get { return Members.Where(x => x.MemberType == MemberType.外宾).Count(); } }
         /// <summary>
         /// 集合点
         /// </summary>
         public virtual string Gether { get; set; }
+        public virtual int TotalTourist { get { return AdultsAmount + ChildrenAmount + GangaotaisAmount + ForeignersAmount; } }
         /// <summary>
         /// 返程点
         /// </summary>
