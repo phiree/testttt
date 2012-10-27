@@ -10,7 +10,7 @@ public class GroupHandler : IHttpHandler
 
     public void ProcessRequest(HttpContext context)
     {
-        IDAL.IDJEnterprise djEnterprice = new DAL.DALDJEnterprise();
+        DAL.DALDJEnterprise djEnterprice = new DAL.DALDJEnterprise();
 
         System.Web.Script.Serialization.JavaScriptSerializer json
             = new System.Web.Script.Serialization.JavaScriptSerializer();
