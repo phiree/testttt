@@ -127,11 +127,17 @@ public partial class Admin_Demo : System.Web.UI.Page
     }
 
 
+    protected void btnReport_Click(object sender, EventArgs e)
+    { 
+        ///为所有名称为demo团队验票
+        ///
+     }
+
     private void DemoLogin(string userName, string targetUrl)
     {
         FormsAuthentication.SetAuthCookie(userName, true);
         //  Response.Redirect(targetUrl);
         ClientScript.RegisterStartupScript(this.Page.GetType(), "",
-        "var opener=window.open('" + targetUrl + "','Graph','width=960,height=700;'); opener=null;", true);
+        "var opener=window.open('" + targetUrl + "','Graph','width=960,height=650;'); opener=null;", true);
     }
 }

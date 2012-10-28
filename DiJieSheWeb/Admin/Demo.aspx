@@ -20,6 +20,9 @@
             <li>
             <asp:Button runat="server" Text="创建一个测试团队" OnClick="btnDjsCreatGroup_Click" ID="btnDjsCreatGroup" />
             </li>
+             <li>
+            <asp:Button runat="server" Text="生成报表数据" OnClick="btnReport_Click" ID="btnReport" />
+            </li>
         </ul>
     </fieldset>
       <fieldset>
