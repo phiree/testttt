@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Json;
 using System.Web.Script.Serialization;
 using Model;
 using System.Text;
+using System.Collections;
 public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupEdit
 {
     string[] fieldsName = { "tourertype", "realname", "phone", "idcardno", "othercardno", "memberid" };
@@ -15,10 +16,13 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
 
     BLL.BLLDJTourGroup bllGroup = new BLL.BLLDJTourGroup();
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         if (!IsPostBack)
         {
+           
             LoadData();
         }
     }
@@ -59,16 +63,17 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     }
 
 
+ 
     private void UpdateSimple(TextBox tbx)
     {
         ///删除所有成员先--首先要做提醒
         foreach (DJ_TourGroupMember member in CurrentGroup.Members)
         {
-            bllGroup.Delete(member);
+          new BLL.BLLTourGroupMember().DeleteMember(member);
         }
-       //保存新的成员
+        CurrentGroup.Members.Clear();
         string[] arrStrMember = tbx.Text.Split(Environment.NewLine.ToCharArray());
-
+        //CurrentGroup.Members
         string errMsg=string.Empty;
        foreach (string s in arrStrMember)
        {
@@ -80,8 +85,10 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
                lblSimpleMsg.Text = errMsg;
                break; 
            }
-           bllGroup.Save(member);
+          // bllGroup.Save(member);
+           CurrentGroup.Members.Add(member);
        }
+       bllGroup.Save(CurrentGroup);
        if (string.IsNullOrEmpty(errMsg))
        {
            lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
@@ -120,7 +127,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     {
         UpdateSimple(tbxSimple);
         BuildJsonData();
-        Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
+       // Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
     protected void btnUpload_Click(object sender, EventArgs e)
     {

@@ -12,7 +12,10 @@ public partial class LocalTravelAgent_LTAUserEdit : System.Web.UI.Page
     BLLDJ_User blldj_user = new BLLDJ_User();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            bind();
+        }
     }
 
     private void bind()
@@ -31,6 +34,11 @@ public partial class LocalTravelAgent_LTAUserEdit : System.Web.UI.Page
     }
     protected void BtnSave_Click(object sender, EventArgs e)
     {
+        if (txtName.Text == "" || cbList.SelectedItem == null)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或权限未填写');", true);
+            return;
+        }
         DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
         if (Request.QueryString["userid"] != null)
         {
@@ -43,13 +51,13 @@ public partial class LocalTravelAgent_LTAUserEdit : System.Web.UI.Page
         {
             if (item.Selected)
             {
-                Model.DJ_User_TourEnterprisePermission permisson = (Model.DJ_User_TourEnterprisePermission)Enum.Parse(typeof(Model.DJ_User_GovPermission), item.Text);
+                Model.DJ_User_TourEnterprisePermission permisson = (Model.DJ_User_TourEnterprisePermission)Enum.Parse(typeof(Model.DJ_User_TourEnterprisePermission), item.Text);
                 sat = sat | permisson;
             }
         }
         mgrUser.PermissionMask = sat;
         mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
         blldj_user.SaveOrUpdate(mgrUser);
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功');window.location='/TourManagerDpt/UserManager.aspx'", true);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功');window.location='/LocalTravelAgent/LTAUserManager.aspx'", true);
     }
 }

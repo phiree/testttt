@@ -38,6 +38,11 @@ public partial class TourManagerDpt_UserEdit : System.Web.UI.Page
     }
     protected void BtnSave_Click(object sender, EventArgs e)
     {
+        if (txtName.Text == "" || cbList.SelectedItem == null)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或权限未填写');", true);
+            return;
+        }
         DJ_User_Gov mgrUser = new DJ_User_Gov();
         if (Request.QueryString["userid"] != null)
         {

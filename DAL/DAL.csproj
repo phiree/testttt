@@ -105,6 +105,7 @@
     <Compile Include="DALDiscountCode.cs" />
     <Compile Include="Dijieshe\DALDJProduct.cs" />
     <Compile Include="Dijieshe\DALDJTourGroup.cs" />
+    <Compile Include="Dijieshe\DALDJ_GovManageDepartment.cs" />
     <Compile Include="Dijieshe\DALDJ_GroupConsumRecord.cs" />
     <Compile Include="Dijieshe\DALDJ_Group_Worker.cs" />
     <Compile Include="Dijieshe\DALDJ_User.cs" />

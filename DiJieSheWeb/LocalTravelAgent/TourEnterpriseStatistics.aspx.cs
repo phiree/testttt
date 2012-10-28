@@ -55,7 +55,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
             {
                 txtDate.Text = "";
             }
-            if (laType.Text == "景点")
+            if (laType.Text == "景区")
             {
                 int monthcount= bllrecord.GetCountByStatics(txtDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id, 1, true, ent.Id);
                 laMonthCount.Text = monthcount.ToString();

@@ -23,7 +23,8 @@
                 </td>
                 <td >
                     <asp:CheckBoxList ID="cbList" runat="server" CssClass="rbl" style="border:none !important">
-                        <asp:ListItem Value="1" >管理员</asp:ListItem>
+                        <asp:ListItem Value="1" >信息维护员</asp:ListItem>
+                        <asp:ListItem Value="2" >团队操作员</asp:ListItem>
                     </asp:CheckBoxList>
                 </td>
             </tr>

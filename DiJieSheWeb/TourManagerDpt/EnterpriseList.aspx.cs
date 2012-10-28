@@ -55,18 +55,23 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
                 e.Item.Visible = false;
             }
             Button BtnCreate = e.Item.FindControl("BtnCreate") as Button;
-            Literal laAccount = e.Item.FindControl("laAccount") as Literal;
-            DJ_User_TourEnterprise user= bllUser.GetUser_TEbyId(ent.Id,1);
-            if (user != null && user.PermissionMask == Model.DJ_User_TourEnterprisePermission.管理员)
+            Button BtnUpdate = e.Item.FindControl("BtnUpdate") as Button;
+            TextBox laAccount = e.Item.FindControl("laAccount") as TextBox;
+            HiddenField hfuserid = e.Item.FindControl("hfuserid") as HiddenField;
+            DJ_User_TourEnterprise user= bllUser.GetUser_TEbyId(ent.Id,3);
+            if (user != null)
             {
                 laAccount.Visible = true;
                 laAccount.Text = user.Name;
                 BtnCreate.Visible = false;
+                BtnUpdate.Visible = true;
+                hfuserid.Value = user.Id.ToString();
             }
             else
             {
                 laAccount.Visible = false;
                 BtnCreate.Visible = true;
+                BtnUpdate.Visible = false;
             }
 
         }
@@ -88,17 +93,24 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
 
         if (e.CommandName.ToLower() == "setadmin")
         {
-            
             DJ_TourEnterprise ent = bllDjEnt.GetDJS8id(entId.ToString())[0];
-            string loginname = "EntAdmin_" + ent.seoname;
+            string loginname =ent.seoname;
             DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
             mgrUser.Enterprise = ent;
             mgrUser.Name = loginname;
-            mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.管理员;
+            mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.团队操作员 | Model.DJ_User_TourEnterprisePermission.信息维护员;
             mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             bllMember.CreateUpdateMember(mgrUser);
         }
+        if (e.CommandName.ToLower() == "updateadmin")
+        {
+            TextBox laAccount = e.Item.FindControl("laAccount") as TextBox;
+            HiddenField hfuserid = e.Item.FindControl("hfuserid") as HiddenField;
+            Model.DJ_User_TourEnterprise user= bllUser.GetByMemberId(Guid.Parse(hfuserid.Value));
+            user.Name = laAccount.Text.Trim();
+            bllUser.SaveOrUpdate(user);
+        }
         BindList();
-            
+           
     }
 }

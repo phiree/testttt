@@ -159,10 +159,33 @@ namespace DAL
         }
 
 
-        public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, int entid)
+        public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, int entid,int djsid)
         {
-            string sql = "select r from DJ_GroupConsumRecord r where Enterprise.Id=" + entid + "";
+            string sql = "select r from DJ_GroupConsumRecord r where r.Enterprise.Id=" + entid + " and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + djsid + "";
             sql += " and ConsumeTime>='" + year.ToString() + "-" + month.ToString() + "-01 00:00:00" + "' and  ConsumeTime<'" +DateTime.Parse(year+"-"+month+"-"+"1").AddMonths(1) + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+        }
+
+
+        public IList<Model.DJ_GroupConsumRecord> GetDptRecordByCondition(string begintime, string endtime, string dptname,int entid)
+        {
+            string sql = "select r from DJ_GroupConsumRecord r where 1=1";
+            
+            sql += " and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + entid + "";
+            if (begintime != "" && endtime == "")
+            {
+                sql += " and r.ConsumeTime>='" + begintime + "'";
+                    
+            }
+            if (begintime == "" && endtime != "")
+            {
+                sql += " and r.ConsumeTime<='" + endtime + "'";
+            }
+            if (begintime != "" && endtime != "")
+            {
+                sql += " and r.ConsumeTime between '" + begintime + "' and '" + endtime + "'";
+            }
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
         }

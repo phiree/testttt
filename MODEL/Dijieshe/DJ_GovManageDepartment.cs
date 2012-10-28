@@ -20,3 +20,18 @@ namespace Model
        public virtual string seoname { get; set; }
     }
 }
+//为绑定报表作用
+public class month
+{
+    public month(int monthindex)
+    {
+        MonthIndex = monthindex;
+    }
+    private int monthIndex;
+
+    public int MonthIndex
+    {
+        get { return monthIndex; }
+        set { monthIndex = value; }
+    }
+}

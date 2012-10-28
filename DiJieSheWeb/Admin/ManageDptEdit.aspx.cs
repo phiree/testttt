@@ -52,12 +52,13 @@ public partial class Admin_ManageDptEdit : basepage
         CurrentMgrDpt.Area = bllArea.GetAreaByCode(ddlarea.Areacode.Trim());
         CurrentMgrDpt.Name = tbxName.Text;
         CurrentMgrDpt.Phone = tbxPhone.Text;
+      //  CurrentMgrDpt.seoname=
     }
 
     private bool Validatedata(out string message)
     {
         message = string.Empty;
-        if (!string.IsNullOrEmpty(tbxName.Text))
+        if (string.IsNullOrEmpty(tbxName.Text))
         {
             message = "请填写名称!";
             return false;
@@ -81,7 +82,9 @@ public partial class Admin_ManageDptEdit : basepage
         if (IsNew)
         {
             Response.Redirect("ManageDptEdit.aspx?dptid=" + CurrentMgrDpt.Id);
+            
         }
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "suc", "alert('操作成功')", true);
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {

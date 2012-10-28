@@ -22,10 +22,14 @@ public partial class Admin_Demo : System.Web.UI.Page
     string scenicName = "印象西湖";
     string scenicAdminAccount = "yinxiangxihu_admin";
 
-
+    DJ_TourEnterprise demoHotel;
+    DJ_TourEnterprise demoDjs;
+    DJ_TourEnterprise demoScenic;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        demoHotel= bllEnt.GetDJS8name(hotelName)[0];
+        demoDjs = bllEnt.GetDJS8name(dijiesheName)[0];
+        demoScenic = bllEnt.GetDJS8name(scenicName)[0];
     }
     /*GovAdmin_-75259*/
 
@@ -58,8 +62,8 @@ public partial class Admin_Demo : System.Web.UI.Page
     {
         DJ_TourGroup group = new DJ_TourGroup();
         group.BeginDate = DateTime.Now;
-        group.DJ_DijiesheInfo = (Model.DJ_DijiesheInfo)bllEnt.GetDJS8name(dijiesheName)[0];
-        group.EndDate = DateTime.Now.AddDays(2);
+        group.DJ_DijiesheInfo = (Model.DJ_DijiesheInfo)demoDjs;
+        group.EndDate = DateTime.Now.AddDays(1);
 
         DJ_TourGroupMember memberdaoyou = new DJ_TourGroupMember();
         memberdaoyou.DJ_TourGroup = group;
@@ -106,17 +110,17 @@ public partial class Admin_Demo : System.Web.UI.Page
         group.Members.Add(member3);
 
         group.Name = "[Demo]杭州双休游-" + group.BeginDate.ToShortDateString() + "-" + group.EndDate.ToShortDateString();
-        group.No = "SRY20120004";
+        group.No = "SRY2012"+Math.Abs(Guid.NewGuid().GetHashCode()).ToString().Substring(0,4);
 
         DJ_Route route1 = new DJ_Route();
         route1.DayNo = 1;
         route1.DJ_TourGroup = group;
-        route1.Enterprise = bllEnt.GetDJS8name(hotelName)[0];
+        route1.Enterprise = demoHotel;
 
         DJ_Route route2 = new DJ_Route();
         route2.DayNo = 2;
         route2.DJ_TourGroup = group;
-        route2.Enterprise = bllEnt.GetDJS8name(scenicName)[0];
+        route2.Enterprise = demoScenic;
         //group.Routes
 
         group.Routes.Add(route1);
@@ -127,11 +131,19 @@ public partial class Admin_Demo : System.Web.UI.Page
     }
 
 
+    protected void btnReport_Click(object sender, EventArgs e)
+    { 
+        ///为所有名称为demo团队验票
+        ///
+        Model.DJ_GroupConsumRecord cr = new DJ_GroupConsumRecord();
+        
+     }
+
     private void DemoLogin(string userName, string targetUrl)
     {
         FormsAuthentication.SetAuthCookie(userName, true);
         //  Response.Redirect(targetUrl);
         ClientScript.RegisterStartupScript(this.Page.GetType(), "",
-        "var opener=window.open('" + targetUrl + "','Graph','width=960,height=700;'); opener=null;", true);
+        "var opener=window.open('" + targetUrl + "','Graph','width=960,height=650;'); opener=null;", true);
     }
 }
