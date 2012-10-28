@@ -22,7 +22,7 @@ namespace IDAL
 
         #region group
 
-        string AddGroup(Model.DJ_TourGroup tg);
+        string AddGroup(Model.DJ_TourGroup tg,out string id);
 
         void UpdateGroup(Model.DJ_TourGroup tg);
 

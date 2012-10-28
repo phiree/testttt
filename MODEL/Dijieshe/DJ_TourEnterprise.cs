@@ -31,6 +31,8 @@ namespace Model
         public virtual bool IsVeryfied { get; set; }
         public virtual EnterpriseType Type { get; set; }
         public virtual string seoname { get; set; }
+        public virtual string Email { get; set; }
+        public virtual string Buslicense { get; set; }
     }
     public enum EnterpriseType
     {

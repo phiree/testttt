@@ -22,6 +22,8 @@ namespace Model
            Map(x => x.IsVeryfied);
            Map(x => x.Type).CustomType<int>();
            Map(x => x.seoname);
+           Map(x => x.Buslicense);
+           Map(x => x.Email);
        }
     }
 }

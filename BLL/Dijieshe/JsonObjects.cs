@@ -98,6 +98,7 @@ namespace BLL
                     }
                     foreach (var item in routes)
                     {
+                        session.SaveOrUpdate(item);
                         group.Routes.Add(item);
                     }
                     session.Save(group);
@@ -113,9 +114,17 @@ namespace BLL
                             return ename + ":该项无法识别!请重新输入!";
                         }
                     }
-                    session.Update(routes);
-                    session.Flush();
-                } 
+                    foreach (var item in group.Routes.Where(x=>x.DayNo==routes[0].DayNo))
+                    {
+                        session.Delete(item);
+                        session.Flush();
+                    }
+                    foreach (var item in routes)
+                    {
+                        session.Save(item);
+                        session.Flush();
+                    }
+                }
                 foreach (JToken ro in JO["deletedRecords"])
                 {
                     IList<Model.DJ_Route> routes = ConvertToRoute(ro, out ename);
@@ -126,8 +135,11 @@ namespace BLL
                             return ename + ":该项无法识别!请重新输入!";
                         }
                     }
-                    session.Delete(routes);
-                    session.Flush();
+                    foreach (var item in group.Routes.Where(x => x.DayNo == routes[0].DayNo))
+                    {
+                        session.Delete(item);
+                        session.Flush();
+                    }
                 }
             }
             if (action == "load")
@@ -157,7 +169,8 @@ namespace BLL
                 }
             }
             IList<Model.DJ_Route> routelist = new List<Model.DJ_Route>();
-            foreach (var item in ro[1].Split(new char[] { '-' }))
+            //景点
+            foreach (var item in ro[1].Split(new char[] { '-' },StringSplitOptions.RemoveEmptyEntries))
             {
                 var e=bllEnter.GetDJS8name(item);
                 if (e.Count > 0)
@@ -168,6 +181,26 @@ namespace BLL
                         //判断: 如果能找到企业便赋值, 否则null
                         Enterprise = e[0],
                         Description = "景点",
+                        DJ_TourGroup = group
+                    });
+                }
+                else
+                {
+                    ename = item;
+                }
+            }
+            //住宿
+            foreach (var item in ro[2].Split(new char[] { '-' },StringSplitOptions.RemoveEmptyEntries))
+            {
+                var e = bllEnter.GetDJS8name(item);
+                if (e.Count > 0)
+                {
+                    routelist.Add(new DJ_Route()
+                    {
+                        DayNo = int.Parse(ro[0]),
+                        //判断: 如果能找到企业便赋值, 否则null
+                        Enterprise = e[0],
+                        Description = "住宿",
                         DJ_TourGroup = group
                     });
                 }

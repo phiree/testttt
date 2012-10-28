@@ -17,7 +17,7 @@ namespace Model
             Map(x => x.DayNo);
             References(x => x.Enterprise);
             Map(x => x.Description);
-            References<DJ_TourGroup>(x => x.DJ_TourGroup).Cascade.All();
+            References<DJ_TourGroup>(x => x.DJ_TourGroup);
         }
     }
 }

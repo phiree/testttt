@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="LTA.master.cs"
     Inherits="LocalTravelAgent_LTA" %>
+
 <%@ MasterType VirtualPath="/m.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
@@ -7,20 +8,17 @@
     </asp:ContentPlaceHolder>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="cphFunction" runat="server">
-  <div>
+    <div>
         <ul class="nav">
             <li><a href="/localtravelagent/djsedit.aspx">信息维护</a> </li>
+            <li><a href="/localtravelagent/Groups/GroupEditBasicInfo.aspx">新建团队</a></li>
+            <li><a href="/localtravelagent/Groups/GroupInfo.aspx">团队导入</a></li>
             <li><a href="/localtravelagent/Groups/GroupList.aspx">团队列表</a></li>
-                <li><a href="/localtravelagent/Groups/GroupInfo.aspx">团队信息导入</a></li>
-                  <li><a href="/localtravelagent/Groups/GroupEditBasicInfo.aspx">团队信息录入</a></li>
-              <li><a href="/localtravelagent/TourEnterpriseStatistics.aspx">旅游企业统计信息</a></li>
-              
+            <li><a href="/localtravelagent/TourEnterpriseStatistics.aspx">旅游企业统计信息</a></li>
         </ul>
-
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
-  
     <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>

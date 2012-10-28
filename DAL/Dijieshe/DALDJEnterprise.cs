@@ -118,8 +118,9 @@ namespace DAL
 
         #region group
 
-        public string AddGroup(Model.DJ_TourGroup tg)
+        public string AddGroup(Model.DJ_TourGroup tg,out string id)
         {
+            id = string.Empty;
             Model.DJ_TourGroup tg_old = GetGroup8no(tg.No);
             if (null != tg_old)//已经有该编号的团队
             {
@@ -157,6 +158,7 @@ namespace DAL
                     session.Save(item);
                 }
                 session.Save(tg);
+                id = tg.Id.ToString();
                 t2.Commit();
             }
             return "保存成功";

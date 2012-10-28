@@ -150,30 +150,30 @@ namespace BLL
         public static string BuildJsonForRouteList(IList<Model.DJ_Route> routeList)
         {
             string sbJson = string.Empty;
-            sbJson+="[";
-            foreach (var routes in routeList.OrderBy(x=>x.DayNo).GroupBy(x => x.DayNo))
+            sbJson += "[";
+            foreach (var routes in routeList.OrderBy(x => x.DayNo).GroupBy(x => x.DayNo))
             {
-                sbJson+="[\\\"";
-                sbJson+=routes.Key.ToString();
-                sbJson+="\\\",\\\"";
+                sbJson += "[\\\"";
+                sbJson += routes.Key.ToString();
+                sbJson += "\\\",\\\"";
                 foreach (var item in routes.Where(x => x.Description.StartsWith("景点")))
                 {
-                    sbJson+=item.Enterprise.Name;
-                    sbJson+="-";
+                    sbJson += item.Enterprise.Name;
+                    sbJson += "-";
                 }
-                sbJson = sbJson.Substring(0, sbJson.Length - 1);
-                sbJson+="\\\",\\\"";
+                sbJson = routes.Where(x => x.Description.StartsWith("景点")).Count() > 0 ? sbJson.Substring(0, sbJson.Length - 1) : sbJson;
+                sbJson += "\\\",\\\"";
                 foreach (var item in routes.Where(x => x.Description.StartsWith("住宿")))
                 {
-                    sbJson+=item.Enterprise.Name;
-                    sbJson+="-";
+                    sbJson += item.Enterprise.Name;
+                    sbJson += "-";
                 }
-                sbJson = sbJson.ToString().Substring(0, sbJson.Length - 1);
-                sbJson+="\\\"]";
-                sbJson+=",";
+                sbJson = routes.Where(x => x.Description.StartsWith("住宿")).Count() > 0 ? sbJson.Substring(0, sbJson.Length - 1) : sbJson;
+                sbJson += "\\\"]";
+                sbJson += ",";
             }
             sbJson = sbJson.ToString().Substring(0, sbJson.Length - 1);
-            sbJson+="]";
+            sbJson += "]";
             return sbJson.ToString();
         }
 

@@ -63,6 +63,8 @@ public partial class TourManagerDpt_EnterEdit : System.Web.UI.Page
         tbxName.Text = CurrentEnterprise.Name;
         tbxOfficePhone.Text = CurrentEnterprise.Phone;
         tbxPhone.Text = CurrentEnterprise.ChargePersonPhone;
+        tbxEnenmail.Text = CurrentEnterprise.Email;
+        tbxYyzz.Text = CurrentEnterprise.Buslicense;
         ddltype.SelectedIndex = ddltype.Items.IndexOf(ddltype.Items.FindByText(CurrentEnterprise.Type.ToString()));
     }
 
@@ -74,6 +76,8 @@ public partial class TourManagerDpt_EnterEdit : System.Web.UI.Page
         CurrentEnterprise.Name = tbxName.Text;
         CurrentEnterprise.Phone = tbxOfficePhone.Text;
         CurrentEnterprise.ChargePersonPhone = tbxPhone.Text;
+        CurrentEnterprise.Email = tbxEnenmail.Text;
+        CurrentEnterprise.Buslicense = tbxYyzz.Text;
         CurrentEnterprise.Type = (EnterpriseType)(Convert.ToInt32(ddltype.SelectedValue));
         bllEnterprise.Save(CurrentEnterprise);
         if (IsNew)

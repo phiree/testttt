@@ -63,7 +63,7 @@
             width: 80,
             editor: { type: "text" }
         },
-        { id: 'scenic', header: "景点", width: 200,editor: { type: "text"}},
+        { id: 'scenic', header: "景点", width: 200, editor: { type: "text"} },
         { id: 'hotel', header: "住宿", width: 200, editor: { type: "text"} }
         ];
 
@@ -82,7 +82,6 @@
             parameters: { "groupid": "<%=CurrentGroup.Id %>" },
 
             saveResponseHandler: function (r, d) {
-                alert(r);
                 window.location.href = "/localtravelagent/Groups/GroupList.aspx";
             },
             showIndexColumn: true
@@ -119,14 +118,14 @@
                 将行程信息按照一定的格式输入,一次性导入系统
             </p>
             <p>
-                格式要求: 1)单个游客的资料用逗号分隔,按序依次为:成员类型,姓名,电话号码,身份证号,其他证件号.如果没有对应信息,请保留逗号. 2)成员类型:成人游客,儿童,外宾,港澳台,导游,司机
-                不同游客用回车分隔. 比如:<br />
-                成人游客,张晓华,13287839485,51332919880321639X,<br />
-                外宾,Jim Green,13287839485,,CH1034123<br />
-                儿童,李晓彤,,,<br />
+                格式要求: 1)单个游客的资料用逗号分隔,按序依次为:天数,景区,住宿(多个景区用"-"分割).如果没有对应信息,请保留逗号. 不同天数用回车分隔. 比如:<br />
+                1,西栅景区,乌镇客栈<br />
+                2,鲁迅故里-兰亭-沈园,如家快捷酒店<br />
+                3,船游西湖-花港观鱼-六合塔-龙井问茶-苏提春晓,如家快捷酒店<br />
+                4,飞来峰,<br />
             </p>
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText"></asp:TextBox>
-            <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
+            <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的行程信息将清除,是否继续?');"
                 Text="保存" />
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>

@@ -68,6 +68,22 @@
                     <asp:TextBox runat="server" ID="tbxOfficePhone"></asp:TextBox>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    企业邮箱
+                </td>
+                <td>
+                    <asp:TextBox runat="server" ID="tbxEnenmail"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    营业执照号码
+                </td>
+                <td>
+                    <asp:TextBox runat="server" ID="tbxYyzz"></asp:TextBox>
+                </td>
+            </tr>
         </table>
         <asp:Button runat="server" ID="btnSave" OnClick="btnSave_Click" Text="保存" CssClass="btn" style="margin-left:350px;" />
     </div>

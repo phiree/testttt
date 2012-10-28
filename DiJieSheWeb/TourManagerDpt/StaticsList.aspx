@@ -9,17 +9,19 @@
     <script type="text/javascript">
         $(function () {
             $("[id$='txt_yijiedai']").datepicker();
+            $("[id$='txt_yijiedai_end']").datepicker();
             $("[id$='txt_yijiedai2']").datepicker();
+            $("[id$='txt_yijiedai2_end']").datepicker();
         });
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
     <div class="detaillist">
-        <div class="detailtitle">
+        <div class="detailtitle"style="display:none">
             原数据</div>
         <asp:Repeater ID="rptOrigin" runat="server">
             <HeaderTemplate>
-                <table border="1" cellpadding="1" cellspacing="1">
+                <table border="1" cellpadding="1" cellspacing="1"style="display:none">
                     <thead>
                         <tr>
                             <td>
@@ -64,13 +66,64 @@
                 </tbody> </table>
             </FooterTemplate>
         </asp:Repeater>
-        <hr />
+        
         <div class="detailtitle">
             已接待情况</div>
         <div class="searchdiv">
-            日期：<asp:TextBox ID="txt_yijiedai" runat="server" />
-            <asp:Button ID="btn_yijiedai" Text="查询" runat="server" OnClick="btn_yijiedai_Click" CssClass="btn" /></div>
+            日期：<asp:TextBox ID="txt_yijiedai" runat="server" /> 至 <asp:TextBox ID="txt_yijiedai_end" runat="server" />
+            <asp:Button ID="btn_yijiedai" Text="查询" runat="server" OnClick="btn_yijiedai_Click" CssClass="btn" />
+            </div>
         <table border="1" cellpadding="1" cellspacing="1">
+            <thead>
+                <tr>
+                    <td rowspan="2">
+                        序号
+                    </td>
+                    <td rowspan="2">
+                        地接社名称
+                    </td>
+                    <td colspan="3">
+                        总计
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        总人数
+                    </td>
+                    <td>
+                        住宿人天数
+                    </td>
+                    <td>
+                        游览人数
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="rptGov1" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <%=xuhao_1++ %>
+                            </td>
+                            <td>
+                                <a href='/TourManagerDpt/StaticsDetail.aspx?=<%#Eval("Name")%>'>
+                                    <%#Eval("Name")%></a>
+                            </td>
+                            <td>
+                                <%#(int)Eval("AdultsAmount")+(int)Eval("ChildrenAmount")%>
+                            </td>
+                            <td>
+                                <%#Eval("LiveDays")%>
+                            </td>
+                            <td>
+                                <%#Eval("Playnums")%>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+        </table>
+        <%--<table border="1" cellpadding="1" cellspacing="1">
             <thead>
                 <tr>
                     <td rowspan="2">
@@ -94,7 +147,7 @@
                         住宿人天数
                     </td>
                     <td>
-                        浏览人数
+                        游览人数
                     </td>
                     <td>
                         总人数
@@ -103,7 +156,7 @@
                         住宿人天数
                     </td>
                     <td>
-                        浏览人数
+                        游览人数
                     </td>
                 </tr>
             </thead>
@@ -140,12 +193,12 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
-        </table>
+        </table>--%>
         <hr />
         <div class="detailtitle">
             旅游企业接待情况明细表</div>
         <div class="searchdiv">
-            日期：<asp:TextBox ID="txt_yijiedai2" runat="server" />
+            日期：<asp:TextBox ID="txt_yijiedai2" runat="server" />至<asp:TextBox ID="txt_yijiedai2_end" runat="server" />
             <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click" CssClass="btn" /></div>
         <asp:Repeater ID="rptGov2" runat="server">
             <HeaderTemplate>

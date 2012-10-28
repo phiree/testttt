@@ -5,117 +5,118 @@
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-        function calc() {
+        //V.2012-10-28
+//        function calc() {
 
-            //保存校验
-            var tbmem = $("#tbMember>tbody>tr");
-            var idvali = true;
-            var request_s = "";
-            tbmem.each(function () {
-                request_s += $(this).children().next().next().html() + "-";
-            });
-            $.ajax({
-                type: "Post",
-                async: false,
-                url: "ValidateHandler.ashx",
-                dataType: "text",
-                data: request_s,
-                success: function (data, status) {
-                    var dics = data.split("-");
-                    if (dics[0] != "true" && dics[0] != "True") {
-                        idvali = false;
-                        return false;
-                    }
-                }
-            });
-            alert(idvali);
-            if (!idvali) {
-                alert('身份证输入错误, 请重新填写!');
-                return false;
-            }
+//            //保存校验
+//            var tbmem = $("#tbMember>tbody>tr");
+//            var idvali = true;
+//            var request_s = "";
+//            tbmem.each(function () {
+//                request_s += $(this).children().next().next().html() + "-";
+//            });
+//            $.ajax({
+//                type: "Post",
+//                async: false,
+//                url: "ValidateHandler.ashx",
+//                dataType: "text",
+//                data: request_s,
+//                success: function (data, status) {
+//                    var dics = data.split("-");
+//                    if (dics[0] != "true" && dics[0] != "True") {
+//                        idvali = false;
+//                        return false;
+//                    }
+//                }
+//            });
+//            alert(idvali);
+//            if (!idvali) {
+//                alert('身份证输入错误, 请重新填写!');
+//                return false;
+//            }
 
-            //保存提示
-            var bool = window.confirm("请确定是否需要保存!");
-            if (!bool) {
-                return false;
-            }
-            var gid = getArgs("id");
+//            //保存提示
+//            var bool = window.confirm("请确定是否需要保存!");
+//            if (!bool) {
+//                return false;
+//            }
+//            var gid = getArgs("id");
 
-            //V.2012-10-10
-            //基本信息
-            var dateString = $("#txtDate").html();
-            var dateArray = dateString.split("-", 2);
-            var datas = "";
-            var djsid = $.cookie('DJSID');
-            datas += "{\"DjsId\":\"" + djsid + "\",";
-            datas += "\"GroupBasic\":";
-            datas += "{\"Name\":\"" + $("#txtName").html();
-            datas += "\",\"Begindate\":\"" + dateArray[0];
-            datas += "\",\"Enddate\":\"" + dateArray[1];
-            datas += "\",\"GroupNo\":\"" + $("#txtGroupNo").html();
-            datas += "\",\"Days\":\"" + $("#txtDays").html();
-            datas += "\",\"PeopleTotal\":\"" + $("#txtPnum").html();
-            datas += "\",\"PeopleAdult\":\"" + $("#txtPadult").html();
-            datas += "\",\"PeopleChild\":\"" + $("#txtPchild").html();
-            datas += "\",\"Gangaotais\":\"" + $("#txtGangaotais").html();
-            datas += "\",\"Foreigners\":\"" + $("#txtForeigners").html();
-            datas += "\",\"StartPlace\":\"" + $("#txtGether").html();
-            datas += "\",\"EndPlace\":\"" + $("#txtBack").html();
+//            //V.2012-10-10
+//            //基本信息
+//            var dateString = $("#txtDate").html();
+//            var dateArray = dateString.split("-", 2);
+//            var datas = "";
+//            var djsid = $.cookie('DJSID');
+//            datas += "{\"DjsId\":\"" + djsid + "\",";
+//            datas += "\"GroupBasic\":";
+//            datas += "{\"Name\":\"" + $("#txtName").html();
+//            datas += "\",\"Begindate\":\"" + dateArray[0];
+//            datas += "\",\"Enddate\":\"" + dateArray[1];
+//            datas += "\",\"GroupNo\":\"" + $("#txtGroupNo").html();
+//            datas += "\",\"Days\":\"" + $("#txtDays").html();
+//            datas += "\",\"PeopleTotal\":\"" + $("#txtPnum").html();
+//            datas += "\",\"PeopleAdult\":\"" + $("#txtPadult").html();
+//            datas += "\",\"PeopleChild\":\"" + $("#txtPchild").html();
+//            datas += "\",\"Gangaotais\":\"" + $("#txtGangaotais").html();
+//            datas += "\",\"Foreigners\":\"" + $("#txtForeigners").html();
+//            datas += "\",\"StartPlace\":\"" + $("#txtGether").html();
+//            datas += "\",\"EndPlace\":\"" + $("#txtBack").html();
 
-            //人员信息
-            var tabledom = $("#tbMember>tbody>tr");
-            datas += "\"},\"GroupMemberList\":[";
-            tabledom.each(function () {
-                //alert('tbmem=' + $(this).children().next().html());
-                datas += "{\"Memtype\":\"" + $(this).children().html();
-                datas += "\",\"Memname\":\"" + $(this).children().next().html();
-                datas += "\",\"Memid\":\"" + $(this).children().next().next().html();
-                datas += "\",\"Memphone\":\"" + $(this).children().next().next().next().html();
-                datas += "\",\"Cardno\":\"" + $(this).children().next().next().next().next().html();
-                datas += "\"},";   //最后记得去掉这个,逗号
-            });
-            datas = datas.substring(0, datas.length - 1) + "]";
+//            //人员信息
+//            var tabledom = $("#tbMember>tbody>tr");
+//            datas += "\"},\"GroupMemberList\":[";
+//            tabledom.each(function () {
+//                //alert('tbmem=' + $(this).children().next().html());
+//                datas += "{\"Memtype\":\"" + $(this).children().html();
+//                datas += "\",\"Memname\":\"" + $(this).children().next().html();
+//                datas += "\",\"Memid\":\"" + $(this).children().next().next().html();
+//                datas += "\",\"Memphone\":\"" + $(this).children().next().next().next().html();
+//                datas += "\",\"Cardno\":\"" + $(this).children().next().next().next().next().html();
+//                datas += "\"},";   //最后记得去掉这个,逗号
+//            });
+//            datas = datas.substring(0, datas.length - 1) + "]";
 
-            //行程信息
-            var tbRoute = $("#tbRoute>tbody>tr");
-            datas += ",\"GroupRouteList\":[";
-            tbRoute.each(function () {
-                datas += "{\"RouteDate\":\"" + $(this).children().html();
-                datas += "\",\"Breakfast\":\"" + $(this).children().next().next().html();
-                datas += "\",\"Lunch\":\"" + $(this).children().next().next().next().html();
-                datas += "\",\"Dinner\":\"" + $(this).children().next().next().next().next().html();
+//            //行程信息
+//            var tbRoute = $("#tbRoute>tbody>tr");
+//            datas += ",\"GroupRouteList\":[";
+//            tbRoute.each(function () {
+//                datas += "{\"RouteDate\":\"" + $(this).children().html();
+//                datas += "\",\"Breakfast\":\"" + $(this).children().next().next().html();
+//                datas += "\",\"Lunch\":\"" + $(this).children().next().next().next().html();
+//                datas += "\",\"Dinner\":\"" + $(this).children().next().next().next().next().html();
 
-                var hotelString = $(this).children().next().next().next().next().next().html();
-                var hotelArray = hotelString.split("-", 5);
-                for (var i = 0; i < hotelArray.length; i++) {
-                    datas += "\",\"Hotel" + (i + 1) + "\":\"" + hotelArray[i];
-                }
+//                var hotelString = $(this).children().next().next().next().next().next().html();
+//                var hotelArray = hotelString.split("-", 5);
+//                for (var i = 0; i < hotelArray.length; i++) {
+//                    datas += "\",\"Hotel" + (i + 1) + "\":\"" + hotelArray[i];
+//                }
 
-                var scString = $(this).children().next().next().next().next().next().next().html();
-                var scArray = scString.split("-", 5);
-                for (var i = 0; i < scArray.length; i++) {
-                    datas += "\",\"Scenic" + (i + 1) + "\":\"" + scArray[i];
-                }
+//                var scString = $(this).children().next().next().next().next().next().next().html();
+//                var scArray = scString.split("-", 5);
+//                for (var i = 0; i < scArray.length; i++) {
+//                    datas += "\",\"Scenic" + (i + 1) + "\":\"" + scArray[i];
+//                }
 
-                var spString = $(this).children().next().next().next().next().next().next().next().html();
-                var spArray = spString.split("-", 5);
-                for (var i = 0; i < spArray.length; i++) {
-                    datas += "\",\"ShoppingPoint" + (i + 1) + "\":\"" + spArray[i];
-                }
+//                var spString = $(this).children().next().next().next().next().next().next().next().html();
+//                var spArray = spString.split("-", 5);
+//                for (var i = 0; i < spArray.length; i++) {
+//                    datas += "\",\"ShoppingPoint" + (i + 1) + "\":\"" + spArray[i];
+//                }
 
-                datas += "\"},"; //最后记得去掉这个,逗号
-            });
-            datas = datas.substring(0, datas.length - 1) + "]}";
+//                datas += "\"},"; //最后记得去掉这个,逗号
+//            });
+//            datas = datas.substring(0, datas.length - 1) + "]}";
 
-            $.ajax({
-                type: "Post",
-                url: "GroupHandler.ashx",
-                dataType: "text",
-                data: datas,
-                success: function (data, status) {
-                    alert(data);
-                }
-            });
+//            $.ajax({
+//                type: "Post",
+//                url: "GroupHandler.ashx",
+//                dataType: "text",
+//                data: datas,
+//                success: function (data, status) {
+//                    alert(data);
+//                }
+//            });
 
             //           //老版本2012-9-29
             //            var tabledom = $("#tbMember>tbody>tr");
@@ -141,7 +142,7 @@
             //                        alert("修改失败！");
             //                }
             //            });
-        }
+//        }
 
         //删除行
         function delrow(obj) {
@@ -206,7 +207,8 @@
                     dataType: "text",
                     data: datas,
                     success: function (data, status) {
-                        alert(data);
+                        var splititems = data.split(":");
+                        window.location="/LocalTravelAgent/Groups/GroupDetail.aspx?id=" + splititems[1];
                         //                        var tbmember = $("#tbMember>tbody");
                         //                        var tbroute = $("#tbRoute>tbody");
                         //                        if (data == "") {
@@ -427,15 +429,12 @@
                 注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题</li>
             <li>点击“上传”，将文件上传到服务器 </li>
             <li>点击“导入数据”，将excel内容导入到表格中 </li>
-            <li>点击“确定”，存储表格数据 </li>
-            <li>确保excel正确，保存后无法修改！ </li>
         </ol>
         <asp:FileUpload ID="FileUpload1" runat="server" />
         <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
             OnClick="btnUpload_Click" CssClass="btn" />
         <input id="btnExcel" type="button" name="name" value="导入数据" class="btn" />
         <asp:Label ID="Label1" runat="server" Text="" Style="display: none"></asp:Label>
-        <input type="button" value="保存" onclick="return calc()" class="btn" />
         <!-- 操作end -->
     </div>
 </asp:Content>

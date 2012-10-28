@@ -131,6 +131,7 @@ public class ExcelHandler : IHttpHandler {
                 routes.Add(new Model.DJ_Route() { 
                     DayNo=i+1,
                     DJ_TourGroup=tg,
+                    Description="住宿",
                     Enterprise=bllDJS.GetDJS8name(item)[0]
                 });
             }
@@ -142,15 +143,18 @@ public class ExcelHandler : IHttpHandler {
                 {
                     DayNo = i + 1,
                     DJ_TourGroup = tg,
+                    Description = "景点",
                     Enterprise = bllDJS.GetDJS8name(item)[0]
                 });
             }
         }
+        tg.Routes = routes;
         
         IDAL.IDJEnterprise djEnterprice = new DAL.DALDJEnterprise();
         //汇总信息
-        string result = djEnterprice.AddGroup(tg);
-        context.Response.Write(result);
+        string guidid=string.Empty;
+        string result = djEnterprice.AddGroup(tg,out guidid);
+        context.Response.Write(result+":"+guidid);
 
         #region v.2012/10/9
         //string html = string.Empty;

@@ -279,7 +279,8 @@ public class GroupHandler : IHttpHandler
         tg.Routes = routes;
 
         //汇总信息
-        string result=djEnterprice.AddGroup(tg);
+        string guidid = string.Empty;
+        string result=djEnterprice.AddGroup(tg,out guidid);
         context.Response.Write(result);
     }
 
