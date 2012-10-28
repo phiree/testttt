@@ -22,7 +22,10 @@
                             日期
                         </td>
                         <td>
-                            游玩人数或住宿人天数
+                            游玩人数
+                        </td>
+                        <td>
+                            住宿人天数
                         </td>
                     </tr>
             </HeaderTemplate>
@@ -34,7 +37,10 @@
                                 <%# Eval("ConsumeTime","{0:yyyy-MM-dd}")%>
                             </td>
                             <td>
-                                <asp:Literal ID="laCountInfo" runat="server"></asp:Literal>
+                                <asp:Literal ID="laVisitedCount" runat="server"></asp:Literal>
+                            </td>
+                            <td>
+                                <asp:Literal ID="laLiveCount" runat="server"></asp:Literal>
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -44,7 +50,10 @@
                         <%# Eval("MonthIndex")%>月份小计
                     </td>
                     <td>
-                        <asp:Literal ID="laMonthTotal" runat="server"></asp:Literal>
+                        <asp:Literal ID="laMonthVTotal" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laMonthLTotal" runat="server"></asp:Literal>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -54,7 +63,10 @@
                         总计
                     </td>
                     <td>
-                        <asp:Literal ID="laYearTotal" runat="server"></asp:Literal>
+                        <asp:Literal ID="laYearVTotal" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laYearLTotal" runat="server"></asp:Literal>
                     </td>
                 </tr>
             </FooterTemplate>

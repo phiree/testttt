@@ -298,5 +298,21 @@ namespace BLL
                 }
             }
         }
+
+        public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, string code, int djsid)
+        {
+            code = code.Substring(2) == "0000" ? code.Substring(0, 2) : code.Substring(0, 4);
+            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, code, djsid).ToList();
+            //过滤掉有相同团队的记录
+            List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
+            foreach (DJ_GroupConsumRecord item in ListRecord)
+            {
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                {
+                    List.Add(item);
+                }
+            }
+            return List;
+        }
     }
 }
