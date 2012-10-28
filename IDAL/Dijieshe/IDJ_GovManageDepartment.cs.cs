@@ -9,5 +9,6 @@ namespace IDAL
     public interface IDJ_GovManageDepartment
     {
         IList<DJ_GovManageDepartment> GetGovDptByName(string name);
+        DJ_GovManageDepartment GetById(Guid id);
     }
 }

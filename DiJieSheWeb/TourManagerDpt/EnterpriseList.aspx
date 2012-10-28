@@ -49,7 +49,9 @@
                     </td>
                     <td>
                         <asp:Button ID="BtnCreate" runat="server" Text="创建账号" CssClass="btn" CommandName="SetAdmin" CommandArgument='<%# Eval("Id") %>' />
-                        <asp:Literal ID="laAccount" runat="server"></asp:Literal>
+                        <asp:TextBox ID="laAccount" runat="server"></asp:TextBox>
+                        <asp:HiddenField ID="hfuserid" runat="server" />
+                        <asp:Button ID="BtnUpdate" Text="修改" runat="server" CssClass="btn" CommandName="UpdateAdmin" CommandArgument='<%# Eval("Id") %>' />
                     </td>
                     <td>
                         <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"
@@ -104,7 +106,9 @@
                     </td>
                     <td>
                         <asp:Button ID="BtnCreate" runat="server" Text="创建账号" CssClass="btn" CommandName="SetAdmin" CommandArgument='<%# Eval("Id") %>' />
-                        <asp:Literal ID="laAccount" runat="server"></asp:Literal>
+                        <asp:TextBox ID="laAccount" runat="server"></asp:TextBox>
+                        <asp:HiddenField ID="hfuserid" runat="server" />
+                        <asp:Button ID="BtnUpdate" Text="修改" runat="server" CssClass="btn" CommandName="UpdateAdmin" CommandArgument='<%# Eval("Id") %>' />
                     </td>
                     <td>
                         <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"
@@ -159,7 +163,9 @@
                     </td>
                     <td>
                         <asp:Button ID="BtnCreate" runat="server" Text="创建账号" CssClass="btn" CommandName="SetAdmin" CommandArgument='<%# Eval("Id") %>' />
-                        <asp:Literal ID="laAccount" runat="server"></asp:Literal>
+                        <asp:TextBox ID="laAccount" runat="server"></asp:TextBox>
+                        <asp:HiddenField ID="hfuserid" runat="server" />
+                        <asp:Button ID="BtnUpdate" Text="修改" runat="server" CssClass="btn" CommandName="UpdateAdmin" CommandArgument='<%# Eval("Id") %>' />
                     </td>
                     <td>
                         <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"

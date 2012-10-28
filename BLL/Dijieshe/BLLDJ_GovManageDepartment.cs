@@ -16,5 +16,10 @@ namespace BLL
         {
             return Idepart.GetGovDptByName(name);
         }
+
+        public DJ_GovManageDepartment GetById(Guid id)
+        {
+            return Idepart.GetById(id);
+        }
     }
 }

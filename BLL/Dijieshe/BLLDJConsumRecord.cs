@@ -195,9 +195,9 @@ namespace BLL
             return IDjgroup.GetRecordByCondition(dateyear, EntName, type, EntId);
         }
 
-        public List<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid)
+        public List<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid,int djsid)
         {
-            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, entid).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, entid,djsid).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)

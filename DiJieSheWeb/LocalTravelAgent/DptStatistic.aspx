@@ -44,7 +44,9 @@
                             <%= Index++ %>
                         </td>
                         <td>
+                            <a href='/LocalTravelAgent/DptDetailStatistic.aspx?dptid=<%# Eval("Id") %>'>
                             <%# Eval("Name") %>
+                            </a>
                         </td>
                         <td>
                             <asp:Literal ID="laTotalCount" runat="server"></asp:Literal>

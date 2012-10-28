@@ -51,7 +51,7 @@ public partial class LocalTravelAgent_LTAUserEdit : System.Web.UI.Page
         {
             if (item.Selected)
             {
-                Model.DJ_User_TourEnterprisePermission permisson = (Model.DJ_User_TourEnterprisePermission)Enum.Parse(typeof(Model.DJ_User_GovPermission), item.Text);
+                Model.DJ_User_TourEnterprisePermission permisson = (Model.DJ_User_TourEnterprisePermission)Enum.Parse(typeof(Model.DJ_User_TourEnterprisePermission), item.Text);
                 sat = sat | permisson;
             }
         }

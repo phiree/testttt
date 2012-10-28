@@ -48,7 +48,7 @@ public partial class LocalTravelAgent_TEDetailStatistics : System.Web.UI.Page
             month m = e.Item.DataItem as month;
             Repeater rptETMonthDetail = e.Item.FindControl("rptETMonthDetail") as Repeater;
             rptETMonthDetail.ItemDataBound+=new RepeaterItemEventHandler(rptETMonthDetail_ItemDataBound);
-            rptETMonthDetail.DataSource = bllRecord.GetByDate(int.Parse(Year), m.MonthIndex, entid);
+            rptETMonthDetail.DataSource = bllRecord.GetByDate(int.Parse(Year), m.MonthIndex, entid,Master.CurrentDJS.Id);
             rptETMonthDetail.DataBind();
             laMonthTotal.Text = "成人" + totalmonth_audlt.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalmonth_child.ToString();
         }
@@ -84,19 +84,5 @@ public partial class LocalTravelAgent_TEDetailStatistics : System.Web.UI.Page
             Literal laMonthTotal = e.Item.Parent.Parent.FindControl("laMonthTotal") as Literal;
             laMonthTotal.Text = "成人" + totalmonth_audlt.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalmonth_child.ToString();
         }
-    }
-}
-public class month
-{
-    public month(int monthindex)
-    {
-        MonthIndex = monthindex;
-    }
-    private int monthIndex;
-
-    public int MonthIndex
-    {
-        get { return monthIndex; }
-        set { monthIndex = value; }
     }
 }
