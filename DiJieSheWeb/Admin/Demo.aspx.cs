@@ -63,7 +63,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         DJ_TourGroup group = new DJ_TourGroup();
         group.BeginDate = DateTime.Now;
         group.DJ_DijiesheInfo = (Model.DJ_DijiesheInfo)demoDjs;
-        group.EndDate = DateTime.Now.AddDays(2);
+        group.EndDate = DateTime.Now.AddDays(1);
 
         DJ_TourGroupMember memberdaoyou = new DJ_TourGroupMember();
         memberdaoyou.DJ_TourGroup = group;
@@ -110,7 +110,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         group.Members.Add(member3);
 
         group.Name = "[Demo]杭州双休游-" + group.BeginDate.ToShortDateString() + "-" + group.EndDate.ToShortDateString();
-        group.No = "SRY20120004";
+        group.No = "SRY2012"+Math.Abs(Guid.NewGuid().GetHashCode()).ToString().Substring(0,4);
 
         DJ_Route route1 = new DJ_Route();
         route1.DayNo = 1;
