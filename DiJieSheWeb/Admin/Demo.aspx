@@ -1,7 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin/Demo.master" CodeFile="Demo.aspx.cs" Inherits="Admin_Demo" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="main" Runat="Server">
 
+<asp:Content ID="Content1" ContentPlaceHolderID="main" Runat="Server">
+<style>
+input{cursor:pointer;}
+</style>
     <div class="detail_titlebg">
    TourOl地接社平台Demo演示
     </div>
