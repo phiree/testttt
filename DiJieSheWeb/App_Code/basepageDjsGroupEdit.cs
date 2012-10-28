@@ -9,27 +9,37 @@ using Model;
 /// </summary>
 public class basepageDjsGroupEdit : basepageDJS
 {
+
+    DJ_TourGroup currentGroup;
     public DJ_TourGroup CurrentGroup
     {
-        get {
-            Guid groupId;
-            string param = Request["groupId"];
-            if (Guid.TryParse(param, out groupId))
+        get
+        {
+
+            if (currentGroup == null)
             {
-                DJ_TourGroup g = new BLL.BLLDJTourGroup().GetTourGroupById(groupId);
-                if (g == null)
+                Guid groupId;
+                string param = Request["groupId"];
+                if (Guid.TryParse(param, out groupId))
                 {
-                    BLL.ErrHandler.Redirect(BLL.ErrType.ObjectIsNull);
+                    DJ_TourGroup g = new BLL.BLLDJTourGroup().GetTourGroupById(groupId);
+                    if (g == null)
+                    {
+                        BLL.ErrHandler.Redirect(BLL.ErrType.ObjectIsNull);
+                    }
+                    else
+                    {
+                        currentGroup = g;
+                    }
                 }
+
                 else
                 {
-                    return g;
+                    BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
                 }
             }
-            else {
-                BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
-            }
-            return null;
+
+            return currentGroup;
         }
     }
 

@@ -92,6 +92,10 @@ namespace Model
         /// </summary>
         public virtual IList<DJ_TourGroupMember> Members { get; set; }
 
+        public virtual void DeleteMember(DJ_TourGroupMember member)
+        {
+            this.Members.Remove(member);
+        }
 
     }
 }

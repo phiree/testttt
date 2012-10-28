@@ -19,6 +19,7 @@
                     <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
                 </td>
             </tr>
+           
             <tr>
                 <td>
                     区域编码:
