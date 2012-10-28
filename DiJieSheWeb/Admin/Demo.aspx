@@ -1,21 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Demo.aspx.cs" Inherits="Admin_Demo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin/Demo.master" CodeFile="Demo.aspx.cs" Inherits="Admin_Demo" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-   <h3>TourOl地接社平台</h3><h4>Demo演示</h4>
+<asp:Content ID="Content1" ContentPlaceHolderID="main" Runat="Server">
+
+    <div class="detail_titlebg">
+   TourOl地接社平台Demo演示
     </div>
-   
+   <div class="detaillist">
     <fieldset>
         <legend>旅游管理部门</legend>
         <ul>
             <li>
-                <asp:Button runat="server" ID="btnDptAdminLogin" Text="管理部门管理员登录" OnClick="btnDptAdminLogin_Click" /></li></ul>
+                <asp:Button runat="server" ID="btnDptAdminLogin" Text="管理部门管理员登录" OnClick="btnDptAdminLogin_Click" b /></li></ul>
     </fieldset>
     <fieldset>
         <legend>旅行社</legend>
@@ -40,6 +35,5 @@
             <li>
                 <asp:Button runat="server" ID="btnAdminLogin" Text="管理员登录" OnClick="btnAdminLogin_Click" /></li></ul>
     </fieldset>
-    </form>
-</body>
-</html>
+    </div>
+    </asp:Content>
