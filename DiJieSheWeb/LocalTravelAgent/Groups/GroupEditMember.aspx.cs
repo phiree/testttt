@@ -16,10 +16,10 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
 
     BLL.BLLDJTourGroup bllGroup = new BLL.BLLDJTourGroup();
-    DJ_TourGroup ThisGroup;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        ThisGroup = CurrentGroup;
+        
         if (!IsPostBack)
         {
            
@@ -35,7 +35,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     private void LoadSimpleData()
     {
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        foreach (Model.DJ_TourGroupMember member in ThisGroup.Members)
+        foreach (Model.DJ_TourGroupMember member in CurrentGroup.Members)
         {
             sb.Append(member.MemberType);
             sb.Append(",");
@@ -47,7 +47,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
             sb.Append(member.IdCardNo);
             sb.Append(",");
             sb.Append(member.SpecialCardNo);
-            if (ThisGroup.Members.IndexOf(member) < ThisGroup.Members.Count - 1)
+            if (CurrentGroup.Members.IndexOf(member) < CurrentGroup.Members.Count - 1)
             {
                 sb.AppendLine(Environment.NewLine);
             }
@@ -56,7 +56,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     }
     private void BuildJsonData()
     {
-        MemberJsonList = BLL.BLLDJTourGroup.BuildJsonForMemberList(ThisGroup.Members);
+        MemberJsonList = BLL.BLLDJTourGroup.BuildJsonForMemberList(CurrentGroup.Members);
         // JavaScriptSerializer serializer = new JavaScriptSerializer();
         //MemberJsonList= serializer.Serialize(CurrentGroup.Members);
 
@@ -67,11 +67,11 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     private void UpdateSimple(TextBox tbx)
     {
         ///删除所有成员先--首先要做提醒
-        foreach (DJ_TourGroupMember member in ThisGroup.Members)
+        foreach (DJ_TourGroupMember member in CurrentGroup.Members)
         {
           new BLL.BLLTourGroupMember().DeleteMember(member);
         }
-        ThisGroup.Members.Clear();
+        CurrentGroup.Members.Clear();
         string[] arrStrMember = tbx.Text.Split(Environment.NewLine.ToCharArray());
         //CurrentGroup.Members
         string errMsg=string.Empty;
@@ -86,9 +86,9 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
                break; 
            }
           // bllGroup.Save(member);
-           ThisGroup.Members.Add(member);
+           CurrentGroup.Members.Add(member);
        }
-       bllGroup.Save(ThisGroup);
+       bllGroup.Save(CurrentGroup);
        if (string.IsNullOrEmpty(errMsg))
        {
            lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
@@ -117,7 +117,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         member.PhoneNum = strArrMember[2];
         member.IdCardNo = strArrMember[3];
         member.SpecialCardNo = strArrMember[4];
-        member.DJ_TourGroup = ThisGroup;
+        member.DJ_TourGroup = CurrentGroup;
 
         return member;
     }
