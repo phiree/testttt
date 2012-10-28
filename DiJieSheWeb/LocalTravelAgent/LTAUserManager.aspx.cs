@@ -49,7 +49,7 @@ public partial class LocalTravelAgent_LTAUserManager : System.Web.UI.Page
                 case 1: laPermis.Text = Model.DJ_User_TourEnterprisePermission.管理员.ToString(); break;
             }
             HtmlAnchor aedit = e.Item.FindControl("aedit") as HtmlAnchor;
-            aedit.HRef = "/LocalTravelAgent/LTAUserManager.aspx?" + user.Id;
+            aedit.HRef = "/LocalTravelAgent/LTAUserEdit.aspx?userid=" + user.Id;
         }
     }
 }

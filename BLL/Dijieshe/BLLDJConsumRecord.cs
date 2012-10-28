@@ -209,5 +209,94 @@ namespace BLL
             }
             return List;
         }
+
+        public List<DJ_GovManageDepartment> GetDptRecord(string beginTime, string endTime, string dptname, int entid)
+        {
+            List<Model.DJ_GroupConsumRecord> ListRecord = IDjgroup.GetDptRecordByCondition(beginTime, endTime, dptname, entid).ToList();
+            //过滤掉有相同团队的记录
+            List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
+            foreach (DJ_GroupConsumRecord item in ListRecord)
+            {
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                {
+                    List.Add(item);
+                }
+            }
+            List<DJ_GovManageDepartment> ListGovDpt = new BLLDJ_GovManageDepartment().GetGovDptByName(dptname).ToList();
+            List<DJ_GovManageDepartment> ListGovWdpt = new List<DJ_GovManageDepartment>();
+            foreach (DJ_GovManageDepartment item in ListGovDpt)
+            {
+                foreach (DJ_GroupConsumRecord record in List)
+                {
+                    if (item.Area.Code.Substring(2) == "0000")
+                    {
+                        if (item.Area.Code.Substring(0, 2) == record.Enterprise.Area.Code.Substring(0, 2))
+                        {
+                            ListGovWdpt.Add(item);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (item.Area.Code.Substring(0, 4) == record.Enterprise.Area.Code.Substring(0, 4))
+                        {
+                            ListGovWdpt.Add(item);
+                            break;
+                        }
+                    }
+                }
+            }
+            return ListGovWdpt;
+        }
+
+        public void GetDetailDptCount(string beginTime, string endTime, string code, int entid, out int totalcount, out int livecount, out int visitedcount)
+        {
+            totalcount = 0;
+            livecount = 0;
+            visitedcount = 0;
+            List<Model.DJ_GroupConsumRecord> ListRecord = IDjgroup.GetDptRecordByCondition(beginTime, endTime, "", entid).ToList();
+            //过滤掉有相同团队的记录
+            List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
+            foreach (DJ_GroupConsumRecord item in ListRecord)
+            {
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                {
+                    List.Add(item);
+                }
+            }
+            foreach (DJ_GroupConsumRecord item in List)
+            {
+                if (code.Substring(2) == "0000")
+                {
+                    if (item.Enterprise.Area.Code.Substring(0, 2) == code.Substring(0, 2))
+                    {
+                        totalcount += item.AdultsAmount + item.ChildrenAmount;
+                        if (item.LiveDay > 0)
+                        {
+                            livecount += (item.AdultsAmount + item.ChildrenAmount) * (item.LiveDay);
+                        }
+                        else
+                        {
+                            visitedcount += item.AdultsAmount + item.ChildrenAmount;
+                        }
+                    }
+                }
+                else
+                {
+                    if (item.Enterprise.Area.Code.Substring(0, 4) == code.Substring(0, 4))
+                    {
+                        totalcount += item.AdultsAmount + item.ChildrenAmount;
+                        if (item.LiveDay > 0)
+                        {
+                            livecount += (item.AdultsAmount + item.ChildrenAmount) * (item.LiveDay);
+                        }
+                        else
+                        {
+                            visitedcount += item.AdultsAmount + item.ChildrenAmount;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
