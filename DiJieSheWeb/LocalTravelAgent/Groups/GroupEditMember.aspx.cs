@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Json;
 using System.Web.Script.Serialization;
 using Model;
 using System.Text;
+using System.Collections;
 public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupEdit
 {
     string[] fieldsName = { "tourertype", "realname", "phone", "idcardno", "othercardno", "memberid" };
@@ -15,10 +16,13 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
 
     BLL.BLLDJTourGroup bllGroup = new BLL.BLLDJTourGroup();
+    DJ_TourGroup ThisGroup;
     protected void Page_Load(object sender, EventArgs e)
     {
+        ThisGroup = CurrentGroup;
         if (!IsPostBack)
         {
+           
             LoadData();
         }
     }
@@ -31,7 +35,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     private void LoadSimpleData()
     {
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        foreach (Model.DJ_TourGroupMember member in CurrentGroup.Members)
+        foreach (Model.DJ_TourGroupMember member in ThisGroup.Members)
         {
             sb.Append(member.MemberType);
             sb.Append(",");
@@ -43,7 +47,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
             sb.Append(member.IdCardNo);
             sb.Append(",");
             sb.Append(member.SpecialCardNo);
-            if (CurrentGroup.Members.IndexOf(member) < CurrentGroup.Members.Count - 1)
+            if (ThisGroup.Members.IndexOf(member) < ThisGroup.Members.Count - 1)
             {
                 sb.AppendLine(Environment.NewLine);
             }
@@ -52,23 +56,24 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     }
     private void BuildJsonData()
     {
-        MemberJsonList = BLL.BLLDJTourGroup.BuildJsonForMemberList(CurrentGroup.Members);
+        MemberJsonList = BLL.BLLDJTourGroup.BuildJsonForMemberList(ThisGroup.Members);
         // JavaScriptSerializer serializer = new JavaScriptSerializer();
         //MemberJsonList= serializer.Serialize(CurrentGroup.Members);
 
     }
 
 
+ 
     private void UpdateSimple(TextBox tbx)
     {
         ///删除所有成员先--首先要做提醒
-        foreach (DJ_TourGroupMember member in CurrentGroup.Members)
+        foreach (DJ_TourGroupMember member in ThisGroup.Members)
         {
-            bllGroup.Delete(member);
+          new BLL.BLLTourGroupMember().DeleteMember(member);
         }
-       //保存新的成员
+        ThisGroup.Members.Clear();
         string[] arrStrMember = tbx.Text.Split(Environment.NewLine.ToCharArray());
-
+        //CurrentGroup.Members
         string errMsg=string.Empty;
        foreach (string s in arrStrMember)
        {
@@ -80,8 +85,10 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
                lblSimpleMsg.Text = errMsg;
                break; 
            }
-           bllGroup.Save(member);
+          // bllGroup.Save(member);
+           ThisGroup.Members.Add(member);
        }
+       bllGroup.Save(ThisGroup);
        if (string.IsNullOrEmpty(errMsg))
        {
            lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
@@ -110,7 +117,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         member.PhoneNum = strArrMember[2];
         member.IdCardNo = strArrMember[3];
         member.SpecialCardNo = strArrMember[4];
-        member.DJ_TourGroup = CurrentGroup;
+        member.DJ_TourGroup = ThisGroup;
 
         return member;
     }
@@ -120,7 +127,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     {
         UpdateSimple(tbxSimple);
         BuildJsonData();
-        Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
+       // Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
     protected void btnUpload_Click(object sender, EventArgs e)
     {

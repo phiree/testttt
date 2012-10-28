@@ -12,6 +12,7 @@ public class basepageDjsGroupEdit : basepageDJS
     public DJ_TourGroup CurrentGroup
     {
         get {
+           
             Guid groupId;
             string param = Request["groupId"];
             if (Guid.TryParse(param, out groupId))
