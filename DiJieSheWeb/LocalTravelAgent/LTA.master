@@ -16,6 +16,7 @@
             <li><a href="/localtravelagent/Groups/GroupList.aspx">团队列表</a></li>
               <li><a href="/localtravelagent/TourEnterpriseStatistics.aspx">旅游企业统计信息</a></li>
               <li><a href="/localtravelagent/DptStatistic.aspx">旅游管理部门统计信息</a></li>
+                <li><a href="/localtravelagent/RecEntList.aspx">奖励企业名录</a></li>
               <li><a href="/localtravelagent/LTAUserManager.aspx">用户管理</a></li>
         </ul>
 
