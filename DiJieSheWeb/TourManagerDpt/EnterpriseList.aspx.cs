@@ -27,15 +27,27 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
 
     protected void BindList()
     {
-        rptRestaurant.DataSource = bllDJEnt.GetDJS8Muti(CurrentDpt.Area.Id, Model.EnterpriseType.饭店.ToString(), null, null);
+        var restaurant_ = bllDJEnt.GetEntList_ExcludeScenic(CurrentDpt.Area.Code);
+        if (!string.IsNullOrEmpty(txtName.Text))
+        {
+            restaurant_ = restaurant_.Where(x => x.Name.Split(new string[] { txtName.Text }, StringSplitOptions.None).Count() > 1).ToList();
+        }
+        if (ddlStar.SelectedItem.Text != "所有")
+        {
+            restaurant_ = restaurant_.Where(x => x.IsVeryfied == (ddlStar.SelectedItem.Text == "是" ? true : false)).ToList();
+        }
+        if (ddlType.SelectedItem.Text != "所有")
+        {
+            restaurant_ = restaurant_.Where(x => x.Type == (Model.EnterpriseType)Enum.Parse(typeof(Model.EnterpriseType), ddlType.SelectedItem.Text)).ToList();
+        }
+        rptRestaurant.DataSource = restaurant_.Where(x => x.Type == Model.EnterpriseType.饭店).ToList();
         rptRestaurant.DataBind();
-        rptHotel.DataSource = bllDJEnt.GetDJS8Muti(CurrentDpt.Area.Id, Model.EnterpriseType.宾馆.ToString(), null, null);
+        rptHotel.DataSource = restaurant_.Where(x => x.Type == Model.EnterpriseType.宾馆).ToList();
         rptHotel.DataBind();
-        rptShoppingp.DataSource = bllDJEnt.GetDJS8Muti(CurrentDpt.Area.Id, Model.EnterpriseType.购物点.ToString(), null, null);
+        rptShoppingp.DataSource = restaurant_.Where(x => x.Type == Model.EnterpriseType.购物点).ToList();
         rptShoppingp.DataBind();
-
-        
     }
+
     protected void rpt_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -120,5 +132,10 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
         }
         BindList();
            
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        BindList();
     }
 }
