@@ -58,6 +58,14 @@
         </tr>
         <tr>
             <td>
+                星级:
+            </td>
+            <td>
+                <%=Ent.Level %>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 负责人姓名:
             </td>
             <td>
@@ -70,6 +78,22 @@
             </td>
             <td>
                 <%=Ent.ChargePersonPhone %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                电子邮箱:
+            </td>
+            <td>
+                <%=Ent.Email %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                营业执照:
+            </td>
+            <td>
+                <%=Ent.Buslicense %>
             </td>
         </tr>
     </table>

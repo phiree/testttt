@@ -33,6 +33,7 @@ public partial class TourManagerDpt_EnterEdit : System.Web.UI.Page
         if (!IsPostBack)
         {
             BindType();
+            BindLevel();
             if (!IsNew)
             {
                 LoadForm();
@@ -55,6 +56,58 @@ public partial class TourManagerDpt_EnterEdit : System.Web.UI.Page
         ddltype.DataBind();
     }
 
+    private void BindLevel()
+    {
+        ArrayList list = new ArrayList();
+        string type = ddltype.SelectedItem.Text;
+        switch (type)
+        {
+            case "景点":
+                list.Add(new ListItem("5A", "5A"));
+                list.Add(new ListItem("4A", "4A"));
+                list.Add(new ListItem("3A", "3A"));
+                list.Add(new ListItem("无", "无"));
+                break;
+            case "饭店":
+                list.Add(new ListItem("7星", "7星"));
+                list.Add(new ListItem("6星", "6星"));
+                list.Add(new ListItem("5星", "5星"));
+                list.Add(new ListItem("4星", "4星"));
+                list.Add(new ListItem("3星", "3星"));
+                list.Add(new ListItem("无", "无"));
+                break;
+            case "宾馆":
+                list.Add(new ListItem("7星", "7星"));
+                list.Add(new ListItem("6星", "6星"));
+                list.Add(new ListItem("5星", "5星"));
+                list.Add(new ListItem("4星", "4星"));
+                list.Add(new ListItem("3星", "3星"));
+                list.Add(new ListItem("无", "无"));
+                break;
+            case "购物点":
+                list.Add(new ListItem("5星", "5星"));
+                list.Add(new ListItem("4星", "4星"));
+                list.Add(new ListItem("3星", "3星"));
+                list.Add(new ListItem("无", "无"));
+                break;
+            case "旅行社":
+                list.Add(new ListItem("5星", "5星"));
+                list.Add(new ListItem("4星", "4星"));
+                list.Add(new ListItem("3星", "3星"));
+                list.Add(new ListItem("无", "无"));
+                break;
+        }
+        ddlLevel.DataSource = list;
+        ddlLevel.DataTextField = "text";
+        ddlLevel.DataValueField = "value";
+        ddlLevel.DataBind();
+    }
+
+    protected void ddltype_TextChanged(object sender, EventArgs e)
+    {
+        BindLevel();
+    }
+
     private void LoadForm()
     {
         tbxAdress.Text = CurrentEnterprise.Address;
@@ -66,12 +119,14 @@ public partial class TourManagerDpt_EnterEdit : System.Web.UI.Page
         tbxEnenmail.Text = CurrentEnterprise.Email;
         tbxYyzz.Text = CurrentEnterprise.Buslicense;
         ddltype.SelectedIndex = ddltype.Items.IndexOf(ddltype.Items.FindByText(CurrentEnterprise.Type.ToString()));
+        ddlLevel.SelectedIndex = ddlLevel.Items.IndexOf(ddlLevel.Items.FindByText(CurrentEnterprise.Level));
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
         CurrentEnterprise.Address = tbxAdress.Text;
         CurrentEnterprise.Area = bllArea.GetAreaByCode(ddlarea.Areacode);
+        CurrentEnterprise.Level = ddlLevel.SelectedItem.Text;
         CurrentEnterprise.ChargePersonName = tbxChargePerson.Text;
         CurrentEnterprise.Name = tbxName.Text;
         CurrentEnterprise.Phone = tbxOfficePhone.Text;
