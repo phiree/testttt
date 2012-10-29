@@ -14,10 +14,10 @@ public partial class Admin_Demo : System.Web.UI.Page
     string dptAdminAccount = "GovAdmin_-75259";//管理部门登录帐号
 
     string dijiesheAdminAcount = "entAdmin_438";//地接社管理员
-    string dijiesheName = "旭日旅行社";
+    string dijiesheName = "杭州西湖旅行社";
 
-    string hoteladmin = "entAdmin_442";
-    string hotelName = "希尔顿酒店";
+    string hoteladmin = "entAdmin_439";
+    string hotelName = "香格里拉宾馆";
 
     string scenicName = "印象西湖";
     string scenicAdminAccount = "yinxiangxihu_admin";
@@ -114,17 +114,26 @@ public partial class Admin_Demo : System.Web.UI.Page
 
         DJ_Route route1 = new DJ_Route();
         route1.DayNo = 1;
+        route1.Description = "住宿";
         route1.DJ_TourGroup = group;
         route1.Enterprise = demoHotel;
 
+        DJ_Route route11 = new DJ_Route();
+        route11.DayNo = 1;
+        route11.Description = "景点";
+        route11.DJ_TourGroup = group;
+        route11.Enterprise = demoScenic;
+
         DJ_Route route2 = new DJ_Route();
         route2.DayNo = 2;
+        route2.Description = "景点";
         route2.DJ_TourGroup = group;
         route2.Enterprise = demoScenic;
         //group.Routes
 
         group.Routes.Add(route1);
         group.Routes.Add(route2);
+        group.Routes.Add(route11);
 
         return group;
 

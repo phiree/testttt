@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Groups_GroupInfo : System.Web.UI.Page
+public partial class Groups_GroupInfo : basepageDJS
 {
     private string excelPath = "d:/";
-
+    public string DJSId;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        DJSId = CurrentDJS.Id.ToString();
     }
 
     protected void btnUpload_Click(object sender, EventArgs e)
