@@ -33,6 +33,16 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
         {
             txtEndDate.Text = "";
         }
+        if (ddlDateStatistic.SelectedValue == "本月")
+        {
+            txtBeginDate.Text = DateTime.Now.Year + "-" + DateTime.Now.Month + "-01";
+            txtEndDate.Text = DateTime.Parse(DateTime.Now.Year + "-" + DateTime.Now.AddMonths(1).Month + "-01").AddDays(-1).ToString("yyyy-MM-dd");
+        }
+        if (ddlDateStatistic.SelectedValue == "本年")
+        {
+            txtBeginDate.Text = DateTime.Now.Year + "-01-01";
+            txtEndDate.Text = DateTime.Parse(DateTime.Now.AddYears(1).Year + "-01-01").AddDays(-1).ToString("yyyy-MM-dd");
+        }
         listEnt = bllrecord.GetDJStaticsEnt(txtBeginDate.Text, txtEndDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id).ToList();
         rptStatistic.DataSource = listEnt;
         rptStatistic.DataBind();
@@ -58,6 +68,16 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
             if (!DateTime.TryParse(txtEndDate.Text, out endtime))
             {
                 txtEndDate.Text = "";
+            }
+            if (ddlDateStatistic.SelectedValue == "本月")
+            {
+                txtBeginDate.Text = DateTime.Now.Year + "-" + DateTime.Now.Month + "-01";
+                txtEndDate.Text = DateTime.Parse(DateTime.Now.Year + "-" + DateTime.Now.AddMonths(1).Month + "-01").AddDays(-1).ToString("yyyy-MM-dd");
+            }
+            if (ddlDateStatistic.SelectedValue == "本年")
+            {
+                txtBeginDate.Text = DateTime.Now.Year + "-01-01";
+                txtEndDate.Text = DateTime.Parse(DateTime.Now.AddYears(1).Year + "-01-01").AddDays(-1).ToString("yyyy-MM-dd");
             }
             if (laType.Text == "景区")
             {
