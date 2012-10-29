@@ -32,8 +32,13 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
         }
         if (ddlDateStatistic.SelectedValue == "本月")
         {
-            txtBeginDate.Text = DateTime.Now.Year + "-" + DateTime.Now.Month + "01";
-            txtEndDate.Text = DateTime.Parse(DateTime.Now.Year + "-" + DateTime.Now.AddMonths(1).Month + "01").AddDays(-1).ToString("yyyy-MM-dd");
+            txtBeginDate.Text = DateTime.Now.Year + "-" + DateTime.Now.Month + "-01";
+            txtEndDate.Text = DateTime.Parse(DateTime.Now.Year + "-" + DateTime.Now.AddMonths(1).Month + "-01").AddDays(-1).ToString("yyyy-MM-dd");
+        }
+        if (ddlDateStatistic.SelectedValue == "本年")
+        {
+            txtBeginDate.Text = DateTime.Now.Year + "-01-01";
+            txtEndDate.Text = DateTime.Parse(DateTime.Now.AddYears(1).Year + "-01-01").AddDays(-1).ToString("yyyy-MM-dd");
         }
         rptDpt.DataSource = bllrecord.GetDptRecord(txtBeginDate.Text, txtEndDate.Text, txtEntName.Text, Master.CurrentDJS.Id);
         rptDpt.DataBind();
@@ -58,6 +63,16 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
             if (!DateTime.TryParse(txtEndDate.Text, out endtime))
             {
                 txtEndDate.Text = "";
+            }
+            if (ddlDateStatistic.SelectedValue == "本月")
+            {
+                txtBeginDate.Text = DateTime.Now.Year + "-" + DateTime.Now.Month + "-01";
+                txtEndDate.Text = DateTime.Parse(DateTime.Now.Year + "-" + DateTime.Now.AddMonths(1).Month + "-01").AddDays(-1).ToString("yyyy-MM-dd");
+            }
+            if (ddlDateStatistic.SelectedValue == "本年")
+            {
+                txtBeginDate.Text = DateTime.Now.Year + "-01-01";
+                txtEndDate.Text = DateTime.Parse(DateTime.Now.AddYears(1).Year + "-01-01").AddDays(-1).ToString("yyyy-MM-dd");
             }
             int totalcount, livevount, visitedcount;
             bllrecord.GetDetailDptCount(txtBeginDate.Text, txtEndDate.Text, GovManager.Area.Code, Master.CurrentDJS.Id, out totalcount, out livevount, out visitedcount);

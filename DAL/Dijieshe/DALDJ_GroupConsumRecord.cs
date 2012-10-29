@@ -187,7 +187,7 @@ namespace DAL
 
         public IList<Model.DJ_GroupConsumRecord> GetDptRecordByCondition(string begintime, string endtime, string dptname,int entid)
         {
-            string sql = "select r from DJ_GroupConsumRecord r where 1=1";
+            string sql = "select r from DJ_GroupConsumRecord r where 1=1 and r.Enterprise.IsVeryfied=1";
             
             sql += " and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + entid + "";
             if (begintime != "" && endtime == "")

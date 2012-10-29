@@ -25,7 +25,12 @@
              <asp:ListItem Value="0">全部</asp:ListItem>
              <asp:ListItem Value="1">景区</asp:ListItem>
              <asp:ListItem Value="3">宾馆</asp:ListItem>
-            </asp:DropDownList>&nbsp;&nbsp;&nbsp;&nbsp;
+            </asp:DropDownList>&nbsp;&nbsp;&nbsp;&nbsp;<br />
+        日期统计&nbsp;&nbsp;<asp:DropDownList ID="ddlDateStatistic" runat="server">
+            <asp:ListItem Value="全部">全部</asp:ListItem>
+            <asp:ListItem Value="本月">本月</asp:ListItem>
+            <asp:ListItem Value="本年">本年</asp:ListItem>
+         </asp:DropDownList>&nbsp;&nbsp;
          <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn" 
              onclick="BtnSearch_Click" />
     </div>
