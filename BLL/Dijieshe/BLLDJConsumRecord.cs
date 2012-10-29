@@ -244,10 +244,44 @@ namespace BLL
             }
             //过滤掉不是子属的
             List<DJ_GovManageDepartment> ListGovDpt2=new List<DJ_GovManageDepartment>();
-            //foreach (DJ_GovManageDepartment dep in ListGovWdpt)
-            //{
-                
-            //}
+            /*第一步*/
+            foreach (DJ_GovManageDepartment dep in ListGovWdpt)
+            {
+                if (dep.Area.Code.Substring(4, 2) != "00")
+                {
+                    ListGovDpt2.Add(dep);
+                }
+            }
+            /*第二步*/
+            foreach (DJ_GovManageDepartment dep in ListGovWdpt)
+            {
+                if (dep.Area.Code.Substring(4, 2) == "00")
+                {
+                    int flag = 0;
+                    foreach (DJ_GovManageDepartment dep2 in ListGovDpt2)
+                    {
+                        if (dep2.Area.Code.Substring(0, 4) == dep.Area.Code.Substring(0, 4))
+                            flag = 1;
+                    }
+                    if(flag==0)
+                        ListGovDpt2.Add(dep);
+                }
+            }
+            /*第三步*/
+            foreach (DJ_GovManageDepartment dep in ListGovWdpt)
+            {
+                if (dep.Area.Code.Substring(2) == "0000")
+                {
+                    int flag = 0;
+                    foreach (DJ_GovManageDepartment dep2 in ListGovDpt2)
+                    {
+                        if (dep2.Area.Code.Substring(0, 2) == dep.Area.Code.Substring(0, 2))
+                            flag = 1;
+                    }
+                    if(flag==0)
+                        ListGovDpt2.Add(dep);
+                }
+            }
             return ListGovWdpt;
         }
 

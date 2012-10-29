@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
+public partial class TourManagerDpt_StaticsList : basepageMgrDpt
 {
     BLL.BLLDJConsumRecord bllCustomRecord = new BLL.BLLDJConsumRecord();
     BLL.BLLDJTourGroup blltg = new BLL.BLLDJTourGroup();
@@ -46,6 +46,18 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
     protected void BindGov1()
     {
         IList<Model.DJ_GroupConsumRecord> gcrlist = bllCustomRecord.GetGCR8Multi(null, null, null, null, null);
+        if (CurrentDptLevel == "1")
+        {
+            gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 2))).ToList();
+        }
+        else if (CurrentDptLevel == "2")
+        {
+            gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 4))).ToList();
+        }
+        else if (CurrentDptLevel == "3")
+        {
+            gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6))).ToList();
+        }
         IList<Model.DJ_GroupConsumRecord> gcrlist_month;
         IList<statics_model> sm1 = new List<statics_model>();
         //V.2012.10.26
@@ -97,13 +109,32 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
         //        static_m.First().y_Playnums = item.Sum(x => x.AdultsAmount + x.ChildrenAmount);
         //    }
         //}
-        rptGov1.DataSource = sm1;
+        if (!string.IsNullOrEmpty(txt_name1.Text))
+        {
+            rptGov1.DataSource = sm1.Where(x => x.Name.Split(new string[] { txt_name1.Text }, StringSplitOptions.None).Count() > 1);
+        }
+        else
+        {
+            rptGov1.DataSource = sm1;
+        }
         rptGov1.DataBind();
     }
 
     protected void BindGov2()
     {
         IList<Model.DJ_GroupConsumRecord> gcrlist = bllCustomRecord.GetGCR8Multi(null, null, null, null, null);
+        if (CurrentDptLevel == "1")
+        {
+            gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 2))).ToList();
+        }
+        else if (CurrentDptLevel == "2")
+        {
+            gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 4))).ToList();
+        }
+        else if (CurrentDptLevel == "3")
+        {
+            gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6))).ToList();
+        }
         IList<statics_model> sm1 = new List<statics_model>();
         //V.2012.10.26
         //string[] temp = txt_yijiedai2.Text.Split(new char[] { '-', '/' });
@@ -140,7 +171,14 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
 
             });
         }
-        rptGov2.DataSource = sm2;
+        if (!string.IsNullOrEmpty(txt_name2.Text))
+        {
+            rptGov2.DataSource = sm2.Where(x => x.Name.Split(new string[] { txt_name2.Text }, StringSplitOptions.None).Count() > 1);
+        }
+        else
+        {
+            rptGov2.DataSource = sm2;
+        }
         rptGov2.DataBind();
     }
 
@@ -148,17 +186,55 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
     {
         //整理后数据Gov3
         IList<Model.DJ_TourGroup> tglist = blltg.GetTourGroupByAll();
+        if (CurrentDptLevel == "1")
+        {
+            tglist=tglist.Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 2))).ToList();
+        }
+        if (CurrentDptLevel == "2")
+        {
+            tglist = tglist.Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 4))).ToList();
+        }
+        if (CurrentDptLevel == "3")
+        {
+            tglist = tglist.Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6))).ToList();
+        }
         IList<statics_Gov3> sm3 = new List<statics_Gov3>();
-        foreach (var item3 in tglist.Where(x=>x.DJ_DijiesheInfo!=null))
+        foreach (var item3 in tglist.Where(x => x.DJ_DijiesheInfo != null))
         {
             sm3.Add(new statics_Gov3()
             {
                 Name = item3.DJ_DijiesheInfo.Name,
                 Gname = item3.Name,
-                GId = item3.Id.ToString()
+                GId = item3.Id.ToString(),
+                Bedate = item3.BeginDate.ToShortDateString() + "-" + item3.EndDate.ToShortDateString()
             });
         }
-        rptGov3.DataSource = sm3;
+        //团队名字非空
+        if (!string.IsNullOrEmpty(txt_name3.Text))
+        {
+            //地接社名字非空
+            if (!string.IsNullOrEmpty(txt_name3djs.Text))
+            {
+                sm3 = sm3.Where(x => x.Name.Split(new string[] { txt_name3djs.Text }, StringSplitOptions.None).Count() > 1).ToList();
+                rptGov3.DataSource = sm3.Where(x => x.Name.Split(new string[] { txt_name3.Text }, StringSplitOptions.None).Count() > 1);
+            }
+            else
+            {
+                rptGov3.DataSource = sm3.Where(x => x.Name.Split(new string[] { txt_name3.Text }, StringSplitOptions.None).Count() > 1);
+            }
+        }
+        //团队名字空
+        else
+        {
+            if (!string.IsNullOrEmpty(txt_name3djs.Text))
+            {
+                rptGov3.DataSource = sm3.Where(x => x.Name.Split(new string[] { txt_name3djs.Text }, StringSplitOptions.None).Count() > 1);
+            }
+            else
+            {
+                rptGov3.DataSource = sm3;
+            }
+        }
         rptGov3.DataBind();
     }
 
@@ -170,6 +246,11 @@ public partial class TourManagerDpt_StaticsList : System.Web.UI.Page
     protected void btn_yijiedai2_Click(object sender, EventArgs e)
     {
         BindGov2();
+    }
+
+    protected void btn_yijiedai3_Click(object sender, EventArgs e)
+    {
+        BindGov3();
     }
 }
 
@@ -201,4 +282,5 @@ class statics_Gov3
     public string GId { get; set; }
     public string Gname { get; set; }//团队名称
     public string Playinfo { get; set; }
+    public string Bedate { get; set; }//起止时间
 }
