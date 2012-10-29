@@ -148,21 +148,30 @@ namespace DAL
         }
 
 
-        public IList<Model.DJ_GroupConsumRecord> GetRecordByCondition(string dateyear, string EntName,int type, int EntId)
+        public IList<Model.DJ_GroupConsumRecord> GetRecordByCondition(string begintime,string endtime, string EntName,int type, int EntId)
         {
             StringBuilder sql = new StringBuilder();
             sql.Append("select r from DJ_GroupConsumRecord r where 1=1");
             sql.Append(" and r.Enterprise.Name like '%" + EntName + "%'");
             sql.Append(" and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + EntId + "");
+            if (begintime != "")
+            {
+                sql.Append(" and r.ConsumeTime>= '" + begintime + "'");
+            }
+            if (endtime != "")
+            {
+                sql.Append(" and r.ConsumeTime<='" + endtime + "'");
+            }
             if (type != 0)
                 sql.Append(" and r.Enterprise.Type=" + type + "");
             sql.Append(" order by ConsumeTime desc");
             IQuery query = session.CreateQuery(sql.ToString());
             List<Model.DJ_GroupConsumRecord> ListRecord = new List<Model.DJ_GroupConsumRecord>();
-            if(dateyear!="")
-                 ListRecord = query.Future<Model.DJ_GroupConsumRecord>().Where(x => x.ConsumeTime.Year == DateTime.Parse(dateyear).Year).ToList();
-            else
-                ListRecord = query.Future<Model.DJ_GroupConsumRecord>().Where(x => x.ConsumeTime.Year == DateTime.Now.Year).ToList();
+            ListRecord = query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+            //if(dateyear!="")
+            //     ListRecord = query.Future<Model.DJ_GroupConsumRecord>().Where(x => x.ConsumeTime.Year == DateTime.Parse(dateyear).Year).ToList();
+            //else
+            //    ListRecord = query.Future<Model.DJ_GroupConsumRecord>().Where(x => x.ConsumeTime.Year == DateTime.Now.Year).ToList();
             return ListRecord;
         }
 

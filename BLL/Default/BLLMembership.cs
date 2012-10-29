@@ -180,6 +180,22 @@ namespace BLL
 
             return query.FutureValue<Model.TourMembership>().Value;
         }
+        public void CreateUpdateDptAdmin(DJ_GovManageDepartment mgrDpt)
+        {
+            TourMembership admin = GetMgrDptAdmin(mgrDpt.Id);
+            DJ_User_Gov mgrUser = new DJ_User_Gov();
+            if (admin!= null)
+            {
+                mgrUser = (DJ_User_Gov)admin;
+            }
+
+            string loginname = mgrDpt.seoname;
+            mgrUser.GovDpt = mgrDpt;
+            mgrUser.Name = loginname;
+            mgrUser.PermissionMask = DJ_User_GovPermission.行业管理员 | DJ_User_GovPermission.信息维护员;
+            mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
+           CreateUpdateMember(mgrUser);
+        }
       
     }
 }

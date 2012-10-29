@@ -11,29 +11,29 @@ using Model;
 public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.Page
 {
     int Index = 1;
-    int totalMonth = 0, totalYear = 0;
+    int totalVisited = 0, totalLive = 0;
     BLLDJConsumRecord bllrecord = new BLLDJConsumRecord();
     List<Model.DJ_TourEnterprise> listEnt = new List<DJ_TourEnterprise>();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             bind();
         }
     }
 
     private void bind()
     {
-        DateTime date;
-        if(DateTime.TryParse(txtDate.Text,out date))
+        DateTime begintieme, endtime;
+        if (!DateTime.TryParse(txtBeginDate.Text, out begintieme))
         {
+            txtBeginDate.Text = "";
         }
-        else
+        if (!DateTime.TryParse(txtEndDate.Text, out endtime))
         {
-            txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            txtEndDate.Text = "";
         }
-        listEnt = bllrecord.GetDJStaticsEnt(txtDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id).ToList();
+        listEnt = bllrecord.GetDJStaticsEnt(txtBeginDate.Text, txtEndDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id).ToList();
         rptStatistic.DataSource = listEnt;
         rptStatistic.DataBind();
     }
@@ -45,41 +45,41 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
             Literal laNo = e.Item.FindControl("laNo") as Literal;
             laNo.Text = Index++.ToString();
             Literal laType = e.Item.FindControl("laType") as Literal;
-            Literal laMonthCount = e.Item.FindControl("laMonthCount") as Literal;
-            Literal laYearCount = e.Item.FindControl("laYearCount") as Literal;
+            Literal laVisitedCount = e.Item.FindControl("laVisitedCount") as Literal;
+            Literal laLiveCount = e.Item.FindControl("laLiveCount") as Literal;
             laType.Text = (int)ent.Type == 1 ? "景区" : "宾馆";
             HtmlAnchor aname = e.Item.FindControl("aname") as HtmlAnchor;
-            aname.HRef = "/LocalTravelAgent/TEDetailStatistics.aspx?year=" + DateTime.Parse(txtDate.Text).Year + "&entid=" + ent.Id;
-            DateTime date;
-            if (!DateTime.TryParse(txtDate.Text, out date))
+            aname.HRef = "/LocalTravelAgent/TEDetailStatistics.aspx?year=" + DateTime.Now.Year + "&entid=" + ent.Id;
+            DateTime begintieme, endtime;
+            if (!DateTime.TryParse(txtBeginDate.Text, out begintieme))
             {
-                txtDate.Text = "";
+                txtBeginDate.Text = "";
+            }
+            if (!DateTime.TryParse(txtEndDate.Text, out endtime))
+            {
+                txtEndDate.Text = "";
             }
             if (laType.Text == "景区")
             {
-                int monthcount= bllrecord.GetCountByStatics(txtDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id, 1, true, ent.Id);
-                laMonthCount.Text = monthcount.ToString();
-                totalMonth += monthcount;
-                int yearcount=bllrecord.GetCountByStatics(txtDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id, 1, false, ent.Id);
-                laYearCount.Text += yearcount.ToString();
-                totalYear += yearcount;
+                int monthcount = bllrecord.GetCountByStatics(txtBeginDate.Text, txtEndDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id, 1, ent.Id);
+                laVisitedCount.Text = monthcount.ToString();
+                laLiveCount.Text = "0";
+                totalVisited += monthcount;
             }
             if (laType.Text == "宾馆")
             {
-                int monthcount = bllrecord.GetCountByStatics(txtDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id, 2, true, ent.Id);
-                laMonthCount.Text = monthcount.ToString();
-                totalMonth += monthcount;
-                int yearcount=bllrecord.GetCountByStatics(txtDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id, 2, false, ent.Id);
-                laYearCount.Text = yearcount.ToString();
-                totalYear += yearcount;
+                int monthcount = bllrecord.GetCountByStatics(txtBeginDate.Text, txtEndDate.Text, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id, 2, ent.Id);
+                laVisitedCount.Text = "0";
+                laLiveCount.Text = monthcount.ToString();
+                totalLive += monthcount;
             }
         }
         if (e.Item.ItemType == ListItemType.Footer)
         {
-            Literal laTotalMonth = e.Item.FindControl("laTotalMonth") as Literal;
-            Literal laTotalYear = e.Item.FindControl("laTotalYear") as Literal;
-            laTotalMonth.Text = totalMonth.ToString();
-            laTotalYear.Text = totalYear.ToString();
+            Literal laTotalVisitedCount = e.Item.FindControl("laTotalVisitedCount") as Literal;
+            Literal laTotalLiveCount = e.Item.FindControl("laTotalLiveCount") as Literal;
+            laTotalVisitedCount.Text = totalVisited.ToString();
+            laTotalLiveCount.Text = totalLive.ToString();
         }
     }
     protected void BtnSearch_Click(object sender, EventArgs e)

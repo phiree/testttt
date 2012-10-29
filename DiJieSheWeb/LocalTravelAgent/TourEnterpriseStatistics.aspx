@@ -7,7 +7,8 @@
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("[id$='txtDate']").datepicker();
+            $("[id$='txtBeginDate']").datepicker();
+            $("[id$='txtEndDate']").datepicker();
         });
         
     </script>
@@ -18,7 +19,7 @@
     </div>
      <div class="searchdiv">
         <h5>按条件查询</h5>
-        日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;旅游企业名称&nbsp;&nbsp;<asp:TextBox
+        日期&nbsp;&nbsp;<asp:TextBox ID="txtBeginDate" runat="server"></asp:TextBox>&nbsp;&nbsp;至&nbsp;&nbsp;<asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>&nbsp;&nbsp;旅游企业名称&nbsp;&nbsp;<asp:TextBox
             ID="txtEntName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;企业类型;&nbsp;&nbsp;<asp:DropDownList
                 ID="ddlType" runat="server">
              <asp:ListItem Value="0">全部</asp:ListItem>
@@ -37,28 +38,20 @@
             <HeaderTemplate>
                 <table border="0" cellpadding="0" cellspacing="0">
             <tr>
-                <td rowspan="2">
+                <td>
                     序号
                 </td>
-                <td rowspan="2">
+                <td>
                     企业类型
                 </td>
-                <td rowspan="2">
+                <td>
                     企业名称
                 </td>
                 <td>
-                    本月
+                    游玩人数
                 </td>
                 <td>
-                    本年
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    游玩或住宿人天数
-                </td>
-                <td>
-                    游玩或住宿人天数
+                    住宿人天数
                 </td>
             </tr>
             </HeaderTemplate>
@@ -75,10 +68,10 @@
                         <%# Eval("Name") %></a>
                     </td>
                     <td>
-                        <asp:Literal ID="laMonthCount" runat="server"></asp:Literal>
+                        <asp:Literal ID="laVisitedCount" runat="server"></asp:Literal>
                     </td>
                     <td>
-                        <asp:Literal ID="laYearCount" runat="server"></asp:Literal>
+                        <asp:Literal ID="laLiveCount" runat="server"></asp:Literal>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -90,9 +83,9 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>
-                        <asp:Literal ID="laTotalMonth" runat="server"></asp:Literal></td>
+                        <asp:Literal ID="laTotalVisitedCount" runat="server"></asp:Literal>
                     <td>
-                        <asp:Literal ID="laTotalYear" runat="server"></asp:Literal>
+                        <asp:Literal ID="laTotalLiveCount" runat="server"></asp:Literal>
                     </td>
                 </tr>
             </FooterTemplate>
