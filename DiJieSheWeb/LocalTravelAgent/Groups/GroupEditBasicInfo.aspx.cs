@@ -10,7 +10,7 @@ using Model;
 public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGroupEdit
 {
     bool IsNew = false;
-    private Guid groupId;
+    public Guid groupId = Guid.Empty;
     DJ_TourGroup Group;
     BLL.BLLDJTourGroup bllGroup = new BLLDJTourGroup();
     BLLDJ_Route bllRoute = new BLLDJ_Route();
@@ -23,6 +23,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         {
             IsNew = true;
             Group = new DJ_TourGroup();
+            pnlLinks.Visible = false;
 
         }
         else

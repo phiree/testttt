@@ -45,12 +45,8 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
             grlist.Add(new ExcelOplib.Entity.GroupRouteNew()
             {
                 RouteDate = item.First().DayNo.ToString(),
-                //Breakfast = item.Where(x => x.Description == "早餐").Count() > 0 ? item.First(x => x.Description == "早餐") : null,
-                //Lunch = item.Where(x => x.Description == "中餐").Count() > 0 ? item.First(x => x.Description == "中餐") : null,
-                //Dinner = item.Where(x => x.Description == "晚餐").Count() > 0 ? item.First(x => x.Description == "晚餐") : null,
-                Hotel = item.Where(x => x.Description.StartsWith("住宿")).Count() > 0 ? item.Where(x => x.Description.StartsWith("住宿")).ToList<Model.DJ_Route>() : null,
-                Scenic = item.Where(x => x.Description.StartsWith("景点")).Count() > 0 ? item.Where(x => x.Description.StartsWith("景点")).ToList<Model.DJ_Route>() : null
-                //ShoppingPoint = item.Where(x => x.Description.StartsWith("购物点")).Count() > 0 ? item.Where(x => x.Description.StartsWith("购物点")).ToList<Model.DJ_Route>() : null
+                Hotel = item.Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆).Count() > 0 ? item.Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆).ToList<Model.DJ_Route>() : null,
+                Scenic = item.Where(x => x.Enterprise.Type == Model.EnterpriseType.景点).Count() > 0 ? item.Where(x => x.Enterprise.Type == Model.EnterpriseType.景点).ToList<Model.DJ_Route>() : null
             });
         }
         rptRoute.DataSource = grlist.OrderBy(x => x.RouteDate);

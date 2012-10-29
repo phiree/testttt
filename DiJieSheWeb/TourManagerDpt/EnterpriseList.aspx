@@ -6,8 +6,25 @@
         企业列表
     </div>
     <div class="detaillist">
+        <div class="searchdiv">
+            名称:<asp:TextBox ID="txtName" runat="server" />
+            是否奖励:
+            <asp:DropDownList ID="ddlStar" runat="server">
+                <asp:ListItem Text="所有" />
+                <asp:ListItem Text="是" />
+                <asp:ListItem Text="否" />
+            </asp:DropDownList>
+            类型:
+            <asp:DropDownList ID="ddlType" runat="server">
+                <asp:ListItem Text="所有" />
+                <asp:ListItem Text="饭店" />
+                <asp:ListItem Text="宾馆" />
+                <asp:ListItem Text="购物点" />
+            </asp:DropDownList>
+            <asp:Button ID="btnSearch" Text="查询" runat="server" OnClick="btnSearch_Click" />
+        </div>
         <div class="detailtitle">
-            餐饮
+            饭店
         </div>
         <asp:Repeater runat="server" ID="rptRestaurant" OnItemCommand="rpt_ItemCommand" OnItemDataBound="rpt_ItemDataBound">
             <HeaderTemplate>
@@ -66,7 +83,7 @@
         </asp:Repeater>
         
         <div class="detailtitle">
-            住宿
+            宾馆
         </div>
         <asp:Repeater runat="server" ID="rptHotel" OnItemCommand="rpt_ItemCommand" OnItemDataBound="rpt_ItemDataBound">
             <HeaderTemplate>
