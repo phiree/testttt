@@ -104,10 +104,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div>
         <%=CurrentGroup.Name %>行程信息录入</div>
+       <div class="box">提供两种录入线路的方式,您可以根据需要,选择最适合一种方式.</div>
     <div id="tabs">
         <ul>
-            <li><a href="#tabs-1">表格录入</a></li>
-            <li><a href="#tabs-2">简单文本录入</a></li>
+            <li><a href="#tabs-1">直接录入</a></li>
+            <li><a href="#tabs-2">文本录入</a></li>
         </ul>
         <div id="tabs-1">
             <div id="gridbox" style="border: 0px solid #cccccc; background-color: #f3f3f3;">
@@ -130,4 +131,5 @@
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>
     </div>
+    <a style=" display:block;  padding:3px; margin:10px; background-color:#ddd;font-size:larger;"  href="GroupEditMember.aspx?groupid=<%=CurrentGroup.Id%>">去编辑成员信息</a> 
 </asp:Content>
