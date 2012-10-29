@@ -33,6 +33,8 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
         rptHotel.DataBind();
         rptShoppingp.DataSource = bllDJEnt.GetDJS8Muti(CurrentDpt.Area.Id, Model.EnterpriseType.购物点.ToString(), null, null);
         rptShoppingp.DataBind();
+
+        
     }
     protected void rpt_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
@@ -41,6 +43,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
            
             Button btnVerify = e.Item.FindControl("btnSetVerify") as Button;
+            
             if (ent.IsVeryfied)
             {
                 btnVerify.Attributes.CssStyle.Add("color", "#009383");
@@ -73,7 +76,12 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
                 BtnCreate.Visible = true;
                 BtnUpdate.Visible = false;
             }
-
+            //权限判断
+            DJ_User_Gov govUser = (DJ_User_Gov)CurrentMember;
+            switch ((int)govUser.PermissionMask)
+            {
+                case 2: btnVerify.Enabled = false; BtnCreate.Enabled = false; BtnUpdate.Enabled = false; laAccount.Enabled = false; break;
+            }
         }
     }
     BLLDJ_User bllDjUser = new BLLDJ_User();
@@ -98,7 +106,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
             mgrUser.Enterprise = ent;
             mgrUser.Name = loginname;
-            mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.团队操作员 | Model.DJ_User_TourEnterprisePermission.信息维护员;
+            mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.信息管理员 | Model.DJ_User_TourEnterprisePermission.信息维护员;
             mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             bllMember.CreateUpdateMember(mgrUser);
         }

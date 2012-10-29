@@ -48,8 +48,8 @@ public partial class LocalTravelAgent_LTAUserManager : System.Web.UI.Page
             switch ((int)user.PermissionMask)
             {
                 case 1: laPermis.Text = Model.DJ_User_TourEnterprisePermission.信息维护员.ToString(); break;
-                case 2: laPermis.Text = Model.DJ_User_TourEnterprisePermission.团队操作员.ToString(); break;
-                case 3: laPermis.Text = Model.DJ_User_TourEnterprisePermission.信息维护员.ToString() + "," + Model.DJ_User_TourEnterprisePermission.团队操作员.ToString(); break; 
+                case 2: laPermis.Text = Model.DJ_User_TourEnterprisePermission.信息管理员.ToString(); break;
+                case 3: laPermis.Text = Model.DJ_User_TourEnterprisePermission.信息维护员.ToString() + "," + Model.DJ_User_TourEnterprisePermission.信息管理员.ToString(); break; 
             }
             HtmlAnchor aedit = e.Item.FindControl("aedit") as HtmlAnchor;
             aedit.HRef = "/LocalTravelAgent/LTAUserEdit.aspx?userid=" + user.Id;
