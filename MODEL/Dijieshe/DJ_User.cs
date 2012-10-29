@@ -35,7 +35,7 @@ namespace Model
     public enum DJ_User_TourEnterprisePermission
     {
         信息维护员 = 1,
-        团队操作员=2
+        信息管理员=2
 
     }
 

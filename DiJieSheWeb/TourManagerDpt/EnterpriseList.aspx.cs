@@ -106,7 +106,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
             mgrUser.Enterprise = ent;
             mgrUser.Name = loginname;
-            mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.团队操作员 | Model.DJ_User_TourEnterprisePermission.信息维护员;
+            mgrUser.PermissionMask = Model.DJ_User_TourEnterprisePermission.信息管理员 | Model.DJ_User_TourEnterprisePermission.信息维护员;
             mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             bllMember.CreateUpdateMember(mgrUser);
         }
