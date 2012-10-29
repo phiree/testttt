@@ -133,9 +133,9 @@ namespace BLL
         /// <param name="EntName">查询企业名称</param>
         /// <param name="EntId">所在地接社id</param>
         /// <returns>查询出的企业列表</returns>
-        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string dateyear, string EntName, int type, int EntId)
+        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string bengintime,string endtime, string EntName, int type, int EntId)
         {
-            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(dateyear, EntName, type, EntId).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(bengintime,endtime, EntName, type, EntId).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -153,10 +153,10 @@ namespace BLL
             return ListTE;
         }
 
-        public int GetCountByStatics(string dateyear, string EntName, int type, int EntId, int Enttype, bool IsMonth, int Wentid)
+        public int GetCountByStatics(string begintime,string endtime, string EntName, int type, int EntId, int Enttype, int Wentid)
         {
             int Count = 0;
-            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(dateyear, EntName, type, EntId).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(begintime,endtime, EntName, type, EntId).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -167,10 +167,6 @@ namespace BLL
                 }
             }
             List = List.Where(x => x.Enterprise.Id == Wentid).ToList();
-            if (IsMonth && dateyear != "")
-            {
-                List = List.Where(x => x.ConsumeTime.Month == DateTime.Parse(dateyear).Month).ToList();
-            }
             if (Enttype == 1)
             {
                 foreach (DJ_GroupConsumRecord item in List)
@@ -190,9 +186,9 @@ namespace BLL
             return Count;
         }
 
-        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string dateyear, string EntName, int type, int EntId)
+        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string begintime,string endtime, string EntName, int type, int EntId)
         {
-            return IDjgroup.GetRecordByCondition(dateyear, EntName, type, EntId);
+            return IDjgroup.GetRecordByCondition(begintime, endtime, EntName, type, EntId);
         }
 
         public List<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid,int djsid)

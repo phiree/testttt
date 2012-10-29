@@ -59,18 +59,24 @@
                         <%# Eval("Route.DJ_TourGroup.Name")%>
                     </td>
                     <td style="width:150px;">
-                        导游姓名:
+                        地接社名称:
                     </td>
                     <td style="width:200px;">
-                        <asp:Literal ID="laGuiderName" runat="server"></asp:Literal>
+                        <%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         验证时间:
                     </td>
-                    <td colspan="3">
+                    <td>
                         <%# Eval("ConsumeTime")%>
+                    </td>
+                    <td>
+                        导游姓名:
+                    </td>
+                    <td>
+                        <asp:Literal ID="laGuiderName" runat="server"></asp:Literal>
                     </td>
                 </tr>
                 <tr>
