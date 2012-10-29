@@ -131,5 +131,6 @@
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>
     </div>
-    <a style=" display:block;  padding:3px; margin:10px; background-color:#ddd;font-size:larger;"  href="GroupEditMember.aspx?groupid=<%=CurrentGroup.Id%>">去编辑成员信息</a> 
+    <a style=" display:block;  padding:3px; margin:10px; background-color:#ddd;font-size:larger;"  href="GroupEditMember.aspx?groupid=<%=CurrentGroup.Id%>">
+    去编辑成员信息</a> 
 </asp:Content>
