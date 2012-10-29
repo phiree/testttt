@@ -79,7 +79,7 @@
 
         var colsOption = [
         {id:"",width:5},
-        { id: 'tourertype', header: "游客类型", width: 80, editor: { type: "select", options: { '成人游客': '成人游客', '导游': '导游', '司机': '司机', '儿童': '儿童', '外宾': '外宾', '港澳台': '港澳台' }
+        { id: 'tourertype', header: "成员类型", width: 80, editor: { type: "select", options: { '成人游客': '成人游客', '导游': '导游', '司机': '司机', '儿童': '儿童', '外宾': '外宾', '港澳台': '港澳台' }
      , defaultText: '成人游客'
         }
         },

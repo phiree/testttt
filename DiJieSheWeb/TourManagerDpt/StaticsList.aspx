@@ -71,6 +71,7 @@
             已接待情况</div>
         <div class="searchdiv">
             日期：<asp:TextBox ID="txt_yijiedai" runat="server" /> 至 <asp:TextBox ID="txt_yijiedai_end" runat="server" />
+            地接社名称：<asp:TextBox ID="txt_name1" runat="server" />
             <asp:Button ID="btn_yijiedai" Text="查询" runat="server" OnClick="btn_yijiedai_Click" CssClass="btn" />
             </div>
         <table border="1" cellpadding="1" cellspacing="1">
@@ -198,7 +199,8 @@
         <div class="detailtitle">
             旅游企业接待情况明细表</div>
         <div class="searchdiv">
-            日期：<asp:TextBox ID="txt_yijiedai2" runat="server" />至<asp:TextBox ID="txt_yijiedai2_end" runat="server" />
+            日期：<asp:TextBox ID="txt_yijiedai2" runat="server" /> 至 <asp:TextBox ID="txt_yijiedai2_end" runat="server" />
+            地接社名称：<asp:TextBox ID="txt_name2" runat="server" />
             <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click" CssClass="btn" /></div>
         <asp:Repeater ID="rptGov2" runat="server">
             <HeaderTemplate>
@@ -245,6 +247,11 @@
         <hr />
         <div class="detailtitle">
             团队旅游情况表</div>
+        <div class="searchdiv">
+            日期：<asp:TextBox ID="txt_yijiedai3" runat="server" /> 至 <asp:TextBox ID="txt_yijiedai3_end" runat="server" />
+            地接社名称：<asp:TextBox ID="txt_name3djs" runat="server" />
+              团队：<asp:TextBox ID="txt_name3" runat="server" />
+            <asp:Button ID="btn_yijiedai3" Text="查询" runat="server" OnClick="btn_yijiedai3_Click" CssClass="btn" /></div>
         <asp:Repeater ID="rptGov3" runat="server">
             <HeaderTemplate>
                 <table border="1" cellpadding="1" cellspacing="1">
@@ -258,6 +265,9 @@
                             </td>
                             <td>
                                 团队名称
+                            </td>
+                            <td>
+                                时间
                             </td>
                             <td>
                                 浏览情况
@@ -277,6 +287,9 @@
                     <td>
                         <a href='/TourManagerDpt/GroupDetail.aspx?gid=<%#Eval("GId")%>'>
                             <%#Eval("Gname")%></a>
+                    </td>
+                    <td>
+                        <%#Eval("Bedate")%></a>
                     </td>
                     <td>
                         <a href='/TourManagerDpt/GroupDetail.aspx?gid=<%#Eval("GId")%>'>查看详情</a>

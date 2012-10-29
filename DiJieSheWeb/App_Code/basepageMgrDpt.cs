@@ -29,11 +29,34 @@ public class basepageMgrDpt : basepage
                 BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
                 return null;
             }
-          
         }
-
     }
 
-
-
+    /// <summary>
+    /// 
+    /// </summary>
+    public string CurrentDptLevel {
+        get { 
+            //开始2位编号
+            string bCode = CurrentDpt.Area.Code.Substring(0, 2);
+            //中间2位编号
+            string mCode = CurrentDpt.Area.Code.Substring(2, 2);
+            //最后2位编号
+            string lCode = CurrentDpt.Area.Code.Substring(4, 2);
+            if (mCode == "00")
+            {
+                //省级
+                return "1";
+            }
+            else if (lCode == "00")
+            {
+                //市级
+                return "2";
+            }
+            else
+            {
+                return "3";
+            }
+        }
+    }
 }

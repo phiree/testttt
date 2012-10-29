@@ -52,7 +52,8 @@ public partial class Admin_ManageDptEdit : basepage
         CurrentMgrDpt.Area = bllArea.GetAreaByCode(ddlarea.Areacode.Trim());
         CurrentMgrDpt.Name = tbxName.Text;
         CurrentMgrDpt.Phone = tbxPhone.Text;
-      //  CurrentMgrDpt.seoname=
+        CurrentMgrDpt.seoname = tbxAdmin.Text;
+        bllMember.CreateUpdateDptAdmin(CurrentMgrDpt);
     }
 
     private bool Validatedata(out string message)
@@ -97,5 +98,8 @@ public partial class Admin_ManageDptEdit : basepage
         }
         Save();
     }
+    BLLMembership bllMember = new BLLMembership();
+
+  
 
 }

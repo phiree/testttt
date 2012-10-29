@@ -2,6 +2,7 @@
 
 
 <html><body>
+<form runat="server">
 <style>
 input{cursor:pointer;}
 </style>
@@ -13,7 +14,7 @@ input{cursor:pointer;}
         <legend>旅游管理部门</legend>
         <ul>
             <li>
-                <asp:Button runat="server" ID="btnDptAdminLogin" Text="管理部门管理员登录" OnClick="btnDptAdminLogin_Click" b /></li></ul>
+                <asp:Button runat="server" ID="btnDptAdminLogin" Text="管理部门管理员登录" OnClick="btnDptAdminLogin_Click"  /></li></ul>
     </fieldset>
     <fieldset>
         <legend>旅行社</legend>
@@ -23,9 +24,7 @@ input{cursor:pointer;}
             <li>
             <asp:Button runat="server" Text="创建一个测试团队" OnClick="btnDjsCreatGroup_Click" ID="btnDjsCreatGroup" />
             </li>
-             <li>
-            <asp:Button runat="server" Text="生成报表数据" OnClick="btnReport_Click" ID="btnReport" />
-            </li>
+           
         </ul>
     </fieldset>
       <fieldset>
@@ -39,7 +38,11 @@ input{cursor:pointer;}
         <legend>网站管理员</legend>
         <ul>
             <li>
-                <asp:Button runat="server" ID="btnAdminLogin" Text="管理员登录" OnClick="btnAdminLogin_Click" /></li></ul>
+                <asp:Button runat="server" ID="btnAdminLogin" Text="管理员登录" OnClick="btnAdminLogin_Click" /></li>
+                  <li>
+            <asp:Button runat="server" Text="生成测试数据" OnClick="btnReport_Click" ID="btnReport" />
+            </li>
+                </ul>
     </fieldset>
-    </div>
+    </div></form>
   </body></html>
