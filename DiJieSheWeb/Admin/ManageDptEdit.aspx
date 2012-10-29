@@ -19,7 +19,14 @@
                     <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
                 </td>
             </tr>
-           
+           <tr>
+                <td>
+                    管理员帐号
+                </td>
+                <td>
+                    <asp:TextBox runat="server" ID="tbxAdmin"></asp:TextBox>
+                </td>
+            </tr>
             <tr>
                 <td>
                     区域编码:
