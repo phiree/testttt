@@ -1,7 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin/Demo.master" CodeFile="Demo.aspx.cs" Inherits="Admin_Demo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Demo.aspx.cs" Inherits="Admin_Demo" %>
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="main" Runat="Server">
+<html><body>
 <style>
 input{cursor:pointer;}
 </style>
@@ -42,4 +42,4 @@ input{cursor:pointer;}
                 <asp:Button runat="server" ID="btnAdminLogin" Text="管理员登录" OnClick="btnAdminLogin_Click" /></li></ul>
     </fieldset>
     </div>
-    </asp:Content>
+  </body></html>
