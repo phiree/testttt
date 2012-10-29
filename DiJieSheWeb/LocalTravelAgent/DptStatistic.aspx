@@ -10,6 +10,11 @@
         <h5>按条件查询</h5>
         日期&nbsp;&nbsp;<asp:TextBox ID="txtBeginDate" runat="server"></asp:TextBox>&nbsp;&nbsp;至&nbsp;&nbsp;<asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
         旅游管理部门名称&nbsp;&nbsp;<asp:TextBox ID="txtEntName" runat="server"></asp:TextBox>
+        日期统计<asp:DropDownList ID="ddlDateStatistic" runat="server">
+            <asp:ListItem Value="全部">全部</asp:ListItem>
+            <asp:ListItem Value="本年">本月</asp:ListItem>
+            <asp:ListItem Value="本年">本年</asp:ListItem>
+         </asp:DropDownList>
          <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn" 
              onclick="BtnSearch_Click" />
     </div>
