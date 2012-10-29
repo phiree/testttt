@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master" AutoEventWireup="true" CodeFile="EnterEdit.aspx.cs" Inherits="TourManagerDpt_EnterEdit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master"
+    AutoEventWireup="true" CodeFile="EnterEdit.aspx.cs" Inherits="TourManagerDpt_EnterEdit" %>
 
-<%@ Register TagPrefix="uc"  Src="~/UC/CityCode.ascx" TagName="dllcitycode"%>
-<asp:Content ID="Content1" ContentPlaceHolderID="main" Runat="Server">
-
+<%@ Register TagPrefix="uc" Src="~/UC/CityCode.ascx" TagName="dllcitycode" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
     <div class="detail_titlebg">
         企业编辑
     </div>
@@ -24,7 +24,10 @@
                     类型
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddltype" runat="server">
+                    <asp:DropDownList ID="ddltype" runat="server" AutoPostBack="True" 
+                        ontextchanged="ddltype_TextChanged">
+                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlLevel" runat="server">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -85,7 +88,7 @@
                 </td>
             </tr>
         </table>
-        <asp:Button runat="server" ID="btnSave" OnClick="btnSave_Click" Text="保存" CssClass="btn" style="margin-left:350px;" />
+        <asp:Button runat="server" ID="btnSave" OnClick="btnSave_Click" Text="保存" CssClass="btn"
+            Style="margin-left: 350px;" />
     </div>
 </asp:Content>
-

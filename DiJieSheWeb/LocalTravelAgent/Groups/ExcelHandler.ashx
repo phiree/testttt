@@ -103,35 +103,31 @@ public class ExcelHandler : IHttpHandler {
                 DJ_TourGroup=tg
             });
         }
-        tg.Members = tgmlist;
-
-        //司机信息//导游信息
-        var workerlist = new System.Collections.Generic.List<Model.DJ_Group_Worker>();
         foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "司机"))
         {
-            workerlist.Add(new Model.DJ_Group_Worker()
+            tgmlist.Add(new Model.DJ_TourGroupMember()
             {
-                IDCard = item.Memid,
-                Name = item.Memname,
-                Phone = item.Memphone,
-                SpecificIdCard = item.Cardno,
-                WorkerType = Model.DJ_GroupWorkerType.司机,
+                IdCardNo=item.Memid,
+                RealName=item.Memname,
+                PhoneNum=item.Memphone,
+                SpecialCardNo=item.Cardno,
+                MemberType=Model.MemberType.司机,
                 DJ_TourGroup = tg
             });
         }
         foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "导游"))
         {
-            workerlist.Add(new Model.DJ_Group_Worker()
+            tgmlist.Add(new Model.DJ_TourGroupMember()
             {
-                IDCard = item.Memid,
-                Name = item.Memname,
-                Phone = item.Memphone,
-                SpecificIdCard = item.Cardno,
-                WorkerType = Model.DJ_GroupWorkerType.导游,
+                IdCardNo = item.Memid,
+                RealName = item.Memname,
+                PhoneNum = item.Memphone,
+                SpecialCardNo = item.Cardno,
+                MemberType = Model.MemberType.导游,
                 DJ_TourGroup = tg
             });
         }
-        tg.Workers = workerlist;
+        tg.Members = tgmlist;
         
         //行程信息
         var routes = new System.Collections.Generic.List<Model.DJ_Route>();

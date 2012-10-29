@@ -21,9 +21,10 @@ namespace Model
            Map(x => x.Phone);
            Map(x => x.IsVeryfied);
            Map(x => x.Type).CustomType<int>();
-           Map(x => x.seoname);
+           Map(x => x.Seoname);
            Map(x => x.Buslicense);
            Map(x => x.Email);
+           Map(x => x.Level);
        }
     }
 }

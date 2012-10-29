@@ -145,6 +145,7 @@
     <br />
     <h3><b>
         <%=CurrentGroup.Name+CurrentGroup.No %>游客列表</b></h3>
+        <div class="box">录入游客信息有以下三种方式，请选择其中一种进行录入。</div>
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">表格录入</a></li>
