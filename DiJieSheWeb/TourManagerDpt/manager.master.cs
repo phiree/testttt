@@ -38,16 +38,16 @@ public partial class TourManagerDpt_manager : System.Web.UI.MasterPage
                 {
                     case 1:
                         {
-                            li_1.Visible = true;
-                            li_2.Visible = false;
-                            li_3.Visible = false;
-                            li_4.Visible = false;
+                            li_1.Visible = false;
+                            li_2.Visible = true;
+                            li_3.Visible = true;
+                            li_4.Visible = true;
                             li_5.Visible = false;
                             break;
                         }
                     case 2:
                         {
-                            li_1.Visible = false;
+                            li_1.Visible = true;
                             li_2.Visible = true;
                             li_3.Visible = true;
                             li_4.Visible = true;
