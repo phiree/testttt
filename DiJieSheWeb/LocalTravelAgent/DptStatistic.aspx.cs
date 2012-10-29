@@ -30,11 +30,11 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
         {
             txtEndDate.Text = "";
         }
-        //if (ddlDateStatistic.SelectedValue == "本月")
-        //{
-        //    txtBeginDate.Text =DateTime.Now.Year+"-"+DateTime.Now.Month
-        //}
-
+        if (ddlDateStatistic.SelectedValue == "本月")
+        {
+            txtBeginDate.Text = DateTime.Now.Year + "-" + DateTime.Now.Month + "01";
+            txtEndDate.Text = DateTime.Parse(DateTime.Now.Year + "-" + DateTime.Now.AddMonths(1).Month + "01").AddDays(-1).ToString("yyyy-MM-dd");
+        }
         rptDpt.DataSource = bllrecord.GetDptRecord(txtBeginDate.Text, txtEndDate.Text, txtEntName.Text, Master.CurrentDJS.Id);
         rptDpt.DataBind();
     }
