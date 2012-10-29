@@ -43,15 +43,18 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
            
             Button btnVerify = e.Item.FindControl("btnSetVerify") as Button;
-            
+            Label laIsVerify = e.Item.FindControl("laIsVerify") as Label;
+            Label labAccount = e.Item.FindControl("labAccount") as Label;
             if (ent.IsVeryfied)
             {
                 btnVerify.Attributes.CssStyle.Add("color", "#009383");
                 btnVerify.Text = "已纳入";
+                laIsVerify.Text = "已纳入";
             }
             else{
                 btnVerify.Attributes.CssStyle.Add("color", "Red");
                 btnVerify.Text = "未纳入";
+                laIsVerify.Text = "未纳入";
             }
             if (ent is DJ_DijiesheInfo)
             {
@@ -61,6 +64,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             Button BtnUpdate = e.Item.FindControl("BtnUpdate") as Button;
             TextBox laAccount = e.Item.FindControl("laAccount") as TextBox;
             HiddenField hfuserid = e.Item.FindControl("hfuserid") as HiddenField;
+            
             DJ_User_TourEnterprise user= bllUser.GetUser_TEbyId(ent.Id,3);
             if (user != null)
             {
@@ -69,6 +73,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
                 BtnCreate.Visible = false;
                 BtnUpdate.Visible = true;
                 hfuserid.Value = user.Id.ToString();
+                labAccount.Text = user.Name;
             }
             else
             {
@@ -80,7 +85,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             DJ_User_Gov govUser = (DJ_User_Gov)CurrentMember;
             switch ((int)govUser.PermissionMask)
             {
-                case 2: btnVerify.Enabled = false; BtnCreate.Enabled = false; BtnUpdate.Enabled = false; laAccount.Enabled = false; break;
+                case 2: btnVerify.Visible = false; laIsVerify.Visible = true; BtnCreate.Visible = false; BtnUpdate.Visible = false; laAccount.Visible = false; labAccount.Visible = true; break;
             }
         }
     }
