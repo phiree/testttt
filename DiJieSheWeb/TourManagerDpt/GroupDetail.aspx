@@ -236,22 +236,10 @@
                                 日期
                             </td>
                             <td>
-                                早餐
-                            </td>
-                            <td>
-                                中餐
-                            </td>
-                            <td>
-                                晚餐
-                            </td>
-                            <td>
-                                住宿
-                            </td>
-                            <td>
                                 景点
                             </td>
                             <td>
-                                购物点
+                                住宿
                             </td>
                         </tr>
                     </thead>
@@ -262,27 +250,6 @@
                     <td>
                         <span>
                             <%#Eval("RouteDate")%></span>
-                    </td>
-                    <td>
-                        <span>
-                            <asp:Label ID="lblBreakfast" Text='<%#Eval("Breakfast.Enterprise")!=null?
-                            (((Model.DJ_TourEnterprise)Eval("Breakfast.Enterprise")).IsVeryfied.ToString() == "True" ? 
-                            ("★" + Eval("Breakfast.Enterprise.Name")) : Eval("Breakfast.Enterprise.Name")):""%>'
-                                runat="server" /></span>
-                    </td>
-                    <td>
-                        <span>
-                            <asp:Label ID="lblLunch" Text='<%#Eval("Lunch.Enterprise")!=null?
-                            (((Model.DJ_TourEnterprise)Eval("Lunch.Enterprise")).IsVeryfied.ToString() == "True" ? 
-                            ("★" + Eval("Lunch.Enterprise.Name")) : Eval("Lunch.Enterprise.Name")):""%>'
-                                runat="server" /></span>
-                    </td>
-                    <td>
-                        <span>
-                            <asp:Label ID="lblDinner" Text='<%#Eval("Dinner.Enterprise")!=null?
-                            (((Model.DJ_TourEnterprise)Eval("Dinner.Enterprise")).IsVeryfied.ToString() == "True" ? 
-                            ("★" + Eval("Dinner.Enterprise.Name")) : Eval("Dinner.Enterprise.Name")):""%>'
-                                runat="server" /></span>
                     </td>
                     <td>
                         <asp:Repeater ID="rptRouteHotel" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
@@ -296,16 +263,6 @@
                     </td>
                     <td>
                         <asp:Repeater ID="rptRouteScenic" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
-                            <ItemTemplate>
-                                <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
-                                (((Model.DJ_TourEnterprise)Eval("Enterprise")).IsVeryfied.ToString()=="True"?
-                                ("★"+Eval("Enterprise.Name")):Eval("Enterprise.Name")):""%>'
-                                    runat="server" />
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </td>
-                    <td>
-                        <asp:Repeater ID="rptRouteShopping" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
                             <ItemTemplate>
                                 <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
                                 (((Model.DJ_TourEnterprise)Eval("Enterprise")).IsVeryfied.ToString()=="True"?

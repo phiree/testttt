@@ -37,6 +37,20 @@ public partial class TourManagerDpt_GroupDetail : System.Web.UI.Page
         rptWorkers.DataSource = tg.Workers;
         rptWorkers.DataBind();
 
+        IList<ExcelOplib.Entity.GroupRouteNew> grlist = new List<ExcelOplib.Entity.GroupRouteNew>();
+        var route_source = tg.Routes.OrderBy(x=>x.DayNo).GroupBy(x => x.DayNo).ToList();
+        foreach (var item in route_source)
+        {
+            grlist.Add(new ExcelOplib.Entity.GroupRouteNew()
+            {
+                RouteDate = item.First().DayNo.ToString(),
+                Hotel = item.Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆).Count() > 0 ? item.Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆).ToList<Model.DJ_Route>() : null,
+                Scenic = item.Where(x => x.Enterprise.Type == Model.EnterpriseType.景点).Count() > 0 ? item.Where(x => x.Enterprise.Type == Model.EnterpriseType.景点).ToList<Model.DJ_Route>() : null
+            });
+        }
+        rptRoute.DataSource = grlist;
+        rptRoute.DataBind();
+
     }
 
     protected void rptRoute_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -57,16 +71,16 @@ public partial class TourManagerDpt_GroupDetail : System.Web.UI.Page
             rptRouteScenic.DataSource = grnrptRouteScenic.Scenic;
             rptRouteScenic.DataBind();
 
-            Repeater rptRouteShopping = (Repeater)e.Item.FindControl("rptRouteShopping");
-            //找到分类Repeater关联的数据项 
-            ExcelOplib.Entity.GroupRouteNew grnrptRouteShopping = (ExcelOplib.Entity.GroupRouteNew)e.Item.DataItem;
-            //根据分类ID查询该分类下的产品，并绑定产品Repeater 
-            rptRouteShopping.DataSource = grnrptRouteShopping.ShoppingPoint;
-            rptRouteShopping.DataBind();
+            //Repeater rptRouteShopping = (Repeater)e.Item.FindControl("rptRouteShopping");
+            ////找到分类Repeater关联的数据项 
+            //ExcelOplib.Entity.GroupRouteNew grnrptRouteShopping = (ExcelOplib.Entity.GroupRouteNew)e.Item.DataItem;
+            ////根据分类ID查询该分类下的产品，并绑定产品Repeater 
+            //rptRouteShopping.DataSource = grnrptRouteShopping.ShoppingPoint;
+            //rptRouteShopping.DataBind();
 
-            Label lblBreakfast = (Label)e.Item.FindControl("lblBreakfast");
-            Label lblLunch = (Label)e.Item.FindControl("lblLunch");
-            Label lblDinner = (Label)e.Item.FindControl("lblDinner");
+            //Label lblBreakfast = (Label)e.Item.FindControl("lblBreakfast");
+            //Label lblLunch = (Label)e.Item.FindControl("lblLunch");
+            //Label lblDinner = (Label)e.Item.FindControl("lblDinner");
             //找到分类Repeater关联的数据项 
             ExcelOplib.Entity.GroupRouteNew group = (ExcelOplib.Entity.GroupRouteNew)e.Item.DataItem;
         }
