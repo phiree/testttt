@@ -11,7 +11,7 @@ public partial class Admin_Demo : System.Web.UI.Page
 {
 
 
-    string dptAdminAccount = "GovAdmin_-75259";//管理部门登录帐号
+    string dptAdminAccount = "hzlyj";//管理部门登录帐号
 
     string dijiesheAdminAcount = "entAdmin_438";//地接社管理员
     string dijiesheName = "杭州西湖旅行社";
