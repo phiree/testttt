@@ -8,7 +8,7 @@ using Model;
 
 namespace BLL
 {
-    public class BLLDJConsumRecord
+    public class BLLDJConsumRecord:DalBase
     {
         IDJGroupConsumRecord IDjgroup = new DALDJ_GroupConsumRecord();
 
