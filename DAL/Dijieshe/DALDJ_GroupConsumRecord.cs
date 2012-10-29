@@ -52,8 +52,16 @@ namespace DAL
         {
             StringBuilder sql = new StringBuilder();
             sql.Append("select d from DJ_GroupConsumRecord d where 1=1");
-            sql.Append(" and d.Route.DJ_TourGroup.Name like '%" + groupname + "%'");
-            sql.Append(" and d.Route.DJ_TourGroup.DJ_DijiesheInfo.Name like '%" + EntName + "%'");
+            if (!string.IsNullOrEmpty(groupname))
+            {
+                sql.Append(" and d.Route.DJ_TourGroup.Name like '%" + groupname + "%'");
+            }
+            if (!string.IsNullOrEmpty(EntName))
+            {
+
+
+                sql.Append(" and d.Route.DJ_TourGroup.DJ_DijiesheInfo.Name like '%" + EntName + "%'");
+            }
             sql.Append(" and d.Enterprise.Id=" + enterid + "");
             if (BeginTime != "" && EndTime == "")
             {

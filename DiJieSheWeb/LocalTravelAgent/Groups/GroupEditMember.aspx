@@ -144,7 +144,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <br />
     <h3><b>
-        <%=CurrentGroup.Name %>游客列表</b></h3>
+        <%=CurrentGroup.Name+CurrentGroup.No %>游客列表</b></h3>
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">表格录入</a></li>

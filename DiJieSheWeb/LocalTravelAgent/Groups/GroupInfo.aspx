@@ -198,12 +198,13 @@
 
         //导入excel
         $(function () {
+      
             $("#btnExcel").click(function () {
 
                 var datas = "";
                 $.ajax({
                     type: "Post",
-                    url: "ExcelHandler.ashx?filename=" + $("#<%=Label1.ClientID%>").html(),
+                    url: "ExcelHandler.ashx?djsid="+ <%=DJSId %>+"&filename=" + $("#<%=Label1.ClientID%>").html(),
                     dataType: "text",
                     data: datas,
                     success: function (data, status) {

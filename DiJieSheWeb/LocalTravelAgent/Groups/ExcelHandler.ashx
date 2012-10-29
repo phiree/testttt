@@ -37,6 +37,9 @@ public class ExcelHandler : IHttpHandler {
         //V.2012/10/09
         ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
         ExcelOplib.Entity.GroupAll ga = excel.getGroup(filename);
+        string djsJd = context.Request["djsid"];
+        Model.DJ_DijiesheInfo djsinfo = (Model.DJ_DijiesheInfo)new BLL.BLLDJEnterprise().GetDJS8id(djsJd)[0];
+            
 
         //v.2012/10/22
         //转化excel信息为数据库信息
@@ -46,6 +49,7 @@ public class ExcelHandler : IHttpHandler {
         tg.Name = ga.GroupBasic.Name;
         tg.BeginDate = DateTime.Parse(ga.GroupBasic.Begindate);
         tg.EndDate = DateTime.Parse(ga.GroupBasic.Enddate);
+        tg.DJ_DijiesheInfo = djsinfo;
         //团员信息
         var tgmlist = new System.Collections.Generic.List<Model.DJ_TourGroupMember>();
         foreach (var item in ga.GroupMemberList.Where(x=>x.Memtype=="成人游客"))
@@ -55,6 +59,8 @@ public class ExcelHandler : IHttpHandler {
                 RealName = item.Memname,
                 IdCardNo = item.Memid,
                 PhoneNum = item.Memphone,
+                MemberType=Model.MemberType.成人游客,
+                DJ_TourGroup=tg,
                 IsChild = false
             });
         }
@@ -66,6 +72,8 @@ public class ExcelHandler : IHttpHandler {
                 IdCardNo = item.Memid,
                 PhoneNum = item.Memphone,
                 IsChild = true,
+                MemberType = Model.MemberType.儿童,
+                DJ_TourGroup = tg,
                 Keeper = item.Cardno
             });
         }
@@ -76,6 +84,8 @@ public class ExcelHandler : IHttpHandler {
                 RealName = item.Memname,
                 IdCardNo = item.Memid,
                 PhoneNum = item.Memphone,
+                MemberType = Model.MemberType.港澳台,
+                DJ_TourGroup = tg,
                 IsChild = false
             });
         }
@@ -87,7 +97,10 @@ public class ExcelHandler : IHttpHandler {
                 IdCardNo = item.Memid,
                 PhoneNum = item.Memphone,
                 IsChild = true,
-                Keeper = item.Cardno
+                Keeper = item.Cardno,
+                MemberType = Model.MemberType.外宾,
+            
+                DJ_TourGroup=tg
             });
         }
         tg.Members = tgmlist;
@@ -149,6 +162,7 @@ public class ExcelHandler : IHttpHandler {
             }
         }
         tg.Routes = routes;
+        
         
         IDAL.IDJEnterprise djEnterprice = new DAL.DALDJEnterprise();
         //汇总信息
