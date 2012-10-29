@@ -242,6 +242,12 @@ namespace BLL
                     }
                 }
             }
+            //过滤掉不是子属的
+            List<DJ_GovManageDepartment> ListGovDpt2=new List<DJ_GovManageDepartment>();
+            //foreach (DJ_GovManageDepartment dep in ListGovWdpt)
+            //{
+                
+            //}
             return ListGovWdpt;
         }
 
