@@ -226,7 +226,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         //筛选日期
         if (!string.IsNullOrEmpty(txt_yijiedai3.Text))
         {
-            tglist = tglist.Where(x => x.BeginDate <= DateTime.Parse(txt_yijiedai3.Text) && x.EndDate > DateTime.Parse(txt_yijiedai3.Text)).ToList();
+            tglist = tglist.Where(x => x.BeginDate <= DateTime.Parse(txt_yijiedai3.Text) && x.EndDate.AddDays(1) > DateTime.Parse(txt_yijiedai3.Text)).ToList();
         }
         IList<statics_Gov3> sm3 = new List<statics_Gov3>();
         foreach (var item3 in tglist.Where(x => x.DJ_DijiesheInfo != null))
@@ -249,7 +249,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
             }
             else
             {
-                temp.t_hotel = "无";
+                temp.y_hotel = "无";
             }
 
             var temp_t_hotel=item3.Routes
