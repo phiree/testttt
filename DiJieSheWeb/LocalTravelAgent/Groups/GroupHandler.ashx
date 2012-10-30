@@ -84,7 +84,7 @@ public class GroupHandler : IHttpHandler
                 DJ_TourGroup = tg
             });
         }
-        tg.Workers = workerlist;
+      //  tg.Workers = workerlist;
 
         //行程信息
         var routes = new System.Collections.Generic.List<Model.DJ_Route>();

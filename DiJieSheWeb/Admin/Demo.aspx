@@ -1,10 +1,28 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Demo.aspx.cs" Inherits="Admin_Demo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/m.master"  CodeFile="Demo.aspx.cs" Inherits="Admin_Demo" %>
 
 
-<html><body>
-<form runat="server">
+<asp:Content runat="server" ContentPlaceHolderID="main">
+<script>
+    $(function () {
+        $(".pageMid_left").hide();
+        $(".userinfo").hide();
+    });
+
+
+</script>
 <style>
 input{cursor:pointer;}
+.detail_titlebg
+{
+    display:block;
+    background:url("/theme/default/image/Detail_Titlebg.gif");
+    height:33px;
+    padding-left:10px;
+    color:#5E716B;
+    line-height:33px;
+    font-weight:bold;
+    font-size:13px;
+}
 </style>
     <div class="detail_titlebg">
    TourOl地接社平台Demo演示
@@ -40,9 +58,10 @@ input{cursor:pointer;}
             <li>
                 <asp:Button runat="server" ID="btnAdminLogin" Text="管理员登录" OnClick="btnAdminLogin_Click" /></li>
                   <li>
-            <asp:Button runat="server" Text="生成测试数据" OnClick="btnReport_Click" ID="btnReport" />
+            <asp:Button runat="server" Text="测试数据复位(删除再重新生成)" OnClick="btnReport_Click" ID="btnReport" />
+            </li>   <li>
+            <asp:Button runat="server" Text="删除测试数据" OnClick="btnDelete_Click" ID="btnDelete" />
             </li>
                 </ul>
     </fieldset>
-    </div></form>
-  </body></html>
+    </div></asp:Content>

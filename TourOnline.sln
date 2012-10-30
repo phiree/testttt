@@ -76,7 +76,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E2661A43-C
 	ProjectSection(SolutionItems) = preProject
 		docs\2.账户初始化.sql = docs\2.账户初始化.sql
 		docs\3.地接社初始化.sql = docs\3.地接社初始化.sql
-		说明.txt = 说明.txt
+		框架改进备注.txt = 框架改进备注.txt
+		docs\说明.txt = docs\说明.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebTest", "WebTest", "{2EA52185-36B4-4ACB-A149-2C53E918CD9A}"

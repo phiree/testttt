@@ -91,9 +91,21 @@ h5
 .detailinfo
 {
     margin-left:10px;
-    width:600px;
+    width:560px;
     border:1px solid #999999;
     margin-top:10px;
+    display:block;
+    float:left;
+    
+}
+.rightinfo
+{
+    width:200px;
+    float:right;
+    display:block;
+    margin-top:-5px;
+    margin-right:5px;
+    height:300px;
 }
 .remark
 {

@@ -25,7 +25,6 @@ public partial class TourEnterprise_PrintCer : System.Web.UI.Page
             if(routeid!="")
                 Listgcr.Add(blldjcr.GetGroupConsumRecordByRouteId(Guid.Parse(routeid)));
         }
-        title.InnerHtml = Listgcr[0].Enterprise.Name+"验证凭证";
         rptPrint.DataSource = Listgcr;
         rptPrint.DataBind();
     }
@@ -33,12 +32,12 @@ public partial class TourEnterprise_PrintCer : System.Web.UI.Page
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
-            Literal laGuiderName = e.Item.FindControl("laGuiderName") as Literal;
-            DJ_GroupConsumRecord gcr = e.Item.DataItem as DJ_GroupConsumRecord;
-            foreach (DJ_Group_Worker work in gcr.Route.DJ_TourGroup.Workers.Where(x=>x.WorkerType==DJ_GroupWorkerType.导游))
-	        {
-                laGuiderName.Text += work.Name + " ";
-	        }
+            //Literal laGuiderName = e.Item.FindControl("laGuiderName") as Literal;
+            //DJ_GroupConsumRecord gcr = e.Item.DataItem as DJ_GroupConsumRecord;
+            //foreach (DJ_Group_Worker work in gcr.Route.DJ_TourGroup.Workers.Where(x=>x.WorkerType==DJ_GroupWorkerType.导游))
+            //{
+            //    laGuiderName.Text += work.Name + " ";
+            //}
             
         }
     }

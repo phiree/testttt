@@ -65,7 +65,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         Request.Cookies["idcard"].Value = "";
         Response.Cookies["idcard"].Value = "";
         detailinfo.Visible = false;
-        ywdiv.Visible = false;
+        ywdiv.Style.Add("visiblity", "hidden");
         rptguiderinfo.Visible = false;
     }
     
@@ -317,7 +317,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     {
                         HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
                         DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
-                        bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text),0,0,"");
+                        bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text),0,0);
                         BindPrintLink();
                         guiderSuccess = 1;
                     }
@@ -368,7 +368,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息');", true);
             tp_nav.Attributes.Add("style", "");
             detailinfo.Visible = false;
-            ywdiv.Visible = false;
+            ywdiv.Style.Add("visiblity", "hidden");
             return;
         }
         else
@@ -475,7 +475,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     public void ShowResult()
     {
         tp_nav.Attributes.Add("style", "margin-top:20px;");
-        ywdiv.Visible = true;
+        ywdiv.Style.Add("visiblity", "visible");
         detailinfo.Visible = true;
         if (rptguiderinfo.Items.Count > 0)
         {

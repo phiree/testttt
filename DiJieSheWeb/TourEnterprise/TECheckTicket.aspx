@@ -37,8 +37,8 @@
             按导游姓名或者身份证号查询</h5>
         <asp:TextBox runat="server" ID="txtTE_info" Style="margin-right: 10px;width:250px;" /><asp:Button
             ID="BtnCheck" runat="server" Text="确定" OnClick="txtTE_info_Click" CssClass="btn" />
-        <span id="yklistt"><span style="margin-left: 20px; padding-left: 0px; cursor: pointer; vertical-align: middle;"
-            onmouseover="showyklist()">导游列表&nbsp;&nbsp;</span><img onmouseover="showyklist()" height="15px"
+        <span id="yklistt"><span style="margin-left: 260px; padding-left: 0px; cursor: pointer; vertical-align: middle;"
+            >当日导游列表&nbsp;&nbsp;</span><img height="15px"
                 width="10px" src="/theme/default/image/downicon.png" style="vertical-align: middle;
                 cursor: pointer;" /></span>
     </div>
@@ -63,7 +63,7 @@
                             ID="txtChildrenAmount" runat="server"></asp:TextBox>人<br />
                             住宿天数:<asp:TextBox ID="txtLiveDay" runat="server"></asp:TextBox>天
                             房间数:<asp:TextBox ID="txtRoom" runat="server"></asp:TextBox>间<br />
-                            房间详情:<asp:TextBox ID="txtRoomInfo" runat="server" Width="370px" TextMode="MultiLine" Height="100px" style="vertical-align:middle"></asp:TextBox>
+                            
                     </td>
                     
                     <td>
@@ -75,7 +75,7 @@
         <tr>
             <td></td>
             <td>
-                <asp:Button ID="btnCheckOut" Text="验证通过" runat="server" OnClick="btnCheckOut_Click" CssClass="btn" style=" display:block; float:left;margin-right:10px" />
+                <asp:Button ID="btnCheckOut" Text="验证通过并打印" runat="server" OnClick="btnCheckOut_Click" style=" display:block; float:left;margin-right:10px" />
                 <a id="btnPrint" runat="server"  class="btn" href="" target="_blank" style="display:block; text-decoration:none; text-align:center; line-height:20px;color:#009383; float:left; display:none">打印凭证</a>
                 
             </td>
@@ -83,20 +83,12 @@
         </tr>
         </table>
     </div>
-    <div class="remark">
-         <p class="wkintr">
-        身份证读卡器的驱动下载地址:<a href="http://productbbs.it168.com/thread-67620-1-1.html">下载地址</a>
-        </p>
-        <p class="wkintr">
-            首次进入该页面，请先下载身份证读卡器程序，安装到本地电脑后，打开IE浏览器，进入该页面后浏览器会提示是否运行该加载项，点击允许，即可使用：
-            <a href="/ScenicManager/setup.exe">身份证读卡器程序下载</a>
-        </p>
-    </div>
-    <div id="hiddendv" style="display: none">
+    <div class="rightinfo">
+    <div id="hiddendv" style="display:none">
         <asp:HiddenField runat="server" ID="hfidcard" />
         <asp:Button Text="text" runat="server" ID="btnBind" OnClick="btnBind_Click" />
     </div>
-    <div id="listname" class="yklist" style="display: none;">
+    <div id="listname" class="yklist">
         <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom: 0px;
             width: 200px; table-layout: fixed">
             <tr style="width: 150px; background-color: #E9E9E9">
@@ -134,4 +126,16 @@
             </asp:Repeater>
         </div>
     </div>
+    </div>
+    <div style="clear:both"></div>
+    <div class="remark">
+         <p class="wkintr">
+        身份证读卡器的驱动下载地址:<a href="http://productbbs.it168.com/thread-67620-1-1.html">下载地址</a>
+        </p>
+        <p class="wkintr">
+            首次进入该页面，请先下载身份证读卡器程序，安装到本地电脑后，打开IE浏览器，进入该页面后浏览器会提示是否运行该加载项，点击允许，即可使用：
+            <a href="/ScenicManager/setup.exe">身份证读卡器程序下载</a>
+        </p>
+    </div>
+    
 </asp:Content>

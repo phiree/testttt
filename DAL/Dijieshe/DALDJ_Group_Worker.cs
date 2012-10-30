@@ -11,7 +11,7 @@ namespace DAL
 
         public IList<Model.DJ_TourGroup> GetTgListByIdcard(string idcard)
         {
-            string sql = "select gw.DJ_TourGroup from DJ_Group_Worker gw where gw.IDCard='" + idcard + "'";
+            string sql = "select gw.DJ_TourGroup from DJ_TourGroupMember gw where gw.IdCardNo='" + idcard + "'";
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_TourGroup>().ToList<Model.DJ_TourGroup>();
         }
@@ -27,7 +27,7 @@ namespace DAL
 
         public Model.DJ_Group_Worker GetByIdCard(string idcard)
         {
-            string sql = "select gw from DJ_Group_Worker gw where gw.IDCard='" + idcard + "'";
+            string sql = "select gw from DJ_TourGroupMember gw where gw.IdCardNo='" + idcard + "'";
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_Group_Worker>().Value;
         }

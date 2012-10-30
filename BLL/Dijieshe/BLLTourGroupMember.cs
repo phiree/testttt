@@ -11,5 +11,7 @@ namespace BLL
        {
            session.Delete(member);
        }
+
+       
     }
 }
