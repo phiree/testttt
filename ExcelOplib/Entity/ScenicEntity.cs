@@ -18,5 +18,6 @@ namespace ExcelOplib.Entity
         public string bookintro { get; set; }
         public string scenicdetail { get; set; }
         public string scenicintro { get; set; }
+        public string mainpic { get; set; }
     }
 }
