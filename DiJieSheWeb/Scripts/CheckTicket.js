@@ -21,17 +21,13 @@ $(function () {
                             return row.Value;
                         },
                         matchContains: true
-                    }).result(function (event, data, formatted) { $("[id$='txtTE_info']").val(data.Key); $("[id$='BtnCheck']").click(); });
+                    }).result(function (event, data, formatted) { $("[id$='txtTE_info']").val(data.Value); $("[id$='BtnCheck']").click(); });
         }
     });
 
 
 
-    $("body").click(function () {
-        $("#listname").attr("style", "display:none");
-        var list = $("#yklistt");
-        $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
-    });
+   
 
     //读卡器验票操作
     if ($.cookie("idcard") == null)

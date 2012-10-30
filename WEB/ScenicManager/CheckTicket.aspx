@@ -39,9 +39,6 @@
                 <div class="divtxtinfo">
                     <asp:TextBox ID="txtinfo" CssClass="txtinfo" runat="server" Style="border: 0px none White;"></asp:TextBox></div>
             </div>
-            <span id="yklistt"><span style="margin-left: 0px; padding-left: 0px; float: left; cursor:pointer" onmouseover="showyklist()">游客列表&nbsp;&nbsp;</span><img
-                onmouseover="showyklist()" height="15px" width="10px" src="../theme/default/image/downicon.png"
-                style="margin-top: 7px; display: block; float: left; cursor: pointer;" /></span>
             <%--<asp:Button ID="btnsearch" runat="server" Text="查询全部信息" OnClick="btnsearch_Click" />--%>
         </div>
         <div runat="server" id="detailinfo" class="detailinfo">
@@ -128,7 +125,7 @@
             </div>
             
         </div>
-        <div runat="server" id="ywdiv" class="ywdiv">
+        <div runat="server" id="ywdiv" class="ywdiv" style="float:left; width:300px;">
             <span id="ywspan"><span style="display: block; float: left; padding: 0px; margin: 0px;cursor:pointer;" onmouseover="showywrecord()">
                 游玩记录&nbsp;&nbsp;</span><img onmouseover="showywrecord()" height="15px" width="10px" src="../theme/default/image/downicon.png"
                     style="display: block; float: left; margin-top: 3px; cursor: pointer;" />
@@ -143,8 +140,7 @@
             <asp:Button ID="btnauto" runat="server" Text="Button" OnClick="btnauto_Click" />
             <asp:HiddenField ID="hfautoidcard" runat="server" />
         </div>
-    </div>
-    <div id="listname" class="yklist" style="display: none;">
+        <div id="listname" class="yklist" style="display: block;margin-left:320px;padding-top:25px">
         <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom: 0px;
             width: 200px; table-layout: fixed">
             <tr style="width: 170px; background-color: #E9E9E9">
@@ -192,7 +188,9 @@
 
         
     </div>
-    <div id="listyw" class="ywrecord" style="display: none;">
+    <div style="width:300px;float:left;display:block;padding-top:15px;">
+    <span id="yklistt" ><span style="margin-left: 0px; padding-left: 0px; float: left; cursor:pointer" onmouseover="showyklist()">游客列表&nbsp;&nbsp;</span></span></div>
+    <div id="listyw" class="ywrecord" style="display: none;float:left;">
         <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom: 0px;
             width: 200px; table-layout: fixed">
             <tr style="width: 150px; background-color: #E9E9E9">
@@ -232,6 +230,9 @@
             </asp:Repeater>
         </div>
     </div>
+    <div style="clear:both"></div>
+    </div>
+    
     <%--<input type="button" onclick="sss();" value="ceshi" />
     <script type="text/javascript">
         function sss() {
