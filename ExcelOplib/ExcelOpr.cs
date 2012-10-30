@@ -100,6 +100,7 @@ namespace ExcelOplib
                         }
                     };
                     s.Tickets = tickets;
+                    s.Photo = item.mainpic;
                     bllscenic.UpdateScenicInfo(s);
                     List<Model.ScenicImg> silist = CopyFile(s);
                     if (silist != null)
@@ -139,6 +140,7 @@ namespace ExcelOplib
                         tickets.Add(t);
                     }
                     s.Tickets = tickets;
+                    s.Photo = item.mainpic;
                     bllscenic.UpdateScenicInfo(s);
                     blltopic.SaveScenictopic(temptopic, bllscenic.GetScenicBySeoName(item.seoname).Id);
                     List<Model.ScenicImg> silist = CopyFile(s);
@@ -206,7 +208,8 @@ namespace ExcelOplib
                         level = dt.Rows[i][7].ToString().Replace("\n", "").Trim(),
                         address = dt.Rows[i][8].ToString().Replace("\n", "").Trim(),
                         topicseo = dt.Rows[i][9].ToString().Replace("\n", "").Trim(),
-                        scenicintro = dt.Rows[i][10].ToString().Replace("\n", "").Trim()
+                        scenicintro = dt.Rows[i][10].ToString().Replace("\n", "").Trim(),
+                        mainpic = dt.Rows[i][11].ToString().Replace("\n", "").Trim()
                     });
                 }
                 return slist;
@@ -276,7 +279,6 @@ namespace ExcelOplib
             string destPath = @"d:\scenicimg\mainimg";
             DirectoryInfo TheFolder = new DirectoryInfo(sourcePath);
             List<Model.ScenicImg> silist = new List<Model.ScenicImg>();
-            bool firstone = true;
             foreach (FileInfo NextFile in TheFolder.GetFiles())
             {
                 string filename = NextFile.Name;
@@ -296,14 +298,15 @@ namespace ExcelOplib
                 }
                 fs.Close();
                 fs2.Close();
+                var img_index=filename.IndexOf(Math.Abs(scenic.Photo.Split(
+                    new string[] { @"src=""" }, StringSplitOptions.RemoveEmptyEntries)[1].GetHashCode()).ToString()) >= 0 ;
                 silist.Add(new Model.ScenicImg()
                 {
                     Name = filename,
                     Scenic = scenic,
                     Title = NextFile.Name.Replace(NextFile.Extension, ""),
-                    ImgType = firstone ? Model.ImgType.主图 : Model.ImgType.辅图
+                    ImgType = img_index ? Model.ImgType.主图 : Model.ImgType.辅图 //firstone ? Model.ImgType.主图 : Model.ImgType.辅图
                 });
-                firstone = false;
             }
             return silist;
         }
