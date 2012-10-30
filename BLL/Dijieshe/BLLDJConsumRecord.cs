@@ -8,11 +8,23 @@ using Model;
 
 namespace BLL
 {
-    public class BLLDJConsumRecord:DalBase
+    public class BLLDJConsumRecord
     {
         IDJGroupConsumRecord IDjgroup = new DALDJ_GroupConsumRecord();
 
-        public void Save(DJ_TourEnterprise Enterprise, DJ_Route route, DateTime consumtime, int AdultsAmount, int ChildrenAmount, int LiveDay,int roomNum,string roominfo)
+        DALDJ_GroupConsumRecord dal;
+        public DALDJ_GroupConsumRecord DAL
+        {
+
+            get
+            {
+                if (dal == null) { dal = new DALDJ_GroupConsumRecord(); }
+                return dal;
+            }
+            set { dal = value; }
+        }
+
+        public void Save(DJ_TourEnterprise Enterprise, DJ_Route route, DateTime consumtime, int AdultsAmount, int ChildrenAmount, int LiveDay, int roomNum, string roominfo)
         {
             DJ_GroupConsumRecord dj_group = new DJ_GroupConsumRecord();
             dj_group.AdultsAmount = AdultsAmount;
@@ -28,11 +40,11 @@ namespace BLL
                 IDjgroup.Save(dj_group);
         }
 
-        public void SaveList(List<DJ_Route> listroute, int AdultsAmount, int ChildrenAmount, int LiveDay,int roomNum,string roominfo)
+        public void SaveList(List<DJ_Route> listroute, int AdultsAmount, int ChildrenAmount, int LiveDay, int roomNum, string roominfo)
         {
             foreach (DJ_Route route in listroute)
             {
-                Save(route.Enterprise, route, DateTime.Now, AdultsAmount, ChildrenAmount, LiveDay,roomNum,roominfo);
+                Save(route.Enterprise, route, DateTime.Now, AdultsAmount, ChildrenAmount, LiveDay, roomNum, roominfo);
             }
         }
 
@@ -133,9 +145,9 @@ namespace BLL
         /// <param name="EntName">查询企业名称</param>
         /// <param name="EntId">所在地接社id</param>
         /// <returns>查询出的企业列表</returns>
-        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string bengintime,string endtime, string EntName, int type, int EntId)
+        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string bengintime, string endtime, string EntName, int type, int EntId)
         {
-            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(bengintime,endtime, EntName, type, EntId).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(bengintime, endtime, EntName, type, EntId).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -153,10 +165,10 @@ namespace BLL
             return ListTE;
         }
 
-        public int GetCountByStatics(string begintime,string endtime, string EntName, int type, int EntId, int Enttype, int Wentid)
+        public int GetCountByStatics(string begintime, string endtime, string EntName, int type, int EntId, int Enttype, int Wentid)
         {
             int Count = 0;
-            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(begintime,endtime, EntName, type, EntId).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(begintime, endtime, EntName, type, EntId).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -186,14 +198,14 @@ namespace BLL
             return Count;
         }
 
-        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string begintime,string endtime, string EntName, int type, int EntId)
+        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string begintime, string endtime, string EntName, int type, int EntId)
         {
             return IDjgroup.GetRecordByCondition(begintime, endtime, EntName, type, EntId);
         }
 
-        public List<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid,int djsid)
+        public List<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid, int djsid)
         {
-            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, entid,djsid).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, entid, djsid).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -243,7 +255,7 @@ namespace BLL
                 }
             }
             //过滤掉不是子属的
-            List<DJ_GovManageDepartment> ListGovDpt2=new List<DJ_GovManageDepartment>();
+            List<DJ_GovManageDepartment> ListGovDpt2 = new List<DJ_GovManageDepartment>();
             /*第一步*/
             foreach (DJ_GovManageDepartment dep in ListGovWdpt)
             {
@@ -263,7 +275,7 @@ namespace BLL
                         if (dep2.Area.Code.Substring(0, 4) == dep.Area.Code.Substring(0, 4))
                             flag = 1;
                     }
-                    if(flag==0)
+                    if (flag == 0)
                         ListGovDpt2.Add(dep);
                 }
             }
@@ -278,7 +290,7 @@ namespace BLL
                         if (dep2.Area.Code.Substring(0, 2) == dep.Area.Code.Substring(0, 2))
                             flag = 1;
                     }
-                    if(flag==0)
+                    if (flag == 0)
                         ListGovDpt2.Add(dep);
                 }
             }
@@ -350,5 +362,24 @@ namespace BLL
             }
             return List;
         }
+
+        /// <summary>
+        /// 与groupname部分相同的group的所有消费记录
+        /// 用于测试数据的删除
+        /// </summary>
+        /// <returns></returns>
+
+      
+        public void DeleteDemoRecords(string groupNamePrefix)
+        {
+            IList<DJ_GroupConsumRecord> records = DAL.GetList_DemoRecords(groupNamePrefix);
+
+            foreach (DJ_GroupConsumRecord r in records)
+            {
+                dal.Delete(r);
+            }
+        }
+
+
     }
 }

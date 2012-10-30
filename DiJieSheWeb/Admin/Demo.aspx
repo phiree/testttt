@@ -58,7 +58,9 @@ input{cursor:pointer;}
             <li>
                 <asp:Button runat="server" ID="btnAdminLogin" Text="管理员登录" OnClick="btnAdminLogin_Click" /></li>
                   <li>
-            <asp:Button runat="server" Text="生成测试数据" OnClick="btnReport_Click" ID="btnReport" />
+            <asp:Button runat="server" Text="测试数据复位(删除再重新生成)" OnClick="btnReport_Click" ID="btnReport" />
+            </li>   <li>
+            <asp:Button runat="server" Text="删除测试数据" OnClick="btnDelete_Click" ID="btnDelete" />
             </li>
                 </ul>
     </fieldset>

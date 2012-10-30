@@ -12,7 +12,6 @@ public partial class Admin_Demo : System.Web.UI.Page
 
 
     string dptAdminAccount = "hzlyj";//管理部门登录帐号
-
     string dijiesheAdminAcount = "entAdmin_438";//地接社管理员
     string dijiesheName = "杭州西湖旅行社";
 
@@ -25,6 +24,8 @@ public partial class Admin_Demo : System.Web.UI.Page
     DJ_TourEnterprise demoHotel;
     DJ_TourEnterprise demoDjs;
     DJ_TourEnterprise demoScenic;
+    //测试团队名称前缀,与正常团队区分.
+    string demoGroupNamePrefix = "DEMO遂昌双休游";
     protected void Page_Load(object sender, EventArgs e)
     {
         demoHotel = bllEnt.GetDJS8name(hotelName)[0];
@@ -117,7 +118,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         group.Members.Add(member3);
         group.Members.Add(member4);
 
-        group.Name = "[Demo]杭州双休游" + Math.Abs(Guid.NewGuid().GetHashCode()).ToString().Substring(0, 6);
+        group.Name = demoGroupNamePrefix+ Math.Abs(Guid.NewGuid().GetHashCode()).ToString().Substring(0, 6);
         group.No = "SRY2012" + Math.Abs(Guid.NewGuid().GetHashCode()).ToString().Substring(0, 4);
 
         DJ_Route route1 = new DJ_Route();
@@ -149,10 +150,14 @@ public partial class Admin_Demo : System.Web.UI.Page
     BLL.BLLDJConsumRecord bllConsum = new BLLDJConsumRecord();
     protected void btnReport_Click(object sender, EventArgs e)
     {
-        /// 创建很多团队 并且为所有团队都验票通过.
-        ///
-
-        List<DJ_TourGroup> Groups = new List<DJ_TourGroup>();
+        DeleteDemoData();
+        BuildDemoDeta();
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "DeleteAlert", "alert('测试数据复位成功')", true);
+     
+    }
+    public void BuildDemoDeta()
+    { 
+           List<DJ_TourGroup> Groups = new List<DJ_TourGroup>();
         for (int i = 1; i < 12; i++)
         {
             DateTime beginDate = new DateTime(DateTime.Now.Year, i, 10);
@@ -160,10 +165,6 @@ public partial class Admin_Demo : System.Web.UI.Page
             bllGroup.Save(g);
             Groups.Add(g);
         }
-
-
-
-    //
         foreach (DJ_TourGroup g in Groups)
         {
             foreach (DJ_Route r in g.Routes)
@@ -174,15 +175,15 @@ public partial class Admin_Demo : System.Web.UI.Page
                 cr.ChildrenAmount = r.DJ_TourGroup.ChildrenAmount;
                 cr.ConsumeTime = r.DJ_TourGroup.BeginDate.AddDays(r.DayNo);
                 cr.Enterprise = r.Enterprise;
-                bllConsum.Save(cr);
+                bllConsum.DAL.Save(cr);
             }
         }
-
-
-
     }
-    private void DeleteDemoDate()
-    { 
+    
+    private void DeleteDemoData()
+    {
+        bllConsum.DeleteDemoRecords(demoGroupNamePrefix);
+
         
     }
 
@@ -192,5 +193,12 @@ public partial class Admin_Demo : System.Web.UI.Page
         //  Response.Redirect(targetUrl);
         ClientScript.RegisterStartupScript(this.Page.GetType(), "",
         "var opener=window.open('" + targetUrl + "','Graph','width=960,height=650;'); opener=null;", true);
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        DeleteDemoData();
+
+        ScriptManager.RegisterStartupScript(this,this.GetType(), "DeleteAlert", "alert('测试数据删除成功')",true);
     }
 }
