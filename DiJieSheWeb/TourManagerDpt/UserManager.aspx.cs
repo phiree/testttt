@@ -31,24 +31,49 @@ public partial class TourManagerDpt_UserManager : System.Web.UI.Page
         {
             DJ_User_Gov user = e.Item.DataItem as DJ_User_Gov;
             Literal laPermis = e.Item.FindControl("laPermis") as Literal;
-            //switch ((int)user.PermissionMask)
-            //{
-            //    case 1:
-            //        {
-            //            laPermis.Text = "行业管理员";
-            //            break;
-            //        }
-            //    case 2:
-            //        {
-            //            laPermis.Text = "信息维护员";
-            //            break;
-            //        }
-            //    case 3:
-            //        {
-            //            laPermis.Text = "行业管理员、信息维护员";
-            //            break;
-            //        }
-            //}
+            switch ((int)user.PermissionType)
+            {
+                case 1:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString();
+                        break;
+                    }
+                case 2:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString();
+                        break;
+                    }
+                case 3:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString()+"、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString();
+                        break;
+                    }
+                case 4:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString();
+                        break;
+                    }
+                case 5:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString();
+                        break;
+                    }
+                case 6:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString();
+                        break;
+                    }
+                case 7:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString();
+                        break;
+                    }
+            }
             HtmlAnchor aedit = e.Item.FindControl("aedit") as HtmlAnchor;
             aedit.HRef = "/TourManagerDpt/UserEdit.aspx?userid=" + user.Id;
         }

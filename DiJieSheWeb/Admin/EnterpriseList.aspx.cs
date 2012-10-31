@@ -12,6 +12,7 @@ using CommonLibrary;
 /// </summary>
 public partial class Admin_EnterpriseList : System.Web.UI.Page
 {
+    BLLDJ_User bllUser = new BLLDJ_User();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -31,7 +32,7 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
         {
             DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
             Label lblAdmin = e.Item.FindControl("lblAdmin") as Label;
-            DJ_User_TourEnterprise user = bllDjUser.GetUser_TEbyId(ent.Id);
+            DJ_User_TourEnterprise user = bllUser.GetUser_TEbyId(ent.Id, 15);
             Button btn = e.Item.FindControl("btnadmin") as Button;
             if (user != null)
             {
@@ -63,11 +64,9 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
             DJ_User_TourEnterprise djuserent = new DJ_User_TourEnterprise();
             djuserent.Enterprise = bllDJEnt.GetDJS8id(entId.ToString())[0];
             djuserent.Name = loginname;
+            djuserent.PermissionType = PermissionType.报表查看员 | PermissionType.团队录入员 | PermissionType.信息编辑员 | PermissionType.用户管理员;
             djuserent.Password=  System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             bllMember.CreateUpdateMember(djuserent);
-         
-
-
         }
 
         if (e.CommandName.ToLower() == "setverify")

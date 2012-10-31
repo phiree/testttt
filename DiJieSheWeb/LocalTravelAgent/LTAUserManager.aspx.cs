@@ -45,12 +45,101 @@ public partial class LocalTravelAgent_LTAUserManager : System.Web.UI.Page
         {
             DJ_User_TourEnterprise user = e.Item.DataItem as DJ_User_TourEnterprise;
             Literal laPermis = e.Item.FindControl("laPermis") as Literal;
-            //switch ((int)user.PermissionMask)
-            //{
-            //    case 1: laPermis.Text = Model.DJ_User_TourEnterprisePermission.信息维护员.ToString(); break;
-            //    case 2: laPermis.Text = Model.DJ_User_TourEnterprisePermission.信息管理员.ToString(); break;
-            //    case 3: laPermis.Text = Model.DJ_User_TourEnterprisePermission.信息维护员.ToString() + "," + Model.DJ_User_TourEnterprisePermission.信息管理员.ToString(); break; 
-            //}
+            switch ((int)user.PermissionType)
+            {
+                case 1:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString();
+                        break;
+                    }
+                case 2:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString();
+                        break;
+                    }
+                case 3:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString();
+                        break;
+                    }
+                case 4:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString();
+                        break;
+                    }
+                case 5:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString();
+                        break;
+                    }
+                case 6:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString();
+                        break;
+                    }
+                case 7:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString();
+                        break;
+                    }
+                case 8:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 8)).ToString();
+                        break;
+                    }
+                case 9:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 8)).ToString();
+                        break;
+                    }
+                case 10:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 8)).ToString();
+                        break;
+                    }
+                case 11:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString() + "、" +
+                            ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 8)).ToString();
+                        break;
+                    }
+                case 12:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 8)).ToString();
+                        break;
+                    }
+                case 13:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString()+"、"
+                            +((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 8)).ToString();
+                        break;
+                    }
+                case 14:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString() + "、" +
+                            ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 8)).ToString();
+                        break;
+                    }
+                case 15:
+                    {
+                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString() + "、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString()+"、"
+                            + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 8)).ToString();
+                        break;
+                    }
+            }
             HtmlAnchor aedit = e.Item.FindControl("aedit") as HtmlAnchor;
             aedit.HRef = "/LocalTravelAgent/LTAUserEdit.aspx?userid=" + user.Id;
         }

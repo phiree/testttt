@@ -67,10 +67,10 @@ public partial class search_Default : System.Web.UI.Page
                 Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
                 liPriceNormal.Text = priceNormal.ToString("0");
                 liPriceOnline.Text = priceOnline.ToString("0");
-                Image img = e.Item.FindControl("Image1") as Image;
-                if (new BLLScenicImg().GetSiByType(s, 1).Count > 0)
-                    img.ImageUrl = "/ScenicImg/small/" + new BLLScenicImg().GetSiByType(s, 1)[0].Name;
             }
+            Image img = e.Item.FindControl("Image1") as Image;
+            if (new BLLScenicImg().GetSiByType(s, 1).Count > 0)
+                img.ImageUrl = "/ScenicImg/small/" + new BLLScenicImg().GetSiByType(s, 1)[0].Name;
             string ahref = "/Tickets/" + bllArea.GetAreaByCode(s.Area.Code.Substring(0, 4) + "00").SeoName + "_" + s.Area.SeoName + "/" + s.SeoName + ".html";
             HtmlAnchor ha = e.Item.FindControl("schref") as HtmlAnchor;
             ha.HRef = ahref;

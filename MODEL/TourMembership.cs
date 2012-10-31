@@ -29,8 +29,8 @@ namespace Model
     public enum PermissionType
     {
         信息编辑员=1,
-        报表查看员,
-        用户管理员,
-        团队录入员
+        报表查看员=2,
+        用户管理员=4,
+        团队录入员=8
     }
 }
