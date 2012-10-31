@@ -117,6 +117,7 @@
     <Compile Include="BLLTest\AreaTest.cs" />
     <Compile Include="BLLTest\DJS\DJSTest.cs" />
     <Compile Include="BLLTest\DJS\DJSTourGroupTest.cs" />
+    <Compile Include="BLLTest\DJS\DJSTourEnterpriseTest.cs" />
     <Compile Include="BLLTest\ExcelOperTets.cs" />
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="BLLTest\OrderTest.cs" />

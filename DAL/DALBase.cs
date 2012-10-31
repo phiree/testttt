@@ -47,6 +47,12 @@ namespace DAL
             session.Update(o);
             session.Flush();
         }
+        public IList<T> GetPagedList(IList<T> list,  int pageIndex, int pageSize)
+        {
+            IList<T> pagedList = list.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList<T>();
+
+            return pagedList;
+        }
 
     }
 }

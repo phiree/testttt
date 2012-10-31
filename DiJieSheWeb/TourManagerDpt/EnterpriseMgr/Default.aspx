@@ -2,6 +2,8 @@
     AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="TourManagerDpt_EnterpriseMgr_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+        rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript" src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
     <script language="javascript" type="text/javascript" src="/Scripts/json2.js"></script>
 
@@ -20,7 +22,7 @@
         <legend>增加奖励企业</legend>企业名称:<asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
         管理员帐号:<asp:TextBox runat="server" ID="tbxAccount"></asp:TextBox>
         <asp:Button runat="server" ID="btnAdd" Text="纳入奖励范围" OnClick="btnAdd_Click" />
-        <asp:Label runat="server" ID="lblMsg" CssClass="success" Visible=false>操作成功</asp:Label>
+        <asp:Label runat="server" ID="lblMsg" CssClass="success" Visible="false">操作成功</asp:Label>
     </fieldset>
     <fieldset>
         <legend>
