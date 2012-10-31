@@ -14,7 +14,6 @@ namespace Model.Mapping
         public DJ_User_GovMap()
         {
             References<DJ_GovManageDepartment>(x => x.GovDpt);
-            Map(x => x.PermissionMask).CustomType<int>();
       }
     }
     public class DJ_User_TourEnterpriseMap : SubclassMap<DJ_User_TourEnterprise>
@@ -23,7 +22,6 @@ namespace Model.Mapping
         public DJ_User_TourEnterpriseMap()
         {
             References<DJ_TourEnterprise>(x => x.Enterprise).Not.LazyLoad();
-            Map(x => x.PermissionMask).CustomType<int>(); 
         }
     }
 }
