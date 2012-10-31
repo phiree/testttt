@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using BLL;
+using Model;
 public partial class TourManagerDpt_EnterpriseMgr_Default : System.Web.UI.Page
 {
 
-   
 
+
+    BLLDJEnterprise bllEnt = new BLLDJEnterprise();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -17,7 +19,17 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     { 
+        //将所选企业纳入奖励范围
+        //CHECK if the enterprise exists
+        //todo:优化:bllenterprise优化.
+        string entName=tbxName.Text.Trim();
+        IList<DJ_TourEnterprise> entL = bllEnt.GetDJS8name(entName);
+        if (entL.Count == 0)
+        { 
         
+        }
+       
+
     }
 
     /// <summary>
