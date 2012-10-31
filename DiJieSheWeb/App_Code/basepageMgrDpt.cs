@@ -10,31 +10,37 @@ using Model;
 /// </summary>
 public class basepageMgrDpt : basepage
 {
+    DJ_GovManageDepartment currentDpt;
     public DJ_GovManageDepartment CurrentDpt
     {
         get
         {
-            if (CurrentMember != null)
+            if (currentDpt == null)
             {
-                DJ_User_Gov govUser = (DJ_User_Gov)CurrentMember;
-                DJ_GovManageDepartment govDpt = govUser.GovDpt;
-                if (govDpt == null)
+                if (CurrentMember != null)
+                {
+                    DJ_User_Gov govUser = (DJ_User_Gov)CurrentMember;
+                    currentDpt = govUser.GovDpt;
+                    if (currentDpt == null)
+                    {
+                        BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
+                    }
+                    return currentDpt;
+                }
+                else
                 {
                     BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
+                    return null;
                 }
-                return govDpt;
             }
-            else
-            {
-                BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
-                return null;
-            }
+            return currentDpt;
         }
     }
 
     /// <summary>
     /// 
     /// </summary>
+    [Obsolete("使用 Area.Level属性")]
     public string CurrentDptLevel {
         get { 
             //开始2位编号

@@ -3,12 +3,24 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script language="javascript" type="text/javascript" src="/Scripts/jqueryplugin/jquery.autocomplete.js"></script>
+    <script language="javascript" type="text/javascript" src="/Scripts/json2.js"></script>
+
+    <script language="javascript" type="text/javascript">
+        var entNames = JSON.parse("<%=EntNames %>");
+        $(function () {
+            $("#<%=tbxName.ClientID %>").autocomplete({
+                source: availableTags
+            });
+        });
+    
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
     <fieldset>
         <legend>增加奖励企业</legend>企业名称:<asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
         管理员帐号:<asp:TextBox runat="server" ID="tbxAccount"></asp:TextBox>
         <asp:Button runat="server" ID="btnAdd" Text="纳入奖励范围" OnClick="btnAdd_Click" />
+        <asp:Label runat="server" ID="lblMsg" CssClass="success" Visible=false>操作成功</asp:Label>
     </fieldset>
     <fieldset>
         <legend>
