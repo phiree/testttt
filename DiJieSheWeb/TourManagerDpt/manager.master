@@ -8,8 +8,8 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="cphFunction" runat="server">
     <ul class="nav">
-        <li runat="server" id="li_1"><a href="#">宾馆管理</a></li>
-        <li runat="server" id="li_2"><a href="#">景点管理</a></li>
+        <li runat="server" id="li_1"><a href="EnterpriseMgr/Default.aspx?entType=1">宾馆管理</a></li>
+        <li runat="server" id="li_2"><a href="EnterpriseMgr/Default.aspx?entType=2">景点管理</a></li>
         <li runat="server" id="li_3"><a href="/tourmanagerdpt/DjsList.aspx">地接社列表</a></li>
         <li runat="server" id="li_4"><a href="/tourmanagerdpt/StaticsList.aspx">统计信息</a></li>
         <li runat="server" id="li_5"><a href="/tourmanagerdpt/UserManager.aspx">用户管理</a></li>

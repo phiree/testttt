@@ -6,9 +6,9 @@ using Model;
 using NHibernate;
 namespace BLL
 {
-    public class BLLDJEnterprise : DAL.DalBase
+    public class BLLDJEnterprise 
     {
-        IDAL.IDJEnterprise daldjs = new DAL.DALDJEnterprise();
+        DAL.DALDJEnterprise daldjs = new DAL.DALDJEnterprise();
        
         #region DJS
         /// <summary>
@@ -290,21 +290,7 @@ namespace BLL
 
         #region group
 
-        /// <summary>
-        /// 添加团队基本信息
-        /// </summary>
-        //public Guid AddBasicinfo(DJ_DijiesheInfo djs, string gname, DateTime gbdate, DateTime gedate, int gdays, int adults, int children)
-        //{
-        //    DJ_TourGroup tg = new DJ_TourGroup();
-        //    tg.DJ_DijiesheInfo = djs;
-        //    tg.Name = gname;
-        //    tg.BeginDate = gbdate;
-        //    tg.EndDate = gedate;
-        //    tg.DaysAmount = gdays;
-        //    tg.AdultsAmount = adults;
-        //    tg.ChildrenAmount = children;
-        //    return daldjs.AddGroup(tg);
-        //}
+     
 
         public void UpdateGroup(Model.DJ_TourGroup tg)
         {

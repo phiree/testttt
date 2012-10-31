@@ -22,11 +22,17 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
         BuildEntNames();
     }
 
+   
     private void BuildEntNames()
     {
        IList<DJ_TourEnterprise> ents= bllEnt.GetDJSForDpt(CurrentDpt.Area.Code);
-     JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-     EntNames= js.Serialize(ents);
+       System.Text.RegularExpressions.Regex Reg = new System.Text.RegularExpressions.Regex(@",|""|'");
+       foreach (DJ_TourEnterprise ent in ents)
+       {
+           EntNames += "\\\"" + Reg.Replace(ent.Name,string.Empty)+ "\\\",";
+       }
+       EntNames = EntNames.TrimEnd(',');
+       EntNames = "["+ EntNames+ "]";
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     { 

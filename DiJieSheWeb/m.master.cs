@@ -23,7 +23,7 @@ public partial class m : System.Web.UI.MasterPage
         Model.TourMembership tm = new Model.TourMembership();
         if (mu != null)
         {
-            tm=new BLLMembership().GetMemberById((Guid)mu.ProviderUserKey);
+            tm = new BLLMembership().GetMemberById((Guid)mu.ProviderUserKey);
             if (tm is DJ_User_TourEnterprise)
             {
                 laETName.Text = (tm as DJ_User_TourEnterprise).Enterprise.Name;
@@ -32,6 +32,10 @@ public partial class m : System.Web.UI.MasterPage
             {
                 laETName.Text = (tm as DJ_User_Gov).GovDpt.Name;
             }
+        }
+        else
+        { 
+         
         }
     }
 }

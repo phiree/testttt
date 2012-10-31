@@ -73,6 +73,7 @@
     <Compile Include="QweiboSDK\OAuth.cs" />
     <Compile Include="QweiboSDK\OauthKey.cs" />
     <Compile Include="QweiboSDK\Parameter.cs" />
+    <Compile Include="StringHelper.cs" />
     <Compile Include="UrlParamHelper.cs" />
     <Compile Include="ValidateHelper.cs" />
   </ItemGroup>

@@ -17,7 +17,7 @@ namespace Model
         /// <summary>
         ///行政级别:省,市,区
         /// </summary>
-        public AreaLevel Level
+        public virtual AreaLevel Level
         {
             get
             {

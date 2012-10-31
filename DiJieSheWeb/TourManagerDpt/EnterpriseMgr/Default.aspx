@@ -2,14 +2,14 @@
     AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="TourManagerDpt_EnterpriseMgr_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script language="javascript" type="text/javascript" src="/Scripts/jqueryplugin/jquery.autocomplete.js"></script>
+    <script language="javascript" type="text/javascript" src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
     <script language="javascript" type="text/javascript" src="/Scripts/json2.js"></script>
 
     <script language="javascript" type="text/javascript">
         var entNames = JSON.parse("<%=EntNames %>");
         $(function () {
             $("#<%=tbxName.ClientID %>").autocomplete({
-                source: availableTags
+                source: entNames
             });
         });
     

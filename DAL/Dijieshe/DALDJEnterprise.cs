@@ -6,7 +6,7 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALDJEnterprise : DalBase, IDAL.IDJEnterprise
+    public class DALDJEnterprise : DalBase<Model.DJ_TourEnterprise>
     {
         #region DJS
 
