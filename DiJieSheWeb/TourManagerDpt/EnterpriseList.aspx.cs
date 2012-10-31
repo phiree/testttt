@@ -34,7 +34,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
         }
         if (ddlStar.SelectedItem.Text != "所有")
         {
-            restaurant_ = restaurant_.Where(x => x.IsVeryfied == (ddlStar.SelectedItem.Text == "是" ? true : false)).ToList();
+            //restaurant_ = restaurant_.Where(x => x.IsVeryfied == (ddlStar.SelectedItem.Text == "是" ? true : false)).ToList();
         }
         if (ddlType.SelectedItem.Text != "所有")
         {
@@ -57,17 +57,17 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
             Button btnVerify = e.Item.FindControl("btnSetVerify") as Button;
             Label laIsVerify = e.Item.FindControl("laIsVerify") as Label;
             Label labAccount = e.Item.FindControl("labAccount") as Label;
-            if (ent.IsVeryfied)
-            {
-                btnVerify.Attributes.CssStyle.Add("color", "#009383");
-                btnVerify.Text = "已纳入";
-                laIsVerify.Text = "已纳入";
-            }
-            else{
-                btnVerify.Attributes.CssStyle.Add("color", "Red");
-                btnVerify.Text = "未纳入";
-                laIsVerify.Text = "未纳入";
-            }
+            //if (ent.IsVeryfied)
+            //{
+            //    btnVerify.Attributes.CssStyle.Add("color", "#009383");
+            //    btnVerify.Text = "已纳入";
+            //    laIsVerify.Text = "已纳入";
+            //}
+            //else{
+            //    btnVerify.Attributes.CssStyle.Add("color", "Red");
+            //    btnVerify.Text = "未纳入";
+            //    laIsVerify.Text = "未纳入";
+            //}
             if (ent is DJ_DijiesheInfo)
             {
                 e.Item.Visible = false;
@@ -112,7 +112,7 @@ public partial class TourManagerDpt_EnterpriseList : basepageMgrDpt
         if (e.CommandName.ToLower() == "setverify")
         {
             DJ_TourEnterprise ent = bllDJEnt.GetDJS8id(entId.ToString())[0];
-            ent.IsVeryfied = !ent.IsVeryfied;
+            //ent.IsVeryfied = !ent.IsVeryfied;
             bllDJEnt.Save(ent);
         }
 

@@ -45,7 +45,7 @@ public partial class TourManagerDpt_DjsList : basepageMgrDpt
         if (e.CommandName.ToLower() == "setverify")
         {
             DJ_TourEnterprise ent = bllDJEnt.GetDJS8id(entId.ToString())[0];
-            ent.IsVeryfied = !ent.IsVeryfied;
+            //ent.IsVeryfied = !ent.IsVeryfied;
             bllDJEnt.Save(ent);
         }
         BindList();

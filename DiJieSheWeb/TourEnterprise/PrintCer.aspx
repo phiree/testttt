@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrintCer.aspx.cs" Inherits="TourEnterprise_PrintCer" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -33,8 +32,9 @@
 <body>
     <form id="form1" runat="server">
     <!--startprint-->
-        <h2>入住凭证</h2>
-    <asp:Repeater ID="rptPrint" runat="server" onitemdatabound="rptPrint_ItemDataBound">
+    <h2>
+        入住凭证</h2>
+    <asp:Repeater ID="rptPrint" runat="server" OnItemDataBound="rptPrint_ItemDataBound">
         <ItemTemplate>
             <table border="0" cellpadding="0" cellspacing="0">
                 <tr>
@@ -46,23 +46,23 @@
                         <%--<%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>--%>
                     </td>
                     <td>
-                         验证时间:
+                        验证时间:
                     </td>
                     <td>
                         <%# Eval("ConsumeTime")%>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:150px;">
+                    <td style="width: 150px;">
                         房间数:
-                    </td>   
-                    <td style="width:250px;">
+                    </td>
+                    <td style="width: 250px;">
                         <%# Eval("RoomNum")%>
                     </td>
-                    <td style="width:150px;">
+                    <td style="width: 150px;">
                         入住天数:
                     </td>
-                    <td style="width:200px;">
+                    <td style="width: 200px;">
                         <%# Eval("LiveDay")%>
                     </td>
                 </tr>
@@ -70,26 +70,25 @@
                     <td>
                         备注:
                     </td>
-                    <td colspan="3" style="height:100px; text-align:left; vertical-align:top;">
+                    <td colspan="3" style="height: 100px; text-align: left; vertical-align: top;">
                         团队编号:<%# Eval("Route.DJ_TourGroup.No")%>&nbsp;&nbsp;团队名称:<%# Eval("Route.DJ_TourGroup.Name")%>
                         &nbsp;&nbsp;地接社名称:<%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>
                     </td>
-                    
                 </tr>
-                
-                <tr>
-                    <td colspan="2" style="text-align:left;padding-left:10px;">
+            </table>
+            <table border="0" cellpadding="0" cellspacing="0" style="border: none; margin-top: 10px;">
+                <tr style="border: none">
+                    <td colspan="2" style="text-align: left; padding-left: 10px; border: none;">
                         宾馆签名或盖章:
                     </td>
-                    <td colspan="2" style="text-align:left;padding-left:10px;">
+                    <td colspan="2" style="text-align: left; padding-left: 10px; border: none;">
                         团队负责人签名:
                     </td>
                 </tr>
-             </table>
+            </table>
         </ItemTemplate>
     </asp:Repeater>
     <!--endprint-->
-    
     </form>
 </body>
 </html>

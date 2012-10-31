@@ -40,13 +40,13 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
 
             }
             Button btnVerify = e.Item.FindControl("btnSetVerify") as Button;
-            if (ent.IsVeryfied)
-            {
-                btnVerify.Text = "已认证";
-            }
-            else{
-                btnVerify.Text = "尚未认证";
-            }
+            //if (ent.IsVeryfied)
+            //{
+            //    btnVerify.Text = "已认证";
+            //}
+            //else{
+            //    btnVerify.Text = "尚未认证";
+            //}
         }
     }
     BLLDJ_User bllDjUser = new BLLDJ_User();
@@ -73,7 +73,7 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
         if (e.CommandName.ToLower() == "setverify")
         {
             DJ_TourEnterprise ent = bllDJEnt.GetDJS8id(entId.ToString())[0];
-            ent.IsVeryfied = !ent.IsVeryfied;
+            //ent.IsVeryfied = !ent.IsVeryfied;
             bllDJEnt.Save(ent);
         }
         BindList();

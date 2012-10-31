@@ -62,20 +62,20 @@ public partial class TourManagerDpt_RewordInfol : System.Web.UI.Page
                 DJ_GroupConsumRecord record = bllrecord.GetGroupConsumRecordByRouteId(route.Id);
                 if ( record!= null)
                 {
-                    if (record.Enterprise.Type == EnterpriseType.景点 && record.Enterprise.IsVeryfied)
-                    {
-                        if ((record.AdultsAmount + record.ChildrenAmount) > MaxScenic)
-                        {
-                            MaxScenic = record.AdultsAmount + record.ChildrenAmount;
-                        }
-                    }
-                    if (record.Enterprise.Type == EnterpriseType.宾馆 && record.Enterprise.IsVeryfied)
-                    {
-                        if ((record.AdultsAmount + record.ChildrenAmount) > MaxGuesthouse)
-                        {
-                            MaxGuesthouse = record.AdultsAmount + record.ChildrenAmount;
-                        }
-                    }
+                    //if (record.Enterprise.Type == EnterpriseType.景点 && record.Enterprise.IsVeryfied)
+                    //{
+                    //    if ((record.AdultsAmount + record.ChildrenAmount) > MaxScenic)
+                    //    {
+                    //        MaxScenic = record.AdultsAmount + record.ChildrenAmount;
+                    //    }
+                    //}
+                    //if (record.Enterprise.Type == EnterpriseType.宾馆 && record.Enterprise.IsVeryfied)
+                    //{
+                    //    if ((record.AdultsAmount + record.ChildrenAmount) > MaxGuesthouse)
+                    //    {
+                    //        MaxGuesthouse = record.AdultsAmount + record.ChildrenAmount;
+                    //    }
+                    //}
                     Boths = MaxScenic < MaxGuesthouse ? MaxScenic : MaxGuesthouse;
                 }
             }

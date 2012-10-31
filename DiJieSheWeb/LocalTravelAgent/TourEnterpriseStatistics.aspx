@@ -7,8 +7,7 @@
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("[id$='txtBeginDate']").datepicker();
-            $("[id$='txtEndDate']").datepicker();
+            $("[id$='txtDate']").datepicker();
         });
         
     </script>
@@ -19,18 +18,13 @@
     </div>
      <div class="searchdiv">
         <h5>按条件查询</h5>
-        日期&nbsp;&nbsp;<asp:TextBox ID="txtBeginDate" runat="server"></asp:TextBox>&nbsp;&nbsp;至&nbsp;&nbsp;<asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>&nbsp;&nbsp;旅游企业名称&nbsp;&nbsp;<asp:TextBox
+        日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>&nbsp;&nbsp;旅游企业名称&nbsp;&nbsp;<asp:TextBox
             ID="txtEntName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;企业类型;&nbsp;&nbsp;<asp:DropDownList
                 ID="ddlType" runat="server">
              <asp:ListItem Value="0">全部</asp:ListItem>
              <asp:ListItem Value="1">景区</asp:ListItem>
              <asp:ListItem Value="3">宾馆</asp:ListItem>
-            </asp:DropDownList>&nbsp;&nbsp;&nbsp;&nbsp;<br />
-        日期统计&nbsp;&nbsp;<asp:DropDownList ID="ddlDateStatistic" runat="server">
-            <asp:ListItem Value="全部">全部</asp:ListItem>
-            <asp:ListItem Value="本月">本月</asp:ListItem>
-            <asp:ListItem Value="本年">本年</asp:ListItem>
-         </asp:DropDownList>&nbsp;&nbsp;
+            </asp:DropDownList>&nbsp;&nbsp;
          <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn" 
              onclick="BtnSearch_Click" />
     </div>
@@ -43,20 +37,40 @@
             <HeaderTemplate>
                 <table border="0" cellpadding="0" cellspacing="0">
             <tr>
-                <td>
+                <td rowspan="2">
                     序号
                 </td>
-                <td>
+                <td rowspan="2">
                     企业类型
                 </td>
-                <td>
+                <td rowspan="2">
                     企业名称
+                </td>
+                <td colspan="3">
+                    本月
+                </td>
+                <td colspan="3">
+                    本年
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    总人数
+                </td>
+                <td>
+                    住宿人天数
                 </td>
                 <td>
                     游玩人数
                 </td>
                 <td>
+                    总人数
+                </td>
+                <td>
                     住宿人天数
+                </td>
+                <td>
+                    游玩人数
                 </td>
             </tr>
             </HeaderTemplate>
@@ -73,10 +87,22 @@
                         <%# Eval("Name") %></a>
                     </td>
                     <td>
-                        <asp:Literal ID="laVisitedCount" runat="server"></asp:Literal>
+                        <asp:Literal ID="laCount_Month" runat="server"></asp:Literal>
                     </td>
                     <td>
-                        <asp:Literal ID="laLiveCount" runat="server"></asp:Literal>
+                        <asp:Literal ID="laLive_Month" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laVisited_Month" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laCount_Year" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laLive_Year" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laVisited_Year" runat="server"></asp:Literal>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -88,9 +114,22 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>
-                        <asp:Literal ID="laTotalVisitedCount" runat="server"></asp:Literal>
+                       <asp:Literal ID="laCount_Month_Total" runat="server"></asp:Literal>
+                    </td>
                     <td>
-                        <asp:Literal ID="laTotalLiveCount" runat="server"></asp:Literal>
+                        <asp:Literal ID="laLive_Month_Total" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laVisited_Month_Total" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laCount_Year_Total" runat="server"></asp:Literal>                        
+                    </td>
+                    <td>
+                        <asp:Literal ID="laLive_Year_Total" runat="server"></asp:Literal>   
+                    </td>
+                    <td>
+                        <asp:Literal ID="laVisited_Year_Total" runat="server"></asp:Literal>  
                     </td>
                 </tr>
             </FooterTemplate>

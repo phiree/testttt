@@ -70,16 +70,17 @@
                     </td>
                     
                 </tr>
-                
-                <tr>
-                    <td colspan="2" style="text-align:left;padding-left:10px;">
-                        景区签名或盖章:
+             </table>
+             <table border="0" cellpadding="0" cellspacing="0" style="border: none; margin-top: 10px;">
+                <tr style="border: none">
+                    <td colspan="2" style="text-align: left; padding-left: 10px; border: none;">
+                        宾馆签名或盖章:
                     </td>
-                    <td colspan="2" style="text-align:left;padding-left:10px;">
+                    <td colspan="2" style="text-align: left; padding-left: 10px; border: none;">
                         团队负责人签名:
                     </td>
                 </tr>
-             </table>
+            </table>
         </ItemTemplate>
     </asp:Repeater>
     <!--endprint-->
