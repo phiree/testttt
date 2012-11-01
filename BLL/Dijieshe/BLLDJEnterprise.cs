@@ -36,14 +36,14 @@ namespace BLL
             };
             return daldjs.AddDJS(djs);
         }
-        public void Save(DJ_TourEnterprise enterprise)
-        {
-            if (enterprise.Type == EnterpriseType.旅行社)
-            {
+        //public void Save(DJ_TourEnterprise enterprise)
+        //{
+        //    if (enterprise.Type == EnterpriseType.旅行社)
+        //    {
 
-            }
-            daldjs.AddDJS(enterprise);
-        }
+        //    }
+        //    daldjs.AddDJS(enterprise);
+        //}
 
         public IList<DJ_TourEnterprise> GetDjs8all()
         {
@@ -213,7 +213,8 @@ namespace BLL
                     ent.ProvinceVeryfyState = GetFinalVeryfyState(ent.ProvinceVeryfyState, targetType);
                     break;
             }
-            Save(ent);
+            ent.LastUpdateTime = DateTime.Now;
+            daldjs.Save(ent);
         }
         public void SetVerify(DJ_GovManageDepartment gov, string entName, RewardType targetType, out string errMsg)
         {

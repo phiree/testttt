@@ -191,7 +191,10 @@ namespace DAL
                     rewardTypeInts += (int)Model.RewardType.已纳入 + ",";
                 }
                 rewardTypeInts = rewardTypeInts.TrimEnd(',');
-                sql += " and D." + rewardPropertyName + " in (" + rewardTypeInts + ")";
+                if (!string.IsNullOrEmpty(rewardTypeInts))
+                {
+                    sql += " and D." + rewardPropertyName + " in (" + rewardTypeInts + ")";
+                }
             }
             return GetList(sql, needPaging, pageIndex, pageSize, out totalRecord);
         }

@@ -19,23 +19,30 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
     <fieldset>
-        <legend>增加奖励企业</legend>企业名称:<asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
-        管理员帐号:<asp:TextBox runat="server" ID="tbxAccount"></asp:TextBox>
+        <legend>增加奖励企业</legend>
+        
+        企业名称:<asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
+      
         <asp:Button runat="server" ID="btnAdd" Text="纳入奖励范围" OnClick="btnAdd_Click" />
         <asp:Label runat="server" ID="lblMsg" CssClass="success" Visible="false">操作成功</asp:Label>
     </fieldset>
     <fieldset>
-        <legend>
+        <legend><%=ParamEntType%>列表</legend>
             <div class="searchdiv">
-                纳入状态:<asp:CheckBoxList runat="server" ID="cbxState">
-                    <asp:ListItem Value="1" Selected="True">已纳入</asp:ListItem>
-                    <asp:ListItem Value="2" Selected="True">已移除</asp:ListItem>
-                </asp:CheckBoxList>
-                <asp:Button runat="server" ID="btnSearch" Text="确定" />
+                纳入状态:<asp:RadioButtonList runat="server" AutoPostBack="true"  ID="cbxState"  
+                    RepeatDirection="Horizontal" RepeatLayout="Flow" 
+                    onselectedindexchanged="cbxState_SelectedIndexChanged">
+                     <asp:ListItem Value="0" Selected="True">全部</asp:ListItem>
+                    <asp:ListItem>已纳入</asp:ListItem>
+                    <asp:ListItem >已移除</asp:ListItem>
+                </asp:RadioButtonList>
+             
             </div>
-            <asp:Repeater runat="server" ID="rptEntList">
+            <asp:Repeater runat="server" ID="rptEntList" 
+            onitemcommand="rptEntList_ItemCommand" 
+            onitemdatabound="rptEntList_ItemDataBound">
                 <HeaderTemplate>
-                    <table>
+                    <table class="detaillist">
                         <tr>
                             <td>
                                 名称
@@ -54,18 +61,20 @@
                 <ItemTemplate>
                     <tr>
                         <td>
+                        <%#Eval("Name") %>
+                        </td>
+                        <td><%#Eval("ChargePersonName")%>
+                        </td>
+                         <td><%#Eval("ChargePersonPhone")%>
                         </td>
                         <td>
-                        </td>
-                         <td>
-                        </td>
-                        <td>
+                         <asp:Button runat="server" ID="btnVerifyState" CommandArgument='<%#Eval("Id") %>'  CommandName="Verify" />
                         </td>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
                     </table></FooterTemplate>
             </asp:Repeater>
-        </legend>
+      
     </fieldset>
 </asp:Content>

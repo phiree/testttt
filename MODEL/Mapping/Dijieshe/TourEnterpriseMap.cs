@@ -28,6 +28,7 @@ namespace Model
            Map(x => x.Buslicense);
            Map(x => x.Email);
            Map(x => x.Level);
+           Map(x => x.LastUpdateTime);
        }
     }
 }
