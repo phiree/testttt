@@ -133,6 +133,7 @@
     <Compile Include="DALRole.cs" />
     <Compile Include="DALRefund.cs" />
     <Compile Include="DALScenicTicket.cs" />
+    <Compile Include="DALOperationLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IDAL\IDAL.csproj">

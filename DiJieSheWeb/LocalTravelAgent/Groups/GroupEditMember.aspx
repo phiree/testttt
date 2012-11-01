@@ -7,11 +7,11 @@
     <script src="/Scripts/sigmagrid/gt_grid_all.js" type="text/javascript"></script>
     <script src="/Scripts/sigmagrid/gt_msg_cn.js" type="text/javascript"></script>
     <!--jQueryUI-->
-    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
+    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
     <link href="/Scripts/sigmagrid/gt_grid_height.css" rel="stylesheet" type="text/css" />
     <link href="/Scripts/sigmagrid/gt_grid.css" rel="stylesheet" type="text/css" />
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <!--身份证正则验证-->
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>

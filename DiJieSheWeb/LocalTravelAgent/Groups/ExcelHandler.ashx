@@ -160,7 +160,7 @@ public class ExcelHandler : IHttpHandler {
         tg.Routes = routes;
         
         
-        IDAL.IDJEnterprise djEnterprice = new DAL.DALDJEnterprise();
+        DAL.DALDJEnterprise djEnterprice = new DAL.DALDJEnterprise();
         //汇总信息
         string guidid=string.Empty;
         string result = djEnterprice.AddGroup(tg,out guidid);

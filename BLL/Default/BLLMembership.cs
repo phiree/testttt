@@ -173,16 +173,16 @@ namespace BLL
             dal.ChangeInfo(tm);
         }
 
-        public TourMembership GetMgrDptAdmin(Guid dptId)
+        public TourMembership GetMgrDptAdmin(Guid dptId, int PermissionType)
         {
-            string sqlstr = "select a from DJ_User_Gov a where a.GovDpt.Id = '" + dptId + "'";
+            string sqlstr = "select a from DJ_User_Gov a where a.GovDpt.Id = '" + dptId + "' and PermissionType=" + PermissionType + "";
             IQuery query = session.CreateQuery(sqlstr);
 
             return query.FutureValue<Model.TourMembership>().Value;
         }
         public void CreateUpdateDptAdmin(DJ_GovManageDepartment mgrDpt)
         {
-            TourMembership admin = GetMgrDptAdmin(mgrDpt.Id);
+            TourMembership admin = GetMgrDptAdmin(mgrDpt.Id,7);
             DJ_User_Gov mgrUser = new DJ_User_Gov();
             if (admin!= null)
             {
@@ -192,7 +192,7 @@ namespace BLL
             string loginname = mgrDpt.seoname;
             mgrUser.GovDpt = mgrDpt;
             mgrUser.Name = loginname;
-            mgrUser.PermissionMask = DJ_User_GovPermission.行业管理员 | DJ_User_GovPermission.信息维护员;
+            mgrUser.PermissionType = PermissionType.报表查看员 | PermissionType.信息编辑员 | PermissionType.用户管理员;
             mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
            CreateUpdateMember(mgrUser);
         }

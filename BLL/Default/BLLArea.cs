@@ -7,11 +7,11 @@ using IDAL;
 
 namespace BLL
 {
-    public class BLLArea:DalBase
+    public class BLLArea:DalBase<Model.Area>
     {
-        IArea iarea;
+        DALArea iarea;
 
-        public IArea Iarea
+        public DALArea DalArea
         {
             get
             {
@@ -28,31 +28,31 @@ namespace BLL
 
         public IList<Model.Area> GetArea(int areaid)
         {
-            return Iarea.GetArea(areaid);
+            return DalArea.GetArea(areaid);
         }
 
         public IList<Model.Area> GetSubArea(string areacode)
         {
-            return Iarea.GetSubArea(areacode);
+            return DalArea.GetSubArea(areacode);
         }
 
         public Model.Area GetAreaByAreaid(int areaid)
         {
-            return Iarea.GetAreaByAreaid(areaid);
+            return DalArea.GetAreaByAreaid(areaid);
         }
 
         public Model.Area GetAraByAreaname(string areaname)
         {
-            return Iarea.GetAreaByAreaname(areaname);
+            return DalArea.GetAreaByAreaname(areaname);
         }
 
         public Model.Area GetAreaBySeoName(string seoName)
         {
-            return Iarea.GetAreaBySeoName(seoName);
+            return DalArea.GetAreaBySeoName(seoName);
         }
         public Model.Area GetAreaByCode(string code)
         {
-            return Iarea.GetAreaByCode(code);
+            return DalArea.GetAreaByCode(code);
         }
         /// <summary>
         /// 获取辖区范围内行政区域的areaid, 用逗号连接,用于 sql的 In 查询
@@ -61,24 +61,7 @@ namespace BLL
         /// <returns></returns>
         public string  GetChildAreaIds(string areacode)
         {
-            string ids = string.Empty;
-            Model.Area currentArea = GetAreaByCode(areacode);
-            if (currentArea == null)
-            {
-                return ids;
-            }
-            ids += currentArea.Id + ",";
-            IList<Model.Area> Areas = GetSubArea(areacode);
-            if (Areas == null) {
-                ids += areacode;
-                return ids;
-            }
-            foreach (Model.Area a in Areas)
-            {
-                ids += a.Id + ",";
-            }
-            ids = ids.TrimEnd(',');
-            return ids;
+            return DalArea.GetSubAreaIds(areacode);
 
             
             

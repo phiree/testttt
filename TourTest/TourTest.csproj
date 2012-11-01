@@ -117,6 +117,7 @@
     <Compile Include="BLLTest\AreaTest.cs" />
     <Compile Include="BLLTest\DJS\DJSTest.cs" />
     <Compile Include="BLLTest\DJS\DJSTourGroupTest.cs" />
+    <Compile Include="BLLTest\DJS\DJSTourEnterpriseTest.cs" />
     <Compile Include="BLLTest\ExcelOperTets.cs" />
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="BLLTest\OrderTest.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="TDD\RoleTest.cs" />
     <Compile Include="TDD\ScenicCheck\TestCode.cs" />
     <Compile Include="TestDAL\TestDALRole.cs" />
+    <Compile Include="TestDAL\TestDALBase.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="TestTicketCount.cs" />
     <Compile Include="VoteTest.cs" />

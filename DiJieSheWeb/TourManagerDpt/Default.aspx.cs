@@ -13,22 +13,10 @@ public partial class TourManagerDpt_Default : basepageMgrDpt
     {
         if (!IsPostBack)
         {
-            Response.Redirect("EnterpriseList.aspx");
+           // Response.Redirect("EnterpriseMgr/?entType=1");
         }
     }
 
-    /// <summary>
-    /// 获取当前用户辖区内的企业.
-    /// </summary>
-    private void BindList()
-    {
-        IList<DJ_TourEnterprise> entList = BllEnt.GetDJSForDpt(CurrentDpt.Area.Code);
-        rptEnt.DataSource = entList;
-        rptEnt.DataBind();
-    }
-
-    protected void rptItemCommand(object sender, RepeaterCommandEventArgs e)
-    { 
-    
-    }
+   
+   
 }

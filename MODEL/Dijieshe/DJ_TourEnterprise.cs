@@ -10,6 +10,10 @@ namespace Model
     /// </summary>
     public class DJ_TourEnterprise
     {
+        public DJ_TourEnterprise()
+        {
+            lastUpdateTime = DateTime.Now;
+        }
         public virtual int Id { get; set; }
         /// <summary>
         /// 所属区域
@@ -25,22 +29,48 @@ namespace Model
         public virtual string ChargePersonName { get; set; }
         public virtual string ChargePersonPhone { get; set; }
         public virtual string Phone { get; set; }
-        /// <summary>
-        /// 是否经过认证,成为奖励方位内的企业.
-        /// </summary>
-        public virtual bool IsVeryfied { get; set; }
+        ///// <summary>
+        ///// 是否经过认证,成为奖励方位内的企业.
+        ///// </summary>
+        //public virtual bool IsVeryfied { get; set; }
+        //是否是省级奖励方位内的企业
+        public virtual RewardType ProvinceVeryfyState { get; set; }
+        //是否是市级奖励范围内的企业
+        public virtual RewardType CityVeryfyState { get; set; }
+        //是否是县级奖励范围内的企业
+        public virtual RewardType CountryVeryfyState { get; set; }
         public virtual EnterpriseType Type { get; set; }
         public virtual string Seoname { get; set; }
         public virtual string Email { get; set; }
         public virtual string Buslicense { get; set; }
         public virtual string Level { get; set; }
+        private DateTime lastUpdateTime;
+        public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
+        public virtual RewardType GetRewart(DJ_GovManageDepartment gov)
+        {
+            RewardType t = 0;
+            switch (gov.Area.Level)
+            {
+                case AreaLevel.区县: t = CountryVeryfyState; break;
+                case AreaLevel.省: t = ProvinceVeryfyState; break;
+                case AreaLevel.市: t = CityVeryfyState; break;
+            }
+            return t;
+        }
     }
     public enum EnterpriseType
     {
         景点 = 1,
-        饭店,
-        宾馆,
-        购物点,
-        旅行社
+        饭店 = 2,
+        宾馆 = 4,
+        购物点 = 8,
+        旅行社 = 16
+    }
+
+    public enum RewardType
+    {
+        已纳入 = 1,
+        从未纳入 = 2,
+        纳入后移除 = 4
     }
 }

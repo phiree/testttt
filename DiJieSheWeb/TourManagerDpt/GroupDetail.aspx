@@ -254,20 +254,20 @@
                     <td>
                         <asp:Repeater ID="rptRouteScenic" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
                             <ItemTemplate>
-                                <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
+                                <%--<asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
                                 (((Model.DJ_TourEnterprise)Eval("Enterprise")).IsVeryfied.ToString()=="True"?
                                 ("★"+Eval("Enterprise.Name")):Eval("Enterprise.Name")):""%>'
-                                    runat="server" />
+                                    runat="server" />--%>
                             </ItemTemplate>
                         </asp:Repeater>
                     </td>
                     <td>
                         <asp:Repeater ID="rptRouteHotel" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
                             <ItemTemplate>
-                                <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
+                               <%-- <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
                                 (((Model.DJ_TourEnterprise)Eval("Enterprise")).IsVeryfied.ToString()=="True"?
                                 ("★"+Eval("Enterprise.Name")):Eval("Enterprise.Name")):""%>'
-                                    runat="server" />
+                                    runat="server" />--%>
                             </ItemTemplate>
                         </asp:Repeater>
                     </td>

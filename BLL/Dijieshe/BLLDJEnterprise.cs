@@ -6,9 +6,10 @@ using Model;
 using NHibernate;
 namespace BLL
 {
-    public class BLLDJEnterprise:DAL.DalBase
+    public class BLLDJEnterprise
     {
-        IDAL.IDJEnterprise daldjs = new DAL.DALDJEnterprise();
+        DAL.DALDJEnterprise daldjs = new DAL.DALDJEnterprise();
+        BLLArea bllArea = new BLLArea();
 
         #region DJS
         /// <summary>
@@ -35,15 +36,7 @@ namespace BLL
             };
             return daldjs.AddDJS(djs);
         }
-        public void Save(DJ_TourEnterprise enterprise)
-        {
-            if (enterprise.Type == EnterpriseType.旅行社)
-            { 
-             
-            }
-            daldjs.AddDJS(enterprise);
-        }
-
+       
         public IList<DJ_TourEnterprise> GetDjs8all()
         {
             return daldjs.GetDJS8All();
@@ -122,7 +115,7 @@ namespace BLL
         /// <returns></returns>
         public IList<DJ_TourGroup> GetDJSRewordGroup(string entid, int day)
         {
-            IList<DJ_TourGroup> ListTg=(GetDJS8id(entid)[0] as DJ_DijiesheInfo).Groups;
+            IList<DJ_TourGroup> ListTg = (GetDJS8id(entid)[0] as DJ_DijiesheInfo).Groups;
             List<DJ_TourGroup> List = new List<DJ_TourGroup>();
             foreach (DJ_TourGroup group in ListTg)
             {
@@ -140,14 +133,14 @@ namespace BLL
         /// </summary>
         /// <param name="entid">企业id</param>
         /// <param name="day">天数</param>
-        public void GetDJSRewordEnt(string entid, int day,out int groupcount,out int peocount)
+        public void GetDJSRewordEnt(string entid, int day, out int groupcount, out int peocount)
         {
             peocount = 0; groupcount = 0;
             List<DJ_Route> ListRoute = new DAL.DALDJ_Route().GetRouteByentid(int.Parse(entid)).ToList();
             List<DJ_TourGroup> ListGroup = new List<DJ_TourGroup>();
             foreach (DJ_Route route in ListRoute)
             {
-                Model.DJ_GroupConsumRecord record= new BLLDJConsumRecord().GetGroupConsumRecordByRouteId(route.Id);
+                Model.DJ_GroupConsumRecord record = new BLLDJConsumRecord().GetGroupConsumRecordByRouteId(route.Id);
                 if (record != null && DateTime.Parse(record.ConsumeTime.AddDays(day).ToShortDateString()) >= DateTime.Parse(DateTime.Now.ToShortDateString()))
                 {
                     peocount += record.AdultsAmount + record.ChildrenAmount;
@@ -164,12 +157,18 @@ namespace BLL
         /// </summary>
         /// <returns></returns>
         /// <param name="areacode">当前用户所管辖的区域</param>
+      
         public IList<Model.DJ_TourEnterprise> GetEntList_ExcludeScenic(string areacode)
         {
-            DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
-            BLLArea bllArea = new BLLArea();
-            string ids = bllArea.GetChildAreaIds(areacode);
-            return dalEnt.GetEnterpriseWithoutScenic(ids);
+
+
+           return daldjs.GetList(areacode, EnterpriseType.宾馆 | EnterpriseType.饭店 | EnterpriseType.购物点 | EnterpriseType.景点
+                , null);
+
+            //DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
+            //BLLArea bllArea = new BLLArea();
+            //string ids = bllArea.GetChildAreaIds(areacode);
+            //return dalEnt.GetEnterpriseWithoutScenic(ids);
         }
         /// <summary>
         /// 辖区在奖励范围内的企业
@@ -182,7 +181,114 @@ namespace BLL
             BLLArea bllArea = new BLLArea();
             string ids = bllArea.GetChildAreaIds(areacode);
 
-            return dalEnt.GetEnterpriseList(ids,true,false,true);
+            return dalEnt.GetEnterpriseList(ids, true, false, true);
+        }
+
+        #endregion
+
+
+        #region 设置企业奖励范围情况
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="govLevel">设置的级别:省市区</param>
+        /// <param name="ent">需要设置的企业</param>
+        /// <param name="targetType">目标值</param>
+        public void SetVerify(DJ_GovManageDepartment gov, DJ_TourEnterprise ent, RewardType targetType)
+        {
+            AreaLevel level = gov.Area.Level;
+            switch (level)
+            {
+                case AreaLevel.区县:
+                    ent.CountryVeryfyState = GetFinalVeryfyState(ent.CountryVeryfyState, targetType);
+                    break;
+
+                case AreaLevel.市:
+                    ent.CityVeryfyState = GetFinalVeryfyState(ent.CityVeryfyState, targetType);
+
+                    break;
+                case AreaLevel.省:
+                    ent.ProvinceVeryfyState = GetFinalVeryfyState(ent.ProvinceVeryfyState, targetType);
+                    break;
+            }
+            ent.LastUpdateTime = DateTime.Now;
+            daldjs.Save(ent);
+        }
+        public void SetVerify(DJ_GovManageDepartment gov, string entName, RewardType targetType,EnterpriseType entType, out string errMsg)
+        {
+            errMsg = string.Empty;
+            IList<DJ_TourEnterprise> ents = GetDJS8name(entName);
+            if (ents.Count > 0)
+            {
+                TourLog.LogError(this.GetType() + ":" + ents.Count + "个企业 重名:" + entName);
+                SetVerify(gov, ents[0], targetType);
+
+            }
+            else if (ents.Count == 0)
+            {
+                DJ_TourEnterprise ent = new DJ_TourEnterprise();
+                ent.Name = entName;
+                ent.Area = gov.Area;
+                ent.Type = entType;
+
+                Save(ent);
+                SetVerify(gov, ent, targetType);
+                
+            }
+        }
+        /// <summary>
+        /// 根据原有认证状态和目标状态 计算 应该设置的状态
+        /// </summary>
+        /// <param name="original"></param>
+        /// <param name="target"></param>
+        private RewardType GetFinalVeryfyState(RewardType original, RewardType target)
+        {
+            
+
+            RewardType finalType = RewardType.从未纳入;
+            switch (original)
+            {
+                case RewardType.从未纳入:
+                    switch (target)
+                    {
+                        case RewardType.从未纳入:
+                        case RewardType.纳入后移除:
+                            break;
+                        case RewardType.已纳入:
+                            finalType = RewardType.已纳入;
+                            break;
+                    }
+                    break;
+
+                case RewardType.纳入后移除:
+                    switch (target)
+                    {
+                        case RewardType.从未纳入:
+                        case RewardType.纳入后移除:
+                            break;
+                        case RewardType.已纳入:
+                            finalType = RewardType.已纳入;
+                            break;
+                    }
+                    break;
+                case RewardType.已纳入:
+                    switch (target)
+                    {
+                        case RewardType.从未纳入:
+                        case RewardType.纳入后移除:
+                            finalType = RewardType.纳入后移除;
+                            break;
+                        case RewardType.已纳入:
+                            break;
+                    }
+                    break;
+            }
+            return finalType;
+        }
+
+        public void Save(DJ_TourEnterprise ent)
+        {
+            daldjs.Save(ent);
         }
 
         #endregion
@@ -190,20 +296,20 @@ namespace BLL
         #region group
 
         /// <summary>
-        /// 添加团队基本信息
+        /// 管理部门辖区的纳入/已移除 企业列表
         /// </summary>
-        //public Guid AddBasicinfo(DJ_DijiesheInfo djs, string gname, DateTime gbdate, DateTime gedate, int gdays, int adults, int children)
-        //{
-        //    DJ_TourGroup tg = new DJ_TourGroup();
-        //    tg.DJ_DijiesheInfo = djs;
-        //    tg.Name = gname;
-        //    tg.BeginDate = gbdate;
-        //    tg.EndDate = gedate;
-        //    tg.DaysAmount = gdays;
-        //    tg.AdultsAmount = adults;
-        //    tg.ChildrenAmount = children;
-        //    return daldjs.AddGroup(tg);
-        //}
+        /// <param name="gov"></param>
+        /// <returns></returns>
+        public IList<DJ_TourEnterprise> GetRewardEntList(DJ_GovManageDepartment gov, EnterpriseType entType, RewardType rewardType)
+        {
+
+
+          
+            IList<DJ_TourEnterprise> entList = daldjs.GetList(gov.Area.Code, entType, rewardType);
+
+            return entList;
+        }
+
 
         public void UpdateGroup(Model.DJ_TourGroup tg)
         {
@@ -256,7 +362,7 @@ namespace BLL
         {
             return daldjs.GetGroupmem8epid(id);
         }
-        
+
         /// <summary>
         /// 根据id获取 导游
         /// </summary>

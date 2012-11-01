@@ -36,7 +36,7 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
             DJ_GovManageDepartment mgrDpt = e.Row.DataItem as DJ_GovManageDepartment;
-            TourMembership member = bllMember.GetMgrDptAdmin(mgrDpt.Id);
+            TourMembership member = bllMember.GetMgrDptAdmin(mgrDpt.Id,7);
             Label lblAdmin = e.Row.FindControl("lblAdmin") as Label;
             Button btnSetAdmin = e.Row.FindControl("btnSetAdmin") as Button;
             if (member != null)
@@ -52,8 +52,6 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
         switch (e.CommandName.ToLower())
         {
             case "setadmin":
-
-                
                 DJ_GovManageDepartment mgrDpt = bllDpt.GetMgrDpt(govId);
                 bllMember.CreateUpdateDptAdmin(mgrDpt);
                 BindList();

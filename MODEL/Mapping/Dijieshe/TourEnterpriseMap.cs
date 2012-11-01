@@ -19,12 +19,16 @@ namespace Model
            Map(x => x.ChargePersonName);
            Map(x => x.ChargePersonPhone);
            Map(x => x.Phone);
-           Map(x => x.IsVeryfied);
+           //Map(x => x.IsVeryfied);
+           Map(x => x.ProvinceVeryfyState).CustomType<int>();
+           Map(x => x.CityVeryfyState).CustomType<int>();
+           Map(x => x.CountryVeryfyState).CustomType<int>(); 
            Map(x => x.Type).CustomType<int>();
            Map(x => x.Seoname);
            Map(x => x.Buslicense);
            Map(x => x.Email);
            Map(x => x.Level);
+           Map(x => x.LastUpdateTime);
        }
     }
 }

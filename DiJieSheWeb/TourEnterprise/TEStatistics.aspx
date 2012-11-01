@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourEnterprise/TE.master" AutoEventWireup="true" CodeFile="TEStatistics.aspx.cs" Inherits="TourEnterprise_TEStatistics" %>
 <%@ MasterType VirtualPath="~/TourEnterprise/TE.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" Runat="Server">
-<link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.0.custom.min.css"
+<link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.0.custom.min.js"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/Scripts/Sequence.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("[id$='txtBeginTime']").datepicker();
@@ -13,15 +15,21 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
+    <asp:HiddenField ID="hforder" runat="server" Value="0_desc" />
     <div class="detail_titlebg">
         统计
     </div>
         <div class="searchdiv">
         <h5>按条件查询</h5>
-        团队名称&nbsp;&nbsp;<asp:TextBox ID="txtGroupName" runat="server"></asp:TextBox>
-        &nbsp;&nbsp;&nbsp;&nbsp;旅行社名称&nbsp;&nbsp;<asp:TextBox ID="txtEntName" runat="server"></asp:TextBox><br />
-        验证时间&nbsp;&nbsp;<asp:TextBox ID="txtBeginTime" runat="server"></asp:TextBox>&nbsp;&nbsp;至&nbsp;&nbsp;<asp:TextBox ID="txtEndTime" runat="server"></asp:TextBox>&nbsp;&nbsp;<asp:Button
-            ID="Button1" runat="server" Text="查询" CssClass="btn" onclick="Button1_Click" />
+        团队名称<asp:TextBox ID="txtGroupName" runat="server" Width="100px"></asp:TextBox>
+        旅行社名称<asp:TextBox ID="txtEntName" runat="server" Width="100px"></asp:TextBox>
+        验证时间<asp:TextBox ID="txtBeginTime" runat="server" Width="100px"></asp:TextBox>至<asp:TextBox ID="txtEndTime" runat="server" Width="100px"></asp:TextBox>
+        验证状态<asp:DropDownList ID="ddlState" runat="server">
+            <asp:ListItem Value="全部">全部</asp:ListItem>
+            <asp:ListItem Value="已认证">已认证</asp:ListItem>
+            <asp:ListItem Value="未认证">未认证</asp:ListItem>
+            </asp:DropDownList>
+        <asp:Button ID="BtnSearch" runat="server" Text="查询" CssClass="btn" onclick="BtnSearch_Click" />
     </div>
     <div class="detaillist">
         <div class="detailtitle">
@@ -33,16 +41,22 @@
                     序号
                 </td>
                 <td>
-                    住宿时间
+                    <a class="sequence">住宿时间<span class="orderspan">↓</span></a>
                 </td>
                 <td>
-                    团队名称
+                    <a class="sequence">团队名称<span class="orderspan">↓</span></a>
                 </td>
                 <td>
-                    旅行社名称
+                    <a class="sequence">旅行社名称<span class="orderspan">↓</span></a>
                 </td>
                 <td>
-                    人数
+                    <a class="sequence">住宿天数<span class="orderspan">↓</span></a>
+                </td>
+                <td>
+                    <a class="sequence">人数<span class="orderspan">↓</span></a>
+                </td>
+                <td>
+                    验证状态
                 </td>
             </tr>
             <asp:Repeater runat="server" ID="rptTgRecord" 
@@ -62,7 +76,13 @@
                            <%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>
                        </td>
                        <td>
+                           <%# Eval("LiveDay")%>
+                       </td>
+                       <td>
                            成人<%# Eval("AdultsAmount")%>儿童<%# Eval("ChildrenAmount")%></td>
+                        <td>
+                            <asp:Literal ID="laIsChecked" runat="server"></asp:Literal>
+                        </td>
                    </tr>
                 </ItemTemplate>
                 <FooterTemplate>
@@ -70,7 +90,7 @@
                         <td>
                             总计
                         </td>                    
-                        <td colspan="4">
+                        <td colspan="6">
                             共接待团队数<asp:Literal ID="laGuiderCount" runat="server"></asp:Literal>&nbsp;&nbsp;&nbsp;&nbsp;
                             其中包括成人<asp:Literal ID="laAdultCount" runat="server"></asp:Literal>儿童<asp:Literal ID="laChildrenCount" runat="server"></asp:Literal>
                         </td>
