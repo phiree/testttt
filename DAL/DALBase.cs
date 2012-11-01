@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NHibernate;
+using NHibernate.Hql;
 using System.Web.Security;
 
 namespace DAL
@@ -26,11 +27,11 @@ namespace DAL
             session.Update(o);
             session.Flush();
         }
-        
+
     }
     public class DalBase<T>
     {
-      
+
         protected ISession session = new HybridSessionBuilder().GetSession();
         public void Delete(T o)
         {
@@ -47,11 +48,32 @@ namespace DAL
             session.Update(o);
             session.Flush();
         }
-        public IList<T> GetPagedList(IList<T> list,  int pageIndex, int pageSize)
-        {
-            IList<T> pagedList = list.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList<T>();
 
-            return pagedList;
+        public T GetOne(object id)
+        {
+            return session.Get<T>(id);
+        }
+        public IList<T> GetAll<T>() where T:class 
+        {
+            return session.QueryOver<T>().List();
+        }
+       
+
+        public IList<T> GetList(string where, bool needPaging, int pageIndex, int pageSize, out int totalRecords)
+        {
+            IQuery qry = session.CreateQuery(where);
+
+            IList<T> itemList = new List<T>();
+            totalRecords = itemList.Count;
+            if (needPaging)
+            {
+                itemList = qry.Future<T>().Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList<T>();
+            }
+            else
+            {
+                itemList = qry.Future<T>().ToList();
+            }
+            return itemList;
         }
 
     }
