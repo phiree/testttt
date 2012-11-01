@@ -96,11 +96,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
 
     }
 
-    enum UIEntType
-    {
-        宾馆 = 1,
-        景区
-    }
+  
 
     protected void cbxState_SelectedIndexChanged(object sender, EventArgs e)
     {
