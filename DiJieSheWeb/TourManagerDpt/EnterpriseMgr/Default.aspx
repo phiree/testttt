@@ -19,7 +19,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
     <fieldset>
-        <legend>增加奖励企业</legend>
+        <legend>增加<%=ParamEntType %></legend>
         
         企业名称:<asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
       

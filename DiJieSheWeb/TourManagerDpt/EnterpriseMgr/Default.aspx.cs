@@ -112,8 +112,8 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
         {
             DJ_TourEnterprise ent = bllEnt.GetDJS8id(entId.ToString())[0];
 
-            RewardType t = ent.GetRewart(CurrentDpt);
-            t = t == RewardType.纳入后移除 ? RewardType.已纳入 : RewardType.纳入后移除;
+            RewardType currentType = ent.GetRewart(CurrentDpt);
+            RewardType t = currentType == RewardType.纳入后移除 ? RewardType.已纳入 : RewardType.纳入后移除;
 
             bllEnt.SetVerify(CurrentDpt, ent, t);
             Model.OperationLog log = new OperationLog();
@@ -121,6 +121,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
             log.OperationTime = DateTime.Now;
             log.OprationType = OperationType.管理部门管理纳入企业;
             log.TargetId = entId.ToString();
+            log.Content = "从:" + currentType.ToString() + "变为:" + t.ToString();
             bllOp.Save(log);
             BindList();
         }
