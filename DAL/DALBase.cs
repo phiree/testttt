@@ -59,7 +59,7 @@ namespace DAL
         }
        
 
-        public IList<T> GetList(string where, bool needPaging, int pageIndex, int pageSize, out int totalRecords)
+        protected IList<T> GetList(string where, bool needPaging, int pageIndex, int pageSize, out int totalRecords)
         {
             IQuery qry = session.CreateQuery(where);
 

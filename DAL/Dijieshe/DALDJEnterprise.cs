@@ -125,7 +125,7 @@ namespace DAL
        /// <param name="pageSize"></param>
        /// <param name="totalRecord"></param>
        /// <returns></returns>
-        public IList<Model.DJ_TourEnterprise> GetList( string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType,
+        public IList<Model.DJ_TourEnterprise> GetListPaged( string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType,
             bool needPaging,int pageIndex,int pageSize,out int totalRecord
             )
         {
@@ -199,7 +199,14 @@ namespace DAL
             return GetList(sql, needPaging, pageIndex, pageSize, out totalRecord);
         }
 
-       
+        public IList<Model.DJ_TourEnterprise> GetList(string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType
+
+              )
+        {
+            int totalRecords;
+            return GetListPaged(areacode, type, rewardType, false, 0, 0, out totalRecords);
+        }
+
         #endregion
 
         #region group

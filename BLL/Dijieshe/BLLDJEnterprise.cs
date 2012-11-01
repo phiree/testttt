@@ -36,15 +36,7 @@ namespace BLL
             };
             return daldjs.AddDJS(djs);
         }
-        //public void Save(DJ_TourEnterprise enterprise)
-        //{
-        //    if (enterprise.Type == EnterpriseType.旅行社)
-        //    {
-
-        //    }
-        //    daldjs.AddDJS(enterprise);
-        //}
-
+       
         public IList<DJ_TourEnterprise> GetDjs8all()
         {
             return daldjs.GetDJS8All();
@@ -165,12 +157,18 @@ namespace BLL
         /// </summary>
         /// <returns></returns>
         /// <param name="areacode">当前用户所管辖的区域</param>
+      
         public IList<Model.DJ_TourEnterprise> GetEntList_ExcludeScenic(string areacode)
         {
-            DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
-            BLLArea bllArea = new BLLArea();
-            string ids = bllArea.GetChildAreaIds(areacode);
-            return dalEnt.GetEnterpriseWithoutScenic(ids);
+
+
+           return daldjs.GetList(areacode, EnterpriseType.宾馆 | EnterpriseType.饭店 | EnterpriseType.购物点 | EnterpriseType.景点
+                , null);
+
+            //DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
+            //BLLArea bllArea = new BLLArea();
+            //string ids = bllArea.GetChildAreaIds(areacode);
+            //return dalEnt.GetEnterpriseWithoutScenic(ids);
         }
         /// <summary>
         /// 辖区在奖励范围内的企业
@@ -216,7 +214,7 @@ namespace BLL
             ent.LastUpdateTime = DateTime.Now;
             daldjs.Save(ent);
         }
-        public void SetVerify(DJ_GovManageDepartment gov, string entName, RewardType targetType, out string errMsg)
+        public void SetVerify(DJ_GovManageDepartment gov, string entName, RewardType targetType,EnterpriseType entType, out string errMsg)
         {
             errMsg = string.Empty;
             IList<DJ_TourEnterprise> ents = GetDJS8name(entName);
@@ -228,7 +226,14 @@ namespace BLL
             }
             else if (ents.Count == 0)
             {
-                //创建这个企业,并设置为已纳入.
+                DJ_TourEnterprise ent = new DJ_TourEnterprise();
+                ent.Name = entName;
+                ent.Area = gov.Area;
+                ent.Type = entType;
+
+                Save(ent);
+                SetVerify(gov, ent, targetType);
+                
             }
         }
         /// <summary>
@@ -299,8 +304,8 @@ namespace BLL
         {
 
 
-            int totalRecord;
-            IList<DJ_TourEnterprise> entList = daldjs.GetList(gov.Area.Code, entType, rewardType, false, 0, 0, out totalRecord);
+          
+            IList<DJ_TourEnterprise> entList = daldjs.GetList(gov.Area.Code, entType, rewardType);
 
             return entList;
         }
