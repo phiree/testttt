@@ -43,7 +43,7 @@ namespace Model
         public virtual int DaysAmount { get {
 
             TimeSpan ts = EndDate - BeginDate;
-            return ts.Days;
+            return ts.Days+1;
         } set { daysAmount = value; } }
         /// <summary>
         /// 成人总人数

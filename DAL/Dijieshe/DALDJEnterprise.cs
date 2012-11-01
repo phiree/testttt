@@ -226,14 +226,6 @@ namespace DAL
             }
         }
 
-
-        //public IList<Model.DJ_Group_Base> GetDriver(string id)
-        //{
-        //    string sql = "select G from DJ_Group_Base G where TourEnterprise.Id='" + id + "'";
-        //    IQuery query = session.CreateQuery(sql);
-        //    return query.Future<Model.DJ_Group_Base>().ToList<Model.DJ_Group_Base>();
-        //}
-
         public IList<Model.DJ_Group_Worker> GetGroupmem8epid(string id)
         {
             string sql = "select G from DJ_Group_Base G where TourEnterprise.Id='" + id + "'";

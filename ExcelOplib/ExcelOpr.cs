@@ -283,8 +283,6 @@ namespace ExcelOplib
             {
                 string filename = NextFile.Name;
                 string filepath = destPath + @"\" + filename;
-                //FileInfo myfile = new FileInfo(filepath);
-                //myfile.Create();
                 //创建两个文件流 一个是源文件相关，另一个是要写入的文件
                 FileStream fs = new FileStream(NextFile.FullName, FileMode.Open);
                 FileStream fs2 = new FileStream(filepath, FileMode.Create);
