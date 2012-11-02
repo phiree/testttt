@@ -1,18 +1,25 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RecommentEnt.ascx.cs"
     Inherits="LocalTravelAgent_Groups_RecommentEnt" %>
 
-<fieldset>
-<legend>
-筛选条件
-</legend><div> 企业类型:<asp:CheckBoxList runat="server" ID="cbxType" RepeatDirection="Horizontal"
-        RepeatLayout="Flow">
-        <asp:ListItem>景点</asp:ListItem>
-        <asp:ListItem>宾馆</asp:ListItem>
-    </asp:CheckBoxList></div>
-</fieldset>
+<div class="detail_titlebg">
+    奖励政策
+</div>
+<div class="searchdiv">
+<h5>筛选条件</h5>
+行政区域:<asp:DropDownList ID="ddlArea" runat="server">
+        <asp:ListItem Value="全部">全部</asp:ListItem>
+        <asp:ListItem Value="市级">市级</asp:ListItem>
+        <asp:ListItem Value="区县">区县</asp:ListItem>
+    </asp:DropDownList>
+    <asp:Button ID="BtnSearch" runat="server" Text="搜索" onclick="BtnSearch_Click" CssClass="btn" />
+</div>
    
-
-<asp:Repeater runat="server" ID="rptRecomEnt">
+<div class="detaillist">
+<div class="detailtitle">
+            列表统计
+        </div>
+<asp:Repeater runat="server" ID="rptRecomEnt" 
+        onitemdatabound="rptRecomEnt_ItemDataBound">
     <HeaderTemplate>
         <table>
             <tr>
@@ -20,10 +27,10 @@
                     序号
                 </td>
                 <td>
-                    类型
+                    名称
                 </td>
                 <td>
-                    名称
+                    奖励政策
                 </td>
             </tr>
     </HeaderTemplate>
@@ -33,11 +40,10 @@
                 <%# Container.ItemIndex+1 %>
             </td>
             <td>
-                <%#Eval("Type")%>
+                <a runat="server"  id="redirtLink"><%#Eval("Name")%></a>
             </td>
             <td>
-                <a href='#'>
-                    <%#Eval("Name") %></a>
+                &nbsp;
             </td>
         </tr>
     </ItemTemplate>
@@ -47,3 +53,4 @@
     </tr>
         </table></FooterTemplate>
 </asp:Repeater>
+</div>

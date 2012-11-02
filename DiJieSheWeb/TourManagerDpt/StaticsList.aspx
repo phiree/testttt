@@ -11,11 +11,19 @@
             $("[id$='txt_yijiedai']").datepicker();
             $("[id$='txt_yijiedai2']").datepicker();
             $("[id$='txt_yijiedai3']").datepicker();
+            $("#tabs").tabs();
         });
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
     <div class="detaillist">
+        <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">已接待情况</a></li>
+            <li><a href="#tabs-2">旅游企业接待情况明细表</a></li>
+            <li><a href="#tabs-3">团队旅游情况表</a></li>
+        </ul>
+        <div id="tabs-1">
         <div class="detailtitle">
             已接待情况</div>
         <div class="searchdiv">
@@ -169,6 +177,9 @@
             </tbody>
         </table>
         <hr />
+
+        </div>
+        <div id="tabs-2">
         <div class="detailtitle">
             旅游企业接待情况明细表</div>
         <div class="searchdiv">
@@ -219,6 +230,8 @@
             </FooterTemplate>
         </asp:Repeater>
         <hr />
+        </div>
+        <div id="tabs-3">
         <div class="detailtitle">
             团队旅游情况表</div>
         <div class="searchdiv">
@@ -275,5 +288,7 @@
                 </tbody> </table>
             </FooterTemplate>
         </asp:Repeater>
+        </div>
+        </div>
     </div>
 </asp:Content>

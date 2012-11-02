@@ -22,16 +22,16 @@
                 <thead>
                     <tr>
                         <td>
-                            <asp:LinkButton Text="姓名" runat="server" CommandName="lblname" />
+                            <asp:LinkButton ID="lblname" Text="姓名" runat="server" CommandName="lblname" />
                         </td>
                         <td>
-                            <asp:LinkButton Text="电话" runat="server" CommandName="lblphone" />
+                            <asp:LinkButton ID="lblphone" Text="电话" runat="server" CommandName="lblphone" />
                         </td>
                         <td>
-                            <asp:LinkButton Text="身份证号" runat="server" CommandName="lblidcard" />
+                            <asp:LinkButton ID="lblidcard" Text="身份证号" runat="server" CommandName="lblidcard" />
                         </td>
                         <td>
-                            <asp:LinkButton Text="驾照证号" runat="server" CommandName="lbldriver" />
+                            <asp:LinkButton ID="lbldriver" Text="驾照证号" runat="server" CommandName="lbldriver" />
                         </td>
                         <td>所属地接社
                         </td>
