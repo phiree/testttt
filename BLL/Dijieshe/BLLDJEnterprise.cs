@@ -8,7 +8,7 @@ namespace BLL
 {
     public class BLLDJEnterprise
     {
-        DAL.DALDJEnterprise daldjs = new DAL.DALDJEnterprise();
+       public DAL.DALDJEnterprise daldjs = new DAL.DALDJEnterprise();
         BLLArea bllArea = new BLLArea();
 
         #region DJS
@@ -36,7 +36,7 @@ namespace BLL
             };
             return daldjs.AddDJS(djs);
         }
-       
+
         public IList<DJ_TourEnterprise> GetDjs8all()
         {
             return daldjs.GetDJS8All();
@@ -157,13 +157,13 @@ namespace BLL
         /// </summary>
         /// <returns></returns>
         /// <param name="areacode">当前用户所管辖的区域</param>
-      
+
         public IList<Model.DJ_TourEnterprise> GetEntList_ExcludeScenic(string areacode)
         {
 
 
-           return daldjs.GetList(areacode, EnterpriseType.宾馆 | EnterpriseType.饭店 | EnterpriseType.购物点 | EnterpriseType.景点
-                , null);
+            return daldjs.GetList(areacode, EnterpriseType.宾馆 | EnterpriseType.饭店 | EnterpriseType.购物点 | EnterpriseType.景点
+                 , null);
 
             //DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
             //BLLArea bllArea = new BLLArea();
@@ -194,47 +194,55 @@ namespace BLL
         /// <param name="govLevel">设置的级别:省市区</param>
         /// <param name="ent">需要设置的企业</param>
         /// <param name="targetType">目标值</param>
-        public void SetVerify(DJ_GovManageDepartment gov, DJ_TourEnterprise ent, RewardType targetType)
+        public void SetVerify(DJ_TourEnterprise ent, RewardType targetType)
         {
-            AreaLevel level = gov.Area.Level;
+            AreaLevel level = ent.Area.Level;
             switch (level)
             {
                 case AreaLevel.区县:
                     ent.CountryVeryfyState = GetFinalVeryfyState(ent.CountryVeryfyState, targetType);
+                  
                     break;
 
                 case AreaLevel.市:
                     ent.CityVeryfyState = GetFinalVeryfyState(ent.CityVeryfyState, targetType);
-
+                  
                     break;
                 case AreaLevel.省:
                     ent.ProvinceVeryfyState = GetFinalVeryfyState(ent.ProvinceVeryfyState, targetType);
+                 
                     break;
             }
             ent.LastUpdateTime = DateTime.Now;
             daldjs.Save(ent);
         }
-        public void SetVerify(DJ_GovManageDepartment gov, string entName, RewardType targetType,EnterpriseType entType, out string errMsg)
+
+        public void SetVerify(Area area, string entName, RewardType targetType, EnterpriseType entType, out string errMsg)
         {
             errMsg = string.Empty;
             IList<DJ_TourEnterprise> ents = GetDJS8name(entName);
+            DJ_TourEnterprise ent = new DJ_TourEnterprise();
             if (ents.Count > 0)
             {
-                TourLog.LogError(this.GetType() + ":" + ents.Count + "个企业 重名:" + entName);
-                SetVerify(gov, ents[0], targetType);
+                if (ents.Count > 1)
+                {
+                    TourLog.LogError(this.GetType() + ":" + ents.Count + "个企业 重名:" + entName);
+                }
+                ent = ents[0];
+                ;
 
             }
             else if (ents.Count == 0)
             {
-                DJ_TourEnterprise ent = new DJ_TourEnterprise();
-                ent.Name = entName;
-                ent.Area = gov.Area;
-                ent.Type = entType;
 
+                ent.Name = entName;
+                ent.Area = area;
+                ent.Type = entType;
                 Save(ent);
-                SetVerify(gov, ent, targetType);
-                
+
+
             }
+            SetVerify(ent, targetType);
         }
         /// <summary>
         /// 根据原有认证状态和目标状态 计算 应该设置的状态
@@ -243,11 +251,14 @@ namespace BLL
         /// <param name="target"></param>
         private RewardType GetFinalVeryfyState(RewardType original, RewardType target)
         {
-            
+
 
             RewardType finalType = RewardType.从未纳入;
             switch (original)
             {
+                case 0:
+                    finalType = target;
+                    break;
                 case RewardType.从未纳入:
                     switch (target)
                     {
@@ -288,6 +299,7 @@ namespace BLL
 
         public void Save(DJ_TourEnterprise ent)
         {
+
             daldjs.Save(ent);
         }
 
@@ -304,7 +316,7 @@ namespace BLL
         {
 
 
-          
+
             IList<DJ_TourEnterprise> entList = daldjs.GetList(gov.Area.Code, entType, rewardType);
 
             return entList;

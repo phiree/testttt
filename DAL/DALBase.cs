@@ -38,7 +38,7 @@ namespace DAL
             session.Delete(o);
             session.Flush();
         }
-        public void Save(T o)
+        public virtual void Save(T o)
         {
             session.Save(o);
             session.Flush();
