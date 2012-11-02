@@ -126,7 +126,7 @@ namespace DAL
        /// <param name="totalRecord"></param>
        /// <returns></returns>
         public IList<Model.DJ_TourEnterprise> GetListPaged( string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType,
-            bool needPaging,int pageIndex,int pageSize,out int totalRecord
+            int pageIndex,int pageSize,out int totalRecord
             )
         {
             string sql = "select D from DJ_TourEnterprise D where 1=1 ";
@@ -196,7 +196,7 @@ namespace DAL
                     sql += " and D." + rewardPropertyName + " in (" + rewardTypeInts + ")";
                 }
             }
-            return GetList(sql, needPaging, pageIndex, pageSize, out totalRecord);
+            return GetList(sql, pageIndex, pageSize, out totalRecord);
         }
 
         public IList<Model.DJ_TourEnterprise> GetList(string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType
@@ -204,7 +204,7 @@ namespace DAL
               )
         {
             int totalRecords;
-            return GetListPaged(areacode, type, rewardType, false, 0, 0, out totalRecords);
+            return GetListPaged(areacode, type, rewardType, 0, 0, out totalRecords);
         }
 
         #endregion
