@@ -22,7 +22,7 @@ public class GroupHandler : IHttpHandler
         tg.Name = ga.GroupBasic.Name;
         tg.DJ_DijiesheInfo = ga.DjsId != 0 ? bllenter.GetDJS8id(ga.DjsId.ToString())[0] as Model.DJ_DijiesheInfo : null;
         tg.BeginDate = DateTime.Parse(ga.GroupBasic.Begindate);
-        tg.EndDate = DateTime.Parse(ga.GroupBasic.Enddate);
+    
         #region v.2012/10/09
         //tg.DaysAmount = int.Parse(ga.GroupBasic.Days);
         //tg.AdultsAmount = int.Parse(ga.GroupBasic.PeopleAdult);

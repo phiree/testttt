@@ -73,8 +73,8 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         Group.Name = tbxName.Text;
         Group.BeginDate = Convert.ToDateTime(tbxDateBegin.Text);
         Group.DaysAmount = Convert.ToInt32(tbxDateAmount.Text);
-        Group.EndDate=
-        Group.No = tbxGroupNo.Text;
+      
+   
         Group.DJ_DijiesheInfo = CurrentDJS;
       
     }

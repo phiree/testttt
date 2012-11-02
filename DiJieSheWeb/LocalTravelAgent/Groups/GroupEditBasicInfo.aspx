@@ -9,7 +9,7 @@
     <script language="javascript" type="text/javascript">
         $(function () {
             $("#<%=tbxDateBegin.ClientID %>").datepicker();
-            $("#<%=tbxDateEnd.ClientID %>").datepicker();
+          
         });
     </script>
 </asp:Content>
