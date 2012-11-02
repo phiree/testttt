@@ -32,13 +32,13 @@ public partial class Admin_Initial : System.Web.UI.Page
             {
                 govDic.Add(new Model.DJ_GovManageDepartment() { 
                     Name=item.Department2,
-                    Area=bllarea.GetAraByAreaname(item.Department3)
+                    Area=bllarea.GetAraByAreaname(item.Diqu)
                 });
             }
         }
         foreach (var item in govDic)
         {
-            if (bllgov.GetGovDptByName(item.Name).Count!=0)
+            if (bllgov.GetGovDptByName(item.Name).Count==0)
             {
                 bllgov.Save(item);
             }
@@ -72,13 +72,6 @@ public partial class Admin_Initial : System.Web.UI.Page
                     {
                         blldjs.AddDjs(item.name, string.Empty,area , "", "", "");
                     }
-                    else
-                    {
-                        //不用[更新]
-                        //var temp=temp_djs.First();
-                        //temp.
-                        //blldjs.UpdateDjs(temp);
-                    }
                     break;
                 case "景区":
                     var temp_scenic=blldjs.GetDJS8Muti(area.Id,Model.EnterpriseType.景点.ToString(),null,item.name);
@@ -86,7 +79,8 @@ public partial class Admin_Initial : System.Web.UI.Page
                     {
                         bllscenic.Save(new Model.Scenic(){
                             Name=item.name,
-                            Area=area
+                            Area = area,
+                            Type = Model.EnterpriseType.景点
                         });
                     }
                     break;
