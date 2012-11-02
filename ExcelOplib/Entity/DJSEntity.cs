@@ -8,20 +8,31 @@ namespace ExcelOplib.Entity
     public class DJSEntity
     {
         /// <summary>
-        /// 游客类型
+        /// 1级部门
         /// </summary>
-        public string MemType { get; set; }
+        public string Department1 { get; set; }
         /// <summary>
-        /// 姓名
+        /// 2级部门
         /// </summary>
-        public string MemName { get; set; }
+        public string Department2 { get; set; }
         /// <summary>
-        /// 身份证
+        /// 3级部门
         /// </summary>
-        public string MemID { get; set; }
+        public string Department3 { get; set; }
         /// <summary>
-        /// 电话
+        /// 地区
         /// </summary>
-        public string MemPhone { get; set; }
+        public string Diqu { get; set; }
+        /// <summary>
+        /// 数据类型
+        /// </summary>
+        public 数据类型 EnterpType { get; set; }
+    }
+
+    public enum 数据类型
+    {
+        地接社=1,
+        景区,
+        宾馆
     }
 }

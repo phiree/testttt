@@ -36,7 +36,12 @@ namespace BLL
             };
             return daldjs.AddDJS(djs);
         }
-       
+
+        public void UpdateDjs(Model.DJ_TourEnterprise obj)
+        {
+            daldjs.UpdateDJS(obj);
+        }
+
         public IList<DJ_TourEnterprise> GetDjs8all()
         {
             return daldjs.GetDJS8All();
@@ -98,7 +103,7 @@ namespace BLL
         /// 多条件查询地接社
         /// </summary>
         /// <param name="areaid"></param>
-        /// <param name="type"></param>
+        /// <param name="type">Model.EnterpriseType</param>
         /// <param name="id"></param>
         /// <param name="namelike"></param>
         /// <returns></returns>
@@ -185,7 +190,6 @@ namespace BLL
         }
 
         #endregion
-
 
         #region 设置企业奖励范围情况
         /// <summary>

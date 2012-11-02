@@ -28,9 +28,9 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public void UpdateDJS()
+        public void UpdateDJS(Model.DJ_TourEnterprise obj)
         {
-            throw new NotImplementedException();
+            session.Update(obj);
         }
 
         public IList<Model.DJ_TourEnterprise> GetDJS8All()

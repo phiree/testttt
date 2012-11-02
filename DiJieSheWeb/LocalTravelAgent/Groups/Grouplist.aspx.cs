@@ -12,7 +12,10 @@ public partial class Groups_Grouplist : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindGroups();
+        if (!IsPostBack)
+        {
+            BindGroups();
+        }
     }
 
     public void BindGroups()
@@ -53,7 +56,7 @@ public partial class Groups_Grouplist : System.Web.UI.Page
             }
             ViewState["text"] = lkbtnSort.Text;
             ViewState["id"] = e.CommandName.Trim();
-            IList<Model.DJ_TourGroup> tglist = (IList<Model.DJ_TourGroup>)rptGroups.DataSource;
+            IList<Model.DJ_TourGroup> tglist = blltg.GetTourGroupByAll();
             switch (e.CommandName.Trim())
             {
                 case "lbname":
@@ -104,7 +107,7 @@ public partial class Groups_Grouplist : System.Web.UI.Page
             {
                 lblMember_bz.Text = group.Members.Count + "位团员√";
             }
-            lblMember_bz.PostBackUrl = "/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid="+group.Id;
+            lblMember_bz.PostBackUrl = "/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid=" + group.Id;
 
             LinkButton lblRoute_bz = e.Item.FindControl("lblRoute_bz") as LinkButton;
             if (group.Routes.GroupBy(x => x.DayNo).Count() > group.DaysAmount)
@@ -123,7 +126,7 @@ public partial class Groups_Grouplist : System.Web.UI.Page
             {
                 lblRoute_bz.Text = group.Routes.GroupBy(x => x.DayNo).Count() + "日线路√";
             }
-            lblRoute_bz.PostBackUrl = "/LocalTravelAgent/Groups/GroupEditRoute.aspx?groupid="+group.Id;
+            lblRoute_bz.PostBackUrl = "/LocalTravelAgent/Groups/GroupEditRoute.aspx?groupid=" + group.Id;
         }
     }
 }
