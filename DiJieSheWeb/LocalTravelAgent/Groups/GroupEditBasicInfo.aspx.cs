@@ -49,15 +49,31 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     {
         tbxName.Text = Group.Name;
         tbxDateBegin.Text = Group.BeginDate.ToString("yyyy-MM-dd");
-        tbxDateEnd.Text = Group.EndDate.ToShortDateString();
-        tbxGroupNo.Text = Group.No;
+        tbxDateAmount.Text = Group.DaysAmount.ToString();
 
     }
+    private void InitWorkers()
+    {
+        IList<DJ_Group_Worker> works = Group.Workers;
+        IList<DJ_Group_Worker> drivers = works.Where(x => x.WorkerType == DJ_GroupWorkerType.司机).ToList<DJ_Group_Worker>();
+        cbxDrivers.DataSource = drivers;
+        cbxDrivers.DataTextField = "Name";
+        cbxDrivers.DataValueField = "Id";
+        cbxDrivers.DataBind();
+
+        IList<DJ_Group_Worker> guides = works.Where(x => x.WorkerType == DJ_GroupWorkerType.导游).ToList<DJ_Group_Worker>();
+        cbxGuides.DataSource = guides;
+        cbxGuides.DataTextField = "Name";
+        cbxGuides.DataValueField = "Id";
+        cbxGuides.DataBind();
+    }
+    
     private void UpdateForm()
     {
         Group.Name = tbxName.Text;
         Group.BeginDate = Convert.ToDateTime(tbxDateBegin.Text);
-        Group.EndDate = Convert.ToDateTime(tbxDateEnd.Text);
+        Group.DaysAmount = Convert.ToInt32(tbxDateAmount.Text);
+        Group.EndDate=
         Group.No = tbxGroupNo.Text;
         Group.DJ_DijiesheInfo = CurrentDJS;
       

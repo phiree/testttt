@@ -30,6 +30,8 @@
             <asp:ListItem Value="未认证">未认证</asp:ListItem>
             </asp:DropDownList>
         <asp:Button ID="BtnSearch" runat="server" Text="查询" CssClass="btn" onclick="BtnSearch_Click" />
+            <asp:Button ID="BtnCreatexls" runat="server" Text="导出成excel" 
+                onclick="BtnCreatexls_Click" />
     </div>
     <div class="detaillist">
         <div class="detailtitle">

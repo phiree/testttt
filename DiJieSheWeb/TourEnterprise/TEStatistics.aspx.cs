@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Model;
 using BLL;
 using System.Linq.Expressions;
+using System.IO;
 
 public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
 {
@@ -20,26 +21,33 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
         {
             Response.Cookies.Add(new HttpCookie("orderstr", "0_desc"));
             txtBeginTime.Text = DateTime.Now.ToString("yyyy-MM-dd"); txtEndTime.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            bind(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text);
+            bind();
         }
     }
 
-    private void bind(string groupname,string entname,string begintime,string endtime)
+    private void bind()
     {
-        
-        if(ddlState.SelectedValue=="已认证")
-            ListRecord = bllrecord.GetRecordByAllCondition(groupname, entname, begintime, endtime, Master.CurrentTE.Id);
-        if(ddlState.SelectedValue=="未认证")
-            ListRecord.AddRange(BindForeast(groupname, entname, begintime, endtime));
-        if (ddlState.SelectedValue == "全部")
-        {
-            ListRecord = bllrecord.GetRecordByAllCondition(groupname, entname, begintime, endtime, Master.CurrentTE.Id);
-            ListRecord.AddRange(BindForeast(groupname, entname, begintime, endtime));
-        }
+        ListRecord = GetRecordList();
         ListRecord= OrderByList(ListRecord);
         rptTgRecord.DataSource = ListRecord;
         rptTgRecord.DataBind();
     }
+
+    private List<DJ_GroupConsumRecord> GetRecordList()
+    {
+        List<DJ_GroupConsumRecord> ListRec = new List<DJ_GroupConsumRecord>();
+        if (ddlState.SelectedValue == "已认证")
+            ListRec = bllrecord.GetRecordByAllCondition(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text, Master.CurrentTE.Id);
+        if (ddlState.SelectedValue == "未认证")
+            ListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
+        if (ddlState.SelectedValue == "全部")
+        {
+            ListRec = bllrecord.GetRecordByAllCondition(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text, Master.CurrentTE.Id);
+            ListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
+        }
+        return ListRec;
+    }
+
 
     protected void rptTgRecord_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
@@ -85,7 +93,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
             txtBeginTime.Text = "";
             txtEndTime.Text = "";
         }
-        bind(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text);
+        bind();
     }
 
     private List<DJ_GroupConsumRecord> BindForeast(string groupname, string EntName, string BeginTime, string EndTime)
@@ -148,4 +156,66 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
                         
     }
     #endregion
+    protected void BtnCreatexls_Click(object sender, EventArgs e)
+    {
+        List<DJ_GroupConsumRecord> WListRec = new List<DJ_GroupConsumRecord>();
+        List<DJ_GroupConsumRecord> YListRec = new List<DJ_GroupConsumRecord>();
+        if (ddlState.SelectedValue == "已认证")
+        {
+            YListRec = bllrecord.GetRecordByAllCondition(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text, Master.CurrentTE.Id);
+            WListRec = null;
+        }
+        if (ddlState.SelectedValue == "未认证")
+        {
+            WListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
+            YListRec = null;
+        }
+        if (ddlState.SelectedValue == "全部")
+        {
+            YListRec = bllrecord.GetRecordByAllCondition(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text, Master.CurrentTE.Id);
+            WListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
+        }
+        CreateExcels(WListRec, YListRec, "test.xls");
+    }
+
+
+
+    public void CreateExcels(List<DJ_GroupConsumRecord> WListRecord,List<DJ_GroupConsumRecord> YListRecord, string FileName)
+    {
+        HttpResponse resp;
+        resp = Page.Response;
+        resp.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+        resp.AppendHeader("Content-Disposition", "attachment;filename=" + FileName);
+        // resp.ContentType = "application/vnd.ms-excel";
+        string colCaption = "",colContent="",colfooter="";
+        colCaption = "序号\t住宿时间\t团队名称\t旅行社名称\t住宿天数\t人数\t验证状态\n";
+        resp.Write(colCaption);
+        foreach (DJ_GroupConsumRecord record in WListRecord)
+        {
+            colContent += Index++ + "\t";
+            colContent += record.ConsumeTime + "\t";
+            colContent += record.Route.DJ_TourGroup.Name + "\t";
+            colContent += record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name + "\t";
+            colContent += record.LiveDay + "\t";
+            colContent += "成人" + record.AdultsAmount + "儿童" + record.ChildrenAmount + "\t";
+            colContent += "未验证\n";
+        }
+        foreach (DJ_GroupConsumRecord record in YListRecord)
+        {
+            colContent += record.Id + "\t";
+            colContent += record.ConsumeTime + "\t";
+            colContent += record.Route.DJ_TourGroup.Name + "\t";
+            colContent += record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name + "\t";
+            colContent += record.LiveDay + "\t";
+            colContent += "成人" + record.AdultsAmount + "儿童" + record.ChildrenAmount + "\t";
+            colContent += "已验证\n";
+        }
+        resp.Write(colContent);
+        int groupcount,adultcount,childrencount;
+            bllrecord.GetCountInfoByETid(Master.CurrentTE.Id, out groupcount, out adultcount, out childrencount, ListRecord);
+            colfooter = "共接待团对数" + groupcount + "其中包括成人" + adultcount + "儿童" + childrencount;
+        resp.Write(colfooter);
+        //写缓冲区中的数据到HTTP头文档中 
+        resp.End();
+    }
 }
