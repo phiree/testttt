@@ -18,8 +18,8 @@ namespace BLL
         /// <param name="name"></param>
         /// <param name="address"></param>
         /// <param name="area"></param>
-        /// <param name="cpn">管理人姓�/param>
-        /// <param name="cpp">管理人手�/param>
+        /// <param name="cpn">管理人姓�/param>
+        /// <param name="cpp">管理人手�/param>
         /// <param name="phone"></param>
         /// <returns></returns>
         public int AddDjs(string name, string address, Model.Area area, string cpn, string cpp, string phone)
@@ -32,7 +32,7 @@ namespace BLL
                 ChargePersonName = cpn,
                 ChargePersonPhone = cpp,
                 Phone = phone,
-                Type = Model.EnterpriseType.旅行�
+                Type = Model.EnterpriseType.旅行社
             };
             return daldjs.AddDJS(djs);
         }
@@ -48,7 +48,7 @@ namespace BLL
         }
 
         /// <summary>
-        /// 查询地接�
+        /// 查询地接�
         /// </summary>
         /// <param name="areaid">地区id</param>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace BLL
         }
 
         /// <summary>
-        /// 查询地接�
+        /// 查询地接�
         /// </summary>
         /// <param name="type">企业类型</param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace BLL
         }
 
         /// <summary>
-        /// 查询地接�
+        /// 查询地接�
         /// </summary>
         /// <param name="id">企业id</param>
         /// <returns></returns>
@@ -78,7 +78,7 @@ namespace BLL
         }
 
         /// <summary>
-        /// 查询地接�
+        /// 查询地接�
         /// </summary>
         /// <param name="name">名称查询</param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace BLL
         }
 
         /// <summary>
-        /// 旅游管理部门辖区的旅游企�
+        /// 旅游管理部门辖区的旅游企�
         /// </summary> 
         /// <param name="areaCode"></param>
         /// <returns></returns>
@@ -161,13 +161,13 @@ namespace BLL
         /// 企业列表,排除景区
         /// </summary>
         /// <returns></returns>
-        /// <param name="areacode">当前用户所管辖的区�/param>
+        /// <param name="areacode">当前用户所管辖的区�/param>
 
         public IList<Model.DJ_TourEnterprise> GetEntList_ExcludeScenic(string areacode)
         {
 
 
-            return daldjs.GetList(areacode, EnterpriseType.宾馆 | EnterpriseType.饭店 | EnterpriseType.购物�| EnterpriseType.景点
+            return daldjs.GetList(areacode, EnterpriseType.宾馆 | EnterpriseType.饭店 | EnterpriseType.购物点| EnterpriseType.景点
                  , null);
 
             //DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
@@ -176,7 +176,7 @@ namespace BLL
             //return dalEnt.GetEnterpriseWithoutScenic(ids);
         }
         /// <summary>
-        /// 辖区在奖励范围内的企�
+        /// 辖区在奖励范围内的企�
         /// </summary>
         /// <param name="areacode"></param>
         /// <returns></returns>
@@ -195,9 +195,9 @@ namespace BLL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="govLevel">设置的级�省市�/param>
+        /// <param name="govLevel">设置的级�省市�/param>
         /// <param name="ent">需要设置的企业</param>
-        /// <param name="targetType">目标�/param>
+        /// <param name="targetType">目标�/param>
         public void SetVerify(DJ_TourEnterprise ent, RewardType targetType)
         {
             AreaLevel level = ent.Area.Level;
@@ -208,11 +208,11 @@ namespace BLL
                   
                     break;
 
-                case AreaLevel.�
+                case AreaLevel.市:
                     ent.CityVeryfyState = GetFinalVeryfyState(ent.CityVeryfyState, targetType);
                   
                     break;
-                case AreaLevel.�
+                case AreaLevel.省:
                     ent.ProvinceVeryfyState = GetFinalVeryfyState(ent.ProvinceVeryfyState, targetType);
                  
                     break;
@@ -230,7 +230,7 @@ namespace BLL
             {
                 if (ents.Count > 1)
                 {
-                    TourLog.LogError(this.GetType() + ":" + ents.Count + "个企�重名:" + entName);
+                    TourLog.LogError(this.GetType() + ":" + ents.Count + "个企�重名:" + entName);
                 }
                 ent = ents[0];
                 ;
@@ -249,7 +249,7 @@ namespace BLL
             SetVerify(ent, targetType);
         }
         /// <summary>
-        /// 根据原有认证状态和目标状�计算 应该设置的状�
+        /// 根据原有认证状态和目标状�计算 应该设置的状�
         /// </summary>
         /// <param name="original"></param>
         /// <param name="target"></param>
@@ -267,33 +267,33 @@ namespace BLL
                     switch (target)
                     {
                         case RewardType.从未纳入:
-                        case RewardType.纳入后移�
+                        case RewardType.纳入后移除:
                             break;
-                        case RewardType.已纳�
-                            finalType = RewardType.已纳�
+                        case RewardType.已纳入:
+                            finalType = RewardType.已纳入;
                             break;
                     }
                     break;
 
-                case RewardType.纳入后移�
+                case RewardType.纳入后移除:
                     switch (target)
                     {
                         case RewardType.从未纳入:
-                        case RewardType.纳入后移�
+                        case RewardType.纳入后移除:
                             break;
-                        case RewardType.已纳�
-                            finalType = RewardType.已纳�
+                        case RewardType.已纳入:
+                            finalType = RewardType.已纳入;
                             break;
                     }
                     break;
-                case RewardType.已纳�
+                case RewardType.已纳入:
                     switch (target)
                     {
                         case RewardType.从未纳入:
-                        case RewardType.纳入后移�
-                            finalType = RewardType.纳入后移�
+                        case RewardType.纳入后移除:
+                            finalType = RewardType.纳入后移除;
                             break;
-                        case RewardType.已纳�
+                        case RewardType.已纳入:
                             break;
                     }
                     break;
@@ -312,7 +312,7 @@ namespace BLL
         #region group
 
         /// <summary>
-        /// 管理部门辖区的纳�已移�企业列表
+        /// 管理部门辖区的纳�已移�企业列表
         /// </summary>
         /// <param name="gov"></param>
         /// <returns></returns>
