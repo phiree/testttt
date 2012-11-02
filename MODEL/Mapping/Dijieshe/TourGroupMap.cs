@@ -16,7 +16,7 @@ namespace Model
             References<DJ_DijiesheInfo>(x => x.DJ_DijiesheInfo);
             Map(x => x.Name);
             Map(x => x.BeginDate);
-            Map(x => x.EndDate);
+            Map(x => x.DaysAmount);
           
            
             Map(x => x.Gether);
@@ -24,7 +24,7 @@ namespace Model
 
             HasMany<DJ_TourGroupMember>(x => x.Members).Cascade.All().Inverse();
             HasMany<DJ_Group_Vehicle>(x => x.Vehicles).Inverse().Cascade.All();
-          
+            HasMany<DJ_Group_Worker>(x => x.Workers).Inverse().Cascade.All();
             HasMany<DJ_Route>(x => x.Routes).Inverse().Cascade.All();
         }
     }

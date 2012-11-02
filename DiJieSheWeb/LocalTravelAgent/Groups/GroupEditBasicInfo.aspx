@@ -24,14 +24,7 @@
                     <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    团队编号
-                </td>
-                <td>
-                    <asp:TextBox runat="server" ID="tbxGroupNo"></asp:TextBox>
-                </td>
-            </tr>
+            
             <tr>
                 <td>
                     开始时间
@@ -42,12 +35,31 @@
             </tr>
             <tr>
                 <td>
-                    结束时间
+                    总天数
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbxDateEnd"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="tbxDateAmount"></asp:TextBox>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    导游
+                </td>
+                <td>
+                    <asp:CheckBoxList runat="server" ID="cbxGuides"></asp:CheckBoxList>
+                     <span><a href="">增加导游</a></span>
+                </td>
+            </tr>
+              <tr>
+                <td>
+                    司机
+                </td>
+                <td>
+                    <asp:CheckBoxList runat="server" ID="cbxDrivers"></asp:CheckBoxList>
+                    <span>增加司机</span>
+                </td>
+            </tr>
+             
         </table>
         <asp:Button runat="server" ID="btnSaveBasicInfo" OnClick="btnBasicInfo_Click" Text="保存" />
         <asp:Panel runat="server" ID="pnlLinks">
