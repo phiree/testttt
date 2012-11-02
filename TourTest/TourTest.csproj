@@ -136,7 +136,6 @@
     <Compile Include="TDD\Payment\TetsPayment.cs" />
     <Compile Include="TDD\RoleTest.cs" />
     <Compile Include="TDD\ScenicCheck\TestCode.cs" />
-    <Compile Include="TestDAL\TestDALRole.cs" />
     <Compile Include="TestDAL\TestDALBase.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="TestTicketCount.cs" />

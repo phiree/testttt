@@ -16,7 +16,7 @@ namespace DAL
         /// </summary>
         /// <returns></returns>
         public IList<OperationLog> GetList(OperationType? type, TourMembership member, string targetid,
-            DateTime? beginTime, DateTime? endTime, string content, bool needPaging, int pageIndex, int pageSize, out int totalRecords
+            DateTime? beginTime, DateTime? endTime, string content, int pageIndex, int pageSize, out int totalRecords
             )
         {
             string condtions = string.Empty;
@@ -47,7 +47,7 @@ namespace DAL
             }
 
 
-            return GetList(BuildWhere(condtions), needPaging, pageIndex, pageSize, out totalRecords);
+            return GetList(BuildWhere(condtions), pageIndex, pageSize, out totalRecords);
 
         }
 
@@ -56,7 +56,7 @@ namespace DAL
             int totalRecords;
             return GetList(OperationType.管理部门管理纳入企业,
                 null, enterpriseId.ToString(), null, null,
-                null, false, 0, 0, out totalRecords);
+                null, 0, 0, out totalRecords);
 
         }
 

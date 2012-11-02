@@ -38,7 +38,7 @@ namespace DAL
             session.Delete(o);
             session.Flush();
         }
-        public void Save(T o)
+        public virtual void Save(T o)
         {
             session.Save(o);
             session.Flush();
@@ -59,20 +59,15 @@ namespace DAL
         }
        
 
-        protected IList<T> GetList(string where, bool needPaging, int pageIndex, int pageSize, out int totalRecords)
+        protected IList<T> GetList(string where,int pageIndex, int pageSize, out int totalRecords)
         {
             IQuery qry = session.CreateQuery(where);
 
             IList<T> itemList = new List<T>();
             totalRecords = itemList.Count;
-            if (needPaging)
-            {
+          
                 itemList = qry.Future<T>().Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList<T>();
-            }
-            else
-            {
-                itemList = qry.Future<T>().ToList();
-            }
+           
             return itemList;
         }
 

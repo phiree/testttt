@@ -5,10 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class _Default : basepage
+public partial class LocalTravelAgent_RecDetailEnt : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.Redirect(Redirector.RedirectForUser(CurrentMember) );
+
     }
 }

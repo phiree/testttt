@@ -65,6 +65,7 @@
                     <li><span>账目管理</span></li>
                     <li><a href="/ScenicManager/BillUnPaid.aspx">售票查询</a></li>
                     <li><a href="/ScenicManager/StatisInfo.aspx">账单管理</a></li>
+                    <li><a href="/ScenicManager/GroupTestatistics.aspx">团队信息统计</a></li>
                 </div>
                 <div id="checkBlock" runat="server">
                     <li><span>景区验票</span></li>

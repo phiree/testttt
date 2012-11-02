@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class LocalTravelAgent_DjsEdit : System.Web.UI.Page
+public partial class LocalTravelAgent_DjsEdit : basepageDJS
 {
 
     BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
@@ -24,17 +24,15 @@ public partial class LocalTravelAgent_DjsEdit : System.Web.UI.Page
 
     private void BindData()
     {
-        var datas = blldjs.GetDJS8id(Request.Cookies["DJSID"].Value.ToString());
-        if (datas.Count>0)
-        {
-            djs = datas[0];
+
+        djs = CurrentDJS;
             txtName.Text = djs.Name;
             txtCPP.Text = djs.ChargePersonPhone;
             txtCPN.Text = djs.ChargePersonName;
             txtTel.Text = djs.Phone;
             txtAddress.Text = djs.Address;
             ddlArea.SelectedIndex = ddlArea.Items.IndexOf(ddlArea.Items.FindByText(djs.Area.Name));
-        }
+        
     }
 
     private void BindArea()
@@ -74,7 +72,7 @@ public partial class LocalTravelAgent_DjsEdit : System.Web.UI.Page
         }
         else
         {
-            blldjs.Save(djs);
+            //blldjs.Save(djs);
         }
     }
 
