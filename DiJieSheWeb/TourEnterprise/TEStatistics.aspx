@@ -13,7 +13,7 @@
             $("[id$='txtBeginTime']").datepicker();
             $("[id$='txtEndTime']").datepicker();
             $("#myTable").tablesorter({ headers: { 5: { sorter: false}} });
-            $(".IndexTable").orderIndex();
+            $(".IndexTable").orderIndex('1');
             
         });
 
@@ -47,7 +47,6 @@
         <table  id="myTable" class="tablesorter InfoTable">
             <thead>
             <tr>
-                
                 <th>
                     住宿时间
                 </th>

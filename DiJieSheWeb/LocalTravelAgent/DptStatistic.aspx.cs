@@ -80,56 +80,56 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
     }
 
 
-    #region 排序方法
-    private List<dptStatistic> OrderByList(List<dptStatistic> ListRecord)
-    {
-        string[] orderbyStrs = Request.Cookies["orderstr"].Value.Split('_');
-        int orderIndex = int.Parse(orderbyStrs[0]);
-        string orderType = orderbyStrs[1];
-        switch (orderIndex)
-        {
-            case 0:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.dptName).ToList() : ListRecord.OrderByDescending(x => x.dptName).ToList();
-                    break;
-                }
-            case 1:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.month_total).ToList() : ListRecord.OrderByDescending(x => x.month_total).ToList();
-                    break;
-                }
-            case 2:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.month_live).ToList() : ListRecord.OrderByDescending(x => x.month_live).ToList();
-                    break;
-                }
-            case 3:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.month_visited).ToList() : ListRecord.OrderByDescending(x => x.month_visited).ToList();
-                    break;
-                }
-            case 4:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.year_total).ToList() : ListRecord.OrderByDescending(x => x.year_total).ToList();
-                    break;
-                }
-            case 5:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.year_live).ToList() : ListRecord.OrderByDescending(x => x.year_live).ToList();
-                    break;
-                }
-            case 6:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.year_visited).ToList() : ListRecord.OrderByDescending(x => x.year_visited).ToList();
-                    break;
-                }
-            default:
-                break;
-        }
-        return ListRecord;
+    //#region 排序方法
+    //private List<dptStatistic> OrderByList(List<dptStatistic> ListRecord)
+    //{
+    //    string[] orderbyStrs = Request.Cookies["orderstr"].Value.Split('_');
+    //    int orderIndex = int.Parse(orderbyStrs[0]);
+    //    string orderType = orderbyStrs[1];
+    //    switch (orderIndex)
+    //    {
+    //        case 0:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.dptName).ToList() : ListRecord.OrderByDescending(x => x.dptName).ToList();
+    //                break;
+    //            }
+    //        case 1:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.month_total).ToList() : ListRecord.OrderByDescending(x => x.month_total).ToList();
+    //                break;
+    //            }
+    //        case 2:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.month_live).ToList() : ListRecord.OrderByDescending(x => x.month_live).ToList();
+    //                break;
+    //            }
+    //        case 3:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.month_visited).ToList() : ListRecord.OrderByDescending(x => x.month_visited).ToList();
+    //                break;
+    //            }
+    //        case 4:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.year_total).ToList() : ListRecord.OrderByDescending(x => x.year_total).ToList();
+    //                break;
+    //            }
+    //        case 5:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.year_live).ToList() : ListRecord.OrderByDescending(x => x.year_live).ToList();
+    //                break;
+    //            }
+    //        case 6:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.year_visited).ToList() : ListRecord.OrderByDescending(x => x.year_visited).ToList();
+    //                break;
+    //            }
+    //        default:
+    //            break;
+    //    }
+    //    return ListRecord;
 
-    }
-    #endregion
+    //}
+    //#endregion
 
 }
 

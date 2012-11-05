@@ -4,12 +4,16 @@
     <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/Sequence.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
+    <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("[id$='txtDate']").datepicker();
+            $(".tablesorter").tablesorter();
+            $(".IndexTable").orderIndex('2');
         });
         
     </script>
@@ -29,16 +33,19 @@
         <div class="detailtitle">
             统计列表
         </div>
+        <table class="tablesorter IndexTable">
+        </table>
+
+
+
         <asp:Repeater ID="rptDpt" runat="server" onitemdatabound="rptDpt_ItemDataBound">
             <HeaderTemplate>
-                <table border="0" cellpadding="0" cellspacing="0">
+                <table border="0" cellpadding="0" cellspacing="0" class="tablesorter InfoTable">
+                    <thead>
                     <tr>
-                        <td rowspan="2">
-                            序号
-                        </td>
-                        <td rowspan="2">
-                            <a class="sequence">旅游管理部门名称<span class="orderspan">↓</span></a>
-                        </td>
+                        <th rowspan="2">
+                            旅游管理部门名称
+                        </th>
                         <td colspan="3">
                             本月
                         </td>
@@ -47,31 +54,29 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <a class="sequence">总人数<span class="orderspan">↓</span></a>
-                        </td>
-                        <td>
-                            <a class="sequence">住宿人天数<span class="orderspan">↓</span></a>
-                        </td>
-                        <td>
-                            <a class="sequence">游玩人数<span class="orderspan">↓</span></a>
-                        </td>
-                        <td>
-                             <a class="sequence">总人数<span class="orderspan">↓</span></a>
-                        </td>
-                        <td>
-                            <a class="sequence">住宿人天数<span class="orderspan">↓</span></a>
-                        </td>
-                        <td>
-                            <a class="sequence">游玩人数<span class="orderspan">↓</span></a>
-                        </td>
+                        <th>
+                            总人数
+                        </th>
+                        <th>
+                            住宿人天数
+                        </th>
+                        <th>
+                           游玩人数
+                        </th>
+                        <th>
+                           总人数
+                        </th>
+                        <th>
+                            住宿人天数
+                        </th>
+                        <th>
+                           游玩人数
+                        </th>
                     </tr>
+                </thead>
             </HeaderTemplate>
             <ItemTemplate>
                     <tr>
-                        <td>
-                            <%#　Eval("Id") %>
-                        </td>
                         <td>
                             <a runat="server" id="anamehref" href='/LocalTravelAgent/DptDetailStatistic.aspx?dptid=<%# Eval("Id") %>'>
                             <%# Eval("dptName")%>
