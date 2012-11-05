@@ -35,7 +35,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
         begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
         endtime = DateTime.Parse(txtDate.Text.Trim()).Year + "-12-30";
         listEnt = bllrecord.GetDJStaticsEnt(begintime,endtime, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id).ToList();
-        rptStatistic.DataSource = bindOrder(bindEntStatis(listEnt));
+        rptStatistic.DataSource = bindEntStatis(listEnt);
         rptStatistic.DataBind();
     }
     protected void rptStatistic_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -103,53 +103,53 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
         return ListEntStatis;
     }
 
-    private List<EntStatis> bindOrder(List<EntStatis> entstatis)
-    {
-        string[] orderbyStrs = Request.Cookies["orderstr"].Value.Split('_');
-        int orderIndex = int.Parse(orderbyStrs[0]);
-        string orderType = orderbyStrs[1];
-        switch (orderIndex)
-        {
-            case 0:
-                {
-                    entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.Name).ToList() : entstatis.OrderByDescending(x => x.Name).ToList();
-                    break;
-                }
-            case 1:
-                {
-                    entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.month_total).ToList() : entstatis.OrderByDescending(x => x.month_total).ToList();
-                    break;
-                }
-            case 2:
-                {
-                    entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.month_live).ToList() : entstatis.OrderByDescending(x => x.month_live).ToList();
-                    break;
-                }
-            case 3:
-                {
-                    entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.month_visited).ToList() : entstatis.OrderByDescending(x => x.month_visited).ToList();
-                    break;
-                }
-            case 4:
-                {
-                    entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.year_total).ToList() : entstatis.OrderByDescending(x => x.year_total).ToList();
-                    break;
-                }
-            case 5:
-                {
-                    entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.year_live).ToList() : entstatis.OrderByDescending(x => x.year_live).ToList();
-                    break;
-                }
-            case 6:
-                {
-                    entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.year_visited).ToList() : entstatis.OrderByDescending(x => x.year_visited).ToList();
-                    break;
-                }
-            default:
-                break;
-        }
-        return entstatis;
-    }
+    //private List<EntStatis> bindOrder(List<EntStatis> entstatis)
+    //{
+    //    string[] orderbyStrs = Request.Cookies["orderstr"].Value.Split('_');
+    //    int orderIndex = int.Parse(orderbyStrs[0]);
+    //    string orderType = orderbyStrs[1];
+    //    switch (orderIndex)
+    //    {
+    //        case 0:
+    //            {
+    //                entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.Name).ToList() : entstatis.OrderByDescending(x => x.Name).ToList();
+    //                break;
+    //            }
+    //        case 1:
+    //            {
+    //                entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.month_total).ToList() : entstatis.OrderByDescending(x => x.month_total).ToList();
+    //                break;
+    //            }
+    //        case 2:
+    //            {
+    //                entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.month_live).ToList() : entstatis.OrderByDescending(x => x.month_live).ToList();
+    //                break;
+    //            }
+    //        case 3:
+    //            {
+    //                entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.month_visited).ToList() : entstatis.OrderByDescending(x => x.month_visited).ToList();
+    //                break;
+    //            }
+    //        case 4:
+    //            {
+    //                entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.year_total).ToList() : entstatis.OrderByDescending(x => x.year_total).ToList();
+    //                break;
+    //            }
+    //        case 5:
+    //            {
+    //                entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.year_live).ToList() : entstatis.OrderByDescending(x => x.year_live).ToList();
+    //                break;
+    //            }
+    //        case 6:
+    //            {
+    //                entstatis = orderType == "asc" ? entstatis.OrderBy(x => x.year_visited).ToList() : entstatis.OrderByDescending(x => x.year_visited).ToList();
+    //                break;
+    //            }
+    //        default:
+    //            break;
+    //    }
+    //    return entstatis;
+    //}
 }
 
 
