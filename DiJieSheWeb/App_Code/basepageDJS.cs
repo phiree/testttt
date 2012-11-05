@@ -9,30 +9,30 @@ using Model;
 /// </summary>
 public class basepageDJS : basepage
 {
+    private DJ_DijiesheInfo currentDJS;
     public DJ_DijiesheInfo CurrentDJS
     {
         get
         {
-            if (CurrentMember != null)
+            if (currentDJS == null)
             {
-                DJ_User_TourEnterprise entUser = (DJ_User_TourEnterprise)CurrentMember;
-                DJ_DijiesheInfo dijieshe = (DJ_DijiesheInfo)entUser.Enterprise;
-                if (dijieshe == null)
+                if (CurrentMember != null)
+                {
+                    DJ_User_TourEnterprise entUser = (DJ_User_TourEnterprise)CurrentMember;
+                    DJ_DijiesheInfo dijieshe = (DJ_DijiesheInfo)entUser.Enterprise;
+                    if (dijieshe == null)
+                    {
+                        BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
+                    }
+                    currentDJS = dijieshe;
+                }
+                else
                 {
                     BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
+
                 }
-                return dijieshe;
             }
-            else
-            {
-                BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
-                return null;
-            }
-          
+            return currentDJS;
         }
-
     }
-
-
-
 }

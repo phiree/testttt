@@ -35,6 +35,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
             }
         }
 
+        InitWorkers();
         if (!IsPostBack)
         {
             if (!IsNew)
@@ -51,18 +52,32 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         tbxDateBegin.Text = Group.BeginDate.ToString("yyyy-MM-dd");
         tbxDateAmount.Text = Group.DaysAmount.ToString();
 
+
+        
+
     }
+    /// <summary>
+    ///勾选 团队工作人员 
+    /// </summary>
+    private void LoadGroupWorkers()
+    {
+        
+    }
+
+    private void CheckItems(ListControl lc1, ListControl lc2)
+    { 
+        
+    }
+
     private void InitWorkers()
     {
-        IList<DJ_Group_Worker> works = Group.Workers;
-        IList<DJ_Group_Worker> drivers = works.Where(x => x.WorkerType == DJ_GroupWorkerType.司机).ToList<DJ_Group_Worker>();
+        IList<DJ_Group_Worker> drivers = CurrentDJS.Drivers;
         cbxDrivers.DataSource = drivers;
         cbxDrivers.DataTextField = "Name";
         cbxDrivers.DataValueField = "Id";
         cbxDrivers.DataBind();
 
-        IList<DJ_Group_Worker> guides = works.Where(x => x.WorkerType == DJ_GroupWorkerType.导游).ToList<DJ_Group_Worker>();
-        cbxGuides.DataSource = guides;
+        IList<DJ_Group_Worker> guides = CurrentDJS.Guides;
         cbxGuides.DataTextField = "Name";
         cbxGuides.DataValueField = "Id";
         cbxGuides.DataBind();

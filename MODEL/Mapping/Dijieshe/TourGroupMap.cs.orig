@@ -17,8 +17,13 @@ namespace Model
             Map(x => x.Name);
             Map(x => x.BeginDate);
             Map(x => x.DaysAmount);
+<<<<<<< HEAD
+            Map(x => x.EndDate);
+           
+=======
 
             Map(x => x.EndDate);
+>>>>>>> 66a34de6de5103fa783c2789a9067b93e461e137
             Map(x => x.Gether);
             Map(x => x.BackPlace);
 
