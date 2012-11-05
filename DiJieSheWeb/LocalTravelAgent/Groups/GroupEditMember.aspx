@@ -78,7 +78,7 @@
         }
 
         var colsOption = [
-        {id:"",width:5},
+        { id: "", width: 5 },
         { id: 'tourertype', header: "成员类型", width: 80, editor: { type: "select", options: { '成人游客': '成人游客', '导游': '导游', '司机': '司机', '儿童': '儿童', '外宾': '外宾', '港澳台': '港澳台' }
      , defaultText: '成人游客'
         }
@@ -115,16 +115,16 @@
             toolbarContent: 'add del save',
             saveURL: "GroupEditMemberHanlder.ashx",
             parameters: { "groupid": "<%=CurrentGroup.Id %>" },
-      
+
 
             saveResponseHandler: function (r, d) {
                 //   debugger;
                 window.location.href = window.location.href;
             },
-                showIndexColumn : true
+            showIndexColumn: true
         };
         var mygrid = new Sigma.Grid(gridOption);
-        Sigma.Util.onLoad(Sigma.Grid.render(mygrid));
+     //   Sigma.Util.onLoad(Sigma.Grid.render(mygrid));
     </script>
     <script language="javascript" type="text/javascript">
         $(function () {
@@ -143,9 +143,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <br />
-    <h3><b>
-        <%=CurrentGroup.Name %>游客列表</b></h3>
-        <div class="box">提供三种录入线路的方式.您可以根据需要,选择其中的一种.</div>
+    <h3>
+        <b>
+            <%=CurrentGroup.Name %>游客列表</b></h3>
+    <div class="box">
+        提供三种录入线路的方式.您可以根据需要,选择其中的一种.</div>
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">直接录入</a></li>
@@ -153,8 +155,108 @@
             <li><a href="#tabs-3">Excel导入</a></li>
         </ul>
         <div id="tabs-1">
-            <div id="gridbox" style="border: 0px solid #cccccc; background-color: #f3f3f3;">
+            <div id="gridbox" style="display: none; border: 0px solid #cccccc; background-color: #f3f3f3;">
             </div>
+            <asp:Repeater runat="server" ID="rptMembers"  OnItemCommand="rptMembers_ItemCommand">
+                <HeaderTemplate>
+                    <table>
+                        <tr>
+                            <td>
+                                类型
+                            </td>
+                            <td>
+                                姓名
+                            </td>
+                            <td>
+                                证件号码
+                            </td>
+                            <td>
+                                联系电话
+                            </td>
+                              <td>
+                                
+                            </td>
+                        </tr>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <%#Eval("MemberType") %>
+                        </td>
+                        <td>
+                            <%#Eval("RealName")%>
+                        </td>
+                        <td>
+                            <%#Eval("IdCardNo")%><%#Eval("SpecialCardNo")%>
+                        </td>
+                        <td>
+                            <%#Eval("PhoneNum")%>
+                        </td>
+                         <td>
+                         <asp:Button runat="server" ID="btnModifyMember" CommandArgument='<%#Eval("Id") %>' CommandName="Edit"  Text="修改"/>
+                          <a href='/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid=<%=CurrentGroup.Id%>&memberid=<%#Eval("Id")%>'">修改</a>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </table>
+                    
+                </FooterTemplate>
+            </asp:Repeater>
+            <asp:Button runat="server" ID="btnAddMember" OnClick="btnAddMember_Click"  Text="增加成员"/>
+            <asp:Panel runat="server" ID="pnlMemberEdit" Visible="false">
+            <fieldset>
+                <legend></legend>
+                <table>
+                    <tr>
+                        <td>
+                            类型
+                        </td>
+                        <td>
+                            <asp:RadioButtonList runat="server" ID="rblMemberType">
+                                <asp:ListItem Value="1">成人游客</asp:ListItem>
+                                <asp:ListItem Value="2">儿童</asp:ListItem>
+                                <asp:ListItem Value="3">外宾</asp:ListItem>
+                                <asp:ListItem Value="4">港澳台</asp:ListItem>
+                            </asp:RadioButtonList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            姓名
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            身份证号码
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="tbxIdCardNo"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            其他证件号码
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="tbxSpecialCardNo"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            联系电话
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" ID="tbxPhone"></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
+                <asp:Button runat="server" OnClick="btnSaveMember_Click" ID="btnSave" Text="保存" />
+            </fieldset>
+            </asp:Panel>
         </div>
         <div id="tabs-2">
             <p>
@@ -183,10 +285,11 @@
                 <asp:FileUpload runat="server" ID="fuMemberExcel" />
                 <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" />
                 <asp:Label ID="Label1" runat="server" />
-            <asp:Button runat="server" ID="Button1" OnClick="btnExcel_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
-                Text="保存" />
+                <asp:Button runat="server" ID="Button1" OnClick="btnExcel_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
+                    Text="保存" />
             </p>
         </div>
     </div>
-    <a style=" display:block;  padding:3px; margin:10px; background-color:#ddd;font-size:larger;" href="GroupEditRoute.aspx?groupid=<%=CurrentGroup.Id%>">去编辑行程信息</a>
+    <a style="display: block; padding: 3px; margin: 10px; background-color: #ddd; font-size: larger;"
+        href="GroupEditRoute.aspx?groupid=<%=CurrentGroup.Id%>">去编辑行程信息</a>
 </asp:Content>

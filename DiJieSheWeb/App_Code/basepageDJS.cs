@@ -20,6 +20,7 @@ public class basepageDJS : basepage
                 {
                     DJ_User_TourEnterprise entUser = (DJ_User_TourEnterprise)CurrentMember;
                     DJ_DijiesheInfo dijieshe = (DJ_DijiesheInfo)entUser.Enterprise;
+
                     if (dijieshe == null)
                     {
                         BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
