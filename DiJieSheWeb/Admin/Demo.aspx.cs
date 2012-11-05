@@ -64,7 +64,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         DJ_TourGroup group = new DJ_TourGroup();
         group.BeginDate = beginTime;
         group.DJ_DijiesheInfo = (Model.DJ_DijiesheInfo)demoDjs;
-        group.EndDate = beginTime.AddDays(1);
+        group.DaysAmount =1;
 
         DJ_TourGroupMember memberdaoyou = new DJ_TourGroupMember();
         memberdaoyou.DJ_TourGroup = group;

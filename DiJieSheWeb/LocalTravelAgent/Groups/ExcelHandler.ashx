@@ -48,7 +48,7 @@ public class ExcelHandler : IHttpHandler {
         tg.No = ga.GroupBasic.GroupNo;
         tg.Name = ga.GroupBasic.Name;
         tg.BeginDate = DateTime.Parse(ga.GroupBasic.Begindate);
-        tg.EndDate = DateTime.Parse(ga.GroupBasic.Enddate);
+     
         tg.DJ_DijiesheInfo = djsinfo;
         //团员信息
         var tgmlist = new System.Collections.Generic.List<Model.DJ_TourGroupMember>();

@@ -32,12 +32,15 @@ namespace Model
         /// 出发日期
         /// </summary>
         public virtual DateTime BeginDate { get; set; }
-        
-        
+
+
+        private DateTime endDate;
         /// <summary>
         /// 结束日期
         /// </summary>
-        public virtual DateTime EndDate { get { return BeginDate.AddDays(DaysAmount); } }
+        public virtual DateTime EndDate { get { return BeginDate.AddDays(DaysAmount); }
+            set { endDate = value; }
+        }
         /// <summary>
         /// 总天数
         /// </summary>
