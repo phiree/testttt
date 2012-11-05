@@ -6,11 +6,14 @@
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/Sequence.js" type="text/javascript"></script>
+    <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("[id$='txtBeginTime']").datepicker();
             $("[id$='txtEndTime']").datepicker();
+
+            $("table").tablesorter();
         })
     </script>
 </asp:Content>
@@ -37,30 +40,33 @@
         <div class="detailtitle">
             统计列表
         </div>
-        <table border="1" cellpadding="0" cellspacing="0">
+        <table border="1" cellpadding="0" cellspacing="0" class="tablesorter">
+            <thead>
             <tr>
                 <td>
                     序号
                 </td>
-                <td>
+                <th>
                     住宿时间
-                </td>
-                <td>
+                </th>
+                <th>
                     团队名称
-                </td>
-                <td>
+                </th>
+                <th>
                     旅行社名称
-                </td>
-                <td>
+                </th>
+                <th>
                     住宿天数
-                </td>
-                <td>
+                </th>
+                <th>
                     人数
-                </td>
+                </th>
                 <td>
                     验证状态
                 </td>
             </tr>
+        </thead>
+        <tbody>
             <asp:Repeater runat="server" ID="rptTgRecord" 
                 onitemdatabound="rptTgRecord_ItemDataBound">
                 <ItemTemplate>
@@ -88,6 +94,7 @@
                    </tr>
                 </ItemTemplate>
                 <FooterTemplate>
+                </tbody>
                     <tr>
                         <td>
                             总计

@@ -17,7 +17,7 @@ namespace Model
             Map(x => x.Name);
             Map(x => x.BeginDate);
             Map(x => x.DaysAmount);
-          
+            Map(x => x.EndDate);
            
             Map(x => x.Gether);
             Map(x => x.BackPlace);
