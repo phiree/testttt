@@ -7,14 +7,14 @@ namespace BLL
 {
    public class BLLBase<T>
     {
-       public DAL.DalBase<T> dalBase
-        {
+       //public DAL.DalBase<T> dalBase
+       // {
         
-       }
+       //}
 
-       public void Save(T t)
-       { 
+       //public void Save(T t)
+       //{ 
         
-       }
+       //}
     }
 }
