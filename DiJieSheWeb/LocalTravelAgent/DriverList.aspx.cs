@@ -79,80 +79,80 @@ public partial class LocalTravelAgent_DriverList : basepageDJS
         }
     }
 
-    protected void rptDrivers_ItemCommand(object source, RepeaterCommandEventArgs e)
-    {
-        if (e.Item.ItemType == ListItemType.Header)
-        {
-            LinkButton lkbtnSort = (LinkButton)e.Item.FindControl(e.CommandName.Trim());
-            if (ViewState[e.CommandName.Trim()] == null)
-            {
-                ViewState[e.CommandName.Trim()] = "ASC";
-                lkbtnSort.Text = lkbtnSort.Text + "↑";
-            }
-            else
-            {
-                if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
-                {
-                    ViewState[e.CommandName.Trim()] = "DESC";
-                    if (lkbtnSort.Text.IndexOf("↑") != -1)
-                        lkbtnSort.Text = lkbtnSort.Text.Replace("↑", "↓");
-                    else
-                        lkbtnSort.Text = lkbtnSort.Text + "↓";
-                }
-                else
-                {
-                    ViewState[e.CommandName.Trim()] = "ASC";
-                    if (lkbtnSort.Text.IndexOf("↓") != -1)
-                        lkbtnSort.Text = lkbtnSort.Text.Trim().Replace("↓", "↑");
-                    else
-                        lkbtnSort.Text = lkbtnSort.Text + "↑";
-                }
-            }
-            ViewState["text"] = lkbtnSort.Text;
-            ViewState["id"] = e.CommandName.Trim();
-            IList<Model.DJ_Group_Worker> workerlist = 
-                bllworker.Get8Multi(null, txtName.Text, null, txtIdcardid.Text, txtDrivercardid.Text, Model.DJ_GroupWorkerType.司机, null, null);
-            switch (e.CommandName.Trim())
-            {
-                case "lblname":
-                    if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
-                        workerlist = workerlist.OrderBy(x => x.Name).ToList();
-                    else
-                        workerlist = workerlist.OrderByDescending(x => x.Name).ToList();
-                    break;
-                case "lblphone":
-                    if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
-                        workerlist = workerlist.OrderBy(x => x.Phone).ToList();
-                    else
-                        workerlist = workerlist.OrderByDescending(x => x.Phone).ToList();
-                    break;
-                case "lblidcard":
-                    if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
-                        workerlist = workerlist.OrderBy(x => x.IDCard).ToList();
-                    else
-                        workerlist = workerlist.OrderByDescending(x => x.IDCard).ToList();
-                    break;
-                case "lbldriver":
-                    if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
-                        workerlist = workerlist.OrderBy(x => x.SpecificIdCard).ToList();
-                    else
-                        workerlist = workerlist.OrderByDescending(x => x.SpecificIdCard).ToList();
-                    break;
-            }
-            rptDrivers.DataSource = workerlist;
-            rptDrivers.DataBind();
-        }
-    }
+    //protected void rptDrivers_ItemCommand(object source, RepeaterCommandEventArgs e)
+    //{
+    //    if (e.Item.ItemType == ListItemType.Header)
+    //    {
+    //        LinkButton lkbtnSort = (LinkButton)e.Item.FindControl(e.CommandName.Trim());
+    //        if (ViewState[e.CommandName.Trim()] == null)
+    //        {
+    //            ViewState[e.CommandName.Trim()] = "ASC";
+    //            lkbtnSort.Text = lkbtnSort.Text + "↑";
+    //        }
+    //        else
+    //        {
+    //            if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
+    //            {
+    //                ViewState[e.CommandName.Trim()] = "DESC";
+    //                if (lkbtnSort.Text.IndexOf("↑") != -1)
+    //                    lkbtnSort.Text = lkbtnSort.Text.Replace("↑", "↓");
+    //                else
+    //                    lkbtnSort.Text = lkbtnSort.Text + "↓";
+    //            }
+    //            else
+    //            {
+    //                ViewState[e.CommandName.Trim()] = "ASC";
+    //                if (lkbtnSort.Text.IndexOf("↓") != -1)
+    //                    lkbtnSort.Text = lkbtnSort.Text.Trim().Replace("↓", "↑");
+    //                else
+    //                    lkbtnSort.Text = lkbtnSort.Text + "↑";
+    //            }
+    //        }
+    //        ViewState["text"] = lkbtnSort.Text;
+    //        ViewState["id"] = e.CommandName.Trim();
+    //        IList<Model.DJ_Group_Worker> workerlist = 
+    //            bllworker.Get8Multi(null, txtName.Text, null, txtIdcardid.Text, txtDrivercardid.Text, Model.DJ_GroupWorkerType.司机, null, null);
+    //        switch (e.CommandName.Trim())
+    //        {
+    //            case "lblname":
+    //                if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
+    //                    workerlist = workerlist.OrderBy(x => x.Name).ToList();
+    //                else
+    //                    workerlist = workerlist.OrderByDescending(x => x.Name).ToList();
+    //                break;
+    //            case "lblphone":
+    //                if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
+    //                    workerlist = workerlist.OrderBy(x => x.Phone).ToList();
+    //                else
+    //                    workerlist = workerlist.OrderByDescending(x => x.Phone).ToList();
+    //                break;
+    //            case "lblidcard":
+    //                if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
+    //                    workerlist = workerlist.OrderBy(x => x.IDCard).ToList();
+    //                else
+    //                    workerlist = workerlist.OrderByDescending(x => x.IDCard).ToList();
+    //                break;
+    //            case "lbldriver":
+    //                if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
+    //                    workerlist = workerlist.OrderBy(x => x.SpecificIdCard).ToList();
+    //                else
+    //                    workerlist = workerlist.OrderByDescending(x => x.SpecificIdCard).ToList();
+    //                break;
+    //        }
+    //        rptDrivers.DataSource = workerlist;
+    //        rptDrivers.DataBind();
+    //    }
+    //}
 
-    protected void rptDrivers_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        if (e.Item.ItemType == ListItemType.Header)
-        {
-            if (ViewState["id"] != null)
-            {
-                LinkButton lkbtnSort = (LinkButton)e.Item.FindControl(ViewState["id"].ToString().Trim());
-                lkbtnSort.Text = ViewState["text"].ToString();
-            }
-        }
-    }
+    //protected void rptDrivers_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    //{
+    //    if (e.Item.ItemType == ListItemType.Header)
+    //    {
+    //        if (ViewState["id"] != null)
+    //        {
+    //            LinkButton lkbtnSort = (LinkButton)e.Item.FindControl(ViewState["id"].ToString().Trim());
+    //            lkbtnSort.Text = ViewState["text"].ToString();
+    //        }
+    //    }
+    //}
 }
