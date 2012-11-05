@@ -230,7 +230,7 @@ namespace BLL
             {
                 if (ents.Count > 1)
                 {
-                    TourLog.LogError(this.GetType() + ":" + ents.Count + "个企�重名:" + entName);
+                    TourLog.LogError(this.GetType() + ":" + ents.Count + "个企业重名:" + entName);
                 }
                 ent = ents[0];
                 ;

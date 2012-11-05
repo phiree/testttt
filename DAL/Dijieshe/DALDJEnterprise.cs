@@ -204,7 +204,7 @@ namespace DAL
               )
         {
             int totalRecords;
-            return GetListPaged(areacode, type, rewardType, 0, 0, out totalRecords);
+            return GetListPaged(areacode, type, rewardType, 1, 99999, out totalRecords);
         }
 
         #endregion
