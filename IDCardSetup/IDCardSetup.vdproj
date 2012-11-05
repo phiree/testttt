@@ -340,7 +340,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:IDCardSetup"
         "ProductCode" = "8:{24F7F1D2-2BF8-46A4-8D63-75AA5F6CEFD4}"
-        "PackageCode" = "8:{D5B4E9A0-80F0-4790-B3FB-7CB847B2CE57}"
+        "PackageCode" = "8:{A7ACA4AA-13A9-4B05-B2A8-1557B94382B5}"
         "UpgradeCode" = "8:{F420D6C6-2B2B-488C-AF1F-717153D9F5DD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
