@@ -9,8 +9,16 @@ namespace BLL
 {
     public class BLLDJGroup_Worker
     {
-        IDJ_Group_Worker Idj_group_worker = new DALDJ_Group_Worker();
-        DAL.DALDJ_Group_Worker dalworker = new DALDJ_Group_Worker();
+
+         DAL.DALDJ_Group_Worker dalworker;
+       public DALDJ_Group_Worker DalWorker {
+           get {
+               if (dalworker == null) 
+                   dalworker= new DALDJ_Group_Worker();
+               return dalworker;
+           }
+           set { dalworker = value; }
+       }
 
         public void SaveData(string name, string phone, string idcard, string othercard,
             Model.DJ_GroupWorkerType type,Model.DJ_DijiesheInfo djs,out string message)
@@ -30,22 +38,26 @@ namespace BLL
                 WorkerType=type,
                 DJ_Dijiesheinfo=djs
             };
-            dalworker.Save(worker);
+            DalWorker.Save(worker);
         }
 
         public void UpdateData(Model.DJ_Group_Worker worker)
         {
-            dalworker.Update(worker);
+            DalWorker.Update(worker);
         }
 
         public Model.DJ_Group_Worker GetByIdCard(string idcard)
         {
-            return Idj_group_worker.GetByIdCard(idcard);
+            return DalWorker.GetByIdCard(idcard);
         }
 
         public IList<Model.DJ_Group_Worker> Get8Multi(string id, string name, string phone, string idcard, string specificidcard, object memtype, string gid,string djsid)
         {
-            return Idj_group_worker.Get8Multi(id, name, phone, idcard, specificidcard, memtype, gid, djsid);
+            return DalWorker.Get8Multi(id, name, phone, idcard, specificidcard, memtype, gid, djsid);
+        }
+        public Model.DJ_Group_Worker Get(Guid id)
+        {
+            return DalWorker.GetById(id);
         }
     }
 }

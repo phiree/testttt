@@ -2,35 +2,7 @@
     CodeFile="Grouplist.aspx.cs" Inherits="Groups_Grouplist" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--<script type="text/javascript">
-        $(function () {
-            var tbody = $("#routeList>tr");
-            tbody.each(function () {
-                //alert($(this).children().next().html());//显示日期
-                //当前日期
-                var myDate = new Date();
-                var today = myDate.getFullYear() + "/" + (myDate.getMonth() + 1) + "/" + myDate.getDate();
-                //行程日期
-                var dateperiod = $(this).children().next().html();
-                var date1 = Date.parse(dateperiod.split("-")[0]).toString(); //转成秒格式进行比较
-                var date2 = Date.parse(dateperiod.split("-")[1]).toString(); //转成秒格式进行比较
-                var tempday = Date.parse(today); //转成秒格式进行比较
-                //日期比较
-                if (tempday > date2) {
-                    //完成的行程
-                    $(this).parent().css("background-color", "Aqua");
-                }
-                if (date1 <= tempday && tempday <= date2) {
-                    //进行中的行程
-                    $(this).parent().css("background-color", "Yellow");
-                }
-                if (date1 > tempday) {
-                    //没开始的行程
-                    $(this).parent().css("background-color", "Red");
-                }
-            });
-        });
-    </script>--%>
+   
     <style type="text/css">
         .colorpicker
         {
@@ -69,6 +41,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
         团队列表
+    </div>
+    <div>
+    <a href="GroupEditBasicInfo.aspx">新建团队</a> <a href="">从Excel导入新团队</a>
     </div>
     <div class="detaillist">
         <div class="detailtitle">
@@ -115,6 +90,7 @@
                         <td>
                             <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>
                                 修改</a>
+                                <a href="">从Excel文件更新</a>
                         </td>
                         <td>
                             <asp:LinkButton ID="lblMember_bz" Text="" runat="server" /><br />

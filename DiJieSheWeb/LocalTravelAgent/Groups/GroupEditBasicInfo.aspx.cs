@@ -51,46 +51,57 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         tbxName.Text = Group.Name;
         tbxDateBegin.Text = Group.BeginDate.ToString("yyyy-MM-dd");
         tbxDateAmount.Text = Group.DaysAmount.ToString();
-
-
-        
-
+        LoadGroupWorkers();
     }
     /// <summary>
     ///勾选 团队工作人员 
     /// </summary>
     private void LoadGroupWorkers()
     {
-        
+        ListControlHelper.CheckItems(cbxDrivers, Group.Workers.Select(x=>x.Name).ToList());
+        ListControlHelper.CheckItems(cbxGuides, Group.Workers.Select(x =>x.Name).ToList());
     }
 
-    private void CheckItems(ListControl lc1, ListControl lc2)
-    { 
-        
-    }
+  
 
     private void InitWorkers()
     {
         IList<DJ_Group_Worker> drivers = CurrentDJS.Drivers;
-        cbxDrivers.DataSource = drivers;
         cbxDrivers.DataTextField = "Name";
         cbxDrivers.DataValueField = "Id";
+        cbxDrivers.DataSource = drivers;
+       
         cbxDrivers.DataBind();
 
-        IList<DJ_Group_Worker> guides = CurrentDJS.Guides;
         cbxGuides.DataTextField = "Name";
         cbxGuides.DataValueField = "Id";
+        IList<DJ_Group_Worker> guides = CurrentDJS.Guides;
+        cbxGuides.DataSource = guides;
         cbxGuides.DataBind();
     }
-    
+    BLLDJGroup_Worker bllWorker = new BLLDJGroup_Worker();
     private void UpdateForm()
     {
         Group.Name = tbxName.Text;
         Group.BeginDate = Convert.ToDateTime(tbxDateBegin.Text);
         Group.DaysAmount = Convert.ToInt32(tbxDateAmount.Text);
-      
-   
         Group.DJ_DijiesheInfo = CurrentDJS;
+        ///司机和导游
+        foreach (ListItem item in cbxGuides.Items)
+        {
+            if (item.Selected)
+            {
+                Group.Workers.Add(bllWorker.Get(new Guid(item.Value)));
+            }
+        }
+        foreach (ListItem item in cbxDrivers.Items)
+        {
+            if (item.Selected)
+            {
+                Group.Workers.Add(bllWorker.Get(new Guid(item.Value)));
+            }
+        }
+        
       
     }
 
@@ -104,8 +115,8 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
 
     protected void btnBasicInfo_Click(object sender, EventArgs e)
     {
-        UpdateForm();
-      bllGroup.Save(Group);
+         UpdateForm();
+         bllGroup.Save(Group);
         if (IsNew)
         {
             Response.Redirect("GroupEditMember.aspx?groupid=" + Group.Id);

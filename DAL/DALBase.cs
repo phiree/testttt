@@ -48,7 +48,11 @@ namespace DAL
             session.Update(o);
             session.Flush();
         }
-
+        public void SaveOrUpdate(T o)
+        {
+            session.SaveOrUpdate(o);
+            session.Flush();
+        }
         public T GetOne(object id)
         {
             return session.Get<T>(id);

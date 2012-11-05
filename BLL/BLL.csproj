@@ -80,6 +80,7 @@
     <Compile Include="alipay\AlipayNotify.cs" />
     <Compile Include="alipay\AlipayService.cs" />
     <Compile Include="alipay\AlipaySubmit.cs" />
+    <Compile Include="BLLBase.cs" />
     <Compile Include="Default\BLLArea.cs" />
     <Compile Include="Default\BLLBackManager.cs" />
     <Compile Include="Default\BLLBuyTicket.cs" />

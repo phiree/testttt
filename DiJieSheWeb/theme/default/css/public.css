@@ -40,15 +40,19 @@ h5
     padding-left:10px;
     line-height:20px;
 }
-
+table tr td
+{
+    height:20px !important;
+}
 .detaillist .InfoTable
 {
-    width:92.5% !important;
+    width:92% !important;
     margin-top:2px !important;
     border-left:none;
     border-top:none;
     margin-left:-1px !important;
     float:left;
+    overflow:hidden;
 }
 .IndexTable
 {
@@ -56,6 +60,7 @@ h5
     float:left;
     margin-left:5px !important;
     width:7% !important;
+    overflow:hidden;
 }
 .btn
 {

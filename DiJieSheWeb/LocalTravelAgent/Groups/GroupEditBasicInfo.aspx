@@ -47,7 +47,7 @@
                 </td>
                 <td>
                     <asp:CheckBoxList runat="server" ID="cbxGuides"></asp:CheckBoxList>
-                     <span><a href="">增加导游</a></span>
+                     <span><a href="/LocalTravelAgent/GuideList.aspx">增加/管理导游</a></span>
                 </td>
             </tr>
               <tr>
@@ -56,7 +56,7 @@
                 </td>
                 <td>
                     <asp:CheckBoxList runat="server" ID="cbxDrivers"></asp:CheckBoxList>
-                    <span>增加司机</span>
+                    <span><a href="/LocalTravelAgent/DriverList.aspx"> 增加/管理司机</a></span>
                 </td>
             </tr>
              

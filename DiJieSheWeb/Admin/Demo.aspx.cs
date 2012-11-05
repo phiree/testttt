@@ -66,21 +66,21 @@ public partial class Admin_Demo : System.Web.UI.Page
         group.DJ_DijiesheInfo = (Model.DJ_DijiesheInfo)demoDjs;
         group.DaysAmount =1;
 
-        DJ_TourGroupMember memberdaoyou = new DJ_TourGroupMember();
+        DJ_Group_Worker memberdaoyou = new DJ_Group_Worker();
         memberdaoyou.DJ_TourGroup = group;
-        memberdaoyou.IdCardNo = "210905197807210546";
-        memberdaoyou.SpecialCardNo = "导游证号: D-3706-004050";
-        memberdaoyou.MemberType = MemberType.导游;
-        memberdaoyou.PhoneNum = "13280008000";
-        memberdaoyou.RealName = "张三";
+        memberdaoyou.IDCard = "210905197807210546";
+        memberdaoyou.SpecificIdCard = "导游证号: D-3706-004050";
+        memberdaoyou.WorkerType = DJ_GroupWorkerType.导游;
+        memberdaoyou.Phone = "13280008000";
+        memberdaoyou.Name = "张三";
 
-        DJ_TourGroupMember membersiji = new DJ_TourGroupMember();
+        DJ_Group_Worker membersiji = new DJ_Group_Worker();
         membersiji.DJ_TourGroup = group;
-        membersiji.IdCardNo = "210905197807210546";
-        membersiji.SpecialCardNo = "驾驶证号:362101096266";
-        membersiji.MemberType = MemberType.司机;
-        membersiji.PhoneNum = "13280008000";
-        membersiji.RealName = "王师傅";
+        membersiji.IDCard = "210905197807210546";
+        membersiji.SpecificIdCard = "驾驶证号:362101096266";
+        membersiji.WorkerType = DJ_GroupWorkerType.司机;
+        membersiji.Phone = "13280008000";
+        membersiji.Name = "王师傅";
 
 
         DJ_TourGroupMember member1 = new DJ_TourGroupMember();
@@ -111,8 +111,8 @@ public partial class Admin_Demo : System.Web.UI.Page
         member4.PhoneNum = "13280008000";
         member4.RealName = "Carl Smith";
 
-        group.Members.Add(membersiji);
-        group.Members.Add(memberdaoyou);
+        group.Workers.Add(membersiji);
+        group.Workers.Add(memberdaoyou);
         group.Members.Add(member1);
         group.Members.Add(member2);
         group.Members.Add(member3);
