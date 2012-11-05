@@ -5,13 +5,18 @@
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
-    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/Sequence.js" type="text/javascript"></script>
+    <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="../Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("[id$='txtBeginTime']").datepicker();
             $("[id$='txtEndTime']").datepicker();
-        })
+            $("#myTable").tablesorter({ headers: { 5: { sorter: false}} });
+            $(".IndexTable").orderIndex('1');
+            
+        });
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
@@ -37,37 +42,38 @@
         <div class="detailtitle">
             统计列表
         </div>
-        <table border="1" cellpadding="0" cellspacing="0">
+        <table class="tablesorter IndexTable">
+        </table>
+        <table  id="myTable" class="tablesorter InfoTable">
+            <thead>
             <tr>
-                <td>
-                    序号
-                </td>
-                <td>
-                    <a class="sequence">住宿时间<span class="orderspan">↓</span></a>
-                </td>
-                <td>
-                    <a class="sequence">团队名称<span class="orderspan">↓</span></a>
-                </td>
-                <td>
-                    <a class="sequence">旅行社名称<span class="orderspan">↓</span></a>
-                </td>
-                <td>
-                    <a class="sequence">住宿天数<span class="orderspan">↓</span></a>
-                </td>
-                <td>
-                    <a class="sequence">人数<span class="orderspan">↓</span></a>
-                </td>
-                <td>
+                <th>
+                    住宿时间
+                </th>
+                <th>
+                    团队名称
+                </th>
+                <th>
+                    旅行社名称
+                </th>
+                <th>
+                    住宿天数
+                </th>
+                <th>
+                    人数
+                </th>
+                <th>
                     验证状态
-                </td>
+                </th>
             </tr>
+        </thead>
+        
+        <tbody>
             <asp:Repeater runat="server" ID="rptTgRecord" 
                 onitemdatabound="rptTgRecord_ItemDataBound">
                 <ItemTemplate>
                    <tr>
-                        <td>
-                            <asp:Literal ID="laNo" runat="server"></asp:Literal>
-                        </td>
+                       
                        <td>
                            <%# Eval("ConsumeTime")%>
                        <td>
@@ -88,15 +94,16 @@
                    </tr>
                 </ItemTemplate>
                 <FooterTemplate>
+                </tbody>
+                <tfoot>
                     <tr>
-                        <td>
-                            总计
-                        </td>                    
+                                        
                         <td colspan="6">
                             共接待团队数<asp:Literal ID="laGuiderCount" runat="server"></asp:Literal>&nbsp;&nbsp;&nbsp;&nbsp;
                             其中包括成人<asp:Literal ID="laAdultCount" runat="server"></asp:Literal>儿童<asp:Literal ID="laChildrenCount" runat="server"></asp:Literal>
                         </td>
                     </tr>
+                </tfoot>
                 </FooterTemplate>
             </asp:Repeater>
         </table>

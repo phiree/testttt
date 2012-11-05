@@ -40,19 +40,27 @@ h5
     padding-left:10px;
     line-height:20px;
 }
-.detaillist table
+table tr td
 {
-    width:99%;
-    margin-top:2px;
-    border-left:1px solid #999999;
-    border-top:1px solid #999999;
-    margin-left:5px;
+    height:20px !important;
 }
-.detaillist table tr td
+.detaillist .InfoTable
 {
-    border-right:1px solid #999999;
-    border-bottom:1px solid #999999;
-    text-align:center;
+    width:92% !important;
+    margin-top:2px !important;
+    border-left:none;
+    border-top:none;
+    margin-left:-1px !important;
+    float:left;
+    overflow:hidden;
+}
+.IndexTable
+{
+    margin-top:2px !important;
+    float:left;
+    margin-left:5px !important;
+    width:7% !important;
+    overflow:hidden;
 }
 .btn
 {

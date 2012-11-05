@@ -28,7 +28,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
     private void bind()
     {
         ListRecord = GetRecordList();
-        ListRecord= OrderByList(ListRecord);
+        //ListRecord= OrderByList(ListRecord);
         rptTgRecord.DataSource = ListRecord;
         rptTgRecord.DataBind();
     }
@@ -54,7 +54,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             DJ_GroupConsumRecord record = e.Item.DataItem as DJ_GroupConsumRecord;
-            Literal laNo = e.Item.FindControl("laNo") as Literal;
+            //Literal laNo = e.Item.FindControl("laNo") as Literal;
             Literal laIsChecked = e.Item.FindControl("laIsChecked") as Literal;
             if (record.Id.Equals(Guid.Empty))
             {
@@ -62,7 +62,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
             }
             else
                 laIsChecked.Text = "已验证";
-            laNo.Text = Index++.ToString();
+            //laNo.Text = Index++.ToString();
         }
         if (e.Item.ItemType == ListItemType.Footer)
         {
@@ -116,46 +116,46 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
         return ListRecord;
     }
 
-    #region 排序方法
-    private List<DJ_GroupConsumRecord> OrderByList(List<DJ_GroupConsumRecord> ListRecord)
-    {
-        string[] orderbyStrs = Request.Cookies["orderstr"].Value.Split('_');
-        int orderIndex = int.Parse(orderbyStrs[0]);
-        string orderType = orderbyStrs[1];
-        switch (orderIndex)
-        {
-            case 0:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.ConsumeTime).ToList() : ListRecord.OrderByDescending(x => x.ConsumeTime).ToList();
-                    break;
-                }
-            case 1:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.Route.DJ_TourGroup.Name).ToList() : ListRecord.OrderByDescending(x => x.Route.DJ_TourGroup.Name).ToList();
-                    break;
-                }
-            case 2:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name).ToList() : ListRecord.OrderByDescending(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name).ToList();
-                    break;
-                }
-            case 3:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.LiveDay).ToList() : ListRecord.OrderByDescending(x => x.LiveDay).ToList();
-                    break;
-                }
-            case 4:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.AdultsAmount).OrderBy(x => x.ChildrenAmount).ToList() : ListRecord.OrderByDescending(x => x.AdultsAmount).OrderByDescending(x => x.ChildrenAmount).ToList();
-                    break;
-                }
-            default:
-                break;
-        }
-        return ListRecord;
+    //#region 排序方法
+    //private List<DJ_GroupConsumRecord> OrderByList(List<DJ_GroupConsumRecord> ListRecord)
+    //{
+    //    string[] orderbyStrs = Request.Cookies["orderstr"].Value.Split('_');
+    //    int orderIndex = int.Parse(orderbyStrs[0]);
+    //    string orderType = orderbyStrs[1];
+    //    switch (orderIndex)
+    //    {
+    //        case 0:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.ConsumeTime).ToList() : ListRecord.OrderByDescending(x => x.ConsumeTime).ToList();
+    //                break;
+    //            }
+    //        case 1:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.Route.DJ_TourGroup.Name).ToList() : ListRecord.OrderByDescending(x => x.Route.DJ_TourGroup.Name).ToList();
+    //                break;
+    //            }
+    //        case 2:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name).ToList() : ListRecord.OrderByDescending(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name).ToList();
+    //                break;
+    //            }
+    //        case 3:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.LiveDay).ToList() : ListRecord.OrderByDescending(x => x.LiveDay).ToList();
+    //                break;
+    //            }
+    //        case 4:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.AdultsAmount).OrderBy(x => x.ChildrenAmount).ToList() : ListRecord.OrderByDescending(x => x.AdultsAmount).OrderByDescending(x => x.ChildrenAmount).ToList();
+    //                break;
+    //            }
+    //        default:
+    //            break;
+    //    }
+    //    return ListRecord;
                         
-    }
-    #endregion
+    //}
+    //#endregion
     protected void BtnCreatexls_Click(object sender, EventArgs e)
     {
         List<DJ_GroupConsumRecord> WListRec = new List<DJ_GroupConsumRecord>();
@@ -202,7 +202,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
         }
         foreach (DJ_GroupConsumRecord record in YListRecord)
         {
-            colContent += record.Id + "\t";
+            colContent += Index++ + "\t";
             colContent += record.ConsumeTime + "\t";
             colContent += record.Route.DJ_TourGroup.Name + "\t";
             colContent += record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name + "\t";
