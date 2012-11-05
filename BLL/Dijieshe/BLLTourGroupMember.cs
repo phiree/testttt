@@ -6,17 +6,17 @@ using Model;
 using DAL;
 namespace BLL
 {
-   public class BLLTourGroupMember
+   public class BLLTourGroupMember:BLLBase<DJ_TourGroupMember>
     {
-       private DALDJTourGroupMember dalMember;
+    //   private DALDJTourGroupMember dalMember;
        public DALDJTourGroupMember DalMember
        {
            get {
-               if (dalMember == null)
+               if (dalBase == null)
                {
-                   dalMember = new DALDJTourGroupMember();
+                   dalBase = new DALDJTourGroupMember();
                }
-               return dalMember;
+               return dalBase;
            }
            set { dalMember = value; }
        }

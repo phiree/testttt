@@ -2,7 +2,12 @@
     CodeFile="Grouplist.aspx.cs" Inherits="Groups_Grouplist" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-   
+   	
+   <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+ 	
+   <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+ 	 
+   <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <style type="text/css">
         .colorpicker
         {
@@ -37,6 +42,12 @@
             background-color: red;
         }
     </style>
+    <script>
+        $(function () {
+            $(".tablesorter").tablesorter({ headers: { 3: { sorter: false }, 4: {sorter:false}} });
+            $(".IndexTable").orderIndex("1");
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
@@ -53,29 +64,31 @@
         </div>
         <asp:Repeater ID="rptGroups" runat="server" OnItemDataBound="rptGroups_ItemDataBound" OnItemCommand="rptGroups_ItemCommand">
             <HeaderTemplate>
-                <table>
+            <table class="IndexTable tablesorter"></table>
+                <table class="InfoTable tablesorter" >
                     <thead>
                         <tr>
-                            <td>
+                            <th>
                                 <asp:LinkButton ID="lbname" Runat="server" text="名称" CommandName="lbname"></asp:LinkButton>
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 <asp:LinkButton ID="lbdate" Runat="server" text="时间" CommandName="lbdate"></asp:LinkButton>
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 <asp:LinkButton ID="lbdays" Runat="server" text="天数" CommandName="lbdays"></asp:LinkButton>
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 操作
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 备注
-                            </td>
+                            </th>
                         </tr>
-                    </thead>
+                    </thead>  <tbody id="routeList">
+                   
             </HeaderTemplate>
             <ItemTemplate>
-                <tbody id="routeList">
+              
                     <tr>
                         <td>
                             <a href='/LocalTravelAgent/Groups/GroupDetail.aspx?id=<%#Eval("Id")%>'>
@@ -97,10 +110,10 @@
                             <asp:LinkButton ID="lblRoute_bz" Text="" runat="server" />
                         </td>
                     </tr>
-                </tbody>
+               
             </ItemTemplate>
             <FooterTemplate>
-                </table>
+               </tbody>  </table>
             </FooterTemplate>
         </asp:Repeater>
     </div>
