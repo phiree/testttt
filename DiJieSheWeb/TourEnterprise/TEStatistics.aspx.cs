@@ -28,7 +28,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
     private void bind()
     {
         ListRecord = GetRecordList();
-        ListRecord= OrderByList(ListRecord);
+        //ListRecord= OrderByList(ListRecord);
         rptTgRecord.DataSource = ListRecord;
         rptTgRecord.DataBind();
     }
@@ -116,46 +116,46 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
         return ListRecord;
     }
 
-    #region 排序方法
-    private List<DJ_GroupConsumRecord> OrderByList(List<DJ_GroupConsumRecord> ListRecord)
-    {
-        string[] orderbyStrs = Request.Cookies["orderstr"].Value.Split('_');
-        int orderIndex = int.Parse(orderbyStrs[0]);
-        string orderType = orderbyStrs[1];
-        switch (orderIndex)
-        {
-            case 0:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.ConsumeTime).ToList() : ListRecord.OrderByDescending(x => x.ConsumeTime).ToList();
-                    break;
-                }
-            case 1:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.Route.DJ_TourGroup.Name).ToList() : ListRecord.OrderByDescending(x => x.Route.DJ_TourGroup.Name).ToList();
-                    break;
-                }
-            case 2:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name).ToList() : ListRecord.OrderByDescending(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name).ToList();
-                    break;
-                }
-            case 3:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.LiveDay).ToList() : ListRecord.OrderByDescending(x => x.LiveDay).ToList();
-                    break;
-                }
-            case 4:
-                {
-                    ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.AdultsAmount).OrderBy(x => x.ChildrenAmount).ToList() : ListRecord.OrderByDescending(x => x.AdultsAmount).OrderByDescending(x => x.ChildrenAmount).ToList();
-                    break;
-                }
-            default:
-                break;
-        }
-        return ListRecord;
+    //#region 排序方法
+    //private List<DJ_GroupConsumRecord> OrderByList(List<DJ_GroupConsumRecord> ListRecord)
+    //{
+    //    string[] orderbyStrs = Request.Cookies["orderstr"].Value.Split('_');
+    //    int orderIndex = int.Parse(orderbyStrs[0]);
+    //    string orderType = orderbyStrs[1];
+    //    switch (orderIndex)
+    //    {
+    //        case 0:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.ConsumeTime).ToList() : ListRecord.OrderByDescending(x => x.ConsumeTime).ToList();
+    //                break;
+    //            }
+    //        case 1:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.Route.DJ_TourGroup.Name).ToList() : ListRecord.OrderByDescending(x => x.Route.DJ_TourGroup.Name).ToList();
+    //                break;
+    //            }
+    //        case 2:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name).ToList() : ListRecord.OrderByDescending(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name).ToList();
+    //                break;
+    //            }
+    //        case 3:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.LiveDay).ToList() : ListRecord.OrderByDescending(x => x.LiveDay).ToList();
+    //                break;
+    //            }
+    //        case 4:
+    //            {
+    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.AdultsAmount).OrderBy(x => x.ChildrenAmount).ToList() : ListRecord.OrderByDescending(x => x.AdultsAmount).OrderByDescending(x => x.ChildrenAmount).ToList();
+    //                break;
+    //            }
+    //        default:
+    //            break;
+    //    }
+    //    return ListRecord;
                         
-    }
-    #endregion
+    //}
+    //#endregion
     protected void BtnCreatexls_Click(object sender, EventArgs e)
     {
         List<DJ_GroupConsumRecord> WListRec = new List<DJ_GroupConsumRecord>();

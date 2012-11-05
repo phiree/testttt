@@ -43,19 +43,19 @@
                     序号
                 </td>
                 <td>
-                    <a class="sequence">住宿时间<span class="orderspan">↓</span></a>
+                    住宿时间
                 </td>
                 <td>
-                    <a class="sequence">团队名称<span class="orderspan">↓</span></a>
+                    团队名称
                 </td>
                 <td>
-                    <a class="sequence">旅行社名称<span class="orderspan">↓</span></a>
+                    旅行社名称
                 </td>
                 <td>
-                    <a class="sequence">住宿天数<span class="orderspan">↓</span></a>
+                    住宿天数
                 </td>
                 <td>
-                    <a class="sequence">人数<span class="orderspan">↓</span></a>
+                    人数
                 </td>
                 <td>
                     验证状态
