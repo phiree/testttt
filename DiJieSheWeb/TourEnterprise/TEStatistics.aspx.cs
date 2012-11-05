@@ -54,7 +54,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             DJ_GroupConsumRecord record = e.Item.DataItem as DJ_GroupConsumRecord;
-            Literal laNo = e.Item.FindControl("laNo") as Literal;
+            //Literal laNo = e.Item.FindControl("laNo") as Literal;
             Literal laIsChecked = e.Item.FindControl("laIsChecked") as Literal;
             if (record.Id.Equals(Guid.Empty))
             {
@@ -62,7 +62,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
             }
             else
                 laIsChecked.Text = "已验证";
-            laNo.Text = Index++.ToString();
+            //laNo.Text = Index++.ToString();
         }
         if (e.Item.ItemType == ListItemType.Footer)
         {
@@ -202,7 +202,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
         }
         foreach (DJ_GroupConsumRecord record in YListRecord)
         {
-            colContent += record.Id + "\t";
+            colContent += Index++ + "\t";
             colContent += record.ConsumeTime + "\t";
             colContent += record.Route.DJ_TourGroup.Name + "\t";
             colContent += record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name + "\t";

@@ -5,16 +5,18 @@
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
-    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="../Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("[id$='txtBeginTime']").datepicker();
             $("[id$='txtEndTime']").datepicker();
+            $("#myTable").tablesorter({ headers: { 5: { sorter: false}} });
+            $(".IndexTable").orderIndex();
+            
+        });
 
-            $("table").tablesorter();
-        })
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
@@ -40,12 +42,12 @@
         <div class="detailtitle">
             统计列表
         </div>
-        <table border="1" cellpadding="0" cellspacing="0" class="tablesorter">
+        <table class="tablesorter IndexTable">
+        </table>
+        <table  id="myTable" class="tablesorter InfoTable">
             <thead>
             <tr>
-                <td>
-                    序号
-                </td>
+                
                 <th>
                     住宿时间
                 </th>
@@ -61,19 +63,18 @@
                 <th>
                     人数
                 </th>
-                <td>
+                <th>
                     验证状态
-                </td>
+                </th>
             </tr>
         </thead>
+        
         <tbody>
             <asp:Repeater runat="server" ID="rptTgRecord" 
                 onitemdatabound="rptTgRecord_ItemDataBound">
                 <ItemTemplate>
                    <tr>
-                        <td>
-                            <asp:Literal ID="laNo" runat="server"></asp:Literal>
-                        </td>
+                       
                        <td>
                            <%# Eval("ConsumeTime")%>
                        <td>
@@ -95,15 +96,15 @@
                 </ItemTemplate>
                 <FooterTemplate>
                 </tbody>
+                <tfoot>
                     <tr>
-                        <td>
-                            总计
-                        </td>                    
+                                        
                         <td colspan="6">
                             共接待团队数<asp:Literal ID="laGuiderCount" runat="server"></asp:Literal>&nbsp;&nbsp;&nbsp;&nbsp;
                             其中包括成人<asp:Literal ID="laAdultCount" runat="server"></asp:Literal>儿童<asp:Literal ID="laChildrenCount" runat="server"></asp:Literal>
                         </td>
                     </tr>
+                </tfoot>
                 </FooterTemplate>
             </asp:Repeater>
         </table>

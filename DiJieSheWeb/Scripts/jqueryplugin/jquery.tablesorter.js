@@ -518,7 +518,7 @@
                     // apply event handling to headers
                     // this is to big, perhaps break it out?
                     $headers.click(function (e) {
-
+                       
                         $this.trigger("sortStart");
 
                         var totalRows = ($this[0].tBodies[0] && $this[0].tBodies[0].rows.length) || 0;
