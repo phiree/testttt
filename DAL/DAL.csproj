@@ -126,6 +126,7 @@
     <Compile Include="DALTopic.cs" />
     <Compile Include="DALVote.cs" />
     <Compile Include="Dijieshe\DALDJRoute.cs" />
+    <Compile Include="Dijieshe\DALDJTourGroupMember.cs" />
     <Compile Include="HybridSessionBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DALVistor.cs" />

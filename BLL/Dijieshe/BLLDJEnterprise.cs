@@ -191,6 +191,11 @@ namespace BLL
 
         #endregion
 
+        public DJ_TourEnterprise GetOne(int id)
+        {
+            return daldjs.GetOne(id);
+        }
+
         #region 设置企业奖励范围情况
         /// <summary>
         /// 

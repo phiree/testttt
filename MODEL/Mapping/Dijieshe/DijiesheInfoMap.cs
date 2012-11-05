@@ -13,7 +13,8 @@ namespace Model.Mapping
         public DJ_DijiesheInfoMap()
         {
             HasMany<DJ_TourGroup>(x => x.Groups);
-            this.Not.LazyLoad();
+            HasMany<Model.DJ_Group_Worker>(x => x.Works);
+           
         }
     }
 }

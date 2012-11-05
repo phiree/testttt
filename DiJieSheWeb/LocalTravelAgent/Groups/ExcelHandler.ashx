@@ -103,30 +103,7 @@ public class ExcelHandler : IHttpHandler {
                 DJ_TourGroup=tg
             });
         }
-        foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "司机"))
-        {
-            tgmlist.Add(new Model.DJ_TourGroupMember()
-            {
-                IdCardNo=item.Memid,
-                RealName=item.Memname,
-                PhoneNum=item.Memphone,
-                SpecialCardNo=item.Cardno,
-                MemberType=Model.MemberType.司机,
-                DJ_TourGroup = tg
-            });
-        }
-        foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "导游"))
-        {
-            tgmlist.Add(new Model.DJ_TourGroupMember()
-            {
-                IdCardNo = item.Memid,
-                RealName = item.Memname,
-                PhoneNum = item.Memphone,
-                SpecialCardNo = item.Cardno,
-                MemberType = Model.MemberType.导游,
-                DJ_TourGroup = tg
-            });
-        }
+     
         tg.Members = tgmlist;
         
         //行程信息
