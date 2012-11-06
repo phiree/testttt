@@ -45,7 +45,7 @@
     <script>
         $(function () {
             $(".tablesorter").tablesorter({ headers: { 3: { sorter: false }, 4: {sorter:false}} });
-            $(".IndexTable").orderIndex("1");
+            $(".IndexTable").orderIndex();
         });
     </script>
 </asp:Content>
