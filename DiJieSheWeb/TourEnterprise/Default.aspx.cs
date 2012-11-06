@@ -9,6 +9,6 @@ public partial class TourEnterprise_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.Redirect("/TourEnterprise/TEGroupForecast.aspx");
+       // Response.Redirect("/TourEnterprise/TEGroupForecast.aspx");
     }
 }

@@ -24,11 +24,11 @@
                 </td>
                 <td>
                     <asp:RadioButtonList runat="server" ID="rblType" RepeatDirection="Horizontal" CssClass="rbl">
-                        <asp:ListItem Value="5" Selected="True">旅行社</asp:ListItem>
+                        <asp:ListItem Value="16" Selected="True">旅行社</asp:ListItem>
                         <asp:ListItem Value="1">景点</asp:ListItem>
                         <asp:ListItem Value="2">饭店</asp:ListItem>
-                        <asp:ListItem Value="3">宾馆</asp:ListItem>
-                        <asp:ListItem Value="4">购物点</asp:ListItem>
+                        <asp:ListItem Value="4">宾馆</asp:ListItem>
+                        <asp:ListItem Value="8">购物点</asp:ListItem>
                     </asp:RadioButtonList>
                 </td>
             </tr>

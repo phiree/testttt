@@ -8,10 +8,10 @@ namespace BLL
 {
     public class BLLDJEnterprise
     {
-       public DAL.DALDJEnterprise daldjs = new DAL.DALDJEnterprise();
+        public DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
         BLLArea bllArea = new BLLArea();
 
-        #region DJS
+        #region Enterprise
         /// <summary>
         /// 
         /// </summary>
@@ -34,17 +34,17 @@ namespace BLL
                 Phone = phone,
                 Type = Model.EnterpriseType.旅行社
             };
-            return daldjs.AddDJS(djs);
+            return dalEnt.AddDJS(djs);
         }
 
         public void UpdateDjs(Model.DJ_TourEnterprise obj)
         {
-            daldjs.UpdateDJS(obj);
+            dalEnt.UpdateDJS(obj);
         }
 
         public IList<DJ_TourEnterprise> GetDjs8all()
         {
-            return daldjs.GetDJS8All();
+            return dalEnt.GetDJS8All();
         }
 
         /// <summary>
@@ -87,6 +87,7 @@ namespace BLL
             return GetDJS8Muti(0, null, null, name);
         }
 
+
         /// <summary>
         /// 旅游管理部门辖区的旅游企�
         /// </summary> 
@@ -96,7 +97,7 @@ namespace BLL
         {
             string ids = new BLLArea().GetChildAreaIds(areaCode);
 
-            return daldjs.GetDJSInAreas(ids);
+            return dalEnt.GetDJSInAreas(ids);
         }
 
         /// <summary>
@@ -109,7 +110,7 @@ namespace BLL
         /// <returns></returns>
         public IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike)
         {
-            return daldjs.GetDJS8Muti(areaid, type, id, namelike);
+            return dalEnt.GetDJS8Muti(areaid, type, id, namelike);
         }
 
         /// <summary>
@@ -167,7 +168,7 @@ namespace BLL
         {
 
 
-            return daldjs.GetList(areacode, EnterpriseType.宾馆 | EnterpriseType.饭店 | EnterpriseType.购物点| EnterpriseType.景点
+            return dalEnt.GetList(areacode, EnterpriseType.宾馆 | EnterpriseType.饭店 | EnterpriseType.购物点 | EnterpriseType.旅行社
                  , null);
 
             //DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
@@ -193,8 +194,9 @@ namespace BLL
 
         public DJ_TourEnterprise GetOne(int id)
         {
-            return daldjs.GetOne(id);
+            return dalEnt.GetOne(id);
         }
+
 
         #region 设置企业奖励范围情况
         /// <summary>
@@ -210,20 +212,20 @@ namespace BLL
             {
                 case AreaLevel.区县:
                     ent.CountryVeryfyState = GetFinalVeryfyState(ent.CountryVeryfyState, targetType);
-                  
+
                     break;
 
                 case AreaLevel.市:
                     ent.CityVeryfyState = GetFinalVeryfyState(ent.CityVeryfyState, targetType);
-                  
+
                     break;
                 case AreaLevel.省:
                     ent.ProvinceVeryfyState = GetFinalVeryfyState(ent.ProvinceVeryfyState, targetType);
-                 
+
                     break;
             }
             ent.LastUpdateTime = DateTime.Now;
-            daldjs.Save(ent);
+            dalEnt.Save(ent);
         }
 
         public void SetVerify(Area area, string entName, RewardType targetType, EnterpriseType entType, out string errMsg)
@@ -309,7 +311,7 @@ namespace BLL
         public void Save(DJ_TourEnterprise ent)
         {
 
-            daldjs.Save(ent);
+            dalEnt.Save(ent);
         }
 
         #endregion
@@ -323,10 +325,7 @@ namespace BLL
         /// <returns></returns>
         public IList<DJ_TourEnterprise> GetRewardEntList(DJ_GovManageDepartment gov, EnterpriseType? entType, RewardType rewardType)
         {
-
-
-
-            IList<DJ_TourEnterprise> entList = daldjs.GetList(gov.Area.Code, entType, rewardType);
+            IList<DJ_TourEnterprise> entList = dalEnt.GetList(gov.Area.Code, entType, rewardType);
 
             return entList;
         }
@@ -334,24 +333,39 @@ namespace BLL
 
         public void UpdateGroup(Model.DJ_TourGroup tg)
         {
-            daldjs.UpdateGroup(tg);
+            dalEnt.UpdateGroup(tg);
         }
 
         public Model.DJ_TourGroup GetGroup8name(string name)
         {
-            return daldjs.GetGroup8name(name);
+            return dalEnt.GetGroup8name(name);
         }
 
         public Model.DJ_TourGroup GetGroup8gid(string groupid)
         {
-            return daldjs.GetGroup8gid(groupid);
+            return dalEnt.GetGroup8gid(groupid);
         }
 
         public IList<Model.DJ_TourGroup> GetGroup8all()
         {
-            return daldjs.GetGroup8all();
+            return dalEnt.GetGroup8all();
         }
 
+        public Model.DJ_TourEnterprise GetEntByName(string name)
+        {
+            IList<DJ_TourEnterprise> ents = dalEnt.GetList(name, "", null, null);
+            if (ents.Count == 0)
+            { return null; }
+            else if (ents.Count == 1)
+            {
+                return ents[0];
+            }
+            else
+            {
+                return null;
+            }
+
+        }
         #endregion
 
         #region GroupMem
@@ -362,7 +376,7 @@ namespace BLL
         /// <param name="gg"></param>
         public void UpdateGuide(Model.DJ_Group_Worker gg)
         {
-            daldjs.UpdateGuide(gg);
+            dalEnt.UpdateGuide(gg);
         }
 
         /// <summary>
@@ -371,7 +385,7 @@ namespace BLL
         /// <param name="gg"></param>
         public void UpdateDriver(Model.DJ_Group_Worker gd)
         {
-            daldjs.UpdateDriver(gd);
+            dalEnt.UpdateDriver(gd);
         }
 
         /// <summary>
@@ -381,7 +395,7 @@ namespace BLL
         /// <returns></returns>
         public IList<Model.DJ_Group_Worker> GetGroupmem8epid(string id)
         {
-            return daldjs.GetGroupmem8epid(id);
+            return dalEnt.GetGroupmem8epid(id);
         }
 
         /// <summary>
@@ -391,7 +405,7 @@ namespace BLL
         /// <returns></returns>
         public IList<Model.DJ_Group_Worker> GetGuide8id(string id)
         {
-            return daldjs.GetGuide8id(id);
+            return dalEnt.GetGuide8id(id);
         }
 
         /// <summary>
@@ -401,7 +415,7 @@ namespace BLL
         /// <returns></returns>
         public IList<Model.DJ_Group_Worker> GetDriver8id(string id)
         {
-            return daldjs.GetDriver8id(id);
+            return dalEnt.GetDriver8id(id);
         }
 
         #endregion

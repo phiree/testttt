@@ -125,7 +125,7 @@ namespace DAL
        /// <param name="pageSize"></param>
        /// <param name="totalRecord"></param>
        /// <returns></returns>
-        public IList<Model.DJ_TourEnterprise> GetListPaged( string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType,
+        public IList<Model.DJ_TourEnterprise> GetListPaged(string nameLike, string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType,
             int pageIndex,int pageSize,out int totalRecord
             )
         {
@@ -139,6 +139,12 @@ namespace DAL
 
                 sql += " and  D.Area.Id in (" + areaIds + ")";
             }
+
+            if (!string.IsNullOrEmpty(nameLike))
+            {
+                sql += " and D.Name like '%"+nameLike+"%'";
+            }
+
             if (type.HasValue)
             {
                 string typeInts = string.Empty;
@@ -198,13 +204,18 @@ namespace DAL
             }
             return GetList(sql, pageIndex, pageSize, out totalRecord);
         }
+        public IList<Model.DJ_TourEnterprise> GetList(string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType)
+        {
+            return GetList(string.Empty, areacode, type, rewardType);
+        }
 
-        public IList<Model.DJ_TourEnterprise> GetList(string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType
+        
+        public IList<Model.DJ_TourEnterprise> GetList(string nameLike,string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType
 
               )
         {
             int totalRecords;
-            return GetListPaged(areacode, type, rewardType, 1, 99999, out totalRecords);
+            return GetListPaged(nameLike,areacode, type, rewardType, 1, 99999, out totalRecords);
         }
 
         #endregion

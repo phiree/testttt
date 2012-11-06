@@ -68,6 +68,7 @@
     <Compile Include="HTMLInfo.cs" />
     <Compile Include="HttpContextHelper.cs" />
     <Compile Include="JosnHelper.cs" />
+    <Compile Include="ListHelper.cs" />
     <Compile Include="MakeAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QweiboSDK\OAuth.cs" />

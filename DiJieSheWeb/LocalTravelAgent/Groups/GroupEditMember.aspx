@@ -15,7 +15,6 @@
                 active: $.cookie(cookieName),
                 activate: function (event, ui) {
                     $.cookie(cookieName, ui.newTab.index(), { expires: 365 });
-
                 }
             });
         });
@@ -35,8 +34,7 @@
             <li><a href="#tabs-3">Excel导入</a></li>
         </ul>
         <div id="tabs-1">
-            <div id="gridbox" style="display: none; border: 0px solid #cccccc; background-color: #f3f3f3;">
-            </div>
+           
             <asp:Repeater runat="server" ID="rptMembers" OnItemCommand="rptMembers_ItemCommand">
                 <HeaderTemplate>
                     <table>
