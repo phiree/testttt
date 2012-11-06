@@ -13,7 +13,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     public Guid groupId = Guid.Empty;
     DJ_TourGroup Group;
     BLL.BLLDJTourGroup bllGroup = new BLLDJTourGroup();
-    BLLDJ_Route bllRoute = new BLLDJ_Route();
+    BLLDJRoute bllRoute = new BLLDJRoute();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -28,7 +28,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         }
         else
         {
-            Group = bllGroup.GetTourGroupById(groupId);
+            Group = bllGroup.GetOne(groupId);
             if (groupId == null)
             {
                 ErrHandler.Redirect(ErrType.ParamIllegal);

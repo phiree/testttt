@@ -22,7 +22,7 @@ public class basepageDjsGroupEdit : basepageDJS
                 string param = Request["groupId"];
                 if (Guid.TryParse(param, out groupId))
                 {
-                    DJ_TourGroup g = new BLL.BLLDJTourGroup().GetTourGroupById(groupId);
+                    DJ_TourGroup g = new BLL.BLLDJTourGroup().GetOne(groupId);
                     if (g == null)
                     {
                         BLL.ErrHandler.Redirect(BLL.ErrType.ObjectIsNull);

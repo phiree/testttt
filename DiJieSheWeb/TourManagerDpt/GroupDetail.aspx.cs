@@ -18,7 +18,7 @@ public partial class TourManagerDpt_GroupDetail : System.Web.UI.Page
 
     private void BindData(string guid)
     {
-        Model.DJ_TourGroup tg = blltg.GetTourGroupById(Guid.Parse(guid));
+        Model.DJ_TourGroup tg = blltg.GetOne(Guid.Parse(guid));
         lblGroupno.Text = tg.No;
         lblName.Text = tg.Name;
         lblDate.Text = tg.BeginDate.ToShortDateString() + "-" + tg.EndDate.ToShortDateString();

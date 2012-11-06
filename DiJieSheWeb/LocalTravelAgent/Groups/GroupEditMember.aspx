@@ -3,8 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"
-        type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
     <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
@@ -38,7 +37,7 @@
         <div id="tabs-1">
             <div id="gridbox" style="display: none; border: 0px solid #cccccc; background-color: #f3f3f3;">
             </div>
-            <asp:Repeater runat="server" ID="rptMembers"  OnItemCommand="rptMembers_ItemCommand">
+            <asp:Repeater runat="server" ID="rptMembers" OnItemCommand="rptMembers_ItemCommand">
                 <HeaderTemplate>
                     <table>
                         <tr>
@@ -54,8 +53,7 @@
                             <td>
                                 联系电话
                             </td>
-                              <td>
-                                
+                            <td>
                             </td>
                         </tr>
                 </HeaderTemplate>
@@ -73,69 +71,69 @@
                         <td>
                             <%#Eval("PhoneNum")%>
                         </td>
-                         <td>
-                         <asp:Button runat="server" ID="btnModifyMember" CommandArgument='<%#Eval("Id") %>' CommandName="Edit"  Text="修改"/>
+                        <td>
+                            <asp:Button runat="server" ID="btnModifyMember" CommandArgument='<%#Eval("Id") %>'
+                                CommandName="Edit" Text="修改" />
                         </td>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
                     </table>
-                    
                 </FooterTemplate>
             </asp:Repeater>
-            <asp:Button runat="server" ID="btnAddMember" OnClick="btnAddMember_Click"  Text="增加成员"/>
+            <asp:Button runat="server" ID="btnAddMember" OnClick="btnAddMember_Click" Text="增加成员" />
             <asp:Panel runat="server" ID="pnlMemberEdit" Visible="false">
-            <fieldset>
-                <legend></legend>
-                <table>
-                    <tr>
-                        <td>
-                            类型
-                        </td>
-                        <td>
-                            <asp:RadioButtonList runat="server" ID="rblMemberType">
-                                <asp:ListItem Value="1">成人游客</asp:ListItem>
-                                <asp:ListItem Value="2">儿童</asp:ListItem>
-                                <asp:ListItem Value="3">外宾</asp:ListItem>
-                                <asp:ListItem Value="4">港澳台</asp:ListItem>
-                            </asp:RadioButtonList>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            姓名
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            身份证号码
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="tbxIdCardNo"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            其他证件号码
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="tbxSpecialCardNo"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            联系电话
-                        </td>
-                        <td>
-                            <asp:TextBox runat="server" ID="tbxPhone"></asp:TextBox>
-                        </td>
-                    </tr>
-                </table>
-                <asp:Button runat="server" OnClick="btnSaveMember_Click" ID="btnSave" Text="保存" />
-            </fieldset>
+                <fieldset>
+                    <legend></legend>
+                    <table>
+                        <tr>
+                            <td>
+                                类型
+                            </td>
+                            <td>
+                                <asp:RadioButtonList runat="server" ID="rblMemberType">
+                                    <asp:ListItem Value="1">成人游客</asp:ListItem>
+                                    <asp:ListItem Value="2">儿童</asp:ListItem>
+                                    <asp:ListItem Value="3">外宾</asp:ListItem>
+                                    <asp:ListItem Value="4">港澳台</asp:ListItem>
+                                </asp:RadioButtonList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                姓名
+                            </td>
+                            <td>
+                                <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                身份证号码
+                            </td>
+                            <td>
+                                <asp:TextBox runat="server" ID="tbxIdCardNo"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                其他证件号码
+                            </td>
+                            <td>
+                                <asp:TextBox runat="server" ID="tbxSpecialCardNo"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                联系电话
+                            </td>
+                            <td>
+                                <asp:TextBox runat="server" ID="tbxPhone"></asp:TextBox>
+                            </td>
+                        </tr>
+                    </table>
+                    <asp:Button runat="server" OnClick="btnSaveMember_Click" ID="btnSave" Text="保存" />
+                </fieldset>
             </asp:Panel>
         </div>
         <div id="tabs-2">
@@ -143,11 +141,17 @@
                 将游客信息按照一定的格式输入,一次性导入系统
             </p>
             <p>
-                格式要求: 1)单个游客的资料用逗号分隔,按序依次为:成员类型,姓名,电话号码,身份证号,其他证件号.如果没有对应信息,请保留逗号. 2)成员类型:成人游客,儿童,外宾,港澳台,导游,司机
-                不同游客用回车分隔. 比如:<br />
-                成人游客,张晓华,13287839485,51332919880321639X,<br />
-                外宾,Jim Green,13287839485,,CH1034123<br />
-                儿童,李晓彤,,,<br />
+                <div>
+                    格式要求:</div>
+                <div>
+                    1)单个游客的资料用逗号分隔,按序依次为:<strong>成员类型,姓名,证件号码(身份证或者其他有效证件),联系电话</strong>.如果没有对应信息,则留空.</div>
+                <div>
+                    2)成员类型必须是以下几种:<strong>成人游客,儿童,外宾,港澳台,导游,司机</strong> 不同游客用回车分隔. 比如:</div>
+                <ul>
+                    <li>成人游客,张晓华,51332919880321639X,13287839485</li>
+                    <li>外宾,Jim Green,CH1034123,13287839485</li>
+                    <li>儿童,李晓彤</li>
+                </ul>
             </p>
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText"></asp:TextBox>
             <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
