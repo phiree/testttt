@@ -6,24 +6,8 @@ using NHibernate;
 using Model;
 namespace DAL
 {
-    public class DALDJ_Route:DalBase,IDAL.IDJRoute
+    public class DALDJ_Route:DalBase<DJ_Route>
     {
-
-        public Model.DJ_Route GetById(Guid routeId)
-        {
-            return session.Get<DJ_Route>(routeId);
-        }
-
-        public void SaveOrUpdate(Model.DJ_Route route)
-        {
-            session.SaveOrUpdate(route);
-            session.Flush();
-        }
-
-        public void Delete(Model.DJ_Route route)
-        {
-            session.Delete(route);
-        }
 
 
         public IList<DJ_Product> GetPdByTimeandTEId(DateTime time, int teid)

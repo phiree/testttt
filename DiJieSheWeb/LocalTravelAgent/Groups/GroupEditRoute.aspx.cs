@@ -10,6 +10,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
     public string RouteJsonList = string.Empty;
     BLL.BLLDJTourGroup bllGroup = new BLL.BLLDJTourGroup();
     BLL.BLLDJEnterprise bllEnter = new BLLDJEnterprise();
+    BLLDJRoute bllRoute = new BLLDJRoute();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -67,7 +68,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         ///删除所有行程先--首先要做提醒
         foreach (Model.DJ_Route route in CurrentGroup.Routes)
         {
-            bllGroup.Delete(route);
+            bllRoute.Delete(route);
         }
         //保存新的成员
         string[] arrStrMember = tbx.Text.Split(Environment.NewLine.ToCharArray());
@@ -85,7 +86,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
             }
             foreach (var item in routelist)
             {
-                bllGroup.Save(item);
+                bllRoute.Save(item);
             }
         }
         if (string.IsNullOrEmpty(errMsg))
