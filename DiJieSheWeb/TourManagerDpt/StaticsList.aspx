@@ -152,8 +152,12 @@
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
+                    </tbody>
+                    
                         <tfoot>
                             <tr>
+                                <td>
+                                </td>
                                 <td>
                                     <%=m_total%>
                                 </td>
@@ -174,7 +178,6 @@
                                 </td>
                             </tr>
                         </tfoot>
-                    </tbody>
                 </table>
                 <hr />
             </div>
