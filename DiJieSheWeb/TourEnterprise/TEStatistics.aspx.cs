@@ -8,6 +8,7 @@ using Model;
 using BLL;
 using System.Linq.Expressions;
 using System.IO;
+using System.Data;
 
 public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
 {
@@ -69,7 +70,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
             Literal laGuiderCount = e.Item.FindControl("laGuiderCount") as Literal;
             Literal laAdultCount = e.Item.FindControl("laAdultCount") as Literal;
             Literal laChildrenCount = e.Item.FindControl("laChildrenCount") as Literal;
-            int groupcount,adultcount,childrencount;
+            int groupcount, adultcount, childrencount;
             bllrecord.GetCountInfoByETid(Master.CurrentTE.Id, out groupcount, out adultcount, out childrencount, ListRecord);
             laGuiderCount.Text = groupcount.ToString();
             laAdultCount.Text = adultcount.ToString();
@@ -99,7 +100,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
     private List<DJ_GroupConsumRecord> BindForeast(string groupname, string EntName, string BeginTime, string EndTime)
     {
         List<DJ_Route> ListRoute = BLLDJRoute.GetRouteByAllCondition(groupname, EntName, BeginTime, EndTime, Master.CurrentTE.Id).ToList();
-        List<DJ_GroupConsumRecord> ListRecord=new List<DJ_GroupConsumRecord>();
+        List<DJ_GroupConsumRecord> ListRecord = new List<DJ_GroupConsumRecord>();
         foreach (DJ_Route route in ListRoute)
         {
             DJ_GroupConsumRecord record = new DJ_GroupConsumRecord();
@@ -110,7 +111,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
             record.AdultsAmount = route.DJ_TourGroup.AdultsAmount;
             record.ChildrenAmount = route.DJ_TourGroup.ChildrenAmount;
             record.Enterprise = Master.CurrentTE;
-            record.ConsumeTime = route.DJ_TourGroup.BeginDate.AddDays(route.DayNo-1);
+            record.ConsumeTime = route.DJ_TourGroup.BeginDate.AddDays(route.DayNo - 1);
             ListRecord.Add(record);
         }
         return ListRecord;
@@ -153,7 +154,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
     //            break;
     //    }
     //    return ListRecord;
-                        
+
     //}
     //#endregion
     protected void BtnCreatexls_Click(object sender, EventArgs e)
@@ -180,42 +181,81 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
 
 
 
-    public void CreateExcels(List<DJ_GroupConsumRecord> WListRecord,List<DJ_GroupConsumRecord> YListRecord, string FileName)
+    public void CreateExcels(List<DJ_GroupConsumRecord> WListRecord, List<DJ_GroupConsumRecord> YListRecord, string FileName)
     {
-        HttpResponse resp;
-        resp = Page.Response;
-        resp.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
-        resp.AppendHeader("Content-Disposition", "attachment;filename=" + FileName);
-        // resp.ContentType = "application/vnd.ms-excel";
-        string colCaption = "",colContent="",colfooter="";
-        colCaption = "序号\t住宿时间\t团队名称\t旅行社名称\t住宿天数\t人数\t验证状态\n";
-        resp.Write(colCaption);
+        //HttpResponse resp;
+        //resp = Page.Response;
+        //resp.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+        //resp.AppendHeader("Content-Disposition", "attachment;filename=" + FileName);
+        //// resp.ContentType = "application/vnd.ms-excel";
+        //string colCaption = "",colContent="",colfooter="";
+        //colCaption = "序号\t住宿时间\t团队名称\t旅行社名称\t住宿天数\t人数\t验证状态\n";
+        //resp.Write(colCaption);
+        //foreach (DJ_GroupConsumRecord record in WListRecord)
+        //{
+        //    colContent += Index++ + "\t";
+        //    colContent += record.ConsumeTime + "\t";
+        //    colContent += record.Route.DJ_TourGroup.Name + "\t";
+        //    colContent += record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name + "\t";
+        //    colContent += record.LiveDay + "\t";
+        //    colContent += "成人" + record.AdultsAmount + "儿童" + record.ChildrenAmount + "\t";
+        //    colContent += "未验证\n";
+        //}
+        //foreach (DJ_GroupConsumRecord record in YListRecord)
+        //{
+        //    colContent += Index++ + "\t";
+        //    colContent += record.ConsumeTime + "\t";
+        //    colContent += record.Route.DJ_TourGroup.Name + "\t";
+        //    colContent += record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name + "\t";
+        //    colContent += record.LiveDay + "\t";
+        //    colContent += "成人" + record.AdultsAmount + "儿童" + record.ChildrenAmount + "\t";
+        //    colContent += "已验证\n";
+        //}
+        //resp.Write(colContent);
+        //int groupcount,adultcount,childrencount;
+        //    bllrecord.GetCountInfoByETid(Master.CurrentTE.Id, out groupcount, out adultcount, out childrencount, ListRecord);
+        //    colfooter = "共接待团对数" + groupcount + "其中包括成人" + adultcount + "儿童" + childrencount;
+        //resp.Write(colfooter);
+        ////写缓冲区中的数据到HTTP头文档中 
+        //resp.End();
+
+        List<string> titlelist = new List<string>() { "序号", "住宿时间", "团队名称", "旅行社名称", "住宿天数", "人数", "验证状态" };
+        DataTable dt = new DataTable();
+        for (int i = 0; i < titlelist.Count; i++)
+        {
+            dt.Columns.Add(new DataColumn());
+        }
         foreach (DJ_GroupConsumRecord record in WListRecord)
         {
-            colContent += Index++ + "\t";
-            colContent += record.ConsumeTime + "\t";
-            colContent += record.Route.DJ_TourGroup.Name + "\t";
-            colContent += record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name + "\t";
-            colContent += record.LiveDay + "\t";
-            colContent += "成人" + record.AdultsAmount + "儿童" + record.ChildrenAmount + "\t";
-            colContent += "未验证\n";
+            DataRow dr = dt.NewRow();
+            dr[0] = Index;
+            dr[1] = record.ConsumeTime;
+            dr[2] = record.Route.DJ_TourGroup.Name;
+            dr[3] = record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name;
+            dr[4] = record.LiveDay;
+            dr[5] = "成人" + record.AdultsAmount + "儿童" + record.ChildrenAmount;
+            dr[6] = "未验证";
+            dt.Rows.Add(dr);
+            Index++;
         }
         foreach (DJ_GroupConsumRecord record in YListRecord)
         {
-            colContent += Index++ + "\t";
-            colContent += record.ConsumeTime + "\t";
-            colContent += record.Route.DJ_TourGroup.Name + "\t";
-            colContent += record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name + "\t";
-            colContent += record.LiveDay + "\t";
-            colContent += "成人" + record.AdultsAmount + "儿童" + record.ChildrenAmount + "\t";
-            colContent += "已验证\n";
+            DataRow dr = dt.NewRow();
+            dr[0] = Index;
+            dr[1] = record.ConsumeTime;
+            dr[2] = record.Route.DJ_TourGroup.Name;
+            dr[3] = record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name;
+            dr[4] = record.LiveDay;
+            dr[5] = "成人" + record.AdultsAmount + "儿童" + record.ChildrenAmount;
+            dr[6] = "已验证";
+            dt.Rows.Add(dr);
+            Index++;
         }
-        resp.Write(colContent);
-        int groupcount,adultcount,childrencount;
-            bllrecord.GetCountInfoByETid(Master.CurrentTE.Id, out groupcount, out adultcount, out childrencount, ListRecord);
-            colfooter = "共接待团对数" + groupcount + "其中包括成人" + adultcount + "儿童" + childrencount;
-        resp.Write(colfooter);
-        //写缓冲区中的数据到HTTP头文档中 
-        resp.End();
+        int groupcount, adultcount, childrencount;
+        bllrecord.GetCountInfoByETid(Master.CurrentTE.Id, out groupcount, out adultcount, out childrencount, ListRecord);
+        DataRow drend = dt.NewRow();
+        drend[0] = "共接待团对数" + groupcount + "其中包括成人" + adultcount + "儿童" + childrencount;
+        dt.Rows.Add(drend);
+        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist);
     }
 }
