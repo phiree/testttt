@@ -5,10 +5,27 @@
 <head runat="server">
     <title></title>
     <meta http-equiv="x-ua-compatible" content="ie=8" />
+    <script src="Scripts/jquery.js" type="text/javascript"></script>
     <script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
     <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
     <link href="/theme/default/css/Login.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        var PicIndex = 1;//图片顺序
+        $(function () {
+            changeBgPic();
+        });
+        function changeBgPic() {
+            $("#loginbg").fadeOut(3000,changeSrc);
+            $("#loginbg").fadeIn(3000);
+            
+            t = setTimeout("changeBgPic()", 15000);
+        }
+        function changeSrc() {
+                $("#loginbg").attr("src", "/image/LoginBg_" + PicIndex + ".jpg");
+                PicIndex++;
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -69,7 +86,7 @@
                 </div>
             </div>
             <div class="LTA_right">
-                <img width="100%" height="100%" />
+                <img id="loginbg"  src="image/LoginBg_3.jpg" />
             </div>
             <hr class="LTA_Login_Sepert" />
             <div class="LTA_about">

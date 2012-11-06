@@ -97,7 +97,7 @@ table img
 .LTA_left
 {
     float:left;
-    width:280px;
+    width:250px;
 }
 .LTA_left img
 {
@@ -124,6 +124,8 @@ table img
     border:1px solid #44A3A9;
     position:relative;
     left:30px;
+    background-color:White;
+    z-index:9999;
 }
 .LTA_login hr
 {
@@ -152,7 +154,11 @@ table img
 .LTA_right
 {
     float:left;
-    width:620px;
+    width:650px;
+}
+.LTA_right img
+{
+    float:right;
 }
 .LTA_Login_Sepert
 {
