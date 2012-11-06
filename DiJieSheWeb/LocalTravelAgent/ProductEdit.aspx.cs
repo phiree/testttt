@@ -16,7 +16,7 @@ public partial class LocalTravelAgent_ProductDetail : basepageDJS
     bool IsNew = false;
     DJ_Product Product;
     BLLDJProduct bllProduct = new BLLDJProduct();
-    BLLDJ_Route bllRoute = new BLLDJ_Route();
+    BLLDJRoute bllRoute = new BLLDJRoute();
     protected   void Page_Load(object sender, EventArgs e)
     {
       

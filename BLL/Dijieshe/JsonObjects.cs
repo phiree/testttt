@@ -28,6 +28,7 @@ namespace BLL
 
         BLL.BLLDJTourGroup bllGroup = new BLL.BLLDJTourGroup();
         BLL.BLLDJEnterprise bllEnter = new BLLDJEnterprise();
+        BLL.BLLTourGroupMember bllGroupMember = new BLLTourGroupMember();
         DJ_TourGroup group;
 
         public string Act4Member()
@@ -40,7 +41,7 @@ namespace BLL
             {
                 BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
             }
-            group = bllGroup.GetTourGroupById(groupId);
+            group = bllGroup.GetOne(groupId);
             if (action == "save")
             {
                 IList<Model.DJ_TourGroupMember> memberList = new List<Model.DJ_TourGroupMember>();
@@ -81,7 +82,7 @@ namespace BLL
             {
                 BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
             }
-            group = bllGroup.GetTourGroupById(groupId);
+            group = bllGroup.GetOne(groupId);
             if (action == "save")
             {
                 IList<Model.DJ_Route> memberList = new List<Model.DJ_Route>();
@@ -234,7 +235,7 @@ namespace BLL
             string memberId = ro[5];
             if (!string.IsNullOrEmpty(memberId))
             {
-                member = bllGroup.GetMemberById(Guid.Parse(memberId));
+                member = bllGroupMember.GetOne(Guid.Parse(memberId));
             }
             member.IdCardNo = ro[3];
             member.PhoneNum = ro[2];

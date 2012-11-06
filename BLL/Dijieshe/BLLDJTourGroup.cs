@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using IDAL;
 using DAL;
-
+using Model;
 namespace BLL
 {
-    public class BLLDJTourGroup : DalBase
+    public class BLLDJTourGroup : DalBase<Model.DJ_TourGroup>
     {
-        IDJTourGroup Idjtourgroup = new DALDJTourGroup();
+        DALDJTourGroup Idjtourgroup = new DALDJTourGroup();
 
         public IList<Model.DJ_TourGroup> GetTourGroupByAll()
         {
@@ -21,11 +20,7 @@ namespace BLL
             return Idjtourgroup.GetTourGroupByGuideIdcard(idcard);
         }
 
-        public Model.DJ_TourGroup GetTourGroupById(Guid id)
-        {
-            return Idjtourgroup.GetTourGroupById(id);
-        }
-
+        
         public IList<Model.DJ_Group_Worker> GetTourGroupByTEId(int id)
         {
             List<Model.DJ_TourGroup> listTg = Idjtourgroup.GetTourGroupByTEId(id).ToList();
@@ -88,10 +83,7 @@ namespace BLL
             session.Save(group);
             session.Flush();
         }
-        public Model.DJ_TourGroupMember GetMemberById(Guid id)
-        {
-            return session.Get<Model.DJ_TourGroupMember>(id);
-        }
+       
 
 
 

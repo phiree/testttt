@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using DAL;
 namespace BLL
 {
     public class BLLDJRoute
     {
 
-        IDAL.IDJRoute Idjroute = new DAL.DALDJ_Route();
+        DALDJ_Route Idjroute = new DAL.DALDJ_Route();
         /// <summary>
         /// 根据预报时间得到当前的团队
         /// </summary>
@@ -35,14 +35,26 @@ namespace BLL
 
         public Model.DJ_Route GetById(Guid routeId)
         {
-            return Idjroute.GetById(routeId);
+            return Idjroute.GetOne(routeId);
         }
 
         public IList<Model.DJ_Route> GetRouteByDayNoandGroupid(int dayno, Guid groupid ,int entid)
         {
             return Idjroute.GetRouteByDayNoandGroupid(dayno, groupid,entid);
         }
+        public void Save(Model.DJ_Route route)
+        {
+            Idjroute.Save(route);
+        }
+        public void SaveOrUpdate(Model.DJ_Route route)
+        {
+            Idjroute.SaveOrUpdate(route);
+        }
 
+        public void Delete(Model.DJ_Route route)
+        {
+            Idjroute.Delete(route);
+        }
         public IList<Model.DJ_Route> GetRouteByAllCondition(string groupname, string EntName, string BeginTime, string EndTime,int enterid)
         {
             IList<Model.DJ_Route> ListRoute= Idjroute.GetRouteByAllCondition(groupname, EntName, BeginTime, EndTime,enterid);
