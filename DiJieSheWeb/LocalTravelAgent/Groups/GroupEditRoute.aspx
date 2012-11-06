@@ -97,7 +97,7 @@
                      <div>
                         饭店:<asp:Repeater runat="server" ID="rptEditHotels">
                             <ItemTemplate>
-                                <asp:TextBox runat="server" Text='<%#Container.DataItem %>'  CssClass="EditScenicName" ID="tbxScenicName"></asp:TextBox></ItemTemplate>
+                                <asp:TextBox runat="server" Text='<%#Container.DataItem %>'  CssClass="EditScenicName" ID="tbxHotelName"></asp:TextBox></ItemTemplate>
                         </asp:Repeater>
                     </div>
                 </div>

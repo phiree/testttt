@@ -108,6 +108,7 @@ namespace BLL
 
             foreach (string entName in entNames)
             {
+                if (string.IsNullOrEmpty(entName)) continue;
                 DJ_TourEnterprise ent = bllEnt.GetEntByName(entName);
                 if (ent == null)
                 {

@@ -17,6 +17,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
     int HotelAmountOneDay = 5;
     protected void Page_Load(object sender, EventArgs e)
     {
+        InitDaysAmount();
         if (!IsPostBack)
         {
             LoadData();
@@ -28,7 +29,19 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         LoadTab1Data();
         LoadTab2Data();
     }
+    private void InitDaysAmount()
+    {
+        rblDayNo.Items.Clear();
+        for (int i = 1; i <= CurrentGroup.DaysAmount; i++)
+        {
 
+            ListItem li = new ListItem();
+            
+            if (i == 1) li.Selected = true;
+            li.Text = li.Value = i.ToString();
+            rblDayNo.Items.Add(li);
+        }
+    }
     private void LoadTab1Data()
     {
         IList<UIRoute> uiRoutes = RouteConverter.ConvertToUI(CurrentGroup.Routes);
@@ -68,19 +81,24 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         {
             pnlEditRoute.Visible = true;
             rblDayNo.Enabled = false;
-            int dayNo = (int)e.CommandArgument;
+            int dayNo = Convert.ToInt32(e.CommandArgument);
             IList<DJ_Route> routes = CurrentGroup.Routes.Where(x => x.DayNo == dayNo).ToList();
             IList<string> scenicNames = routes.Where(x => x.Enterprise.Type == EnterpriseType.景点).Select(x => x.Enterprise.Name).ToList();
             IList<string> hotelNames = routes.Where(x => x.Enterprise.Type == EnterpriseType.宾馆).Select(x => x.Enterprise.Name).ToList();
-
+            rblDayNo.SelectedValue = dayNo.ToString();
+            LoadEditRepeater(scenicNames, hotelNames);
+        }
+    }
+    private void LoadEditRepeater(IList<string> scenicNames,IList<string> hotelNames)
+    {
+    
             scenicNames = CommonLibrary.ListHelper.ExtendStringList(scenicNames, ScenicAmountOneDay);
             hotelNames = CommonLibrary.ListHelper.ExtendStringList(hotelNames, HotelAmountOneDay);
-
-            rptEditScenics.DataSource = scenicNames;
-            rptEditScenics.DataBind();
-            rptEditHotels.DataSource = hotelNames;
-            rptEditHotels.DataBind();
-        }
+        rptEditScenics.DataSource = scenicNames;
+        rptEditScenics.DataBind();
+        rptEditHotels.DataSource = hotelNames;
+        rptEditHotels.DataBind();
+        
     }
     protected void btnSaveRoute_Click(object sender, EventArgs e)
     {
@@ -105,7 +123,9 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
 
     protected void btnAddRoute_Click(object sender, EventArgs e)
     {
+        rblDayNo.Enabled = true;
         pnlEditRoute.Visible = true;
+        LoadEditRepeater(new List<string>(), new List<string>());
     }
 
     /// <summary>
@@ -121,19 +141,19 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         {
             sb += routes.Key.ToString();
             sb += ",";
-            foreach (var item in routes.Where(x => x.Description.StartsWith("景点")))
+            foreach (var item in routes.Where(x => x.Enterprise.Type== EnterpriseType.景点))
             {
                 sb += item.Enterprise.Name;
                 sb += "-";
             }
-            sb = routes.Where(x => x.Description.StartsWith("景点")).Count() > 0 ? sb.Substring(0, sb.Length - 1) : sb;
+            sb = routes.Where(x => x.Enterprise.Type == EnterpriseType.景点).Count() > 0 ? sb.Substring(0, sb.Length - 1) : sb;
             sb += ",";
-            foreach (var item in routes.Where(x => x.Description.StartsWith("住宿")))
+            foreach (var item in routes.Where(x => x.Enterprise.Type == EnterpriseType.宾馆))
             {
                 sb += item.Enterprise.Name;
                 sb += "-";
             }
-            sb = routes.Where(x => x.Description.StartsWith("住宿")).Count() > 0 ? sb.Substring(0, sb.Length - 1) : sb;
+            sb = routes.Where(x => x.Enterprise.Type == EnterpriseType.饭店).Count() > 0 ? sb.Substring(0, sb.Length - 1) : sb;
             sb += "\n";
         }
         tbxSimple.Text = sb.ToString();
