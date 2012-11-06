@@ -13,7 +13,7 @@
             $("[id$='txtBeginTime']").datepicker();
             $("[id$='txtEndTime']").datepicker();
             $("#myTable").tablesorter({ headers: { 5: { sorter: false}} });
-            $(".IndexTable").orderIndex('1');
+            $(".IndexTable").orderIndex();
             
         });
 

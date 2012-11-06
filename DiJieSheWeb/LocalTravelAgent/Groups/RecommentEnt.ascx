@@ -49,7 +49,7 @@
     </ItemTemplate>
     <FooterTemplate>
     <tr>
-    <td colspan="3"><asp:Button runat="server" ID="btnExport"  Text="导出为Excel表格"/></td>
+    <td colspan="3"><asp:Button runat="server" ID="btnExport"  Text="导出为Excel表格" OnClick="btnExport_Click"/></td>
     </tr>
         </table></FooterTemplate>
 </asp:Repeater>

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using BLL;
 using Model;
 using System.Web.UI.HtmlControls;
+using System.Data;
 public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserControl
 {
     public string AreaCode { get; set; }
@@ -14,7 +15,7 @@ public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserCo
     BLLDJ_GovManageDepartment BllGov = new BLLDJ_GovManageDepartment();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
+        if (!IsPostBack)
         {
             BindRecommendEnt();
         }
@@ -45,5 +46,22 @@ public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserCo
             HtmlAnchor redirtLink = e.Item.FindControl("redirtLink") as HtmlAnchor;
             redirtLink.HRef = redirtRecEntList + "?dptid=" + Gov.Id;
         }
+    }
+    protected void btnExport_Click(object sender, EventArgs e)
+    {
+        var collection = BllGov.GetGovDptByName("");
+        DataTable dt=new DataTable();
+        DataColumn dc = new DataColumn("col1");
+        dt.Columns.Add(dc);
+        dc = new DataColumn("col2");
+        dt.Columns.Add(dc);
+        foreach (var item in collection)
+        {
+            DataRow dr=dt.NewRow();
+            dr[0] = item.Name;
+            dr[1] = "奖励政策";
+            dt.Rows.Add(dr);
+        }
+        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "名称", "奖励政策" });
     }
 }

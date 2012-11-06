@@ -27,7 +27,7 @@
         <hr />
         <table class="tablesorter IndexTable">
         </table>
-        <asp:Repeater ID="rptDrivers" runat="server" >
+        <asp:Repeater ID="rptDrivers" runat="server">
             <HeaderTemplate>
                 <table id="tbMain" class="tablesorter InfoTable">
                     <thead>

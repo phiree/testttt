@@ -5,18 +5,34 @@
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
-    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+    <link href="../Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("[id$='txt_yijiedai']").datepicker();
             $("[id$='txt_yijiedai2']").datepicker();
             $("[id$='txt_yijiedai3']").datepicker();
             $("#tabs").tabs();
-            $("#tbMain").tablesorter();
+            $("#tbGov1").tablesorter();
+            $("#tbGov2").tablesorter();
+            $("#tbGov3").tablesorter();
             $(".IndexTable").orderIndex('2');
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("*[id$=btn_yijiedai]").click(function () {
+                $.cookie("TABS", "tabs-1");
+            });
+            $("*[id$=btn_yijiedai2]").click(function () {
+                $.cookie("TABS", "tabs-2");
+            });
+            $("*[id$=btn_yijiedai3]").click(function () {
+                $.cookie("TABS", "tabs-3");
+            });
         });
     </script>
 </asp:Content>
@@ -37,59 +53,9 @@
                     <asp:Button ID="btn_yijiedai" Text="查询" runat="server" OnClick="btn_yijiedai_Click"
                         CssClass="btn" />
                 </div>
-                <%--<table border="1" cellpadding="1" cellspacing="1">
-            <thead>
-                <tr>
-                    <td rowspan="2">
-                        序号
-                    </td>
-                    <td rowspan="2">
-                        地接社名称
-                    </td>
-                    <td colspan="3">
-                        总计
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        总人数
-                    </td>
-                    <td>
-                        住宿人天数
-                    </td>
-                    <td>
-                        游览人数
-                    </td>
-                </tr>
-            </thead>
-             <tbody>
-                <asp:Repeater ID="rptGov1" runat="server">
-                    <ItemTemplate>
-                        <tr>
-                            <td>
-                                <%=xuhao_1++ %>
-                            </td>
-                            <td>
-                                <a href='/TourManagerDpt/StaticsDetail.aspx?=<%#Eval("Name")%>'>
-                                    <%#Eval("Name")%></a>
-                            </td>
-                            <td>
-                                <%#(int)Eval("AdultsAmount")+(int)Eval("ChildrenAmount")%>
-                            </td>
-                            <td>
-                                <%#Eval("LiveDays")%>
-                            </td>
-                            <td>
-                                <%#Eval("Playnums")%>
-                            </td>
-                        </tr>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </tbody>
-        </table>--%>
                 <table class="tablesorter IndexTable">
                 </table>
-                <table id="tbMain" class="tablesorter InfoTable">
+                <table id="tbGov1" class="tablesorter InfoTable">
                     <thead>
                         <tr>
                             <th rowspan="2">
@@ -152,29 +118,31 @@
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
-                        <tfoot>
-                            <tr>
-                                <td>
-                                    <%=m_total%>
-                                </td>
-                                <td>
-                                    <%=m_hotel%>
-                                </td>
-                                <td>
-                                    <%=m_play%>
-                                </td>
-                                <td>
-                                    <%=y_total%>
-                                </td>
-                                <td>
-                                    <%=y_hotel%>
-                                </td>
-                                <td>
-                                    <%=y_play%>
-                                </td>
-                            </tr>
-                        </tfoot>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <%=m_total%>
+                            </td>
+                            <td>
+                                <%=m_hotel%>
+                            </td>
+                            <td>
+                                <%=m_play%>
+                            </td>
+                            <td>
+                                <%=y_total%>
+                            </td>
+                            <td>
+                                <%=y_hotel%>
+                            </td>
+                            <td>
+                                <%=y_play%>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
                 <hr />
             </div>
@@ -188,30 +156,24 @@
                         CssClass="btn" /></div>
                 <asp:Repeater ID="rptGov2" runat="server">
                     <HeaderTemplate>
-                        <table border="1" cellpadding="1" cellspacing="1">
+                        <table id="tbGov2" class="tablesorter InfoTable">
                             <thead>
                                 <tr>
-                                    <td>
-                                        序号
-                                    </td>
-                                    <td>
+                                    <th>
                                         地接社名称
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         拟接待人数
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         实际接待人数
-                                    </td>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td>
-                                <%=xuhao_2++%>
-                            </td>
                             <td>
                                 <a href='/TourManagerDpt/StaticsDetail.aspx?=<%#Eval("Name")%>'>
                                     <%#Eval("Name")%></a>
@@ -240,19 +202,16 @@
                         CssClass="btn" /></div>
                 <asp:Repeater ID="rptGov3" runat="server">
                     <HeaderTemplate>
-                        <table border="1" cellpadding="1" cellspacing="1">
+                        <table id="tbGov3" class="tablesorter InfoTable">
                             <thead>
                                 <tr>
-                                    <td>
-                                        序号
-                                    </td>
-                                    <td>
+                                    <th>
                                         地接社名称
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         团队名称
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         时间
                                     </td>
                                     <td>
@@ -264,9 +223,6 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td>
-                                <%=xuhao_3++ %>
-                            </td>
                             <td>
                                 <%#Eval("Name")%></a>
                             </td>
