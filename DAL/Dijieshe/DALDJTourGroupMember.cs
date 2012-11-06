@@ -9,6 +9,9 @@ namespace DAL
 {
     public class DALDJTourGroupMember : DalBase<Model.DJ_TourGroupMember>
     {
-
+        public void othermethond()
+        { 
+        
+        }
     }
 }

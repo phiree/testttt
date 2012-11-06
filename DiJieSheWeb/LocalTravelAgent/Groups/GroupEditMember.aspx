@@ -2,8 +2,11 @@
     CodeFile="GroupEditMember.aspx.cs" Inherits="LocalTravelAgent_Groups_GroupEditMember" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-   
-   
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"
+        type="text/javascript"></script>
+    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+        rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
         $(function () {
 
@@ -72,7 +75,6 @@
                         </td>
                          <td>
                          <asp:Button runat="server" ID="btnModifyMember" CommandArgument='<%#Eval("Id") %>' CommandName="Edit"  Text="修改"/>
-                          <a href='/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid=<%=CurrentGroup.Id%>&memberid=<%#Eval("Id")%>'">修改</a>
                         </td>
                     </tr>
                 </ItemTemplate>
