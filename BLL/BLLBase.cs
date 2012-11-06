@@ -7,14 +7,22 @@ namespace BLL
 {
    public class BLLBase<T>
     {
-       //public DAL.DalBase<T> dalBase
-       // {
-        
-       //}
+       DAL.DalBase<T> dalBase;
+       public DAL.DalBase<T> DalBase
+        {
+            get {
+                if (dalBase == null)
+                    dalBase = new DAL.DalBase<T>();
+                return dalBase;
+            }
+            set {
+                dalBase = value;
+            } 
+       }
 
-       //public void Save(T t)
-       //{ 
-        
-       //}
+       public void Save(T t)
+       {
+           DalBase.Save(t);
+       }
     }
 }
