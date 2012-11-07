@@ -36,6 +36,7 @@
                             <a runat="server" id="changedetails" href="">修改资料</a>
                             <a runat="server" id="changepwd" href="/Login.aspx">修改密码</a>
                             <asp:LoginStatus  runat="server" LogoutPageUrl="/Login.aspx" />
+                            <a href="">帮助</a>
                         </div>
                     </div>
                     <h2>浙江旅游管理统计系统</h2>
@@ -88,14 +89,18 @@
                         </ul>--%>
                         <asp:ContentPlaceHolder ID="cphFunction" runat="server">
                         </asp:ContentPlaceHolder>
-                        <div class="TechSupport">
+                        <%--<div class="TechSupport">
                             <p>技术支持</p>
                             <span><img src="/theme/default/image/Func_Icon.gif" />Tel:0571-86933134</span>
                             <span>&nbsp;&nbsp;&nbsp;&nbsp;Mo:13868130983</span>
                             <span><img src="/theme/default/image/Func_Icon.gif" />QQ:364819046</span>
                             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;858580604</span>
                             <span><img src="/theme/default/image/Func_Icon.gif" />E-Mail:lzq@tourol.cn</span>
+                        </div>--%>
+                        <div class="TechSupport">
+                            <img width="100%" src="/image/adbg.jpg" />
                         </div>
+
                     </div>
                     <div class="pageMid_right">
                         <asp:ContentPlaceHolder id="main" runat="server">

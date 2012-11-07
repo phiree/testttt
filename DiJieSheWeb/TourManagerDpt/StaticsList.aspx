@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <link href="../Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
@@ -11,18 +12,29 @@
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
+
+
+
             $("[id$='txt_yijiedai']").datepicker();
             $("[id$='txt_yijiedai2']").datepicker();
             $("[id$='txt_yijiedai3']").datepicker();
             $("#tabs").tabs();
+            $("#tabs").bind('tabsselect', function (event, ui) {
+                $.cookie("tabIndex", ui.index);
+//                $("#tbMain").tablesorter();
+//                $(".IndexTable").orderIndex();
+            });
+            if ($.cookie("tabIndex") != null) {
+                $("#tabs").tabs('select', parseInt($.cookie("tabIndex")));
+            }
             $("#tbMain").tablesorter();
-            $(".IndexTable").orderIndex('2');
+            $(".IndexTable").orderIndex();
         });
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
-    <div class="detaillist">
-        <div id="tabs">
+    <div class="detaillist" style="width:100%;margin:0px !important;padding:0px">
+        <div id="tabs" class="tabs" style="margin:0px;padding:0px">
             <ul>
                 <li><a href="#tabs-1">已接待情况</a></li>
                 <li><a href="#tabs-2">旅游企业接待情况明细表</a></li>
@@ -154,6 +166,7 @@
                         </asp:Repeater>
                         <tfoot>
                             <tr>
+                                <td></td>
                                 <td>
                                     <%=m_total%>
                                 </td>

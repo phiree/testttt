@@ -8,7 +8,7 @@
         信息维护
     </div>
     <div class="detaillist">
-        <table border="0" cellpadding="0" cellspacing="0">
+        <table border="0" cellpadding="0" cellspacing="0" class="comTable">
             <tr>
                 <td>
                     名称:

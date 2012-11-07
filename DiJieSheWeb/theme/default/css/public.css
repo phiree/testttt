@@ -32,7 +32,17 @@ h5
     padding-right:5px;
     padding-top:5px;
 }
-
+.comTable
+{
+    width:100%;
+    border-top:1px solid #CDCDCD;
+    border-left:1px solid #CDCDCD;
+}
+.comTable tr td
+{
+    border-right:1px solid #CDCDCD;
+    border-bottom:1px solid #CDCDCD;
+}
 
 .detailtitle
 {
@@ -55,6 +65,17 @@ table tr td
     margin-left:-1px !important;
     float:left;
     overflow:hidden;
+}
+.IndexTable tbody td,.IndexTable tfoot td
+{
+    line-height:15px !important;
+}
+
+.tabs ul li
+{
+    font-size:13px !important;
+    color:#B1B1B1 !important;
+    font-weight:bold !important;
 }
 .IndexTable
 {
