@@ -1,30 +1,34 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true" CodeFile="TEDetailStatistics.aspx.cs" Inherits="LocalTravelAgent_TEDetailStatistics" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true"
+    CodeFile="TEDetailStatistics.aspx.cs" Inherits="LocalTravelAgent_TEDetailStatistics" %>
+
 <%@ MasterType VirtualPath="~/LocalTravelAgent/LTA.master" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
         旅游企业详细信息
     </div>
     <div class="searchdiv">
-        旅游企业的名称:<span runat="server" id="ETName" style=" font-size:14px;font-weight:bold"></span>
+        旅游企业的名称:<span runat="server" id="ETName" style="font-size: 14px; font-weight: bold"></span>
     </div>
     <div class="detaillist">
         <div class="detailtitle">
             详细列表
         </div>
-        <asp:Repeater ID="rptETDetail" runat="server" 
-            onitemdatabound="rptETDetail_ItemDataBound">
+        <asp:Repeater ID="rptETDetail" runat="server" OnItemDataBound="rptETDetail_ItemDataBound">
             <HeaderTemplate>
-                <table border="0" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td>
-                            日期
-                        </td>
-                        <td>
-                            游玩人数或住宿人天数
-                        </td>
-                    </tr>
+                <table border="0" cellpadding="0" cellspacing="0" class="tablesorter" style="margin-top:3px;width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                日期
+                            </th>
+                            <th>
+                                游玩人数或住宿人天数
+                            </th>
+                        </tr>
+                    </thead>
             </HeaderTemplate>
             <ItemTemplate>
                 <asp:Repeater ID="rptETMonthDetail" runat="server">
@@ -61,4 +65,3 @@
         </asp:Repeater>
     </div>
 </asp:Content>
-
