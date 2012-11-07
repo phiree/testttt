@@ -34,13 +34,11 @@ namespace Model
         public virtual DateTime BeginDate { get; set; }
 
 
-        private DateTime endDate;
+        
         /// <summary>
         /// 结束日期
         /// </summary>
-        public virtual DateTime EndDate { get { return BeginDate.AddDays(DaysAmount); }
-            set { endDate = value; }
-        }
+        public virtual DateTime EndDate { get;set; }
         /// <summary>
         /// 总天数
         /// </summary>

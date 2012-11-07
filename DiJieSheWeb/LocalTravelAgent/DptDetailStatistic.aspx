@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LocalTravelAgent/LTA.master" AutoEventWireup="true" CodeFile="DptDetailStatistic.aspx.cs" Inherits="LocalTravelAgent_DptDetailStatistic" %>
 <%@ MasterType VirtualPath="~/LocalTravelAgent/LTA.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
     <div class="detail_titlebg">
@@ -16,7 +17,7 @@
         <asp:Repeater ID="rptETDetail" runat="server" 
             onitemdatabound="rptETDetail_ItemDataBound">
             <HeaderTemplate>
-                <table border="0" cellpadding="0" cellspacing="0">
+                <table border="0" cellpadding="0" cellspacing="0" class="tablesorter" style="margin-top:3px">
                     <tr>
                         <td>
                             日期

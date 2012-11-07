@@ -85,6 +85,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         Group.Name = tbxName.Text;
         Group.BeginDate = Convert.ToDateTime(tbxDateBegin.Text);
         Group.DaysAmount = Convert.ToInt32(tbxDateAmount.Text);
+        Group.EndDate = Group.BeginDate.AddDays(Group.DaysAmount);
         Group.DJ_DijiesheInfo = CurrentDJS;
         ///司机和导游
         foreach (ListItem item in cbxGuides.Items)
