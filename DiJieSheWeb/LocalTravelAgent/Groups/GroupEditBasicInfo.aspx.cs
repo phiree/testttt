@@ -23,7 +23,6 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         {
             IsNew = true;
             Group = new DJ_TourGroup();
-            pnlLinks.Visible = false;
 
         }
         else
@@ -48,6 +47,10 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
 
     private void LoadForm()
     {
+        //绑定链接
+        a_link_1.HRef = "/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx?groupid=" + Request["groupid"];
+        a_link_2.HRef = "/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid=" + Request["groupid"];
+        a_link_3.HRef = "/LocalTravelAgent/Groups/GroupEditRoute.aspx?groupid=" + Request["groupid"];
         tbxName.Text = Group.Name;
         tbxDateBegin.Text = Group.BeginDate.ToString("yyyy-MM-dd");
         tbxDateAmount.Text = Group.DaysAmount.ToString();

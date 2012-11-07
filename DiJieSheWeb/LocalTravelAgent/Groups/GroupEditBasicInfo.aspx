@@ -9,13 +9,18 @@
     <script language="javascript" type="text/javascript">
         $(function () {
             $("#<%=tbxDateBegin.ClientID %>").datepicker();
-          
         });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <div>
-        <table>
+    <div class="detail_titlebg">
+        新增团队
+    </div>
+    <div class="navstate">
+        <a runat="server" id="a_link_1" href="/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx"  class="selectstate">修改基本信息</a>一<a runat="server" id="a_link_2" href="/LocalTravelAgent/Groups/GroupEditMember.aspx">修改成员信息</a>一<a runat="server" id="a_link_3" href="/LocalTravelAgent/Groups/GroupEditRoute.aspx">修改行程信息</a>
+    </div>
+    <div class="detaillist">
+        <table class="comTable">
             <tr>
                 <td>
                     团队名称
@@ -61,11 +66,11 @@
             </tr>
              
         </table>
-        <asp:Button runat="server" ID="btnSaveBasicInfo" OnClick="btnBasicInfo_Click" Text="保存" />
-        <asp:Panel runat="server" ID="pnlLinks">
+        <asp:Button runat="server" ID="btnSaveBasicInfo" OnClick="btnBasicInfo_Click" Text="保存" CssClass="btn" style="margin-left:350px" />
+        <%--<asp:Panel runat="server" ID="pnlLinks">
             <a href="GroupEditMember.aspx?groupid=<%=groupId %>">编辑成员信息</a>
              <a href="GroupEditRoute.aspx?groupid=<%=groupId %>">
                 编辑行程信息</a>
-        </asp:Panel>
+        </asp:Panel>--%>
     </div>
 </asp:Content>

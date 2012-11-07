@@ -4,8 +4,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
-    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+    <link href="/Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
+    <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
         $(function () {
 
@@ -17,12 +20,21 @@
                     $.cookie(cookieName, ui.newTab.index(), { expires: 365 });
                 }
             });
+            $(".tablesorter").tablesorter();
+            $(".IndexTable").orderIndex();
         });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <br />
-    <h3>
+    <div class="detail_titlebg">
+        编辑人员
+    </div>
+    <div class="navstate">
+        <a runat="server" id="a_link_1" href="/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx">修改基本信息</a>一<a runat="server" id="a_link_2" href="/LocalTravelAgent/Groups/GroupEditMember.aspx" class="selectstate">修改成员信息</a>一<a runat="server" id="a_link_3" href="/LocalTravelAgent/Groups/GroupEditRoute.aspx">修改行程信息</a>
+    </div>
+    <div style="clear:both">
+    </div>
+    <h3 style="margin-left:15px;">
         <b>
             <%=CurrentGroup.Name %>游客列表</b></h3>
     <div class="box">
@@ -34,10 +46,12 @@
             <li><a href="#tabs-3">Excel导入</a></li>
         </ul>
         <div id="tabs-1">
-           
             <asp:Repeater runat="server" ID="rptMembers" OnItemCommand="rptMembers_ItemCommand">
                 <HeaderTemplate>
-                    <table>
+                    <table class="tablesorter IndexTable" style="margin:0px">
+        </table>
+                    <table class="tablesorter InfoTable" style="width:650px;margin:0px;margin-top:2px">
+                        <thead>
                         <tr>
                             <td>
                                 类型
@@ -52,8 +66,11 @@
                                 联系电话
                             </td>
                             <td>
+                                修改
                             </td>
                         </tr>
+                        </thead>
+                        <tbody>
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
@@ -76,10 +93,10 @@
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
-                    </table>
+                    </tbody></table>
                 </FooterTemplate>
             </asp:Repeater>
-            <asp:Button runat="server" ID="btnAddMember" OnClick="btnAddMember_Click" Text="增加成员" />
+            <asp:Button runat="server" ID="btnAddMember" OnClick="btnAddMember_Click" Text="增加成员" CssClass="btn" style="margin-top:15px" />
             <asp:Panel runat="server" ID="pnlMemberEdit" Visible="false">
                 <fieldset>
                     <legend></legend>
@@ -151,9 +168,9 @@
                     <li>儿童,李晓彤</li>
                 </ul>
             </p>
-            <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText"></asp:TextBox>
+            <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText" style="width:97%"></asp:TextBox>
             <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
-                Text="保存" />
+                Text="保存" CssClass="btn" />
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>
         <div id="tabs-3">
@@ -162,16 +179,14 @@
             <p>
                 <a href="">Excel模板文件下载</a>
             </p>
-            <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxExcel" CssClass="tbMemberSingleText"></asp:TextBox>
+            <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxExcel" CssClass="tbMemberSingleText" style="width:97%"></asp:TextBox>
             <p>
                 <asp:FileUpload runat="server" ID="fuMemberExcel" />
-                <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" />
+                <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" CssClass="btn" />
                 <asp:Label ID="Label1" runat="server" />
-                <asp:Button runat="server" ID="Button1" OnClick="btnExcel_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
+                <asp:Button runat="server" ID="Button1" OnClick="btnExcel_Click" CssClass="btn" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
                     Text="保存" />
             </p>
         </div>
     </div>
-    <a style="display: block; padding: 3px; margin: 10px; background-color: #ddd; font-size: larger;"
-        href="GroupEditRoute.aspx?groupid=<%=CurrentGroup.Id%>">去编辑行程信息</a>
 </asp:Content>

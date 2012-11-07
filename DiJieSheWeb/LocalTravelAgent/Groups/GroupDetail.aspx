@@ -96,18 +96,18 @@
             基本信息
         </div>
         <!-- 基本信息begin -->
-        <table border="0" cellpadding="0" cellspacing="0">
+        <table border="0" cellpadding="0" cellspacing="0" class="comTable">
             <tr>
                 <td style="width: 15%">
                     团队编号：
                 </td>
-                <td>
+                <td style="width: 30%">
                     <asp:Label ID="lblGroupno" runat="server" />
                 </td>
                 <td style="width: 15%">
                     团队名称：
                 </td>
-                <td>
+                <td style="width: 30%">
                     <asp:Label ID="lblName" runat="server" />
                 </td>
             </tr>
@@ -183,7 +183,7 @@
         </div>
         <asp:Repeater ID="rptWorkers" runat="server">
             <HeaderTemplate>
-                <table class="tableMemberid" id="tbMember">
+                <table class="tableMemberid comTable" id="tbMember">
                     <thead>
                         <tr>
                             <td>
@@ -261,7 +261,7 @@
         </div>
         <asp:Repeater ID="rptRoute" runat="server" OnItemDataBound="rptRoute_ItemDataBound">
             <HeaderTemplate>
-                <table id="tbRoute">
+                <table id="tbRoute" class="comTable">
                     <thead>
                         <tr>
                             <td>

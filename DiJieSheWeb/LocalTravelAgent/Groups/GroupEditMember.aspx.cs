@@ -47,6 +47,9 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
 
     private void LoadData()
     {
+        a_link_1.HRef = "/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx?groupid=" + Request["groupid"];
+        a_link_2.HRef = "/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid=" + Request["groupid"];
+        a_link_3.HRef = "/LocalTravelAgent/Groups/GroupEditRoute.aspx?groupid=" + Request["groupid"];
         BuildJsonData();
         LoadSimpleData();
         LoadMemberList();

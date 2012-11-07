@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
-    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+    <link href="/Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
         $(function () {
@@ -21,8 +21,18 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <div>
-        <%=CurrentGroup.Name %>行程信息录入</div>
+    <div class="detail_titlebg">
+        修改行程信息
+    </div>
+    <div class="navstate">
+        <a runat="server" id="a_link_1" href="/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx">修改基本信息</a>一<a runat="server" id="a_link_2" href="/LocalTravelAgent/Groups/GroupEditMember.aspx" >修改成员信息</a>一<a runat="server" id="a_link_3" href="/LocalTravelAgent/Groups/GroupEditRoute.aspx" class="selectstate">修改行程信息</a>
+    </div>
+    <div style="clear:both">
+        </div>
+
+    <h3 style="margin-left:15px;">
+        <b>
+            <%=CurrentGroup.Name %>行程信息录入</b></h3>
     <div class="box">
         提供两种录入线路的方式,您可以根据需要,选择最适合一种方式.</div>
     <div id="tabs">

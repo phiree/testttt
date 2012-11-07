@@ -14,6 +14,9 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+    <div class="detail_titlebg">
+        导游列表
+    </div>
     <div class="detaillist">
         <div class="detailtitle">
             司机管理

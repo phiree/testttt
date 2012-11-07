@@ -13,18 +13,19 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+    <div class="detail_titlebg">
+        司机列表
+    </div>
     <div class="detaillist">
         <div class="detailtitle">
             司机管理
         </div>
-        <br />
         <div class="searchdiv">
             姓名:<asp:TextBox ID="txtName" runat="server" />
             身份证号:<asp:TextBox ID="txtIdcardid" runat="server" />
             驾驶证号:<asp:TextBox ID="txtDrivercardid" runat="server" />
             <asp:Button ID="btnSearch" Text="查询" runat="server" CssClass="btn" OnClick="btnSearch_Click" />
         </div>
-        <hr />
         <table class="tablesorter IndexTable">
         </table>
         <asp:Repeater ID="rptDrivers" runat="server">

@@ -53,10 +53,11 @@
     <div class="detail_titlebg">
         团队列表
     </div>
-    <div>
-    <a href="GroupEditBasicInfo.aspx">新建团队</a> <a href="">从Excel导入新团队</a>
-    </div>
+    <div style="clear:both"></div>
     <div class="detaillist">
+        <div class="actiondiv">
+            团队操作:<a href="GroupEditBasicInfo.aspx">新建团队</a> <a href="">从Excel导入新团队</a>
+        </div>
         <div class="detailtitle">
             团队列表 <span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
             <span class="colorWord">进行中的行程</span><span class="colorpicker" id="colorpicker2"></span>
