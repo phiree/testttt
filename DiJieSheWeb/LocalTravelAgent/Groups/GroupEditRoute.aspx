@@ -22,7 +22,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div>
-        <%=CurrentGroup.Name %>行程信息录入</div>
+        <%=CurrentGroup.Name %>行程信息录入
+    </div>
+    <div style="background-color: Green">
+        <asp:Label runat="server" ID="lblMsg_SaveRoute"></asp:Label></div>
     <div class="box">
         提供两种录入线路的方式,您可以根据需要,选择最适合一种方式.</div>
     <div id="tabs">
@@ -74,6 +77,8 @@
                         <td>
                             <asp:Button runat="server" ID="btnModifyRoute" CommandArgument='<%#Eval("DayNo") %>'
                                 CommandName="Edit" Text="修改" />
+                            <asp:Button runat="server" ID="Button1" CommandArgument='<%#Eval("DayNo") %>' CommandName="Delete"
+                                Text="删除" OnClientClick="javascript:return confirm('确定要删除这一天的行程么?');" />
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -91,18 +96,19 @@
                     <div>
                         景点:<asp:Repeater runat="server" ID="rptEditScenics">
                             <ItemTemplate>
-                                <asp:TextBox runat="server" Text='<%#Container.DataItem %>'  CssClass="EditScenicName" ID="tbxScenicName"></asp:TextBox></ItemTemplate>
+                                <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditScenicName"
+                                    ID="tbxScenicName"></asp:TextBox></ItemTemplate>
                         </asp:Repeater>
                     </div>
-                     <div>
+                    <div>
                         饭店:<asp:Repeater runat="server" ID="rptEditHotels">
                             <ItemTemplate>
-                                <asp:TextBox runat="server" Text='<%#Container.DataItem %>'  CssClass="EditScenicName" ID="tbxHotelName"></asp:TextBox></ItemTemplate>
+                                <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditScenicName"
+                                    ID="tbxHotelName"></asp:TextBox></ItemTemplate>
                         </asp:Repeater>
                     </div>
                 </div>
-                <asp:Button runat="server" ID="btnSaveRoute"  OnClick="btnSaveRoute_Click" Text="保存"/>
-                <asp:Label runat="server" ID="lblMsg_SaveRoute"></asp:Label>
+                <asp:Button runat="server" ID="btnSaveRoute" OnClick="btnSaveRoute_Click" Text="保存" />
             </asp:Panel>
         </div>
         <div id="tabs-2">
@@ -110,11 +116,19 @@
                 将行程信息按照一定的格式输入,一次性导入系统
             </p>
             <p>
-                格式要求: 1)单个游客的资料用逗号分隔,按序依次为:天次,景区,住宿(多个景区用"-"分割).如果没有对应信息,请保留逗号. 不同天数用回车分隔. 比如:<br />
-                1,西栅景区,乌镇客栈<br />
-                2,鲁迅故里-兰亭-沈园,如家快捷酒店<br />
-                3,船游西湖-花港观鱼-六合塔-龙井问茶-苏提春晓,如家快捷酒店<br />
-                4,飞来峰,<br />
+                格式要求:
+                <ol>
+                    <li>每一行表示一天的行程</li>
+                    <li>每一行包含"(景点列表),(住宿点列表)",用逗号分割.</li>
+                    <li>景点之间用斜线符(/)分开 ,住宿点之间用斜线符(/)分开</li>
+                    <li>如果没有景区或者住宿点,则不需填写.</li>
+                </ol>
+                例如:
+                <ul>
+                    <li>西栅景区,乌镇客栈</li>
+                    <li>船游西湖/花港观鱼/六合塔/龙井问茶/苏提春晓,如家快捷酒店/乌镇客栈</li>
+                    <li>飞来峰</li>
+                </ul>
             </p>
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText"></asp:TextBox>
             <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的行程信息将清除,是否继续?');"

@@ -96,31 +96,83 @@ namespace BLL
             return ListWroute;
         }
 
-        public void SaveFromNameList(Model.DJ_TourGroup CurrentGroup, int dayNo, List<string> entNames,out string errMsg)
+        /// <summary>
+        /// 根据list 保存route.
+        /// </summary>
+        /// <param name="group"></param>
+        /// <param name="dayNo"></param>
+        /// <param name="entNames"></param>
+        /// <param name="errMsg"></param>
+        public void SaveFromNameList(Model.DJ_TourGroup group, int dayNo, List<string> entNames,out string errMsg)
+        {
+   
+            IList<DJ_Route> otherDayRoutes= group.Routes.Where(x => x.DayNo != dayNo).ToList();
+
+            group.Routes = otherDayRoutes;
+            
+            IList<DJ_Route> routes = CreateRouteFromNameList(dayNo, entNames, out errMsg);
+         
+            foreach (DJ_Route route in routes)
+            {
+                group.Routes.Add(route);
+          
+            }
+        }
+
+        public IList<DJ_Route> CreateRouteFromMultiLineString(string multiLineString, out string errMsg)
         {
             errMsg = string.Empty;
-
-            foreach (DJ_Route exsitRoute in CurrentGroup.Routes) {
-
-                Delete(exsitRoute);
+            IList<DJ_Route> allRoutes = new List<DJ_Route>();
+            string[] arrSingleLine = multiLineString.Split(Environment.NewLine.ToCharArray()).Where(x=>!string.IsNullOrWhiteSpace(x)).ToArray();
+            for (int i = 1; i <= arrSingleLine.Length; i++)
+            {
+                int dayNo = i;
+                List<string> entNames = arrSingleLine[i - 1].Split(new char[] {',','，'}).Where(x=>!string.IsNullOrWhiteSpace(x)).ToList();
+                IList<DJ_Route> dayRoutes = CreateRouteFromNameList(dayNo, entNames, out errMsg);
+               allRoutes= allRoutes.Concat(dayRoutes).ToList();
             }
-            CurrentGroup.Routes.Clear();
+            return allRoutes;
 
+
+        }
+
+        public string GenerateFormatingStringForRoutes(IList<DJ_Route> allroutes)
+        {
+            string sb = string.Empty;
+            foreach (var routes in allroutes.OrderBy(x => x.DayNo).GroupBy(x => x.DayNo))
+            {
+                foreach (var item in routes)
+                {
+                    sb += item.Enterprise.Name+",";
+                    
+                }
+               sb= sb.TrimEnd(new char[]{',', '，'});
+                sb += Environment.NewLine;
+            }
+            return sb;
+        }
+
+        public IList<DJ_Route> CreateRouteFromNameList(int dayNo, List<string> entNames, out string errMsg)
+        {
+            IList<DJ_Route> routes = new List<DJ_Route>();
+            errMsg = string.Empty;
             foreach (string entName in entNames)
             {
                 if (string.IsNullOrEmpty(entName)) continue;
                 DJ_TourEnterprise ent = bllEnt.GetEntByName(entName);
                 if (ent == null)
                 {
-                    errMsg = "企业名称有误:" + entName+Environment.NewLine;
+                    errMsg = "企业名称有误:" + entName + Environment.NewLine;
                     continue;
                 }
                 DJ_Route newRoute = new DJ_Route();
                 newRoute.DayNo = dayNo;
-                newRoute.DJ_TourGroup = CurrentGroup;
+              
                 newRoute.Enterprise = ent;
-                Save(newRoute);
+
+                routes.Add(newRoute);
             }
+            return routes;
         }
     }
 }

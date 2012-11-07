@@ -111,7 +111,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         tbxName.Text = string.Empty;
         tbxPhone.Text = string.Empty;
         tbxSpecialCardNo.Text = string.Empty;
-        rblMemberType.SelectedValue = " 1";
+        rblMemberType.SelectedValue = "1";
 
     }
 

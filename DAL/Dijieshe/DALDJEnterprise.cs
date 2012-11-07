@@ -114,18 +114,19 @@ namespace DAL
             return query.List<Model.DJ_TourEnterprise>();
         }
         DALArea dalArea = new DALArea();
-       /// <summary>
-       /// 各种条件组合成查询条件
-       /// </summary>
-       /// <param name="govArea">辖区 1:构造"属于此辖区"查询条件 2: 通过area的行政等级(县,市,省)来判断奖励类型是哪一种.</param>
-       /// <param name="type"></param>
-       /// <param name="rewardType"></param>
-       /// <param name="needPaging"></param>
-       /// <param name="pageIndex"></param>
-       /// <param name="pageSize"></param>
-       /// <param name="totalRecord"></param>
-       /// <returns></returns>
-        public IList<Model.DJ_TourEnterprise> GetListPaged(string nameLike, string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType,
+      /// <summary>
+      /// 
+      /// </summary>
+      /// <param name="name">名称</param>
+      /// <param name="isNameLike">是否根据名称模糊查询</param>
+      /// <param name="areacode"></param>
+      /// <param name="type"></param>
+      /// <param name="rewardType"></param>
+      /// <param name="pageIndex"></param>
+      /// <param name="pageSize"></param>
+      /// <param name="totalRecord"></param>
+      /// <returns></returns>
+        public IList<Model.DJ_TourEnterprise> GetListPaged(string name,bool isNameLike, string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType,
             int pageIndex,int pageSize,out int totalRecord
             )
         {
@@ -140,9 +141,16 @@ namespace DAL
                 sql += " and  D.Area.Id in (" + areaIds + ")";
             }
 
-            if (!string.IsNullOrEmpty(nameLike))
+            if (!string.IsNullOrEmpty(name))
             {
-                sql += " and D.Name like '%"+nameLike+"%'";
+                if (isNameLike)
+                {
+                    sql += " and D.Name like '%" + name + "%'";
+                }
+                else
+                {
+                    sql += " and D.Name = '" + name + "'";
+                }
             }
 
             if (type.HasValue)
@@ -206,16 +214,22 @@ namespace DAL
         }
         public IList<Model.DJ_TourEnterprise> GetList(string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType)
         {
-            return GetList(string.Empty, areacode, type, rewardType);
+            return GetList(string.Empty,false, areacode, type, rewardType);
         }
 
-        
-        public IList<Model.DJ_TourEnterprise> GetList(string nameLike,string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType
+        //精确名称查找
+        public IList<Model.DJ_TourEnterprise> GetList(string name,  string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType
+
+              )
+        {
+            return GetList(name, false, areacode, type, rewardType);
+        }
+        public IList<Model.DJ_TourEnterprise> GetList(string name,bool isNameLike,string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType
 
               )
         {
             int totalRecords;
-            return GetListPaged(nameLike,areacode, type, rewardType, 1, 99999, out totalRecords);
+            return GetListPaged(name, isNameLike, areacode, type, rewardType, 1, 99999, out totalRecords);
         }
 
         #endregion

@@ -17,10 +17,12 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
     int HotelAmountOneDay = 5;
     protected void Page_Load(object sender, EventArgs e)
     {
-        InitDaysAmount();
+       
         if (!IsPostBack)
         {
+            InitDaysAmount();
             LoadData();
+
         }
     }
 
@@ -77,7 +79,8 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
     }
     protected void rptRoutes_ItemCommand(object o, RepeaterCommandEventArgs e)
     {
-        if (e.CommandName.ToLower() == "edit")
+        string commandName=e.CommandName.ToLower();
+        if (commandName== "edit")
         {
             pnlEditRoute.Visible = true;
             rblDayNo.Enabled = false;
@@ -87,6 +90,13 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
             IList<string> hotelNames = routes.Where(x => x.Enterprise.Type == EnterpriseType.宾馆).Select(x => x.Enterprise.Name).ToList();
             rblDayNo.SelectedValue = dayNo.ToString();
             LoadEditRepeater(scenicNames, hotelNames);
+        }
+        else if (commandName == "delete")
+        { 
+               int dayNo = Convert.ToInt32(e.CommandArgument);
+               CurrentGroup.Routes = CurrentGroup.Routes.Where(x => x.DayNo != dayNo).ToList();
+               bllGroup.Save(CurrentGroup);
+               LoadData();
         }
     }
     private void LoadEditRepeater(IList<string> scenicNames,IList<string> hotelNames)
@@ -118,7 +128,16 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         }
         string errMsg;
         bllRoute.SaveFromNameList(CurrentGroup, dayNo, entNames,out errMsg);
+
+        bllGroup.Save(CurrentGroup);
+      
+        LoadData();
+        
         lblMsg_SaveRoute.Text = errMsg;
+        if (string.IsNullOrEmpty(errMsg))
+        {
+            lblMsg_SaveRoute.Text = "操作成功";
+        }
     }
 
     protected void btnAddRoute_Click(object sender, EventArgs e)
@@ -136,103 +155,37 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
 
     private void LoadTab2Data()
     {
-        string sb = string.Empty;
-        foreach (var routes in CurrentGroup.Routes.OrderBy(x => x.DayNo).GroupBy(x => x.DayNo))
-        {
-            sb += routes.Key.ToString();
-            sb += ",";
-            foreach (var item in routes.Where(x => x.Enterprise.Type== EnterpriseType.景点))
-            {
-                sb += item.Enterprise.Name;
-                sb += "-";
-            }
-            sb = routes.Where(x => x.Enterprise.Type == EnterpriseType.景点).Count() > 0 ? sb.Substring(0, sb.Length - 1) : sb;
-            sb += ",";
-            foreach (var item in routes.Where(x => x.Enterprise.Type == EnterpriseType.宾馆))
-            {
-                sb += item.Enterprise.Name;
-                sb += "-";
-            }
-            sb = routes.Where(x => x.Enterprise.Type == EnterpriseType.饭店).Count() > 0 ? sb.Substring(0, sb.Length - 1) : sb;
-            sb += "\n";
-        }
-        tbxSimple.Text = sb.ToString();
+      string simpleText=  bllRoute.GenerateFormatingStringForRoutes(CurrentGroup.Routes);
+      tbxSimple.Text = simpleText;
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        UpdateSimple(tbxSimple);
-        LoadTab1Data();
-        Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
+        UpdateSimple();
+        LoadData();
+     //   Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
 
-    private void UpdateSimple(TextBox tbx)
+    private void UpdateSimple()
     {
-        ///删除所有行程先--首先要做提醒
-        foreach (Model.DJ_Route route in CurrentGroup.Routes)
-        {
-            bllRoute.Delete(route);
-        }
+       
         //保存新的成员
-        string[] arrStrMember = tbx.Text.Split(Environment.NewLine.ToCharArray());
-
-        string errMsg = string.Empty;
-        foreach (string s in arrStrMember)
-        {
-            if (string.IsNullOrEmpty(s)) continue;
-            IList<Model.DJ_Route> routelist = Convert2Route(s, out errMsg);
-            if (!string.IsNullOrEmpty(errMsg))
-            {
-                lblSimpleMsg.ForeColor = System.Drawing.Color.Red;
-                lblSimpleMsg.Text = errMsg;
-                break;
-            }
-            foreach (var item in routelist)
-            {
-                bllRoute.Save(item);
-            }
-        }
-        if (string.IsNullOrEmpty(errMsg))
-        {
-            lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
-            lblSimpleMsg.Text = "保存成功";
-        }
+      string errMsg;
+      CurrentGroup.Routes = bllRoute.CreateRouteFromMultiLineString(tbxSimple.Text.Trim(), out errMsg);
+      bllGroup.Save(CurrentGroup);
+      if (string.IsNullOrEmpty(errMsg))
+      {
+          lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
+          lblSimpleMsg.Text = "保存成功";
+      }
+      else
+      {
+          lblSimpleMsg.ForeColor = System.Drawing.Color.Red;
+          lblSimpleMsg.Text = errMsg;
+      }
+       
     }
-    private IList<Model.DJ_Route> Convert2Route(string strRoute, out string errMsg)
-    {
-        errMsg = "";
-        IList<Model.DJ_Route> routeList = new List<Model.DJ_Route>();
-        string[] strArrMember = strRoute.Split(',');
-        if (strArrMember.Length != 3)
-        {
-            errMsg = "格式有误.源:" + strRoute + ".";
-            return null;
-        }
-        var temp_split1 = strArrMember[1].Split(new char[] { '-', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        foreach (var item in temp_split1)
-        {
-            routeList.Add(new Model.DJ_Route()
-            {
-                DayNo = int.Parse(strArrMember[0]),
-                Description = "景点",
-                Enterprise = bllEnter.GetDJS8name(item)[0],
-                DJ_TourGroup = CurrentGroup
-            });
-        }
-        var temp_split2 = strArrMember[2].Split(new char[] { '-', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        foreach (var item in temp_split2)
-        {
-            routeList.Add(new Model.DJ_Route()
-            {
-                DayNo = int.Parse(strArrMember[0]),
-                Description = "住宿",
-                Enterprise = bllEnter.GetDJS8name(item).Count > 0 ? bllEnter.GetDJS8name(item)[0] : null,
-                DJ_TourGroup = CurrentGroup
-            });
-        }
-        return routeList;
-    }
-
+  
     enum FillType
     {
         宾馆,
