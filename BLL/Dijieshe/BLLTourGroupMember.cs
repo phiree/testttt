@@ -38,10 +38,10 @@ namespace BLL
         public void UpdateFromFormatString(DJ_TourGroup group, string formatedString, out string errMsg)
         {
             errMsg = string.Empty;
-            foreach (DJ_TourGroupMember member in group.Members)
-            {
-                Delete(member);
-            }
+            //foreach (DJ_TourGroupMember member in group.Members)
+            //{
+            //    Delete(member);
+            //}
             group.Members.Clear();
             string[] arrStrMember = formatedString.Split(Environment.NewLine.ToCharArray());
             //CurrentGroup.Members

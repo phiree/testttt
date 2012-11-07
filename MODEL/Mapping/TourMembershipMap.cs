@@ -11,7 +11,7 @@ namespace Model.Mapping
         public TourMembershipMap()
         {
             Id(x => x.Id);
-            Map(x => x.Name);
+            Map(x => x.Name).Unique();
             Map(x => x.Password);
             Map(x => x.Openid);
             Map(x => x.Opentype).CustomType<int>();

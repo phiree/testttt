@@ -86,7 +86,7 @@ namespace BLL
         {
             return GetDJS8Muti(0, null, null, name);
         }
-
+       
 
         /// <summary>
         /// 旅游管理部门辖区的旅游企�

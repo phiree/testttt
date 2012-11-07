@@ -126,6 +126,7 @@
     <Compile Include="BLLTest\TicketTest.cs" />
     <Compile Include="BLLTest\TicketXmlParserTest.cs" />
     <Compile Include="BLLTest\ScenicTest.cs" />
+    <Compile Include="BLLTest\DJS\RouteTest.cs" />
     <Compile Include="Common\ContentReader.cs" />
     <Compile Include="Common\testStringHelper.cs" />
     <Compile Include="Common\UrlParamHelperTest.cs" />
