@@ -42,7 +42,7 @@
             onitemcommand="rptEntList_ItemCommand" 
             onitemdatabound="rptEntList_ItemDataBound">
                 <HeaderTemplate>
-                    <table class="detaillist">
+                    <table class="detaillist comTable">
                         <tr>
                             <td>
                                 名称

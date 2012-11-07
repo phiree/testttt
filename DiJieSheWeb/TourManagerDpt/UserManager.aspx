@@ -11,7 +11,7 @@
         onitemdatabound="rptUser_ItemDataBound" 
         onitemcommand="rptUser_ItemCommand">
         <HeaderTemplate>
-        <table>
+        <table class="comTable">
             <tr>
                 <td>
                     序号

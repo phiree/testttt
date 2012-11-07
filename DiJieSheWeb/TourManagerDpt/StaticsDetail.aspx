@@ -4,9 +4,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="../Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("#tbMain").tablesorter();
+            $(".IndexTable").orderIndex();
         });
     </script>
 </asp:Content>
@@ -17,6 +21,8 @@
         </div>
         <asp:Repeater ID="rptStaticDetail" runat="server" OnItemDataBound="rptStaticDetail_ItemDataBound">
             <HeaderTemplate>
+                <table class="tablesorter IndexTable">
+        </table>
                 <table id="tbMain" class="tablesorter InfoTable">
                     <thead>
                         <tr>

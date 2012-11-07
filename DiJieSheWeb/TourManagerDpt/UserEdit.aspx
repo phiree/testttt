@@ -9,7 +9,7 @@
         用户编辑
     </div>
     <div class="detaillist">
-        <table border="0" cellpadding="0" cellspacing="0" width="40%">
+        <table border="0" cellpadding="0" cellspacing="0" width="40%" class="comTable">
             <tr>
                 <td>
                     用户名

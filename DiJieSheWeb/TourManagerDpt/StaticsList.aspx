@@ -10,6 +10,12 @@
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <style type="text/css">
+        .IndexTable tbody td, .IndexTable tfoot td
+        {
+            line-height: 15px !important;
+        }
+    </style>
     <script type="text/javascript">
         $(function () {
             $("[id$='txt_yijiedai']").datepicker();
@@ -18,27 +24,23 @@
             $("#tabs").tabs();
             $("#tbGov1").tablesorter();
             $("#tbGov2").tablesorter();
-            $("#tbGov3").tablesorter();
-            $(".IndexTable").orderIndex('2');
-        });
-    </script>
-    <script type="text/javascript">
-        $(function () {
-            $("*[id$=btn_yijiedai]").click(function () {
-                $.cookie("TABS", "tabs-1");
+            $("#tbGov3").tablesorter({ headers: { 3: { sorter: false}} });
+            $("#tabs").bind('tabsselect', function (event, ui) {
+                $.cookie("tabIndex", ui.index);
             });
-            $("*[id$=btn_yijiedai2]").click(function () {
-                $.cookie("TABS", "tabs-2");
-            });
-            $("*[id$=btn_yijiedai3]").click(function () {
-                $.cookie("TABS", "tabs-3");
-            });
+            if ($.cookie("tabIndex") != null) {
+                $("#tabs").tabs('select', parseInt($.cookie("tabIndex")));
+            }
+            $("#tbMain").tablesorter();
+            $(".IndexTable").eq(0).orderIndex();
+            $(".IndexTable").eq(1).orderIndex({ tableindex: '2' });
+            $(".IndexTable").eq(2).orderIndex({ tableindex: '3' });
         });
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
-    <div class="detaillist">
-        <div id="tabs">
+    <div class="detaillist" style="width: 100%; padding: 0px">
+        <div id="tabs" class="tabs" style="margin: 0px; padding: 0px">
             <ul>
                 <li><a href="#tabs-1">已接待情况</a></li>
                 <li><a href="#tabs-2">旅游企业接待情况明细表</a></li>
@@ -144,7 +146,8 @@
                         </tr>
                     </tfoot>
                 </table>
-                <hr />
+                <div style="clear: both">
+                </div>
             </div>
             <div id="tabs-2">
                 <div class="detailtitle">
@@ -156,6 +159,8 @@
                         CssClass="btn" /></div>
                 <asp:Repeater ID="rptGov2" runat="server">
                     <HeaderTemplate>
+                        <table class="tablesorter IndexTable">
+                        </table>
                         <table id="tbGov2" class="tablesorter InfoTable">
                             <thead>
                                 <tr>
@@ -190,7 +195,8 @@
                         </tbody> </table>
                     </FooterTemplate>
                 </asp:Repeater>
-                <hr />
+                <div style="clear: both">
+                </div>
             </div>
             <div id="tabs-3">
                 <div class="detailtitle">
@@ -202,6 +208,8 @@
                         CssClass="btn" /></div>
                 <asp:Repeater ID="rptGov3" runat="server">
                     <HeaderTemplate>
+                        <table class="tablesorter IndexTable">
+                        </table>
                         <table id="tbGov3" class="tablesorter InfoTable">
                             <thead>
                                 <tr>
@@ -213,10 +221,10 @@
                                     </th>
                                     <th>
                                         时间
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         游览情况
-                                    </td>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -243,6 +251,8 @@
                         </tbody> </table>
                     </FooterTemplate>
                 </asp:Repeater>
+                <div style="clear: both">
+                </div>
             </div>
         </div>
     </div>

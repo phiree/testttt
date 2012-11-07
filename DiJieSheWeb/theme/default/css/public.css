@@ -66,10 +66,7 @@ table tr td
     float:left;
     overflow:hidden;
 }
-.IndexTable tbody td,.IndexTable tfoot td
-{
-    line-height:15px !important;
-}
+
 
 .tabs ul li
 {
