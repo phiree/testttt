@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DAL;
+using Model;
 namespace BLL
 {
     public class BLLDJRoute
     {
 
-        DALDJ_Route Idjroute = new DAL.DALDJ_Route();
+      public  DALDJ_Route Idjroute = new DAL.DALDJ_Route();
+      BLLDJEnterprise bllEnt = new BLLDJEnterprise();
         /// <summary>
         /// 根据预报时间得到当前的团队
         /// </summary>
@@ -92,6 +94,33 @@ namespace BLL
                     break;
             }
             return ListWroute;
+        }
+
+        public void SaveFromNameList(Model.DJ_TourGroup CurrentGroup, int dayNo, List<string> entNames,out string errMsg)
+        {
+            errMsg = string.Empty;
+
+            foreach (DJ_Route exsitRoute in CurrentGroup.Routes) {
+
+                Delete(exsitRoute);
+            }
+            CurrentGroup.Routes.Clear();
+
+            foreach (string entName in entNames)
+            {
+                if (string.IsNullOrEmpty(entName)) continue;
+                DJ_TourEnterprise ent = bllEnt.GetEntByName(entName);
+                if (ent == null)
+                {
+                    errMsg = "企业名称有误:" + entName+Environment.NewLine;
+                    continue;
+                }
+                DJ_Route newRoute = new DJ_Route();
+                newRoute.DayNo = dayNo;
+                newRoute.DJ_TourGroup = CurrentGroup;
+                newRoute.Enterprise = ent;
+                Save(newRoute);
+            }
         }
     }
 }

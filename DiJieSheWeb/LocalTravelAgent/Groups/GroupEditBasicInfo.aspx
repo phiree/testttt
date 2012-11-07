@@ -64,7 +64,7 @@
         <asp:Button runat="server" ID="btnSaveBasicInfo" OnClick="btnBasicInfo_Click" Text="保存" />
         <asp:Panel runat="server" ID="pnlLinks">
             <a href="GroupEditMember.aspx?groupid=<%=groupId %>">编辑成员信息</a>
-             <a href="GroupEditBasicInfo.aspx=<%=groupId %>">
+             <a href="GroupEditRoute.aspx?groupid=<%=groupId %>">
                 编辑行程信息</a>
         </asp:Panel>
     </div>

@@ -33,7 +33,7 @@ namespace TourTest.BLLTest
             DALDJEnterprise dalEnt = mocks.StrictMock<DALDJEnterprise>();
             Expect.Call(delegate { dalEnt.Save(ent); });
           
-            blldjs.daldjs = dalEnt;
+            blldjs.dalEnt = dalEnt;
           
             
             Area area = new Area();

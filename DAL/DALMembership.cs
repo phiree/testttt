@@ -30,6 +30,9 @@ namespace DAL
             int matchLength = query.Future<Model.TourMembership>().ToArray().Length;
 
             if (matchLength == 1) { result = true; }
+            if (matchLength > 1) {
+                throw new Exception("账户重名,拒绝登录");
+            }
 
             return result;
         }

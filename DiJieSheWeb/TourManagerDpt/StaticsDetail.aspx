@@ -1,6 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master"
     AutoEventWireup="true" CodeFile="StaticsDetail.aspx.cs" Inherits="TourManagerDpt_StaticsDetail" %>
 
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tbMain").tablesorter();
+        });
+    </script>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
     <div class="detaillist">
         <div class="detailtitle">
@@ -8,15 +17,15 @@
         </div>
         <asp:Repeater ID="rptStaticDetail" runat="server" OnItemDataBound="rptStaticDetail_ItemDataBound">
             <HeaderTemplate>
-                <table>
+                <table id="tbMain" class="tablesorter InfoTable">
                     <thead>
                         <tr>
-                            <td>
+                            <th>
                                 日期
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 住宿人数
-                            </td>
+                            </th>
                             <td>
                                 游览人数
                             </td>

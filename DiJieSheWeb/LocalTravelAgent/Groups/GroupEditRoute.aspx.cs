@@ -5,15 +5,19 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
+using Model;
 public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEdit
 {
-    public string RouteJsonList = string.Empty;
+
     BLL.BLLDJTourGroup bllGroup = new BLL.BLLDJTourGroup();
     BLL.BLLDJEnterprise bllEnter = new BLLDJEnterprise();
     BLLDJRoute bllRoute = new BLLDJRoute();
-
+    //一天之中最多的景区数量,宾馆数量
+    int ScenicAmountOneDay = 10;
+    int HotelAmountOneDay = 5;
     protected void Page_Load(object sender, EventArgs e)
     {
+        InitDaysAmount();
         if (!IsPostBack)
         {
             LoadData();
@@ -25,11 +29,110 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         LoadTab1Data();
         LoadTab2Data();
     }
+    private void InitDaysAmount()
+    {
+        rblDayNo.Items.Clear();
+        for (int i = 1; i <= CurrentGroup.DaysAmount; i++)
+        {
 
+            ListItem li = new ListItem();
+            
+            if (i == 1) li.Selected = true;
+            li.Text = li.Value = i.ToString();
+            rblDayNo.Items.Add(li);
+        }
+    }
     private void LoadTab1Data()
     {
-        RouteJsonList = BLL.BLLDJTourGroup.BuildJsonForRouteList(CurrentGroup.Routes);
+        IList<UIRoute> uiRoutes = RouteConverter.ConvertToUI(CurrentGroup.Routes);
+
+        rptRoutes.DataSource = uiRoutes;
+        rptRoutes.DataBind();
     }
+    protected void rptRoutes_ItemDataBound(object o, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Repeater rptScenics = e.Item.FindControl("rptScenics") as Repeater;
+            rptScenics.ItemDataBound += new RepeaterItemEventHandler(rptScenics_ItemDataBound);
+            Repeater rptHotels = e.Item.FindControl("rptHotels") as Repeater;
+            rptHotels.ItemDataBound += new RepeaterItemEventHandler(rptHotels_ItemDataBound);
+            UIRoute uiRoute = e.Item.DataItem as UIRoute;
+            rptHotels.DataSource = uiRoute.Hotels;
+            rptHotels.DataBind();
+            rptScenics.DataSource = uiRoute.Scenics;
+            rptScenics.DataBind();
+
+        }
+    }
+
+    void rptHotels_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        // throw new NotImplementedException();
+    }
+
+    void rptScenics_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        //  throw new NotImplementedException();
+    }
+    protected void rptRoutes_ItemCommand(object o, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName.ToLower() == "edit")
+        {
+            pnlEditRoute.Visible = true;
+            rblDayNo.Enabled = false;
+            int dayNo = Convert.ToInt32(e.CommandArgument);
+            IList<DJ_Route> routes = CurrentGroup.Routes.Where(x => x.DayNo == dayNo).ToList();
+            IList<string> scenicNames = routes.Where(x => x.Enterprise.Type == EnterpriseType.景点).Select(x => x.Enterprise.Name).ToList();
+            IList<string> hotelNames = routes.Where(x => x.Enterprise.Type == EnterpriseType.宾馆).Select(x => x.Enterprise.Name).ToList();
+            rblDayNo.SelectedValue = dayNo.ToString();
+            LoadEditRepeater(scenicNames, hotelNames);
+        }
+    }
+    private void LoadEditRepeater(IList<string> scenicNames,IList<string> hotelNames)
+    {
+    
+            scenicNames = CommonLibrary.ListHelper.ExtendStringList(scenicNames, ScenicAmountOneDay);
+            hotelNames = CommonLibrary.ListHelper.ExtendStringList(hotelNames, HotelAmountOneDay);
+        rptEditScenics.DataSource = scenicNames;
+        rptEditScenics.DataBind();
+        rptEditHotels.DataSource = hotelNames;
+        rptEditHotels.DataBind();
+        
+    }
+    protected void btnSaveRoute_Click(object sender, EventArgs e)
+    {
+        int dayNo =Convert.ToInt32( rblDayNo.Text);
+        List<string> entNames = new List<string>();
+        foreach (RepeaterItem item in rptEditScenics.Items)
+        {
+            TextBox tbxScenic= item.FindControl("tbxScenicName") as TextBox;
+            string scenicName = CommonLibrary.StringHelper.TrimAll(tbxScenic.Text);
+            entNames.Add(scenicName);
+        }
+        foreach (RepeaterItem itemHotel in rptEditHotels.Items)
+        {
+            TextBox tbxHotel = itemHotel.FindControl("tbxHotelName") as TextBox;
+            string hotelName = CommonLibrary.StringHelper.TrimAll(tbxHotel.Text);
+            entNames.Add(hotelName);
+        }
+        string errMsg;
+        bllRoute.SaveFromNameList(CurrentGroup, dayNo, entNames,out errMsg);
+        lblMsg_SaveRoute.Text = errMsg;
+    }
+
+    protected void btnAddRoute_Click(object sender, EventArgs e)
+    {
+        rblDayNo.Enabled = true;
+        pnlEditRoute.Visible = true;
+        LoadEditRepeater(new List<string>(), new List<string>());
+    }
+
+    /// <summary>
+    ///  创建最大数量的 textbox
+    /// </summary>
+    /// <param name="entNames"></param>
+    /// <returns></returns>
 
     private void LoadTab2Data()
     {
@@ -38,19 +141,19 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         {
             sb += routes.Key.ToString();
             sb += ",";
-            foreach (var item in routes.Where(x => x.Description.StartsWith("景点")))
+            foreach (var item in routes.Where(x => x.Enterprise.Type== EnterpriseType.景点))
             {
                 sb += item.Enterprise.Name;
                 sb += "-";
             }
-            sb = routes.Where(x => x.Description.StartsWith("景点")).Count() > 0 ? sb.Substring(0, sb.Length - 1) : sb;
+            sb = routes.Where(x => x.Enterprise.Type == EnterpriseType.景点).Count() > 0 ? sb.Substring(0, sb.Length - 1) : sb;
             sb += ",";
-            foreach (var item in routes.Where(x => x.Description.StartsWith("住宿")))
+            foreach (var item in routes.Where(x => x.Enterprise.Type == EnterpriseType.宾馆))
             {
                 sb += item.Enterprise.Name;
                 sb += "-";
             }
-            sb = routes.Where(x => x.Description.StartsWith("住宿")).Count() > 0 ? sb.Substring(0, sb.Length - 1) : sb;
+            sb = routes.Where(x => x.Enterprise.Type == EnterpriseType.饭店).Count() > 0 ? sb.Substring(0, sb.Length - 1) : sb;
             sb += "\n";
         }
         tbxSimple.Text = sb.ToString();
@@ -128,5 +231,11 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
             });
         }
         return routeList;
+    }
+
+    enum FillType
+    {
+        宾馆,
+        景区
     }
 }

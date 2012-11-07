@@ -98,6 +98,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -121,6 +122,7 @@
     <Compile Include="BLLTest\ExcelOperTets.cs" />
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="BLLTest\OrderTest.cs" />
+    <Compile Include="BLLTest\SerializationModelTest.cs" />
     <Compile Include="BLLTest\TicketTest.cs" />
     <Compile Include="BLLTest\TicketXmlParserTest.cs" />
     <Compile Include="BLLTest\ScenicTest.cs" />
@@ -128,10 +130,16 @@
     <Compile Include="Common\testStringHelper.cs" />
     <Compile Include="Common\UrlParamHelperTest.cs" />
     <Compile Include="Common\JsonHelperTest.cs" />
+    <Compile Include="Common\ListHelperTest.cs" />
     <Compile Include="EnumTEst.cs" />
     <Compile Include="OrderTest.cs" />
     <Compile Include="PromStaticTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="TDD\order\CheckoutTEst.cs" />
     <Compile Include="TDD\Payment\TetsPayment.cs" />
     <Compile Include="TDD\RoleTest.cs" />
@@ -146,6 +154,10 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

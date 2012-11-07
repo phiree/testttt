@@ -17,7 +17,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
 
     BLL.BLLDJTourGroup bllGroup = new BLL.BLLDJTourGroup();
     BLL.BLLTourGroupMember bllGroupMember = new BLL.BLLTourGroupMember();
-   // Guid currentEditMemberId = Guid.Empty;
+    // Guid currentEditMemberId = Guid.Empty;
     DJ_TourGroupMember currentGroupMember;
     //bool IsNewMember
     //{
@@ -56,7 +56,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         rptMembers.DataSource = CurrentGroup.Members;
         rptMembers.DataBind();
     }
-   
+
     protected void rptMembers_ItemCommand(object sender, RepeaterCommandEventArgs e)
     {
         if (e.CommandName.ToLower() == "edit")
@@ -89,7 +89,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     protected void btnSaveMember_Click(object s, EventArgs e)
     {
         currentGroupMember = (DJ_TourGroupMember)Session["currentMember"];
-        if (currentGroupMember==null)
+        if (currentGroupMember == null)
         {
             currentGroupMember = new DJ_TourGroupMember();
         }
@@ -111,8 +111,8 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         tbxName.Text = string.Empty;
         tbxPhone.Text = string.Empty;
         tbxSpecialCardNo.Text = string.Empty;
-        rblMemberType.SelectedValue =" 1";
-        
+        rblMemberType.SelectedValue = " 1";
+
     }
 
     /// <summary>
@@ -155,63 +155,21 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     }
 
 
-   
+
     private void UpdateSimple(TextBox tbx)
     {
         ///删除所有成员先--首先要做提醒
-        foreach (DJ_TourGroupMember member in CurrentGroup.Members)
-        {
-            bllGroupMember.Delete(member);
-        }
-        CurrentGroup.Members.Clear();
-        string[] arrStrMember = tbx.Text.Split(Environment.NewLine.ToCharArray());
-        //CurrentGroup.Members
         string errMsg = string.Empty;
-        foreach (string s in arrStrMember)
+        bllGroupMember.UpdateFromFormatString(CurrentGroup, tbx.Text, out errMsg);
+        if (!string.IsNullOrEmpty(errMsg))
         {
-            if (string.IsNullOrEmpty(s)) continue;
-            DJ_TourGroupMember member = ParseMember(s, out errMsg);
-            if (!string.IsNullOrEmpty(errMsg))
-            {
-                lblSimpleMsg.ForeColor = System.Drawing.Color.Red;
-                lblSimpleMsg.Text = errMsg;
-                break;
-            }
-            // bllGroup.Save(member);
-            CurrentGroup.Members.Add(member);
+            lblSimpleMsg.ForeColor = System.Drawing.Color.Red;
+            lblSimpleMsg.Text = errMsg;
+            return;
         }
         bllGroup.Save(CurrentGroup);
-        if (string.IsNullOrEmpty(errMsg))
-        {
-            lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
-            lblSimpleMsg.Text = "保存成功";
-        }
-    }
-    private Model.DJ_TourGroupMember ParseMember(string strMember, out string errMsg)
-    {
-        errMsg = "";
-        string[] strArrMember = strMember.Split(',');
-        if (strArrMember.Length != 5)
-        {
-            errMsg = "格式有误.源:" + strMember + ".";
-            return null;
-        }
-        Model.DJ_TourGroupMember member = new Model.DJ_TourGroupMember();
-        Model.MemberType memberType;
-        string strType = strArrMember[0];
-        if (!Enum.TryParse<MemberType>(strType, out memberType))
-        {
-            errMsg = "游客类型有误.请输入六个类型中的一个.源:" + strMember;
-            return null;
-        }
-        member.MemberType = memberType;
-        member.RealName = strArrMember[1];
-        member.PhoneNum = strArrMember[2];
-        member.IdCardNo = strArrMember[3];
-        member.SpecialCardNo = strArrMember[4];
-        member.DJ_TourGroup = CurrentGroup;
-
-        return member;
+        lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
+        lblSimpleMsg.Text = "保存成功";
     }
 
 
