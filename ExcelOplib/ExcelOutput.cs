@@ -13,7 +13,7 @@ using System.Web.UI;
 namespace ExcelOplib
 {
     /// <summary>
-    /// 到处接口
+    /// 导出接口
     /// </summary>
     public class ExcelOutput
     {

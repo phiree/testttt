@@ -230,6 +230,5 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     {
         UpdateSimple(tbxExcel);
         BuildJsonData();
-        Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
 }

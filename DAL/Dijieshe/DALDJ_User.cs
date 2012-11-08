@@ -64,6 +64,13 @@ namespace DAL
             return query.FutureValue<Model.DJ_User_Gov>().Value;
         }
 
+        public Model.DJ_User_Gov GetGov_UserByName(string seoname)
+        {
+            string sql = "select u from DJ_User_Gov u where u.Name='" + seoname + "'";
+            IQuery query = session.CreateQuery(sql);
+            return query.FutureValue<Model.DJ_User_Gov>().Value;
+        }
+
 
         public void SaveOrUpdate(Model.TourMembership m)
         {
