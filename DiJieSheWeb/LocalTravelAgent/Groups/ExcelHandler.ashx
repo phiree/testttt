@@ -12,7 +12,8 @@ public class ExcelHandler : IHttpHandler {
         
         //V.2012/10/09
         ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
-        ExcelOplib.Entity.GroupAll ga = excel.getGroup(filename);
+        string message = string.Empty;
+        ExcelOplib.Entity.GroupAll ga = excel.getGroup(filename,out message);
         string djsJd = context.Request["djsid"];
         Model.DJ_DijiesheInfo djsinfo = (Model.DJ_DijiesheInfo)new BLL.BLLDJEnterprise().GetDJS8id(djsJd)[0];
             
@@ -21,7 +22,7 @@ public class ExcelHandler : IHttpHandler {
         //转化excel信息为数据库信息
         Model.DJ_TourGroup tg = new Model.DJ_TourGroup();
         //基本信息
-        tg.No = ga.GroupBasic.GroupNo;
+        //tg.No = ga.GroupBasic.GroupNo;
         tg.Name = ga.GroupBasic.Name;
         tg.BeginDate = DateTime.Parse(ga.GroupBasic.Begindate);
      

@@ -9,20 +9,6 @@
             $(obj).parent().parent().remove();
         }
 
-        //检查是否在编辑状态
-        function checkEditing() {
-            var body = $("#addrow").parent().parent().parent().next();
-            var textboxList = $("table>tbody>tr>td>input:text");
-            for (var i = 0; i < textboxList.size(); i++) {
-                if ($(textboxList[i]).val() != "") {
-                    alert("页面正在编辑中，是否继续导入数据？");
-                    return false;
-                }
-            }
-            alert("上传成功, 请导入!");
-            return true;
-        }
-
         //加载制定group的数据
         $(function () {
             var gid = getArgs("id");
@@ -98,91 +84,24 @@
         <table border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td style="width: 15%">
-                    团队编号：
-                </td>
-                <td>
-                    <h6 id="txtGroupNo">
-                    </h6>
-                </td>
-                <td style="width: 15%">
                     团队名称：
                 </td>
                 <td>
-                    <h6 id="txtName">
-                    </h6>
+                    <asp:Label ID="lblname" runat="server" />
                 </td>
             </tr>
             <tr>
                 <td style="width: 15%">
-                    起止时间：
+                    开始时间：
                 </td>
                 <td>
-                    <h6 id="txtDate">
-                    </h6>
+                    <asp:Label ID="lblbegin" runat="server" />
                 </td>
                 <td>
                     游玩天数：
                 </td>
                 <td>
-                    <h6 id="txtDays">
-                    </h6>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    游玩人数：
-                </td>
-                <td>
-                    <h6 id="txtPnum">
-                    </h6>
-                </td>
-                <td>
-                    成人人数：
-                </td>
-                <td>
-                    <h6 id="txtPadult">
-                    </h6>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    儿童人数：
-                </td>
-                <td>
-                    <h6 id="txtPchild">
-                    </h6>
-                </td>
-                <td>
-                    外宾人数：
-                </td>
-                <td>
-                    <h6 id="txtForeigners">
-                    </h6>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    港澳台人数：
-                </td>
-                <td>
-                    <h6 id="txtGangaotais">
-                    </h6>
-                </td>
-                <td>
-                    上车集合点：
-                </td>
-                <td>
-                    <h6 id="txtGether">
-                    </h6>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    返程点：
-                </td>
-                <td>
-                    <h6 id="txtBack">
-                    </h6>
+                    <asp:Label ID="lbldays" runat="server" />
                 </td>
             </tr>
         </table>
@@ -206,14 +125,23 @@
                     <td>
                         联系方式
                     </td>
-                    <td>
-                        证件号
-                    </td>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                </tr>
+                <asp:Repeater ID="rptMember" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td><%#Eval("Memtype")%>
+                            </td>
+                            <td><%#Eval("Memname")%>
+                            </td>
+                            <td><%#Eval("Memid")%>
+                            </td>
+                            <td><%#Eval("Memphone")%>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
             </tbody>
         </table>
         <!-- 人员end -->
@@ -225,32 +153,31 @@
             <thead>
                 <tr>
                     <td>
-                        日期
-                    </td>
-                    <td>
-                        地点
-                    </td>
-                    <td>
-                        早餐
-                    </td>
-                    <td>
-                        中餐
-                    </td>
-                    <td>
-                        晚餐
-                    </td>
-                    <td>
-                        住宿
                     </td>
                     <td>
                         景点
                     </td>
                     <td>
-                        购物点
+                        住宿
                     </td>
                 </tr>
             </thead>
             <tbody>
+                <asp:Repeater ID="rptRoutes" runat="server" >
+                    <ItemTemplate>
+                    <tr>
+                        <td>
+                            <%#Eval("dayno")%>
+                        </td>
+                        <td>
+                            <%#Eval("scenics")%>
+                        </td>
+                        <td>
+                            <%#Eval("hotels")%>
+                        </td>
+                    </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
             </tbody>
         </table>
     </div>
@@ -270,10 +197,8 @@
             <li>点击“导入数据”，将excel内容导入到表格中 </li>
         </ol>
         <asp:FileUpload ID="FileUpload1" runat="server" />
-        <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
-            OnClick="btnUpload_Click" CssClass="btn" />
-        <input id="btnExcel" type="button" name="name" value="导入数据" class="btn" />
-        <asp:Label ID="Label1" runat="server" Text="" Style="display: none"></asp:Label>
-        <!-- 操作end -->
+        <asp:Button ID="btnUpload" runat="server" Text="上传并保存" OnClick="btnUpload_Click" />
+        <asp:Label ID="Label1" runat="server" />
+        <a href="/LocalTravelAgent/Groups/Grouplist.aspx">返回</a>
     </div>
 </asp:Content>

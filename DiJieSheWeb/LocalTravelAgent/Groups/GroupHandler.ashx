@@ -18,7 +18,7 @@ public class GroupHandler : IHttpHandler
         Model.DJ_TourGroup tg = new Model.DJ_TourGroup();
 
         //基本信息
-        tg.No = ga.GroupBasic.GroupNo;
+        //tg.No = ga.GroupBasic.GroupNo;
         tg.Name = ga.GroupBasic.Name;
         tg.DJ_DijiesheInfo = ga.DjsId != 0 ? bllenter.GetDJS8id(ga.DjsId.ToString())[0] as Model.DJ_DijiesheInfo : null;
         tg.BeginDate = DateTime.Parse(ga.GroupBasic.Begindate);
