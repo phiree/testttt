@@ -9,10 +9,6 @@ namespace ExcelOplib.Entity
     {
         #region v.10/22
         ///// <summary>
-        ///// 团队编号
-        ///// </summary>
-        //public string GroupNo { get; set; }
-        ///// <summary>
         ///// 团队名称
         ///// </summary>
         //public string Name { get; set; }
@@ -60,10 +56,6 @@ namespace ExcelOplib.Entity
 
         #region v.10/31
         /// <summary>
-        /// 团队编号
-        /// </summary>
-        public string GroupNo { get; set; }
-        /// <summary>
         /// 团队名称
         /// </summary>
         public string Name { get; set; }
@@ -74,7 +66,7 @@ namespace ExcelOplib.Entity
         /// <summary>
         /// 结束时间
         /// </summary>
-        public string Enddate { get; set; }
+        public string Days { get; set; }
         #endregion
     }
 }

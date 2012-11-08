@@ -17,6 +17,11 @@ namespace BLL
             Idepart.Save(obj);
         }
 
+        /// <summary>
+        /// 获取管理部门
+        /// </summary>
+        /// <param name="name">部门名称</param>
+        /// <returns></returns>
         public IList<DJ_GovManageDepartment> GetGovDptByName(string name)
         {
             return Idepart.GetGovDptByName(name);

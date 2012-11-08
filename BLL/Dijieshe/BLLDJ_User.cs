@@ -36,6 +36,11 @@ namespace BLL
             return Idj_user_enterprise.GetGov_UserById(id);
         }
 
+        public Model.DJ_User_Gov GetGov_UserByName(string seoname)
+        {
+            return Idj_user_enterprise.GetGov_UserByName(seoname);
+        }
+
         public void SaveOrUpdate(Model.TourMembership m)
         {
             Idj_user_enterprise.SaveOrUpdate(m);

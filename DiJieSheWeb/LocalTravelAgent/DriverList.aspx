@@ -45,9 +45,6 @@
                             <th>
                                 <asp:LinkButton ID="lbldriver" Text="驾照证号" runat="server" CommandName="lbldriver" />
                             </th>
-                            <th>
-                                所属地接社
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,9 +63,6 @@
                     </td>
                     <td>
                         <%#Eval("SpecificIdCard")%>
-                    </td>
-                    <td>
-                        <%#Eval("DJ_Dijiesheinfo.Name")%>
                     </td>
                 </tr>
             </ItemTemplate>

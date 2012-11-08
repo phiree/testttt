@@ -10,33 +10,10 @@ public class ExcelHandler : IHttpHandler {
     {
         string filename=context.Request["filename"];
         
-        //老版本
-        //ExcelOplib.ExcelDjsOpr excel = new ExcelOplib.ExcelDjsOpr();
-        //System.Collections.Generic.List<ExcelOplib.Entity.DJSEntity> djsresult = excel.getDJSlist(filename);
-        //新版本2012-09-28
-        //ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
-        //System.Collections.Generic.List<ExcelOplib.Entity.GroupMember> gmlist = excel.getMemberlist(filename);
-        
-        //string html = string.Empty;
-        //if (gmlist==null || gmlist.Count < 1)
-        //{
-        //    return ;
-        //}
-
-        //foreach (ExcelOplib.Entity.GroupMember item in gmlist)
-        //{
-        //    html += "<tr><td><select><option value='成人游客'>成人游客</option><option value='儿童游客'>儿童游客</option>" +
-        //        "<option value='导游'>导游</option><option value='司机'>司机</option></select></td>" +
-        //        "<td><input type='text' value='" + item.Memname + "'/>" +
-        //        "</td><td><input type='text' value='" + item.Memid + "'/></td>" +
-        //        "<td><input type='text' value='" + item.Memphone + "'/></td>" +
-        //        "<td><input type='hidden' /><input type='hidden' />" +
-        //        "<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>";
-        //}
-        
         //V.2012/10/09
         ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
-        ExcelOplib.Entity.GroupAll ga = excel.getGroup(filename);
+        string message = string.Empty;
+        ExcelOplib.Entity.GroupAll ga = excel.getGroup(filename,out message);
         string djsJd = context.Request["djsid"];
         Model.DJ_DijiesheInfo djsinfo = (Model.DJ_DijiesheInfo)new BLL.BLLDJEnterprise().GetDJS8id(djsJd)[0];
             
@@ -45,7 +22,7 @@ public class ExcelHandler : IHttpHandler {
         //转化excel信息为数据库信息
         Model.DJ_TourGroup tg = new Model.DJ_TourGroup();
         //基本信息
-        tg.No = ga.GroupBasic.GroupNo;
+        //tg.No = ga.GroupBasic.GroupNo;
         tg.Name = ga.GroupBasic.Name;
         tg.BeginDate = DateTime.Parse(ga.GroupBasic.Begindate);
      
@@ -64,7 +41,7 @@ public class ExcelHandler : IHttpHandler {
                 IsChild = false
             });
         }
-        foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "儿童游客"))
+        foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "儿童"))
         {
             tgmlist.Add(new Model.DJ_TourGroupMember()
             {

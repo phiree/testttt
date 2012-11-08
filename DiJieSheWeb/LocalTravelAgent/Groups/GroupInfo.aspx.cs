@@ -9,6 +9,11 @@ public partial class Groups_GroupInfo : basepageDJS
 {
     private string excelPath = "d:/";
     public string DJSId;
+    public BLL.BLLDJEnterprise bllenterp = new BLL.BLLDJEnterprise();
+    public BLL.BLLDJTourGroup bllgroup = new BLL.BLLDJTourGroup();
+    ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
+    Model.DJ_TourGroup group_model = new Model.DJ_TourGroup();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         DJSId = CurrentDJS.Id.ToString();
@@ -21,6 +26,7 @@ public partial class Groups_GroupInfo : basepageDJS
         string typ = FileUpload1.PostedFile.ContentType.ToString();//获取文件MIME内容类型
         string typ2 = fullname.Substring(fullname.LastIndexOf(".") + 1);//后缀名, 不带".".
         int size = FileUpload1.PostedFile.ContentLength;
+        string message = string.Empty;
 
         #region 保存
         if (typ2 == "xlsx" || typ2 == "xls" || typ2 == "xlsm")
@@ -28,7 +34,80 @@ public partial class Groups_GroupInfo : basepageDJS
             if (size <= 4134904)
             {
                 FileUpload1.SaveAs(excelPath + "temp." + typ2);
-                Label1.Text = excelPath + "temp." + typ2;
+                ExcelOplib.Entity.GroupAll group_excel = excel.getGroup(excelPath + "temp." + typ2, out message);
+                group_excel.GroupMemberList = group_excel.GroupMemberList.Where(x => !string.IsNullOrEmpty(x.Memtype)).ToList();
+
+                group_model.Name = group_excel.GroupBasic.Name;
+                group_model.BeginDate = DateTime.Parse(group_excel.GroupBasic.Begindate);
+                group_model.DaysAmount = int.Parse(group_excel.GroupBasic.Days);
+                group_model.EndDate = DateTime.Parse(group_excel.GroupBasic.Begindate).AddDays(int.Parse(group_excel.GroupBasic.Days));
+                group_model.Workers = new List<Model.DJ_Group_Worker>();
+                group_model.Members = new List<Model.DJ_TourGroupMember>();
+                group_model.Routes = new List<Model.DJ_Route>();
+                foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype == "导游" || x.Memtype == "司机"))
+                {
+                    group_model.Workers.Add(new Model.DJ_Group_Worker()
+                    {
+                        DJ_TourGroup = group_model,
+                        IDCard = item.Memid,
+                        WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
+                        Phone = item.Memphone,
+                        Name = item.Memname
+                    });
+                }
+                foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype != "导游" && x.Memtype != "司机"))
+                {
+                    group_model.Members.Add(new Model.DJ_TourGroupMember()
+                    {
+                        DJ_TourGroup = group_model,
+                        IdCardNo = item.Memid,
+                        MemberType = (Model.MemberType)Enum.Parse(typeof(Model.MemberType), item.Memtype),
+                        PhoneNum = item.Memphone,
+                        RealName = item.Memname
+                    });
+                }
+                foreach (var item in group_excel.GroupRouteList)
+                {
+                    var temp1 = item.Scenic.Split(new char[] { ',', '-' });
+                    var temp2 = item.Scenic.Split(new char[] { ',', '-' });
+                    foreach (var item2 in temp1)
+                    {
+                        group_model.Routes.Add(new Model.DJ_Route()
+                        {
+                            DJ_TourGroup = group_model,
+                            DayNo = int.Parse(item.RouteDate),
+                            Enterprise = bllenterp.GetDJS8name(item2).Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                        });
+                    }
+
+                }
+
+                lblname.Text = group_excel.GroupBasic.Name;
+                lblbegin.Text = group_excel.GroupBasic.Begindate;
+                lbldays.Text = group_excel.GroupBasic.Days;
+                rptMember.DataSource = group_excel.GroupMemberList.Where(x => !string.IsNullOrEmpty(x.Memtype));
+                rptMember.DataBind();
+                var routes = group_excel.GroupRouteList.GroupBy(x => x.RouteDate).OrderBy(x => x.Key);
+                List<RouteSource> rslist = new List<RouteSource>();
+                foreach (var item in routes)
+                {
+                    var temp_scenic = string.Empty;
+                    var temp_hotel = string.Empty;
+                    foreach (var item2 in item)
+                    {
+                        temp_scenic += item2.Scenic + "，";
+                        temp_hotel += item2.Hotel + "，";
+                    }
+                    rslist.Add(new RouteSource()
+                    {
+                        dayno = item.Key,
+                        scenics = temp_scenic.TrimEnd(new char[] { ',', '，' }),
+                        hotels = temp_hotel.TrimEnd(new char[] { ',', '，' })
+                    });
+                }
+                rptRoutes.DataSource = rslist;
+                rptRoutes.DataBind();
+                bllgroup.Save(group_model);
             }
             else
             {
@@ -43,4 +122,11 @@ public partial class Groups_GroupInfo : basepageDJS
         }
         #endregion
     }
+}
+
+public class RouteSource
+{
+    public string dayno { get; set; }
+    public string scenics { get; set; }
+    public string hotels { get; set; }
 }
