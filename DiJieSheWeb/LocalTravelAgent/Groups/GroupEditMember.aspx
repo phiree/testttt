@@ -106,7 +106,7 @@
                                 类型
                             </td>
                             <td>
-                                <asp:RadioButtonList runat="server" ID="rblMemberType">
+                                <asp:RadioButtonList runat="server" ID="rblMemberType" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="1">成人游客</asp:ListItem>
                                     <asp:ListItem Value="2">儿童</asp:ListItem>
                                     <asp:ListItem Value="3">外宾</asp:ListItem>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Model;
 using NHibernate;
+using System.Web.Script.Serialization;
 namespace BLL
 {
     public class BLLDJEnterprise
@@ -419,5 +420,25 @@ namespace BLL
         }
 
         #endregion
+
+        public string BuildJsonEnterprise(string nameLike,string strEntType)
+        {
+            EnterpriseType entType;
+            Enum.TryParse(strEntType, out entType);
+            
+            IList<DJ_TourEnterprise> ents = dalEnt.GetList(nameLike, true, string.Empty,entType, null);
+            var list = (from row in ents select new DJ_TourEnterprise { 
+                Id=row.Id,
+                 Name=row.Name,
+                 ProvinceVeryfyState=row.ProvinceVeryfyState,
+                 CityVeryfyState=row.CityVeryfyState,
+                 CountryVeryfyState=row.CountryVeryfyState
+            }).ToList();
+
+            string jsonNames = CommonLibrary.JosnHelper.GetJson<IList<DJ_TourEnterprise>>(list);
+
+            return jsonNames;
+            
+        }
     }
 }

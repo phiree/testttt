@@ -98,6 +98,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
                CurrentGroup.Routes = CurrentGroup.Routes.Where(x => x.DayNo != dayNo).ToList();
                bllGroup.Save(CurrentGroup);
                LoadData();
+               pnlEditRoute.Visible = false;
         }
     }
     private void LoadEditRepeater(IList<string> scenicNames,IList<string> hotelNames)
@@ -129,11 +130,10 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         }
         string errMsg;
         bllRoute.SaveFromNameList(CurrentGroup, dayNo, entNames,out errMsg);
-
         bllGroup.Save(CurrentGroup);
       
         LoadData();
-        
+        pnlEditRoute.Visible = false;
         lblMsg_SaveRoute.Text = errMsg;
         if (string.IsNullOrEmpty(errMsg))
         {
@@ -164,6 +164,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
     {
         UpdateSimple();
         LoadData();
+        pnlEditRoute.Visible = false;
      //   Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
 
