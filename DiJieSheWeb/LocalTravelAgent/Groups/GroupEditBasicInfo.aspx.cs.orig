@@ -22,8 +22,14 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         if (!Guid.TryParse(paramstr, out groupId))
         {
             IsNew = true;
+<<<<<<< HEAD
+            Group = new DJ_TourGroup();
+            a_link_2.Visible = false;
+            a_link_3.Visible = false;
+=======
             CurrentGroup = new DJ_TourGroup();
 
+>>>>>>> b5c4da1b0da11cb5b6f7b80fa05cf18e740fa7b3
         }
         else
         {

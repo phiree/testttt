@@ -64,7 +64,9 @@ public partial class Admin_Demo : System.Web.UI.Page
         DJ_TourGroup group = new DJ_TourGroup();
         group.BeginDate = beginTime;
         group.DJ_DijiesheInfo = (Model.DJ_DijiesheInfo)demoDjs;
+        
         group.DaysAmount =1;
+        group.EndDate = beginTime;
 
         DJ_Group_Worker memberdaoyou = new DJ_Group_Worker();
         memberdaoyou.DJ_TourGroup = group;
@@ -119,8 +121,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         group.Members.Add(member4);
 
         group.Name = demoGroupNamePrefix+ Math.Abs(Guid.NewGuid().GetHashCode()).ToString().Substring(0, 6);
-        group.No = "SRY2012" + Math.Abs(Guid.NewGuid().GetHashCode()).ToString().Substring(0, 4);
-
+    
         DJ_Route route1 = new DJ_Route();
         route1.DayNo = 1;
         route1.Description = "住宿";
@@ -184,7 +185,7 @@ public partial class Admin_Demo : System.Web.UI.Page
     {
         bllConsum.DeleteDemoRecords(demoGroupNamePrefix);
 
-        
+        bllGroup.DeleteDemoGroups(demoGroupNamePrefix);
     }
 
     private void DemoLogin(string userName, string targetUrl)

@@ -16,10 +16,7 @@ namespace Model
             Routes = new List<DJ_Route>();
         }
         public virtual Guid Id { get; set; }
-        /// <summary>
-        /// 团队编号
-        /// </summary>
-        public virtual string No { get; set; }
+       
         /// <summary>
         /// 该团队所属的地接社
         /// </summary>
@@ -47,7 +44,8 @@ namespace Model
         /// <summary>
         /// 成人总人数
         /// </summary>
-     
+
+        public virtual DJ_User_TourEnterprise DijiesheEditor { get; set; }
         public virtual int AdultsAmount { 
             get { return Members.Where(x => x.MemberType == MemberType.成人游客).Count(); } }
         /// <summary>

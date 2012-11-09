@@ -17,31 +17,17 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
 
     BLL.BLLDJTourGroup bllGroup = new BLL.BLLDJTourGroup();
     BLL.BLLTourGroupMember bllGroupMember = new BLL.BLLTourGroupMember();
-    // Guid currentEditMemberId = Guid.Empty;
+
     DJ_TourGroupMember currentGroupMember;
-    //bool IsNewMember
-    //{
-    //    get
-    //    {
-    //        return currentEditMemberId == Guid.Empty;
-    //    }
-    //}
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        //string paramMemberId = Request["memberid"];
-        //Guid.TryParse(paramMemberId, out currentEditMemberId);
-        //if (!IsNewMember)
-        //{
-        //    currentGroupMember = bllGroupMember.GetOne(currentEditMemberId);
-        //}
+       
         if (!IsPostBack)
         {
             LoadData();
-            //if (!IsNewMember)
-            //{
-            //    LoadMemberForm();
-            //}
+           
         }
     }
 
