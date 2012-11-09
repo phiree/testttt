@@ -83,11 +83,15 @@ namespace BLL
         public void DeleteDemoGroups(string nameLike)
         {
           IList<DJ_TourGroup> demoGroups= Idjtourgroup.GetList(Guid.Empty, nameLike, true, null, null, null, null, string.Empty);
-          DJ_TourGroup[] arrGroups = new DJ_TourGroup[] { };
-          demoGroups.CopyTo(arrGroups, 0);
-          for (int i = 0; i < arrGroups.Length;i++ )
+          //DJ_TourGroup[] arrGroups = new DJ_TourGroup[] { };
+          //demoGroups.CopyTo(arrGroups, 0);
+          //for (int i = 0; i < arrGroups.Length;i++ )
+          //{
+          //    Delete(demoGroups[i]);
+          //}
+          foreach (DJ_TourGroup g in demoGroups)
           {
-              Delete(demoGroups[i]);
+              Delete(g);
           }
         }
         public void Delete(DJ_TourGroup group)

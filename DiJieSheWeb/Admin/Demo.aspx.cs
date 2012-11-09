@@ -186,7 +186,6 @@ public partial class Admin_Demo : System.Web.UI.Page
         bllConsum.DeleteDemoRecords(demoGroupNamePrefix);
 
         bllGroup.DeleteDemoGroups(demoGroupNamePrefix);
-        
     }
 
     private void DemoLogin(string userName, string targetUrl)

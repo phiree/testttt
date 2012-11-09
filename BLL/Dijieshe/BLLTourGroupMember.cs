@@ -46,11 +46,7 @@ namespace BLL
             {
                 string singleString = GenerateSimpleString(member);
 
-
-                if (members.IndexOf(member) < members.Count - 1)
-                {
-                    sb.AppendLine(Environment.NewLine);
-                }
+                sb.AppendLine(singleString);
             }
          return sb.ToString();
         }
