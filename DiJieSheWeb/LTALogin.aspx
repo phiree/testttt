@@ -22,8 +22,10 @@
             t = setTimeout("changeBgPic()", 15000);
         }
         function changeSrc() {
-                $("#loginbg").attr("src", "/image/LoginBg_" + PicIndex + ".jpg");
-                PicIndex++;
+            if (PicIndex == 4)
+                PicIndex = 1;
+            $("#loginbg").attr("src", "/image/LoginBg_" + PicIndex + ".jpg");
+            PicIndex++;
         }
     </script>
 </head>

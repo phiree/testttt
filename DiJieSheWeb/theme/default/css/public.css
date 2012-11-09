@@ -211,3 +211,9 @@ ul
 {
     color:#019380;
 }
+.clearborder,.clearborder tr td
+{
+    border:none;
+    margin-top:15px;
+    margin-left:55px;
+}
