@@ -51,6 +51,16 @@
                 },
             });
           
+          /*隐藏/显示多余的文本框*/
+          $(".EditEntName[entType='景点']").each(
+          function(index){
+          if(index>=4 && $(this).val()=="")
+          $(this).hide();
+          }
+          );
+           $(".EditEntName[entType='宾馆']").each(function(index){if(index>=2)$(this).hide();});
+           $("#btnAddMoreScenic").click(function(){ $(".EditEntName[entType='景点']").show();});
+           $("#btnAddMoreHotel").click(function(){$(".EditEntName[entType='宾馆']").show();});
         });
     </script>
 </asp:Content>
@@ -93,7 +103,8 @@
                         <td>
                             <asp:Repeater runat="server" ID="rptScenics">
                                 <ItemTemplate>
-                                    <%#Eval("Name") %>
+                                    <span class='<%#((bool)Eval("IsVerified"))?"rewardbg":"" %>'>
+                                        <%#Eval("Name") %></span>
                                 </ItemTemplate>
                                 <SeparatorTemplate>
                                     ,</SeparatorTemplate>
@@ -102,7 +113,8 @@
                         <td>
                             <asp:Repeater runat="server" ID="rptHotels">
                                 <ItemTemplate>
-                                    <%#Eval("Name") %>
+                                    <span class='<%#((bool)Eval("IsVerified"))?"rewardbg":"" %>'>
+                                        <%#Eval("Name") %></span>
                                 </ItemTemplate>
                                 <SeparatorTemplate>
                                     ,</SeparatorTemplate>
@@ -128,20 +140,26 @@
                         </asp:RadioButtonList>
                         天</div>
                     <div>
-                        景点:<asp:Repeater runat="server" ID="rptEditScenics">
-                            <ItemTemplate>
-                                <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
-                                    entType="景点" ID="tbxScenicName"></asp:TextBox></ItemTemplate>
-                        </asp:Repeater>
-                        <input type="button" id="btnAddMoreScenic" value="增加更多" />
+                        <div>
+                            景点:</div>
+                        <div>
+                            <asp:Repeater runat="server" ID="rptEditScenics" OnItemDataBound="rptEditEnt_ItemDataBound">
+                                <ItemTemplate>
+                                    <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
+                                        ID="tbxEntEdit" entType="景点"></asp:TextBox></ItemTemplate>
+                            </asp:Repeater>
+                            <input type="button" id="btnAddMoreScenic" value="增加更多" /></div>
                     </div>
                     <div>
-                        饭店:<asp:Repeater runat="server" ID="rptEditHotels">
-                            <ItemTemplate>
-                                <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
-                                    entType="宾馆" ID="tbxHotelName"></asp:TextBox></ItemTemplate>
-                        </asp:Repeater>
-                        <input type="button" id="btnAddMoreHotel" value="增加更多" />
+                        <div>
+                            饭店:</div>
+                        <div>
+                            <asp:Repeater runat="server" ID="rptEditHotels" OnItemDataBound="rptEditEnt_ItemDataBound">
+                                <ItemTemplate>
+                                    <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
+                                        ID="tbxEntEdit" entType="宾馆"></asp:TextBox></ItemTemplate>
+                            </asp:Repeater>
+                            <input type="button" id="btnAddMoreHotel" value="增加更多" /></div>
                     </div>
                 </div>
                 <asp:Button runat="server" ID="btnSaveRoute" OnClick="btnSaveRoute_Click" Text="保存" />
