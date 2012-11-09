@@ -27,11 +27,16 @@ namespace ExcelOplib.Entity
         /// 数据类型
         /// </summary>
         public 数据类型 EnterpType { get; set; }
+        /// <summary>
+        /// seo
+        /// </summary>
+        public string Seoname { get; set; }
     }
 
     public enum 数据类型
     {
-        地接社=1,
+        管理部门,
+        地接社,
         景区,
         宾馆
     }

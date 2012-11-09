@@ -32,7 +32,11 @@ namespace Model
         ///// <summary>
         ///// 是否经过认证,成为奖励方位内的企业.
         ///// </summary>
-        //public virtual bool IsVeryfied { get; set; }
+        public virtual bool IsVerified { get {
+            return ProvinceVeryfyState == RewardType.已纳入
+                || CityVeryfyState == RewardType.已纳入
+                || CountryVeryfyState == RewardType.已纳入;
+        } }
         //是否是省级奖励方位内的企业
         public virtual RewardType ProvinceVeryfyState { get; set; }
         //是否是市级奖励范围内的企业

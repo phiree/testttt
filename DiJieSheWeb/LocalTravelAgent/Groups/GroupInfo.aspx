@@ -4,163 +4,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script type="text/javascript">
-
-        //V.2012-10-28
-//        function calc() {
-
-//            //保存校验
-//            var tbmem = $("#tbMember>tbody>tr");
-//            var idvali = true;
-//            var request_s = "";
-//            tbmem.each(function () {
-//                request_s += $(this).children().next().next().html() + "-";
-//            });
-//            $.ajax({
-//                type: "Post",
-//                async: false,
-//                url: "ValidateHandler.ashx",
-//                dataType: "text",
-//                data: request_s,
-//                success: function (data, status) {
-//                    var dics = data.split("-");
-//                    if (dics[0] != "true" && dics[0] != "True") {
-//                        idvali = false;
-//                        return false;
-//                    }
-//                }
-//            });
-//            alert(idvali);
-//            if (!idvali) {
-//                alert('身份证输入错误, 请重新填写!');
-//                return false;
-//            }
-
-//            //保存提示
-//            var bool = window.confirm("请确定是否需要保存!");
-//            if (!bool) {
-//                return false;
-//            }
-//            var gid = getArgs("id");
-
-//            //V.2012-10-10
-//            //基本信息
-//            var dateString = $("#txtDate").html();
-//            var dateArray = dateString.split("-", 2);
-//            var datas = "";
-//            var djsid = $.cookie('DJSID');
-//            datas += "{\"DjsId\":\"" + djsid + "\",";
-//            datas += "\"GroupBasic\":";
-//            datas += "{\"Name\":\"" + $("#txtName").html();
-//            datas += "\",\"Begindate\":\"" + dateArray[0];
-//            datas += "\",\"Enddate\":\"" + dateArray[1];
-//            datas += "\",\"GroupNo\":\"" + $("#txtGroupNo").html();
-//            datas += "\",\"Days\":\"" + $("#txtDays").html();
-//            datas += "\",\"PeopleTotal\":\"" + $("#txtPnum").html();
-//            datas += "\",\"PeopleAdult\":\"" + $("#txtPadult").html();
-//            datas += "\",\"PeopleChild\":\"" + $("#txtPchild").html();
-//            datas += "\",\"Gangaotais\":\"" + $("#txtGangaotais").html();
-//            datas += "\",\"Foreigners\":\"" + $("#txtForeigners").html();
-//            datas += "\",\"StartPlace\":\"" + $("#txtGether").html();
-//            datas += "\",\"EndPlace\":\"" + $("#txtBack").html();
-
-//            //人员信息
-//            var tabledom = $("#tbMember>tbody>tr");
-//            datas += "\"},\"GroupMemberList\":[";
-//            tabledom.each(function () {
-//                //alert('tbmem=' + $(this).children().next().html());
-//                datas += "{\"Memtype\":\"" + $(this).children().html();
-//                datas += "\",\"Memname\":\"" + $(this).children().next().html();
-//                datas += "\",\"Memid\":\"" + $(this).children().next().next().html();
-//                datas += "\",\"Memphone\":\"" + $(this).children().next().next().next().html();
-//                datas += "\",\"Cardno\":\"" + $(this).children().next().next().next().next().html();
-//                datas += "\"},";   //最后记得去掉这个,逗号
-//            });
-//            datas = datas.substring(0, datas.length - 1) + "]";
-
-//            //行程信息
-//            var tbRoute = $("#tbRoute>tbody>tr");
-//            datas += ",\"GroupRouteList\":[";
-//            tbRoute.each(function () {
-//                datas += "{\"RouteDate\":\"" + $(this).children().html();
-//                datas += "\",\"Breakfast\":\"" + $(this).children().next().next().html();
-//                datas += "\",\"Lunch\":\"" + $(this).children().next().next().next().html();
-//                datas += "\",\"Dinner\":\"" + $(this).children().next().next().next().next().html();
-
-//                var hotelString = $(this).children().next().next().next().next().next().html();
-//                var hotelArray = hotelString.split("-", 5);
-//                for (var i = 0; i < hotelArray.length; i++) {
-//                    datas += "\",\"Hotel" + (i + 1) + "\":\"" + hotelArray[i];
-//                }
-
-//                var scString = $(this).children().next().next().next().next().next().next().html();
-//                var scArray = scString.split("-", 5);
-//                for (var i = 0; i < scArray.length; i++) {
-//                    datas += "\",\"Scenic" + (i + 1) + "\":\"" + scArray[i];
-//                }
-
-//                var spString = $(this).children().next().next().next().next().next().next().next().html();
-//                var spArray = spString.split("-", 5);
-//                for (var i = 0; i < spArray.length; i++) {
-//                    datas += "\",\"ShoppingPoint" + (i + 1) + "\":\"" + spArray[i];
-//                }
-
-//                datas += "\"},"; //最后记得去掉这个,逗号
-//            });
-//            datas = datas.substring(0, datas.length - 1) + "]}";
-
-//            $.ajax({
-//                type: "Post",
-//                url: "GroupHandler.ashx",
-//                dataType: "text",
-//                data: datas,
-//                success: function (data, status) {
-//                    alert(data);
-//                }
-//            });
-
-            //           //老版本2012-9-29
-            //            var tabledom = $("#tbMember>tbody>tr");
-            //            var result = false;
-            //            var djsid = $.cookie('DJSID');
-            //            tabledom.each(function () {
-            //                var memtype = $(this).children().children().html();
-            //                var memname = $(this).children().next().children().html();
-            //                var memid = $(this).children().next().next().children().html();
-            //                var memphone = $(this).children().next().next().next().children().html();
-            //                //var scid = $("input[id*=hidden_scid]").val();
-            //                datas += '{' + memtype + ',' + memname + ',' + memid + ',' + memphone;
-            //            });
-            //            $.ajax({
-            //                type: "Post",
-            //                url: "MemidHandler.ashx",
-            //                dataType: "json",
-            //                data: datas,
-            //                success: function (data, status) {
-            //                    if (data == "成功")
-            //                        alert("修改成功！");
-            //                    else
-            //                        alert("修改失败！");
-            //                }
-            //            });
-//        }
-
         //删除行
         function delrow(obj) {
             $(obj).parent().parent().remove();
-        }
-
-        //检查是否在编辑状态
-        function checkEditing() {
-            var body = $("#addrow").parent().parent().parent().next();
-            var textboxList = $("table>tbody>tr>td>input:text");
-            for (var i = 0; i < textboxList.size(); i++) {
-                if ($(textboxList[i]).val() != "") {
-                    alert("页面正在编辑中，是否继续导入数据？");
-                    return false;
-                }
-            }
-            alert("上传成功, 请导入!");
-            return true;
         }
 
         //加载制定group的数据
@@ -210,28 +56,6 @@
                     success: function (data, status) {
                         var splititems = data.split(":");
                         window.location="/LocalTravelAgent/Groups/GroupDetail.aspx?id=" + splititems[1];
-                        //                        var tbmember = $("#tbMember>tbody");
-                        //                        var tbroute = $("#tbRoute>tbody");
-                        //                        if (data == "") {
-                        //                            alert('内容已导入!');
-                        //                        }
-                        //                        else {
-                        //                            var j = eval(data);
-                        //                            $("#txtGroupNo").html(j.GroupNo);
-                        //                            $("#txtName").html(j.Name);
-                        //                            $("#txtDate").html(j.Bedate);
-                        //                            $("#txtDays").html(j.Days);
-                        //                            $("#txtPnum").html(j.PeopleTotal);
-                        //                            $("#txtPadult").html(j.PeopleAdult);
-                        //                            $("#txtPchild").html(j.PeopleChild);
-                        //                            $("#txtGether").html(j.StartPlace);
-                        //                            $("#txtBack").html(j.EndPlace);
-                        //                            $("#txtForeigners").html(j.Foreigners);
-                        //                            $("#txtGangaotais").html(j.Gangaotais);
-                        //                            $("txtGroupNo").html(j.GroupNo);
-                        //                            tbmember.html(j.Member);
-                        //                            tbroute.html(j.Route);
-                        //                        }
                     }
                 });
             });
@@ -260,91 +84,24 @@
         <table border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td style="width: 15%">
-                    团队编号：
-                </td>
-                <td>
-                    <h6 id="txtGroupNo">
-                    </h6>
-                </td>
-                <td style="width: 15%">
                     团队名称：
                 </td>
                 <td>
-                    <h6 id="txtName">
-                    </h6>
+                    <asp:Label ID="lblname" runat="server" />
                 </td>
             </tr>
             <tr>
                 <td style="width: 15%">
-                    起止时间：
+                    开始时间：
                 </td>
                 <td>
-                    <h6 id="txtDate">
-                    </h6>
+                    <asp:Label ID="lblbegin" runat="server" />
                 </td>
                 <td>
                     游玩天数：
                 </td>
                 <td>
-                    <h6 id="txtDays">
-                    </h6>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    游玩人数：
-                </td>
-                <td>
-                    <h6 id="txtPnum">
-                    </h6>
-                </td>
-                <td>
-                    成人人数：
-                </td>
-                <td>
-                    <h6 id="txtPadult">
-                    </h6>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    儿童人数：
-                </td>
-                <td>
-                    <h6 id="txtPchild">
-                    </h6>
-                </td>
-                <td>
-                    外宾人数：
-                </td>
-                <td>
-                    <h6 id="txtForeigners">
-                    </h6>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    港澳台人数：
-                </td>
-                <td>
-                    <h6 id="txtGangaotais">
-                    </h6>
-                </td>
-                <td>
-                    上车集合点：
-                </td>
-                <td>
-                    <h6 id="txtGether">
-                    </h6>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    返程点：
-                </td>
-                <td>
-                    <h6 id="txtBack">
-                    </h6>
+                    <asp:Label ID="lbldays" runat="server" />
                 </td>
             </tr>
         </table>
@@ -368,14 +125,23 @@
                     <td>
                         联系方式
                     </td>
-                    <td>
-                        证件号
-                    </td>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                </tr>
+                <asp:Repeater ID="rptMember" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td><%#Eval("Memtype")%>
+                            </td>
+                            <td><%#Eval("Memname")%>
+                            </td>
+                            <td><%#Eval("Memid")%>
+                            </td>
+                            <td><%#Eval("Memphone")%>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
             </tbody>
         </table>
         <!-- 人员end -->
@@ -387,32 +153,31 @@
             <thead>
                 <tr>
                     <td>
-                        日期
-                    </td>
-                    <td>
-                        地点
-                    </td>
-                    <td>
-                        早餐
-                    </td>
-                    <td>
-                        中餐
-                    </td>
-                    <td>
-                        晚餐
-                    </td>
-                    <td>
-                        住宿
                     </td>
                     <td>
                         景点
                     </td>
                     <td>
-                        购物点
+                        住宿
                     </td>
                 </tr>
             </thead>
             <tbody>
+                <asp:Repeater ID="rptRoutes" runat="server" >
+                    <ItemTemplate>
+                    <tr>
+                        <td>
+                            <%#Eval("dayno")%>
+                        </td>
+                        <td>
+                            <%#Eval("scenics")%>
+                        </td>
+                        <td>
+                            <%#Eval("hotels")%>
+                        </td>
+                    </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
             </tbody>
         </table>
     </div>
@@ -432,10 +197,8 @@
             <li>点击“导入数据”，将excel内容导入到表格中 </li>
         </ol>
         <asp:FileUpload ID="FileUpload1" runat="server" />
-        <asp:Button ID="btnUpload" runat="server" Text="上传" OnClientClick="return checkEditing();"
-            OnClick="btnUpload_Click" CssClass="btn" />
-        <input id="btnExcel" type="button" name="name" value="导入数据" class="btn" />
-        <asp:Label ID="Label1" runat="server" Text="" Style="display: none"></asp:Label>
-        <!-- 操作end -->
+        <asp:Button ID="btnUpload" runat="server" Text="上传并保存" OnClick="btnUpload_Click" />
+        <asp:Label ID="Label1" runat="server" />
+        <a href="/LocalTravelAgent/Groups/Grouplist.aspx">返回</a>
     </div>
 </asp:Content>

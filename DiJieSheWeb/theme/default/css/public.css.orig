@@ -211,6 +211,14 @@ ul
 {
     color:#019380;
 }
+<<<<<<< HEAD
+.clearborder,.clearborder tr td
+{
+    border:none;
+    margin-top:15px;
+    margin-left:55px;
+}
+=======
 .rewardbg
 {
   background:url(/theme/default/image/star.png) top left no-repeat;
@@ -224,3 +232,4 @@ color:Red;
            padding-left:30px;
             font-weight:600 !important;
         }
+>>>>>>> 5e25809290afa3f090b6a62282a7ea494b5f88dd

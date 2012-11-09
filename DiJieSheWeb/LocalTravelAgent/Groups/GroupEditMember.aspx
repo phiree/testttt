@@ -100,13 +100,13 @@
             <asp:Panel runat="server" ID="pnlMemberEdit" Visible="false">
                 <fieldset>
                     <legend></legend>
-                    <table class="comTable">
+                    <table>
                         <tr>
                             <td>
                                 类型
                             </td>
                             <td>
-                                <asp:RadioButtonList runat="server" ID="rblMemberType" RepeatDirection="Horizontal" class="clearborder">
+                                <asp:RadioButtonList runat="server" ID="rblMemberType" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="1">成人游客</asp:ListItem>
                                     <asp:ListItem Value="2">儿童</asp:ListItem>
                                     <asp:ListItem Value="3">外宾</asp:ListItem>
@@ -147,8 +147,7 @@
                             </td>
                         </tr>
                     </table>
-                    <asp:Button runat="server" OnClick="btnSaveMember_Click" ID="btnSave" Text="保存" CssClass="btn" />
-                    <asp:Button ID="BtnCanel" runat="server" Text="取消" CssClass="btn" />
+                    <asp:Button runat="server" OnClick="btnSaveMember_Click" ID="btnSave" Text="保存" />
                 </fieldset>
             </asp:Panel>
         </div>

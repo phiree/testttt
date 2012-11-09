@@ -81,7 +81,7 @@ namespace DAL
             if (!string.IsNullOrEmpty(djsid))
             {
                 ifcondition = true;
-                sql += "gw.DJ_Dijiesheinfo.Id='" + djsid + "' and";
+                sql += " gw.DJ_Dijiesheinfo.Id='" + djsid + "' and";
             }
 
             if (ifcondition)//如果有条件的string截取方式

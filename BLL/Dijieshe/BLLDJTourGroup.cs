@@ -83,9 +83,32 @@ namespace BLL
             session.Save(group);
             session.Flush();
         }
-       
 
+        public void UpdateMembersFromFormatedString(DJ_TourGroup group, string formatedString,out string totalErrMsg)
+        {
+            group.Members = GetMemberListFromFormatString(formatedString,out totalErrMsg);
+            Save(group);
+        }
 
+        public IList<DJ_TourGroupMember> GetMemberListFromFormatString(string formatedString, out string totalErrMsg)
+        {
+            totalErrMsg = string.Empty;
+            string[] arrStrMember = formatedString.Split(Environment.NewLine.ToCharArray());
+            IList<DJ_TourGroupMember> members = new List<DJ_TourGroupMember>();
+            foreach (string s in arrStrMember)
+            {
+                if (string.IsNullOrEmpty(s)) continue;
+                string singleErr;
+                DJ_TourGroupMember newMember = SerializationModel.SerializeMember(s, out singleErr);
+                if (!string.IsNullOrEmpty(singleErr))
+                {
+                    totalErrMsg += singleErr + Environment.NewLine;
+                    continue;
+                }
+                members.Add(newMember);
+            }
+            return members;
+        }
 
         /// <summary>
         /// 将游客列表生成json字符串
