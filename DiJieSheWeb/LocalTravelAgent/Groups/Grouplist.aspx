@@ -103,7 +103,7 @@
                     </td>
                     <td>
                         <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改</a> 
-                        <a href="/LocalTravelAgent/Groups/GroupInfo.aspx">从Excel文件更新</a>
+                        <a href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>从Excel文件更新</a>
                     </td>
                     <td>
                         <asp:LinkButton ID="lblMember_bz" Text="" runat="server" /><br />

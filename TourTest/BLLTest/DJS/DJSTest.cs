@@ -15,7 +15,7 @@ namespace TourTest.BLLTest
         [Test]
         public void AddDjsTest()
         {
-            blldjs.AddDjs("新疆牙买提", "新疆乌鲁木齐", bllarea.GetAreaByCode("330100"), "阿凡提", "15988886666", "010-156489765");
+            blldjs.AddDjs("新疆牙买提", "新疆乌鲁木齐", bllarea.GetAreaByCode("330100"), "阿凡提", "15988886666", "010-156489765","","");
         }
         [Test]
         public void GetDijieshe()

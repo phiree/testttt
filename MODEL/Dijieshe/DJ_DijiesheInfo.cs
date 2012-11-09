@@ -28,6 +28,8 @@ namespace Model
             }
         }
         public virtual IList<DJ_Group_Worker> Works { get; set; }
+
+
        
         /// <summary>
         /// 该地接社登记过的旅游团

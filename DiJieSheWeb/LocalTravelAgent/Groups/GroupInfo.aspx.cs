@@ -37,49 +37,100 @@ public partial class Groups_GroupInfo : basepageDJS
                 ExcelOplib.Entity.GroupAll group_excel = excel.getGroup(excelPath + "temp." + typ2, out message);
                 group_excel.GroupMemberList = group_excel.GroupMemberList.Where(x => !string.IsNullOrEmpty(x.Memtype)).ToList();
 
-                group_model.Name = group_excel.GroupBasic.Name;
-                group_model.BeginDate = DateTime.Parse(group_excel.GroupBasic.Begindate);
-                group_model.DaysAmount = int.Parse(group_excel.GroupBasic.Days);
-                group_model.EndDate = DateTime.Parse(group_excel.GroupBasic.Begindate).AddDays(int.Parse(group_excel.GroupBasic.Days));
-                group_model.Workers = new List<Model.DJ_Group_Worker>();
-                group_model.Members = new List<Model.DJ_TourGroupMember>();
-                group_model.Routes = new List<Model.DJ_Route>();
-                foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype == "导游" || x.Memtype == "司机"))
+                if (!string.IsNullOrEmpty(Request.QueryString["groupid"]))
                 {
-                    group_model.Workers.Add(new Model.DJ_Group_Worker()
+                    var group_db = bllgroup.GetOne(new Guid(Request.QueryString[0]));
+                    group_db.Name = group_excel.GroupBasic.Name;
+                    group_db.BeginDate = DateTime.Parse(group_excel.GroupBasic.Begindate);
+                    group_db.DaysAmount = int.Parse(group_excel.GroupBasic.Days);
+                    group_db.EndDate = DateTime.Parse(group_excel.GroupBasic.Begindate).AddDays(int.Parse(group_excel.GroupBasic.Days));
+                    group_db.Workers.Clear();
+                    group_db.Members.Clear();
+                    group_db.Routes.Clear();
+                    foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype == "导游" || x.Memtype == "司机"))
                     {
-                        DJ_TourGroup = group_model,
-                        IDCard = item.Memid,
-                        WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
-                        Phone = item.Memphone,
-                        Name = item.Memname
-                    });
-                }
-                foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype != "导游" && x.Memtype != "司机"))
-                {
-                    group_model.Members.Add(new Model.DJ_TourGroupMember()
-                    {
-                        DJ_TourGroup = group_model,
-                        IdCardNo = item.Memid,
-                        MemberType = (Model.MemberType)Enum.Parse(typeof(Model.MemberType), item.Memtype),
-                        PhoneNum = item.Memphone,
-                        RealName = item.Memname
-                    });
-                }
-                foreach (var item in group_excel.GroupRouteList)
-                {
-                    var temp1 = item.Scenic.Split(new char[] { ',', '-' });
-                    var temp2 = item.Scenic.Split(new char[] { ',', '-' });
-                    foreach (var item2 in temp1)
-                    {
-                        group_model.Routes.Add(new Model.DJ_Route()
+                        group_db.Workers.Add(new Model.DJ_Group_Worker()
                         {
-                            DJ_TourGroup = group_model,
-                            DayNo = int.Parse(item.RouteDate),
-                            Enterprise = bllenterp.GetDJS8name(item2).Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                            DJ_TourGroup = group_db,
+                            IDCard = item.Memid,
+                            WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
+                            Phone = item.Memphone,
+                            Name = item.Memname
                         });
                     }
-
+                    foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype != "导游" && x.Memtype != "司机"))
+                    {
+                        group_db.Members.Add(new Model.DJ_TourGroupMember()
+                        {
+                            DJ_TourGroup = group_db,
+                            IdCardNo = item.Memid,
+                            MemberType = (Model.MemberType)Enum.Parse(typeof(Model.MemberType), item.Memtype),
+                            PhoneNum = item.Memphone,
+                            RealName = item.Memname
+                        });
+                    }
+                    foreach (var item in group_excel.GroupRouteList)
+                    {
+                        var temp1 = item.Scenic.Split(new char[] { ',', '-' });
+                        var temp2 = item.Scenic.Split(new char[] { ',', '-' });
+                        foreach (var item2 in temp1)
+                        {
+                            group_db.Routes.Add(new Model.DJ_Route()
+                            {
+                                DJ_TourGroup = group_db,
+                                DayNo = int.Parse(item.RouteDate),
+                                Enterprise = bllenterp.GetDJS8name(item2).Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                            });
+                        }
+                    }
+                    bllgroup.Save(group_db);
+                }
+                else
+                {
+                    group_model.Name = group_excel.GroupBasic.Name;
+                    group_model.BeginDate = DateTime.Parse(group_excel.GroupBasic.Begindate);
+                    group_model.DaysAmount = int.Parse(group_excel.GroupBasic.Days);
+                    group_model.EndDate = DateTime.Parse(group_excel.GroupBasic.Begindate).AddDays(int.Parse(group_excel.GroupBasic.Days));
+                    group_model.Workers = new List<Model.DJ_Group_Worker>();
+                    group_model.Members = new List<Model.DJ_TourGroupMember>();
+                    group_model.Routes = new List<Model.DJ_Route>();
+                    foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype == "导游" || x.Memtype == "司机"))
+                    {
+                        group_model.Workers.Add(new Model.DJ_Group_Worker()
+                        {
+                            DJ_TourGroup = group_model,
+                            IDCard = item.Memid,
+                            WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
+                            Phone = item.Memphone,
+                            Name = item.Memname
+                        });
+                    }
+                    foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype != "导游" && x.Memtype != "司机"))
+                    {
+                        group_model.Members.Add(new Model.DJ_TourGroupMember()
+                        {
+                            DJ_TourGroup = group_model,
+                            IdCardNo = item.Memid,
+                            MemberType = (Model.MemberType)Enum.Parse(typeof(Model.MemberType), item.Memtype),
+                            PhoneNum = item.Memphone,
+                            RealName = item.Memname
+                        });
+                    }
+                    foreach (var item in group_excel.GroupRouteList)
+                    {
+                        var temp1 = item.Scenic.Split(new char[] { ',', '-' });
+                        var temp2 = item.Scenic.Split(new char[] { ',', '-' });
+                        foreach (var item2 in temp1)
+                        {
+                            group_model.Routes.Add(new Model.DJ_Route()
+                            {
+                                DJ_TourGroup = group_model,
+                                DayNo = int.Parse(item.RouteDate),
+                                Enterprise = bllenterp.GetDJS8name(item2).Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                            });
+                        }
+                    }
+                    bllgroup.Save(group_model);
                 }
 
                 lblname.Text = group_excel.GroupBasic.Name;
@@ -107,7 +158,6 @@ public partial class Groups_GroupInfo : basepageDJS
                 }
                 rptRoutes.DataSource = rslist;
                 rptRoutes.DataBind();
-                bllgroup.Save(group_model);
             }
             else
             {

@@ -82,7 +82,7 @@ public partial class Admin_Initial : System.Web.UI.Page
                     var temp_djs = blldjs.GetDJS8Muti(area.Id, Model.EnterpriseType.旅行社.ToString(), null, item.name);
                     if (temp_djs.Count == 0)
                     {
-                        blldjs.AddDjs(item.name, string.Empty, area, "", "", "");
+                        blldjs.AddDjs(item.name, string.Empty, area, "", "", "","","");
                     }
                     break;
                 case "景区":

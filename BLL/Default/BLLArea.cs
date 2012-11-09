@@ -54,6 +54,11 @@ namespace BLL
         {
             return DalArea.GetAreaByCode(code);
         }
+
+        public IList<Model.Area> GetAreaProvince()
+        {
+            return DalArea.GetAreaProvince();
+        }
         /// <summary>
         /// 获取辖区范围内行政区域的areaid, 用逗号连接,用于 sql的 In 查询
         /// </summary>

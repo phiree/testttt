@@ -22,8 +22,10 @@
             t = setTimeout("changeBgPic()", 15000);
         }
         function changeSrc() {
-                $("#loginbg").attr("src", "/image/LoginBg_" + PicIndex + ".jpg");
-                PicIndex++;
+            if (PicIndex == 4)
+                PicIndex = 1;
+            $("#loginbg").attr("src", "/image/LoginBg_" + PicIndex + ".jpg");
+            PicIndex++;
         }
     </script>
 </head>
@@ -82,7 +84,8 @@
                         </LayoutTemplate>
                     </asp:Login>
                     <hr />
-                    <asp:Button ID="BtnRegister" runat="server" CssClass="btn_register" />
+                    <asp:Button ID="BtnRegister" runat="server" CssClass="btn_register" 
+                        onclick="BtnRegister_Click" />
                 </div>
             </div>
             <div class="LTA_right">
