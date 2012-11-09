@@ -23,7 +23,7 @@ namespace BLL
         /// <param name="cpp">管理人手�/param>
         /// <param name="phone"></param>
         /// <returns></returns>
-        public int AddDjs(string name, string address, Model.Area area, string cpn, string cpp, string phone)
+        public int AddDjs(string name, string address, Model.Area area, string cpn, string cpp, string phone,string lincese,string email)
         {
             Model.DJ_TourEnterprise djs = new Model.DJ_DijiesheInfo()
             {
@@ -33,6 +33,8 @@ namespace BLL
                 ChargePersonName = cpn,
                 ChargePersonPhone = cpp,
                 Phone = phone,
+                Email=email,
+                Buslicense=lincese,
                 Type = Model.EnterpriseType.旅行社
             };
             return dalEnt.AddDJS(djs);

@@ -177,3 +177,75 @@ table img
     color:#016A6D;
     margin-top:5px;
 }
+/*地接社申请页面*/
+.LTA_mainTop
+{
+    
+}
+.LTA_mainTop h3
+{
+    color:#396159;
+    font-size:28px ;
+    width:400px;
+    line-height:80px;
+    font-weight:bold;
+    font-family:黑体;
+    float:left;
+}
+.fwtel
+{
+    float:right;
+    font-size:14px;
+    text-align:right;
+    height:40px;
+   display:block;
+   margin-top:40px;
+}
+.fwtel p
+{
+    color:#EC6941;
+    font-weight:bold;
+}
+.LTA_mainInfo
+{
+    clear:both;
+    padding:20px;
+    border:1px solid #278162;
+    background:url("/theme/default/image/registerBg.gif");
+    display:block;
+    height:720px;
+}
+.LTA_mainInfo h2
+{
+    font-weight:bold;
+    font-family:黑体;
+}
+.LTA_mainInfo h2 span
+{
+    font-weight:normal;
+    font-family:黑体;
+}
+.LTA_mainInfo table
+{
+    margin:10px 0px 0px 105px;
+    width:500px;
+}
+.LTA_mainInfo table tr td
+{
+    font-size:14px;
+    padding:5px;
+}
+.XY
+{
+    overflow-y:scroll;
+    width:100%;
+    height:300px;
+    background-color:White;
+}
+.XY p
+{
+    text-align:center;
+    font-size:16px;
+    line-height:30px;
+    font-weight:bold;
+}

@@ -14,7 +14,6 @@ namespace Model.Mapping
         {
             HasMany<DJ_TourGroup>(x => x.Groups);
             HasMany<Model.DJ_Group_Worker>(x => x.Works);
-           
         }
     }
 }

@@ -28,4 +28,8 @@ public partial class LTALogin : System.Web.UI.Page
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或者密码错误')", true);
         }
     }
+    protected void BtnRegister_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/LTARegister.aspx");
+    }
 }

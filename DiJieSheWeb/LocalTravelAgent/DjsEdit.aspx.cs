@@ -68,7 +68,7 @@ public partial class LocalTravelAgent_DjsEdit : basepageDJS
         if (djs == null)
         {
             blldjs.AddDjs(txtName.Text.Trim(), txtAddress.Text.Trim(),
-                bllarea.GetAreaByCode("330100"), txtCPN.Text.Trim(), txtCPP.Text.Trim(), "010-156489765");
+                bllarea.GetAreaByCode("330100"), txtCPN.Text.Trim(), txtCPP.Text.Trim(), "010-156489765","","");
         }
         else
         {

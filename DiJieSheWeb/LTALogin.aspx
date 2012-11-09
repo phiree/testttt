@@ -84,7 +84,8 @@
                         </LayoutTemplate>
                     </asp:Login>
                     <hr />
-                    <asp:Button ID="BtnRegister" runat="server" CssClass="btn_register" />
+                    <asp:Button ID="BtnRegister" runat="server" CssClass="btn_register" 
+                        onclick="BtnRegister_Click" />
                 </div>
             </div>
             <div class="LTA_right">
