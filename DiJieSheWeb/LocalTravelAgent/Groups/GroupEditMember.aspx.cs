@@ -50,7 +50,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         a_link_1.HRef = "/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx?groupid=" + Request["groupid"];
         a_link_2.HRef = "/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid=" + Request["groupid"];
         a_link_3.HRef = "/LocalTravelAgent/Groups/GroupEditRoute.aspx?groupid=" + Request["groupid"];
-        BuildJsonData();
+      
         LoadSimpleData();
         LoadMemberList();
     }
@@ -77,7 +77,10 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         tbxName.Text = currentGroupMember.RealName;
         tbxSpecialCardNo.Text = currentGroupMember.SpecialCardNo;
         tbxPhone.Text = currentGroupMember.PhoneNum;
-        rblMemberType.SelectedValue = ((int)currentGroupMember.MemberType).ToString();
+        try { rblMemberType.SelectedValue = ((int)currentGroupMember.MemberType).ToString(); }
+        catch {
+            rblMemberType.SelectedIndex = 0;
+        }
     }
     private void UpdateMemberForm()
     {
@@ -85,7 +88,14 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         currentGroupMember.SpecialCardNo = tbxSpecialCardNo.Text.Trim();
         currentGroupMember.RealName = tbxName.Text.Trim();
         currentGroupMember.PhoneNum = tbxPhone.Text.Trim();
-        currentGroupMember.MemberType = (MemberType)Enum.Parse(typeof(MemberType), rblMemberType.SelectedValue);
+
+        MemberType mt;
+        if (!Enum.TryParse<MemberType>(rblMemberType.SelectedValue, out mt))
+        {
+            mt = MemberType.成人游客;
+        }
+        currentGroupMember.MemberType = mt;
+
         currentGroupMember.DJ_TourGroup = CurrentGroup;
 
     }
@@ -129,48 +139,21 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
 
     private void LoadSimpleData()
     {
-        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        foreach (Model.DJ_TourGroupMember member in CurrentGroup.Members)
-        {
-            sb.Append(member.MemberType);
-            sb.Append(",");
-            sb.Append(member.RealName);
-            sb.Append(",");
-            sb.Append(member.PhoneNum);
-            sb.Append(",");
 
-            sb.Append(member.IdCardNo);
-            sb.Append(",");
-            sb.Append(member.SpecialCardNo);
-            if (CurrentGroup.Members.IndexOf(member) < CurrentGroup.Members.Count - 1)
-            {
-                sb.AppendLine(Environment.NewLine);
-            }
-        }
-        tbxSimple.Text = sb.ToString();
+        tbxSimple.Text = bllGroupMember.GenerateSimpleStrings(CurrentGroup.Members);
     }
-    private void BuildJsonData()
-    {
-        MemberJsonList = BLL.BLLDJTourGroup.BuildJsonForMemberList(CurrentGroup.Members);
-        // JavaScriptSerializer serializer = new JavaScriptSerializer();
-        //MemberJsonList= serializer.Serialize(CurrentGroup.Members);
-
-    }
-
-
 
     private void UpdateSimple(TextBox tbx)
     {
         ///删除所有成员先--首先要做提醒
         string errMsg = string.Empty;
-        bllGroupMember.UpdateFromFormatString(CurrentGroup, tbx.Text, out errMsg);
+        bllGroup.UpdateMembersFromFormatedString(CurrentGroup, tbx.Text, out errMsg);
         if (!string.IsNullOrEmpty(errMsg))
         {
             lblSimpleMsg.ForeColor = System.Drawing.Color.Red;
             lblSimpleMsg.Text = errMsg;
             return;
         }
-        bllGroup.Save(CurrentGroup);
         lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
         lblSimpleMsg.Text = "保存成功";
     }
@@ -179,10 +162,10 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     protected void btnSave_Click(object sender, EventArgs e)
     {
         UpdateSimple(tbxSimple);
-        BuildJsonData();
+      
         // Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
-    protected void btnUpload_Click(object sender, EventArgs e)  
+    protected void btnUpload_Click(object sender, EventArgs e)
     {
         string excelPath = "d:/";
         string fullname = fuMemberExcel.FileName.ToString();//直接取得文件名
@@ -229,6 +212,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     protected void btnExcel_Click(object sender, EventArgs e)
     {
         UpdateSimple(tbxExcel);
-        BuildJsonData();
+     
+       // Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
 }

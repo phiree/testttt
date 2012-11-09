@@ -35,27 +35,49 @@ namespace BLL
             DalMember.Delete(member);
         }
 
-        public void UpdateFromFormatString(DJ_TourGroup group, string formatedString, out string errMsg)
+        /// <summary>
+        /// 对象生成字符串,用于直接录入.
+        /// </summary>
+        /// <param name="members"></param>
+        public string GenerateSimpleStrings(IList<DJ_TourGroupMember> members)
         {
-            errMsg = string.Empty;
-            //foreach (DJ_TourGroupMember member in group.Members)
-            //{
-            //    Delete(member);
-            //}
-            group.Members.Clear();
-            string[] arrStrMember = formatedString.Split(Environment.NewLine.ToCharArray());
-            //CurrentGroup.Members
-
-            foreach (string s in arrStrMember)
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            foreach (Model.DJ_TourGroupMember member in members)
             {
-                if (string.IsNullOrEmpty(s)) continue;
-                DJ_TourGroupMember newMember = SerializationModel.SerializeMember(s, out errMsg);
-                if (!string.IsNullOrEmpty(errMsg))
+                string singleString = GenerateSimpleString(member);
+
+
+                if (members.IndexOf(member) < members.Count - 1)
                 {
-                    return;
+                    sb.AppendLine(Environment.NewLine);
                 }
-                group.Members.Add(newMember);
             }
+         return sb.ToString();
+        }
+
+        private string GenerateSimpleString( DJ_TourGroupMember member)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(member.MemberType);
+            sb.Append(",");
+            sb.Append(member.RealName);
+            sb.Append(",");
+
+            if (!string.IsNullOrEmpty(member.IdCardNo))
+            {
+                sb.Append(member.IdCardNo);
+                sb.Append(",");
+            }
+            if (!string.IsNullOrEmpty(member.SpecialCardNo))
+            {
+                sb.Append(member.SpecialCardNo);
+
+                sb.Append(",");
+            }
+            sb.Append(member.PhoneNum);
+
+            return sb.ToString();
+            
         }
     }
 }

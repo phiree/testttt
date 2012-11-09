@@ -153,7 +153,7 @@ namespace DAL
                 }
             }
 
-            if (type.HasValue)
+            if (type.HasValue&&type!=0)
             {
                 string typeInts = string.Empty;
                 if ((type.Value & Model.EnterpriseType.宾馆) == Model.EnterpriseType.宾馆)
@@ -181,7 +181,7 @@ namespace DAL
             }
 
 
-            if (rewardType.HasValue)
+            if (rewardType.HasValue&&rewardType!=0)
             {
                 string rewardPropertyName = string.Empty;
                 switch (govArea.Level)

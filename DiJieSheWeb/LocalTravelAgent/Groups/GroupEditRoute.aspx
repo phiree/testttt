@@ -6,10 +6,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
-    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+    <link href="/Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
+
         $(function () {
+            /*记住最后一次选择的tab*/
             var cookieName = "djsmetab";
             $("#tabs").tabs({
                 active: $.cookie(cookieName),
@@ -17,6 +19,48 @@
                     $.cookie(cookieName, ui.newTab.index(), { expires: 365 });
                 }
             });
+            /*输入企业名称时的智能提示*/
+
+            $(".EditEntName").autocomplete({
+                //source: "/ajaxservice/EntpriseAutoCompleteHanlder.ashx"
+                source: function (request, response) {
+                    var tbx = this.element[0];
+                    var entType = $(tbx).attr("entType");
+                    $.get("/ajaxservice/EntpriseAutoCompleteHanlder.ashx?entName=" + request.term + "&entType=" + entType
+                    , function (data) { 
+                    response( $.map( data, function( item ) {
+                    var labelStr=item.Name;
+                    var verifyState=0;
+                          if(item.CityVeryfyState==1||item.CountryVeryfyState==1||item.ProvinceVeryfyState==1)
+                          {
+                            labelStr="☆"+labelStr;
+                            verifyState=1;
+                          }
+                        return {
+                            label: labelStr,
+                            value: item.Name,
+                            verifyState:verifyState
+                        }
+                    })); 
+                    });
+                },
+                select: function (event, ui) {
+                    if(ui.item.verifyState==1)
+                    event.target.className+=" rewardbg";
+                    event.target.value = ui.item.Name;
+                },
+            });
+          
+          /*隐藏/显示多余的文本框*/
+          $(".EditEntName[entType='景点']").each(
+          function(index){
+          if(index>=4 && $(this).val()=="")
+          $(this).hide();
+          }
+          );
+           $(".EditEntName[entType='宾馆']").each(function(index){if(index>=2)$(this).hide();});
+           $("#btnAddMoreScenic").click(function(){ $(".EditEntName[entType='景点']").show();});
+           $("#btnAddMoreHotel").click(function(){$(".EditEntName[entType='宾馆']").show();});
         });
     </script>
 </asp:Content>
@@ -59,7 +103,8 @@
                         <td>
                             <asp:Repeater runat="server" ID="rptScenics">
                                 <ItemTemplate>
-                                    <%#Eval("Name") %>
+                                    <span class='<%#((bool)Eval("IsVerified"))?"rewardbg":"" %>'>
+                                        <%#Eval("Name") %></span>
                                 </ItemTemplate>
                                 <SeparatorTemplate>
                                     ,</SeparatorTemplate>
@@ -68,7 +113,8 @@
                         <td>
                             <asp:Repeater runat="server" ID="rptHotels">
                                 <ItemTemplate>
-                                    <%#Eval("Name") %>
+                                    <span class='<%#((bool)Eval("IsVerified"))?"rewardbg":"" %>'>
+                                        <%#Eval("Name") %></span>
                                 </ItemTemplate>
                                 <SeparatorTemplate>
                                     ,</SeparatorTemplate>
@@ -94,18 +140,26 @@
                         </asp:RadioButtonList>
                         天</div>
                     <div>
-                        景点:<asp:Repeater runat="server" ID="rptEditScenics">
-                            <ItemTemplate>
-                                <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditScenicName"
-                                    ID="tbxScenicName"></asp:TextBox></ItemTemplate>
-                        </asp:Repeater>
+                        <div>
+                            景点:</div>
+                        <div>
+                            <asp:Repeater runat="server" ID="rptEditScenics" OnItemDataBound="rptEditEnt_ItemDataBound">
+                                <ItemTemplate>
+                                    <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
+                                        ID="tbxEntEdit" entType="景点"></asp:TextBox></ItemTemplate>
+                            </asp:Repeater>
+                            <input type="button" id="btnAddMoreScenic" value="增加更多" /></div>
                     </div>
                     <div>
-                        饭店:<asp:Repeater runat="server" ID="rptEditHotels">
-                            <ItemTemplate>
-                                <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditScenicName"
-                                    ID="tbxHotelName"></asp:TextBox></ItemTemplate>
-                        </asp:Repeater>
+                        <div>
+                            饭店:</div>
+                        <div>
+                            <asp:Repeater runat="server" ID="rptEditHotels" OnItemDataBound="rptEditEnt_ItemDataBound">
+                                <ItemTemplate>
+                                    <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
+                                        ID="tbxEntEdit" entType="宾馆"></asp:TextBox></ItemTemplate>
+                            </asp:Repeater>
+                            <input type="button" id="btnAddMoreHotel" value="增加更多" /></div>
                     </div>
                 </div>
                 <asp:Button runat="server" ID="btnSaveRoute" OnClick="btnSaveRoute_Click" Text="保存" />

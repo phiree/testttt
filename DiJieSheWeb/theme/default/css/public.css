@@ -211,3 +211,16 @@ ul
 {
     color:#019380;
 }
+.rewardbg
+{
+  background:url(/theme/default/image/star.png) top left no-repeat;
+  
+padding-left:30px;
+color:Red;
+    }
+    .rewardbg a
+    {
+         display:inline-block;
+           padding-left:30px;
+            font-weight:600 !important;
+        }

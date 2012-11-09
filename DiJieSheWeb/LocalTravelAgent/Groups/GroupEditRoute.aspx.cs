@@ -78,6 +78,19 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
     {
         //  throw new NotImplementedException();
     }
+ protected  void rptEditEnt_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            TextBox tbx= e.Item.FindControl("tbxEntEdit") as TextBox;
+            DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
+            if (ent!=null&&ent.IsVerified)
+            {
+                tbx.CssClass = "rewardbb";
+                tbx.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+    }
     protected void rptRoutes_ItemCommand(object o, RepeaterCommandEventArgs e)
     {
         string commandName=e.CommandName.ToLower();
@@ -98,6 +111,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
                CurrentGroup.Routes = CurrentGroup.Routes.Where(x => x.DayNo != dayNo).ToList();
                bllGroup.Save(CurrentGroup);
                LoadData();
+               pnlEditRoute.Visible = false;
         }
     }
     private void LoadEditRepeater(IList<string> scenicNames,IList<string> hotelNames)
@@ -117,23 +131,22 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         List<string> entNames = new List<string>();
         foreach (RepeaterItem item in rptEditScenics.Items)
         {
-            TextBox tbxScenic= item.FindControl("tbxScenicName") as TextBox;
+            TextBox tbxScenic = item.FindControl("tbxEntEdit") as TextBox;
             string scenicName = CommonLibrary.StringHelper.TrimAll(tbxScenic.Text);
             entNames.Add(scenicName);
         }
         foreach (RepeaterItem itemHotel in rptEditHotels.Items)
         {
-            TextBox tbxHotel = itemHotel.FindControl("tbxHotelName") as TextBox;
+            TextBox tbxHotel = itemHotel.FindControl("tbxEntEdit") as TextBox;
             string hotelName = CommonLibrary.StringHelper.TrimAll(tbxHotel.Text);
             entNames.Add(hotelName);
         }
         string errMsg;
         bllRoute.SaveFromNameList(CurrentGroup, dayNo, entNames,out errMsg);
-
         bllGroup.Save(CurrentGroup);
       
         LoadData();
-        
+        pnlEditRoute.Visible = false;
         lblMsg_SaveRoute.Text = errMsg;
         if (string.IsNullOrEmpty(errMsg))
         {
@@ -164,6 +177,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
     {
         UpdateSimple();
         LoadData();
+        pnlEditRoute.Visible = false;
      //   Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
 
