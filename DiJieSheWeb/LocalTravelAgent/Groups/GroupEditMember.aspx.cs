@@ -215,4 +215,10 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
      
        // Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        pnlMemberEdit.Visible = false;
+        btnAddMember.Visible = true;
+    }
 }

@@ -26,15 +26,14 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <div class="detail_titlebg">
-        编辑人员
-    </div>
-    <div class="navstate">
-        <a runat="server" id="a_link_1" href="/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx">修改基本信息</a>一<a runat="server" id="a_link_2" href="/LocalTravelAgent/Groups/GroupEditMember.aspx" class="selectstate">修改成员信息</a>一<a runat="server" id="a_link_3" href="/LocalTravelAgent/Groups/GroupEditRoute.aspx">修改行程信息</a>
+    <div class="navlist">
+        <a runat="server" id="a_link_1" href="/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx" >录入团队基本信息</a>
+        <a runat="server" id="a_link_2" href="/LocalTravelAgent/Groups/GroupEditMember.aspx" class="selectstate">录入游客信息</a>
+        <a runat="server" id="a_link_3" href="/LocalTravelAgent/Groups/GroupEditRoute.aspx">录入行程信息</a>
     </div>
     <div style="clear:both">
     </div>
-    <h3 style="margin-left:15px;">
+    <h3 style="margin-left:15px;margin-top:30px">
         <b>
             <%=CurrentGroup.Name %>游客列表</b></h3>
     <div class="box">
@@ -147,7 +146,8 @@
                             </td>
                         </tr>
                     </table>
-                    <asp:Button runat="server" OnClick="btnSaveMember_Click" ID="btnSave" Text="保存" />
+                    <asp:Button runat="server" OnClick="btnSaveMember_Click" ID="btnSave" Text="保存" CssClass="btn" />
+                    <asp:Button runat="server" OnClick="btnCancel_Click" ID="btnCancel" Text="取消" CssClass="btn" />
                 </fieldset>
             </asp:Panel>
         </div>

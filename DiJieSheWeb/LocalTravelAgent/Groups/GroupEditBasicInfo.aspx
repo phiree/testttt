@@ -13,11 +13,17 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <div class="detail_titlebg">
-        新增团队
+    <div class="navlist">
+        <a runat="server" id="a_link_1" href="/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx"  class="selectstate">录入团队基本信息</a>
+        <a runat="server" id="a_link_2" href="/LocalTravelAgent/Groups/GroupEditMember.aspx">录入游客信息</a>
+        <a runat="server" id="a_link_3" href="/LocalTravelAgent/Groups/GroupEditRoute.aspx">录入行程信息</a>
     </div>
+    
+    <%--<div class="detail_titlebg">
+        新增团队
+    </div>--%>
     <div class="navstate">
-        <a runat="server" id="a_link_1" href="/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx"  class="selectstate">修改基本信息</a>一<a runat="server" id="a_link_2" href="/LocalTravelAgent/Groups/GroupEditMember.aspx">修改成员信息</a>一<a runat="server" id="a_link_3" href="/LocalTravelAgent/Groups/GroupEditRoute.aspx">修改行程信息</a>
+        
     </div>
     <div class="detaillist">
         <table class="comTable">

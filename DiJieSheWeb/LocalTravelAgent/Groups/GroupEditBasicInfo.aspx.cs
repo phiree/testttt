@@ -23,7 +23,8 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         {
             IsNew = true;
             Group = new DJ_TourGroup();
-
+            a_link_2.Visible = false;
+            a_link_3.Visible = false;
         }
         else
         {

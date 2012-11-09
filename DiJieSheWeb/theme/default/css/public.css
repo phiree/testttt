@@ -210,6 +210,7 @@ ul
 .selectstate:link,.selectstate:active,.selectstate:hover,.selectstate:visited,.selectstate
 {
     color:#019380;
+    background-color:White;
 }
 .rewardbg
 {
@@ -224,3 +225,23 @@ color:Red;
            padding-left:30px;
             font-weight:600 !important;
         }
+        
+
+
+.navlist
+{
+    display:block;
+    padding-left:10px;
+    background:url("/theme/default/image/Detail_Titlebg.gif");
+    height:33px;
+}
+.navlist a
+{
+    display:block;
+    float:left;
+    height:33px;
+    line-height:33px;
+    font-weight:bold;
+    padding-left:10px;
+    padding-right:10px;
+}

@@ -28,7 +28,10 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
 
     private void LoadData()
     {
-       
+        //绑定链接
+        a_link_1.HRef = "/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx?groupid=" + Request["groupid"];
+        a_link_2.HRef = "/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid=" + Request["groupid"];
+        a_link_3.HRef = "/LocalTravelAgent/Groups/GroupEditRoute.aspx?groupid=" + Request["groupid"];
         LoadTab1Data();
         LoadTab2Data();
     }

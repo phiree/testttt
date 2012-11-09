@@ -8,6 +8,9 @@
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
     <link href="/Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
+    <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
 
         $(function () {
@@ -19,6 +22,8 @@
                     $.cookie(cookieName, ui.newTab.index(), { expires: 365 });
                 }
             });
+            $(".tablesorter").tablesorter();
+            $(".IndexTable").orderIndex();
             /*输入企业名称时的智能提示*/
 
             $(".EditEntName").autocomplete({
@@ -65,9 +70,17 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <div>
-        <%=CurrentGroup.Name %>行程信息录入
+    <div class="navlist">
+        <a runat="server" id="a_link_1" href="/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx">录入团队基本信息</a>
+        <a runat="server" id="a_link_2" href="/LocalTravelAgent/Groups/GroupEditMember.aspx">录入游客信息</a>
+        <a runat="server" id="a_link_3" href="/LocalTravelAgent/Groups/GroupEditRoute.aspx" class="selectstate">录入行程信息</a>
     </div>
+
+     <h3 style="margin-left:15px;margin-top:30px">
+        <b>
+        <%=CurrentGroup.Name %>行程信息录入
+        </b>
+    </h3>
     <div style="background-color: Green">
         <asp:Label runat="server" ID="lblMsg_SaveRoute"></asp:Label></div>
     <div class="box">
@@ -81,25 +94,26 @@
             <asp:Repeater runat="server" ID="rptRoutes" OnItemCommand="rptRoutes_ItemCommand"
                 OnItemDataBound="rptRoutes_ItemDataBound">
                 <HeaderTemplate>
-                    <table>
+                    <table class="tablesorter IndexTable" style="margin:0px">
+        </table>
+                    <table class="tablesorter InfoTable" style="width:650px;margin:0px;margin-top:2px">
+                        <thead>
                         <tr>
-                            <td>
-                            </td>
-                            <td>
+                            <th>
                                 景点
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 住宿
-                            </td>
+                            </th>
                             <td>
+                                操作
                             </td>
                         </tr>
+                        </thead>
+                        <tbody>
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td>
-                            <%#Eval("DayNo") %>
-                        </td>
                         <td>
                             <asp:Repeater runat="server" ID="rptScenics">
                                 <ItemTemplate>
@@ -129,18 +143,21 @@
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
-                    </table>
+                    </tbody></table>
                 </FooterTemplate>
             </asp:Repeater>
-            <asp:Button runat="server" ID="btnAddRoute" OnClick="btnAddRoute_Click" Text="增加行程" />
+            <asp:Button runat="server" ID="btnAddRoute" OnClick="btnAddRoute_Click" Text="增加行程" CssClass="btn" style="margin-top:10px" />
             <asp:Panel runat="server" ID="pnlEditRoute" Visible="false">
-                <div class="addoredit">
-                    <div>
-                        第<asp:RadioButtonList runat="server" ID="rblDayNo">
+                <div class="addoredit" style="margin-top:15px">
+                    <div style="float:left;width:150px;font-weight:bold;">
+                        行程日期（第几天）
+                    </div>
+                    <div  style="float:left;width:300px;">
+                        <asp:RadioButtonList runat="server" ID="rblDayNo" RepeatDirection="Horizontal">
                         </asp:RadioButtonList>
-                        天</div>
-                    <div>
-                        <div>
+                    </div>
+                    <div style="clear:both">
+                        <div style="font-weight:bold;">
                             景点:</div>
                         <div>
                             <asp:Repeater runat="server" ID="rptEditScenics" OnItemDataBound="rptEditEnt_ItemDataBound">
@@ -148,10 +165,10 @@
                                     <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
                                         ID="tbxEntEdit" entType="景点"></asp:TextBox></ItemTemplate>
                             </asp:Repeater>
-                            <input type="button" id="btnAddMoreScenic" value="增加更多" /></div>
+                            <input type="button" id="btnAddMoreScenic" value="增加更多" class="btn" /></div>
                     </div>
                     <div>
-                        <div>
+                        <div style="font-weight:bold;">
                             饭店:</div>
                         <div>
                             <asp:Repeater runat="server" ID="rptEditHotels" OnItemDataBound="rptEditEnt_ItemDataBound">
@@ -159,10 +176,10 @@
                                     <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
                                         ID="tbxEntEdit" entType="宾馆"></asp:TextBox></ItemTemplate>
                             </asp:Repeater>
-                            <input type="button" id="btnAddMoreHotel" value="增加更多" /></div>
+                            <input type="button" id="btnAddMoreHotel" value="增加更多" class="btn" /></div>
                     </div>
                 </div>
-                <asp:Button runat="server" ID="btnSaveRoute" OnClick="btnSaveRoute_Click" Text="保存" />
+                <asp:Button runat="server" ID="btnSaveRoute" OnClick="btnSaveRoute_Click" Text="保存" CssClass="btn" />
             </asp:Panel>
         </div>
         <div id="tabs-2">
@@ -184,12 +201,10 @@
                     <li>飞来峰</li>
                 </ul>
             </p>
-            <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText"></asp:TextBox>
+            <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText" Width="100%"></asp:TextBox>
             <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的行程信息将清除,是否继续?');"
-                Text="保存" />
+                Text="保存" CssClass="btn" />
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>
     </div>
-    <a style="display: block; padding: 3px; margin: 10px; background-color: #ddd; font-size: larger;"
-        href="GroupEditMember.aspx?groupid=<%=CurrentGroup.Id%>">去编辑成员信息</a>
 </asp:Content>
