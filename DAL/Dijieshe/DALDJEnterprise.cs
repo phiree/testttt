@@ -239,7 +239,8 @@ namespace DAL
         public string AddGroup(Model.DJ_TourGroup tg,out string id)
         {
             id = string.Empty;
-            Model.DJ_TourGroup tg_old = GetGroup8no(tg.No);
+            //todo: 团队编号已经删除.
+            Model.DJ_TourGroup tg_old = GetGroup8no(string.Empty);
             if (null != tg_old)//已经有该编号的团队
             {
                 //如果还没开始就删除团队

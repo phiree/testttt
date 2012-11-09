@@ -15,7 +15,6 @@ public class basepageDjsGroupEdit : basepageDJS
     {
         get
         {
-
             if (currentGroup == null)
             {
                 Guid groupId;
@@ -30,16 +29,20 @@ public class basepageDjsGroupEdit : basepageDJS
                     else
                     {
                         currentGroup = g;
+                       
                     }
                 }
 
-                else
+                else 
                 {
                     BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
                 }
             }
 
             return currentGroup;
+        }
+        set {
+            currentGroup = value;
         }
     }
 

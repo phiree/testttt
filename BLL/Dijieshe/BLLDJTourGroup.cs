@@ -6,9 +6,9 @@ using DAL;
 using Model;
 namespace BLL
 {
-    public class BLLDJTourGroup : DalBase<Model.DJ_TourGroup>
+    public class BLLDJTourGroup
     {
-        DALDJTourGroup Idjtourgroup = new DALDJTourGroup();
+      public  DALDJTourGroup Idjtourgroup = new DALDJTourGroup();
 
         public IList<Model.DJ_TourGroup> GetTourGroupByAll()
         {
@@ -40,10 +40,7 @@ namespace BLL
             return listGw2;
 
         }
-        public Model.DJ_TourGroup GetTgByproductid(Guid proid)
-        {
-            return Idjtourgroup.GetTgByproductid(proid);
-        }
+       
 
         /// <summary>
         /// 查找当天的团队
@@ -77,11 +74,33 @@ namespace BLL
         {
             return Idjtourgroup.GetGuiderWorkerByTE(TE).Where(x => x.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nameLike"></param>
+        /// <returns></returns>
+       
+        public void DeleteDemoGroups(string nameLike)
+        {
+          IList<DJ_TourGroup> demoGroups= Idjtourgroup.GetList(Guid.Empty, nameLike, true, null, null, null, null, string.Empty);
+          DJ_TourGroup[] arrGroups = new DJ_TourGroup[] { };
+          demoGroups.CopyTo(arrGroups, 0);
+          for (int i = 0; i < arrGroups.Length;i++ )
+          {
+              Delete(demoGroups[i]);
+          }
+        }
+        public void Delete(DJ_TourGroup group)
+        {
+            Idjtourgroup.Delete(group);
+        }
         public void Save(Model.DJ_TourGroup group)
         {
-            session.Save(group);
-            session.Flush();
+            Idjtourgroup.Save(group);
+        }
+        public DJ_TourGroup GetOne(Guid id)
+        {
+            return Idjtourgroup.GetOne(id);
         }
 
         public void UpdateMembersFromFormatedString(DJ_TourGroup group, string formatedString,out string totalErrMsg)
@@ -116,81 +135,10 @@ namespace BLL
         /// <param name="memberList"></param>
         /// <param name="fieldsName"></param>
         /// <returns></returns>
-        public static string BuildJsonForMemberList(IList<Model.DJ_TourGroupMember> memberList, string[] fieldsName)
-        {
-            System.Text.StringBuilder sbJson = new System.Text.StringBuilder();
-            sbJson.Append("{\\\"data\\\":[");
-            foreach (Model.DJ_TourGroupMember member in memberList)
-            {
-                sbJson.Append("{");
-                sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[0], memberList.IndexOf(member)));
-                sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[1], member.MemberType.ToString()));
-                sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[2], member.RealName));
-                sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[3], member.PhoneNum));
-                sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[4], member.IdCardNo));
-                sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\",", fieldsName[5], member.SpecialCardNo));
-                sbJson.Append(string.Format("\\\"{0}\\\":\\\"{1}\\\"", fieldsName[6], member.Id));
-                sbJson.Append("}");
-                if (memberList.IndexOf(member) < memberList.Count - 1)
-                {
-                    sbJson.Append(",");
-                }
-            }
-            sbJson.Append("],\\\"pageInfo\\\":{\\\"totalRowNum\\\":" + memberList.Count + "},\\\"exception\\\":\\\"\\\"}");
-            return sbJson.ToString();
-        }
 
-        public static string BuildJsonForMemberList(IList<Model.DJ_TourGroupMember> memberList)
-        {
-            System.Text.StringBuilder sbJson = new System.Text.StringBuilder();
-            sbJson.Append("[");
-            foreach (Model.DJ_TourGroupMember member in memberList)
-            {
-                sbJson.Append("[\\\"");
-                sbJson.Append(member.MemberType.ToString()); sbJson.Append("\\\",\\\"");
-                sbJson.Append(member.RealName); sbJson.Append("\\\",\\\"");
-                sbJson.Append(member.PhoneNum); sbJson.Append("\\\",\\\"");
-                sbJson.Append(member.IdCardNo); sbJson.Append("\\\",\\\"");
-                sbJson.Append(member.SpecialCardNo); sbJson.Append("\\\",\\\"");
-                sbJson.Append(member.Id); sbJson.Append("\\\"]");
-                if (memberList.IndexOf(member) < memberList.Count - 1)
-                {
-                    sbJson.Append(",");
-                }
-            }
-            sbJson.Append("]");
-            return sbJson.ToString();
-        }
+        
 
-        public static string BuildJsonForRouteList(IList<Model.DJ_Route> routeList)
-        {
-            string sbJson = string.Empty;
-            sbJson += "[";
-            foreach (var routes in routeList.OrderBy(x => x.DayNo).GroupBy(x => x.DayNo))
-            {
-                sbJson += "[\\\"";
-                sbJson += routes.Key.ToString();
-                sbJson += "\\\",\\\"";
-                foreach (var item in routes.Where(x => x.Description.StartsWith("景点")))
-                {
-                    sbJson += item.Enterprise.Name;
-                    sbJson += "-";
-                }
-                sbJson = routes.Where(x => x.Description.StartsWith("景点")).Count() > 0 ? sbJson.Substring(0, sbJson.Length - 1) : sbJson;
-                sbJson += "\\\",\\\"";
-                foreach (var item in routes.Where(x => x.Description.StartsWith("住宿")))
-                {
-                    sbJson += item.Enterprise.Name;
-                    sbJson += "-";
-                }
-                sbJson = routes.Where(x => x.Description.StartsWith("住宿")).Count() > 0 ? sbJson.Substring(0, sbJson.Length - 1) : sbJson;
-                sbJson += "\\\"]";
-                sbJson += ",";
-            }
-            sbJson = sbJson.ToString().Substring(0, sbJson.Length - 1);
-            sbJson += "]";
-            return sbJson.ToString();
-        }
+        
 
     }
 }

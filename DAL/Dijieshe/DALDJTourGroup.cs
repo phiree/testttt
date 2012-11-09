@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using IDAL;
 using NHibernate;
-
+using Model;
 namespace DAL
 {
-    public class DALDJTourGroup:DalBase,IDJTourGroup
+    public class DALDJTourGroup:DalBase<Model.DJ_TourGroup>
     {
         public IList<Model.DJ_TourGroup> GetTourGroupByAll()
         {
-            string sql = "select tg from DJ_TourGroup tg ";
-            IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_TourGroup>().OrderByDescending(x=>x.BeginDate).ToList();
+            return GetAll<Model.DJ_TourGroup>();
+           
         }
 
         public IList<Model.DJ_TourGroup> GetTourGroupByGuideIdcard(string idcard)
@@ -27,12 +26,8 @@ namespace DAL
 
         public Model.DJ_TourGroup GetTourGroupById(Guid id)
         {
-            string sql = "select tg from DJ_TourGroup tg where tg.Id='" + id + "'";
-            IQuery query = session.CreateQuery(sql);
-            return query.FutureValue<Model.DJ_TourGroup>().Value;
+            return GetOne(id);
         }
-
-
         public IList<Model.DJ_TourGroup> GetTourGroupByTEId(int id)
         {
             List<Model.DJ_Route> list_route = new DALDJ_Route().GetRouteByTEid(id).ToList();
@@ -46,19 +41,6 @@ namespace DAL
             }
             return ListTg;
         }
-
-
-        public Model.DJ_TourGroup GetTgByproductid(Guid proid)
-        {
-            string sql = "select tg from DJ_TourGroup tg where tg.DJ_Product.Id='" + proid + "'";
-            sql += " and '" + DateTime.Now.ToString() + "' between begindate and enddate";
-            IQuery query = session.CreateQuery(sql);
-            return query.FutureValue<Model.DJ_TourGroup>().Value;
-        }
-
-
-
-
         public IList<Model.DJ_TourGroup> GetTgByIdcardAndTE(string idcard, Model.DJ_TourEnterprise TE)
         {
             List<Model.DJ_TourGroup> ListTg = new DAL.DALDJ_Group_Worker().GetTgListByIdcard(idcard).ToList();
@@ -73,7 +55,7 @@ namespace DAL
             return ListSelectTg;
         }
 
-
+        //todo:codeview 业务逻辑不要放在dal层. dal 只是做 单纯的 数据库操作.
         public IList<Model.DJ_Group_Worker> GetGuiderWorkerByTE(Model.DJ_TourEnterprise TE)
         {
             DAL.DALDJ_Route route = new DALDJ_Route();
@@ -87,6 +69,75 @@ namespace DAL
                 }
             }
             return Listgw;
+        }
+        public IList<DJ_TourGroup> GetList(Guid dijiesheId
+                  , string name, bool isNameLike, DateTime? beginDate, DateTime? endDate, DateTime? activeBeginDate, DateTime? activeEndDate, string editorName
+            
+                  )
+        { 
+            int totalRecord;
+            return GetList(dijiesheId, name, isNameLike, beginDate, endDate, activeBeginDate, activeEndDate, editorName, 0, 9999, out totalRecord);
+        }
+        /// <summary>
+        /// 通用查询 不包含对 list子对象的查询
+        /// </summary>
+        /// <param name="dijiesheId">地接社ID</param>
+        /// <param name="name">名称</param>
+        /// <param name="isNameLike">相似名称或精确名称</param>
+        /// <param name="beginDate">团队启程日期</param>
+        /// <param name="endDate">团队结束日期</param>
+        /// <param name="activeBeginDate">在此期间已经开始活动的团队</param>
+        /// <param name="activeEndDate"></param>
+        /// <param name="editorName">地接社编辑者的帐号</param>
+        /// <param name="pageIndex">分页</param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalRecord"></param>
+        /// <returns></returns>
+        public IList<DJ_TourGroup> GetList(Guid dijiesheId
+            ,string name,bool isNameLike,  DateTime? beginDate, DateTime? endDate,DateTime? activeBeginDate,DateTime? activeEndDate, string editorName
+         ,int pageIndex,int pageSize,out int totalRecord
+            )
+        {
+            string where="select TG from DJ_TourGroup as TG where 1=1 ";
+            string conditions = string.Empty;
+            if (dijiesheId != null&&dijiesheId!=Guid.Empty)
+            {
+                conditions += " and TG.Id='" + dijiesheId + "'";
+            }
+            if (!string.IsNullOrEmpty(name))
+            {
+                if (isNameLike)
+                {
+                    conditions += " and TG.Name like '%" + name + "%'";
+                }
+                else
+                { 
+                 conditions+=" and TG.Name = '"+name+"'";
+                }
+            }
+            if (activeBeginDate.HasValue)
+            {
+                conditions += " and ((TG.BeginDate<='" + activeBeginDate + "' and TG.EndDate>='" + activeEndDate + "')";
+                if (activeEndDate.HasValue)
+                {
+                    conditions += "  or (TG.BeginDate<='" + activeEndDate + "' and TG.EndDate>='" + activeEndDate + "')";
+                }
+                conditions += ")";
+            }
+            if (beginDate.HasValue)
+            {
+                conditions += " and TG.BeginDate='" + beginDate + "'";
+            }
+            if (endDate.HasValue)
+            {
+                conditions += " and TG.EndDate='" + endDate + "'";
+            }
+            if (!string.IsNullOrEmpty(editorName))
+            {
+                conditions += " and TG.DijiesheEditor.Name ='" + editorName + "'";
+            }
+            where=where+conditions;
+            return GetList(where, pageIndex, pageSize, out totalRecord);
         }
     }
 }
