@@ -57,31 +57,9 @@ public partial class Manager_ImportMipangTicket : System.Web.UI.Page
     }
     protected void btnMove_Click(object sender, EventArgs e)
     {
-        System.Text.StringBuilder sbErr = new System.Text.StringBuilder();
-        string[] rowStrings = tbxMoves.Text.Split(Environment.NewLine.ToCharArray());
-        foreach (string s in rowStrings)
-        {
-            if (string.IsNullOrEmpty(s)) continue;
-            string[] pair = s.Split(',');
-            if (pair.Length != 4)
-            {
-                sbErr.AppendLine(s+":格式有误");
-                continue;
-            }
-            int mipangId=0;
-            if (!int.TryParse(pair[1], out mipangId))
-            {
-                sbErr.AppendLine(s+":mipangid不是数字");
-                continue;
-            }
-            string moveResult;
-            bllTicket.Move(mipangId, pair[3], out moveResult);
-            if (!string.IsNullOrEmpty(moveResult))
-            {
-                sbErr.AppendLine(moveResult);
-            }
-          }
-        lblMoveError.Text = sbErr.ToString();
+        string errmsg;
+        bllTicket.BatchMove(tbxMoves.Text.Trim(), out errmsg);
+        lblMoveError.Text = errmsg;
     }
 
     protected void btnGetMipangList_Click(object o, EventArgs e)

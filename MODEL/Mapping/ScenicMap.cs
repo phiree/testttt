@@ -29,7 +29,7 @@ namespace Model.Mapping
             Map(x => x.TransGuid);
             References<Area>(x => x.Area);
             HasMany<ScenicCheckProgress>(x => x.CheckProgress);
-            HasMany<Ticket>(x => x.Tickets).Inverse().Cascade.All(); ;
+            HasMany<Ticket>(x => x.Tickets).Cascade.All(); ;
         }
     }
     public class ScenicCheckProgressMap : ClassMap<ScenicCheckProgress>
