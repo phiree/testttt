@@ -84,15 +84,6 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
             Label lblDinner = (Label)e.Item.FindControl("lblDinner");
             //找到分类Repeater关联的数据项 
             ExcelOplib.Entity.GroupRouteNew group = (ExcelOplib.Entity.GroupRouteNew)e.Item.DataItem;
-            //根据查询, 显示是否已经刷卡
-            #region v.2012/10/9
-            //Model.DJ_GroupConsumRecord gcrecord_break = group.Breakfast == null ? null : bllRecord.GetGroupConsumRecordByRouteId(group.Breakfast.Id);
-            //Model.DJ_GroupConsumRecord gcrecord_lunch = group.Lunch == null ? null : bllRecord.GetGroupConsumRecordByRouteId(group.Lunch.Id);
-            //Model.DJ_GroupConsumRecord gcrecord_dinner = group.Dinner == null ? null : bllRecord.GetGroupConsumRecordByRouteId(group.Dinner.Id);
-            //lblBreakfast.BackColor = gcrecord_break == null ? System.Drawing.Color.Yellow : System.Drawing.Color.Aqua;
-            //lblLunch.BackColor = gcrecord_lunch == null ? System.Drawing.Color.Yellow : System.Drawing.Color.Aqua;
-            //lblDinner.BackColor = gcrecord_dinner == null ? System.Drawing.Color.Yellow : System.Drawing.Color.Aqua;
-            #endregion
         }
     }
 
