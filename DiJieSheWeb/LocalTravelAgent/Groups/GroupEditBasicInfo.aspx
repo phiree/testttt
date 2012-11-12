@@ -8,7 +8,7 @@
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
     <script language="javascript" type="text/javascript">
         $(function () {
-            $("#<%=tbxDateBegin.ClientID %>").datepicker();
+            $("#<%=tbxDateBegin.ClientID %>").datepicker({ minDate:new Date() });
         });
     </script>
 </asp:Content>

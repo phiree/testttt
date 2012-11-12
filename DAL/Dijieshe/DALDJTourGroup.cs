@@ -70,13 +70,13 @@ namespace DAL
             }
             return Listgw;
         }
-        public IList<DJ_TourGroup> GetList(Guid dijiesheId
-                  , string name, bool isNameLike, DateTime? beginDate, DateTime? endDate, DateTime? activeBeginDate, DateTime? activeEndDate, string editorName
+        public IList<DJ_TourGroup> GetList(int dijiesheId
+                  , string name, bool isNameLike, string editorName
             
                   )
         { 
             int totalRecord;
-            return GetList(dijiesheId, name, isNameLike,  editorName, 0, 9999, out totalRecord);
+            return GetList(dijiesheId, name, isNameLike, editorName, 0, 9999, out totalRecord);
         }
         /// <summary>
         /// 通用查询 不包含对 list子对象的查询
@@ -84,25 +84,22 @@ namespace DAL
         /// <param name="dijiesheId">地接社ID</param>
         /// <param name="name">名称</param>
         /// <param name="isNameLike">相似名称或精确名称</param>
-        /// <param name="beginDate">团队启程日期</param>
-        /// <param name="endDate">团队结束日期</param>
-        /// <param name="activeBeginDate">在此期间已经开始活动的团队</param>
-        /// <param name="activeEndDate"></param>
+      
         /// <param name="editorName">地接社编辑者的帐号</param>
         /// <param name="pageIndex">分页</param>
         /// <param name="pageSize"></param>
         /// <param name="totalRecord"></param>
         /// <returns></returns>
-        public IList<DJ_TourGroup> GetList(Guid dijiesheId
+        public IList<DJ_TourGroup> GetList(int dijiesheId
             ,string name,bool isNameLike,  string editorName
          ,int pageIndex,int pageSize,out int totalRecord
             )
         {
             string where="select TG from DJ_TourGroup as TG where 1=1 ";
             string conditions = string.Empty;
-            if (dijiesheId != null&&dijiesheId!=Guid.Empty)
+            if (dijiesheId >0)
             {
-                conditions += " and TG.Id='" + dijiesheId + "'";
+                conditions += " and TG.DJ_DijiesheInfo.Id=" + dijiesheId;
             }
             if (!string.IsNullOrEmpty(name))
             {

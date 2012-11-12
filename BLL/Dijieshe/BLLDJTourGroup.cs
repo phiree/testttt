@@ -21,13 +21,13 @@ namespace BLL
             {
                 editorName = string.Empty;
             }
-            return GetGroupsForEditor(editorName);
+            return GetGroupsForEditor(djsUser.Enterprise.Id, editorName);
         }
-        public IList<Model.DJ_TourGroup> GetGroupsForEditor(string editorName)
+        public IList<Model.DJ_TourGroup> GetGroupsForEditor(int djsId, string editorName)
         {
             
 
-            return Idjtourgroup.GetList(Guid.Empty, string.Empty, false, null, null, DateTime.Now, DateTime.Now.AddYears(99),editorName);
+            return Idjtourgroup.GetList(djsId,string.Empty, false,editorName);
         }
 
         public IList<Model.DJ_TourGroup> GetTourGroupByGuideIdcard(string idcard)
@@ -97,7 +97,7 @@ namespace BLL
        
         public void DeleteDemoGroups(string nameLike)
         {
-          IList<DJ_TourGroup> demoGroups= Idjtourgroup.GetList(Guid.Empty, nameLike, true, null, null, null, null, string.Empty);
+          IList<DJ_TourGroup> demoGroups= Idjtourgroup.GetList(0, nameLike, true, string.Empty);
           //DJ_TourGroup[] arrGroups = new DJ_TourGroup[] { };
           //demoGroups.CopyTo(arrGroups, 0);
           //for (int i = 0; i < arrGroups.Length;i++ )

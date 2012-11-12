@@ -88,6 +88,8 @@
                         <td>
                             <asp:Button runat="server" ID="btnModifyMember" CommandArgument='<%#Eval("Id") %>'
                                 CommandName="Edit" Text="修改" />
+                                 <asp:Button runat="server" ID="btnDeleteMember"  OnClientClick="javascript:return confirm('确定删除?');"  CommandArgument='<%#Eval("Id") %>'
+                                CommandName="Delete" Text="删除" />
                         </td>
                     </tr>
                 </ItemTemplate>

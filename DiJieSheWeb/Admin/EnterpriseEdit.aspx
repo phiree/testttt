@@ -18,6 +18,14 @@
                     <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
                 </td>
             </tr>
+              <tr>
+                <td>
+                    登录帐号
+                </td>
+                <td>
+                    <asp:TextBox runat="server" ID="tbxAccount"></asp:TextBox>
+                </td>
+            </tr>
             <tr>
                 <td>
                     类型

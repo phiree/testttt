@@ -34,10 +34,10 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
             Label lblAdmin = e.Item.FindControl("lblAdmin") as Label;
             DJ_User_TourEnterprise user = bllUser.GetUser_TEbyId(ent.Id, 15);
             Button btn = e.Item.FindControl("btnadmin") as Button;
+            TextBox tbx = e.Item.FindControl("tbxAccount") as TextBox;
             if (user != null)
             {
-                lblAdmin.Text = user.Name;
-                btn.Visible = false;
+                tbx.Text = user.Name;
 
             }
             Button btnVerify = e.Item.FindControl("btnSetVerify") as Button;
@@ -59,8 +59,12 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
 
         if (e.CommandName.ToLower() == "addadmin")
         {
-          
-            string loginname = "entAdmin_" + entId;
+            TextBox tbx = e.Item.FindControl("tbxAccount") as TextBox;
+            string loginname = tbx.Text;
+            if (string.IsNullOrEmpty(loginname))
+            {
+                ScriptManager.RegisterStartupScript(this,this.GetType(),"accountcannotnull","alert('帐号名不能为空');",true);
+            }
             DJ_User_TourEnterprise djuserent = new DJ_User_TourEnterprise();
             djuserent.Enterprise = bllDJEnt.GetDJS8id(entId.ToString())[0];
             djuserent.Name = loginname;

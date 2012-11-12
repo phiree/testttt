@@ -31,7 +31,7 @@ public partial class Admin_Initial : System.Web.UI.Page
         {
             govDic.Add(new Model.DJ_GovManageDepartment()
             {
-                Name = item.Department2,
+                Name = item.Department1,
                 Area = bllarea.GetAraByAreaname(item.Diqu),
                 seoname = item.Seoname
             });

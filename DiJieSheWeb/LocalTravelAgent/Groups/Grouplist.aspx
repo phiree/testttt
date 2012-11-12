@@ -64,7 +64,7 @@
             <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>--%>
         </div>
         <div class="searchdiv">
-            <asp:RadioButtonList runat="server" ID="cblState" OnSelectedIndexChanged="cblState_Changed"
+            <asp:RadioButtonList runat="server" ID="cblState" OnSelectedIndexChanged="cblState_Changed" RepeatDirection="Horizontal"
                 AutoPostBack="true">
                 <asp:ListItem Value="1" Selected="True">尚未开始</asp:ListItem>
                 <asp:ListItem Value="2">正在进行</asp:ListItem>
