@@ -36,47 +36,43 @@ public partial class LocalTravelAgent_LTA : System.Web.UI.MasterPage
         {
             Response.Redirect("/Login.aspx");
         }
-        //switch ((int)DJ_User_TourEnterprise.PermissionMask)
-        //{
-        //    case 1:
-        //        {
-        //            li_1.Visible = true;
-        //            li_2.Visible = true;
-        //            li_3.Visible = true;
-        //            li_4.Visible = true;
-        //            li_5.Visible = false;
-        //            li_6.Visible = false;
-        //            li_7.Visible = true;
-        //            li_8.Visible = false;
-        //            break;
-        //        }
-        //    case 2:
-        //        {
-        //            li_1.Visible = false;
-        //            li_2.Visible = false;
-        //            li_3.Visible = false;
-        //            li_4.Visible = false;
-        //            li_5.Visible = true;
-        //            li_6.Visible = true;
-        //            li_7.Visible = true;
-        //            li_8.Visible = true;
-        //            break;
-        //        }
-        //    case 3:
-        //        {
-        //            li_1.Visible = true;
-        //            li_2.Visible = true;
-        //            li_3.Visible = true;
-        //            li_4.Visible = true;
-        //            li_5.Visible = true;
-        //            li_6.Visible = true;
-        //            li_7.Visible = true;
-        //            li_8.Visible = true;
-        //            break;
-        //        }
-        //    default:
-        //        break;
-        //}
+        int perType=(int)DJ_User_TourEnterprise.PermissionType;
+        if (perType == 1 || perType == 3 || perType == 5 || perType == 9 || perType == 7 || perType == 11 || perType == 13 || perType == 15)
+            li_1.Visible = true;
+        else
+            li_1.Visible = false;
+        if (perType == 2 || perType == 3 || perType == 6 || perType == 10 || perType == 7 || perType == 11 || perType == 14 || perType == 15)
+        {
+            li_3.Visible = true;
+            li_4.Visible = true;
+        }
+        else
+        {
+            li_3.Visible = false;
+            li_4.Visible = false;
+        }
+        if (perType == 4 || perType == 5 || perType == 6 || perType == 12 || perType == 7 || perType == 14 || perType == 13 || perType == 15)
+        {
+            li_6.Visible = true;
+        }
+        else
+        {
+            li_6.Visible = false;
+        }
+        if (perType == 8 || perType == 9 || perType == 10 || perType == 12 || perType == 11 || perType == 13 || perType == 14 || perType == 15)
+        {
+            li_2.Visible = true;
+            li_5.Visible = true;
+            li_7.Visible = true;
+            li_8.Visible = true;
+        }
+        else
+        {
+            li_2.Visible = false;
+            li_5.Visible = false;
+            li_7.Visible = false;
+            li_8.Visible = false;
+        }
         CurrentDJS = DJ_User_TourEnterprise.Enterprise as DJ_DijiesheInfo;
         (Master.FindControl("changepwd") as HtmlAnchor).HRef = "/LocalTravelAgent/ChangePwd.aspx";
         (Master.FindControl("changedetails") as HtmlAnchor).HRef = "/localtravelagent/djsedit.aspx";

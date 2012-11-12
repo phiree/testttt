@@ -94,9 +94,14 @@ table tr td
     cursor:pointer;
     border:none;
 }
+.rbl
+{
+    margin:0px auto;
+}
 .rbl td,.rbl table,.rbl
 {
     border:none !important;
+    text-align:left !important;
 }
 /*验票页面的样式*/
 .yklist

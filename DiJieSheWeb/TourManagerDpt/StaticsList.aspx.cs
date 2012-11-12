@@ -30,9 +30,9 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
 
     private void BindData()
     {
-        txt_yijiedai.Text = DateTime.Now.Year + "-" + DateTime.Now.Month + "-1";
-        txt_yijiedai2.Text = DateTime.Now.Year + "-" + DateTime.Now.Month + "-1";
-        txt_yijiedai3.Text = DateTime.Now.Year + "-" + DateTime.Now.Month + "-1";
+        txt_yijiedai.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月";
+        txt_yijiedai2.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月";
+        txt_yijiedai3.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月";
 
         //整理后数据Gov1
         BindGov1();
@@ -63,7 +63,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         IList<Model.DJ_GroupConsumRecord> gcrlist_year;
         IList<statics_model> sm1 = new List<statics_model>();
         //V.2012.10.26
-        string[] temp = txt_yijiedai.Text.Split(new char[] { '-', '/' });
+        string[] temp = txt_yijiedai.Text.Split(new char[] { '年', '月' });
         if (!string.IsNullOrEmpty(txt_yijiedai.Text) && temp.Length >= 2)
         {
             var begin_month = new DateTime(int.Parse(temp[0]), int.Parse(temp[1]), 1);
@@ -135,7 +135,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
             gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6))).ToList();
         }
         //V.2012.10.26
-        string[] temp = txt_yijiedai2.Text.Split(new char[] { '-', '/' });
+        string[] temp = txt_yijiedai2.Text.Split(new char[] { '年', '月' });
         if (!string.IsNullOrEmpty(txt_yijiedai2.Text) && temp.Length >= 2)
         {
             var begin_date = new DateTime(int.Parse(temp[0]), int.Parse(temp[1]), 1);
