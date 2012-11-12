@@ -1,10 +1,20 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RecEntList.ascx.cs" Inherits="LocalTravelAgent_Groups_RecEntList" %>
+<link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".tablesorter").tablesorter();
+            $(".IndexTable").orderIndex();
+        });
+        
+    </script>
 <div class="detail_titlebg">
     详细奖励名单
 </div>
 <div class="searchdiv">
 <h5>筛选条件</h5>
-行政区域:<asp:DropDownList ID="ddlArea" runat="server">
+旅游单位类型:<asp:DropDownList ID="ddlArea" runat="server">
         <asp:ListItem Value="全部">全部</asp:ListItem>
         <asp:ListItem Value="景区">景区</asp:ListItem>
         <asp:ListItem Value="宾馆">宾馆</asp:ListItem>
@@ -13,28 +23,27 @@
 </div>
 <div class="detaillist">
     <div class="detailtitle">
-            列表统计
+            旅游单位列表
         </div>
     <asp:Repeater ID="rptRecList" runat="server">
         <HeaderTemplate>
-            <table border="0" cellpadding="0" cellspacing="0">
+            <table class="tablesorter IndexTable">
+        </table>
+            <table border="0" cellpadding="0" cellspacing="0"  class="tablesorter InfoTable">
+                <thead>
                 <tr>
-                    <td>
-                        序号
-                    </td>
-                    <td>
+                    <th>
                         类型
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         名称
-                    </td>
+                    </th>
                 </tr>
+                </thead>
+                <tbody>
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
-                <td>
-                    <%= Index++ %>
-                </td>
                 <td>
                     <%# Eval("Type")%>
                 </td>
@@ -44,11 +53,9 @@
             </tr>
         </ItemTemplate>
         <FooterTemplate>
-            <tr>
-                <td colspan="3">
-                    <asp:Button ID="Button1" runat="server" Text="导出成excel" />
-                </td>
-            </tr>
+           </tbody> </table>
         </FooterTemplate>
     </asp:Repeater>
+    <asp:Button ID="BtnPrint" runat="server" Text="导出成excel" 
+        onclick="BtnPrint_Click" />
 </div>

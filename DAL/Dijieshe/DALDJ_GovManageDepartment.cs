@@ -8,9 +8,8 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALDJ_GovManageDepartment : DalBase, IDJ_GovManageDepartment
+    public class DALDJ_GovManageDepartment : DalBase<DJ_GovManageDepartment>, IDJ_GovManageDepartment
     {
-
         public void Save(DJ_GovManageDepartment obj)
         {
             session.Save(obj);
@@ -28,6 +27,25 @@ namespace DAL
         public DJ_GovManageDepartment GetById(Guid id)
         {
             return session.Get<DJ_GovManageDepartment>(id);
+        }
+
+        public IList<DJ_GovManageDepartment> GetSubDptByCode(string code)
+        {
+            string sql="select d from DJ_GovManageDepartment d where 1=1";
+            if (code.Substring(2) == "0000")
+            {
+                sql += " and d.Area.Code like '" + code.Substring(0, 2) + "____'";
+            }
+            else if (code.Substring(4) == "00")
+            {
+                sql += " and d.Area.Code like '" + code.Substring(0, 4) + "__'";
+            }
+            else
+            {
+                sql += "and d.Area.Code='" + code + "'";
+            }
+            int total;
+            return this.GetList(sql, 1, 9999, out total);
         }
     }
 }

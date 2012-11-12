@@ -22,6 +22,8 @@ public partial class LTARegister : System.Web.UI.Page
     private void Bind()
     {
         bindArea(3);
+        ddlProvince.SelectedValue = "330000";
+        ddlProvince_SelectedIndexChanged(null, null);
     }
     protected void BtnRegister_Click(object sender, EventArgs e)
     {
@@ -48,7 +50,7 @@ public partial class LTARegister : System.Web.UI.Page
 		            throw ex;
 	            }
                 bllEnt.AddDjs(txtDJSName.Text.Trim(), txtDJSAddress.Text.Trim(), area, txtLinkName.Text.Trim(), txtTel.Text.Trim(), txtTel.Text.Trim(), filename, txtEmail.Text);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('申请地接社成功')", true);
+                Response.Redirect("/RegisterSuccess.aspx");
             }
         }
         else
@@ -69,10 +71,22 @@ public partial class LTARegister : System.Web.UI.Page
     protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
     {
         bindArea(2);
+        foreach (ListItem item in ddlCity.Items)
+        {
+            item.Text = item.Text.Substring(3);
+        }
+        foreach (ListItem item in ddlCountry.Items)
+        {
+            item.Text = item.Text.Substring(3);
+        }
     }
     protected void ddlCity_SelectedIndexChanged(object sender, EventArgs e)
     {
         bindArea(1);
+        foreach (ListItem item in ddlCountry.Items)
+        {
+            item.Text = item.Text.Substring(3);
+        }
     }
 
     private void bindArea(int AreaLevel)
@@ -97,14 +111,6 @@ public partial class LTARegister : System.Web.UI.Page
             ddlCountry.DataValueField = "Code";
             ddlCountry.DataSource = bllArea.GetSubArea(ddlCity.SelectedValue);
             ddlCountry.DataBind();
-        }
-        foreach (ListItem item in ddlCity.Items)
-        {
-            item.Text = item.Text.Substring(3);
-        }
-        foreach (ListItem item in ddlCountry.Items)
-        {
-            item.Text = item.Text.Substring(3);
         }
     }
 }

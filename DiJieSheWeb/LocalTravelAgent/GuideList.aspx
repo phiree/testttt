@@ -19,14 +19,17 @@
     </div>
     <div class="detaillist">
         <div class="detailtitle">
-            司机管理
+            导游管理
         </div>
+         <fieldset style="padding-top:0px;">
+        <legend style="font-size:12px;">搜索条件：</legend>
         <div class="searchdiv">
             姓名:<asp:TextBox ID="txtName" runat="server" />
             身份证号:<asp:TextBox ID="txtIdcardid" runat="server" />
             导游证号:<asp:TextBox ID="txtGuidecardid" runat="server" />
             <asp:Button ID="btnSearch" Text="查询" runat="server" CssClass="btn" OnClick="btnSearch_Click" />
         </div>
+        </fieldset>
         <table class="tablesorter IndexTable">
         </table>
         <asp:Repeater ID="rptGuides" runat="server">
@@ -71,6 +74,8 @@
                 </tbody> </table>
             </FooterTemplate>
         </asp:Repeater>
+        <fieldset style="padding-top:0px;">
+        <legend style="font-size:12px;">快速添加：</legend>
         <div class="searchdiv">
             姓名:<asp:TextBox ID="txtName_add" runat="server" />
             手机:<asp:TextBox ID="txtPhone_add" runat="server" />
@@ -78,5 +83,6 @@
             导游证号:<asp:TextBox ID="txtGuideid_add" runat="server" />
             <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn" OnClick="btnQuickadd_Click" />
         </div>
+        </fieldset>
     </div>
 </asp:Content>

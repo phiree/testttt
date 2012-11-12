@@ -30,7 +30,13 @@ namespace DAL
 
         public void UpdateDJS(Model.DJ_TourEnterprise obj)
         {
-            session.Update(obj);
+            using (var x=session.Transaction)
+            {
+                x.Begin();
+                session.Update(obj);
+                x.Commit();
+            }
+            
         }
 
         public IList<Model.DJ_TourEnterprise> GetDJS8All()
