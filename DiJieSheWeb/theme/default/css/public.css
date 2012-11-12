@@ -44,7 +44,7 @@ h5
 {
     border-right:1px solid #CDCDCD;
     border-bottom:1px solid #CDCDCD;
-    text-align:center;
+    text-align:left;
 }
 
 .detailtitle
@@ -250,3 +250,7 @@ color:Red;
     padding-left:10px;
     padding-right:10px;
 }
+.higherLines
+{
+     line-height:20px;
+    }

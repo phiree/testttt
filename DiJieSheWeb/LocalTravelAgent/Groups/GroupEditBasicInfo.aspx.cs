@@ -35,11 +35,11 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
             }
             if (CurrentGroup.DijiesheEditor == null)
             {
-                ErrHandler.Redirect(ErrType.ObjectIsNull);
+               // ErrHandler.Redirect(ErrType.ObjectIsNull);
             }
-            if (CurrentGroup.DJ_DijiesheInfo.Name != CurrentMember.Name)
+            if (CurrentGroup.DJ_DijiesheInfo.Name != CurrentDJS.Name)
             {
-                ErrHandler.Redirect(ErrType.AccessDenied);
+               ErrHandler.Redirect(ErrType.AccessDenied);
             }
         }
 
@@ -92,13 +92,19 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         cbxGuides.DataBind();
     }
     BLLDJGroup_Worker bllWorker = new BLLDJGroup_Worker();
-    private void UpdateForm()
+    private bool UpdateForm()
     {
         CurrentGroup.Name = tbxName.Text;
         CurrentGroup.BeginDate = Convert.ToDateTime(tbxDateBegin.Text);
+        if (CurrentGroup.BeginDate < DateTime.Now)
+        {
+            ScriptManager.RegisterStartupScript(this,this.GetType(),"begindayerr",  "alert('开始时间不能小于当天时间');",true);
+            return false;
+        }
         CurrentGroup.DaysAmount = Convert.ToInt32(tbxDateAmount.Text);
         CurrentGroup.EndDate = CurrentGroup.BeginDate.AddDays(CurrentGroup.DaysAmount-1);
         CurrentGroup.DJ_DijiesheInfo = CurrentDJS;
+        CurrentGroup.DijiesheEditor =(DJ_User_TourEnterprise) CurrentMember;
         ///司机和导游
         foreach (ListItem item in cbxGuides.Items)
         {
@@ -114,8 +120,8 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
                 CurrentGroup.Workers.Add(bllWorker.Get(new Guid(item.Value)));
             }
         }
-        
-      
+
+        return true;
     }
 
     protected void rptRoute_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -128,7 +134,11 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
 
     protected void btnBasicInfo_Click(object sender, EventArgs e)
     {
-         UpdateForm();
+        if (!UpdateForm())
+        {
+            return;
+        }
+        
          bllGroup.Save(CurrentGroup);
         if (IsNew)
         {

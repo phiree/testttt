@@ -35,7 +35,7 @@ public partial class Admin_EnterpriseEdit : System.Web.UI.Page
         }
 
     }
-
+    BLLDJ_User bllDjUser = new BLLDJ_User();
     private void LoadForm()
     {
         tbxAdress.Text = CurrentEnterprise.Address;
@@ -45,6 +45,9 @@ public partial class Admin_EnterpriseEdit : System.Web.UI.Page
         tbxOfficePhone.Text = CurrentEnterprise.Phone;
         tbxPhone.Text = CurrentEnterprise.ChargePersonPhone;
         rblType.SelectedValue = CurrentEnterprise.Type.ToString();
+        DJ_User_TourEnterprise djuserEnt = bllDjUser.GetUser_TEbyId(CurrentEnterprise.Id);
+        if (djuserEnt != null)
+        { tbxAccount.Text = djuserEnt.Name; }
     }
     private void UpdateForm()
     {
@@ -55,6 +58,11 @@ public partial class Admin_EnterpriseEdit : System.Web.UI.Page
         CurrentEnterprise.Phone = tbxOfficePhone.Text;
         CurrentEnterprise.ChargePersonPhone = tbxPhone.Text;
         CurrentEnterprise.Type = (EnterpriseType)(Convert.ToInt32(rblType.SelectedValue));
+        DJ_User_TourEnterprise djuserEnt = bllDjUser.GetUser_TEbyId(CurrentEnterprise.Id);
+        if (djuserEnt == null)
+        { 
+            //创建新用户
+        }
     }
 
     public void Save()

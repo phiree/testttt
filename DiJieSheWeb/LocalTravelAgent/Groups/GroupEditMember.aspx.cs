@@ -48,13 +48,22 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
 
     protected void rptMembers_ItemCommand(object sender, RepeaterCommandEventArgs e)
     {
+        currentGroupMember = bllGroupMember.GetOne(new Guid(e.CommandArgument.ToString()));
         if (e.CommandName.ToLower() == "edit")
         {
 
-            currentGroupMember = bllGroupMember.GetOne(new Guid(e.CommandArgument.ToString()));
+           
             Session["currentMember"] = currentGroupMember;
             pnlMemberEdit.Visible = true;
             LoadMemberForm();
+            btnAddMember.Visible = false;
+        }
+         if (e.CommandName.ToLower() == "delete")
+        {
+
+            CurrentGroup.Members.Remove(currentGroupMember);
+            bllGroup.Save(CurrentGroup);
+            LoadData();
         }
     }
     private void LoadMemberForm()
@@ -95,7 +104,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
 
         UpdateMemberForm();
         bllGroupMember.SaveOrUpdate(currentGroupMember);
-        LoadMemberList();
+        LoadData();
         Session["currentMember"] = null;
         pnlMemberEdit.Visible = false;
         btnAddMember.Visible = true;
@@ -142,12 +151,14 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         }
         lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
         lblSimpleMsg.Text = "保存成功";
+        LoadData();
     }
 
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
         UpdateSimple(tbxSimple);
+     
       
         // Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
@@ -194,6 +205,8 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
             return;
         }
         #endregion
+
+
     }
     protected void btnExcel_Click(object sender, EventArgs e)
     {
