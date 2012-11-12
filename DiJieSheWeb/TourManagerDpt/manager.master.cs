@@ -33,47 +33,33 @@ public partial class TourManagerDpt_manager : System.Web.UI.MasterPage
             if (tm is DJ_User_Gov)
             {
                 dptid = (tm as DJ_User_Gov).GovDpt.Id.ToString();
-                //laETName.Text = (tm as DJ_User_Gov).GovDpt.Name;
-                //switch ((int)(tm as DJ_User_Gov).PermissionMask)
-                //{
-                //    case 1:
-                //        {
-                //            li_1.Visible = false;
-                //            li_2.Visible = true;
-                //            li_3.Visible = true;
-                //            li_4.Visible = true;
-                //            li_5.Visible = false;
-                //            break;
-                //        }
-                //    case 2:
-                //        {
-                //            li_1.Visible = true;
-                //            li_2.Visible = true;
-                //            li_3.Visible = true;
-                //            li_4.Visible = true;
-                //            li_5.Visible = true;
-                //            break;
-                //        }
-                //    case 3:
-                //        {
-                //            li_1.Visible = true;
-                //            li_2.Visible = true;
-                //            li_3.Visible = true;
-                //            li_4.Visible = true;
-                //            li_5.Visible = true;
-                //            break;
-                //        }
-
-                //    default:
-                //        {
-                //            li_1.Visible = false;
-                //            li_2.Visible = false;
-                //            li_3.Visible = false;
-                //            li_4.Visible = false;
-                //            li_5.Visible = false;
-                //            break;
-                //        }
-                //}
+                int perType=(int)(tm as DJ_User_Gov).PermissionType;
+                if (perType == 1 || perType == 3 || perType == 5 || perType == 7)
+                {
+                    li_1.Visible = true;
+                    li_2.Visible = true;
+                }
+                else
+                {
+                    li_1.Visible = false;
+                    li_2.Visible = false;
+                }
+                if (perType == 2 || perType == 3 || perType == 6 || perType == 7)
+                {
+                    li_3.Visible = true;
+                }
+                else
+                {
+                    li_3.Visible = false;
+                }
+                if (perType == 4 || perType == 5 || perType == 6 || perType == 7)
+                {
+                    li_4.Visible = true;
+                }
+                else
+                {
+                    li_4.Visible = false;
+                }
             }
         }
         else

@@ -26,7 +26,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
 
     private void bind()
     {
-        if (!Regex.Match(txtDate.Text.Trim(), "^[0-9]{4}年[0-9]{2}月").Success)
+        if (!Regex.Match(txtDate.Text.Trim(), "^[0-9]{4}年[0-9]{2}月$").Success)
         {
             txtDate.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月";
         }
@@ -76,6 +76,10 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
             entstatis.Id = Index++;
             entstatis.Type = (int)ent.Type == 1 ? "景区" : "宾馆";
             entstatis.Name = ent.Name;
+            if (!Regex.Match(txtDate.Text.Trim(), "^[0-9]{4}年[0-9]{2}月$").Success)
+            {
+                txtDate.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月";
+            }
             string begintime_month = DateTime.Parse(txtDate.Text.Trim()).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).Month + "-01";
             string endtime_month = DateTime.Parse(DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01").AddDays(-1).ToString("yyyy-MM-dd");
             string begintime_year = DateTime.Parse(txtDate.Text.Trim()).Year+"-01-01";

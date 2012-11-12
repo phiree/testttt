@@ -10,22 +10,25 @@
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <style type="text/css">
-        .IndexTable tbody td, .IndexTable tfoot td
-        {
-            line-height: 15px !important;
-        }
-    </style>
+    <script type="text/javascript" src="/Scripts/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("[id$='txt_yijiedai']").datepicker();
-            $("[id$='txt_yijiedai2']").datepicker();
-            $("[id$='txt_yijiedai3']").datepicker();
             $("#tabs").tabs();
             $("#tbGov1").tablesorter();
             $("#tbGov2").tablesorter();
             $("#tbGov3").tablesorter({ headers: { 3: { sorter: false}} });
             $("#tabs").bind('tabsselect', function (event, ui) {
+                if ($.cookie("tabIndex") != ui.index) {
+                    if (ui.index == "0") {
+                        $("[id$='btn_yijiedai']").click();
+                    }
+                    if (ui.index == "1") {
+                        $("[id$='btn_yijiedai2']").click();
+                    }
+                    if (ui.index == "2") {
+                        $("[id$='btn_yijiedai3']").click();
+                    }
+                }
                 $.cookie("tabIndex", ui.index);
             });
             if ($.cookie("tabIndex") != null) {
@@ -50,7 +53,7 @@
                 <div class="detailtitle">
                     已接待情况</div>
                 <div class="searchdiv">
-                    日期：<asp:TextBox ID="txt_yijiedai" runat="server" />
+                    日期：<asp:TextBox ID="txt_yijiedai" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
                     地接社名称：<asp:TextBox ID="txt_name1" runat="server" />
                     <asp:Button ID="btn_yijiedai" Text="查询" runat="server" OnClick="btn_yijiedai_Click"
                         CssClass="btn" />
@@ -153,9 +156,9 @@
                 <div class="detailtitle">
                     旅游企业接待情况明细表</div>
                 <div class="searchdiv">
-                    日期：<asp:TextBox ID="txt_yijiedai2" runat="server" />
+                    日期：<asp:TextBox ID="txt_yijiedai2" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
                     企业名称(*必填)：<asp:TextBox ID="txt_name2" runat="server" />
-                    <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click"
+                    <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click" 
                         CssClass="btn" /></div>
                 <asp:Repeater ID="rptGov2" runat="server">
                     <HeaderTemplate>
@@ -202,7 +205,7 @@
                 <div class="detailtitle">
                     团队旅游情况表</div>
                 <div class="searchdiv">
-                    日期：<asp:TextBox ID="txt_yijiedai3" runat="server" />
+                    日期：<asp:TextBox ID="txt_yijiedai3" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
                     企业名称(*必填)：<asp:TextBox ID="txt_name3djs" runat="server" />
                     <asp:Button ID="btn_yijiedai3" Text="查询" runat="server" OnClick="btn_yijiedai3_Click"
                         CssClass="btn" /></div>

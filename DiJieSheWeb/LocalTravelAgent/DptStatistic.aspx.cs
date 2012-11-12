@@ -27,7 +27,7 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
         DateTime selectTime;
         if (!DateTime.TryParse(txtDate.Text.Trim(),out selectTime))
         {
-            txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            txtDate.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月";
         }
         string begintime, endtime;
         begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
@@ -59,6 +59,11 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
             dptStatistic dpt = new dptStatistic();
             dpt.Id = Index++;
             dpt.dptName = Gov.Name;
+            DateTime selectTime;
+            if (!DateTime.TryParse(txtDate.Text.Trim(), out selectTime))
+            {
+                txtDate.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月";
+            }
             string begintime_year = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
             string endtime_year = DateTime.Parse(txtDate.Text.Trim()).Year + "-12-30";
             string begintime_month = DateTime.Parse(txtDate.Text.Trim()).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).Month + "-01";

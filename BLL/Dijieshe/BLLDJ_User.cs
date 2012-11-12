@@ -26,6 +26,10 @@ namespace BLL
         {
             return Idj_user_enterprise.GetAllGov_User();
         }
+        public IList<Model.DJ_User_Gov> GetGov_UserByGovId(Guid govid)
+        {
+            return Idj_user_enterprise.GetAllGov_User().Where(x=>x.Id==govid).ToList();
+        }
       //  public Model
         public void DeleteGov_User(Model.TourMembership m)
         {
@@ -55,6 +59,11 @@ namespace BLL
         public List<Model.DJ_User_TourEnterprise> GetAllLocal_User()
         {
             return Idj_user_enterprise.GetAllEnt_User().Where(x => x.Enterprise.Type == Model.EnterpriseType.旅行社).ToList<Model.DJ_User_TourEnterprise>();
+        }
+
+        public List<Model.DJ_User_TourEnterprise> GetLocal_UserByLocalId(int localid)
+        {
+            return Idj_user_enterprise.GetAllEnt_User().Where(x => x.Enterprise.Id == localid).ToList<Model.DJ_User_TourEnterprise>();
         }
     }
 }

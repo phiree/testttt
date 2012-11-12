@@ -24,9 +24,9 @@
                 </td>
                 <td >
                     <asp:CheckBoxList ID="cbList" runat="server" CssClass="rbl" style="border:none !important">
-                        <asp:ListItem Value="1" >信息编辑员</asp:ListItem>
-                        <asp:ListItem Value="2" >报表查看员</asp:ListItem>
-                        <asp:ListItem Value="4" >用户管理员</asp:ListItem>
+                        <asp:ListItem Value="1" >信息编辑员(修改、编辑本地接社基本信息)</asp:ListItem>
+                        <asp:ListItem Value="2" >报表查看员(查看旅游企业和管理部门相关报表)</asp:ListItem>
+                        <asp:ListItem Value="4" >用户管理员(管理各类用户权限)</asp:ListItem>
                     </asp:CheckBoxList>
                 </td>
             </tr>
