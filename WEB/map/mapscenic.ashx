@@ -27,7 +27,7 @@ public class mapscenic : IHttpHandler {
             if (bllScenicImg.GetSiByType(item, 1).Count > 0)
             {
                 string extention = bllScenicImg.GetSiByType(item, 1)[0].Name.Split('.')[1];
-                m.img = bllScenicImg.GetSiByType(item, 1)[0].Name.Split('.')[0] + "_s" + extention;
+                m.img = bllScenicImg.GetSiByType(item, 1)[0].Name.Split('.')[0] + "_s." + extention;
             }
             m.desc = item.Desec;
             m.address = item.Address;
