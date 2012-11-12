@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using BLL;
 using Model;
+using System.Text.RegularExpressions;
 
 public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.Page
 {
@@ -19,17 +20,15 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
     {
         if (!IsPostBack)
         {
-            Response.Cookies.Add(new HttpCookie("orderstr", "0_desc"));
             bind();
         }
     }
 
     private void bind()
     {
-        DateTime selectTime;
-        if(!DateTime.TryParse(txtDate.Text.Trim(),out selectTime))
+        if (!Regex.Match(txtDate.Text.Trim(), "^[0-9]{4}年[0-9]{2}月").Success)
         {
-            txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            txtDate.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月";
         }
         string begintime, endtime;
         begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";

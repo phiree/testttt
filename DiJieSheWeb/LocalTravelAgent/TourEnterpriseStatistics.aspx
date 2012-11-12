@@ -10,9 +10,9 @@
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Scripts/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("[id$='txtDate']").datepicker();
             $(".tablesorter").tablesorter();
             $(".IndexTable").orderIndex('2');
         });
@@ -25,7 +25,7 @@
     </div>
      <div class="searchdiv">
         <h5>按条件查询</h5>
-        日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>&nbsp;&nbsp;旅游企业名称&nbsp;&nbsp;<asp:TextBox
+            日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})"></asp:TextBox>&nbsp;&nbsp;旅游企业名称&nbsp;&nbsp;<asp:TextBox
             ID="txtEntName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;企业类型;&nbsp;&nbsp;<asp:DropDownList
                 ID="ddlType" runat="server">
              <asp:ListItem Value="0">全部</asp:ListItem>

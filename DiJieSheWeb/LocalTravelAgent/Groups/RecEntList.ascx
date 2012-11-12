@@ -58,4 +58,5 @@
     </asp:Repeater>
     <asp:Button ID="BtnPrint" runat="server" Text="导出成excel" 
         onclick="BtnPrint_Click" />
+    <a href="/localtravelagent/RecEntList.aspx" style="margin-left:600px">返回上级</a>
 </div>
