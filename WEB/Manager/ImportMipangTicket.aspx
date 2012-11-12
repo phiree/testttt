@@ -27,7 +27,7 @@
     
  </asp:TextBox>
  <asp:Button runat="server" Text="开始对应"  ID="btnMove" OnClick="btnMove_Click" />
- <asp:Label runat="server" ID="lblMoveError"></asp:Label>
+ <asp:TextBox runat="server" ID="lblMoveError" TextMode="MultiLine"></asp:TextBox>
 </div>
 </asp:Content>
 
