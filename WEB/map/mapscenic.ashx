@@ -15,6 +15,7 @@ public class mapscenic : IHttpHandler {
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
         string pos = context.Request.QueryString["pos"];
+        BLLScenicImg bllScenicImg = new BLLScenicImg();
         IList<Scenic> list = new BLLScenic().GetScenicByScenicPosition(pos);
         List<Model.ScenicMap> list2 = new List<Model.ScenicMap>();
         foreach (Scenic item in list)
@@ -23,8 +24,11 @@ public class mapscenic : IHttpHandler {
             m.id = item.Id;
             m.level = item.Level;
             m.name = item.Name;
-            if (new BLLScenicImg().GetSiByType(item, 1).Count > 0)
-                m.img = new BLLScenicImg().GetSiByType(item, 1)[0].Name;
+            if (bllScenicImg.GetSiByType(item, 1).Count > 0)
+            {
+                string extention = bllScenicImg.GetSiByType(item, 1)[0].Name.Split('.')[1];
+                m.img = bllScenicImg.GetSiByType(item, 1)[0].Name.Split('.')[0] + "_s" + extention;
+            }
             m.desc = item.Desec;
             m.address = item.Address;
             m.position = item.Position;

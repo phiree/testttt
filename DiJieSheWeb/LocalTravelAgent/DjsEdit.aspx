@@ -17,40 +17,39 @@
                     <asp:TextBox ID="txtName" runat="server" Width="80%" />
                 </td>
                 <td>
-                    类型:
+                    地区
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlType" runat="server" Width="80%">
+                   <asp:DropDownList ID="ddlArea" runat="server" Width="80%">
                     </asp:DropDownList>
                 </td>
             </tr>
             <tr>
-                <td>
-                    地区
-                </td>
-                <td>
-                    <asp:DropDownList ID="ddlArea" runat="server" Width="80%">
-                    </asp:DropDownList>
-                </td>
                 <td>
                     联系电话:
                 </td>
                 <td>
                     <asp:TextBox ID="txtTel" runat="server" Width="80%" />
                 </td>
-            </tr>
-            <tr>
                 <td>
                     负责人名称:
                 </td>
                 <td>
                     <asp:TextBox ID="txtCPN" runat="server" Width="80%" />
                 </td>
+            </tr>
+            <tr>
                 <td>
                     负责人电话:
                 </td>
                 <td>
                     <asp:TextBox ID="txtCPP" runat="server" Width="80%" />
+                </td>
+                <td>
+                    电子邮箱
+                </td>
+                <td>
+                    <asp:TextBox ID="txtEmail" runat="server" Width="80%" />
                 </td>
             </tr>
             <tr>

@@ -17,7 +17,6 @@ public partial class LocalTravelAgent_DjsEdit : basepageDJS
         if (!IsPostBack)
         {
             BindArea();
-            BindType();
             BindData();
         }
     }
@@ -44,35 +43,28 @@ public partial class LocalTravelAgent_DjsEdit : basepageDJS
         ddlArea.DataBind();
     }
 
-    private void BindType()
-    {
-        IList<string> types = new List<string>(){
-            //Model.EnterpriseType.宾馆.ToString(),
-            //Model.EnterpriseType.饭店.ToString(),
-            //Model.EnterpriseType.购物点.ToString(),
-            //Model.EnterpriseType.景点.ToString()
-            "地接社"
-        };
-        ddlType.DataSource = types;
-        ddlType.DataBind();
-    }
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
         ResultHelper rh = checkComplete();
+        djs = CurrentDJS;
         if (!rh.bresult)
         { 
             Page.ClientScript.RegisterStartupScript(this.GetType(),"","alert('"+rh.sresult+"')",true);
             return;
         }
-        if (djs == null)
-        {
-            blldjs.AddDjs(txtName.Text.Trim(), txtAddress.Text.Trim(),
-                bllarea.GetAreaByCode("330100"), txtCPN.Text.Trim(), txtCPP.Text.Trim(), "010-156489765","","");
-        }
         else
         {
-            //blldjs.Save(djs);
+            djs.Address = txtAddress.Text;
+            djs.ChargePersonName = txtCPN.Text;
+            djs.ChargePersonPhone = txtCPP.Text;
+            djs.Email = txtEmail.Text;
+            djs.Name = txtName.Text;
+            djs.Phone = txtTel.Text;
+            djs.LastUpdateTime = DateTime.Now;
+            blldjs.UpdateDjs(djs);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "s", "alert('修改信息成功')", true);
+            BindData();
         }
     }
 

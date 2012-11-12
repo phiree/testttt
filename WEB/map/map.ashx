@@ -13,6 +13,9 @@ using System.Text;
 public class map : IHttpHandler {
     
     public void ProcessRequest (HttpContext context) {
+        BLLScenic bllScenic = new BLLScenic();
+        BLLScenicImg bllScenicImg = new BLLScenicImg();
+        BLLArea bllArea = new BLLArea();
         context.Response.ContentType = "text/plain";
          IList<Scenic> list=null;
          int pageindex = 1;
@@ -26,44 +29,47 @@ public class map : IHttpHandler {
             if (context.Request.Cookies["scname"] != null)
             {
                 string scname = HttpUtility.UrlDecode(context.Request.Cookies["scname"].Value, Encoding.GetEncoding("UTF-8"));
-                list = new BLLScenic().GetScenicByScenicName(scname, context.Request.Cookies["level"].Value, areaid, HttpUtility.UrlDecode(HttpUtility.UrlDecode(HttpUtility.UrlDecode(context.Request.Cookies["topic"].Value, Encoding.GetEncoding("UTF-8")), Encoding.GetEncoding("UTF-8")), Encoding.GetEncoding("UTF-8")));
-            }
-            else
-            {
-                //list = new BLLScenic().GetScenic();
+                list = bllScenic.GetScenicByScenicName(scname, context.Request.Cookies["level"].Value, areaid, HttpUtility.UrlDecode(HttpUtility.UrlDecode(HttpUtility.UrlDecode(context.Request.Cookies["topic"].Value, Encoding.GetEncoding("UTF-8")), Encoding.GetEncoding("UTF-8")), Encoding.GetEncoding("UTF-8")));
             }
         }
         else
         {
             string scname = HttpUtility.UrlDecode(context.Request.Cookies["scname"].Value, Encoding.GetEncoding("UTF-8"));
-            list = new BLLScenic().GetScenicByScenicName(scname, context.Request.Cookies["level"].Value, areaid, HttpUtility.UrlDecode(HttpUtility.UrlDecode(context.Request.Cookies["topic"].Value, Encoding.GetEncoding("UTF-8")), Encoding.GetEncoding("UTF-8")));
+            list = bllScenic.GetScenicByScenicName(scname, context.Request.Cookies["level"].Value, areaid, HttpUtility.UrlDecode(HttpUtility.UrlDecode(context.Request.Cookies["topic"].Value, Encoding.GetEncoding("UTF-8")), Encoding.GetEncoding("UTF-8")));
         }
         List<Model.ScenicMap> list2 = new List<Model.ScenicMap>();
-        context.Response.Cookies.Add(new HttpCookie("numcount",list.Count.ToString()));
-        if (list.Count%15!=0)
-            context.Response.Cookies.Add(new HttpCookie("resultcount",((list.Count/15)+1).ToString()));
-        else
-            context.Response.Cookies.Add(new HttpCookie("resultcount", (list.Count/15).ToString()));
             foreach (Scenic item in list)
             {
-                Model.ScenicMap m = new Model.ScenicMap();
-                m.id = item.Id;
-                m.name = item.Name;
-                if (new BLLScenicImg().GetSiByType(item, 1).Count > 0)
-                    m.img = new BLLScenicImg().GetSiByType(item, 1)[0].Name;
-                m.desc = item.Desec;
-                m.address = item.Address;
-                m.position = item.Position;
-                m.level = item.Level;
-                foreach (Ticket t in item.Tickets.Where(x => x.IsMain == true))
-	            {
-                    m.price = t.TicketPrice[0].Price.ToString("0") + "元";
-	            } 
-                        //string.Format("{0:f2}", new BLL.BLLTicketPrice().GetTicketPriceByScenicId(item.Id)[1].Price);
-                m.scseoname = item.SeoName;
-                m.areaseoname = new BLL.BLLArea().GetAreaByCode(item.Area.Code.Substring(0,4)+"00").SeoName+"_"+item.Area.SeoName;
-                list2.Add(m);
+                if (!string.IsNullOrEmpty(item.Position))
+                {
+                    Model.ScenicMap m = new Model.ScenicMap();
+                    m.id = item.Id;
+                    m.name = item.Name;
+                    if (bllScenicImg.GetSiByType(item, 1).Count > 0)
+                    {
+                        string extention = bllScenicImg.GetSiByType(item, 1)[0].Name.Split('.')[1];
+                        m.img = bllScenicImg.GetSiByType(item, 1)[0].Name.Split('.')[0]+"_s"+extention;
+                    }
+                    m.desc = item.Desec;
+                    m.address = item.Address;
+                    m.position = item.Position;
+                    m.level = item.Level;
+                    foreach (Ticket t in item.Tickets.Where(x => x.IsMain == true))
+                    {
+                        m.price = t.TicketPrice[0].Price.ToString("0") + "元";
+                    }
+                    //string.Format("{0:f2}", new BLL.BLLTicketPrice().GetTicketPriceByScenicId(item.Id)[1].Price);
+                    m.scseoname = item.SeoName;
+                    m.areaseoname = bllArea.GetAreaByCode(item.Area.Code.Substring(0, 4) + "00").SeoName + "_" + item.Area.SeoName;
+                    list2.Add(m);
+                }
             }
+            
+            if (list2.Count % 15 != 0)
+                context.Response.Cookies.Add(new HttpCookie("resultcount", ((list2.Count / 15) + 1).ToString()));
+            else
+                context.Response.Cookies.Add(new HttpCookie("resultcount", (list2.Count / 15).ToString()));
+            context.Response.Cookies.Add(new HttpCookie("numcount", list2.Count.ToString()));
         string JSON = new JavaScriptSerializer().Serialize(list2);//把list转换为JSON格式的字符串
         context.Response.Write(JSON);
     }

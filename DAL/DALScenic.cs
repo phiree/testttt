@@ -82,8 +82,8 @@ namespace DAL
                 string areacode= new DALArea().GetAreaByAreaid(areaid).Code.Substring(0, 4);
                 sqlstr += " and s.Area.Code like '%" + areacode + "%'";
             }
-            if (level != "")
-                sqlstr += " and s.Level like '%" + level + "%'";
+            if (!string.IsNullOrEmpty(level))
+                sqlstr += " and s.Level like '%" + level.Substring(0,1) + "%'";
             if (!string.IsNullOrEmpty(topic))
             {
                 IQuery query = session.CreateQuery(sqlstr);
