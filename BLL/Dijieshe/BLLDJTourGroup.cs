@@ -14,6 +14,21 @@ namespace BLL
         {
             return Idjtourgroup.GetTourGroupByAll();
         }
+        public IList<DJ_TourGroup> GetGroupsForDjsAdmin(DJ_User_TourEnterprise djsUser)
+        {
+            string editorName = djsUser.Name;
+            if (djsUser.PermissionType ==( PermissionType.报表查看员 | PermissionType.团队录入员 | PermissionType.信息编辑员 | PermissionType.用户管理员))
+            {
+                editorName = string.Empty;
+            }
+            return GetGroupsForEditor(editorName);
+        }
+        public IList<Model.DJ_TourGroup> GetGroupsForEditor(string editorName)
+        {
+            
+
+            return Idjtourgroup.GetList(Guid.Empty, string.Empty, false, null, null, DateTime.Now, DateTime.Now.AddYears(99),editorName);
+        }
 
         public IList<Model.DJ_TourGroup> GetTourGroupByGuideIdcard(string idcard)
         {

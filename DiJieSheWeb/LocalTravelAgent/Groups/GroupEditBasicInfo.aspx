@@ -32,7 +32,8 @@
                     团队名称
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="tbxName"></asp:TextBox><asp:RequiredFieldValidator
+                        ID="RequiredFieldValidator1" ControlToValidate="tbxName" Display="Dynamic" runat="server" ErrorMessage="请填写团队名称"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             
@@ -42,7 +43,7 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="tbxDateBegin"></asp:TextBox>
-                </td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2"  Display="Dynamic" runat="server" ControlToValidate="tbxDateBegin"  ErrorMessage="请输入开始时间"></asp:RequiredFieldValidator> </td>
             </tr>
             <tr>
                 <td>
@@ -50,7 +51,9 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="tbxDateAmount"></asp:TextBox>
-                </td>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1"  Display="Dynamic"  ControlToValidate="tbxDateAmount" runat="server" 
+                    ValidationExpression="\d+" ErrorMessage="请输入数字"></asp:RegularExpressionValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3"   Display="Dynamic"  ControlToValidate="tbxDateAmount" runat="server" ErrorMessage="请输入游玩天数"></asp:RequiredFieldValidator>  </td>
             </tr>
             <tr>
                 <td>
@@ -73,6 +76,7 @@
              
         </table>
         <asp:Button runat="server" ID="btnSaveBasicInfo" OnClick="btnBasicInfo_Click" Text="保存" CssClass="btn" style="margin-left:350px" />
+       
         <%--<asp:Panel runat="server" ID="pnlLinks">
             <a href="GroupEditMember.aspx?groupid=<%=groupId %>">编辑成员信息</a>
              <a href="GroupEditRoute.aspx?groupid=<%=groupId %>">

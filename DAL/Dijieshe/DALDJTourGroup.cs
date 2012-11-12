@@ -76,7 +76,7 @@ namespace DAL
                   )
         { 
             int totalRecord;
-            return GetList(dijiesheId, name, isNameLike, beginDate, endDate, activeBeginDate, activeEndDate, editorName, 0, 9999, out totalRecord);
+            return GetList(dijiesheId, name, isNameLike,  editorName, 0, 9999, out totalRecord);
         }
         /// <summary>
         /// 通用查询 不包含对 list子对象的查询
@@ -94,7 +94,7 @@ namespace DAL
         /// <param name="totalRecord"></param>
         /// <returns></returns>
         public IList<DJ_TourGroup> GetList(Guid dijiesheId
-            ,string name,bool isNameLike,  DateTime? beginDate, DateTime? endDate,DateTime? activeBeginDate,DateTime? activeEndDate, string editorName
+            ,string name,bool isNameLike,  string editorName
          ,int pageIndex,int pageSize,out int totalRecord
             )
         {
@@ -115,23 +115,7 @@ namespace DAL
                  conditions+=" and TG.Name = '"+name+"'";
                 }
             }
-            if (activeBeginDate.HasValue)
-            {
-                conditions += " and ((TG.BeginDate<='" + activeBeginDate + "' and TG.EndDate>='" + activeEndDate + "')";
-                if (activeEndDate.HasValue)
-                {
-                    conditions += "  or (TG.BeginDate<='" + activeEndDate + "' and TG.EndDate>='" + activeEndDate + "')";
-                }
-                conditions += ")";
-            }
-            if (beginDate.HasValue)
-            {
-                conditions += " and TG.BeginDate='" + beginDate + "'";
-            }
-            if (endDate.HasValue)
-            {
-                conditions += " and TG.EndDate='" + endDate + "'";
-            }
+            
             if (!string.IsNullOrEmpty(editorName))
             {
                 conditions += " and TG.DijiesheEditor.Name ='" + editorName + "'";

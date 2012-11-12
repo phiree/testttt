@@ -16,7 +16,7 @@ namespace Model
             Routes = new List<DJ_Route>();
         }
         public virtual Guid Id { get; set; }
-       
+
         /// <summary>
         /// 该团队所属的地接社
         /// </summary>
@@ -31,23 +31,25 @@ namespace Model
         public virtual DateTime BeginDate { get; set; }
 
 
-        
+
         /// <summary>
         /// 结束日期
         /// </summary>
-        public virtual DateTime EndDate { get;set; }
+        public virtual DateTime EndDate { get; set; }
         /// <summary>
         /// 总天数
         /// </summary>
-       
+
         public virtual int DaysAmount { get; set; }
         /// <summary>
         /// 成人总人数
         /// </summary>
 
         public virtual DJ_User_TourEnterprise DijiesheEditor { get; set; }
-        public virtual int AdultsAmount { 
-            get { return Members.Where(x => x.MemberType == MemberType.成人游客).Count(); } }
+        public virtual int AdultsAmount
+        {
+            get { return Members.Where(x => x.MemberType == MemberType.成人游客).Count(); }
+        }
         /// <summary>
         /// 儿童总人数
         /// </summary>
@@ -71,6 +73,29 @@ namespace Model
         public virtual string BackPlace { get; set; }
 
         /// <summary>
+        /// 尚未开始/正在精心/已经结束 -->计算类属性不能用于nql查询
+        /// </summary>
+        public virtual TourGroupState GroupState
+        {
+            get
+            {
+                DateTime now = DateTime.Now;
+
+                if (now < BeginDate)
+                {
+                    return TourGroupState.尚未开始;
+                }
+                else if (now <= BeginDate && now < EndDate.AddDays(1))
+                {
+                    return TourGroupState.正在进行;
+                }
+                else
+                {
+                    return TourGroupState.已经结束;
+                }
+            }
+        }
+        /// <summary>
         /// 路线描述
         /// </summary>
         public virtual IList<DJ_Route> Routes { get; set; }
@@ -78,12 +103,12 @@ namespace Model
         ///导游和司机信息
         /// </summary>
         public virtual IList<DJ_Group_Worker> Workers { get; set; }
-      
+
         /// <summary>
         /// 车辆信息
         /// </summary>
         public virtual IList<DJ_Group_Vehicle> Vehicles { get; set; }
-       
+
         /// <summary>
         /// 成员详细信息
         /// </summary>
@@ -94,5 +119,12 @@ namespace Model
             this.Members.Remove(member);
         }
 
+    }
+    public enum TourGroupState
+    {
+
+        尚未开始=1,
+        正在进行=2,
+        已经结束=4
     }
 }

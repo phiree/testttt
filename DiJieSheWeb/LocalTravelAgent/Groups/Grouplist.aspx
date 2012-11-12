@@ -5,7 +5,7 @@
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
- <%--   <style type="text/css">
+    <%--   <style type="text/css">
         .colorpicker
         {
             display: block;
@@ -54,13 +54,22 @@
     </div>
     <div class="detaillist">
         <div class="actiondiv">
-            团队操作:<a href="GroupEditBasicInfo.aspx">新建团队</a> <a href="/LocalTravelAgent/Groups/GroupInfo.aspx">从Excel导入新团队</a>
+            团队操作:<a href="GroupEditBasicInfo.aspx">新建团队</a> <a href="/LocalTravelAgent/Groups/GroupInfo.aspx">
+                从Excel导入新团队</a>
         </div>
         <div class="detailtitle">
-            团队列表 
+            团队列表
             <%--<span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
             <span class="colorWord">进行中的行程</span><span class="colorpicker" id="colorpicker2"></span>
             <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>--%>
+        </div>
+        <div class="searchdiv">
+            <asp:RadioButtonList runat="server" ID="cblState" OnSelectedIndexChanged="cblState_Changed"
+                AutoPostBack="true">
+                <asp:ListItem Value="1" Selected="True">尚未开始</asp:ListItem>
+                <asp:ListItem Value="2">正在进行</asp:ListItem>
+                <asp:ListItem Value="4">已经结束</asp:ListItem>
+            </asp:RadioButtonList>
         </div>
         <asp:Repeater ID="rptGroups" runat="server" OnItemDataBound="rptGroups_ItemDataBound"
             OnItemCommand="rptGroups_ItemCommand">
@@ -102,8 +111,13 @@
                         <%#((DateTime)Eval("EndDate")-(DateTime)Eval("BeginDate")).Days+1%>日游
                     </td>
                     <td>
-                        <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改</a> 
-                        <a href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>从Excel文件更新</a>
+                       <asp:Panel runat="server" ID="pnlOperation">
+                         <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>
+
+                            修改</a> <a href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>从Excel文件更新</a>
+                        <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="delete"
+                            Text="删除" OnClientClick='javascript:return confirm("您确认要删除这个团队么?");' />
+                            </asp:Panel>
                     </td>
                     <td>
                         <asp:LinkButton ID="lblMember_bz" Text="" runat="server" /><br />
@@ -115,5 +129,8 @@
                 </tbody> </table>
             </FooterTemplate>
         </asp:Repeater>
+        <div class="">
+            <asp:Label runat="server" ID="lblMsg"></asp:Label>
+        </div>
     </div>
 </asp:Content>

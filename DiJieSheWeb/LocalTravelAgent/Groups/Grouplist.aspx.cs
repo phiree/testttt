@@ -5,99 +5,78 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-
-public partial class Groups_Grouplist : System.Web.UI.Page
+using BLL;
+using Model;
+public partial class Groups_Grouplist : basepageDJS
 {
     BLL.BLLDJTourGroup blltg = new BLL.BLLDJTourGroup();
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        lblMsg.Text = string.Empty;
         if (!IsPostBack)
         {
             BindGroups();
         }
     }
 
+    protected void cblState_Changed(object sender, EventArgs e)
+    {
+        BindGroups();
+    }
+
     public void BindGroups()
     {
-        IList<Model.DJ_TourGroup> tglist = blltg.GetTourGroupByAll();
-        rptGroups.DataSource = tglist.Where(x=>x.EndDate>DateTime.Now);
+        IList<Model.DJ_TourGroup> tglist = blltg.GetGroupsForDjsAdmin((DJ_User_TourEnterprise)CurrentMember);
+
+        TourGroupState state = (TourGroupState)Convert.ToInt16(cblState.SelectedValue);
+
+        rptGroups.DataSource = tglist.Where(x => x.GroupState == state);
         rptGroups.DataBind();
     }
 
     protected void rptGroups_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        if (e.Item.ItemType == ListItemType.Header)
+        string errMsg = string.Empty;
+        string argId = e.CommandArgument.ToString();
+        switch (e.CommandName.ToLower())
         {
-            LinkButton lkbtnSort = (LinkButton)e.Item.FindControl(e.CommandName.Trim());
-            if (ViewState[e.CommandName.Trim()] == null)
-            {
-                ViewState[e.CommandName.Trim()] = "ASC";
-                lkbtnSort.Text = lkbtnSort.Text + "↑";
-            }
-            else
-            {
-                if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
+            case "delete":
+                DJ_TourGroup group = blltg.GetOne(new Guid(argId));
+
+                if (DateTime.Now >= group.BeginDate)
                 {
-                    ViewState[e.CommandName.Trim()] = "DESC";
-                    if (lkbtnSort.Text.IndexOf("↑") != -1)
-                        lkbtnSort.Text = lkbtnSort.Text.Replace("↑", "↓");
-                    else
-                        lkbtnSort.Text = lkbtnSort.Text + "↓";
+                    errMsg = "团队已经出发,不能删除";
+
                 }
                 else
                 {
-                    ViewState[e.CommandName.Trim()] = "ASC";
-                    if (lkbtnSort.Text.IndexOf("↓") != -1)
-                        lkbtnSort.Text = lkbtnSort.Text.Trim().Replace("↓", "↑");
-                    else
-                        lkbtnSort.Text = lkbtnSort.Text + "↑";
+                    blltg.Delete(group);
+                    BindGroups();
                 }
-            }
-            ViewState["text"] = lkbtnSort.Text;
-            ViewState["id"] = e.CommandName.Trim();
-            IList<Model.DJ_TourGroup> tglist = blltg.GetTourGroupByAll();
-            switch (e.CommandName.Trim())
-            {
-                case "lbname":
-                    if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
-                        tglist = tglist.OrderBy(x => x.Name).ToList();
-                    else
-                        tglist = tglist.OrderByDescending(x => x.Name).ToList();
-                    break;
-                case "lbdate":
-                    if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
-                        tglist = tglist.OrderBy(x => x.BeginDate).ToList();
-                    else
-                        tglist = tglist.OrderByDescending(x => x.BeginDate).ToList();
-                    break;
-                case "lbdays":
-                    if (ViewState[e.CommandName.Trim()].ToString().Trim() == "ASC")
-                        tglist = tglist.OrderBy(x => x.DaysAmount).ToList();
-                    else
-                        tglist = tglist.OrderByDescending(x => x.DaysAmount).ToList();
-                    break;
-            }
-            rptGroups.DataSource = tglist;
-            rptGroups.DataBind();
+
+
+                break;
         }
+        lblMsg.Text = errMsg;
     }
 
     protected void rptGroups_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        if (e.Item.ItemType == ListItemType.Header)
-        {
-            if (ViewState["id"] != null)
-            {
-                LinkButton lkbtnSort = (LinkButton)e.Item.FindControl(ViewState["id"].ToString().Trim());
-                lkbtnSort.Text = ViewState["text"].ToString();
-            }
-        }
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
-            Model.DJ_TourGroup group = e.Item.DataItem as Model.DJ_TourGroup;
+            
 
+            Model.DJ_TourGroup group = e.Item.DataItem as Model.DJ_TourGroup;
+   LinkButton lblRoute_bz = e.Item.FindControl("lblRoute_bz") as LinkButton;
             LinkButton lblMember_bz = e.Item.FindControl("lblMember_bz") as LinkButton;
+            Panel pnl = e.Item.FindControl("pnlOperation") as Panel;
+            if (group.GroupState== TourGroupState.正在进行|| group.GroupState == TourGroupState.已经结束)
+            {
+                pnl.Visible = lblMember_bz.Visible = lblRoute_bz.Visible = false;
+                return;
+            }
+         
             if (group.Members.Count == 0)
             {
                 lblMember_bz.Text = group.Members.Count + "位团员, 请补充团员信息";
@@ -109,7 +88,7 @@ public partial class Groups_Grouplist : System.Web.UI.Page
             }
             lblMember_bz.PostBackUrl = "/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid=" + group.Id;
 
-            LinkButton lblRoute_bz = e.Item.FindControl("lblRoute_bz") as LinkButton;
+          
             if (group.Routes.GroupBy(x => x.DayNo).Count() > group.DaysAmount)
             {
                 lblRoute_bz.Text = group.Routes.GroupBy(x => x.DayNo).Count() + "日线路, 超出计划天数" +
@@ -129,4 +108,5 @@ public partial class Groups_Grouplist : System.Web.UI.Page
             lblRoute_bz.PostBackUrl = "/LocalTravelAgent/Groups/GroupEditRoute.aspx?groupid=" + group.Id;
         }
     }
+
 }
