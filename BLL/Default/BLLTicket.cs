@@ -203,21 +203,26 @@ namespace BLL
 
             //删除目标景区下的所有门票先!
             IList<Ticket> tobeRemoved = new List<Ticket>();
-            foreach (Ticket st in target.Tickets)
-            {
-               
-                tobeRemoved.Add(st);
-            }
+            //foreach (Ticket st in target.Tickets)
+            //{
+
+            //    Iticket.Delete(st);
+            //}
+         
+            //foreach (Ticket removedT in tobeRemoved)
+            //{
+            //    Iticket.Delete(removedT);
+            //}
+            if (target.Tickets.Count == 0) return;
             target.Tickets.Clear();
-            foreach (Ticket removedT in tobeRemoved)
-            {
-                Iticket.Delete(removedT);
-            }
             foreach (Ticket t in source.Tickets)
             {
                 t.Scenic = target;
-                SaveOrUpdateTicket(t);
+                target.Tickets.Add(t);
             }
+         //   target.Tickets = source.Tickets;
+            bllScenic.Save(target);
+          //  target.Tickets.Clear();
         }
         public void Move(int mipangId, string targetScenicSEOName,out string err)
         {
@@ -228,12 +233,12 @@ namespace BLL
             bool isOk = true;
             if (source == null )
             {
-                err += mipangId + "-不存在";
+                err +=  "mipangid不存在";
                 isOk = false;
             }
             if (target == null)
             {
-                err += targetScenicSEOName + "-不存在";
+                err += "seoname不存在";
                 isOk = false;
             }
             if (!isOk)
@@ -242,6 +247,36 @@ namespace BLL
             }
             Move(source, target);
         }
+        public void BatchMove(string formatedLines,out string errMsg)
+        {
+            System.Text.StringBuilder sbErr = new System.Text.StringBuilder();
+            string[] rowStrings = formatedLines.Split(Environment.NewLine.ToCharArray());
+            foreach (string s in rowStrings)
+            {
+                if (string.IsNullOrEmpty(s)) continue;
+                string[] pair = s.Split(';');
+                if (pair.Length != 4)
+                {
+                    sbErr.AppendLine("格式有误:"+s);
+                    continue;
+                }
+                int mipangId = 0;
+                if (!int.TryParse(pair[1], out mipangId))
+                {
+                    sbErr.AppendLine("mipangid不是数字:" + s);
+                    continue;
+                }
+                string moveResult;
+                Move(mipangId, pair[3], out moveResult);
+                if (!string.IsNullOrEmpty(moveResult))
+                {
+                    sbErr.AppendLine(moveResult + s);
+                }
+              
+            }
+            errMsg = sbErr.ToString();
+        }
+
     }
 
     public class CartItem
