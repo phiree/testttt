@@ -8,7 +8,7 @@ using DAL;
 
 namespace BLL
 {
-    public class BLLDJ_GovManageDepartment
+    public class BLLDJ_GovManageDepartment:BLLBase<DJ_GovManageDepartment>
     {
         DALDJ_GovManageDepartment Idepart = new DALDJ_GovManageDepartment();
 
@@ -30,6 +30,16 @@ namespace BLL
         public DJ_GovManageDepartment GetById(Guid id)
         {
             return Idepart.GetById(id);
+        }
+
+        /// <summary>
+        /// 获取子管理部门
+        /// </summary>
+        /// <param name="code">区域编号</param>
+        /// <returns>管理部门列表</returns>
+        public IList<DJ_GovManageDepartment> GetSubDptByCode(string code)
+        {
+            return Idepart.GetSubDptByCode(code);
         }
     }
 }
