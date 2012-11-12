@@ -197,7 +197,7 @@
             <li>点击“导入数据”，将excel内容导入到表格中 </li>
         </ol>
         <asp:FileUpload ID="FileUpload1" runat="server" />
-        <asp:Button ID="btnUpload" runat="server" Text="上传并保存" OnClick="btnUpload_Click" />
+        <asp:Button ID="btnUpload" runat="server" Text="保存" OnClick="btnUpload_Click" />
         <asp:Label ID="Label1" runat="server" />
         <a href="/LocalTravelAgent/Groups/Grouplist.aspx">返回</a>
     </div>

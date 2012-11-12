@@ -77,7 +77,7 @@
                                 <tr>
                                 <td></td>
                                     <td align="right" style="text-align:left">
-                                        <asp:Button ID="LoginButton" runat="server" CommandName="Login" style="margin-top:20px; background-color:#016A6D; color:White;font-weight:bold; text-align:center; width:75px;height:25px; line-height:22px;border:none; cursor:pointer;" Text="登录" ValidationGroup="Login1" />
+                                        <asp:Button ID="LoginButton" runat="server" CssClass="ltaloginbtn" CommandName="Login" style="" Text="登  录" ValidationGroup="Login1" />
                                     </td>
                                 </tr>
                             </table>

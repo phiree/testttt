@@ -249,3 +249,18 @@ table img
     line-height:30px;
     font-weight:bold;
 }
+.ltaloginbtn
+{
+    margin-top:20px; background-color:#016A6D; color:White;font-weight:bold; text-align:center; width:75px;height:25px; line-height:22px;border:none; cursor:pointer;
+}
+.ltaloginbtn:hover
+{
+    background:url("/theme/default/image/login_hover.png");
+    border:none;
+    cursor:pointer;
+    margin-top:20px;
+    width:75px;height:25px;
+    color:#00837E;
+    font-weight:normal;
+    font-size:0px;
+}
