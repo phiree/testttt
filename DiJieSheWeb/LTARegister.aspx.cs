@@ -36,20 +36,20 @@ public partial class LTARegister : System.Web.UI.Page
             else
             {
                 DJ_DijiesheInfo DJS = new DJ_DijiesheInfo();
-                Area area= bllArea.GetAreaByCode(ddlCountry.SelectedValue);
+                Area area = bllArea.GetAreaByCode(ddlCountry.SelectedValue);
                 string filename;
-                try 
-	            {	        
-		            string fileExt = System.IO.Path.GetExtension(fuLicence.FileName);
+                try
+                {
+                    string fileExt = System.IO.Path.GetExtension(fuLicence.FileName);
                     filename = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString()
                + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + fileExt;
-                    fuLicence.SaveAs(Server.MapPath("~/Data/License")+"\\"+ filename);
-	            }
-	            catch (Exception ex)
+                    fuLicence.SaveAs(Server.MapPath("~/Data/License") + "\\" + filename);
+                }
+                catch (Exception ex)
                 {
-		            throw ex;
-	            }
-                bllEnt.AddDjs(txtDJSName.Text.Trim(), txtDJSAddress.Text.Trim(), area, txtLinkName.Text.Trim(), txtTel.Text.Trim(), txtTel.Text.Trim(), filename, txtEmail.Text);
+                    throw ex;
+                }
+                bllEnt.AddDjs(txtDJSName.Text.Trim(), txtDJSAddress.Text.Trim(), area, txtLinkName.Text.Trim(), txtTel.Text.Trim(), txtTel.Text.Trim(), filename, txtEmail.Text, null);
                 Response.Redirect("/RegisterSuccess.aspx");
             }
         }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ExcelOplib.Entity;
+using Model;
 
 public partial class Admin_Initial : System.Web.UI.Page
 {
@@ -13,6 +14,7 @@ public partial class Admin_Initial : System.Web.UI.Page
     BLL.BLLDJEnterprise blldjs = new BLL.BLLDJEnterprise();
     BLL.BLLScenic bllscenic = new BLL.BLLScenic();
     BLL.BLLDJ_User blldjuser = new BLL.BLLDJ_User();
+    BLL.BLLMembership bllmem = new BLL.BLLMembership();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -67,7 +69,8 @@ public partial class Admin_Initial : System.Web.UI.Page
                     {
                         name = item2,
                         area = item.Diqu,
-                        type = item.EnterpType.ToString()
+                        type = item.EnterpType.ToString(),
+                        seoname=item.Seoname
                     });
                 }
             }
@@ -82,7 +85,13 @@ public partial class Admin_Initial : System.Web.UI.Page
                     var temp_djs = blldjs.GetDJS8Muti(area.Id, Model.EnterpriseType.旅行社.ToString(), null, item.name);
                     if (temp_djs.Count == 0)
                     {
-                        blldjs.AddDjs(item.name, string.Empty, area, "", "", "","","");
+                        blldjs.AddDjs(item.name, string.Empty, area, "", "", "","","",item.seoname);
+                        bllmem.CreateUpdateMember(new Model.DJ_User_TourEnterprise() { 
+                            Enterprise=blldjs.GetDJS8name(item.name).First(),
+                            Name=item.seoname,
+                            PermissionType=PermissionType.报表查看员 | PermissionType.团队录入员 | PermissionType.信息编辑员 | PermissionType.用户管理员,
+                            Password=System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(item.seoname, "MD5")
+                        });
                     }
                     break;
                 case "景区":
@@ -93,6 +102,7 @@ public partial class Admin_Initial : System.Web.UI.Page
                         {
                             Name = item.name,
                             Area = area,
+                            Seoname=item.seoname,
                             Type = Model.EnterpriseType.景点
                         });
                     }
@@ -105,6 +115,7 @@ public partial class Admin_Initial : System.Web.UI.Page
                         {
                             Name = item.name,
                             Area = area,
+                            Seoname=item.seoname,
                             Type = Model.EnterpriseType.宾馆
                         });
                     }
@@ -119,4 +130,5 @@ public class Enter_excel
     public string name { get; set; }
     public string area { get; set; }
     public string type { get; set; }
+    public string seoname { get; set; }
 }
