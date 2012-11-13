@@ -200,7 +200,7 @@ namespace ExcelOplib
 
                 //Sheet1为excel中表的名字
                 DataTable dt0 = new DataTable();
-                string sql0 = "select 团队名称,开始时间,天数,类型,导游姓名,导游身份证号,导游电话号码,导游证号,日期,住宿,景点 from [Sheet1$]";
+                string sql0 = "select 团队名称,开始时间,天数,类型,导游姓名,导游身份证号,导游电话号码,导游证号,日期,景点,住宿 from [Sheet1$]";
                 OleDbCommand cmd0 = new OleDbCommand(sql0, new OleDbConnection(conn));
                 OleDbDataAdapter ad0 = new OleDbDataAdapter(cmd0);
                 ad0.Fill(dt0);
@@ -246,8 +246,8 @@ namespace ExcelOplib
                     grlist.Add(new Entity.GroupRoute()
                     {
                         RouteDate = dt0.Rows[i][8].ToString().Replace("\n", "").Trim(),
-                        Hotel = dt0.Rows[i][9].ToString().Replace("\n", "").Trim(),
-                        Scenic = dt0.Rows[i][10].ToString().Replace("\n", "").Trim()
+                        Scenic = dt0.Rows[i][9].ToString().Replace("\n", "").Trim(),
+                        Hotel = dt0.Rows[i][10].ToString().Replace("\n", "").Trim()
                     });
                 }
                 //合并route,相同routedate合并
