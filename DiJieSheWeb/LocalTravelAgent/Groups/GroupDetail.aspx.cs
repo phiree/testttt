@@ -23,13 +23,11 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
         lblName.Text = tg.Name;
         lblDate.Text = tg.BeginDate.ToShortDateString() + "-" + tg.EndDate.ToShortDateString();
         lblDays.Text = tg.DaysAmount.ToString();
-        lblPnum.Text = (tg.AdultsAmount + tg.ChildrenAmount).ToString();
+        lblPnum.Text = (tg.TotalTourist).ToString();
         lblPadult.Text = tg.AdultsAmount.ToString();
         lblPchild.Text = tg.ChildrenAmount.ToString();
         lblForeigners.Text = tg.ForeignersAmount.ToString();
         lblGangaotais.Text = tg.GangaotaisAmount.ToString();
-        lblGether.Text = tg.Gether;
-        lblBack.Text = tg.BackPlace;
 
         rptMem.DataSource = tg.Members;
         rptMem.DataBind();
@@ -42,12 +40,6 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
         IList<ExcelOplib.Entity.GroupRouteNew> grlist = new List<ExcelOplib.Entity.GroupRouteNew>();
         foreach (var item in tg.Routes.GroupBy(x => x.DayNo))
         {
-            //var grn = new ExcelOplib.Entity.GroupRouteNew();
-            //grn.RouteDate = item.First().DayNo.ToString();
-            //foreach (var hotel in grn.Hotel.Where(x=>x.DayNo==item.Key))
-            //{
-
-            //}
             grlist.Add(new ExcelOplib.Entity.GroupRouteNew()
             {
                 RouteDate = item.First().DayNo.ToString(),

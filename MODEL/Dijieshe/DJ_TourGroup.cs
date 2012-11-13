@@ -62,15 +62,15 @@ namespace Model
         /// 外宾人数
         /// </summary>
         public virtual int ForeignersAmount { get { return Members.Where(x => x.MemberType == MemberType.外宾).Count(); } }
-        /// <summary>
-        /// 集合点
-        /// </summary>
-        public virtual string Gether { get; set; }
+        ///// <summary>
+        ///// 集合点
+        ///// </summary>
+        //public virtual string Gether { get; set; }
         public virtual int TotalTourist { get { return AdultsAmount + ChildrenAmount + GangaotaisAmount + ForeignersAmount; } }
-        /// <summary>
-        /// 返程点
-        /// </summary>
-        public virtual string BackPlace { get; set; }
+        ///// <summary>
+        ///// 返程点
+        ///// </summary>
+        //public virtual string BackPlace { get; set; }
 
         /// <summary>
         /// 尚未开始/正在精心/已经结束 -->计算类属性不能用于nql查询
