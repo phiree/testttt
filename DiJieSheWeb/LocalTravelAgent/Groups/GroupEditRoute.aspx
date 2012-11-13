@@ -189,21 +189,20 @@
             <p>
                 格式要求:
                 <ol>
-                    <li>每一行表示一天的行程</li>
-                    <li>每一行包含"(景点列表),(住宿点列表)",用逗号分割.</li>
-                    <li>景点之间用斜线符(/)分开 ,住宿点之间用斜线符(/)分开</li>
-                    <li>如果没有景区或者住宿点,则不需填写.</li>
+                    <li>一行表示一天的行程</li>
+                    <li>每一行包含当天游玩的<b>景点</b>和入住的<b>宾馆</b>,用反斜杠"\"隔开</li>
                 </ol>
                 例如:
                 <ul>
-                    <li>西栅景区,乌镇客栈</li>
-                    <li>船游西湖/花港观鱼/六合塔/龙井问茶/苏提春晓,如家快捷酒店/乌镇客栈</li>
-                    <li>飞来峰</li>
+                    <li>西湖风景区\乌镇客栈</li>
+                    <li>遂昌神龙谷景区</li>
                 </ul>
             </p>
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText" Width="100%"></asp:TextBox>
             <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的行程信息将清除,是否继续?');"
                 Text="保存" CssClass="btn" />
+                 <asp:Button runat="server" ID="btnClose" OnClick="btnClose_Click"
+                Text="关闭" CssClass="btn" />
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>
     </div>

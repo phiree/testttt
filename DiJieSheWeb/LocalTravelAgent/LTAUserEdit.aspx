@@ -22,11 +22,11 @@
                     权限
                 </td>
                 <td >
-                    <asp:CheckBoxList ID="cbList" runat="server" CssClass="rbl" style="border:none !important">
-                        <asp:ListItem Value="1" >信息编辑员</asp:ListItem>
-                        <asp:ListItem Value="2" >报表查看员</asp:ListItem>
-                        <asp:ListItem Value="3">用户管理员</asp:ListItem>
-                        <asp:ListItem Value="4">团队录入员</asp:ListItem>
+                    <asp:CheckBoxList ID="cbList" runat="server" CssClass="rbl" style="border:none !important; text-align:left">
+                        <asp:ListItem Value="1" >信息编辑员(修改、编辑本地接社基本信息)</asp:ListItem>
+                        <asp:ListItem Value="2" >报表查看员(查看旅游企业和管理部门相关报表)</asp:ListItem>
+                        <asp:ListItem Value="3">用户管理员(管理各类用户权限)</asp:ListItem>
+                        <asp:ListItem Value="4">团队录入员(新建、修改团队包括人员、行程等信息)</asp:ListItem>
                     </asp:CheckBoxList>
                 </td>
             </tr>

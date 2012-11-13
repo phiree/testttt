@@ -8,7 +8,7 @@ using Model;
 using BLL;
 using System.Web.UI.HtmlControls;
 
-public partial class LocalTravelAgent_LTAUserManager : System.Web.UI.Page
+public partial class LocalTravelAgent_LTAUserManager : basepageDJS
 {
     public int Index = 1;
     BLLDJ_User bllUser = new BLLDJ_User();
@@ -22,7 +22,7 @@ public partial class LocalTravelAgent_LTAUserManager : System.Web.UI.Page
 
     private void bind()
     {
-        rptUser.DataSource = bllUser.GetAllLocal_User();
+        rptUser.DataSource = bllUser.GetLocal_UserByLocalId(CurrentDJS.Id);
         rptUser.DataBind();
     }
     protected void BtnAdd_Click(object sender, EventArgs e)

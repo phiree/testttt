@@ -127,7 +127,7 @@ namespace BLL
             for (int i = 1; i <= arrSingleLine.Length; i++)
             {
                 int dayNo = i;
-                List<string> entNames = arrSingleLine[i - 1].Split(new char[] {',','，'}).Where(x=>!string.IsNullOrWhiteSpace(x)).ToList();
+                List<string> entNames = arrSingleLine[i - 1].Split(new char[] {'\\','＼','、'}).Where(x=>!string.IsNullOrWhiteSpace(x)).ToList();
                 IList<DJ_Route> dayRoutes = CreateRouteFromNameList(dayNo, entNames, out errMsg);
                allRoutes= allRoutes.Concat(dayRoutes).ToList();
             }
@@ -143,7 +143,7 @@ namespace BLL
             {
                 foreach (var item in routes)
                 {
-                    sb += item.Enterprise.Name+",";
+                    sb += item.Enterprise.Name+"\\";
                     
                 }
                sb= sb.TrimEnd(new char[]{',', '，'});
@@ -174,5 +174,12 @@ namespace BLL
             }
             return routes;
         }
+
+        /// <summary>
+        /// 一个route有多少个行政单位在奖励?
+        /// </summary>
+        /// <param name="routes"></param>
+        /// <returns></returns>
+      
     }
 }

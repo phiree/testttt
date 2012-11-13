@@ -8,7 +8,7 @@ using System.Web.UI.HtmlControls;
 using Model;
 using BLL;
 
-public partial class TourManagerDpt_UserManager : System.Web.UI.Page
+public partial class TourManagerDpt_UserManager : basepageMgrDpt
 {
     public int Index = 1;
     BLLDJ_User blldj_user = new BLLDJ_User();
@@ -22,7 +22,7 @@ public partial class TourManagerDpt_UserManager : System.Web.UI.Page
 
     private void bind()
     {
-        rptUser.DataSource = blldj_user.GetAllGov_User();
+        rptUser.DataSource = blldj_user.GetGov_UserByGovId(CurrentDpt.Id);
         rptUser.DataBind();
     }
     protected void rptUser_ItemDataBound(object sender, RepeaterItemEventArgs e)

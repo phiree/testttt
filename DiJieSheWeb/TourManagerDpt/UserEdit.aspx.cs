@@ -60,7 +60,7 @@ public partial class TourManagerDpt_UserEdit : System.Web.UI.Page
         {
             if (item.Selected)
             {
-                Model.PermissionType permisson = (Model.PermissionType)Enum.Parse(typeof(Model.PermissionType), item.Text);
+                Model.PermissionType permisson = (Model.PermissionType)Enum.Parse(typeof(Model.PermissionType), item.Text.Substring(0,item.Text.IndexOf('(')));
                 sat = sat | permisson;
             }
         }
