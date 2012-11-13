@@ -11,32 +11,50 @@ public partial class Admin_Demo : System.Web.UI.Page
 {
 
 
-    string dptAdminAccount = "hzscqsmlyj";//管理部门登录帐号
-    string dijiesheAdminAcount = "lishuidianlilxs";//地接社管理员
-    string dijiesheName = "丽水市电力旅行社";
+    string dptAdminAccount1 = "tz10";//管理部门登录帐号
 
-    string hoteladmin = "xinshijiedjd";
-    string hotelName = "龙泉大酒店";
+    string dijiesheAdminAcount1 = "linhai_lhsjtlxs";//地接社管理员
+    string dijiesheName1 = "临海市交通旅行社";
+    
+    string dijiesheAdminAcount2 = "linhai_tzhclyyxgs";//地接社管理员
+    string dijiesheName2 = "台州海创旅游有限公司";
 
-    string scenicName = "临安瑞晶石花洞";
-    string scenicAdminAccount = "ruijingshihuadong_admin";
+    string hoteladmin1 = "linhai_jtdjd";
+    string hotelName1 = "君泰大酒店";
+    string hoteladmin2 = "linhai_lhsjtbg";
+    string hotelName2 = "临海市交通宾馆";
 
-    DJ_TourEnterprise demoHotel;
-    DJ_TourEnterprise demoDjs;
-    DJ_TourEnterprise demoScenic;
+    string scenicName1 = "情人谷";
+    string scenicAdminAccount1 = "linhai_qrg";
+    string scenicName2 = "东湖公园";
+    string scenicAdminAccount2 = "linhai_dhgy";
+    string scenicName3 = "龙兴寺";
+    string scenicAdminAccount3 = "linhai_lxs";
+
+    DJ_TourEnterprise demoHotel1;
+    DJ_TourEnterprise demoHotel2;
+    DJ_TourEnterprise demoDjs1;
+    DJ_TourEnterprise demoDjs2;
+    DJ_TourEnterprise demoScenic1;
+    DJ_TourEnterprise demoScenic2;
+    DJ_TourEnterprise demoScenic3;
     //测试团队名称前缀,与正常团队区分.
     string demoGroupNamePrefix = "DEMO临海两日游";
     protected void Page_Load(object sender, EventArgs e)
     {
-        demoHotel = bllEnt.GetDJS8name(hotelName)[0];
-        demoDjs = bllEnt.GetDJS8name(dijiesheName)[0];
-        demoScenic = bllEnt.GetDJS8name(scenicName)[0];
+        demoHotel1 = bllEnt.GetDJS8name(hotelName1)[0];
+        demoHotel2 = bllEnt.GetDJS8name(hotelName2)[0];
+        demoDjs1 = bllEnt.GetDJS8name(dijiesheName1)[0];
+        demoDjs2 = bllEnt.GetDJS8name(dijiesheName2)[0];
+        demoScenic1 = bllEnt.GetDJS8name(scenicName1)[0];
+        demoScenic2 = bllEnt.GetDJS8name(scenicName2)[0];
+        demoScenic3 = bllEnt.GetDJS8name(scenicName3)[0];
     }
     /*GovAdmin_-75259*/
 
     protected void btnDptAdminLogin_Click(object sender, EventArgs e)
     {
-        DemoLogin(dptAdminAccount, "/TourManagerDpt/");
+        DemoLogin(dptAdminAccount1, "/TourManagerDpt/");
     }
 
     protected void btnAdminLogin_Click(object sender, EventArgs e)
@@ -45,25 +63,20 @@ public partial class Admin_Demo : System.Web.UI.Page
     }
     protected void btnDjsLogin_Click(object sender, EventArgs e)
     {
-        DemoLogin(dijiesheAdminAcount, "/LocalTravelAgent/");
+        DemoLogin(dijiesheAdminAcount1, "/LocalTravelAgent/");
     }
     protected void btnEntLogin_Click(object sender, EventArgs e)
     {
-        DemoLogin(hoteladmin, "/TourEnterprise/");
+        DemoLogin(hoteladmin1, "/TourEnterprise/");
     }
-    protected void btnDjsCreatGroup_Click(object sender, EventArgs e)
-    {
-        DJ_TourGroup group = CreateDemoGroup(DateTime.Now);
-        bllGroup.Save(group);
-        DemoLogin(dijiesheAdminAcount, "/LocalTravelAgent/Groups/grouplist.aspx");
-    }
+   
     BLLDJTourGroup bllGroup = new BLLDJTourGroup();
     BLLDJEnterprise bllEnt = new BLLDJEnterprise();
     private DJ_TourGroup CreateDemoGroup(DateTime beginTime)
     {
         DJ_TourGroup group = new DJ_TourGroup();
         group.BeginDate = beginTime;
-        group.DJ_DijiesheInfo = (Model.DJ_DijiesheInfo)demoDjs;
+        group.DJ_DijiesheInfo = (Model.DJ_DijiesheInfo)demoDjs1;
         
         group.DaysAmount =2;
         group.EndDate = beginTime.AddDays(group.DaysAmount);
@@ -126,26 +139,33 @@ public partial class Admin_Demo : System.Web.UI.Page
         route1.DayNo = 1;
         route1.Description = "住宿";
         route1.DJ_TourGroup = group;
-        route1.Enterprise = demoHotel;
+        route1.Enterprise = demoHotel1;
 
         DJ_Route route11 = new DJ_Route();
         route11.DayNo = 1;
         route11.Description = "景点";
         route11.DJ_TourGroup = group;
-        route11.Enterprise = demoScenic;
+        route11.Enterprise = demoScenic1;
+
+        DJ_Route route111 = new DJ_Route();
+        route111.DayNo = 1;
+        route111.Description = "景点";
+        route111.DJ_TourGroup = group;
+        route111.Enterprise = demoScenic2;
 
         DJ_Route route2 = new DJ_Route();
         route2.DayNo = 2;
         route2.Description = "景点";
         route2.DJ_TourGroup = group;
-        route2.Enterprise = demoScenic;
+        route2.Enterprise = demoScenic3;
         //group.Routes
 
         group.Routes.Add(route1);
         group.Routes.Add(route2);
         group.Routes.Add(route11);
+        group.Routes.Add(route111);
 
-        group.DijiesheEditor =(DJ_User_TourEnterprise) new BLLMembership().GetMember(dijiesheAdminAcount);
+        group.DijiesheEditor =(DJ_User_TourEnterprise) new BLLMembership().GetMember(dijiesheAdminAcount1);
         return group;
 
     }
@@ -163,7 +183,7 @@ public partial class Admin_Demo : System.Web.UI.Page
            List<DJ_TourGroup> Groups = new List<DJ_TourGroup>();
         for (int i = 1; i <= 12; i++)
         {
-            DateTime beginDate = new DateTime(DateTime.Now.Year, i, 10);
+            DateTime beginDate = new DateTime(DateTime.Now.Year, i, DateTime.Now.Day);
             DJ_TourGroup g = CreateDemoGroup(beginDate);
             bllGroup.Save(g);
             Groups.Add(g);
@@ -178,6 +198,7 @@ public partial class Admin_Demo : System.Web.UI.Page
                 cr.ChildrenAmount = r.DJ_TourGroup.ChildrenAmount;
                 cr.ConsumeTime = r.DJ_TourGroup.BeginDate.AddDays(r.DayNo);
                 cr.Enterprise = r.Enterprise;
+                cr.LiveDay = 1;
                 bllConsum.DAL.Save(cr);
             }
         }

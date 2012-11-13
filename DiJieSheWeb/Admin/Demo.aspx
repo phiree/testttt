@@ -40,8 +40,7 @@ input{cursor:pointer;}
             <li>
             <asp:Button runat="server" Text="旅行社管理员登录" OnClick="btnDjsLogin_Click" ID="btnDjsLogin" /></li>
             <li>
-            <asp:Button runat="server" Text="创建一个测试团队" OnClick="btnDjsCreatGroup_Click" ID="btnDjsCreatGroup" />
-            </li>
+           </li>
            
         </ul>
     </fieldset>
