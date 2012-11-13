@@ -107,13 +107,22 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         CurrentGroup.DJ_DijiesheInfo = CurrentDJS;
         CurrentGroup.DijiesheEditor =(DJ_User_TourEnterprise) CurrentMember;
         ///司机和导游
+        bool hasSelectGuide = false;
         foreach (ListItem item in cbxGuides.Items)
         {
             if (item.Selected)
             {
+                hasSelectGuide = true;
                 CurrentGroup.Workers.Add(bllWorker.Get(new Guid(item.Value)));
             }
         }
+        if (hasSelectGuide == false)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "mustselectguide", "alert('必须指定导游');", true);
+
+            return false;
+        }
+        
         foreach (ListItem item in cbxDrivers.Items)
         {
             if (item.Selected)
