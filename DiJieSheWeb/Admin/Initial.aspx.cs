@@ -50,7 +50,7 @@ public partial class Admin_Initial : System.Web.UI.Page
                 user_gov.Name = item.seoname;
                 user_gov.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(item.seoname, "MD5"); ;
                 user_gov.GovDpt = bllgov.GetGovDptByName(item.Name)[0];
-                user_gov.PermissionType = Model.PermissionType.报表查看员 
+                user_gov.PermissionType = Model.PermissionType.报表查看员
                     | Model.PermissionType.信息编辑员 | Model.PermissionType.用户管理员;
                 blldjuser.SaveOrUpdate(user_gov);
             }
@@ -82,14 +82,14 @@ public partial class Admin_Initial : System.Web.UI.Page
             switch (item.type)
             {
                 case "地接社":
-                    var temp_djs = blldjs.GetDJS8Muti(area.Id, Model.EnterpriseType.旅行社.ToString(), null, item.name);
+                    var temp_djs = blldjs.GetDJS8Muti(0, Model.EnterpriseType.旅行社.ToString(), null, item.name);
                     if (temp_djs.Count == 0)
                     {
                         blldjs.AddDjs(item.name, string.Empty, area, "", "", "", "", "", item.seoname);
                     }
                     break;
                 case "景区":
-                    var temp_scenic = blldjs.GetDJS8Muti(area.Id, Model.EnterpriseType.景点.ToString(), null, item.name);
+                    var temp_scenic = blldjs.GetDJS8Muti(0, Model.EnterpriseType.景点.ToString(), null, item.name);
                     if (temp_scenic.Count == 0)
                     {
                         bllscenic.Save(new Model.Scenic()
@@ -102,7 +102,7 @@ public partial class Admin_Initial : System.Web.UI.Page
                     }
                     break;
                 case "宾馆":
-                    var temp_hotel = blldjs.GetDJS8Muti(area.Id, Model.EnterpriseType.宾馆.ToString(), null, item.name);
+                    var temp_hotel = blldjs.GetDJS8Muti(0, Model.EnterpriseType.宾馆.ToString(), null, item.name);
                     if (temp_hotel.Count == 0)
                     {
                         blldjs.Save(new Model.DJ_TourEnterprise()
@@ -115,7 +115,7 @@ public partial class Admin_Initial : System.Web.UI.Page
                     }
                     break;
             }
-            var mem = bllmem.GetMember(item.seoname);   
+            var mem = bllmem.GetMember(item.seoname);
             if (mem != null)
             {
                 var memEnterp = (Model.DJ_User_TourEnterprise)mem;
