@@ -191,6 +191,10 @@ public partial class Groups_GroupInfo : basepageDJS
         }
         #endregion
     }
+    protected void btn_download_Click(object sender, EventArgs e)
+    {
+        ExcelOplib.ExcelOutput.Download2ExcelModel(this.Page);
+    }
 }
 
 public class RouteSource

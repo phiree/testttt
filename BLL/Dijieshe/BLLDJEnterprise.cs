@@ -23,7 +23,7 @@ namespace BLL
         /// <param name="cpp">管理人手�/param>
         /// <param name="phone"></param>
         /// <returns></returns>
-        public int AddDjs(string name, string address, Model.Area area, string cpn, string cpp, string phone,string lincese,string email)
+        public int AddDjs(string name, string address, Model.Area area, string cpn, string cpp, string phone, string lincese, string email, string seoname)
         {
             Model.DJ_TourEnterprise djs = new Model.DJ_DijiesheInfo()
             {
@@ -33,9 +33,10 @@ namespace BLL
                 ChargePersonName = cpn,
                 ChargePersonPhone = cpp,
                 Phone = phone,
-                Email=email,
-                Buslicense=lincese,
-                Type = Model.EnterpriseType.旅行社
+                Email = email,
+                Buslicense = lincese,
+                Type = Model.EnterpriseType.旅行社,
+                Seoname = string.IsNullOrEmpty(seoname) ? "" : seoname
             };
             return dalEnt.AddDJS(djs);
         }
@@ -89,7 +90,7 @@ namespace BLL
         {
             return GetDJS8Muti(0, null, null, name);
         }
-       
+
 
         /// <summary>
         /// 旅游管理部门辖区的旅游企�
@@ -423,24 +424,26 @@ namespace BLL
 
         #endregion
 
-        public string BuildJsonEnterprise(string nameLike,string strEntType)
+        public string BuildJsonEnterprise(string nameLike, string strEntType)
         {
             EnterpriseType entType;
             Enum.TryParse(strEntType, out entType);
-            
-            IList<DJ_TourEnterprise> ents = dalEnt.GetList(nameLike, true, string.Empty,entType, null);
-            var list = (from row in ents select new DJ_TourEnterprise { 
-                Id=row.Id,
-                 Name=row.Name,
-                 ProvinceVeryfyState=row.ProvinceVeryfyState,
-                 CityVeryfyState=row.CityVeryfyState,
-                 CountryVeryfyState=row.CountryVeryfyState
-            }).ToList();
+
+            IList<DJ_TourEnterprise> ents = dalEnt.GetList(nameLike, true, string.Empty, entType, null);
+            var list = (from row in ents
+                        select new DJ_TourEnterprise
+                        {
+                            Id = row.Id,
+                            Name = row.Name,
+                            ProvinceVeryfyState = row.ProvinceVeryfyState,
+                            CityVeryfyState = row.CityVeryfyState,
+                            CountryVeryfyState = row.CountryVeryfyState
+                        }).ToList();
 
             string jsonNames = CommonLibrary.JosnHelper.GetJson<IList<DJ_TourEnterprise>>(list);
 
             return jsonNames;
-            
+
         }
     }
 }
