@@ -33,7 +33,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
         string begintime, endtime;
         begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
         endtime = DateTime.Parse(txtDate.Text.Trim()).Year + "-12-30";
-        listEnt = bllrecord.GetDJStaticsEnt(begintime,endtime, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id).ToList();
+        listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id).ToList();
         rptStatistic.DataSource = bindEntStatis(listEnt);
         rptStatistic.DataBind();
     }
@@ -43,7 +43,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
         {
             EntStatis ent = e.Item.DataItem as EntStatis;
             HtmlAnchor aname = e.Item.FindControl("aname") as HtmlAnchor;
-            aname.HRef = "/LocalTravelAgent/TEDetailStatistics.aspx?year=" + DateTime.Parse(txtDate.Text.Trim()).Year + "&entid=" + ent.Id;
+            aname.HRef = "/LocalTravelAgent/TEDetailStatistics.aspx?year=" + DateTime.Parse(txtDate.Text.Trim()).Year + "&entid=" + ent.entid;
         }
         if (e.Item.ItemType == ListItemType.Footer)
         {
@@ -82,7 +82,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
             }
             string begintime_month = DateTime.Parse(txtDate.Text.Trim()).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).Month + "-01";
             string endtime_month = DateTime.Parse(DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01").AddDays(-1).ToString("yyyy-MM-dd");
-            string begintime_year = DateTime.Parse(txtDate.Text.Trim()).Year+"-01-01";
+            string begintime_year = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
             string endtime_year = DateTime.Parse(txtDate.Text.Trim()).Year + "-12-30";
             int count_month, livecount_month, visitedcount_month;
             int count_year, livecount_year, visitedcount_year;
@@ -160,8 +160,8 @@ public class EntStatis
 {
     public int Id { get; set; }
     public string Type { get; set; }
-    public string  Name { get; set; }
-    public int month_total  { get; set; }
+    public string Name { get; set; }
+    public int month_total { get; set; }
     public int month_live { get; set; }
     public int month_visited { get; set; }
     public int year_total { get; set; }

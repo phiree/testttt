@@ -151,7 +151,7 @@ namespace BLL
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
             {
-                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Where(x=>x.Enterprise.Id==item.Enterprise.Id).Count() == 0)
                 {
                     List.Add(item);
                 }
@@ -172,7 +172,7 @@ namespace BLL
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
             {
-                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Where(x => x.Enterprise.Id == item.Enterprise.Id).Count() == 0)
                 {
                     List.Add(item);
                 }
@@ -186,10 +186,11 @@ namespace BLL
                     visitedcount += item.AdultsAmount + item.ChildrenAmount;
                 }
             }
-            if (Enttype == 3)
+            if (Enttype == 4)
             {
                 foreach (DJ_GroupConsumRecord item in List)
                 {
+                    count += item.AdultsAmount + item.ChildrenAmount;
                     livecount += (item.AdultsAmount + item.ChildrenAmount) * item.LiveDay;
                 }
             }
@@ -207,7 +208,7 @@ namespace BLL
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
             {
-                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Where(x => x.Enterprise.Id == item.Enterprise.Id).Count() == 0)
                 {
                     List.Add(item);
                 }
@@ -222,7 +223,7 @@ namespace BLL
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
             {
-                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Where(x => x.Enterprise.Id == item.Enterprise.Id).Count() == 0)
                 {
                     List.Add(item);
                 }
@@ -272,21 +273,20 @@ namespace BLL
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
             {
-                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Where(x => x.Enterprise.Id == item.Enterprise.Id).Count() == 0)
                 {
                     List.Add(item);
                 }
             }
-            foreach (DJ_GroupConsumRecord item in List)
+            if (code.Substring(2) == "0000")
             {
-                if (code.Substring(2) == "0000")
+                //省的不会出现
+            }
+            else if (code.Substring(4, 2) == "00")
+            {
+                foreach (DJ_GroupConsumRecord item in List.Where(x => x.Enterprise.Area.Code.Substring(0, 4) == code.Substring(0, 4)))
                 {
-                    //省的不会出现
-                }
-                    //市
-                else if (code.Substring(4, 2) == "00")
-                {
-                    if (item.Enterprise.Area.Code.Substring(0, 4) == code.Substring(0, 4) && item.Enterprise.CityVeryfyState == RewardType.已纳入)
+                    if (item.Enterprise.CityVeryfyState == RewardType.已纳入)
                     {
                         totalcount += item.AdultsAmount + item.ChildrenAmount;
                         if (item.LiveDay > 0)
@@ -299,10 +299,12 @@ namespace BLL
                         }
                     }
                 }
-                    //县
-                else
+            }
+            else
+            {
+                foreach (DJ_GroupConsumRecord item in List.Where(x => x.Enterprise.Area.Code.Substring(0, 6) == code.Substring(0, 6)))
                 {
-                    if (item.Enterprise.Area.Code.Substring(0, 6) == code.Substring(0, 6) && item.Enterprise.CountryVeryfyState == RewardType.已纳入)
+                    if (item.Enterprise.CountryVeryfyState == RewardType.已纳入)
                     {
                         totalcount += item.AdultsAmount + item.ChildrenAmount;
                         if (item.LiveDay > 0)
@@ -325,7 +327,7 @@ namespace BLL
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
             {
-                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Count() == 0)
+                if (List.Where(x => x.Route.DJ_TourGroup.Id == item.Route.DJ_TourGroup.Id).Where(x => x.ConsumeTime.ToShortDateString() == item.ConsumeTime.ToShortDateString()).Where(x => x.Enterprise.Id == item.Enterprise.Id).Count() == 0)
                 {
                     //加入省市县的判断
                     //省
