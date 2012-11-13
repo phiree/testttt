@@ -24,7 +24,7 @@ namespace Model
            Map(x => x.CityVeryfyState).CustomType<int>();
            Map(x => x.CountryVeryfyState).CustomType<int>(); 
            Map(x => x.Type).CustomType<int>();
-           Map(x => x.Seoname);
+           Map(x => x.SeoName);
            Map(x => x.Buslicense);
            Map(x => x.Email);
            Map(x => x.Level);

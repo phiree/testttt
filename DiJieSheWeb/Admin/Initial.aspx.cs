@@ -96,7 +96,7 @@ public partial class Admin_Initial : System.Web.UI.Page
                         {
                             Name = item.name,
                             Area = area,
-                            Seoname = item.seoname,
+                            SeoName = item.seoname,
                             Type = Model.EnterpriseType.景点
                         });
                     }
@@ -109,7 +109,7 @@ public partial class Admin_Initial : System.Web.UI.Page
                         {
                             Name = item.name,
                             Area = area,
-                            Seoname = item.seoname,
+                            SeoName = item.seoname,
                             Type = Model.EnterpriseType.宾馆
                         });
                     }

@@ -36,7 +36,7 @@ namespace BLL
                 Email = email,
                 Buslicense = lincese,
                 Type = Model.EnterpriseType.旅行社,
-                Seoname = string.IsNullOrEmpty(seoname) ? "" : seoname
+                SeoName = string.IsNullOrEmpty(seoname) ? "" : seoname
             };
             return dalEnt.AddDJS(djs);
         }
