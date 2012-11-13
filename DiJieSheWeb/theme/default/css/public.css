@@ -254,3 +254,91 @@ color:Red;
 {
      line-height:20px;
     }
+/*导入Excel样式*/
+.drInfo
+{
+    margin:40px 0px 40px 40px;
+    width:700px;
+    height:200px;
+    display:block;
+    border:1px solid #CDCDCD;
+}
+.drInfo h1
+{
+    color:#4C6A69;
+    font-family:黑体;
+    font-size:16px;
+    font-weight:bold;
+    margin:30px 0px 0px 40px;
+}
+.drbtn
+{
+    margin:30px 0px 0px 40px;
+    position:relative;
+}
+.drbtn .but
+{
+    border:1px solid #CDCDCD;
+    width:100px;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    background-color:White;
+    color:#029384;
+    font-weight:bold;
+}
+#selecfile
+{
+    margin-left:10px;
+    color:#959595;
+}
+.fu
+{
+    position:absolute; top:0; left:0px; height:24px; filter:alpha(opacity:0);opacity: 0;width:170px
+}
+.drIntrod
+{
+    margin:30px 0px 0px 40px;
+    background:url("/theme/default/image/drincon_1.gif");
+    background-repeat:no-repeat;
+    height:18px;
+    padding-left:14px;
+    color:#EE6940;
+    border-bottom:1px dashed #EE6940;
+    width:450px;
+}
+.exdrintro
+{
+    margin:40px 0px 40px 40px;
+}
+.exdrintro h3
+{
+    color:#536967;
+    font-size:12px;
+    font-weight:bold;
+    margin-left:40px;
+    line-height:30px;
+    border-bottom:1px dashed #4DB3A6;
+    width:500px;
+}
+.exdrintro p
+{
+    margin-left:40px;
+    margin-top:20px;
+    margin-bottom:0px;
+}
+.downloadexcel
+{
+    margin:40px 0px 0px 40px;
+    background:url("/theme/default/image/drincon_2.gif");
+    padding-left:30px;
+    height:22px;
+    background-repeat:no-repeat;
+}
+.downloadexcel a
+{
+    color:#EC6841;
+    line-height:22px;
+    font-size:14px;
+    font-weight:bold;
+}

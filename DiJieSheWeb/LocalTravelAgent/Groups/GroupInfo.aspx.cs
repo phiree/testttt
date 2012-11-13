@@ -182,7 +182,7 @@ public partial class Groups_GroupInfo : basepageDJS
         }
         else
         {
-            Label1.Text = "上传文件格式不正确.";
+            //Label1.Text = "上传文件格式不正确.";
             return;
         }
         #endregion
