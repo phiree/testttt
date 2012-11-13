@@ -62,15 +62,15 @@ namespace Model
         /// 外宾人数
         /// </summary>
         public virtual int ForeignersAmount { get { return Members.Where(x => x.MemberType == MemberType.外宾).Count(); } }
-        /// <summary>
-        /// 集合点
-        /// </summary>
-        public virtual string Gether { get; set; }
+        ///// <summary>
+        ///// 集合点
+        ///// </summary>
+        //public virtual string Gether { get; set; }
         public virtual int TotalTourist { get { return AdultsAmount + ChildrenAmount + GangaotaisAmount + ForeignersAmount; } }
-        /// <summary>
-        /// 返程点
-        /// </summary>
-        public virtual string BackPlace { get; set; }
+        ///// <summary>
+        ///// 返程点
+        ///// </summary>
+        //public virtual string BackPlace { get; set; }
 
         /// <summary>
         /// 尚未开始/正在精心/已经结束 -->计算类属性不能用于nql查询
@@ -79,13 +79,17 @@ namespace Model
         {
             get
             {
+
                 DateTime now = DateTime.Now;
 
-                if (now < BeginDate)
+                DateTime nowDay = new DateTime(now.Year, now.Month, now.Day);
+
+
+                if (nowDay < BeginDate)
                 {
                     return TourGroupState.尚未开始;
                 }
-                else if (now <= BeginDate && now < EndDate.AddDays(1))
+                else if (nowDay <= BeginDate && nowDay <= EndDate)
                 {
                     return TourGroupState.正在进行;
                 }

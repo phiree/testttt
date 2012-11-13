@@ -18,7 +18,7 @@ public class ListControlHelper
         {
             foreach (string itemCheck in needChecked)
             {
-                if (item.Value == itemCheck)
+                if (item.Text == itemCheck)
                 {
                     item.Selected = true;
                 }

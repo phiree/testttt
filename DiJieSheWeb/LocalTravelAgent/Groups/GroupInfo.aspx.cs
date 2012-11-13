@@ -55,6 +55,7 @@ public partial class Groups_GroupInfo : basepageDJS
                         {
                             DJ_TourGroup = group_db,
                             IDCard = item.Memid,
+                            SpecificIdCard=item.Cardno,
                             WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
                             Phone = item.Memphone,
                             Name = item.Memname
@@ -66,6 +67,7 @@ public partial class Groups_GroupInfo : basepageDJS
                         {
                             DJ_TourGroup = group_db,
                             IdCardNo = item.Memid,
+                            SpecialCardNo = item.Cardno,
                             MemberType = (Model.MemberType)Enum.Parse(typeof(Model.MemberType), item.Memtype),
                             PhoneNum = item.Memphone,
                             RealName = item.Memname
@@ -105,6 +107,7 @@ public partial class Groups_GroupInfo : basepageDJS
                         {
                             DJ_TourGroup = group_model,
                             IDCard = item.Memid,
+                            SpecificIdCard = item.Cardno,
                             WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
                             Phone = item.Memphone,
                             Name = item.Memname
@@ -116,6 +119,7 @@ public partial class Groups_GroupInfo : basepageDJS
                         {
                             DJ_TourGroup = group_model,
                             IdCardNo = item.Memid,
+                            SpecialCardNo=item.Cardno,
                             MemberType = (Model.MemberType)Enum.Parse(typeof(Model.MemberType), item.Memtype),
                             PhoneNum = item.Memphone,
                             RealName = item.Memname

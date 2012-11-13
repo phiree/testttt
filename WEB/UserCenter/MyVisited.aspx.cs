@@ -27,25 +27,25 @@ public partial class UserCenter_MyVisited : basepage
     private void bind()
     {
         System.Web.Security.MembershipUser mu = System.Web.Security.Membership.GetUser();
-            Guid guid = new Guid(mu.ProviderUserKey.ToString());
-            TourMembership tm = bllMember.GetMemberById(guid);
-            TourMembership user = tm;
+        Guid guid = new Guid(mu.ProviderUserKey.ToString());
+        TourMembership tm = bllMember.GetMemberById(guid);
+        TourMembership user = tm;
         //IList<TicketAssign> ilist=bllorderdetail.
-            rptVisited.DataSource = bllticketassign.GetUsedRecord(user.IdCard);
+        rptVisited.DataSource = bllticketassign.GetUsedRecord(user.IdCard);
         rptVisited.DataBind();
         int totalprice = 0;
         foreach (RepeaterItem item in rptVisited.Items)
         {
             totalprice += int.Parse((item.FindControl("vprice") as HtmlContainerControl).InnerHtml) * int.Parse((item.FindControl("vcount") as HtmlContainerControl).InnerHtml);
         }
-        vtotalprice.InnerHtml ="合计消费:<span class='strongnum'>"+ totalprice.ToString()+"</span>元";
+        vtotalprice.InnerHtml = "合计消费:<span class='strongnum'>" + totalprice.ToString() + "</span>元";
     }
     protected void rptVisited_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         System.Web.Security.MembershipUser mu = System.Web.Security.Membership.GetUser();
-            Guid guid = new Guid(mu.ProviderUserKey.ToString());
-            TourMembership tm = bllMember.GetMemberById(guid);
-            TourMembership user = tm;
+        Guid guid = new Guid(mu.ProviderUserKey.ToString());
+        TourMembership tm = bllMember.GetMemberById(guid);
+        TourMembership user = tm;
         if (e.Item.FindControl("vpricetype") != null)
         {
             HtmlContainerControl hc = (e.Item.FindControl("vpricetype") as HtmlContainerControl);
@@ -61,6 +61,6 @@ public partial class UserCenter_MyVisited : basepage
             HtmlContainerControl hc2 = (e.Item.FindControl("vcount") as HtmlContainerControl);
             (e.Item.FindControl("vcount") as HtmlContainerControl).InnerHtml = bllticketassign.GetUsedCount(user.IdCard, DateTime.Parse(hc2.InnerHtml)).ToString();
         }
-        
+
     }
 }
