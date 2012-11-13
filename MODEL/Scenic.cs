@@ -16,7 +16,7 @@ namespace Model
         public virtual int ScenicOrder { get; set; }
       
         public virtual string MipangId { get; set; }
-        public virtual string Photo { get; set; }
+        public virtual string Photo  { get; set; }
       
         //public virtual string ActiveTime { get; set; } 更改结构,删除该字段
         /// <summary>

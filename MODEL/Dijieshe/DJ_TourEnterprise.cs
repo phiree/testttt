@@ -44,7 +44,7 @@ namespace Model
         //是否是县级奖励范围内的企业
         public virtual RewardType CountryVeryfyState { get; set; }
         public virtual EnterpriseType Type { get; set; }
-        public virtual string Seoname { get; set; }
+        public virtual string SeoName { get; set; }
         public virtual string Email { get; set; }
         public virtual string Buslicense { get; set; }
         public virtual string Level { get; set; }
