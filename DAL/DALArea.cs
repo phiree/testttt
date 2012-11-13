@@ -72,13 +72,14 @@ namespace DAL
             {
                 return ids;
             }
-            ids += currentArea.Id + ",";
+            ids += currentArea.Id;
             IList<Model.Area> Areas = GetSubArea(areacode);
             if (Areas == null)
             {
-                ids += areacode;
+               
                 return ids;
             }
+            ids += ",";
             foreach (Model.Area a in Areas)
             {
                 ids += a.Id + ",";

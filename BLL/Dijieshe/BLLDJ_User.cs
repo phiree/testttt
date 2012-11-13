@@ -28,7 +28,7 @@ namespace BLL
         }
         public IList<Model.DJ_User_Gov> GetGov_UserByGovId(Guid govid)
         {
-            return Idj_user_enterprise.GetAllGov_User().Where(x=>x.Id==govid).ToList();
+            return Idj_user_enterprise.GetAllGov_User().Where(x=>x.GovDpt.Id ==govid).ToList();
         }
       //  public Model
         public void DeleteGov_User(Model.TourMembership m)

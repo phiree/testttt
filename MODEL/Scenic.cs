@@ -12,9 +12,9 @@ namespace Model
             Tickets = new List<Ticket>();
         }
        
-        public virtual string SeoName { get; set; }
+     
         public virtual int ScenicOrder { get; set; }
-        public virtual string Level { get; set; }
+      
         public virtual string MipangId { get; set; }
         public virtual string Photo { get; set; }
       
@@ -32,7 +32,7 @@ namespace Model
         public virtual string Position { get; set; }
         public virtual string BookNote { get; set; }
         public virtual IList<Ticket> Tickets { get; set; }
-        public virtual string TransGuid { get; set; }
+       
         public virtual IList<ScenicCheckProgress> CheckProgress { get; set; }
         public virtual bool IsHide { get; set; }
         /// <summary>

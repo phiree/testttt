@@ -33,7 +33,7 @@ namespace ExcelOplib
                 #endregion
 
                 #region 地接社
-                string sql1 = "select 一级部门,二级部门,三级部门,地区 from [地接社$]";
+                string sql1 = "select 一级部门,二级部门,三级部门,地区,seo from [地接社$]";
                 DataTable dt1 = new DataTable();
                 OleDbCommand cmd1 = new OleDbCommand(sql1, new OleDbConnection(conn));
                 OleDbDataAdapter ad1 = new OleDbDataAdapter(cmd1);
@@ -41,7 +41,7 @@ namespace ExcelOplib
                 #endregion
 
                 #region 景区
-                string sql2 = "select 一级部门,二级部门,三级部门,地区 from [景区$]";
+                string sql2 = "select 一级部门,二级部门,三级部门,地区,seo from [景区$]";
                 DataTable dt2 = new DataTable();
                 OleDbCommand cmd2 = new OleDbCommand(sql2, new OleDbConnection(conn));
                 OleDbDataAdapter ad2 = new OleDbDataAdapter(cmd2);
@@ -49,7 +49,7 @@ namespace ExcelOplib
                 #endregion
 
                 #region 宾馆
-                string sql3 = "select 一级部门,二级部门,三级部门,地区 from [宾馆$]";
+                string sql3 = "select 一级部门,二级部门,三级部门,地区,seo from [宾馆$]";
                 DataTable dt3 = new DataTable();
                 OleDbCommand cmd3 = new OleDbCommand(sql3, new OleDbConnection(conn));
                 OleDbDataAdapter ad3 = new OleDbDataAdapter(cmd3);
@@ -82,13 +82,14 @@ namespace ExcelOplib
                         Department2 = dt1.Rows[i][1].ToString().Replace("\n", "").Trim(),
                         Department3 = dt1.Rows[i][2].ToString().Replace("\n", "").Trim(),
                         Diqu = dt1.Rows[i][3].ToString().Replace("\n", "").Trim(),
+                        Seoname=dt1.Rows[i][4].ToString().Replace("\n","").Trim(),
                         EnterpType=Entity.数据类型.地接社
                     });
                 }
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt1.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrEmpty(dt2.Rows[i][0].ToString())) continue;
                     //如果excel中的行不为空,添加
                     djslist.Add(new Entity.DJSEntity()
                     {
@@ -96,13 +97,14 @@ namespace ExcelOplib
                         Department2 = dt2.Rows[i][1].ToString().Replace("\n", "").Trim(),
                         Department3 = dt2.Rows[i][2].ToString().Replace("\n", "").Trim(),
                         Diqu = dt2.Rows[i][3].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt2.Rows[i][4].ToString().Replace("\n", "").Trim(),
                         EnterpType = Entity.数据类型.景区
                     });
                 }
                 for (int i = 0; i < dt3.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt1.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrEmpty(dt3.Rows[i][0].ToString())) continue;
                     //如果excel中的行不为空,添加
                     djslist.Add(new Entity.DJSEntity()
                     {
@@ -110,6 +112,7 @@ namespace ExcelOplib
                         Department2 = dt3.Rows[i][1].ToString().Replace("\n", "").Trim(),
                         Department3 = dt3.Rows[i][2].ToString().Replace("\n", "").Trim(),
                         Diqu = dt3.Rows[i][3].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt3.Rows[i][4].ToString().Replace("\n", "").Trim(),
                         EnterpType = Entity.数据类型.宾馆
                     });
                 }

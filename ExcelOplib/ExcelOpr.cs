@@ -117,6 +117,7 @@ namespace ExcelOplib
                     s.Area = bllarea.GetAraByAreaname(item.areaid);
                     s.BookNote = item.bookintro;
                     s.Level = item.level;
+                    s.Type = Model.EnterpriseType.景点;
                     //处理topic字符串
                     var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
                     s.ScenicDetail = item.scenicdetail;

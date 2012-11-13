@@ -11,21 +11,21 @@ public partial class Admin_Demo : System.Web.UI.Page
 {
 
 
-    string dptAdminAccount = "hzlyj";//管理部门登录帐号
-    string dijiesheAdminAcount = "entAdmin_438";//地接社管理员
-    string dijiesheName = "杭州西湖旅行社";
+    string dptAdminAccount = "hzscqsmlyj";//管理部门登录帐号
+    string dijiesheAdminAcount = "lishuidianlilxs";//地接社管理员
+    string dijiesheName = "丽水市电力旅行社";
 
-    string hoteladmin = "entAdmin_439";
-    string hotelName = "香格里拉宾馆";
+    string hoteladmin = "xinshijiedjd";
+    string hotelName = "龙泉大酒店";
 
-    string scenicName = "印象西湖";
-    string scenicAdminAccount = "yinxiangxihu_admin";
+    string scenicName = "临安瑞晶石花洞";
+    string scenicAdminAccount = "ruijingshihuadong_admin";
 
     DJ_TourEnterprise demoHotel;
     DJ_TourEnterprise demoDjs;
     DJ_TourEnterprise demoScenic;
     //测试团队名称前缀,与正常团队区分.
-    string demoGroupNamePrefix = "DEMO遂昌双休游";
+    string demoGroupNamePrefix = "DEMO临海两日游";
     protected void Page_Load(object sender, EventArgs e)
     {
         demoHotel = bllEnt.GetDJS8name(hotelName)[0];
@@ -65,9 +65,9 @@ public partial class Admin_Demo : System.Web.UI.Page
         group.BeginDate = beginTime;
         group.DJ_DijiesheInfo = (Model.DJ_DijiesheInfo)demoDjs;
         
-        group.DaysAmount =1;
-        group.EndDate = beginTime;
-
+        group.DaysAmount =2;
+        group.EndDate = beginTime.AddDays(group.DaysAmount);
+        
         DJ_Group_Worker memberdaoyou = new DJ_Group_Worker();
         memberdaoyou.DJ_TourGroup = group;
         memberdaoyou.IDCard = "210905197807210546";
@@ -144,6 +144,8 @@ public partial class Admin_Demo : System.Web.UI.Page
         group.Routes.Add(route1);
         group.Routes.Add(route2);
         group.Routes.Add(route11);
+
+        group.DijiesheEditor =(DJ_User_TourEnterprise) new BLLMembership().GetMember(dijiesheAdminAcount);
         return group;
 
     }
@@ -159,7 +161,7 @@ public partial class Admin_Demo : System.Web.UI.Page
     public void BuildDemoDeta()
     { 
            List<DJ_TourGroup> Groups = new List<DJ_TourGroup>();
-        for (int i = 1; i < 12; i++)
+        for (int i = 1; i <= 12; i++)
         {
             DateTime beginDate = new DateTime(DateTime.Now.Year, i, 10);
             DJ_TourGroup g = CreateDemoGroup(beginDate);

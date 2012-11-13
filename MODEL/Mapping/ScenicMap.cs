@@ -13,21 +13,21 @@ namespace Model.Mapping
         {
            
             Map(x => x.IsHide);
-            Map(x => x.Name);
+           
             Map(x => x.Address);
             Map(x => x.ScenicOrder);
             Map(x => x.MipangId);
-            Map(x => x.Level);
+        
             Map(x => x.Photo);
             //Map(x => x.ActiveTime);
             Map(x => x.Trafficintro).CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(x => x.ScenicDetail).CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(x => x.Desec);
             Map(x => x.Position);
-            Map(x => x.SeoName);
+       
             Map(x => x.BookNote).CustomType("StringClob").CustomSqlType("nvarchar(max)");
-            Map(x => x.TransGuid);
-            References<Area>(x => x.Area);
+           
+        
             HasMany<ScenicCheckProgress>(x => x.CheckProgress);
             HasMany<Ticket>(x => x.Tickets).Cascade.All(); ;
         }

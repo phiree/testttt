@@ -13,8 +13,8 @@ namespace Model
        public DJ_TourEnterpriseMap()
        {
            Id(x => x.Id);
-           References<Area>(x => x.Area);
-           Map(x => x.Name);
+           References<Area>(x => x.Area).UniqueKey("UniqueNameInSameArea");
+           Map(x => x.Name).UniqueKey("UniqueNameInSameArea") ;
            Map(x => x.Address);
            Map(x => x.ChargePersonName);
            Map(x => x.ChargePersonPhone);

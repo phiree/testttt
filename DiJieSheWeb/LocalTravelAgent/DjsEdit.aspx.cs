@@ -30,6 +30,7 @@ public partial class LocalTravelAgent_DjsEdit : basepageDJS
             txtCPN.Text = djs.ChargePersonName;
             txtTel.Text = djs.Phone;
             txtAddress.Text = djs.Address;
+            txtEmail.Text = djs.Email;
             ddlArea.SelectedIndex = ddlArea.Items.IndexOf(ddlArea.Items.FindByText(djs.Area.Name));
         
     }
