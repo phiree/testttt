@@ -98,16 +98,11 @@
         <!-- 基本信息begin -->
         <table border="0" cellpadding="0" cellspacing="0" class="comTable">
             <tr>
-                <td style="width: 15%">
-                    团队编号：
-                </td>
-                <td style="width: 30%">
-                    <asp:Label ID="lblGroupno" runat="server" />
-                </td>
-                <td style="width: 15%">
+               
+                <td>
                     团队名称：
                 </td>
-                <td style="width: 30%">
+                <td  colspan="3" >
                     <asp:Label ID="lblName" runat="server" />
                 </td>
             </tr>

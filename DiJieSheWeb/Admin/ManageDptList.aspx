@@ -15,10 +15,11 @@
         onrowcommand="gv_RowCommand" onrowdatabound="gv_RowDataBound">
         <Columns>
             <asp:BoundField DataField="Name" HeaderText="名称" />
+            
             <asp:BoundField DataField="Address" HeaderText="地址" />
             <asp:TemplateField HeaderText="所属区域">
                 <ItemTemplate>
-                    <%#((Model.Area)Eval("Area")).Name %></ItemTemplate>
+                    <%#((Model.Area)Eval("Area")).Code+((Model.Area)Eval("Area")).Name %></ItemTemplate>
             </asp:TemplateField>
             <asp:HyperLinkField HeaderText="操作" Text="编辑" DataNavigateUrlFields="Id" DataNavigateUrlFormatString="ManageDptEdit.aspx?dptid={0}" />
             <asp:TemplateField>

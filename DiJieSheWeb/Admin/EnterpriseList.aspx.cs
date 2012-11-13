@@ -64,6 +64,7 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
             if (string.IsNullOrEmpty(loginname))
             {
                 ScriptManager.RegisterStartupScript(this,this.GetType(),"accountcannotnull","alert('帐号名不能为空');",true);
+                return;
             }
             DJ_User_TourEnterprise djuserent = new DJ_User_TourEnterprise();
             djuserent.Enterprise = bllDJEnt.GetDJS8id(entId.ToString())[0];

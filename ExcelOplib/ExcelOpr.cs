@@ -63,6 +63,7 @@ namespace ExcelOplib
                     s.BookNote = item.bookintro;
                     s.ScenicDetail = item.scenicdetail;
                     s.Desec = item.scenicintro;
+                    s.Type = Model.EnterpriseType.景点;
                     //组装tickets
                     List<Entity.TicketEntity> newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
                     IList<Model.Ticket> tickets = bllticket.GetTicketByscId(s.Id);
@@ -116,6 +117,7 @@ namespace ExcelOplib
                     s.Area = bllarea.GetAraByAreaname(item.areaid);
                     s.BookNote = item.bookintro;
                     s.Level = item.level;
+                    s.Type = Model.EnterpriseType.景点;
                     //处理topic字符串
                     var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
                     s.ScenicDetail = item.scenicdetail;

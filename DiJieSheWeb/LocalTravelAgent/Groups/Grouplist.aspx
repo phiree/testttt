@@ -108,7 +108,7 @@
                         <%#((DateTime)Eval("BeginDate")).ToShortDateString() %>
                     </td>
                     <td>
-                        <%#((DateTime)Eval("EndDate")-(DateTime)Eval("BeginDate")).Days+1%>日游
+                        <%#((DateTime)Eval("EndDate")-(DateTime)Eval("BeginDate")).Days%>日游
                     </td>
                     <td>
                        <asp:Panel runat="server" ID="pnlOperation">
