@@ -26,7 +26,7 @@ namespace Model.Mapping
             Map(x => x.Position);
        
             Map(x => x.BookNote).CustomType("StringClob").CustomSqlType("nvarchar(max)");
-            Map(x => x.TransGuid);
+           
         
             HasMany<ScenicCheckProgress>(x => x.CheckProgress);
             HasMany<Ticket>(x => x.Tickets).Cascade.All(); ;
