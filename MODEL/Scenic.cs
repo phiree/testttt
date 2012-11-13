@@ -12,9 +12,9 @@ namespace Model
             Tickets = new List<Ticket>();
         }
        
-        public virtual string SeoName { get; set; }
+     
         public virtual int ScenicOrder { get; set; }
-        public virtual string Level { get; set; }
+      
         public virtual string MipangId { get; set; }
         public virtual string Photo { get; set; }
       
