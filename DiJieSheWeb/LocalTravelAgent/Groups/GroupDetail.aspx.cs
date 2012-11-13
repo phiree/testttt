@@ -19,7 +19,7 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
     private void BindData(string guid)
     {
         Model.DJ_TourGroup tg = blltg.GetOne(Guid.Parse(guid));
-      
+
         lblName.Text = tg.Name;
         lblDate.Text = tg.BeginDate.ToShortDateString() + "-" + tg.EndDate.ToShortDateString();
         lblDays.Text = tg.DaysAmount.ToString();
@@ -42,6 +42,12 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
         IList<ExcelOplib.Entity.GroupRouteNew> grlist = new List<ExcelOplib.Entity.GroupRouteNew>();
         foreach (var item in tg.Routes.GroupBy(x => x.DayNo))
         {
+            //var grn = new ExcelOplib.Entity.GroupRouteNew();
+            //grn.RouteDate = item.First().DayNo.ToString();
+            //foreach (var hotel in grn.Hotel.Where(x=>x.DayNo==item.Key))
+            //{
+
+            //}
             grlist.Add(new ExcelOplib.Entity.GroupRouteNew()
             {
                 RouteDate = item.First().DayNo.ToString(),
@@ -99,7 +105,7 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
             if (null != gcrecord)
             {
                 label.BackColor = System.Drawing.Color.Aqua;
-                label.Text += "【"+gcrecord.ConsumeTime+"】";
+                label.Text += "【" + gcrecord.ConsumeTime + "】";
             }
             else
             {

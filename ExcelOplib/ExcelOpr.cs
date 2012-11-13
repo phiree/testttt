@@ -63,6 +63,7 @@ namespace ExcelOplib
                     s.BookNote = item.bookintro;
                     s.ScenicDetail = item.scenicdetail;
                     s.Desec = item.scenicintro;
+                    s.Type = Model.EnterpriseType.景点;
                     //组装tickets
                     List<Entity.TicketEntity> newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
                     IList<Model.Ticket> tickets = bllticket.GetTicketByscId(s.Id);
