@@ -26,8 +26,6 @@ public partial class TourEnterprise_GroupDetail : System.Web.UI.Page
         lblPchild.Text = tg.ChildrenAmount.ToString();
         lblForeigners.Text = tg.ForeignersAmount.ToString();
         lblGangaotais.Text = tg.GangaotaisAmount.ToString();
-        lblGether.Text = tg.Gether;
-        lblBack.Text = tg.BackPlace;
 
         rptMem.DataSource = tg.Members;
         rptMem.DataBind();

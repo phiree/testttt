@@ -56,7 +56,7 @@
            </tbody> </table>
         </FooterTemplate>
     </asp:Repeater>
-    <asp:Button ID="BtnPrint" runat="server" Text="导出成excel" 
+    <asp:Button ID="BtnPrint" runat="server" Text="导出成excel" CssClass="btn2"
         onclick="BtnPrint_Click" />
     <a href="/localtravelagent/RecEntList.aspx" style="margin-left:600px">返回上级</a>
 </div>

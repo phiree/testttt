@@ -11,11 +11,20 @@ namespace BLL
     {
         IDAL.ITicketAssign Iticketassign = new DAL.DALTicketAssign();
 
+        /// <summary>
+        /// 保存更新
+        /// </summary>
+        /// <param name="ticketassign"></param>
         public void SaveOrUpdate(TicketAssign ticketassign)
         {
             Iticketassign.SaveOrUpdate(ticketassign);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assignID"></param>
+        /// <returns></returns>
         public TicketAssign GetTicketAssignById(Guid assignID)
         {
             return Iticketassign.GetTicketAssignByID(assignID);

@@ -2,60 +2,6 @@
     CodeFile="GroupDetail.aspx.cs" Inherits="Groups_GroupDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script type="text/javascript">
-
-        //ajax方式显色,已经由后台控制. 替换
-        //        $(function () {
-        //            var tbody = $("#tbRoute>tbody>tr>td>span");
-        //            var enternamelist = "";
-        //            tbody.each(function () {
-        //                //lert($.trim($(this).html()));//显示各个单元格内容
-        //                //var datas = "{\"enterpid\":\"" +  + "\"}";
-        //                enternamelist += $.trim($(this).html()) + "-";
-        //            });
-        //            var gid = getArgs("id");
-        //            $.ajax({
-        //                type: "get",
-        //                url: "RouteHandler.ashx?enternamelist=" + enternamelist + "&gid=" + gid,
-        //                dataType: "json",
-        //                success: function (data, status) {
-        //                    tbody.each(function () {
-        //                        for (var name in data) {
-        //                            if (name == $.trim($(this).html())) {
-        //                                if (data[name] == "0") {
-        //                                    $(this).parent().css("background-color", "Yellow");
-        //                                }
-        //                                else {
-        //                                    $(this).parent().css("background-color", "Aqua");
-        //                                }
-        //                            }
-        //                        }
-        //                    });
-        //                }
-        //            });
-        //        });
-
-        $(function () {
-            var tbody = $("#tbRoute>tbody");
-            var count = tbody.html().split("★");
-            $("#veriEnt").html(count.length - 1);
-        });
-
-        function getArgs(strParame) {
-            var args = new Object();
-            var query = location.search.substring(1); // Get query string
-            var pairs = query.split("&"); // Break at ampersand
-            for (var i = 0; i < pairs.length; i++) {
-                var pos = pairs[i].indexOf('='); // Look for "name=value"
-                if (pos == -1) continue; // If not found, skip
-                var argname = pairs[i].substring(0, pos); // Extract the name
-                var value = pairs[i].substring(pos + 1); // Extract the value
-                value = decodeURIComponent(value); // Decode it, if needed
-                args[argname] = value; // Store as a property
-            }
-            return args[strParame]; // Return the object
-        };
-    </script>
     <style type="text/css">
         .colorpicker
         {
@@ -98,76 +44,59 @@
         <!-- 基本信息begin -->
         <table border="0" cellpadding="0" cellspacing="0" class="comTable">
             <tr>
-               
-                <td>
+                <td style="width: 15%">
                     团队名称：
                 </td>
-                <td  colspan="3" >
+                <td style="width: 30%">
                     <asp:Label ID="lblName" runat="server" />
                 </td>
-            </tr>
-            <tr>
                 <td style="width: 15%">
                     起止时间：
                 </td>
                 <td>
                     <asp:Label ID="lblDate" runat="server" />
                 </td>
+            </tr>
+            <tr>
                 <td>
                     游玩天数：
                 </td>
                 <td>
                     <asp:Label ID="lblDays" runat="server" />
                 </td>
-            </tr>
-            <tr>
                 <td>
                     游玩人数：
                 </td>
                 <td>
                     <asp:Label ID="lblPnum" runat="server" />
                 </td>
+            </tr>
+            <tr>
                 <td>
                     成人人数：
                 </td>
                 <td>
                     <asp:Label ID="lblPadult" runat="server" />
                 </td>
-            </tr>
-            <tr>
                 <td>
                     儿童人数：
                 </td>
                 <td>
                     <asp:Label ID="lblPchild" runat="server" />
                 </td>
+            </tr>
+            <tr>
                 <td>
                     外宾人数：
                 </td>
                 <td>
                     <asp:Label ID="lblForeigners" runat="server" />
                 </td>
-            </tr>
-            <tr>
                 <td>
                     外宾人数：
                 </td>
                 <td>
                     <asp:Label ID="lblGangaotais" runat="server" />
-                </td>
-                <td>
-                    上车集合点：
-                </td>
-                <td>
-                    <asp:Label ID="lblGether" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    返程点：
-                </td>
-                <td>
-                    <asp:Label ID="lblBack" runat="server" />
                 </td>
             </tr>
         </table>
@@ -262,24 +191,12 @@
                             <td>
                                 日期
                             </td>
-                            <%--<td>
-                                早餐
-                            </td>
-                            <td>
-                                中餐
-                            </td>
-                            <td>
-                                晚餐
-                            </td>--%>
                             <td>
                                 景点
                             </td>
                             <td>
                                 住宿
                             </td>
-                            <%--<td>
-                                购物点
-                            </td>--%>
                         </tr>
                     </thead>
                     <tbody>
@@ -320,16 +237,6 @@
                             </asp:Repeater>
                         </ul>
                     </td>
-                    <%--<td>
-                        <asp:Repeater ID="rptRouteShopping" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
-                            <ItemTemplate>
-                                <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
-                                (((Model.DJ_TourEnterprise)Eval("Enterprise")).IsVeryfied.ToString()=="True"?
-                                ("★"+Eval("Enterprise.Name")):Eval("Enterprise.Name")):""%>'
-                                    runat="server" />
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </td>--%>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

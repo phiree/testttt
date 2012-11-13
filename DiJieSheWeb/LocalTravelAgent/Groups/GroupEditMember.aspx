@@ -9,6 +9,8 @@
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
+    <style type="text/css">
+    </style>
     <script language="javascript" type="text/javascript">
         $(function () {
 
@@ -20,6 +22,12 @@
                     $.cookie(cookieName, ui.newTab.index(), { expires: 365 });
                 }
             });
+            $("#tabs").bind('tabsselect', function (event, ui) {
+                    if (ui.index == "0") {
+                        $("[id$='btnCss']").click();
+                    }
+            });
+
             $(".tablesorter").tablesorter();
             $(".IndexTable").orderIndex();
         });
@@ -52,21 +60,21 @@
                     <table class="tablesorter InfoTable" style="width:650px;margin:0px;margin-top:2px">
                         <thead>
                         <tr>
-                            <td>
+                            <th>
                                 类型
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 姓名
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 证件号码
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 联系电话
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 修改
-                            </td>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -98,6 +106,9 @@
                 </FooterTemplate>
             </asp:Repeater>
             <asp:Button runat="server" ID="btnAddMember" OnClick="btnAddMember_Click" Text="增加成员" CssClass="btn" style="margin-top:15px" />
+            <div style="display:none">
+                <asp:Button ID="btnCss" runat="server" OnClick="btnCss_Click" />
+            </div>
             <asp:Panel runat="server" ID="pnlMemberEdit" Visible="false">
                 <fieldset>
                     <legend></legend>

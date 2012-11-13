@@ -8,7 +8,6 @@
         function delrow(obj) {
             $(obj).parent().parent().remove();
         }
-
         //加载制定group的数据
         $(function () {
             var gid = getArgs("id");
@@ -25,6 +24,10 @@
                     }
                 });
             }
+            $(".fu").change(function(){
+                $("#selecfile").html($(".fu").val());
+            });
+
         });
 
         function getArgs(strParame) {
@@ -70,135 +73,43 @@
                 "</td><td><input type='text' /></td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />");
             });
         });
+
+        
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
-        基本信息导入
+        新建团队(EXCEL导入)
     </div>
-    <!-- 基本信息begin -->
-    <div class="detaillist">
-        <div class="detailtitle">
-            基本信息
+    <div class="drInfo">
+        <h1>Excel导入新建团队</h1>
+        <div class="drbtn">
+            <input type="button" class="but" value="选择文件" /><span id="selecfile">未选择文件</span>
+            <asp:FileUpload ID="FileUpload1" runat="server" CssClass="fu" />
+            <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" CssClass="but" style="margin-left:200px;" />
         </div>
-        <table border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td style="width: 15%">
-                    团队名称：
-                </td>
-                <td>
-                    <asp:Label ID="lblname" runat="server" />
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 15%">
-                    开始时间：
-                </td>
-                <td>
-                    <asp:Label ID="lblbegin" runat="server" />
-                </td>
-                <td>
-                    游玩天数：
-                </td>
-                <td>
-                    <asp:Label ID="lbldays" runat="server" />
-                </td>
-            </tr>
-        </table>
-        <!-- 基本信息end -->
-        <!-- 人员begin -->
-        <div class="detailtitle">
-            人员信息
+        <div class="drIntrod">
+        点击"选择文件"按钮,从电脑里选择已经保存好的团队信息文件，再点击“上传”,即完成
         </div>
-        <table class="tableMemberid" id="tbMember" cellpadding="0" cellspacing="0">
-            <thead>
-                <tr>
-                    <td>
-                        类型
-                    </td>
-                    <td>
-                        姓名
-                    </td>
-                    <td>
-                        身份证号
-                    </td>
-                    <td>
-                        联系方式
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <asp:Repeater ID="rptMember" runat="server">
-                    <ItemTemplate>
-                        <tr>
-                            <td><%#Eval("Memtype")%>
-                            </td>
-                            <td><%#Eval("Memname")%>
-                            </td>
-                            <td><%#Eval("Memid")%>
-                            </td>
-                            <td><%#Eval("Memphone")%>
-                            </td>
-                        </tr>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </tbody>
-        </table>
-        <!-- 人员end -->
-        <!-- 行程begin -->
-        <div class="detailtitle">
-            行程信息
-        </div>
-        <table id="tbRoute">
-            <thead>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        景点
-                    </td>
-                    <td>
-                        住宿
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <asp:Repeater ID="rptRoutes" runat="server" >
-                    <ItemTemplate>
-                    <tr>
-                        <td>
-                            <%#Eval("dayno")%>
-                        </td>
-                        <td>
-                            <%#Eval("scenics")%>
-                        </td>
-                        <td>
-                            <%#Eval("hotels")%>
-                        </td>
-                    </tr>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </tbody>
-        </table>
     </div>
-    <!-- 行程end -->
-    <!-- 操作begin -->
-    <hr />
-    <input type="hidden" id="hidden_scid" runat="server" />
-    <div class="detaillist">
-        <p style="margin-left: 5px; margin-top: 5px; margin-bottom: 5px; color: #999999">
-            导入信息操作步骤:
+    <div class="exdrintro">
+        <h3>
+            Excel表格导入说明:
+        </h3>
+        <p>
+            1.使用地接社管理专用Excel模板填写团队信息，保存类型：<span style="color:#049286">Excel工作簿(*.xlsx)</span>
         </p>
-        <ol style="margin-left: 5px; color: #999999">
-            <li>点击“浏览”，选择要导入的excel文件
-                <br />
-                注意：确定excel文件中第一行包含：类型，姓名，身份证号，电话号码四个标题</li>
-            <li>点击“上传”，将文件上传到服务器 </li>
-            <li>点击“导入数据”，将excel内容导入到表格中 </li>
-        </ol>
-        <asp:FileUpload ID="FileUpload1" runat="server" />
-        <asp:Button ID="btnUpload" runat="server" Text="保存" OnClick="btnUpload_Click" />
-        <asp:Label ID="Label1" runat="server" />
-        <a href="/LocalTravelAgent/Groups/Grouplist.aspx">返回</a>
+        <p>
+            2.一份表格只能输入一个团队信息
+        </p>
+        <div class="downloadexcel">
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="">下载地接社管理专用Excel模板</asp:HyperLink>
+        </div>
     </div>
+
+
+
+
+    <input type="hidden" id="hidden_scid" runat="server" />
+        <asp:Label ID="Label1" runat="server" />
 </asp:Content>
