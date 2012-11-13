@@ -107,12 +107,12 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
             Model.DJ_GroupConsumRecord gcrecord = bllRecord.GetGroupConsumRecordByRouteId(route.Id);
             if (null != gcrecord)
             {
-                label.BackColor = System.Drawing.Color.Aqua;
-                label.Text += "【"+gcrecord.ConsumeTime+"】";
+             //   label.BackColor = System.Drawing.Color.Aqua;
+             //   label.Text += "【"+gcrecord.ConsumeTime+"】";
             }
             else
             {
-                label.BackColor = System.Drawing.Color.Yellow;
+               // label.BackColor = System.Drawing.Color.Yellow;
             }
         }
     }
