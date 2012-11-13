@@ -15,13 +15,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
-        导游列表
+        导游管理
     </div>
+        <div class="searchdiv">
+            姓名:<asp:TextBox ID="txtName_add" runat="server" style="margin-right:100px;margin-left:50px" />
+            手机:<asp:TextBox ID="txtPhone_add" runat="server" style="margin-left:50px" /><br />
+            身份证号:<asp:TextBox ID="txtId_add" runat="server" style="margin-right:100px;margin-left:27px" />
+            导游证号:<asp:TextBox ID="txtGuideid_add" runat="server" style="margin-left:27px" /><br />
+            <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn" OnClick="btnQuickadd_Click" />
+        </div>
     <div class="detaillist">
         <div class="detailtitle">
             导游管理
         </div>
-         <fieldset style="padding-top:0px;">
+         <fieldset style="padding-top:0px;display:none">
         <legend style="font-size:12px;">搜索条件：</legend>
         <div class="searchdiv">
             姓名:<asp:TextBox ID="txtName" runat="server" />
@@ -74,15 +81,6 @@
                 </tbody> </table>
             </FooterTemplate>
         </asp:Repeater>
-        <fieldset style="padding-top:0px;">
-        <legend style="font-size:12px;">快速添加：</legend>
-        <div class="searchdiv">
-            姓名:<asp:TextBox ID="txtName_add" runat="server" />
-            手机:<asp:TextBox ID="txtPhone_add" runat="server" />
-            身份证号:<asp:TextBox ID="txtId_add" runat="server" />
-            导游证号:<asp:TextBox ID="txtGuideid_add" runat="server" />
-            <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn" OnClick="btnQuickadd_Click" />
-        </div>
-        </fieldset>
+        
     </div>
 </asp:Content>

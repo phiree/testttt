@@ -4,7 +4,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <table border="0" cellpadding="0" cellspacing="0">
+    <div class="detail_titlebg">
+        司机编辑
+    </div>
+    <div class="detaillist">
+    <table border="0" cellpadding="0" cellspacing="0" class="comTable">
         <tr>
             <td>
                 姓名:
@@ -46,9 +50,10 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <asp:Button ID="btnSave" Text="保存" runat="server" OnClick="btnSave_Click"/>
+            <td colspan="2" style=" text-align:center">
+                <asp:Button ID="btnSave" Text="保存" runat="server" OnClick="btnSave_Click" CssClass="btn"/>
             </td>
         </tr>
     </table>
+    </div>
 </asp:Content>

@@ -6,7 +6,16 @@
         rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript" src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
     <script language="javascript" type="text/javascript" src="/Scripts/json2.js"></script>
-
+      <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        $(function () {
+            $(".tablesorter").tablesorter();
+           
+        });
+    </script>
     <script language="javascript" type="text/javascript">
         var entNames = JSON.parse("<%=EntNames %>");
         $(function () {
@@ -38,28 +47,33 @@
                 </asp:RadioButtonList>
              
             </div>
+       
+                  
             <asp:Repeater runat="server" ID="rptEntList" 
             onitemcommand="rptEntList_ItemCommand" 
             onitemdatabound="rptEntList_ItemDataBound">
                 <HeaderTemplate>
-                    <table class="detaillist comTable">
-                        <tr>
-                            <td>
+                    <table class="InfoTable tablesorter">
+                       <thead> <tr>
+                        
+                            <th>
                                 名称
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 负责人
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 负责人电话
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 操作
-                            </td>
-                        </tr>
+                            </th>
+                        </tr></thead>
+                        <tbody>
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
+                    
                         <td>
                         <%#Eval("Name") %>
                         </td>
@@ -73,7 +87,7 @@
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
-                    </table></FooterTemplate>
+                   </tbody> </table></FooterTemplate>
             </asp:Repeater>
       
     </fieldset>

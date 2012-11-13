@@ -13,7 +13,7 @@
                 <td>
                     用户名
                 </td>
-                <td>
+                <td style="text-align:center">
                     <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                 </td>
             </tr>
@@ -31,7 +31,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="2" style=" text-align:center">
                     <asp:Button ID="BtnSave" runat="server" Text="保存" CssClass="btn" 
                         onclick="BtnSave_Click" />
                 </td>
