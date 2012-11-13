@@ -79,13 +79,17 @@ namespace Model
         {
             get
             {
+
                 DateTime now = DateTime.Now;
 
-                if (now < BeginDate)
+                DateTime nowDay = new DateTime(now.Year, now.Month, now.Day);
+
+
+                if (nowDay < BeginDate)
                 {
                     return TourGroupState.尚未开始;
                 }
-                else if (now <= BeginDate && now < EndDate.AddDays(1))
+                else if (nowDay <= BeginDate && nowDay <= EndDate)
                 {
                     return TourGroupState.正在进行;
                 }

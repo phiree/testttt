@@ -43,9 +43,10 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
             }
         }
 
-        InitWorkers();
+    //   
         if (!IsPostBack)
         {
+            InitWorkers();
             if (!IsNew)
             {
                 LoadForm();
@@ -96,7 +97,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     {
         CurrentGroup.Name = tbxName.Text;
         CurrentGroup.BeginDate = Convert.ToDateTime(tbxDateBegin.Text);
-        if (CurrentGroup.BeginDate < DateTime.Now)
+        if (CurrentGroup.BeginDate.DayOfYear <  DateTime.Now.DayOfYear)
         {
             ScriptManager.RegisterStartupScript(this,this.GetType(),"begindayerr",  "alert('开始时间不能小于当天时间');",true);
             return false;
@@ -136,6 +137,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     {
         if (!UpdateForm())
         {
+            BLLLog.Log("更新团队基本信息失败", 1, "basicinfo");
             return;
         }
         
@@ -144,6 +146,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         {
             Response.Redirect("GroupEditMember.aspx?groupid=" + CurrentGroup.Id);
         }
+        lblMsg.Text = "保存成功";
     }
 
 }

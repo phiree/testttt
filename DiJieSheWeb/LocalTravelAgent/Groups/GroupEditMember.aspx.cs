@@ -108,7 +108,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         Session["currentMember"] = null;
         pnlMemberEdit.Visible = false;
         btnAddMember.Visible = true;
-        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "savesuc", "alert('保存成功')", true);
+   //     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "savesuc", "alert('保存成功')", true);
 
     }
     protected void btnAddMember_Click(object sender, EventArgs e)

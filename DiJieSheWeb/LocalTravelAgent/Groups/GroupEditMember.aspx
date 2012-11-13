@@ -121,6 +121,9 @@
                             </td>
                             <td>
                                 <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                    ControlToValidate="tbxName" ErrorMessage="必填" ForeColor="Red" 
+                                    ValidationGroup="SaveMember"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -148,7 +151,8 @@
                             </td>
                         </tr>
                     </table>
-                    <asp:Button runat="server" OnClick="btnSaveMember_Click" ID="btnSave" Text="保存" CssClass="btn" />
+                    <asp:Button runat="server" OnClick="btnSaveMember_Click" ID="btnSave" Text="保存" 
+                        CssClass="btn" ValidationGroup="SaveMember" />
                     <asp:Button runat="server" OnClick="btnCancel_Click" ID="btnCancel" Text="取消" CssClass="btn" />
                 </fieldset>
             </asp:Panel>

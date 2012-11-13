@@ -53,7 +53,7 @@
                     if(ui.item.verifyState==1)
                     event.target.className+=" rewardbg";
                     event.target.value = ui.item.Name;
-                },
+                }
             });
           
           /*隐藏/显示多余的文本框*/

@@ -76,7 +76,7 @@
              
         </table>
         <asp:Button runat="server" ID="btnSaveBasicInfo" OnClick="btnBasicInfo_Click" Text="保存" CssClass="btn" style="margin-left:350px" />
-       
+       <asp:Label runat="server" ID="lblMsg"></asp:Label>
         <%--<asp:Panel runat="server" ID="pnlLinks">
             <a href="GroupEditMember.aspx?groupid=<%=groupId %>">编辑成员信息</a>
              <a href="GroupEditRoute.aspx?groupid=<%=groupId %>">
