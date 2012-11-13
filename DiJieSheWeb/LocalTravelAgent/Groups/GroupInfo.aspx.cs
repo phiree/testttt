@@ -37,6 +37,7 @@ public partial class Groups_GroupInfo : basepageDJS
                 ExcelOplib.Entity.GroupAll group_excel = excel.getGroup(excelPath + "temp." + typ2, out message);
                 group_excel.GroupMemberList = group_excel.GroupMemberList.Where(x => !string.IsNullOrEmpty(x.Memtype)).ToList();
 
+                //group修改
                 if (!string.IsNullOrEmpty(Request.QueryString["groupid"]))
                 {
                     var group_db = bllgroup.GetOne(new Guid(Request.QueryString[0]));
@@ -47,6 +48,7 @@ public partial class Groups_GroupInfo : basepageDJS
                     group_db.Workers.Clear();
                     group_db.Members.Clear();
                     group_db.Routes.Clear();
+                    group_model.DijiesheEditor = (Model.DJ_User_TourEnterprise)CurrentMember;
                     foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype == "导游" || x.Memtype == "司机"))
                     {
                         group_db.Workers.Add(new Model.DJ_Group_Worker()
@@ -85,6 +87,7 @@ public partial class Groups_GroupInfo : basepageDJS
                     }
                     bllgroup.Save(group_db);
                 }
+                //group上传
                 else
                 {
                     group_model.Name = group_excel.GroupBasic.Name;
@@ -94,6 +97,8 @@ public partial class Groups_GroupInfo : basepageDJS
                     group_model.Workers = new List<Model.DJ_Group_Worker>();
                     group_model.Members = new List<Model.DJ_TourGroupMember>();
                     group_model.Routes = new List<Model.DJ_Route>();
+                    group_model.DJ_DijiesheInfo = CurrentDJS;
+                    group_model.DijiesheEditor = (Model.DJ_User_TourEnterprise)CurrentMember;
                     foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype == "导游" || x.Memtype == "司机"))
                     {
                         group_model.Workers.Add(new Model.DJ_Group_Worker()
@@ -118,9 +123,18 @@ public partial class Groups_GroupInfo : basepageDJS
                     }
                     foreach (var item in group_excel.GroupRouteList)
                     {
-                        var temp1 = item.Scenic.Split(new char[] { ',', '-' });
-                        var temp2 = item.Scenic.Split(new char[] { ',', '-' });
-                        foreach (var item2 in temp1)
+                        var temp_scenic = item.Scenic.Split(new char[] { ',', '-' }, StringSplitOptions.None);
+                        var temp_hotel = item.Hotel.Split(new char[] { ',', '-' }, StringSplitOptions.None);
+                        foreach (var item2 in temp_scenic)
+                        {
+                            group_model.Routes.Add(new Model.DJ_Route()
+                            {
+                                DJ_TourGroup = group_model,
+                                DayNo = int.Parse(item.RouteDate),
+                                Enterprise = bllenterp.GetDJS8name(item2).Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                            });
+                        }
+                        foreach (var item2 in temp_hotel)
                         {
                             group_model.Routes.Add(new Model.DJ_Route()
                             {
@@ -132,32 +146,33 @@ public partial class Groups_GroupInfo : basepageDJS
                     }
                     bllgroup.Save(group_model);
                 }
-
-                lblname.Text = group_excel.GroupBasic.Name;
-                lblbegin.Text = group_excel.GroupBasic.Begindate;
-                lbldays.Text = group_excel.GroupBasic.Days;
-                rptMember.DataSource = group_excel.GroupMemberList.Where(x => !string.IsNullOrEmpty(x.Memtype));
-                rptMember.DataBind();
-                var routes = group_excel.GroupRouteList.GroupBy(x => x.RouteDate).OrderBy(x => x.Key);
-                List<RouteSource> rslist = new List<RouteSource>();
-                foreach (var item in routes)
-                {
-                    var temp_scenic = string.Empty;
-                    var temp_hotel = string.Empty;
-                    foreach (var item2 in item)
-                    {
-                        temp_scenic += item2.Scenic + "，";
-                        temp_hotel += item2.Hotel + "，";
-                    }
-                    rslist.Add(new RouteSource()
-                    {
-                        dayno = item.Key,
-                        scenics = temp_scenic.TrimEnd(new char[] { ',', '，' }),
-                        hotels = temp_hotel.TrimEnd(new char[] { ',', '，' })
-                    });
-                }
-                rptRoutes.DataSource = rslist;
-                rptRoutes.DataBind();
+                Response.Redirect("/LocalTravelAgent/Groups/GroupDetail.aspx?guid=" + group_model.Id);
+                //回显
+                //lblname.Text = group_excel.GroupBasic.Name;
+                //lblbegin.Text = group_excel.GroupBasic.Begindate;
+                //lbldays.Text = group_excel.GroupBasic.Days;
+                //rptMember.DataSource = group_excel.GroupMemberList.Where(x => !string.IsNullOrEmpty(x.Memtype));
+                //rptMember.DataBind();
+                //var routes = group_excel.GroupRouteList.GroupBy(x => x.RouteDate).OrderBy(x => x.Key);
+                //List<RouteSource> rslist = new List<RouteSource>();
+                //foreach (var item in routes)
+                //{
+                //    var temp_scenic = string.Empty;
+                //    var temp_hotel = string.Empty;
+                //    foreach (var item2 in item)
+                //    {
+                //        temp_scenic += item2.Scenic + "，";
+                //        temp_hotel += item2.Hotel + "，";
+                //    }
+                //    rslist.Add(new RouteSource()
+                //    {
+                //        dayno = item.Key,
+                //        scenics = temp_scenic.TrimEnd(new char[] { ',', '，' }),
+                //        hotels = temp_hotel.TrimEnd(new char[] { ',', '，' })
+                //    });
+                //}
+                //rptRoutes.DataSource = rslist;
+                //rptRoutes.DataBind();
             }
             else
             {
