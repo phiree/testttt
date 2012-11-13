@@ -24,7 +24,7 @@ namespace Model
             References<DJ_User_TourEnterprise>(x => x.DijiesheEditor);
             HasMany<DJ_TourGroupMember>(x => x.Members).Cascade.All();//.Inverse();
             HasMany<DJ_Group_Vehicle>(x => x.Vehicles).Inverse().Cascade.All();
-            HasMany<DJ_Group_Worker>(x => x.Workers).Inverse().Cascade.All();
+            HasMany<DJ_Group_Worker>(x => x.Workers).Cascade.All();
             HasMany<DJ_Route>(x => x.Routes).Cascade.All();
         }
     }
