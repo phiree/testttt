@@ -374,3 +374,11 @@ color:Red;
     font-size:14px;
     font-weight:bold;
 }
+.tabintro
+{
+    text-align:right;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding-right:20px;
+    color:#009385;
+}

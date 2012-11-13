@@ -78,13 +78,13 @@
 
      <h3 style="margin-left:15px;margin-top:30px">
         <b>
-        <%=CurrentGroup.Name %>行程信息录入
+        团队名称:<%=CurrentGroup.Name %>行程信息录入
         </b>
     </h3>
     <div style="background-color: Green">
         <asp:Label runat="server" ID="lblMsg_SaveRoute"></asp:Label></div>
-    <div class="box">
-        提供两种录入线路的方式,您可以根据需要,选择最适合一种方式.</div>
+    <div class="tabintro">
+        根据您方便，选择其中一种方式录入游客信息</div>
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">直接录入</a></li>

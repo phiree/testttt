@@ -75,7 +75,7 @@
                    <tr>
                        
                        <td>
-                           <%# Eval("ConsumeTime")%>
+                           <%# Eval("ConsumeTime","{0:yyyy-MM-dd}")%>
                        <td>
                            <a href='/TourEnterprise/GroupDetail.aspx?id=<%# Eval("Route.DJ_TourGroup.Id")%>'>
                            <%# Eval("Route.DJ_TourGroup.Name")%></a>
