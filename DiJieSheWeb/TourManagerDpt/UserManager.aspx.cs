@@ -83,6 +83,11 @@ public partial class TourManagerDpt_UserManager : basepageMgrDpt
         if (e.CommandName == "delete")
         {
             Guid userid = Guid.Parse(e.CommandArgument.ToString());
+            if (userid == CurrentMember.Id)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), null, "alert('不能删除自己!')", true);
+                return;
+            }
             DJ_User_Gov user = blldj_user.GetGov_UserById(userid);
             if ((Guid)CurrentUser.ProviderUserKey == userid)
             {
