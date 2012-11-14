@@ -236,7 +236,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             }
             else
             {
-                ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+                 ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
             }
         }
         else
