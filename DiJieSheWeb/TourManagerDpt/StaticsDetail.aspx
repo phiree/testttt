@@ -22,19 +22,19 @@
         <asp:Repeater ID="rptStaticDetail" runat="server" OnItemDataBound="rptStaticDetail_ItemDataBound">
             <HeaderTemplate>
                 <table class="tablesorter IndexTable">
-        </table>
+                </table>
                 <table id="tbMain" class="tablesorter InfoTable">
                     <thead>
                         <tr>
                             <th>
                                 日期
                             </th>
-                            <th>
-                                住宿人数
-                            </th>
                             <td>
                                 游览人数
                             </td>
+                            <th>
+                                住宿人数
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +46,7 @@
                     </td>
                     <td>
                         <ul>
-                            <asp:Repeater ID="rptHotels" runat="server">
+                            <asp:Repeater ID="rptScenics" runat="server">
                                 <ItemTemplate>
                                     <li>
                                         <%#Eval("Enterprice.Name")%>：<%#Eval("Peoplenum")%>
@@ -57,7 +57,7 @@
                     </td>
                     <td>
                         <ul>
-                            <asp:Repeater ID="rptScenics" runat="server">
+                            <asp:Repeater ID="rptHotels" runat="server">
                                 <ItemTemplate>
                                     <li>
                                         <%#Eval("Enterprice.Name")%>：<%#Eval("Peoplenum")%>

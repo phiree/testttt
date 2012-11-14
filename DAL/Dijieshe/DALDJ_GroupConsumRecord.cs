@@ -73,7 +73,7 @@ namespace DAL
             }
             if (BeginTime != "" && EndTime != "")
             {
-                sql.Append(" and d.ConsumeTime>='" + BeginTime + "' and d.ConsumeTime<='" + DateTime.Parse(EndTime).AddDays(1).ToShortDateString() + "'");
+                sql.Append(" and d.ConsumeTime>='" + BeginTime + "' and d.ConsumeTime<='" + DateTime.Parse(EndTime).ToShortDateString() + "'");
             }
             sql.Append(" order by d.ConsumeTime desc");
             IQuery query = session.CreateQuery(sql.ToString());

@@ -18,7 +18,6 @@ namespace BLL
        {
            session.Save(mgrDpt);
            session.Flush();
-           //throw new NotImplementedException();
        }
        public IList<Model.DJ_GovManageDepartment> GetMgrDptList(string areaCode)
        {

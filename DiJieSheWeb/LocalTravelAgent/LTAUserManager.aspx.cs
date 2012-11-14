@@ -35,6 +35,11 @@ public partial class LocalTravelAgent_LTAUserManager : basepageDJS
         {
             Guid userid = Guid.Parse(e.CommandArgument.ToString());
             DJ_User_TourEnterprise user= bllUser.GetByMemberId(userid);
+            if ((Guid)CurrentUser.ProviderUserKey == user.Id)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('不得删除本人')", true);
+                return;
+            }
             bllUser.DeleteGov_User(user);
             bind();
         }

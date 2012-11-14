@@ -20,7 +20,6 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            Response.Cookies.Add(new HttpCookie("orderstr", "0_desc"));
             txtBeginTime.Text = DateTime.Now.ToString("yyyy-MM-dd"); txtEndTime.Text = DateTime.Now.ToString("yyyy-MM-dd");
             bind();
         }
