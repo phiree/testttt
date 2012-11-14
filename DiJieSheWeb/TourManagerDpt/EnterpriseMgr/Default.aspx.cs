@@ -17,8 +17,10 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
     public string EntNames = string.Empty;
     BLLDJEnterprise bllEnt = new BLLDJEnterprise();
     BLLOperationLog bllOp = new BLLOperationLog();
+    public EnterpriseType ParamEntType = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
+        ParseParam();
         lblMsg.Visible = false;
         BuildEntNames();
         if (!IsPostBack)
@@ -26,11 +28,36 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
             BindList();
         }
     }
+    private void ParseParam()
+    {
+
+
+        string param = Request["entType"];
+
+        int intParam;
+        if (!int.TryParse(param, out intParam))
+        {
+            BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
+        }
+        if (!Enum.IsDefined(typeof(Model.EnterpriseType), intParam))
+        {
+
+    
+
+            BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
+
+        }
+
+
+        ParamEntType = (EnterpriseType)intParam;
+
+
+    }
 
 
     private void BuildEntNames()
     {
-        IList<DJ_TourEnterprise> ents = bllEnt.GetRewardEntList(CurrentDpt, ParamEntType, RewardType.从未纳入 | RewardType.已纳入);
+        IList<DJ_TourEnterprise> ents = bllEnt.GetRewardEntList(CurrentDpt, ParamEntType, RewardType.从未纳入);
         System.Text.RegularExpressions.Regex Reg = new System.Text.RegularExpressions.Regex(@",|""|'");
         foreach (DJ_TourEnterprise ent in ents)
         {
@@ -46,11 +73,16 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
         //todo:优化:bllenterprise优化.
         string entName = tbxName.Text.Trim();
         string errMsg;
-        bllEnt.SetVerify(CurrentDpt.Area, entName, RewardType.已纳入,ParamEntType, out errMsg);
-
-        lblMsg.Visible = true;
+        bllEnt.SetVerify(CurrentDpt.Area, entName, RewardType.已纳入, ParamEntType, out errMsg);
+        if (!string.IsNullOrEmpty(errMsg))
+        {
+            lblMsg.Text = errMsg;
+            lblMsg.Visible = true;
+        }
+       
         cbxState.SelectedIndex = 1;
         BindList();
+      
 
     }
 
@@ -79,25 +111,11 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
     /// <summary>
     /// 管理类型:宾馆/景区
     /// </summary>
-    EnterpriseType paramEntType;
-    public Model.EnterpriseType ParamEntType
-    {
 
-        get
-        {
-            string param = Request["entType"];
-            if (!Enum.TryParse<EnterpriseType>(param, out paramEntType))
-            {
-                BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
-            }
 
-            return paramEntType;
 
-        }
 
-    }
 
-  
 
     protected void cbxState_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -115,7 +133,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
             RewardType currentType = ent.GetRewart(CurrentDpt);
             RewardType t = currentType == RewardType.纳入后移除 ? RewardType.已纳入 : RewardType.纳入后移除;
 
-            bllEnt.SetVerify( ent, t);
+            bllEnt.SetVerify(ent, t);
             Model.OperationLog log = new OperationLog();
             log.Member = CurrentMember;
             log.OperationTime = DateTime.Now;

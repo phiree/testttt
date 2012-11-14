@@ -216,16 +216,16 @@ namespace BLL
             switch (level)
             {
                 case AreaLevel.区县:
-                    ent.CountryVeryfyState = GetFinalVeryfyState(ent.CountryVeryfyState, targetType);
+                    ent.CountryVeryfyState =targetType;// GetFinalVeryfyState(ent.CountryVeryfyState, targetType);
 
                     break;
 
                 case AreaLevel.市:
-                    ent.CityVeryfyState = GetFinalVeryfyState(ent.CityVeryfyState, targetType);
+                    ent.CityVeryfyState =targetType;// GetFinalVeryfyState(ent.CityVeryfyState, targetType);
 
                     break;
                 case AreaLevel.省:
-                    ent.ProvinceVeryfyState = GetFinalVeryfyState(ent.ProvinceVeryfyState, targetType);
+                    ent.ProvinceVeryfyState =targetType;// GetFinalVeryfyState(ent.ProvinceVeryfyState, targetType);
 
                     break;
             }
