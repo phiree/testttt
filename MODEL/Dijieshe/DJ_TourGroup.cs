@@ -48,7 +48,7 @@ namespace Model
         public virtual DJ_User_TourEnterprise DijiesheEditor { get; set; }
         public virtual int AdultsAmount
         {
-            get { return Members.Where(x => x.MemberType == MemberType.成人游客).Count(); }
+            get { return Members.Where(x => x.MemberType == MemberType.成人游客||x.MemberType== MemberType.港澳台|| x.MemberType== MemberType.外宾).Count(); }
         }
         /// <summary>
         /// 儿童总人数

@@ -15,7 +15,8 @@
             $(".tablesorter").tablesorter();
            
         });
-    </script>
+    </script>
+
     <script language="javascript" type="text/javascript">
         var entNames = JSON.parse("<%=EntNames %>");
         $(function () {

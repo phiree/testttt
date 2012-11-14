@@ -38,7 +38,8 @@ namespace BLL
                 Type = Model.EnterpriseType.旅行社,
                 SeoName = string.IsNullOrEmpty(seoname) ? "" : seoname
             };
-            return dalEnt.AddDJS(djs);
+             dalEnt.SaveOrUpdate(djs);
+             return djs.Id;
         }
 
         public void UpdateDjs(Model.DJ_TourEnterprise obj)

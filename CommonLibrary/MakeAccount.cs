@@ -9,7 +9,7 @@ namespace CommonLibrary
     {
         public string automakeaccount(string seoname)
         {
-            return seoname + "_admin";
+            return seoname;
         }
     }
 }
