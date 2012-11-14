@@ -127,8 +127,8 @@ public partial class Groups_GroupInfo : basepageDJS
                     }
                     foreach (var item in group_excel.GroupRouteList)
                     {
-                        var temp_scenic = item.Scenic.Split(new char[] { ',', '-' }, StringSplitOptions.None);
-                        var temp_hotel = item.Hotel.Split(new char[] { ',', '-' }, StringSplitOptions.None);
+                        var temp_scenic = item.Scenic.Split(new char[] { ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
+                        var temp_hotel = item.Hotel.Split(new char[] { ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
                         foreach (var item2 in temp_scenic)
                         {
                             group_model.Routes.Add(new Model.DJ_Route()
@@ -151,32 +151,6 @@ public partial class Groups_GroupInfo : basepageDJS
                     bllgroup.Save(group_model);
                 }
                 Response.Redirect("/LocalTravelAgent/Groups/GroupDetail.aspx?guid=" + group_model.Id);
-                //回显
-                //lblname.Text = group_excel.GroupBasic.Name;
-                //lblbegin.Text = group_excel.GroupBasic.Begindate;
-                //lbldays.Text = group_excel.GroupBasic.Days;
-                //rptMember.DataSource = group_excel.GroupMemberList.Where(x => !string.IsNullOrEmpty(x.Memtype));
-                //rptMember.DataBind();
-                //var routes = group_excel.GroupRouteList.GroupBy(x => x.RouteDate).OrderBy(x => x.Key);
-                //List<RouteSource> rslist = new List<RouteSource>();
-                //foreach (var item in routes)
-                //{
-                //    var temp_scenic = string.Empty;
-                //    var temp_hotel = string.Empty;
-                //    foreach (var item2 in item)
-                //    {
-                //        temp_scenic += item2.Scenic + "，";
-                //        temp_hotel += item2.Hotel + "，";
-                //    }
-                //    rslist.Add(new RouteSource()
-                //    {
-                //        dayno = item.Key,
-                //        scenics = temp_scenic.TrimEnd(new char[] { ',', '，' }),
-                //        hotels = temp_hotel.TrimEnd(new char[] { ',', '，' })
-                //    });
-                //}
-                //rptRoutes.DataSource = rslist;
-                //rptRoutes.DataBind();
             }
             else
             {

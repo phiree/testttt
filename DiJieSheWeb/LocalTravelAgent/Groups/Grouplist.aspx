@@ -58,7 +58,7 @@
             <asp:Button ID="Btnzjlr" runat="server" Text="直接录入" CssClass="btn2" OnClick="Btnzjlr_Click" />
             <asp:Button ID="Btnxlslr" runat="server" Text="Excel导入" CssClass="btn2" OnClick="Btnxlslr_Click" />
             <div>
-                选择其他一种方式新增团队
+                选择其中一种方式新增团队
             </div>
         </div>
         <div class="actiondiv">
