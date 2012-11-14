@@ -15,6 +15,8 @@ public partial class Admin_ManageDptEdit : basepage
     DJ_GovManageDepartment CurrentMgrDpt;
     BLLArea bllArea = new BLLArea();
     BLLDJMgrDpt bllMgrDpt = new BLLDJMgrDpt();
+    BLLMembership bllMember = new BLLMembership();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string param = Request["dptId"];
@@ -37,6 +39,7 @@ public partial class Admin_ManageDptEdit : basepage
         }
 
     }
+    #region method
 
     private void LoadForm()
     {
@@ -44,16 +47,7 @@ public partial class Admin_ManageDptEdit : basepage
         ddlarea.Areacode=CurrentMgrDpt.Area.Code;
         tbxName.Text = CurrentMgrDpt.Name;
         tbxPhone.Text = CurrentMgrDpt.Phone;
-      
-    }
-    private void UpdateForm()
-    {
-        CurrentMgrDpt.Address = tbxAdress.Text;
-        CurrentMgrDpt.Area = bllArea.GetAreaByCode(ddlarea.Areacode.Trim());
-        CurrentMgrDpt.Name = tbxName.Text;
-        CurrentMgrDpt.Phone = tbxPhone.Text;
-        CurrentMgrDpt.seoname = tbxAdmin.Text;
-        bllMember.CreateUpdateDptAdmin(CurrentMgrDpt);
+        tbxAdmin.Text = CurrentMgrDpt.seoname;
     }
 
     private bool Validatedata(out string message)
@@ -64,29 +58,28 @@ public partial class Admin_ManageDptEdit : basepage
             message = "请填写名称!";
             return false;
         }
-        //if (!string.IsNullOrEmpty(tbxPhone.Text))
-        //{
-        //    message = "请填写联系号码!";
-        //    return false;
-        //}
-        //if (!string.IsNullOrEmpty(tbxAdress.Text))
-        //{
-        //    message = "请填写详细地址!";
-        //    return false;
-        //}
         return true;
     }
+
     public void Save()
     {
-        UpdateForm();
+        CurrentMgrDpt.Address = tbxAdress.Text;
+        CurrentMgrDpt.Area = bllArea.GetAreaByCode(ddlarea.Areacode.Trim());
+        CurrentMgrDpt.Name = tbxName.Text;
+        CurrentMgrDpt.Phone = tbxPhone.Text;
+        CurrentMgrDpt.seoname = tbxAdmin.Text;
+        bllMember.CreateUpdateDptAdmin(CurrentMgrDpt);
         bllMgrDpt.Save(CurrentMgrDpt);
         if (IsNew)
         {
             Response.Redirect("ManageDptEdit.aspx?dptid=" + CurrentMgrDpt.Id);
-            
         }
         ScriptManager.RegisterStartupScript(this, this.GetType(), "suc", "alert('操作成功')", true);
     }
+    #endregion
+
+    #region event
+
     protected void btnSave_Click(object sender, EventArgs e)
     {
         string message = string.Empty;
@@ -98,8 +91,5 @@ public partial class Admin_ManageDptEdit : basepage
         }
         Save();
     }
-    BLLMembership bllMember = new BLLMembership();
-
-  
-
+    #endregion
 }

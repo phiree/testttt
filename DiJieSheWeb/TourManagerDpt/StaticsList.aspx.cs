@@ -90,8 +90,8 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
                 Name = item.Key,
                 AdultsAmount = item.Sum(x => x.AdultsAmount),
                 ChildrenAmount = item.Sum(x => x.ChildrenAmount),
-                LiveDays = item.Where(x=>x.Enterprise.Type==Model.EnterpriseType.宾馆).Sum(x => (x.AdultsAmount + x.ChildrenAmount) * x.LiveDay),
-                Playnums = item.Where(x=>x.Enterprise.Type==Model.EnterpriseType.景点).Sum(x => x.AdultsAmount + x.ChildrenAmount)
+                LiveDays = item.Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆).Sum(x => (x.AdultsAmount + x.ChildrenAmount) * x.LiveDay),
+                Playnums = item.Where(x => x.Enterprise.Type == Model.EnterpriseType.景点).Sum(x => x.AdultsAmount + x.ChildrenAmount)
             });
         }
         foreach (var item in gcrlist_year.GroupBy(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name))
@@ -140,29 +140,27 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         {
             var begin_date = new DateTime(int.Parse(temp[0]), int.Parse(temp[1]), 1);
             var end_date = begin_date.AddMonths(1);
-            if (!string.IsNullOrEmpty(txt_name2.Text))
-                gcrlist = gcrlist
-                    .Where(x => x.ConsumeTime >= begin_date && x.ConsumeTime < end_date)
-                    .ToList();
-        }
-        else
-        {
-            var begin_date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            var end_date = begin_date.AddMonths(1).AddDays(-1);
             gcrlist = gcrlist
                 .Where(x => x.ConsumeTime >= begin_date && x.ConsumeTime < end_date)
                 .ToList();
+            if (!string.IsNullOrEmpty(txt_name2.Text))
+            {
+                gcrlist = gcrlist.Where(x => x.Enterprise.Name.IndexOf(txt_name2.Text) != -1).ToList();
+            }
+        }
+        else
+        {
+            //var begin_date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            //var end_date = begin_date.AddMonths(1).AddDays(-1);
+            //gcrlist = gcrlist
+            //    .Where(x => x.ConsumeTime >= begin_date && x.ConsumeTime < end_date)
+            //    .ToList();
+            return;
         }
         if (!string.IsNullOrEmpty(txt_name2.Text))
         {
             gcrlist = gcrlist.Where(x => x.Enterprise.Name.IndexOf(txt_name2.Text) >= 0).ToList();
         }
-        //V.2012.10.27
-        //string[] temp = txt_yijiedai2.Text.Split(new char[] { '-', '/' });
-        //string[] temp2 = txt_yijiedai2_end.Text.Split(new char[] { '-', '/' });
-        //var begin_date = new DateTime(int.Parse(temp[0]), int.Parse(temp[1]), int.Parse(temp[2]));
-        //var end_date = new DateTime(int.Parse(temp2[0]), int.Parse(temp2[1]), int.Parse(temp2[2])).AddDays(1);
-        //gcrlist = gcrlist.Where(x => x.ConsumeTime >= begin_date && x.ConsumeTime < end_date).ToList();
 
         //整理后数据Gov2
         IList<statics_Gov2> sm2 = new List<statics_Gov2>();
@@ -186,6 +184,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
     {
         //整理后数据Gov3
         IList<Model.DJ_TourGroup> tglist = blltg.GetTourGroupByAll();
+        //筛选省市
         if (CurrentDpt.Area.Level == Model.AreaLevel.省)
         {
             tglist = tglist
