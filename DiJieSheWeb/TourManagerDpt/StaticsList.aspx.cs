@@ -90,8 +90,8 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
                 Name = item.Key,
                 AdultsAmount = item.Sum(x => x.AdultsAmount),
                 ChildrenAmount = item.Sum(x => x.ChildrenAmount),
-                LiveDays = item.Sum(x => (x.AdultsAmount + x.ChildrenAmount) * x.LiveDay),
-                Playnums = item.Sum(x => x.AdultsAmount + x.ChildrenAmount)
+                LiveDays = item.Where(x=>x.Enterprise.Type==Model.EnterpriseType.宾馆).Sum(x => (x.AdultsAmount + x.ChildrenAmount) * x.LiveDay),
+                Playnums = item.Where(x=>x.Enterprise.Type==Model.EnterpriseType.景点).Sum(x => x.AdultsAmount + x.ChildrenAmount)
             });
         }
         foreach (var item in gcrlist_year.GroupBy(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name))
@@ -101,8 +101,8 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
             {
                 static_m.First().y_AdultsAmount = item.Sum(x => x.AdultsAmount);
                 static_m.First().y_ChildrenAmount = item.Sum(x => x.ChildrenAmount);
-                static_m.First().y_LiveDays = item.Sum(x => (x.AdultsAmount + x.ChildrenAmount) * x.LiveDay);
-                static_m.First().y_Playnums = item.Sum(x => x.AdultsAmount + x.ChildrenAmount);
+                static_m.First().y_LiveDays = item.Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆).Sum(x => (x.AdultsAmount + x.ChildrenAmount) * x.LiveDay);
+                static_m.First().y_Playnums = item.Where(x => x.Enterprise.Type == Model.EnterpriseType.景点).Sum(x => x.AdultsAmount + x.ChildrenAmount);
             }
         }
         if (!string.IsNullOrEmpty(txt_name1.Text))
