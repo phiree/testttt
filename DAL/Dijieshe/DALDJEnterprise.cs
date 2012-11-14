@@ -10,19 +10,7 @@ namespace DAL
     {
         #region DJS
 
-        public int AddDJS(Model.DJ_TourEnterprise djs)
-        {
-
-
-            using (var t = session.BeginTransaction())
-            {
-                session.SaveOrUpdate(djs);
-                t.Commit();
-            }
-            session.Flush();
-            return djs.Id;
-        }
-
+       
         public void DeleteDJS()
         {
             throw new NotImplementedException();

@@ -43,9 +43,10 @@
     </div>
     <h3 style="margin-left:15px;margin-top:30px">
         <b>
-            <%=CurrentGroup.Name %>游客列表</b></h3>
-    <div class="box">
-        提供三种录入线路的方式.您可以根据需要,选择其中的一种.</div>
+            团队名称:<%=CurrentGroup.Name %>游客列表</b></h3>
+    <div class="tabintro">
+        根据您方便，选择其中一种方式录入游客信息
+    </div>
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">直接录入</a></li>
@@ -169,26 +170,36 @@
             </asp:Panel>
         </div>
         <div id="tabs-2">
-            <p>
-                将游客信息按照一定的格式输入,一次性导入系统
-            </p>
-            <p>
-                <div>
-                    格式要求:</div>
-                <div>
-                    1)单个游客的资料用逗号分隔,按序依次为:<strong>成员类型,姓名,证件号码(身份证或者其他有效证件),联系电话</strong>.如果没有对应信息,则留空.</div>
-                <div>
-                    2)成员类型必须是以下几种:<strong>成人游客,儿童,外宾,港澳台,导游,司机</strong> 不同游客用回车分隔. 比如:</div>
-                <ul>
-                    <li>成人游客,张晓华,51332919880321639X,13287839485</li>
-                    <li>外宾,Jim Green,CH1034123,13287839485</li>
-                    <li>儿童,李晓彤</li>
-                </ul>
-            </p>
+            
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText" style="width:97%"></asp:TextBox>
             <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
                 Text="保存" CssClass="btn" />
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
+            <div style="padding:10px 15px 10px 15px">
+                <p style=" font-weight:bold">
+                    文本录入格式要求
+                </p>
+                <p>
+                    <span style="margin-bottom:10px; display:block;">
+                        1)单个游客的资料用<color style=" color:#ED6942; font-weight:bold;">逗号</color>分隔,
+                    </span>
+                    <span style="margin-bottom:10px;display:block;margin-left:12px">
+                        按序依次为:<color style=" color:#ED6942; font-weight:bold;">成员类型</color>(成人游客,儿童，外宾，港澳台),<color style=" color:#ED6942; font-weight:bold;">姓名,证件号码</color>(身份证或者其他有效证件),<color style=" color:#ED6942; font-weight:bold;">联系电话</color>
+                    </span>
+                    <span style="margin-bottom:10px; display:block;">
+                        2)每一行只录一名游客的信息，如果没有对应信息可以不录
+                    </span>
+                    <span style="margin-bottom:10px;display:block;margin-left:12px">
+                        范例：成人游客,张晓华,51332919880321639X，13287839485（游客类型,姓名,证件号码,联系电话）
+                    </span>
+                    <span style="margin-bottom:10px;display:block;margin-left:48px">
+                        外宾,Jim Green,CH1034123,13287839485（游客类型,姓名,证件号码,联系电话）
+                    </span>
+                    <span style="margin-bottom:10px;display:block;margin-left:48px">
+                        儿童,李晓彤（游客类型,姓名）
+                    </span>
+                </p>
+            </div>
         </div>
         <div id="tabs-3">
             <p>

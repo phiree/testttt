@@ -66,6 +66,7 @@ namespace BLL
                 ListWroute.Add(ListRoute[0]);
                 for (int i = 1; i < ListRoute.Count; i++)
                 {
+                    //过滤掉行程中重复的
                     if (ListRoute[i].DJ_TourGroup.Id == ListRoute[i - 1].DJ_TourGroup.Id && (ListRoute[i - 1].DayNo - ListRoute[i].DayNo) <= 1)
                     {
                         continue;
@@ -73,7 +74,7 @@ namespace BLL
                     else
                     {
                         ListWroute.Add(ListRoute[i]);
-                        break;
+                        
                     }
                 }
 
@@ -81,19 +82,15 @@ namespace BLL
             else
                 ListWroute.AddRange(ListRoute);
             //去掉验证过的
-            for (int i = 0;; i++)
+            List<DJ_Route> ListWroute2 = new List<DJ_Route>();
+            foreach (DJ_Route item in ListWroute)
             {
-                if (i < ListWroute.Count)
+                if (new BLLDJConsumRecord().GetGroupConsumRecordByRouteId(item.Id) == null)
                 {
-                    if (new BLLDJConsumRecord().GetGroupConsumRecordByRouteId(ListWroute[i].Id) != null)
-                    {
-                        ListWroute.Remove(ListWroute[i]);
-                    }
+                    ListWroute2.Add(item);
                 }
-                else
-                    break;
             }
-            return ListWroute;
+            return ListWroute2;
         }
 
         /// <summary>

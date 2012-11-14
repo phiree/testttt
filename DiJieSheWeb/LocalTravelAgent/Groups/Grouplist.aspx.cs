@@ -109,4 +109,13 @@ public partial class Groups_Grouplist : basepageDJS
         }
     }
 
+
+    protected void Btnzjlr_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx");
+    }
+    protected void Btnxlslr_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/LocalTravelAgent/Groups/GroupInfo.aspx");
+    }
 }
