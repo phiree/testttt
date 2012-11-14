@@ -87,6 +87,17 @@ table tr td
 }
 .btn
 {
+    width:64px;
+    height:19px;
+    border:1px solid #CDCDCD;
+    color:#009383;
+    font-weight:bold;
+    background-color:White;
+}
+
+
+.btn:hover
+{
     background:url("/theme/default/image/button_bg.gif");
     height:19px;
     width:64px;
