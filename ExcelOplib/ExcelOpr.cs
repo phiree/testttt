@@ -286,18 +286,18 @@ namespace ExcelOplib
                 string filename = NextFile.Name;
                 string filepath = destPath + @"\" + filename;
                 //创建两个文件流 一个是源文件相关，另一个是要写入的文件
-                FileStream fs = new FileStream(NextFile.FullName, FileMode.Open);
-                FileStream fs2 = new FileStream(filepath, FileMode.Create);
-                byte[] data = new byte[1024];
-                BufferedStream bs = new BufferedStream(fs);
-                BufferedStream bs2 = new BufferedStream(fs2);
-                while (fs.Read(data, 0, data.Length) > 0)
-                {
-                    fs2.Write(data, 0, data.Length);
-                    fs2.Flush();
-                }
-                fs.Close();
-                fs2.Close();
+                //FileStream fs = new FileStream(NextFile.FullName, FileMode.Open);
+                //FileStream fs2 = new FileStream(filepath, FileMode.Create);
+                //byte[] data = new byte[1024];
+                //BufferedStream bs = new BufferedStream(fs);
+                //BufferedStream bs2 = new BufferedStream(fs2);
+                //while (fs.Read(data, 0, data.Length) > 0)
+                //{
+                //    fs2.Write(data, 0, data.Length);
+                //    fs2.Flush();
+                //}
+                //fs.Close();
+                //fs2.Close();
                 var img_index=filename.IndexOf(Math.Abs(scenic.Photo.Split(
                     new string[] { @"src=""" }, StringSplitOptions.RemoveEmptyEntries)[1].GetHashCode()).ToString()) >= 0 ;
                 silist.Add(new Model.ScenicImg()
