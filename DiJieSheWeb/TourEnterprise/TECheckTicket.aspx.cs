@@ -347,15 +347,6 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 routeids += hfrouteId.Value + ",";
         }
         btnPrint.HRef="/TourEnterprise/PrintCer.aspx?routeids=" + routeids;
-        //List<DJ_GroupConsumRecord> Listgcr = new List<DJ_GroupConsumRecord>();
-        //string[] routeidsting = routeids.Split(',');
-        //foreach (string routeid in routeidsting)
-        //{
-        //    if (routeid != "")
-        //        Listgcr.Add(blldjcr.GetGroupConsumRecordByRouteId(Guid.Parse(routeid)));
-        //}
-        //rptPrint.DataSource = Listgcr;
-        //rptPrint.DataBind();
     }
 
     protected void rptPrint_ItemDataBound(object sender, RepeaterItemEventArgs e)

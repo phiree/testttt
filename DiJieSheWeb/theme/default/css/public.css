@@ -103,6 +103,7 @@ table tr td
     text-align:center;
     background-color:White;
     cursor:pointer;
+    font-weight:bold;
 }
 .rbl
 {
@@ -207,6 +208,29 @@ ul
 {
     margin:5px 0px 5px 4px;
 }
+.actiondiv h3
+{
+    font-weight:bold;
+    width:100px;
+    float:left;
+    font-size:12px;
+}
+
+.actiondiv div
+{
+    background:url("/theme/default/image/drincon_1.gif");
+    background-repeat:no-repeat;
+    width:150px;
+    height:18px;
+    padding-left:20px;
+    float:right;
+    margin-right:200px;
+    margin-top:3px;
+    border-bottom:1px dashed #EB6A40;
+    color:#EB6A40;
+}
+
+
 .actiondiv a,.actiondiv a:link,.actiondiv a:active,.actiondiv a:visited
 {
     color:#019380;
@@ -349,4 +373,12 @@ color:Red;
     line-height:22px;
     font-size:14px;
     font-weight:bold;
+}
+.tabintro
+{
+    text-align:right;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding-right:20px;
+    color:#009385;
 }

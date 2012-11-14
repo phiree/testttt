@@ -48,28 +48,33 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
-        团队列表
+        团队管理
     </div>
     <div style="clear: both">
     </div>
     <div class="detaillist">
         <div class="actiondiv">
-            团队操作:<a href="GroupEditBasicInfo.aspx">新建团队</a> <a href="/LocalTravelAgent/Groups/GroupInfo.aspx">
-                从Excel导入新团队</a>
+            <h3 style="margin-top:5px">新增团队</h3>
+            <asp:Button ID="Btnzjlr" runat="server" Text="直接录入" CssClass="btn2" OnClick="Btnzjlr_Click" />
+            <asp:Button ID="Btnxlslr" runat="server" Text="Excel导入" CssClass="btn2" OnClick="Btnxlslr_Click" />
+            <div>
+                选择其他一种方式新增团队
+            </div>
         </div>
-        <div class="detailtitle">
-            团队列表
-            <%--<span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
-            <span class="colorWord">进行中的行程</span><span class="colorpicker" id="colorpicker2"></span>
-            <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>--%>
-        </div>
-        <div class="searchdiv">
+        <div class="actiondiv">
+            <h3 style="margin-top:5px">选择条件查询</h3>
             <asp:RadioButtonList runat="server" ID="cblState" OnSelectedIndexChanged="cblState_Changed" RepeatDirection="Horizontal"
                 AutoPostBack="true">
                 <asp:ListItem Value="1" Selected="True">尚未开始</asp:ListItem>
                 <asp:ListItem Value="2">正在进行</asp:ListItem>
                 <asp:ListItem Value="4">已经结束</asp:ListItem>
             </asp:RadioButtonList>
+        </div>
+        <div class="detailtitle">
+            团队列表
+            <%--<span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
+            <span class="colorWord">进行中的行程</span><span class="colorpicker" id="colorpicker2"></span>
+            <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>--%>
         </div>
         <asp:Repeater ID="rptGroups" runat="server" OnItemDataBound="rptGroups_ItemDataBound"
             OnItemCommand="rptGroups_ItemCommand">
