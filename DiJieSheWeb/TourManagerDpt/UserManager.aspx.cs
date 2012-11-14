@@ -89,6 +89,11 @@ public partial class TourManagerDpt_UserManager : basepageMgrDpt
                 return;
             }
             DJ_User_Gov user = blldj_user.GetGov_UserById(userid);
+            if ((Guid)CurrentUser.ProviderUserKey == userid)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('不得删除本人');", true);
+                return;
+            }
             blldj_user.DeleteGov_User(user);
             bind();
         }

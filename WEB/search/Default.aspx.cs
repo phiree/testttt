@@ -14,6 +14,7 @@ public partial class search_Default : System.Web.UI.Page
     BLLScenic bllscenic = new BLLScenic();
     BLLTicket bllTicket = new BLLTicket();
     BLLArea bllArea = new BLLArea();
+    BLLScenicImg bllSI = new BLLScenicImg();
     public string q;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -68,9 +69,32 @@ public partial class search_Default : System.Web.UI.Page
                 liPriceNormal.Text = priceNormal.ToString("0");
                 liPriceOnline.Text = priceOnline.ToString("0");
             }
+            //设置图片
             Image img = e.Item.FindControl("Image1") as Image;
-            if (new BLLScenicImg().GetSiByType(s, 1).Count > 0)
-                img.ImageUrl = "/ScenicImg/small/" + new BLLScenicImg().GetSiByType(s, 1)[0].Name;
+
+            IList<ScenicImg> mainImg = bllSI.GetSiByType(s, 1);
+            string targetImageUrl = string.Empty;
+            if (mainImg.Count > 0)
+            {
+                targetImageUrl = mainImg[0].Name;
+                string extention = bllSI.GetSiByType(s, 1)[0].Name.Split('.')[1];
+                img.ImageUrl = "/ScenicImg/small/" + bllSI.GetSiByType(s, 1)[0].Name.Split('.')[0] + "_s." + extention;
+            }
+            else
+            { //如果没有主图 则选择副图第一章
+                IList<ScenicImg> viceImg = bllSI.GetSiByType(s, 2);
+                if (viceImg.Count > 0)
+                {
+                    targetImageUrl = viceImg[0].Name;
+                }
+            }
+            if (!string.IsNullOrEmpty(targetImageUrl))
+            {
+                //  string extention = System.IO.Path.GetExtension(targetImageUrl);
+                targetImageUrl = targetImageUrl.Insert(targetImageUrl.IndexOf("."), "_s");
+
+                img.ImageUrl = "/ScenicImg/small/" + targetImageUrl;
+            }
             string ahref = "/Tickets/" + bllArea.GetAreaByCode(s.Area.Code.Substring(0, 4) + "00").SeoName + "_" + s.Area.SeoName + "/" + s.SeoName + ".html";
             HtmlAnchor ha = e.Item.FindControl("schref") as HtmlAnchor;
             ha.HRef = ahref;
