@@ -68,8 +68,8 @@ public partial class Admin_ManageDptEdit : basepage
         CurrentMgrDpt.Name = tbxName.Text;
         CurrentMgrDpt.Phone = tbxPhone.Text;
         CurrentMgrDpt.seoname = tbxAdmin.Text;
-        bllMember.CreateUpdateDptAdmin(CurrentMgrDpt);
         bllMgrDpt.Save(CurrentMgrDpt);
+        bllMember.CreateUpdateDptAdmin(CurrentMgrDpt);
         if (IsNew)
         {
             Response.Redirect("ManageDptEdit.aspx?dptid=" + CurrentMgrDpt.Id);

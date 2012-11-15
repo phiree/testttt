@@ -199,6 +199,7 @@ public partial class Admin_Demo : System.Web.UI.Page
                 cr.ConsumeTime = r.DJ_TourGroup.BeginDate.AddDays(r.DayNo);
                 cr.Enterprise = r.Enterprise;
                 cr.LiveDay = 1;
+                cr.RoomNum = 2;
                 bllConsum.DAL.Save(cr);
             }
         }
