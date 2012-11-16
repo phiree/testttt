@@ -25,7 +25,7 @@ namespace ExcelOplib
                 #endregion
 
                 #region 管理部门
-                string sql0 = "select 名称,seo,地区 from [管理部门$]";
+                const string sql0 = "select 名称,seo,地区 from [管理部门$]";
                 DataTable dt0 = new DataTable();
                 OleDbCommand cmd0 = new OleDbCommand(sql0, new OleDbConnection(conn));
                 OleDbDataAdapter ad0 = new OleDbDataAdapter(cmd0);
@@ -33,7 +33,7 @@ namespace ExcelOplib
                 #endregion
 
                 #region 地接社
-                string sql1 = "select 一级部门,二级部门,三级部门,地区,seo from [地接社$]";
+                const string sql1 = "select 一级部门,二级部门,三级部门,地区,seo from [地接社$]";
                 DataTable dt1 = new DataTable();
                 OleDbCommand cmd1 = new OleDbCommand(sql1, new OleDbConnection(conn));
                 OleDbDataAdapter ad1 = new OleDbDataAdapter(cmd1);
@@ -41,7 +41,7 @@ namespace ExcelOplib
                 #endregion
 
                 #region 景区
-                string sql2 = "select 一级部门,二级部门,三级部门,地区,seo from [景区$]";
+                const string sql2 = "select 一级部门,二级部门,三级部门,地区,seo from [景区$]";
                 DataTable dt2 = new DataTable();
                 OleDbCommand cmd2 = new OleDbCommand(sql2, new OleDbConnection(conn));
                 OleDbDataAdapter ad2 = new OleDbDataAdapter(cmd2);
@@ -49,7 +49,7 @@ namespace ExcelOplib
                 #endregion
 
                 #region 宾馆
-                string sql3 = "select 一级部门,二级部门,三级部门,地区,seo from [宾馆$]";
+                const string sql3 = "select 一级部门,二级部门,三级部门,地区,seo from [宾馆$]";
                 DataTable dt3 = new DataTable();
                 OleDbCommand cmd3 = new OleDbCommand(sql3, new OleDbConnection(conn));
                 OleDbDataAdapter ad3 = new OleDbDataAdapter(cmd3);
