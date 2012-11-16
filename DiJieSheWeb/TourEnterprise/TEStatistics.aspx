@@ -31,8 +31,8 @@
         验证时间<asp:TextBox ID="txtBeginTime" runat="server" Width="100px"></asp:TextBox>至<asp:TextBox ID="txtEndTime" runat="server" Width="100px"></asp:TextBox>
         验证状态<asp:DropDownList ID="ddlState" runat="server">
             <asp:ListItem Value="全部">全部</asp:ListItem>
-            <asp:ListItem Value="已认证">已认证</asp:ListItem>
-            <asp:ListItem Value="未认证">未认证</asp:ListItem>
+            <asp:ListItem Value="已验证">已验证</asp:ListItem>
+            <asp:ListItem Value="未验证">未验证</asp:ListItem>
             </asp:DropDownList>
         <asp:Button ID="BtnSearch" runat="server" Text="查询" CssClass="btn" onclick="BtnSearch_Click" />
             <asp:Button ID="BtnCreatexls" runat="server" Text="导出成excel" 

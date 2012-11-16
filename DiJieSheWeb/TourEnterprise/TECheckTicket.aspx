@@ -56,6 +56,7 @@
                         <asp:HiddenField ID="hfrouteId" runat="server" />
                         <h5>团队信息:</h5>
                         <p>导游:<asp:Literal ID="laGuideName" runat="server"></asp:Literal></p>
+                        <p>地接社名称:<%# Eval("DJ_DijiesheInfo.Name")%></p>
                         <p>团队名称:<%# Eval("Name") %></p>
                         <p>人数:成人<%# Eval("AdultsAmount")%>人&nbsp;儿童<%# Eval("ChildrenAmount")%>人</p>
                             <h5>实际信息：</h5>
@@ -75,7 +76,7 @@
         <tr>
             <td></td>
             <td>
-                <asp:Button ID="btnCheckOut" Text="验证通过并打印" runat="server" OnClick="btnCheckOut_Click" style=" display:block; float:left;margin-right:10px" />
+                <asp:Button ID="btnCheckOut" Text="验证通过并打印" runat="server" OnClick="btnCheckOut_Click" style=" display:block; float:left;margin-right:10px" class="btn2" />
                 <a id="btnPrint" runat="server"  class="btn" href="" target="_blank" style="display:block; text-decoration:none; text-align:center; line-height:20px;color:#009383; float:left; display:none">打印凭证</a>
                 
             </td>

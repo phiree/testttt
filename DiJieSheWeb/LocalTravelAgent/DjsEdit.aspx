@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
-        信息维护
+        企业信息
     </div>
     <div class="detaillist">
         <table border="0" cellpadding="0" cellspacing="0" class="comTable">
@@ -14,7 +14,7 @@
                     名称:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtName" runat="server" Width="80%" />
+                    <asp:TextBox ID="txtName" runat="server" Width="80%" Enabled="false" />
                 </td>
                 <td>
                     地区

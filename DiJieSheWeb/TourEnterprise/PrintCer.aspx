@@ -34,8 +34,11 @@
     <!--startprint-->
     <h2>
         入住凭证</h2>
+    
     <asp:Repeater ID="rptPrint" runat="server" OnItemDataBound="rptPrint_ItemDataBound">
+        
         <ItemTemplate>
+            No:<%# Eval("Id").GetHashCode() %>
             <table border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td>
@@ -49,7 +52,7 @@
                         验证时间:
                     </td>
                     <td>
-                        <%# Eval("ConsumeTime")%>
+                        <%# Eval("ConsumeTime","{0:yyyy-MM-dd}")%>
                     </td>
                 </tr>
                 <tr>
@@ -71,8 +74,8 @@
                         备注:
                     </td>
                     <td colspan="3" style="height: 100px; text-align: left; vertical-align: top;">
-                        团队名称:<%# Eval("Route.DJ_TourGroup.Name")%>
-                        &nbsp;&nbsp;地接社名称:<%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>
+                        地接社名称:<%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>
+                        &nbsp;&nbsp;团队名称:<%# Eval("Route.DJ_TourGroup.Name")%>
                     </td>
                 </tr>
             </table>
