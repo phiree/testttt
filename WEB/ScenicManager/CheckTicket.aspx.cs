@@ -80,7 +80,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
         List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s);
         //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
-        List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetTourGroupByTEId(s.Id).ToList();
+        List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetTourGroupByTeId(s.Id).ToList();
         foreach (DJ_Group_Worker gw in listdjGW)
         {
             //排除以后的人员信息
@@ -340,7 +340,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             rptpayyd.Visible = true;
         rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayonline.DataBind();
-        rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTE(ViewState["idcard"].ToString(), CurrentScenic);
+        rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTe(ViewState["idcard"].ToString(), CurrentScenic);
         rptguiderinfo.DataBind();
     }
 
@@ -512,7 +512,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         else
             rptpayonline.Visible = true;
         //导游信息
-        rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTE(idcard, CurrentScenic);
+        rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTe(idcard, CurrentScenic);
         rptguiderinfo.DataBind();
         ShowResult();
     }

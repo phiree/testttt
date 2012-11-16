@@ -120,5 +120,10 @@ namespace DAL
             where=where+conditions;
             return GetList(where, pageIndex, pageSize, out totalRecord);
         }
+        public override void Save(DJ_TourGroup o)
+        {
+            o.LastUpdateTime = DateTime.Now;
+            base.Save(o);
+        }
     }
 }

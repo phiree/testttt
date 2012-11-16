@@ -36,18 +36,18 @@ namespace BLL
         }
 
         
-        public IList<Model.DJ_Group_Worker> GetTourGroupByTEId(int id)
+        public IList<Model.DJ_Group_Worker> GetTourGroupByTeId(int id)
         {
-            List<Model.DJ_TourGroup> listTg = Idjtourgroup.GetTourGroupByTEId(id).ToList();
-            List<Model.DJ_Group_Worker> listGw = new List<Model.DJ_Group_Worker>();
-            List<Model.DJ_Group_Worker> listGw2 = new List<Model.DJ_Group_Worker>();
-            foreach (Model.DJ_TourGroup tg in listTg)
+            var listTg = Idjtourgroup.GetTourGroupByTEId(id).ToList();
+            var listGw = new List<Model.DJ_Group_Worker>();
+            var listGw2 = new List<Model.DJ_Group_Worker>();
+            foreach (var tg in listTg)
             {
                 listGw.AddRange(tg.Workers.Where(x => x.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>());
             }
-            foreach (Model.DJ_Group_Worker item in listGw)
+            foreach (var item in listGw)
             {
-                if (listGw2.Where(x => x.IDCard == item.IDCard).Count() == 0)
+                if (listGw2.Count(x => x.IDCard == item.IDCard) == 0)
                 {
                     listGw2.Add(item);
                 }
@@ -61,24 +61,25 @@ namespace BLL
         /// 查找当天的团队
         /// </summary>
         /// <param name="idcard">导游身份证号</param>
-        /// <param name="TE">管理部门</param>
+        /// <param name="te">管理部门</param>
         /// <returns></returns>
-        public IList<Model.DJ_TourGroup> GetTgByIdcardAndTE(string idcard, Model.DJ_TourEnterprise TE)
+        public IList<Model.DJ_TourGroup> GetTgByIdcardAndTe(string idcard, Model.DJ_TourEnterprise te)
         {
-            List<Model.DJ_TourGroup> ListTg = Idjtourgroup.GetTgByIdcardAndTE(idcard, TE).ToList();
-            List<Model.DJ_TourGroup> ListTyTg = new List<Model.DJ_TourGroup>();
-            foreach (Model.DJ_TourGroup Tg in ListTg)
+            if (te == null) throw new ArgumentNullException("te");
+            var listTg = Idjtourgroup.GetTgByIdcardAndTE(idcard, te).ToList();
+            var listTyTg = new List<Model.DJ_TourGroup>();
+            foreach (Model.DJ_TourGroup tg in listTg)
             {
-                DateTime dtBegin = Tg.BeginDate;
-                foreach (Model.DJ_Route route in Tg.Routes)
+                var dtBegin = tg.BeginDate;
+                foreach (Model.DJ_Route route in tg.Routes)
                 {
-                    if (dtBegin.AddDays(route.DayNo - 1).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == TE.Id)
+                    if (dtBegin.AddDays(route.DayNo - 1).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == te.Id)
                     {
-                        ListTyTg.Add(Tg);
+                        listTyTg.Add(tg);
                     }
                 }
             }
-            return ListTyTg;
+            return listTyTg;
         }
         /// <summary>
         /// 查找当天该景区的导游信息
@@ -97,14 +98,14 @@ namespace BLL
        
         public void DeleteDemoGroups(string nameLike)
         {
-          IList<DJ_TourGroup> demoGroups= Idjtourgroup.GetList(0, nameLike, true, string.Empty);
+          var demoGroups= Idjtourgroup.GetList(0, nameLike, true, string.Empty);
           //DJ_TourGroup[] arrGroups = new DJ_TourGroup[] { };
           //demoGroups.CopyTo(arrGroups, 0);
           //for (int i = 0; i < arrGroups.Length;i++ )
           //{
           //    Delete(demoGroups[i]);
           //}
-          foreach (DJ_TourGroup g in demoGroups)
+          foreach (var g in demoGroups)
           {
               Delete(g);
           }
@@ -131,13 +132,12 @@ namespace BLL
         public IList<DJ_TourGroupMember> GetMemberListFromFormatString(string formatedString, out string totalErrMsg)
         {
             totalErrMsg = string.Empty;
-            string[] arrStrMember = formatedString.Split(Environment.NewLine.ToCharArray());
+            var arrStrMember = formatedString.Split(Environment.NewLine.ToCharArray());
             IList<DJ_TourGroupMember> members = new List<DJ_TourGroupMember>();
-            foreach (string s in arrStrMember)
+            foreach (var s in arrStrMember.Where(s => !string.IsNullOrEmpty(s)))
             {
-                if (string.IsNullOrEmpty(s)) continue;
                 string singleErr;
-                DJ_TourGroupMember newMember = SerializationModel.SerializeMember(s, out singleErr);
+                var newMember = SerializationModel.SerializeMember(s, out singleErr);
                 if (!string.IsNullOrEmpty(singleErr))
                 {
                     totalErrMsg += singleErr + Environment.NewLine;

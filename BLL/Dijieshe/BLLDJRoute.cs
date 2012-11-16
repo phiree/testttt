@@ -9,8 +9,8 @@ namespace BLL
     public class BLLDJRoute
     {
 
-      public  DALDJ_Route Idjroute = new DAL.DALDJ_Route();
-      BLLDJEnterprise bllEnt = new BLLDJEnterprise();
+        public DALDJ_Route Idjroute = new DAL.DALDJ_Route();
+        BLLDJEnterprise bllEnt = new BLLDJEnterprise();
         /// <summary>
         /// 根据预报时间得到当前的团队
         /// </summary>
@@ -25,9 +25,9 @@ namespace BLL
             {
                 foreach (Model.DJ_Route route in tg.Routes)
                 {
-                    if (DateTime.Parse(tg.BeginDate.AddDays(route.DayNo - 1).ToShortDateString()) <= DateTime.Parse(time.ToShortDateString()) && DateTime.Parse(tg.BeginDate.AddDays(route.DayNo - 1).ToShortDateString())>=DateTime.Parse(DateTime.Now.ToShortDateString()) && DateTime.Parse(tg.EndDate.ToShortDateString()) >= DateTime.Parse(DateTime.Now.ToShortDateString()) && route.Enterprise.Id == teid)
+                    if (DateTime.Parse(tg.BeginDate.AddDays(route.DayNo - 1).ToShortDateString()) <= DateTime.Parse(time.ToShortDateString()) && DateTime.Parse(tg.BeginDate.AddDays(route.DayNo - 1).ToShortDateString()) >= DateTime.Parse(DateTime.Now.ToShortDateString()) && DateTime.Parse(tg.EndDate.ToShortDateString()) >= DateTime.Parse(DateTime.Now.ToShortDateString()) && route.Enterprise.Id == teid)
                     {
-                        if (new DAL.DALDJ_GroupConsumRecord().GetGroupConsumRecordByRouteId(route.Id)==null)
+                        if (new DAL.DALDJ_GroupConsumRecord().GetGroupConsumRecordByRouteId(route.Id) == null)
                             ListRoute.Add(route);
                     }
                 }
@@ -40,9 +40,9 @@ namespace BLL
             return Idjroute.GetOne(routeId);
         }
 
-        public IList<Model.DJ_Route> GetRouteByDayNoandGroupid(int dayno, Guid groupid ,int entid)
+        public IList<Model.DJ_Route> GetRouteByDayNoandGroupid(int dayno, Guid groupid, int entid)
         {
-            return Idjroute.GetRouteByDayNoandGroupid(dayno, groupid,entid);
+            return Idjroute.GetRouteByDayNoandGroupid(dayno, groupid, entid);
         }
         public void Save(Model.DJ_Route route)
         {
@@ -57,9 +57,9 @@ namespace BLL
         {
             Idjroute.Delete(route);
         }
-        public IList<Model.DJ_Route> GetRouteByAllCondition(string groupname, string EntName, string BeginTime, string EndTime,int enterid)
+        public IList<Model.DJ_Route> GetRouteByAllCondition(string groupname, string EntName, string BeginTime, string EndTime, int enterid)
         {
-            IList<Model.DJ_Route> ListRoute= Idjroute.GetRouteByAllCondition(groupname, EntName, BeginTime, EndTime,enterid);
+            IList<Model.DJ_Route> ListRoute = Idjroute.GetRouteByAllCondition(groupname, EntName, BeginTime, EndTime, enterid);
             List<Model.DJ_Route> ListWroute = new List<Model.DJ_Route>();
             if (ListRoute.Count > 1)
             {
@@ -74,7 +74,7 @@ namespace BLL
                     else
                     {
                         ListWroute.Add(ListRoute[i]);
-                        
+
                     }
                 }
 
@@ -100,19 +100,22 @@ namespace BLL
         /// <param name="dayNo"></param>
         /// <param name="entNames"></param>
         /// <param name="errMsg"></param>
-        public void SaveFromNameList(Model.DJ_TourGroup group, int dayNo, List<string> entNames,out string errMsg)
+        public void SaveFromNameList(Model.DJ_TourGroup group, int dayNo, List<string> entNames, out string errMsg)
         {
-   
-            IList<DJ_Route> otherDayRoutes= group.Routes.Where(x => x.DayNo != dayNo).ToList();
+            //todo: group移除route,保存后,route的 外键会变成null...
+            //解决方法:http://stackoverflow.com/questions/302720/how-to-delete-child-object-in-nhibernate
+            IList<DJ_Route> dayRoutes = group.Routes.Where(x => x.DayNo == dayNo).ToList();
+            foreach (DJ_Route r in dayRoutes)
+            {
 
-            group.Routes = otherDayRoutes;
-            
+                group.Routes.Remove(r);
+            }
             IList<DJ_Route> routes = CreateRouteFromNameList(dayNo, entNames, out errMsg);
-         
+
             foreach (DJ_Route route in routes)
             {
                 group.Routes.Add(route);
-          
+
             }
         }
 
@@ -120,13 +123,13 @@ namespace BLL
         {
             errMsg = string.Empty;
             IList<DJ_Route> allRoutes = new List<DJ_Route>();
-            string[] arrSingleLine = multiLineString.Split(Environment.NewLine.ToCharArray()).Where(x=>!string.IsNullOrWhiteSpace(x)).ToArray();
+            string[] arrSingleLine = multiLineString.Split(Environment.NewLine.ToCharArray()).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
             for (int i = 1; i <= arrSingleLine.Length; i++)
             {
                 int dayNo = i;
-                List<string> entNames = arrSingleLine[i - 1].Split(new char[] {'\\','＼','、'}).Where(x=>!string.IsNullOrWhiteSpace(x)).ToList();
+                List<string> entNames = arrSingleLine[i - 1].Split(new char[] { '\\', '＼', '、' }).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
                 IList<DJ_Route> dayRoutes = CreateRouteFromNameList(dayNo, entNames, out errMsg);
-               allRoutes= allRoutes.Concat(dayRoutes).ToList();
+                allRoutes = allRoutes.Concat(dayRoutes).ToList();
             }
             return allRoutes;
 
@@ -140,10 +143,10 @@ namespace BLL
             {
                 foreach (var item in routes)
                 {
-                    sb += item.Enterprise.Name+"\\";
-                    
+                    sb += item.Enterprise.Name + "\\";
+
                 }
-               sb= sb.TrimEnd(new char[]{',', '，'});
+                sb = sb.TrimEnd(new char[] { ',', '，' });
                 sb += Environment.NewLine;
             }
             return sb;
@@ -164,7 +167,7 @@ namespace BLL
                 }
                 DJ_Route newRoute = new DJ_Route();
                 newRoute.DayNo = dayNo;
-              
+
                 newRoute.Enterprise = ent;
 
                 routes.Add(newRoute);
@@ -177,6 +180,6 @@ namespace BLL
         /// </summary>
         /// <param name="routes"></param>
         /// <returns></returns>
-      
+
     }
 }

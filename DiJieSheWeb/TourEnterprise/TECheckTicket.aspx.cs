@@ -28,7 +28,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
     private void init()
     {
         detailinfo.Visible = false;
-        rptGroupList.DataSource = blldjtourgroup.GetTourGroupByTEId(Master.CurrentTE.Id);
+        rptGroupList.DataSource = blldjtourgroup.GetTourGroupByTeId(Master.CurrentTE.Id);
         rptGroupList.DataBind();
         hfetid.Value = Master.CurrentTE.Id.ToString();
     }
@@ -199,7 +199,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
     /// <param name="idcard"></param>
     private void BindRptByIdcard(string idcard)
     {
-        rptTourGroupInfo.DataSource = blldjtourgroup.GetTgByIdcardAndTE(idcard, Master.CurrentTE);
+        rptTourGroupInfo.DataSource = blldjtourgroup.GetTgByIdcardAndTe(idcard, Master.CurrentTE);
         rptTourGroupInfo.DataBind();
         if (rptTourGroupInfo.Items.Count > 0)
         {
@@ -323,7 +323,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
     [WebMethod]
     public static string GetAllHints(string etid)
     {
-        List<DJ_Group_Worker> ListGw= new BLLDJTourGroup().GetTourGroupByTEId(int.Parse(etid)).ToList();
+        List<DJ_Group_Worker> ListGw= new BLLDJTourGroup().GetTourGroupByTeId(int.Parse(etid)).ToList();
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (DJ_Group_Worker item in ListGw)
         {
