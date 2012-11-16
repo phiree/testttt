@@ -60,6 +60,15 @@ public partial class DiscountTicket_DiscountTicket : basepage
             int.TryParse(levelname.TrimEnd('a').TrimEnd('A'), out level);
 
         }
+        if (string.IsNullOrEmpty(countyname))
+        {
+            pagerGot.UrlRewritePattern = "/Tickets/%area%/%level%/page_{0}.html";
+        }
+        else
+        {
+            pagerGot.UrlRewritePattern = "/Tickets/%area%_%county%/%level%/page_{0}.html";
+        }
+
         if (!IsPostBack)
         {
             GetAreaId();

@@ -105,7 +105,7 @@
         </asp:Repeater>
         <div id="pager" class="span-19 last" style="margin-left: 30px; margin-bottom: 40px;">
             <uc:AspNetPager runat="server" EnableUrlRewriting="true" ID="pagerGot" CssClass="paginator"
-                UrlPaging="true" UrlPageIndexName="pgotindex" UrlRewritePattern="/Tickets/%area%/%level%/page_{0}.html"
+                UrlPaging="true" UrlPageIndexName="pgotindex" UrlRewritePattern="/Tickets/%area%_%county%/%level%/page_{0}.html"
                 FirstPageText="首页" LastPageText="尾页" PageSize="12" NextPageText="下一页" CurrentPageButtonClass="cpb"
                 PrevPageText="上一页">
             </uc:AspNetPager>
