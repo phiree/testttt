@@ -36,6 +36,7 @@ namespace Model
         /// </summary>
         public virtual DJ_TourGroup DJ_TourGroup { get; set; }
         public virtual DJ_DijiesheInfo DJ_Dijiesheinfo { get; set; }
+        public virtual string CompanyBelong { get; set; }
        
     }
     public enum DJ_GroupWorkerType
