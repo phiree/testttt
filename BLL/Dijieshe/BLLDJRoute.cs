@@ -104,8 +104,8 @@ namespace BLL
         {
             //todo: group移除route,保存后,route的 外键会变成null...
             //解决方法:http://stackoverflow.com/questions/302720/how-to-delete-child-object-in-nhibernate
-            IList<DJ_Route> otherDayRoutes = group.Routes.Where(x => x.DayNo == dayNo).ToList();
-            foreach (DJ_Route r in otherDayRoutes)
+            IList<DJ_Route> dayRoutes = group.Routes.Where(x => x.DayNo == dayNo).ToList();
+            foreach (DJ_Route r in dayRoutes)
             {
 
                 group.Routes.Remove(r);
