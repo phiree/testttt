@@ -18,7 +18,7 @@ namespace BLL
         public static Model.DJ_TourGroupMember SerializeMember(string singleModelString, out string errMsg)
         {
             errMsg = "";
-            string[] strArrMember = singleModelString.Split(',');
+            string[] strArrMember = singleModelString.Split('\\');
             //类型,姓名,证件号,电话号码
             int strLength = strArrMember.Length;
             if (strLength < 2)

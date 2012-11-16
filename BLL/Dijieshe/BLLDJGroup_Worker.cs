@@ -20,8 +20,9 @@ namespace BLL
            set { dalworker = value; }
        }
 
-        public void SaveData(string name, string phone, string idcard, string othercard,
-            Model.DJ_GroupWorkerType type,Model.DJ_DijiesheInfo djs,out string message)
+        public void SaveData(string name, string phone, string idcard, string othercard
+            ,string companyBelong
+            ,Model.DJ_GroupWorkerType type,Model.DJ_DijiesheInfo djs,out string message)
         {
             message = string.Empty;
             var result = Get8Multi(null, name, null, idcard, null, type, null, null);
@@ -36,7 +37,8 @@ namespace BLL
                 IDCard=idcard,
                 SpecificIdCard=othercard,
                 WorkerType=type,
-                DJ_Dijiesheinfo=djs
+                DJ_Dijiesheinfo=djs,
+                CompanyBelong=companyBelong
             };
             DalWorker.Save(worker);
         }
