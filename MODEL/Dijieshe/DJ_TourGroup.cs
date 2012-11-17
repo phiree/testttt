@@ -121,8 +121,8 @@ namespace Model
         public virtual void DeleteMember(DJ_TourGroupMember member)
         {
             this.Members.Remove(member);
-        }
-        public virtual DateTime LastUpdateTime { get; set; }
+        }   private DateTime lastUpdateTime = DateTime.Now;
+        public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
     }
     public enum TourGroupState
     {

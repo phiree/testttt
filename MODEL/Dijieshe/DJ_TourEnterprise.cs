@@ -48,7 +48,7 @@ namespace Model
         public virtual string Email { get; set; }
         public virtual string Buslicense { get; set; }
         public virtual string Level { get; set; }
-        private DateTime lastUpdateTime;
+        private DateTime lastUpdateTime = DateTime.Now;
         public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
         public virtual RewardType GetRewart(DJ_GovManageDepartment gov)
         {

@@ -22,6 +22,7 @@
             手机:<asp:TextBox ID="txtPhone_add" runat="server" style="margin-left:50px" /><br />
             身份证号:<asp:TextBox ID="txtId_add" runat="server" style="margin-right:100px;margin-left:27px" />
             导游证号:<asp:TextBox ID="txtGuideid_add" runat="server" style="margin-left:27px" /><br />
+             所属公司:<asp:TextBox ID="tbxBelong" runat="server" style="margin-left:27px" /><br />
             <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn" OnClick="btnQuickadd_Click" />
         </div>
     <div class="detaillist">
@@ -54,7 +55,10 @@
                                 <asp:LinkButton ID="lblidcard" Text="身份证号" runat="server" CommandName="lblidcard" />
                             </th>
                             <th>
-                                <asp:LinkButton ID="lblguide" Text="导游证号" runat="server" CommandName="lblguide" />
+                             导游证号
+                            </th>
+                             <th>
+                                所属公司
                             </th>
                         </tr>
                     </thead>
@@ -74,6 +78,9 @@
                     </td>
                     <td>
                         <%#Eval("SpecificIdCard")%>
+                    </td>
+                     <td>
+                        <%#Eval("CompanyBelong")%>
                     </td>
                 </tr>
             </ItemTemplate>

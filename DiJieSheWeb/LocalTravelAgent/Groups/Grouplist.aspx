@@ -110,7 +110,7 @@
                             <%#Eval("Name")%></a>
                     </td>
                     <td>
-                        <%#((DateTime)Eval("BeginDate")).ToShortDateString() %>
+                        <%#((DateTime)Eval("BeginDate")).Year == DateTime.Now.Year ? ((DateTime)Eval("BeginDate")).ToString("MM月dd日") : ((DateTime)Eval("BeginDate")).ToString("yyyy年MM月dd日")%>
                     </td>
                     <td>
                         <%#Eval("DaysAmount")%>日游
