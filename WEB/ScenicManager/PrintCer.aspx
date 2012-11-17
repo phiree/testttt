@@ -36,6 +36,7 @@
         <h2>游玩凭证</h2>
     <asp:Repeater ID="rptPrint" runat="server" onitemdatabound="rptPrint_ItemDataBound">
         <ItemTemplate>
+            No:<%# Eval("Id").GetHashCode() %>
             <table border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td style="width:150px;">
