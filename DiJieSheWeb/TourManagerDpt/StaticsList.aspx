@@ -78,19 +78,19 @@
                                 总人数
                             </th>
                             <th>
-                                住宿人天数
+                                游览人数
                             </th>
                             <th>
-                                游览人数
+                                住宿人天数
                             </th>
                             <th>
                                 总人数
                             </th>
                             <th>
-                                住宿人天数
+                                游览人数
                             </th>
                             <th>
-                                游览人数
+                                住宿人天数
                             </th>
                         </tr>
                     </thead>
@@ -103,22 +103,22 @@
                                             <%#Eval("Name")%></a>
                                     </td>
                                     <td>
-                                        <%#(int)Eval("AdultsAmount")+(int)Eval("ChildrenAmount")%>
+                                        <%#(int)Eval("m_AdultsAmount") + (int)Eval("m_ChildrenAmount")%>
                                     </td>
                                     <td>
-                                        <%#Eval("LiveDays")%>
+                                        <%#Eval("m_Playnums")%>
                                     </td>
                                     <td>
-                                        <%#Eval("Playnums")%>
+                                        <%#Eval("m_LiveDays")%>
                                     </td>
                                     <td>
                                         <%#(int)Eval("y_AdultsAmount") + (int)Eval("y_ChildrenAmount")%>
                                     </td>
                                     <td>
-                                        <%#Eval("y_LiveDays")%>
+                                        <%#Eval("y_Playnums")%>
                                     </td>
                                     <td>
-                                        <%#Eval("y_Playnums")%>
+                                        <%#Eval("y_LiveDays")%>
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -132,24 +132,25 @@
                                 <%=m_total%>
                             </td>
                             <td>
-                                <%=m_hotel%>
+                                <%=m_play%>
                             </td>
                             <td>
-                                <%=m_play%>
+                                <%=m_hotel%>
                             </td>
                             <td>
                                 <%=y_total%>
                             </td>
                             <td>
-                                <%=y_hotel%>
+                                <%=y_play%>
                             </td>
                             <td>
-                                <%=y_play%>
+                                <%=y_hotel%>
                             </td>
                         </tr>
                     </tfoot>
                 </table>
                 <div style="clear: both">
+                    <asp:Button ID="btnOutput" Text="导出" runat="server" OnClick="btnOutput1_Click" />
                 </div>
             </div>
             <div id="tabs-2">
@@ -199,6 +200,7 @@
                     </FooterTemplate>
                 </asp:Repeater>
                 <div style="clear: both">
+                    <asp:Button ID="btnOutput2" Text="导出" runat="server" OnClick="btnOutput2_Click" />
                 </div>
             </div>
             <div id="tabs-3">
@@ -255,6 +257,7 @@
                     </FooterTemplate>
                 </asp:Repeater>
                 <div style="clear: both">
+                    <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" />
                 </div>
             </div>
         </div>
