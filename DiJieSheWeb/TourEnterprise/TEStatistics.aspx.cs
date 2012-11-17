@@ -36,9 +36,9 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
     private List<DJ_GroupConsumRecord> GetRecordList()
     {
         List<DJ_GroupConsumRecord> ListRec = new List<DJ_GroupConsumRecord>();
-        if (ddlState.SelectedValue == "已认证")
+        if (ddlState.SelectedValue == "已验证")
             ListRec = bllrecord.GetRecordByAllCondition(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text, Master.CurrentTE.Id);
-        if (ddlState.SelectedValue == "未认证")
+        if (ddlState.SelectedValue == "未验证")
             ListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
         if (ddlState.SelectedValue == "全部")
         {
@@ -160,12 +160,12 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
     {
         List<DJ_GroupConsumRecord> WListRec = new List<DJ_GroupConsumRecord>();
         List<DJ_GroupConsumRecord> YListRec = new List<DJ_GroupConsumRecord>();
-        if (ddlState.SelectedValue == "已认证")
+        if (ddlState.SelectedValue == "已验证")
         {
             YListRec = bllrecord.GetRecordByAllCondition(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text, Master.CurrentTE.Id);
             WListRec = null;
         }
-        if (ddlState.SelectedValue == "未认证")
+        if (ddlState.SelectedValue == "未验证")
         {
             WListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
             YListRec = null;
@@ -175,7 +175,7 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
             YListRec = bllrecord.GetRecordByAllCondition(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text, Master.CurrentTE.Id);
             WListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
         }
-        CreateExcels(WListRec, YListRec, "test.xls");
+        CreateExcels(WListRec, YListRec, Master.CurrentTE.Name+"信息统计.xls");
     }
 
 

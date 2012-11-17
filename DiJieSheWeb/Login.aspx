@@ -73,7 +73,7 @@
                                 <tr>
                                     <td align="right" colspan="2" style="height:75px; text-align:center;">
                                         <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="登录" ValidationGroup="lg" CssClass="btn_login" style="margin-right:20px;" />
-                                        <asp:Button ID="Register" runat="server" Text="申请加入" CssClass="btn_login" />
+                                        
                                     </td>
                                 </tr>
                             </table>

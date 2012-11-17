@@ -14,7 +14,7 @@
                 <td>
                     用户名
                 </td>
-                <td>
+                <td style=" text-align:center;">
                     <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                 </td>
             </tr>
@@ -25,14 +25,14 @@
                 </td>
                 <td >
                     <asp:CheckBoxList ID="cbList" runat="server" CssClass="rbl" style="border:none !important">
-                        <asp:ListItem Value="1" >信息编辑员(修改、编辑宾馆和景点信息)</asp:ListItem>
+                        <asp:ListItem Value="1" >行业管理员(修改、编辑宾馆和景点信息)</asp:ListItem>
                         <asp:ListItem Value="2" >报表查看员(查看旅游企业和管理部门相关报表)</asp:ListItem>
                         <asp:ListItem Value="4" >用户管理员(管理各类用户权限)</asp:ListItem>
                     </asp:CheckBoxList>
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="2" style=" text-align:center;">
                     <asp:Button ID="BtnSave" runat="server" Text="保存" CssClass="btn" 
                         onclick="BtnSave_Click" />
                 </td>

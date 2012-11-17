@@ -37,9 +37,11 @@
             <div id="logo">
                 <div class="mainarea" style="padding-left:7px">
                     浙江省<span></span></div>
-                <a href="/">
-                    <img class="logoleft" src="/theme/default/image/newversion/Logo2.png" />
-                </a>
+                    <div class="logoleft">
+                        <a href="/">
+                            <img src="/theme/default/image/newversion/tourol.jpg" alt="中国旅游在线" />
+                        </a>
+                    </div>
                 <div class="logoright">
                     <div class="uertool">
                         <asp:LoginView runat="server" ID="lv">

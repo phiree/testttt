@@ -77,7 +77,6 @@ public partial class TourManagerDpt_UserEdit : System.Web.UI.Page
             }
         }
         mgrUser.PermissionType = sat;
-        mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
         blldj_user.SaveOrUpdate(mgrUser);
         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "s", "alert('保存成功');window.location='/TourManagerDpt/UserManager.aspx'", true);
     }

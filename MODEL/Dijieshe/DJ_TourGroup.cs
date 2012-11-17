@@ -122,7 +122,7 @@ namespace Model
         {
             this.Members.Remove(member);
         }
-
+        public virtual DateTime LastUpdateTime { get; set; }
     }
     public enum TourGroupState
     {

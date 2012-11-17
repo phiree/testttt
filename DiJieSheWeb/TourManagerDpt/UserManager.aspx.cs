@@ -35,7 +35,7 @@ public partial class TourManagerDpt_UserManager : basepageMgrDpt
             {
                 case 1:
                     {
-                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString();
+                        laPermis.Text = "行业管理员";
                         break;
                     }
                 case 2:
@@ -45,7 +45,7 @@ public partial class TourManagerDpt_UserManager : basepageMgrDpt
                     }
                 case 3:
                     {
-                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString()+"、"
+                        laPermis.Text = "行业管理员" +"、"
                             + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString();
                         break;
                     }
@@ -56,7 +56,7 @@ public partial class TourManagerDpt_UserManager : basepageMgrDpt
                     }
                 case 5:
                     {
-                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                        laPermis.Text = "行业管理员" +"、"
                             + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString();
                         break;
                     }
@@ -68,7 +68,7 @@ public partial class TourManagerDpt_UserManager : basepageMgrDpt
                     }
                 case 7:
                     {
-                        laPermis.Text = ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 1)).ToString() + "、"
+                        laPermis.Text = "行业管理员" +"、"
                             + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 2)).ToString() + "、"
                             + ((Model.PermissionType)Enum.ToObject(typeof(Model.PermissionType), 4)).ToString();
                         break;
