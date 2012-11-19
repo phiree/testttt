@@ -89,12 +89,16 @@ namespace BLL
             #endregion
             IList<OrderDetail> odlist = dal.GetMonthOrder(scenicid, datebegin, dateend, paidstate);
             IList<MonthOrder> molist = new List<MonthOrder>();
-            int idatebegin = int.Parse(dateBegin);
-            int idateend = int.Parse(dateEnd);
+            int idatebegin = int.Parse(dateBegin.Substring(0,4)+dateBegin.Substring(5,2));
+            int idateend = int.Parse(dateEnd.Substring(0,4)+dateEnd.Substring(5,2));
             int totalnum = 0;
             decimal totalprice = 0;
-            for (int i = idatebegin; i <= idateend && i%100<13; i++)
+            for (int i = idatebegin; i <= idateend; i++)
             {
+                if (i % 100 == 13)
+                {
+                    i = (idatebegin / 100 + 1) * 100 + 1;
+                }
                 string startwith = i.ToString("D6").Substring(0, 4) + "-" + i.ToString("D6").Substring(4, 2);
                 IEnumerable<OrderDetail> temp = odlist.Where(x => ((DateTime)x.Order.PayTime).ToString("yyyy-MM-dd").StartsWith(startwith));
                 var temp_online = temp.Where(x => x.TicketPrice.PriceType == PriceType.PayOnline);

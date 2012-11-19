@@ -4,7 +4,7 @@
 <%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
     <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/Scripts/My97DatePicker/WdatePicker.js"</script>
+    <script type="text/javascript" src="/Scripts/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript">
         $(function () {
             showdate();
@@ -24,11 +24,12 @@
     <hr />
     <div class="searchtime">
         账单日期&nbsp;<asp:TextBox ID="txtbegin" runat="server" CssClass="txtdate" onchange="showdate()" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />&nbsp;至&nbsp;<asp:TextBox ID="txtend" runat="server" CssClass="txtdate" onchange="showdate()" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
+        <asp:Button ID="Button2" runat="server" Text="查询" OnClick="unpay_CheckedChanged" />
     </div>
     <div id="zdmain">
        <div class="odstate">
             显示:
-    <asp:CheckBox ID="unpay" Text="未结" runat="server" AutoPostBack="True" 
+    <asp:CheckBox ID="unpay" Text="未结" runat="server" AutoPostBack="True"  Checked="true"
                 oncheckedchanged="unpay_CheckedChanged" />
     <asp:CheckBox ID="paid" Text="已结" runat="server" AutoPostBack="True" 
                 oncheckedchanged="unpay_CheckedChanged" />
