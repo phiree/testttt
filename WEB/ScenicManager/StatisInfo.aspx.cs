@@ -46,7 +46,7 @@ public partial class ScenticManager_StatisInfo : bpScenicManager
 
     protected void unpay_CheckedChanged(object sender, EventArgs e)
     {
-        if (int.Parse(txtbegin.Text) > int.Parse(txtend.Text))
+        if (DateTime.Parse(txtbegin.Text) > DateTime.Parse(txtend.Text))
         {
             Page.ClientScript.RegisterStartupScript(this.GetType(), "btnOk", "alert('起始日期必须大于结束日期')", true);
         }

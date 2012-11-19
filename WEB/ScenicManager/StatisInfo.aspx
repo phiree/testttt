@@ -4,6 +4,7 @@
 <%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
     <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Scripts/My97DatePicker/WdatePicker.js"</script>
     <script type="text/javascript">
         $(function () {
             showdate();
@@ -11,8 +12,8 @@
         function showdate() {
             var str = "";
             str += $("[id$='txtbegin']").val().toString().substring(0, 4);
-            str += "年" + $("[id$='txtbegin']").val().toString().substring(4, 6) + "月";
-            str += "-" + $("[id$='txtend']").val().toString().substring(0, 4) + "年" + $("[id$='txtend']").val().toString().substring(4, 6) + "月";
+            str += "年" + $("[id$='txtbegin']").val().toString().substring(5, 7) + "月";
+            str += "-" + $("[id$='txtend']").val().toString().substring(0, 4) + "年" + $("[id$='txtend']").val().toString().substring(5, 7) + "月";
             $("#datetitle").html(str);
         }
     </script>
@@ -22,7 +23,7 @@
         账单管理</p>
     <hr />
     <div class="searchtime">
-        账单日期&nbsp;<asp:TextBox ID="txtbegin" Text="201201" runat="server" CssClass="txtdate" onchange="showdate()" />&nbsp;至&nbsp;<asp:TextBox ID="txtend" Text="201212" runat="server" CssClass="txtdate" onchange="showdate()" />
+        账单日期&nbsp;<asp:TextBox ID="txtbegin" runat="server" CssClass="txtdate" onchange="showdate()" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />&nbsp;至&nbsp;<asp:TextBox ID="txtend" runat="server" CssClass="txtdate" onchange="showdate()" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
     </div>
     <div id="zdmain">
        <div class="odstate">

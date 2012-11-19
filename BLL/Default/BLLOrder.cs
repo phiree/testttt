@@ -67,24 +67,24 @@ namespace BLL
         public IList<MonthOrder> GetMonthOrder(int scenicid, string dateBegin, string dateEnd, bool? paidstate)
         {
             #region 日期封装
-            string datebegin = dateBegin.Substring(0, 4) + "-" + dateBegin.Substring(4, 2) + "-01";
+            string datebegin = dateBegin.Substring(0, 4) + "-" + dateBegin.Substring(5, 2) + "-01";
             string dateend = string.Empty;
-            if (dateEnd.Substring(4, 2) == "01"||dateEnd.Substring(4, 2) == "03"||dateEnd.Substring(4, 2) == "05"||dateEnd.Substring(4, 2) == "07"||
-                dateEnd.Substring(4, 2) == "08"||dateEnd.Substring(4, 2) == "10"||dateEnd.Substring(4, 2) == "12")
+            if (dateEnd.Substring(5, 2) == "01"||dateEnd.Substring(5, 2) == "03"||dateEnd.Substring(5, 2) == "05"||dateEnd.Substring(5, 2) == "07"||
+                dateEnd.Substring(5, 2) == "08"||dateEnd.Substring(5, 2) == "10"||dateEnd.Substring(5, 2) == "12")
             {
-                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-31";
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-31";
             }
-            if (dateEnd.Substring(4, 2) == "04" || dateEnd.Substring(4, 2) == "06" || dateEnd.Substring(4, 2) == "09" || dateEnd.Substring(4, 2) == "11" )
+            if (dateEnd.Substring(5, 2) == "04" || dateEnd.Substring(5, 2) == "06" || dateEnd.Substring(5, 2) == "09" || dateEnd.Substring(5, 2) == "11" )
             {
-                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-30";
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-30";
             }
-            if (dateEnd.Substring(4, 2) == "02" && int.Parse(dateEnd.Substring(0, 4))%4==0)
+            if (dateEnd.Substring(5, 2) == "02" && int.Parse(dateEnd.Substring(0, 4))%4==0)
             {
-                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-29";
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-29";
             }
-            if (dateEnd.Substring(4, 2) == "02" && int.Parse(dateEnd.Substring(0, 4)) % 4 != 0)
+            if (dateEnd.Substring(5, 2) == "02" && int.Parse(dateEnd.Substring(0, 4)) % 4 != 0)
             {
-                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-28";
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-28";
             }
             #endregion
             IList<OrderDetail> odlist = dal.GetMonthOrder(scenicid, datebegin, dateend, paidstate);
