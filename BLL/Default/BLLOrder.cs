@@ -20,6 +20,8 @@ namespace BLL
         public IList<Model.OrderDetail> GetListForUser(int orderID, int scenicID, bool? isPaid, string dateBegin, string dateEnd)
         {
             #region 日期封装
+            dateBegin = dateBegin.Substring(0, 4) + dateBegin.Substring(5, 2);
+            dateEnd = dateEnd.Substring(0, 4) + dateEnd.Substring(5, 2);
             string datebegin = dateBegin.Substring(0, 4) + "-" + dateBegin.Substring(4, 2) + "-01";
             string dateend = string.Empty;
             if (dateEnd.Substring(4, 2) == "01" || dateEnd.Substring(4, 2) == "03" || dateEnd.Substring(4, 2) == "05" || dateEnd.Substring(4, 2) == "07" ||

@@ -15,7 +15,7 @@ public partial class ScenticManager_StatisInfo : bpScenicManager
     {
         if (!IsPostBack)
         {
-            //bind();
+            unpay_CheckedChanged(null, null);
         }
     }
 
