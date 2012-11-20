@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/admin.master" AutoEventWireup="true"
     CodeFile="EnterpriseEdit.aspx.cs" Inherits="Admin_EnterpriseEdit" %>
 
+<%@ Register TagPrefix="uc" Src="~/UC/CityCode.ascx" TagName="dllcitycode" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
     <div class="detail_titlebg">
         企业编辑
@@ -18,7 +19,7 @@
                     <asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
                 </td>
             </tr>
-              <tr>
+            <tr>
                 <td>
                     登录帐号
                 </td>
@@ -45,9 +46,8 @@
                     所属区域
                 </td>
                 <td>
-                    <asp:DropDownList runat="server" ID="ddlArea">
-                    </asp:DropDownList>
                     <asp:TextBox runat="server" ID="tbxAreaCode"></asp:TextBox>
+                    <uc:dllcitycode ID="ddlarea" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -83,6 +83,7 @@
                 </td>
             </tr>
         </table>
-        <asp:Button runat="server" ID="btnSave" OnClick="btnSave_Click" Text="保存" CssClass="btn" style="margin-left:350px;" />
+        <asp:Button runat="server" ID="btnSave" OnClick="btnSave_Click" Text="保存" CssClass="btn"
+            Style="margin-left: 350px;" />
     </div>
 </asp:Content>
