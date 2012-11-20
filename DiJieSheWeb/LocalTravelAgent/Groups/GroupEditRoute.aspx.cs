@@ -82,7 +82,16 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
 
     void rptHotels_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        // throw new NotImplementedException();
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            TextBox tbxEntEdit = e.Item.FindControl("tbxEntEdit") as TextBox;
+            object ent = e.Item.DataItem;
+            if (ent!= null)
+            { 
+             
+            }
+
+        }
     }
 
     void rptScenics_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -94,11 +103,15 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             TextBox tbx= e.Item.FindControl("tbxEntEdit") as TextBox;
-            DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
-            if (ent!=null&&ent.IsVerified)
+            string entName = tbx.Text.Trim();
+            if (!string.IsNullOrEmpty(entName))
             {
-                tbx.CssClass = "rewardbb";
-                tbx.ForeColor = System.Drawing.Color.Red;
+                DJ_TourEnterprise ent = bllEnter.GetEntByName(entName);
+                if (ent != null && ent.IsVerified)
+                {
+                    tbx.CssClass = "rewardbb";
+                    tbx.ForeColor = System.Drawing.Color.Red;
+                }
             }
         }
     }
@@ -107,6 +120,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         string commandName=e.CommandName.ToLower();
         if (commandName== "edit")
         {
+            btnAddRoute.Visible = true;
             pnlEditRoute.Visible = true;
             rblDayNo.Enabled = false;
             int dayNo = Convert.ToInt32(e.CommandArgument);
