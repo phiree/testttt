@@ -61,6 +61,10 @@ namespace BLL
         {
             DalWorker.Update(worker);
         }
+        public void Save(Model.DJ_Group_Worker worker)
+        {
+            DalWorker.Save(worker);
+        }
 
         public Model.DJ_Group_Worker GetByIdCard(string idcard)
         {

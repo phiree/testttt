@@ -16,6 +16,7 @@ public partial class LocalTravelAgent_GuideList : basepageDJS
         {
             
             BindList();
+            tbxBelong.Text = CurrentDJS.Name;
         }
     }
 

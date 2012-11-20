@@ -14,20 +14,20 @@ namespace Model
         public DJ_DijiesheInfo()
         {
             Groups = new List<DJ_TourGroup>();
-            Works = new List<DJ_Group_Worker>();
+            Works = new List<DJ_Workers>();
         }
 
-        public virtual IList<DJ_Group_Worker> Drivers { get {
-            return Works.Where<DJ_Group_Worker>(x => x.DJ_Workers.WorkerType == DJ_GroupWorkerType.司机).ToList();
+        public virtual IList<DJ_Workers> Drivers { get {
+            return Works.Where(x => x.WorkerType == DJ_GroupWorkerType.司机).ToList();
         } }
-        public virtual IList<DJ_Group_Worker> Guides
+        public virtual IList<DJ_Workers> Guides
         {
             get
             {
-                return Works.Where<DJ_Group_Worker>(x => x.DJ_Workers.WorkerType == DJ_GroupWorkerType.导游).ToList();
+                return Works.Where(x => x.WorkerType == DJ_GroupWorkerType.导游).ToList();
             }
         }
-        public virtual IList<DJ_Group_Worker> Works { get; set; }
+        public virtual IList<DJ_Workers> Works { get; set; }
 
 
        
