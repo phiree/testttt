@@ -122,7 +122,7 @@ namespace DAL
         }
         public override void Save(DJ_TourGroup o)
         {
-            o.LastUpdateTime = DateTime.Now;
+             o.LastUpdateTime = DateTime.Now;
             base.Save(o);
         }
     }

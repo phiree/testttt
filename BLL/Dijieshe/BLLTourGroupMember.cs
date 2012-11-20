@@ -55,20 +55,20 @@ namespace BLL
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(member.MemberType);
-            sb.Append(",");
+            sb.Append("\\");
             sb.Append(member.RealName);
-            sb.Append(",");
+            sb.Append("\\");
 
             if (!string.IsNullOrEmpty(member.IdCardNo))
             {
                 sb.Append(member.IdCardNo);
-                sb.Append(",");
+                sb.Append("\\");
             }
             if (!string.IsNullOrEmpty(member.SpecialCardNo))
             {
                 sb.Append(member.SpecialCardNo);
 
-                sb.Append(",");
+                sb.Append("\\");
             }
             sb.Append(member.PhoneNum);
 
