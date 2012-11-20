@@ -28,10 +28,11 @@
             </ItemTemplate>
         </asp:Repeater>
         <p class="picshowtitle">辅图</p>
-          <asp:Repeater ID="rptPicShow2" runat="server">
+          <asp:Repeater ID="rptPicShow2" runat="server" 
+                onitemdatabound="rptPicShow2_ItemDataBound">
             <ItemTemplate>
                 <div class="picshowinfo">
-                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/detailimg/{0}") %>' /></a>
+                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img runat="server" id="smallimg" src='' /></a>
                     <a class="aa" href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><%# Eval("Title") %></a>
                 </div>
             </ItemTemplate>

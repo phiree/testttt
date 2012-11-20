@@ -68,16 +68,10 @@
         <table border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td style="width: 15%">
-                    团队编号：
-                </td>
-                <td>
-                    <asp:Label ID="lblGroupno" runat="server" />
-                </td>
-                <td style="width: 15%">
                     团队名称：
                 </td>
                 <td>
-                    <asp:Label ID="lblName" runat="server" />
+                    <b><asp:Label ID="lblName" runat="server" /></b>
                 </td>
             </tr>
             <tr>
@@ -129,20 +123,7 @@
                 <td>
                     <asp:Label ID="lblGangaotais" runat="server" />
                 </td>
-                <td>
-                    上车集合点：
-                </td>
-                <td>
-                    <asp:Label ID="lblGether" runat="server" />
-                </td>
             </tr>
-            <tr>
-                <td>
-                    返程点：
-                </td>
-                <td>
-                    <asp:Label ID="lblBack" runat="server" />
-                </td></tr>
         </table>
         <!-- 基本信息end -->
         <!-- 工作人员begin -->
@@ -229,7 +210,7 @@
         </div>
         <asp:Repeater ID="rptRoute" runat="server" OnItemDataBound="rptRoute_ItemDataBound">
             <HeaderTemplate>
-                <table id="tbRoute">
+                <table id="tbRoute" class="comTable">
                     <thead>
                         <tr>
                             <td>
@@ -254,20 +235,26 @@
                     <td>
                         <asp:Repeater ID="rptRouteScenic" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
                             <ItemTemplate>
-                                <%--<asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
-                                (((Model.DJ_TourEnterprise)Eval("Enterprise")).IsVeryfied.ToString()=="True"?
-                                ("★"+Eval("Enterprise.Name")):Eval("Enterprise.Name")):""%>'
-                                    runat="server" />--%>
+                                    <li>
+                                        <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
+                                ((((Model.DJ_TourEnterprise)Eval("Enterprise")).ProvinceVeryfyState==Model.RewardType.已纳入||
+                                ((Model.DJ_TourEnterprise)Eval("Enterprise")).CityVeryfyState==Model.RewardType.已纳入||
+                                ((Model.DJ_TourEnterprise)Eval("Enterprise")).CountryVeryfyState==Model.RewardType.已纳入).ToString()=="True"?
+                                ("★"+Eval("Enterprise.Name")):Eval("Enterprise.Name")):""%>' runat="server" />
+                                    </li>
                             </ItemTemplate>
                         </asp:Repeater>
                     </td>
                     <td>
                         <asp:Repeater ID="rptRouteHotel" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
                             <ItemTemplate>
-                               <%-- <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
-                                (((Model.DJ_TourEnterprise)Eval("Enterprise")).IsVeryfied.ToString()=="True"?
-                                ("★"+Eval("Enterprise.Name")):Eval("Enterprise.Name")):""%>'
-                                    runat="server" />--%>
+                                    <li>
+                                        <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
+                                ((((Model.DJ_TourEnterprise)Eval("Enterprise")).ProvinceVeryfyState==Model.RewardType.已纳入||
+                                ((Model.DJ_TourEnterprise)Eval("Enterprise")).CityVeryfyState==Model.RewardType.已纳入||
+                                ((Model.DJ_TourEnterprise)Eval("Enterprise")).CountryVeryfyState==Model.RewardType.已纳入).ToString()=="True"?
+                                ("★"+Eval("Enterprise.Name")):Eval("Enterprise.Name")):""%>' runat="server" />
+                                    </li>
                             </ItemTemplate>
                         </asp:Repeater>
                     </td>

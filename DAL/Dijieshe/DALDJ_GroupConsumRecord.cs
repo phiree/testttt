@@ -210,9 +210,24 @@ namespace DAL
 
         public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, string code, int djsid)
         {
-            string sql = "select r from DJ_GroupConsumRecord r where r.Enterprise.Area.Code like '%"+code+"%' and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + djsid + "";
-            sql += " and ConsumeTime>='" + year.ToString() + "-" + month.ToString() + "-01 00:00:00" + "' and  ConsumeTime<'" + DateTime.Parse(year + "-" + month + "-" + "1").AddMonths(1) + "'";
-            IQuery query = session.CreateQuery(sql);
+            //string sql = "select r from DJ_GroupConsumRecord r where r.Enterprise.Area.Code like '%"+code+"%' and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + djsid + "";
+
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select r from DJ_GroupConsumRecord r where 1=1 and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + djsid + "");
+            if (code.Substring(2) == "0000")
+            {
+                sql.Append(" and r.Enterprise.Area.Code like '%" + code.Substring(0,2) + "%'");
+            }
+            else if (code.Substring(4) == "00")
+            {
+                sql.Append(" and r.Enterprise.Area.Code like '%" + code.Substring(0, 4) + "%'");
+            }
+            else
+            {
+                sql.Append(" and r.Enterprise.Area.Code like '%" + code.Substring(0, 6) + "%'");
+            }
+            sql.Append(" and ConsumeTime>='" + year.ToString() + "-" + month.ToString() + "-01 00:00:00" + "' and  ConsumeTime<'" + DateTime.Parse(year + "-" + month + "-" + "1").AddMonths(1) + "'");
+            IQuery query = session.CreateQuery(sql.ToString());
             return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
         }
 

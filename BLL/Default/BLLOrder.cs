@@ -20,6 +20,8 @@ namespace BLL
         public IList<Model.OrderDetail> GetListForUser(int orderID, int scenicID, bool? isPaid, string dateBegin, string dateEnd)
         {
             #region 日期封装
+            dateBegin = dateBegin.Substring(0, 4) + dateBegin.Substring(5, 2);
+            dateEnd = dateEnd.Substring(0, 4) + dateEnd.Substring(5, 2);
             string datebegin = dateBegin.Substring(0, 4) + "-" + dateBegin.Substring(4, 2) + "-01";
             string dateend = string.Empty;
             if (dateEnd.Substring(4, 2) == "01" || dateEnd.Substring(4, 2) == "03" || dateEnd.Substring(4, 2) == "05" || dateEnd.Substring(4, 2) == "07" ||
@@ -67,34 +69,38 @@ namespace BLL
         public IList<MonthOrder> GetMonthOrder(int scenicid, string dateBegin, string dateEnd, bool? paidstate)
         {
             #region 日期封装
-            string datebegin = dateBegin.Substring(0, 4) + "-" + dateBegin.Substring(4, 2) + "-01";
+            string datebegin = dateBegin.Substring(0, 4) + "-" + dateBegin.Substring(5, 2) + "-01";
             string dateend = string.Empty;
-            if (dateEnd.Substring(4, 2) == "01"||dateEnd.Substring(4, 2) == "03"||dateEnd.Substring(4, 2) == "05"||dateEnd.Substring(4, 2) == "07"||
-                dateEnd.Substring(4, 2) == "08"||dateEnd.Substring(4, 2) == "10"||dateEnd.Substring(4, 2) == "12")
+            if (dateEnd.Substring(5, 2) == "01"||dateEnd.Substring(5, 2) == "03"||dateEnd.Substring(5, 2) == "05"||dateEnd.Substring(5, 2) == "07"||
+                dateEnd.Substring(5, 2) == "08"||dateEnd.Substring(5, 2) == "10"||dateEnd.Substring(5, 2) == "12")
             {
-                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-31";
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-31";
             }
-            if (dateEnd.Substring(4, 2) == "04" || dateEnd.Substring(4, 2) == "06" || dateEnd.Substring(4, 2) == "09" || dateEnd.Substring(4, 2) == "11" )
+            if (dateEnd.Substring(5, 2) == "04" || dateEnd.Substring(5, 2) == "06" || dateEnd.Substring(5, 2) == "09" || dateEnd.Substring(5, 2) == "11" )
             {
-                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-30";
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-30";
             }
-            if (dateEnd.Substring(4, 2) == "02" && int.Parse(dateEnd.Substring(0, 4))%4==0)
+            if (dateEnd.Substring(5, 2) == "02" && int.Parse(dateEnd.Substring(0, 4))%4==0)
             {
-                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-29";
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-29";
             }
-            if (dateEnd.Substring(4, 2) == "02" && int.Parse(dateEnd.Substring(0, 4)) % 4 != 0)
+            if (dateEnd.Substring(5, 2) == "02" && int.Parse(dateEnd.Substring(0, 4)) % 4 != 0)
             {
-                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(4, 2) + "-28";
+                dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-28";
             }
             #endregion
             IList<OrderDetail> odlist = dal.GetMonthOrder(scenicid, datebegin, dateend, paidstate);
             IList<MonthOrder> molist = new List<MonthOrder>();
-            int idatebegin = int.Parse(dateBegin);
-            int idateend = int.Parse(dateEnd);
+            int idatebegin = int.Parse(dateBegin.Substring(0,4)+dateBegin.Substring(5,2));
+            int idateend = int.Parse(dateEnd.Substring(0,4)+dateEnd.Substring(5,2));
             int totalnum = 0;
             decimal totalprice = 0;
-            for (int i = idatebegin; i <= idateend && i%100<13; i++)
+            for (int i = idatebegin; i <= idateend; i++)
             {
+                if (i % 100 == 13)
+                {
+                    i = (idatebegin / 100 + 1) * 100 + 1;
+                }
                 string startwith = i.ToString("D6").Substring(0, 4) + "-" + i.ToString("D6").Substring(4, 2);
                 IEnumerable<OrderDetail> temp = odlist.Where(x => ((DateTime)x.Order.PayTime).ToString("yyyy-MM-dd").StartsWith(startwith));
                 var temp_online = temp.Where(x => x.TicketPrice.PriceType == PriceType.PayOnline);

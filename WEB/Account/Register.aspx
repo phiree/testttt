@@ -54,6 +54,9 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtBoxPwd" TabIndex="2" CssClass="tbx" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                            ErrorMessage="密码必须六位以上" ControlToValidate="txtBoxPwd" Display="Dynamic" 
+                            ForeColor="Red" ValidationExpression=".{6}.*"></asp:RegularExpressionValidator>
                     </td>
                     <td style="color: #8D8D8D">
                         &nbsp;6个以上字符，支持使用字母、数字

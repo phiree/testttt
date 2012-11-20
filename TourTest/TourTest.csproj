@@ -55,6 +55,9 @@
     <Reference Include="Castle.Core">
       <HintPath>..\lib\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="FizzWare.NBuilder">
+      <HintPath>..\lib\FizzWare.NBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -133,6 +136,7 @@
     <Compile Include="Common\JsonHelperTest.cs" />
     <Compile Include="Common\ListHelperTest.cs" />
     <Compile Include="EnumTEst.cs" />
+    <Compile Include="Model\TourGroupTest.cs" />
     <Compile Include="OrderTest.cs" />
     <Compile Include="PromStaticTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

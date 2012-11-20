@@ -37,6 +37,10 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
         {
             strPath = Server.MapPath("\\ScenicImg\\mainimg");
         }
+        else if (si.ImgType == ImgType.辅图)
+        {
+            strPath = Server.MapPath("\\ScenicImg\\small");
+        }
         else
         {
             strPath = Server.MapPath("\\ScenicImg\\detailimg");
@@ -60,9 +64,14 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
                 }
                 if (flag)//是图片格式
                 {
-                    string time = Guid.NewGuid() + System.IO.Path.GetExtension(hfimgurl.Value).ToLower().Trim();
+                    string time,saveimg;
+                    time = Guid.NewGuid() + System.IO.Path.GetExtension(hfimgurl.Value).ToLower().Trim();
+                    if (si.ImgType == ImgType.主图 || si.ImgType == ImgType.备图)
+                        saveimg = time;
+                    else
+                        saveimg = time.Split('.')[0] + "_s" + System.IO.Path.GetExtension(hfimgurl.Value).ToLower().Trim();
                     //string[] files = Directory.GetFiles();
-                    File.Copy(Server.MapPath(string.Format("~/ScenicManager/Upload")) + "\\" + hfimgurl.Value, strPath + "\\" + time);
+                    File.Copy(Server.MapPath(string.Format("~/ScenicManager/Upload")) + "\\" + hfimgurl.Value, strPath + "\\" + saveimg);
                     ss = time;
                     si.Name = ss;
                 }
@@ -87,9 +96,14 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
                 }
                 if (flag)//是图片格式
                 {
-                    string time = Guid.NewGuid() + System.IO.Path.GetExtension(hfimgurl.Value).ToLower().Trim();
+                    string time, saveimg;
+                    time = Guid.NewGuid() + System.IO.Path.GetExtension(hfimgurl.Value).ToLower().Trim();
+                    if (si.ImgType == ImgType.主图 || si.ImgType == ImgType.备图)
+                        saveimg = time;
+                    else
+                        saveimg = time.Split('.')[0] + "_s" + System.IO.Path.GetExtension(hfimgurl.Value).ToLower().Trim();
                     //string[] files = Directory.GetFiles();
-                    File.Copy(Server.MapPath(string.Format("~/ScenicManager/Upload")) + "\\" + hfimgurl.Value, strPath + "\\" + time);
+                    File.Copy(Server.MapPath(string.Format("~/ScenicManager/Upload")) + "\\" + hfimgurl.Value, strPath + "\\" + saveimg);
                     ss = time;
                     si.Name = ss;
                 }
@@ -119,6 +133,10 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
         if (si.ImgType == ImgType.主图)
         {
             uploadimg.Src = "/ScenicImg/mainimg/" + si.Name;
+        }
+        else if (si.ImgType == ImgType.辅图)
+        {
+            uploadimg.Src = "/ScenicImg/small/" + si.Name.Split('.')[0]+"_s."+si.Name.Split('.')[1];
         }
         else
         {
