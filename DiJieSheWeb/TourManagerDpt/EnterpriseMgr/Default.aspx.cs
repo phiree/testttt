@@ -151,6 +151,14 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
             DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
             Button btnVerifyState = e.Item.FindControl("btnVerifyState") as Button;
             btnVerifyState.Text = ent.GetRewart(CurrentDpt) == RewardType.纳入后移除 ? "已移除,点击重新纳入" : "已纳入,点击移除";
+            if (btnVerifyState.Text == "已移除,点击重新纳入")
+            {
+                btnVerifyState.Attributes.CssStyle["color"] = "#DE1E1E";
+            }
+            else
+            {
+                btnVerifyState.Attributes.CssStyle["color"] = "#009282";
+            }
         }
     }
 }

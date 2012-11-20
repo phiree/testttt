@@ -150,7 +150,7 @@
                     </tfoot>
                 </table>
                 <div style="clear: both">
-                    <asp:Button ID="btnOutput" Text="导出" runat="server" OnClick="btnOutput1_Click" />
+                    <asp:Button ID="btnOutput" Text="导出" runat="server" OnClick="btnOutput1_Click" CssClass="btn" />
                 </div>
             </div>
             <div id="tabs-2">
@@ -203,7 +203,7 @@
                     </FooterTemplate>
                 </asp:Repeater>
                 <div style="clear: both">
-                    <asp:Button ID="btnOutput2" Text="导出" runat="server" OnClick="btnOutput2_Click" />
+                    <asp:Button ID="btnOutput2" Text="导出" runat="server" OnClick="btnOutput2_Click" CssClass="btn" />
                 </div>
             </div>
             <div id="tabs-3">
@@ -260,7 +260,7 @@
                     </FooterTemplate>
                 </asp:Repeater>
                 <div style="clear: both">
-                    <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" />
+                    <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn" />
                 </div>
             </div>
         </div>
