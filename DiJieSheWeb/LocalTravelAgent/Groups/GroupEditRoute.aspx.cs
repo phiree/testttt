@@ -119,7 +119,12 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         else if (commandName == "delete")
         { 
                int dayNo = Convert.ToInt32(e.CommandArgument);
-               CurrentGroup.Routes = CurrentGroup.Routes.Where(x => x.DayNo != dayNo).ToList();
+          //     CurrentGroup.Routes = CurrentGroup.Routes.Where(x => x.DayNo != dayNo).ToList();
+               IList<DJ_Route> routeToBeDeleted = CurrentGroup.Routes.Where(x => x.DayNo == dayNo).ToList();
+               foreach (DJ_Route r in routeToBeDeleted)
+               {
+                   CurrentGroup.Routes.Remove(r);
+               }
                bllGroup.Save(CurrentGroup);
                LoadData();
                pnlEditRoute.Visible = false;
