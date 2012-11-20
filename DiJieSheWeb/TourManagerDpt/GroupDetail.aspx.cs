@@ -23,7 +23,7 @@ public partial class TourManagerDpt_GroupDetail : System.Web.UI.Page
         lblName.Text = tg.Name;
         lblDate.Text = tg.BeginDate.ToShortDateString() + "-" + tg.EndDate.ToShortDateString();
         lblDays.Text = tg.DaysAmount.ToString();
-        lblPnum.Text = (tg.AdultsAmount + tg.ChildrenAmount).ToString();
+        lblPnum.Text = (tg.AdultsAmount + tg.ChildrenAmount+tg.ForeignersAmount+tg.GangaotaisAmount).ToString();
         lblPadult.Text = tg.AdultsAmount.ToString();
         lblPchild.Text = tg.ChildrenAmount.ToString();
         lblForeigners.Text = tg.ForeignersAmount.ToString();
@@ -96,6 +96,7 @@ public partial class TourManagerDpt_GroupDetail : System.Web.UI.Page
             if (null != gcrecord)
             {
                 label.BackColor = System.Drawing.Color.Aqua;
+                label.Text += "【" + gcrecord.ConsumeTime + "】";
             }
             else
             {
