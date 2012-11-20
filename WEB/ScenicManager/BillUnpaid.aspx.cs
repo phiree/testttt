@@ -14,7 +14,7 @@ public partial class ScenicManager_BillUnpaid : bpScenicManager
     {
         if (!IsPostBack)
         {
-            bind();
+            ddlCondition_SelectedIndexChanged(null, null);
         }
     }
 
@@ -30,6 +30,29 @@ public partial class ScenicManager_BillUnpaid : bpScenicManager
 
     protected void ddlCondition_SelectedIndexChanged(object sender, EventArgs e)
     {
+        if (txtbegin.Text == "" || txtend.Text == "")
+        {
+            txtbegin.Text = DateTime.Now.Year + "年" + "01月";
+            txtend.Text = DateTime.Now.Year + "年" + "12月";
+        }
+        DateTime begintime, endtime;
+        if (DateTime.TryParse(txtbegin.Text, out begintime) && DateTime.TryParse(txtend.Text, out endtime))
+        {
+            if (begintime > endtime)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('起始时间不得大于终止时间')", true);
+                return;
+            }
+        }
+        else
+        {
+            txtbegin.Text = DateTime.Now.Year + "年" + "01月";
+            txtend.Text = DateTime.Now.Year + "年" + "12月";
+        }
         bind();
+    }
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        ddlCondition_SelectedIndexChanged(null, null);
     }
 }

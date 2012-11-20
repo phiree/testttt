@@ -66,7 +66,7 @@ public partial class LocalTravelAgent_DriverList : basepageDJS
         if (!CheckComplete()) return;
         string message = string.Empty;
         bllworker.SaveData(txtName_add.Text, txtPhone_add.Text, txtId_add.Text,
-            txtDriverid_add.Text, Model.DJ_GroupWorkerType.司机, CurrentDJS,out message);
+            txtDriverid_add.Text,CurrentDJS.Name, Model.DJ_GroupWorkerType.司机, CurrentDJS,out message);
         if (!string.IsNullOrEmpty(message))
         {
             Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('" + message + "')", true);
