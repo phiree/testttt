@@ -136,8 +136,8 @@
                         </td>
                         <td>
                             <asp:Button runat="server" ID="btnModifyRoute" CommandArgument='<%#Eval("DayNo") %>'
-                                CommandName="Edit" Text="修改" />
-                            <asp:Button runat="server" ID="Button1" CommandArgument='<%#Eval("DayNo") %>' CommandName="Delete"
+                                CommandName="Edit" Text="修改" CssClass="btn" />
+                            <asp:Button runat="server" ID="Button1" CommandArgument='<%#Eval("DayNo") %>' CommandName="Delete" CssClass="btn"
                                 Text="删除" OnClientClick="javascript:return confirm('确定要删除这一天的行程么?');" />
                         </td>
                     </tr>
