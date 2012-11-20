@@ -116,6 +116,7 @@ namespace BLL
         }
         public void Save(Model.DJ_TourGroup group)
         {
+            group.LastUpdateTime = DateTime.Now;
             group.EndDate = group.BeginDate.AddDays(group.DaysAmount - 1);
             Idjtourgroup.Save(group);
         }

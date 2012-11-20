@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master" AutoEventWireup="true" CodeFile="GroupDetail.aspx.cs" Inherits="TourManagerDpt_GroupDetail" %>
-
 <asp:Content ID="Content0" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <script type="text/javascript">
 
@@ -267,4 +266,5 @@
         <!-- 行程end -->
     </div>
 </asp:Content>
+
 

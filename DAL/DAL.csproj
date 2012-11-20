@@ -101,10 +101,10 @@
     <Compile Include="DalBase.cs" />
     <Compile Include="DALCommonUser.cs" />
     <Compile Include="DALContractScenicPrice.cs" />
+    <Compile Include="Dijieshe\DALDJTourGroup.cs" />
     <Compile Include="Dijieshe\DALDJEnterprise.cs" />
     <Compile Include="DALDiscountCode.cs" />
     <Compile Include="Dijieshe\DALDJProduct.cs" />
-    <Compile Include="Dijieshe\DALDJTourGroup.cs" />
     <Compile Include="Dijieshe\DALDJ_GovManageDepartment.cs" />
     <Compile Include="Dijieshe\DALDJ_GroupConsumRecord.cs" />
     <Compile Include="Dijieshe\DALDJ_Group_Worker.cs" />

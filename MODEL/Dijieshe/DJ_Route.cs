@@ -23,5 +23,13 @@ namespace Model
         public virtual string Description { get; set; }
 
         public virtual DJ_TourGroup DJ_TourGroup { get; set; }
+        public virtual void CopyTo(DJ_Route newRoute)
+        {
+            newRoute.DayNo = DayNo;
+            newRoute.Enterprise = Enterprise;
+            newRoute.Description = Description;
+
+        }
+
     }
 }

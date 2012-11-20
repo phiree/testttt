@@ -146,4 +146,5 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
         txtTitle.Text = si.Title;
         txtDesc.Text = si.Description;
     }
+
 }
