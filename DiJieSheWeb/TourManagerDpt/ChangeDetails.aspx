@@ -5,11 +5,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="main" Runat="Server">
 
     <div class="detail_titlebg">
-        增加旅游管理部门
+        修改旅游管理部门
     </div>
     <div class="detaillist">
         <div class="detailtitle">
-            增加旅游管理部门
+            修改旅游管理部门
         </div>
         <table>
             <tr>
