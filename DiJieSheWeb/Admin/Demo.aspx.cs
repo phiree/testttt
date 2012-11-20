@@ -11,11 +11,14 @@ public partial class Admin_Demo : System.Web.UI.Page
 {
 
 
-    string dptAdminAccount1 = "tz10";//管理部门登录帐号
+    string dptAdminAccount1 = "tz10";//临海市风景旅游管理局
+    string dptAdminAccount2 = "lis1";//莲都区风景旅游局
 
     string dijiesheAdminAcount1 = "linhai_lhsjtlxs";//地接社管理员
     string dijiesheName1 = "临海市交通旅行社";
     
+
+
     string dijiesheAdminAcount2 = "linhai_tzhclyyxgs";//地接社管理员
     string dijiesheName2 = "台州海创旅游有限公司";
 
@@ -30,6 +33,9 @@ public partial class Admin_Demo : System.Web.UI.Page
     string scenicAdminAccount2 = "linhai_dhgy";
     string scenicName3 = "龙兴寺";
     string scenicAdminAccount3 = "linhai_lxs";
+
+    string daoyouIdCard1 = "210905197807210546";//110101196605096119;
+    string daoyouIdCard2 = "110101196605096119";
 
     DJ_TourEnterprise demoHotel1;
     DJ_TourEnterprise demoHotel2;
@@ -83,7 +89,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         
         DJ_Group_Worker memberdaoyou = new DJ_Group_Worker();
         memberdaoyou.DJ_TourGroup = group;
-        memberdaoyou.IDCard = "210905197807210546";
+        memberdaoyou.IDCard = "210905197807210546";//110101196605096119
         memberdaoyou.SpecificIdCard = "导游证号: D-3706-004050";
         memberdaoyou.WorkerType = DJ_GroupWorkerType.导游;
         memberdaoyou.Phone = "13280008000";
@@ -180,16 +186,41 @@ public partial class Admin_Demo : System.Web.UI.Page
     }
     public void BuildDemoDeta()
     { 
-           List<DJ_TourGroup> Groups = new List<DJ_TourGroup>();
+         List<DJ_TourGroup> Groups = new List<DJ_TourGroup>();
         for (int i = 1; i <= 12; i++)
         {
             DateTime beginDate = new DateTime(DateTime.Now.Year, i, DateTime.Now.Day);
-            DJ_TourGroup g = CreateDemoGroup(beginDate);
-            bllGroup.Save(g);
-            Groups.Add(g);
+            DJ_TourGroup g1 = CreateDemoGroup(beginDate);
+
+            DJ_TourGroup g2 = new DJ_TourGroup();
+            g1.CopyTo(g2);
+            g2.DJ_DijiesheInfo =(DJ_DijiesheInfo) demoDjs2;
+            g2.DijiesheEditor = (DJ_User_TourEnterprise)new BLLMembership().GetMember(dijiesheAdminAcount2);
+
+            DJ_Group_Worker memberdaoyou = new DJ_Group_Worker();
+            memberdaoyou.DJ_TourGroup = g2;
+            memberdaoyou.IDCard = "110101196605096119";// "210905197807210546";
+            memberdaoyou.SpecificIdCard = "导游证号: D-3829-13904";
+            memberdaoyou.WorkerType = DJ_GroupWorkerType.导游;
+            memberdaoyou.Phone = "13280008000";
+            memberdaoyou.Name = "李晓";
+            g2.Workers.Add(memberdaoyou);
+            g2.Name = demoGroupNamePrefix + Guid.NewGuid().GetHashCode().ToString().Substring(0, 6);
+
+
+            bllGroup.Save(g2);
+            Groups.Add(g2);
+            bllGroup.Save(g1);
+            Groups.Add(g1);
         }
+        //刷卡.验票
         foreach (DJ_TourGroup g in Groups)
         {
+            //只对过去的验票.
+            if (g.BeginDate >= DateTime.Now)
+            {
+                continue;
+            }
             foreach (DJ_Route r in g.Routes)
             {
                 Model.DJ_GroupConsumRecord cr = new DJ_GroupConsumRecord();
@@ -198,7 +229,7 @@ public partial class Admin_Demo : System.Web.UI.Page
                 cr.ChildrenAmount = r.DJ_TourGroup.ChildrenAmount;
                 cr.ConsumeTime = r.DJ_TourGroup.BeginDate.AddDays(r.DayNo);
                 cr.Enterprise = r.Enterprise;
-                cr.LiveDay = 1;
+                cr.LiveDay = g.DaysAmount;
                 cr.RoomNum = 2;
                 bllConsum.DAL.Save(cr);
             }

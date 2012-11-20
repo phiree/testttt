@@ -134,11 +134,16 @@ namespace Model
             {
                 DJ_Route newRoute=new DJ_Route();
                 r.CopyTo(newRoute);
+                newRoute.DJ_TourGroup = newGroup;
                 newGroup.Routes.Add(newRoute);
             }
             foreach (DJ_Group_Worker worker in Workers)
             {
                 newGroup.Workers.Add(worker);
+            }
+            foreach (DJ_TourGroupMember member in Members)
+            {
+                newGroup.Members.Add(member);
             }
             
             
