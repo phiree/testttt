@@ -14,8 +14,8 @@ namespace BLL
         public static List<UIRoute> ConvertToUI(IList<DJ_Route> routes)
         {
             List<UIRoute> uiRoutes = new List<UIRoute>();
-           
-            int totalDays = routes.Select(x => x.DayNo).Distinct().Count();
+            if (routes.Count == 0) { return uiRoutes; }
+            int totalDays = routes.Select(x => x.DayNo).Max();
             for (int i = 1; i <= totalDays; i++)
             {
                 List<DJ_TourEnterprise> scenics = new List<DJ_TourEnterprise>();
