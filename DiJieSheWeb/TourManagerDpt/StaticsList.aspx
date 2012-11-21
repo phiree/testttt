@@ -23,7 +23,7 @@
                         $("[id$='btn_yijiedai']").click();
                     }
                     if (ui.index == "1") {
-                        $("[id$='btn_yijiedai2']").click();
+                        $("[id$='btn_ys']").click();
                     }
                     if (ui.index == "2") {
                         $("[id$='btn_yijiedai3']").click();
@@ -150,7 +150,7 @@
                     </tfoot>
                 </table>
                 <div style="clear: both">
-                    <asp:Button ID="btnOutput" Text="导出" runat="server" OnClick="btnOutput1_Click" />
+                    <asp:Button ID="btnOutput" Text="导出" runat="server" OnClick="btnOutput1_Click" CssClass="btn" />
                 </div>
             </div>
             <div id="tabs-2">
@@ -161,6 +161,9 @@
                     企业名称(*必填)：<asp:TextBox ID="txt_name2" runat="server" />
                     <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click" 
                         CssClass="btn" /></div>
+                <div style="display:none">
+                    <asp:Button ID="btn_ys" runat="server" />
+                </div>
                 <asp:Repeater ID="rptGov2" runat="server">
                     <HeaderTemplate>
                         <table class="tablesorter IndexTable">
@@ -200,7 +203,7 @@
                     </FooterTemplate>
                 </asp:Repeater>
                 <div style="clear: both">
-                    <asp:Button ID="btnOutput2" Text="导出" runat="server" OnClick="btnOutput2_Click" />
+                    <asp:Button ID="btnOutput2" Text="导出" runat="server" OnClick="btnOutput2_Click" CssClass="btn" />
                 </div>
             </div>
             <div id="tabs-3">
@@ -257,7 +260,7 @@
                     </FooterTemplate>
                 </asp:Repeater>
                 <div style="clear: both">
-                    <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" />
+                    <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn" />
                 </div>
             </div>
         </div>

@@ -83,7 +83,7 @@
                     </td>
                     <td>
                         <asp:Button runat="server" ID="btnVerifyState" CommandArgument='<%#Eval("Id") %>'
-                            CommandName="Verify" />
+                            CommandName="Verify" CssClass="btn2" />
                     </td>
                 </tr>
             </ItemTemplate>
