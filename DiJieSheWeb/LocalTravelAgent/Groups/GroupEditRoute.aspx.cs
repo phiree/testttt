@@ -183,6 +183,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         {
             lblMsg_SaveRoute.Text = "操作成功";
         }
+        //ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('" + lblMsg_SaveRoute.Text + "')", true);
         btnAddRoute.Visible = true;
     }
     protected void btnClose_Click(object sender, EventArgs e)

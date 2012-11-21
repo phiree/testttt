@@ -121,9 +121,9 @@
 
                             修改</a> <a href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>从Excel文件更新</a>
                         <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="delete"
-                            Text="删除" OnClientClick='javascript:return confirm("您确认要删除这个团队么?");' />
+                            Text="删除" OnClientClick='javascript:return confirm("您确认要删除这个团队么?");' CssClass="btn" />
                             </asp:Panel>
-                            <asp:Button runat="server" ID="btnCopy" CommandArgument='<%#Eval("Id") %>' CommandName="Copy" Text="复制" />
+                            <asp:Button runat="server" ID="btnCopy" CommandArgument='<%#Eval("Id") %>' CommandName="Copy" Text="复制" CssClass="btn" />
                     </td>
                     <td>
                         <asp:LinkButton ID="lblMember_bz" Text="" runat="server" /><br />

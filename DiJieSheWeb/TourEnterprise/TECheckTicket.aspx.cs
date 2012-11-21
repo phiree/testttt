@@ -327,7 +327,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (DJ_Group_Worker item in ListGw)
         {
-            data.Add(new Guid().ToString(), item.Name + "/" + item.IDCard.Substring(0, 6) + "********" + item.IDCard.Substring(14));
+            data.Add(Guid.NewGuid().ToString(), item.Name + "/" + item.IDCard.Substring(0, 6) + "********" + item.IDCard.Substring(14));
         }
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
         using (MemoryStream ms = new MemoryStream())

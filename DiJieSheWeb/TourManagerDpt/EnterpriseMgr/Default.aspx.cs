@@ -130,7 +130,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
         {
             DJ_TourEnterprise ent = bllEnt.GetDJS8id(entId.ToString())[0];
 
-            RewardType currentType = ent.GetRewart(CurrentDpt);
+            RewardType currentType = ent.GetRewart(CurrentDpt.Area);
             RewardType t = currentType == RewardType.纳入后移除 ? RewardType.已纳入 : RewardType.纳入后移除;
 
             bllEnt.SetVerify(ent, t);
@@ -150,7 +150,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
         {
             DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
             Button btnVerifyState = e.Item.FindControl("btnVerifyState") as Button;
-            btnVerifyState.Text = ent.GetRewart(CurrentDpt) == RewardType.纳入后移除 ? "已移除,点击重新纳入" : "已纳入,点击移除";
+            btnVerifyState.Text = ent.GetRewart(CurrentDpt.Area) == RewardType.纳入后移除 ? "已移除,点击重新纳入" : "已纳入,点击移除";
             if (btnVerifyState.Text == "已移除,点击重新纳入")
             {
                 btnVerifyState.Attributes.CssStyle["color"] = "#DE1E1E";

@@ -16,6 +16,7 @@ namespace Model.Mapping
             Map(x => x.Phone);
             Map(x => x.SpecificIdCard);
             Map(x => x.WorkerType).CustomType<int>();
+            Map(x => x.CompanyBelong);
             References<DJ_TourGroup>(x => x.DJ_TourGroup).Cascade.All();
             References<DJ_DijiesheInfo>(x => x.DJ_Dijiesheinfo);
         }

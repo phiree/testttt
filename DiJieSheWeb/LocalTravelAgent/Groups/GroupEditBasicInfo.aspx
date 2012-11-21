@@ -60,7 +60,7 @@
                     导游
                 </td>
                 <td>
-                    <asp:CheckBoxList runat="server" ID="cbxGuides"></asp:CheckBoxList>
+                    <asp:CheckBoxList runat="server" ID="cbxGuides" CssClass="rbl" style="margin:0px 0px 5px 0px"></asp:CheckBoxList>
                      <span><a href="/LocalTravelAgent/GuideList.aspx">增加/管理导游</a></span>
                 </td>
             </tr>
