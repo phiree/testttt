@@ -35,12 +35,13 @@ namespace BLL
             return Idjtourgroup.GetTourGroupByGuideIdcard(idcard);
         }
 
-        
-        public IList<Model.DJ_Group_Worker> GetTourGroupByTeId(int id)
+
+        public IList<Model.DJ_Workers> GetTourGroupByTeId(int id)
         {
             var listTg = Idjtourgroup.GetTourGroupByTEId(id).ToList();
             var listGw = new List<Model.DJ_Group_Worker>();
             var listGw2 = new List<Model.DJ_Group_Worker>();
+            List<DJ_Workers> Listdw = new List<DJ_Workers>();
             foreach (var tg in listTg)
             {
                 listGw.AddRange(tg.Workers.Where(x => x.DJ_Workers.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>());
@@ -52,7 +53,11 @@ namespace BLL
                     listGw2.Add(item);
                 }
             }
-            return listGw2;
+            foreach (var item in listGw2)
+            {
+                Listdw.Add(item.DJ_Workers);
+            }
+            return Listdw;
 
         }
        
