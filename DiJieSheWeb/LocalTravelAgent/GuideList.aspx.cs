@@ -7,7 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class LocalTravelAgent_GuideList : basepageDJS
 {
-    BLL.BLLDJGroup_Worker bllworker = new BLL.BLLDJGroup_Worker();
+    BLL.BLLDJGroup_Worker bllgroupworker = new BLL.BLLDJGroup_Worker();
+    BLL.BLLWorker bllworker = new BLL.BLLWorker();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -67,7 +68,7 @@ public partial class LocalTravelAgent_GuideList : basepageDJS
     {
         if (!CheckComplete()) return;
         string message = string.Empty;
-        bllworker.SaveData(txtName_add.Text, txtPhone_add.Text, txtId_add.Text,
+        bllgroupworker.SaveData(txtName_add.Text, txtPhone_add.Text, txtId_add.Text,
             txtGuideid_add.Text,tbxBelong.Text, Model.DJ_GroupWorkerType.导游, CurrentDJS, out message);
         if (!string.IsNullOrEmpty(message))
         {
