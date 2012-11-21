@@ -323,11 +323,11 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
     [WebMethod]
     public static string GetAllHints(string etid)
     {
-        List<DJ_Group_Worker> ListGw= new BLLDJTourGroup().GetTourGroupByTeId(int.Parse(etid)).ToList();
+        List<DJ_Workers> ListGw= new BLLDJTourGroup().GetTourGroupByTeId(int.Parse(etid)).ToList();
         Dictionary<string, string> data = new Dictionary<string, string>();
-        foreach (DJ_Group_Worker item in ListGw)
+        foreach (DJ_Workers item in ListGw)
         {
-            data.Add(new Guid().ToString(), item.DJ_Workers.Name + "/" + item.DJ_Workers.IDCard.Substring(0, 6) + "********" + item.DJ_Workers.IDCard.Substring(14));
+            data.Add(new Guid().ToString(), item.Name + "/" + item.IDCard.Substring(0, 6) + "********" + item.IDCard.Substring(14));
         }
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
         using (MemoryStream ms = new MemoryStream())

@@ -80,15 +80,15 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
         List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s);
         //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
-        List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetTourGroupByTeId(s.Id).ToList();
-        foreach (DJ_Group_Worker gw in listdjGW)
+        List<DJ_Workers> listdjGW = new BLLDJTourGroup().GetTourGroupByTeId(s.Id).ToList();
+        foreach (DJ_Workers gw in listdjGW)
         {
             //排除以后的人员信息
-            if (list.Where(x => x.IdCard == gw.DJ_Workers.IDCard).Count() == 0)
+            if (list.Where(x => x.IdCard == gw.IDCard).Count() == 0)
             {
                 TicketAssign ta = new TicketAssign();
-                ta.Name = gw.DJ_Workers.Name;
-                ta.IdCard = gw.DJ_Workers.IDCard;
+                ta.Name = gw.Name;
+                ta.IdCard = gw.IDCard;
                 list.Add(ta);
             }
         }
