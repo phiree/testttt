@@ -162,7 +162,7 @@
                         <div>
                             <asp:Repeater runat="server" ID="rptEditScenics" OnItemDataBound="rptEditEnt_ItemDataBound">
                                 <ItemTemplate>
-                                    <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
+                                    <asp:TextBox runat="server"   Text='<%#Container.DataItem %>' CssClass="EditEntName"
                                         ID="tbxEntEdit" entType="景点"></asp:TextBox></ItemTemplate>
                             </asp:Repeater>
                             <input type="button" id="btnAddMoreScenic" value="增加更多" class="btn" /></div>
