@@ -123,6 +123,26 @@ namespace Model
             this.Members.Remove(member);
         }   private DateTime lastUpdateTime = DateTime.Now;
         public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
+        public virtual void CopyTo(DJ_TourGroup newGroup)
+        {
+            newGroup.Name = Name+"[复制]";
+            newGroup.BeginDate = BeginDate;
+            newGroup.DaysAmount = DaysAmount;
+            newGroup.DijiesheEditor = DijiesheEditor;
+            newGroup.DJ_DijiesheInfo = DJ_DijiesheInfo;
+            foreach (DJ_Route r in Routes)
+            {
+                DJ_Route newRoute=new DJ_Route();
+                r.CopyTo(newRoute);
+                newGroup.Routes.Add(newRoute);
+            }
+            foreach (DJ_Group_Worker worker in Workers)
+            {
+                newGroup.Workers.Add(worker);
+            }
+            
+            
+        }
     }
     public enum TourGroupState
     {

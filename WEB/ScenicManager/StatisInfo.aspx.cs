@@ -57,4 +57,5 @@ public partial class ScenticManager_StatisInfo : bpScenicManager
         }
         bind();
     }
+
 }

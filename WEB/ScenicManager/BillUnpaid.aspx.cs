@@ -21,8 +21,8 @@ public partial class ScenicManager_BillUnpaid : bpScenicManager
     private void bind()
     {
         bool? billState=null;
-        if (ddlCondition.Text == "已结单") billState = true;
-        if (ddlCondition.Text == "未结单") billState = false;
+        if (ddlCondition.Text =="已结单") billState = true;
+        if (ddlCondition.Text =="未结单") billState = false;
         CurrentScenic = Master.Scenic;
         rptStatis.DataSource = bllOrder.GetListForUser(0, CurrentScenic.Id, billState,txtbegin.Text.Trim(),txtend.Text.Trim());
         rptStatis.DataBind();
@@ -55,4 +55,5 @@ public partial class ScenicManager_BillUnpaid : bpScenicManager
     {
         ddlCondition_SelectedIndexChanged(null, null);
     }
+
 }

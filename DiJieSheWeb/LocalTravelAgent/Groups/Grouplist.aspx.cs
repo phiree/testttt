@@ -39,11 +39,12 @@ public partial class Groups_Grouplist : basepageDJS
     {
         string errMsg = string.Empty;
         string argId = e.CommandArgument.ToString();
+        DJ_TourGroup group = blltg.GetOne(new Guid(argId));
+
         switch (e.CommandName.ToLower())
         {
             case "delete":
-                DJ_TourGroup group = blltg.GetOne(new Guid(argId));
-
+               
                 if (DateTime.Now >= group.BeginDate)
                 {
                     errMsg = "团队已经出发,不能删除";
@@ -57,7 +58,17 @@ public partial class Groups_Grouplist : basepageDJS
 
 
                 break;
+            case "copy":
+
+                DJ_TourGroup newGroup = new DJ_TourGroup();
+                group.CopyTo(newGroup);
+                blltg.Save(newGroup);
+
+                Response.Redirect("GroupEditBasicInfo.aspx?groupid=" + newGroup.Id, true);
+
+                break;
         }
+
         lblMsg.Text = errMsg;
     }
 
