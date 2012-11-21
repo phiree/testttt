@@ -16,16 +16,19 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
     BLLMembership bllMember = new BLLMembership();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-            BindList();
-        }
+        BindList();
     }
     private void BindList()
     {
-        IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList(tbxAreaCode.Text.Trim());
+        IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList(ddlarea.Areacode.Trim());
         gv.DataSource = dptList;
         gv.DataBind();
+        if (gv.Rows.Count > 0)
+        {
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        gv.Style.Add("border-collapse", "inherit !important");
+        gv.Style.Add("border-spacing", "2px");
     }
     protected void btn_Click(object sender, EventArgs e)
     {
@@ -33,6 +36,7 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
     }
     protected void gv_RowDataBound(object sender, GridViewRowEventArgs e)
     {
+        
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
             DJ_GovManageDepartment mgrDpt = e.Row.DataItem as DJ_GovManageDepartment;
@@ -58,5 +62,17 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
                 break;
             default: break;
         }
+    }
+    protected void btn_All_Click(object sender, EventArgs e)
+    {
+        IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList("");
+        gv.DataSource = dptList;
+        gv.DataBind();
+        if (gv.Rows.Count > 0)
+        {
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        gv.Style.Add("border-collapse", "inherit !important");
+        gv.Style.Add("border-spacing", "2px");
     }
 }

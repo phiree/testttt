@@ -31,7 +31,7 @@
                     <%#Eval("Name") %>
                 </td>
                 <td>
-                    <%# Container.DataItem.GetType() %>
+                    <%# Eval("Type")%>
                 </td>
                 <td>
                 </td>

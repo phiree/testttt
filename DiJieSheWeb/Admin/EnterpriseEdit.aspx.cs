@@ -39,7 +39,7 @@ public partial class Admin_EnterpriseEdit : System.Web.UI.Page
     private void LoadForm()
     {
         tbxAdress.Text = CurrentEnterprise.Address;
-        tbxAreaCode.Text = CurrentEnterprise.Area.Code;
+        ddlarea.Areacode = CurrentEnterprise.Area.Code;
         tbxChargePerson.Text = CurrentEnterprise.ChargePersonName;
         tbxName.Text = CurrentEnterprise.Name;
         tbxOfficePhone.Text = CurrentEnterprise.Phone;
@@ -52,7 +52,7 @@ public partial class Admin_EnterpriseEdit : System.Web.UI.Page
     private void UpdateForm()
     {
         CurrentEnterprise.Address = tbxAdress.Text;
-        CurrentEnterprise.Area = bllArea.GetAreaByCode(tbxAreaCode.Text.Trim());
+        CurrentEnterprise.Area = bllArea.GetAreaByCode(ddlarea.Areacode);
         CurrentEnterprise.ChargePersonName = tbxChargePerson.Text;
         CurrentEnterprise.Name = tbxName.Text;
         CurrentEnterprise.Phone = tbxOfficePhone.Text;
