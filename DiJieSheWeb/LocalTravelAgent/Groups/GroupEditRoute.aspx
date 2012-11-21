@@ -32,40 +32,39 @@
                     var tbx = this.element[0];
                     var entType = $(tbx).attr("entType");
                     $.get("/ajaxservice/EntpriseAutoCompleteHanlder.ashx?entName=" + request.term + "&entType=" + entType
-                    , function (data) { 
-                    response( $.map( data, function( item ) {
-                    var labelStr=item.Name;
-                    var verifyState=0;
-                          if(item.CityVeryfyState==1||item.CountryVeryfyState==1||item.ProvinceVeryfyState==1)
-                          {
-                            labelStr="☆"+labelStr;
-                            verifyState=1;
-                          }
-                        return {
-                            label: labelStr,
-                            value: item.Name,
-                            verifyState:verifyState
-                        }
-                    })); 
+                    , function (data) {
+                        response($.map(data, function (item) {
+                            var labelStr = item.Name;
+                            var verifyState = 0;
+                            if (item.CityVeryfyState == 1 || item.CountryVeryfyState == 1 || item.ProvinceVeryfyState == 1) {
+                                labelStr = "☆" + labelStr;
+                                verifyState = 1;
+                            }
+                            return {
+                                label: labelStr,
+                                value: item.Name,
+                                verifyState: verifyState
+                            }
+                        }));
                     });
                 },
                 select: function (event, ui) {
-                    if(ui.item.verifyState==1)
-                    event.target.className+=" rewardbg";
+                    if (ui.item.verifyState == 1)
+                        event.target.className += " rewardbg";
                     event.target.value = ui.item.Name;
                 }
             });
-          
-          /*隐藏/显示多余的文本框*/
-          $(".EditEntName[entType='景点']").each(
-          function(index){
-          if(index>=4 && $(this).val()=="")
-          $(this).hide();
+
+            /*隐藏/显示多余的文本框*/
+            $(".EditEntName[entType='景点']").each(
+          function (index) {
+              if (index >= 4 && $(this).val() == "")
+                  $(this).hide();
           }
           );
-           $(".EditEntName[entType='宾馆']").each(function(index){if(index>=2)$(this).hide();});
-           $("#btnAddMoreScenic").click(function(){ $(".EditEntName[entType='景点']").show();});
-           $("#btnAddMoreHotel").click(function(){$(".EditEntName[entType='宾馆']").show();});
+            $(".EditEntName[entType='宾馆']").each(function (index) { if (index >= 2) $(this).hide(); });
+            $("#btnAddMoreScenic").click(function () { $(".EditEntName[entType='景点']").show(); });
+            $("#btnAddMoreHotel").click(function () { $(".EditEntName[entType='宾馆']").show(); });
         });
     </script>
 </asp:Content>
