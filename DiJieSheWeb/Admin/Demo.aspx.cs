@@ -203,11 +203,11 @@ public partial class Admin_Demo : System.Web.UI.Page
 
             DJ_Group_Worker memberdaoyou = new DJ_Group_Worker();
             memberdaoyou.DJ_TourGroup = g2;
-            memberdaoyou.IDCard = "110101196605096119";// "210905197807210546";
-            memberdaoyou.SpecificIdCard = "导游证号: D-3829-13904";
-            memberdaoyou.WorkerType = DJ_GroupWorkerType.导游;
-            memberdaoyou.Phone = "13280008000";
-            memberdaoyou.Name = "李晓";
+            memberdaoyou.DJ_Workers.IDCard = "110101196605096119";// "210905197807210546";
+            memberdaoyou.DJ_Workers.SpecificIdCard = "导游证号: D-3829-13904";
+            memberdaoyou.DJ_Workers.WorkerType = DJ_GroupWorkerType.导游;
+            memberdaoyou.DJ_Workers.Phone = "13280008000";
+            memberdaoyou.DJ_Workers.Name = "李晓";
             g2.Workers.Add(memberdaoyou);
             g2.Name = demoGroupNamePrefix + Guid.NewGuid().GetHashCode().ToString().Substring(0, 6);
 

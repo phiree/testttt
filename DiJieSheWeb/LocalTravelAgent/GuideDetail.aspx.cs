@@ -32,7 +32,7 @@ public partial class LocalTravelAgent_GuideDetail : System.Web.UI.Page
                 txtPhone.Text = source[0].DJ_Workers.Phone;
                 txtidcard.Text = source[0].DJ_Workers.IDCard;
                 txtGuideid.Text = source[0].DJ_Workers.SpecificIdCard;
-                lbldjs.Text = source[0].DJ_Workers.DJ_Dijiesheinfo.Name;
+                //lbldjs.Text = source[0].DJ_Workers.DJ_Dijiesheinfo.Name;
             }
         }
     }
@@ -46,7 +46,7 @@ public partial class LocalTravelAgent_GuideDetail : System.Web.UI.Page
             worker.DJ_Workers.Phone = txtPhone.Text;
             worker.DJ_Workers.IDCard = txtidcard.Text;
             worker.DJ_Workers.SpecificIdCard = txtGuideid.Text;
-            worker.CompanyBelong = tbxBelong.Text;
+            worker.DJ_Workers.CompanyBelong = tbxBelong.Text;
             bllworker.UpdateData(worker);
             Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('修改成功, 返回列表页!')", true);
             Response.Redirect("/LocalTravelAgent/GuideList.aspx");

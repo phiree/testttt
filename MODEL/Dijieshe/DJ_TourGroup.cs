@@ -47,7 +47,7 @@ namespace Model
         public virtual DJ_User_TourEnterprise DijiesheEditor { get; set; }
         public virtual int AdultsAmount
         {
-            get { return Members.Where(x => x.MemberType == MemberType.成人游客||x.MemberType== MemberType.港澳台|| x.MemberType== MemberType.外宾).Count(); }
+            get { return Members.Where(x => x.MemberType == MemberType.成人游客 || x.MemberType == MemberType.港澳台 || x.MemberType == MemberType.外宾).Count(); }
         }
         /// <summary>
         /// 儿童总人数
@@ -117,14 +117,14 @@ namespace Model
         public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
         public virtual void CopyTo(DJ_TourGroup newGroup)
         {
-            newGroup.Name = Name+"[复制]";
+            newGroup.Name = Name + "[复制]";
             newGroup.BeginDate = BeginDate;
             newGroup.DaysAmount = DaysAmount;
             newGroup.DijiesheEditor = DijiesheEditor;
             newGroup.DJ_DijiesheInfo = DJ_DijiesheInfo;
             foreach (DJ_Route r in Routes)
             {
-                DJ_Route newRoute=new DJ_Route();
+                DJ_Route newRoute = new DJ_Route();
                 r.CopyTo(newRoute);
                 newRoute.DJ_TourGroup = newGroup;
                 newGroup.Routes.Add(newRoute);
@@ -136,15 +136,16 @@ namespace Model
             foreach (DJ_TourGroupMember member in Members)
             {
                 newGroup.Members.Add(member);
-            
-            
+
+
+            }
         }
     }
     public enum TourGroupState
     {
 
-        尚未开始=1,
-        正在进行=2,
-        已经结束=4
+        尚未开始 = 1,
+        正在进行 = 2,
+        已经结束 = 4
     }
 }

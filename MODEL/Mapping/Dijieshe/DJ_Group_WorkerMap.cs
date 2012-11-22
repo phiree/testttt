@@ -11,7 +11,7 @@ namespace Model.Mapping
         public DJ_Group_WorkerMap()
         {
             Id(x=>x.Id);
-            Map(x => x.CompanyBelong);
+            References<DJ_Workers>(x => x.DJ_Workers);
             References<DJ_TourGroup>(x => x.DJ_TourGroup).Cascade.All();
         }
     }
