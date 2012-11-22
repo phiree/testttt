@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class LocalTravelAgent_GuideDetail : System.Web.UI.Page
+{
+    string id = string.Empty;
+    BLL.BLLDJGroup_Worker bllworker = new BLL.BLLDJGroup_Worker();
+
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Request.QueryString.Count > 0)
+            id = Request.QueryString[0];
+        if (!IsPostBack)
+        {
+            BindDetail();
+        }
+    }
+
+    private void BindDetail()
+    {
+        if (!string.IsNullOrEmpty(id))
+        {
+            var source = bllworker.Get8Multi(id, null, null, null, null, Model.DJ_GroupWorkerType.导游, null, null);
+            if (source.Count > 0)
+            {
+<<<<<<< HEAD
+                lblname.Text = source[0].DJ_Workers.Name;
+                txtPhone.Text = source[0].DJ_Workers.Phone;
+                txtidcard.Text = source[0].DJ_Workers.IDCard;
+                txtGuideid.Text = source[0].DJ_Workers.SpecificIdCard;
+                lbldjs.Text = source[0].DJ_Workers.DJ_Dijiesheinfo.Name;
+=======
+                lblname.Text = source[0].Name;
+                txtPhone.Text = source[0].Phone;
+                txtidcard.Text = source[0].IDCard;
+                txtGuideid.Text = source[0].SpecificIdCard;
+                tbxBelong.Text = source[0].CompanyBelong;
+>>>>>>> 2f766ad7405ac09aa44b8cbc99732e9c324e849d
+            }
+        }
+    }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        var workers = bllworker.Get8Multi(id, null, null, null, null, Model.DJ_GroupWorkerType.导游, null, null);
+        if (workers.Count > 0)
+        {
+            var worker = workers[0];
+<<<<<<< HEAD
+            worker.DJ_Workers.Phone = txtPhone.Text;
+            worker.DJ_Workers.IDCard = txtidcard.Text;
+            worker.DJ_Workers.SpecificIdCard = txtGuideid.Text;
+=======
+            worker.Phone = txtPhone.Text;
+            worker.IDCard = txtidcard.Text;
+            worker.SpecificIdCard = txtGuideid.Text;
+            worker.CompanyBelong = tbxBelong.Text;
+>>>>>>> 2f766ad7405ac09aa44b8cbc99732e9c324e849d
+            bllworker.UpdateData(worker);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('修改成功, 返回列表页!')", true);
+            Response.Redirect("/LocalTravelAgent/GuideList.aspx");
+        }
+    }
+}
