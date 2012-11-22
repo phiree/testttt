@@ -48,9 +48,15 @@
                         }));
                     });
                 },
+                //                focus: function (event, ui) {
+                //                    event.target.className -= " rewardbg";
+                //                },
                 select: function (event, ui) {
                     if (ui.item.verifyState == 1)
                         event.target.className += " rewardbg";
+                    else {
+                        event.target.className = event.target.className.replace("rewardbg", "");
+                    }
                     event.target.value = ui.item.Name;
                 }
             });
@@ -200,8 +206,7 @@
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText" Width="100%"></asp:TextBox>
             <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的行程信息将清除,是否继续?');"
                 Text="保存" CssClass="btn" />
-                 <asp:Button runat="server" ID="btnClose" OnClick="btnClose_Click"
-                Text="关闭" CssClass="btn" />
+              
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>
     </div>

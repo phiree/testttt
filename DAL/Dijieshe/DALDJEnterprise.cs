@@ -258,10 +258,10 @@ namespace DAL
                 {
                     session.Save(item);
                 }
-                foreach (var item in tg.Workers)
-                {
-                    session.Save(item);
-                }
+                //foreach (var item in tg.Workers)
+                //{
+                //    session.Save(item);
+                //}
                 foreach (var item in tg.Vehicles)
                 {
                     session.Save(item);

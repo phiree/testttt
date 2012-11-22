@@ -11,6 +11,7 @@ public partial class Groups_GroupInfo : basepageDJS
     public string DJSId;
     public BLL.BLLDJEnterprise bllenterp = new BLL.BLLDJEnterprise();
     public BLL.BLLDJTourGroup bllgroup = new BLL.BLLDJTourGroup();
+    public BLL.BLLWorker bllworker = new BLL.BLLWorker();
     ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
     Model.DJ_TourGroup group_model = new Model.DJ_TourGroup();
 
@@ -45,7 +46,8 @@ public partial class Groups_GroupInfo : basepageDJS
                     group_db.BeginDate = DateTime.Parse(group_excel.GroupBasic.Begindate);
                     group_db.DaysAmount = int.Parse(group_excel.GroupBasic.Days);
                     group_db.EndDate = DateTime.Parse(group_excel.GroupBasic.Begindate).AddDays(int.Parse(group_excel.GroupBasic.Days));
-                    group_db.Workers.Clear();
+                    //group_db.Workers.Clear();
+                    
                     group_db.Members.Clear();
                     group_db.Routes.Clear();
                     group_model.DijiesheEditor = (Model.DJ_User_TourEnterprise)CurrentMember;
@@ -54,11 +56,14 @@ public partial class Groups_GroupInfo : basepageDJS
                         group_db.Workers.Add(new Model.DJ_Group_Worker()
                         {
                             DJ_TourGroup = group_db,
-                            IDCard = item.Memid,
-                            SpecificIdCard=item.Cardno,
-                            WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
-                            Phone = item.Memphone,
-                            Name = item.Memname
+                            DJ_Workers = new Model.DJ_Workers()
+                            {
+                                IDCard = item.Memid,
+                                SpecificIdCard = item.Cardno,
+                                WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
+                                Phone = item.Memphone,
+                                Name = item.Memname
+                            }
                         });
                     }
                     foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype != "导游" && x.Memtype != "司机"))
@@ -106,11 +111,14 @@ public partial class Groups_GroupInfo : basepageDJS
                         group_model.Workers.Add(new Model.DJ_Group_Worker()
                         {
                             DJ_TourGroup = group_model,
-                            IDCard = item.Memid,
-                            SpecificIdCard = item.Cardno,
-                            WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
-                            Phone = item.Memphone,
-                            Name = item.Memname
+                            DJ_Workers = new Model.DJ_Workers()
+                            {
+                                IDCard = item.Memid,
+                                SpecificIdCard = item.Cardno,
+                                WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
+                                Phone = item.Memphone,
+                                Name = item.Memname
+                            }
                         });
                     }
                     foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype != "导游" && x.Memtype != "司机"))
@@ -119,7 +127,7 @@ public partial class Groups_GroupInfo : basepageDJS
                         {
                             DJ_TourGroup = group_model,
                             IdCardNo = item.Memid,
-                            SpecialCardNo=item.Cardno,
+                            SpecialCardNo = item.Cardno,
                             MemberType = (Model.MemberType)Enum.Parse(typeof(Model.MemberType), item.Memtype),
                             PhoneNum = item.Memphone,
                             RealName = item.Memname

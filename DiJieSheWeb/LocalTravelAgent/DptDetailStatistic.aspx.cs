@@ -22,7 +22,6 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
         }
     }
 
-
     private void bind()
     {
         List<month> List = new List<month>();
@@ -37,6 +36,7 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
         dptid = Request.QueryString["dptid"];
         ETName.InnerHtml = bllgovdepart.GetById(Guid.Parse(dptid)).Name;
     }
+
     protected void rptETDetail_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         Year = Request.QueryString["year"];
@@ -97,6 +97,11 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
             laMonthVTotal.Text = "成人" + totalVmonth_audlt.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalVmonth_child.ToString();
             laMonthLTotal.Text = "成人" + totalLmonth_audlt.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalLmonth_child.ToString();
         }
+    }
+
+    protected void btnOutput3_Click(object sender, EventArgs e)
+    { 
+        
     }
 }
 

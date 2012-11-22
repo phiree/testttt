@@ -19,9 +19,6 @@ public partial class UC_CityCode : System.Web.UI.UserControl
         set
         {
             areacode = value;
-            ddlAreaCity.SelectedIndex = ddlAreaCity.Items.IndexOf(
-                ddlAreaCity.Items.FindByText(
-                bllArea.GetAreaByCode(areacode).Name));
         }
     }
 
@@ -39,6 +36,12 @@ public partial class UC_CityCode : System.Web.UI.UserControl
         ddlAreaProvince.DataTextField = "Name";
         ddlAreaProvince.DataValueField = "Code";
         ddlAreaProvince.DataBind();
+        if (areacode != "0")
+        {
+            ddlAreaProvince.SelectedIndex = ddlAreaProvince.Items.IndexOf(
+                ddlAreaProvince.Items.FindByText(
+                bllArea.GetAreaByCode(areacode.Substring(0, 4) + "00").Name));
+        }
     }
     private void BindSubArea()
     {
@@ -46,6 +49,12 @@ public partial class UC_CityCode : System.Web.UI.UserControl
         ddlAreaCity.DataTextField = "Name";
         ddlAreaCity.DataValueField = "Code";
         ddlAreaCity.DataBind();
+        if (areacode != "0")
+        {
+            ddlAreaCity.SelectedIndex = ddlAreaCity.Items.IndexOf(
+                ddlAreaCity.Items.FindByText(
+                bllArea.GetAreaByCode(areacode).Name));
+        }
     }
     protected void ddlAreaProvince_SelectedIndexChanged(object sender, EventArgs e)
     {

@@ -31,14 +31,24 @@ namespace BLL
                 message = "该成员已存在!";
                 return;
             }
-            Model.DJ_Group_Worker worker = new Model.DJ_Group_Worker() { 
-                Name=name,
-                Phone=phone,
-                IDCard=idcard,
-                SpecificIdCard=othercard,
-                WorkerType=type,
-                DJ_Dijiesheinfo=djs,
-                CompanyBelong=companyBelong
+            //Model.DJ_Group_Worker worker = new Model.DJ_Group_Worker() { 
+            //    Name=name,
+            //    Phone=phone,
+            //    IDCard=idcard,
+            //    SpecificIdCard=othercard,
+            //    WorkerType=type,
+            //    DJ_Dijiesheinfo=djs,
+            //    CompanyBelong=companyBelong
+            //};
+            Model.DJ_Workers worker = new Model.DJ_Workers()
+            {
+                Name = name,
+                Phone = phone,
+                IDCard = idcard,
+                SpecificIdCard = othercard,
+                WorkerType = type,
+                DJ_Dijiesheinfo = djs,
+                CompanyBelong = companyBelong
             };
             DalWorker.Save(worker);
         }

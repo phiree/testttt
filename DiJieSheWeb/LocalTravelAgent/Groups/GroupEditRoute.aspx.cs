@@ -109,8 +109,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
                 DJ_TourEnterprise ent = bllEnter.GetEntByName(entName);
                 if (ent != null && ent.IsVerified)
                 {
-                    tbx.CssClass = "rewardbb";
-                    tbx.ForeColor = System.Drawing.Color.Red;
+                    tbx.CssClass += " rewardbg";
                 }
             }
         }

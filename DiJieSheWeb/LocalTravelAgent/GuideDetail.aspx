@@ -41,10 +41,10 @@
         </tr>
         <tr>
             <td>
-                归属部门:
+                所属公司:
             </td>
             <td>
-                <asp:Label ID="lbldjs" runat="server" />
+              <asp:TextBox ID="tbxBelong" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>

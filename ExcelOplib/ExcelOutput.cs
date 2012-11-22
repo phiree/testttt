@@ -23,12 +23,13 @@ namespace ExcelOplib
         /// <param name="dt">数据表</param>
         /// <param name="page">返回(当前)页</param>
         /// <param name="titlelist">标题列表</param>
-        public static void Download2Excel(DataTable dt, Page page, List<string> titlelist)
+        /// <param name="title">文件名称</param>
+        public static void Download2Excel(DataTable dt, Page page, List<string> titlelist,string filename)
         {
             HttpResponse resp;
             resp = page.Response;
             resp.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
-            resp.AppendHeader("Content-Disposition", "attachment;filename=" + DateTime.Now.ToShortTimeString() + ".xls");
+            resp.AppendHeader("Content-Disposition", "attachment;filename=" + filename + ".xls");
             // resp.ContentType = "application/vnd.ms-excel";
             string colCaption = "", colContent = "", colfooter = "";
             foreach (var item in titlelist)

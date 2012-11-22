@@ -19,11 +19,7 @@ public partial class Groups_Grouplist : basepageDJS
             BindGroups();
         }
     }
-
-    protected void cblState_Changed(object sender, EventArgs e)
-    {
-        BindGroups();
-    }
+    #region method
 
     public void BindGroups()
     {
@@ -35,6 +31,15 @@ public partial class Groups_Grouplist : basepageDJS
         rptGroups.DataBind();
     }
 
+    #endregion
+
+    #region event
+    //状态选择
+    protected void cblState_Changed(object sender, EventArgs e)
+    {
+        BindGroups();
+    }
+
     protected void rptGroups_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         string errMsg = string.Empty;
@@ -44,7 +49,7 @@ public partial class Groups_Grouplist : basepageDJS
         switch (e.CommandName.ToLower())
         {
             case "delete":
-               
+
                 if (DateTime.Now >= group.BeginDate)
                 {
                     errMsg = "团队已经出发,不能删除";
@@ -76,18 +81,18 @@ public partial class Groups_Grouplist : basepageDJS
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
-            
+
 
             Model.DJ_TourGroup group = e.Item.DataItem as Model.DJ_TourGroup;
-   LinkButton lblRoute_bz = e.Item.FindControl("lblRoute_bz") as LinkButton;
+            LinkButton lblRoute_bz = e.Item.FindControl("lblRoute_bz") as LinkButton;
             LinkButton lblMember_bz = e.Item.FindControl("lblMember_bz") as LinkButton;
             Panel pnl = e.Item.FindControl("pnlOperation") as Panel;
-            if (group.GroupState== TourGroupState.正在进行|| group.GroupState == TourGroupState.已经结束)
+            if (group.GroupState == TourGroupState.正在进行 || group.GroupState == TourGroupState.已经结束)
             {
                 pnl.Visible = lblMember_bz.Visible = lblRoute_bz.Visible = false;
                 return;
             }
-         
+
             if (group.Members.Count == 0)
             {
                 lblMember_bz.Text = group.Members.Count + "位团员, 请补充团员信息";
@@ -99,7 +104,7 @@ public partial class Groups_Grouplist : basepageDJS
             }
             lblMember_bz.PostBackUrl = "/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid=" + group.Id;
 
-          
+
             if (group.Routes.GroupBy(x => x.DayNo).Count() > group.DaysAmount)
             {
                 lblRoute_bz.Text = group.Routes.GroupBy(x => x.DayNo).Count() + "日线路, 超出计划天数" +
@@ -120,13 +125,36 @@ public partial class Groups_Grouplist : basepageDJS
         }
     }
 
-
+    //直接录入
     protected void Btnzjlr_Click(object sender, EventArgs e)
     {
         Response.Redirect("/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx");
     }
+    //excel导入
     protected void Btnxlslr_Click(object sender, EventArgs e)
     {
         Response.Redirect("/LocalTravelAgent/Groups/GroupInfo.aspx");
     }
+    //导出
+    protected void btnOutput3_Click(object sender, EventArgs e)
+    {
+        IList<Model.DJ_TourGroup> tglist = blltg.GetGroupsForDjsAdmin((DJ_User_TourEnterprise)CurrentMember);
+        TourGroupState state = (TourGroupState)Convert.ToInt16(cblState.SelectedValue);
+        var result = tglist.Where(x => x.GroupState == state);
+        DataTable tblDatas = new DataTable("Datas");
+        tblDatas.Columns.Add("id", Type.GetType("System.String"));
+        tblDatas.Columns.Add("name", Type.GetType("System.String"));
+        tblDatas.Columns.Add("time", Type.GetType("System.String"));
+        tblDatas.Columns.Add("days", Type.GetType("System.String"));
+        int i = 1;
+        foreach (var item in result)
+        {
+            tblDatas.Rows.Add(new object[] { i++, item.Name, item.BeginDate.ToString("yyyy年MM月dd日"), 
+                item.DaysAmount+"日游" });
+        }
+        ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
+            "序号","名称","时间","几日游"
+        },"团队列表");
+    }
+    #endregion
 }

@@ -2,5 +2,5 @@
 <asp:DropDownList ID="ddlAreaProvince" runat="server" AutoPostBack="True" 
     onselectedindexchanged="ddlAreaProvince_SelectedIndexChanged">
 </asp:DropDownList>
-<asp:DropDownList ID="ddlAreaCity" runat="server">
+<asp:DropDownList ID="ddlAreaCity" runat="server" AutoPostBack="true">
 </asp:DropDownList>

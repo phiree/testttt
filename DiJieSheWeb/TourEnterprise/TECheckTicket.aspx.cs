@@ -45,10 +45,10 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 int flag = 0;
                 foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.CurrentTE).ToList())
                 {
-                    if (work.IDCard.Substring(0, 6) + "********" + work.IDCard.Substring(14) == idcard)
+                    if (work.DJ_Workers.IDCard.Substring(0, 6) + "********" + work.DJ_Workers.IDCard.Substring(14) == idcard)
                     {
                         flag = 1;
-                        idcard = work.IDCard;
+                        idcard = work.DJ_Workers.IDCard;
                     }
                 }
                 if (flag == 1)
@@ -85,9 +85,9 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
             foreach (DJ_Group_Worker work in dj_tourgroup.Workers)
             {
-                if (work.WorkerType == DJ_GroupWorkerType.导游)
+                if (work.DJ_Workers.WorkerType == DJ_GroupWorkerType.导游)
                 {
-                    laGuideName.Text += work.Name;
+                    laGuideName.Text += work.DJ_Workers.Name;
                 }
             }
             HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
@@ -220,10 +220,10 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         int flag = 0;
         foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.CurrentTE).ToList())
         {
-            if (work.IDCard.Substring(0, 6) + "********" + work.IDCard.Substring(14) == idcard)
+            if (work.DJ_Workers.IDCard.Substring(0, 6) + "********" + work.DJ_Workers.IDCard.Substring(14) == idcard)
             {
                 flag = 1;
-                idcard = work.IDCard;
+                idcard = work.DJ_Workers.IDCard;
             }
         }
         if (flag == 1)
@@ -327,7 +327,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (DJ_Group_Worker item in ListGw)
         {
-            data.Add(Guid.NewGuid().ToString(), item.Name + "/" + item.IDCard.Substring(0, 6) + "********" + item.IDCard.Substring(14));
+            data.Add(new Guid().ToString(), item.DJ_Workers.Name + "/" + item.DJ_Workers.IDCard.Substring(0, 6) + "********" + item.DJ_Workers.IDCard.Substring(14));
         }
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
         using (MemoryStream ms = new MemoryStream())
@@ -355,9 +355,9 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         {
             Literal laGuiderName = e.Item.FindControl("laGuiderName") as Literal;
             DJ_GroupConsumRecord gcr = e.Item.DataItem as DJ_GroupConsumRecord;
-            foreach (DJ_Group_Worker work in gcr.Route.DJ_TourGroup.Workers.Where(x => x.WorkerType == DJ_GroupWorkerType.导游))
+            foreach (DJ_Group_Worker work in gcr.Route.DJ_TourGroup.Workers.Where(x => x.DJ_Workers.WorkerType == DJ_GroupWorkerType.导游))
             {
-                laGuiderName.Text += work.Name + " ";
+                laGuiderName.Text += work.DJ_Workers.Name + " ";
             }
 
         }

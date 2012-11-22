@@ -18,13 +18,13 @@ namespace Model
         }
 
         public virtual IList<DJ_Group_Worker> Drivers { get {
-            return Works.Where<DJ_Group_Worker>(x => x.WorkerType == DJ_GroupWorkerType.司机).ToList();
+            return Works.Where<DJ_Group_Worker>(x => x.DJ_Workers.WorkerType == DJ_GroupWorkerType.司机).ToList();
         } }
         public virtual IList<DJ_Group_Worker> Guides
         {
             get
             {
-                return Works.Where<DJ_Group_Worker>(x => x.WorkerType == DJ_GroupWorkerType.导游).ToList();
+                return Works.Where<DJ_Group_Worker>(x => x.DJ_Workers.WorkerType == DJ_GroupWorkerType.导游).ToList();
             }
         }
         public virtual IList<DJ_Group_Worker> Works { get; set; }

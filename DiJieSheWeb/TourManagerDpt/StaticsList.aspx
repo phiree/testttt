@@ -159,7 +159,7 @@
                 <div class="searchdiv">
                     日期：<asp:TextBox ID="txt_yijiedai2" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
                     企业名称(*必填)：<asp:TextBox ID="txt_name2" runat="server" />
-                    <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click" 
+                    <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click"
                         CssClass="btn" /></div>
                 <div style="display:none">
                     <asp:Button ID="btn_ys" runat="server" />

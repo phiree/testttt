@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using BLL;
 using Model;
+using System.Data;
 
 public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
 {
@@ -84,58 +85,38 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
         return ListDpt;
     }
 
-
-    //#region 排序方法
-    //private List<dptStatistic> OrderByList(List<dptStatistic> ListRecord)
-    //{
-    //    string[] orderbyStrs = Request.Cookies["orderstr"].Value.Split('_');
-    //    int orderIndex = int.Parse(orderbyStrs[0]);
-    //    string orderType = orderbyStrs[1];
-    //    switch (orderIndex)
-    //    {
-    //        case 0:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.dptName).ToList() : ListRecord.OrderByDescending(x => x.dptName).ToList();
-    //                break;
-    //            }
-    //        case 1:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.month_total).ToList() : ListRecord.OrderByDescending(x => x.month_total).ToList();
-    //                break;
-    //            }
-    //        case 2:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.month_live).ToList() : ListRecord.OrderByDescending(x => x.month_live).ToList();
-    //                break;
-    //            }
-    //        case 3:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.month_visited).ToList() : ListRecord.OrderByDescending(x => x.month_visited).ToList();
-    //                break;
-    //            }
-    //        case 4:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.year_total).ToList() : ListRecord.OrderByDescending(x => x.year_total).ToList();
-    //                break;
-    //            }
-    //        case 5:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.year_live).ToList() : ListRecord.OrderByDescending(x => x.year_live).ToList();
-    //                break;
-    //            }
-    //        case 6:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.year_visited).ToList() : ListRecord.OrderByDescending(x => x.year_visited).ToList();
-    //                break;
-    //            }
-    //        default:
-    //            break;
-    //    }
-    //    return ListRecord;
-
-    //}
-    //#endregion
-
+    protected void btnOutput3_Click(object sender, EventArgs e)
+    {
+        DateTime selectTime;
+        if (!DateTime.TryParse(txtDate.Text.Trim(), out selectTime))
+        {
+            txtDate.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月";
+        }
+        string begintime, endtime;
+        begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
+        endtime = DateTime.Parse(txtDate.Text.Trim()).Year + "-12-30";
+        List<DJ_GovManageDepartment> ListGov = bllrecord.GetDptRecord(begintime, endtime, txtEntName.Text, Master.CurrentDJS.Id);
+        var result = bindDptStatistic(ListGov);
+        //创建datatable
+        DataTable tblDatas = new DataTable("Datas");
+        tblDatas.Columns.Add("id", Type.GetType("System.String"));
+        tblDatas.Columns.Add("name", Type.GetType("System.String"));
+        tblDatas.Columns.Add("mtotal", Type.GetType("System.String"));
+        tblDatas.Columns.Add("mhotel", Type.GetType("System.String"));
+        tblDatas.Columns.Add("mplay", Type.GetType("System.String"));
+        tblDatas.Columns.Add("ytotal", Type.GetType("System.String"));
+        tblDatas.Columns.Add("yhotel", Type.GetType("System.String"));
+        tblDatas.Columns.Add("yplay", Type.GetType("System.String"));
+        int i = 1;
+        foreach (var item in result)
+        {
+            tblDatas.Rows.Add(new object[] { i++, item.dptName, item.month_total, 
+                item.month_live,item.month_visited,item.year_total,item.year_live,item.year_visited });
+        }
+        ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
+            "序号","旅游管理部门名称","本月总人数","本月住宿人天数","本月游玩人数","本年总人数","本年住宿人天数","本年游玩人数"
+        }, "旅游管理部门统计信息");
+    }
 }
 
 public class dptStatistic

@@ -124,8 +124,9 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
 
     protected void BindGov2()
     {
-        if (string.IsNullOrEmpty(txt_name2.Text)) {
-            return; 
+        if (string.IsNullOrEmpty(txt_name2.Text))
+        {
+            return;
         }
 
         IList<Model.DJ_GroupConsumRecord> gcrlist = bllCustomRecord.GetGCR8Multi(null, null, null, null, null);
@@ -185,125 +186,125 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
 
     //protected void BindGov3()
     //{
-        ////整理后数据Gov3
-        //IList<Model.DJ_TourGroup> tglist = blltg.();
-        //#region 筛选省市
-        //if (CurrentDpt.Area.Level == Model.AreaLevel.省)
-        //{
-        //    tglist = tglist
-        //        .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 2)))
-        //        .ToList();
-        //}
-        //if (CurrentDpt.Area.Level == Model.AreaLevel.市)
-        //{
-        //    tglist = tglist
-        //        .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 4)))
-        //        .ToList();
-        //}
-        //if (CurrentDpt.Area.Level == Model.AreaLevel.区县)
-        //{
-        //    tglist = tglist
-        //        .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6)))
-        //        .ToList();
-        //}
-        //#endregion
-        ////筛选企业
-        //if (!string.IsNullOrEmpty(txt_name3djs.Text))
-        //{
-        //    tglist = tglist.Where(x => x.Routes.Where(y => y.Enterprise.Name == txt_name3djs.Text.Trim()).Count() > 0).ToList();
-        //}
-        ////筛选日期
-        //string[] temp = txt_yijiedai3.Text.Split(new char[] { '年', '月' });
-        //if (!string.IsNullOrEmpty(txt_yijiedai3.Text) && temp.Length >= 2)
-        //{
-        //    var begin_date = new DateTime(int.Parse(temp[0]), int.Parse(temp[1]), 1);
-        //    var end_date = begin_date.AddMonths(1);
-        //    tglist = tglist.Where(x => x.BeginDate >= begin_date && x.EndDate.AddDays(x.DaysAmount) < end_date).ToList();
-        //}
-        //IList<statics_Gov3> sm3 = new List<statics_Gov3>();
-        //foreach (var item3 in tglist.Where(x => x.DJ_DijiesheInfo != null))
-        //{
-        //    var temp = new statics_Gov3();
-        //    temp.Name = item3.DJ_DijiesheInfo.Name;
-        //    temp.Gname = item3.Name;
-        //    temp.GId = item3.Id.ToString();
-        //    temp.Bedate = item3.BeginDate.ToShortDateString() + "~" + item3.EndDate.ToShortDateString();
+    ////整理后数据Gov3
+    //IList<Model.DJ_TourGroup> tglist = blltg.();
+    //#region 筛选省市
+    //if (CurrentDpt.Area.Level == Model.AreaLevel.省)
+    //{
+    //    tglist = tglist
+    //        .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 2)))
+    //        .ToList();
+    //}
+    //if (CurrentDpt.Area.Level == Model.AreaLevel.市)
+    //{
+    //    tglist = tglist
+    //        .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 4)))
+    //        .ToList();
+    //}
+    //if (CurrentDpt.Area.Level == Model.AreaLevel.区县)
+    //{
+    //    tglist = tglist
+    //        .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6)))
+    //        .ToList();
+    //}
+    //#endregion
+    ////筛选企业
+    //if (!string.IsNullOrEmpty(txt_name3djs.Text))
+    //{
+    //    tglist = tglist.Where(x => x.Routes.Where(y => y.Enterprise.Name == txt_name3djs.Text.Trim()).Count() > 0).ToList();
+    //}
+    ////筛选日期
+    //string[] temp = txt_yijiedai3.Text.Split(new char[] { '年', '月' });
+    //if (!string.IsNullOrEmpty(txt_yijiedai3.Text) && temp.Length >= 2)
+    //{
+    //    var begin_date = new DateTime(int.Parse(temp[0]), int.Parse(temp[1]), 1);
+    //    var end_date = begin_date.AddMonths(1);
+    //    tglist = tglist.Where(x => x.BeginDate >= begin_date && x.EndDate.AddDays(x.DaysAmount) < end_date).ToList();
+    //}
+    //IList<statics_Gov3> sm3 = new List<statics_Gov3>();
+    //foreach (var item3 in tglist.Where(x => x.DJ_DijiesheInfo != null))
+    //{
+    //    var temp = new statics_Gov3();
+    //    temp.Name = item3.DJ_DijiesheInfo.Name;
+    //    temp.Gname = item3.Name;
+    //    temp.GId = item3.Id.ToString();
+    //    temp.Bedate = item3.BeginDate.ToShortDateString() + "~" + item3.EndDate.ToShortDateString();
 
-        //    var temp_y_hotel = item3.Routes
-        //        .Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆)
-        //        .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.BeginDate).Days));
-        //    if (temp_y_hotel.Count() > 0)
-        //    {
-        //        foreach (var item in temp_y_hotel)
-        //        {
-        //            temp.y_hotel += item.Enterprise.Name + " ";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        temp.y_hotel = "无";
-        //    }
+    //    var temp_y_hotel = item3.Routes
+    //        .Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆)
+    //        .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.BeginDate).Days));
+    //    if (temp_y_hotel.Count() > 0)
+    //    {
+    //        foreach (var item in temp_y_hotel)
+    //        {
+    //            temp.y_hotel += item.Enterprise.Name + " ";
+    //        }
+    //    }
+    //    else
+    //    {
+    //        temp.y_hotel = "无";
+    //    }
 
-        //    var temp_t_hotel = item3.Routes
-        //        .Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆)
-        //        .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.BeginDate).Days + 1));
-        //    if (temp_t_hotel.Count() > 0)
-        //    {
-        //        foreach (var item in temp_t_hotel)
-        //        {
-        //            temp.t_hotel += item.Enterprise.Name + " ";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        temp.t_hotel = "无";
-        //    }
+    //    var temp_t_hotel = item3.Routes
+    //        .Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆)
+    //        .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.BeginDate).Days + 1));
+    //    if (temp_t_hotel.Count() > 0)
+    //    {
+    //        foreach (var item in temp_t_hotel)
+    //        {
+    //            temp.t_hotel += item.Enterprise.Name + " ";
+    //        }
+    //    }
+    //    else
+    //    {
+    //        temp.t_hotel = "无";
+    //    }
 
-        //    var temp_t_scenic = item3.Routes
-        //        .Where(x => x.Enterprise.Type == Model.EnterpriseType.景点)
-        //        .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.BeginDate).Days + 1));
-        //    if (temp_t_scenic.Count() > 0)
-        //    {
-        //        foreach (var item in temp_t_hotel)
-        //        {
-        //            temp.t_scenic += item.Enterprise.Name + " ";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        temp.t_scenic = "无";
-        //    }
-        //    sm3.Add(temp);
-        //}
-        //////V.2012.10.27
-        //////团队名字非空
-        ////if (!string.IsNullOrEmpty(txt_name3.Text))
-        ////{
-        ////    //地接社名字非空
-        ////    if (!string.IsNullOrEmpty(txt_name3djs.Text))
-        ////    {
-        ////        sm3 = sm3.Where(x => x.Name.Split(new string[] { txt_name3djs.Text }, StringSplitOptions.None).Count() > 1).ToList();
-        ////        rptGov3.DataSource = sm3.Where(x => x.Name.Split(new string[] { txt_name3.Text }, StringSplitOptions.None).Count() > 1);
-        ////    }
-        ////    else
-        ////    {
-        ////        rptGov3.DataSource = sm3.Where(x => x.Name.Split(new string[] { txt_name3.Text }, StringSplitOptions.None).Count() > 1);
-        ////    }
-        ////}
-        //////团队名字空
-        ////else
-        ////{
-        ////if (!string.IsNullOrEmpty(txt_name3djs.Text))
-        ////{
-        ////    rptGov3.DataSource = sm3.Where(x => x.Name.Split(new string[] { txt_name3djs.Text }, StringSplitOptions.None).Count() > 1);
-        ////}
-        ////else
-        ////{
-        ////V.20120.10.30
-        //rptGov3.DataSource = sm3;
-        ////}
-        ////}
-        //rptGov3.DataBind();
+    //    var temp_t_scenic = item3.Routes
+    //        .Where(x => x.Enterprise.Type == Model.EnterpriseType.景点)
+    //        .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.BeginDate).Days + 1));
+    //    if (temp_t_scenic.Count() > 0)
+    //    {
+    //        foreach (var item in temp_t_hotel)
+    //        {
+    //            temp.t_scenic += item.Enterprise.Name + " ";
+    //        }
+    //    }
+    //    else
+    //    {
+    //        temp.t_scenic = "无";
+    //    }
+    //    sm3.Add(temp);
+    //}
+    //////V.2012.10.27
+    //////团队名字非空
+    ////if (!string.IsNullOrEmpty(txt_name3.Text))
+    ////{
+    ////    //地接社名字非空
+    ////    if (!string.IsNullOrEmpty(txt_name3djs.Text))
+    ////    {
+    ////        sm3 = sm3.Where(x => x.Name.Split(new string[] { txt_name3djs.Text }, StringSplitOptions.None).Count() > 1).ToList();
+    ////        rptGov3.DataSource = sm3.Where(x => x.Name.Split(new string[] { txt_name3.Text }, StringSplitOptions.None).Count() > 1);
+    ////    }
+    ////    else
+    ////    {
+    ////        rptGov3.DataSource = sm3.Where(x => x.Name.Split(new string[] { txt_name3.Text }, StringSplitOptions.None).Count() > 1);
+    ////    }
+    ////}
+    //////团队名字空
+    ////else
+    ////{
+    ////if (!string.IsNullOrEmpty(txt_name3djs.Text))
+    ////{
+    ////    rptGov3.DataSource = sm3.Where(x => x.Name.Split(new string[] { txt_name3djs.Text }, StringSplitOptions.None).Count() > 1);
+    ////}
+    ////else
+    ////{
+    ////V.20120.10.30
+    //rptGov3.DataSource = sm3;
+    ////}
+    ////}
+    //rptGov3.DataBind();
     //}
 
     protected void BindGov3()
@@ -530,7 +531,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         tblDatas.Rows.Add(new object[] { "总计", "", m_total, m_play, m_hotel, y_total, y_play, y_hotel });
         ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","地接社名称","本月总人数","本月游览人次","本月住宿人数","本年总人数","本年游览人数","本年住宿人数"
-        });
+        },"已接待情况");
     }
 
     protected void btnOutput2_Click(object sender, EventArgs e)
@@ -604,11 +605,11 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         }
         ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","拟接待人数","实际接待人数"
-        });
+        },"接待情况明细表");
     }
 
-    protected void btnOutput3_Click(object sender, EventArgs e) {
-
+    protected void btnOutput3_Click(object sender, EventArgs e)
+    {
         //整理后数据Gov3
         IList<Model.DJ_TourGroup> tglist = blltg.GetTourGroupByAll();
         //筛选省市
@@ -707,12 +708,10 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         {
             tblDatas.Rows.Add(new object[] { i++, item.Name, item.Gname, item.Bedate, 
                 "上一日住宿："+item.y_hotel+"，准备入住："+item.t_hotel+"今日游览："+item.t_scenic });
-            i++;
         }
-        tblDatas.Rows.Add(new object[] { "总计", "", m_total, m_play, m_hotel, y_total, y_play, y_hotel });
         ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","地接社名称","团队名称","时间","游览情况"
-        });
+        },"团队旅游情况表");
     }
 }
 

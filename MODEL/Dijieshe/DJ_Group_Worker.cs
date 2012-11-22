@@ -13,39 +13,14 @@ namespace Model
         
         public virtual Guid Id { get; set; }
         /// <summary>
-        /// 姓名
+        /// 员工
         /// </summary>
-        public virtual string Name { get; set; }
-
-        public virtual string Phone { get; set; }
-
-        /// <summary>
-        /// 身份证号
-        /// </summary>
-        public virtual string IDCard { get; set; }
-
-        /// <summary>
-        /// 工作证件号码: 导游证号,驾驶证号
-        /// </summary>
-        public virtual string SpecificIdCard { get; set; }
-
-        public virtual DJ_GroupWorkerType WorkerType { get; set; }
-
+        public virtual DJ_Workers DJ_Workers { get; set; }
         /// <summary>
         /// 所属团队. 简单起见,做成多对一的关系.
         /// </summary>
         public virtual DJ_TourGroup DJ_TourGroup { get; set; }
-        public virtual DJ_DijiesheInfo DJ_Dijiesheinfo { get; set; }
-        public virtual string CompanyBelong { get; set; }
-        public virtual void CopyTo(DJ_Group_Worker newWorker)
-        {
-            newWorker = this;
-        }
-       
+        
     }
-    public enum DJ_GroupWorkerType
-    { 
-        导游=1,
-        司机
-    }
+
 }

@@ -11,7 +11,6 @@ namespace Model
         public DJ_TourGroup()
         {
             Members = new List<DJ_TourGroupMember>();
-            Workers = new List<DJ_Group_Worker>();
             Vehicles = new List<DJ_Group_Vehicle>();
             Routes = new List<DJ_Route>();
         }
@@ -48,7 +47,7 @@ namespace Model
         public virtual DJ_User_TourEnterprise DijiesheEditor { get; set; }
         public virtual int AdultsAmount
         {
-            get { return Members.Where(x => x.MemberType == MemberType.成人游客||x.MemberType== MemberType.港澳台|| x.MemberType== MemberType.外宾).Count(); }
+            get { return Members.Where(x => x.MemberType == MemberType.成人游客 || x.MemberType == MemberType.港澳台 || x.MemberType == MemberType.外宾).Count(); }
         }
         /// <summary>
         /// 儿童总人数
@@ -103,15 +102,8 @@ namespace Model
         /// 路线描述
         /// </summary>
         public virtual IList<DJ_Route> Routes { get; set; }
-        /// <summary>
-        ///导游和司机信息
-        /// </summary>
-        public virtual IList<DJ_Group_Worker> Workers { get; set; }
-
-        /// <summary>
-        /// 车辆信息
-        /// </summary>
-        public virtual IList<DJ_Group_Vehicle> Vehicles { get; set; }
+        public virtual IList<Model.DJ_Group_Worker> Workers { get; set; }
+        public virtual IList<Model.DJ_Group_Vehicle> Vehicles { get; set; }
 
         /// <summary>
         /// 成员详细信息
@@ -125,35 +117,35 @@ namespace Model
         public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
         public virtual void CopyTo(DJ_TourGroup newGroup)
         {
-            newGroup.Name = Name+"[复制]";
+            newGroup.Name = Name + "[复制]";
             newGroup.BeginDate = BeginDate;
             newGroup.DaysAmount = DaysAmount;
             newGroup.DijiesheEditor = DijiesheEditor;
             newGroup.DJ_DijiesheInfo = DJ_DijiesheInfo;
             foreach (DJ_Route r in Routes)
             {
-                DJ_Route newRoute=new DJ_Route();
+                DJ_Route newRoute = new DJ_Route();
                 r.CopyTo(newRoute);
                 newRoute.DJ_TourGroup = newGroup;
                 newGroup.Routes.Add(newRoute);
             }
-            foreach (DJ_Group_Worker worker in Workers)
-            {
-                newGroup.Workers.Add(worker);
-            }
+            //foreach (DJ_Group_Worker worker in Workers)
+            //{
+            //    newGroup.Workers.Add(worker);
+            //}
             foreach (DJ_TourGroupMember member in Members)
             {
                 newGroup.Members.Add(member);
+
+
             }
-            
-            
         }
     }
     public enum TourGroupState
     {
 
-        尚未开始=1,
-        正在进行=2,
-        已经结束=4
+        尚未开始 = 1,
+        正在进行 = 2,
+        已经结束 = 4
     }
 }
