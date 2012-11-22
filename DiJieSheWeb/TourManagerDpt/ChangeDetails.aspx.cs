@@ -92,6 +92,6 @@ public partial class TourManagerDpt_ChangeDetails : System.Web.UI.Page
         }
         Save();
         Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('修改成功!')", true);
-        Response.Redirect("/tourmanagerdpt/EnterpriseList.aspx");
+        //Response.Redirect("/tourmanagerdpt/EnterpriseList.aspx");
     }
 }

@@ -82,7 +82,16 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
 
     void rptHotels_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        // throw new NotImplementedException();
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            TextBox tbxEntEdit = e.Item.FindControl("tbxEntEdit") as TextBox;
+            object ent = e.Item.DataItem;
+            if (ent!= null)
+            { 
+             
+            }
+
+        }
     }
 
     void rptScenics_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -94,11 +103,14 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             TextBox tbx= e.Item.FindControl("tbxEntEdit") as TextBox;
-            DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
-            if (ent!=null&&ent.IsVerified)
+            string entName = tbx.Text.Trim();
+            if (!string.IsNullOrEmpty(entName))
             {
-                tbx.CssClass = "rewardbb";
-                tbx.ForeColor = System.Drawing.Color.Red;
+                DJ_TourEnterprise ent = bllEnter.GetEntByName(entName);
+                if (ent != null && ent.IsVerified)
+                {
+                    tbx.CssClass += " rewardbg";
+                }
             }
         }
     }
@@ -107,6 +119,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         string commandName=e.CommandName.ToLower();
         if (commandName== "edit")
         {
+            btnAddRoute.Visible = true;
             pnlEditRoute.Visible = true;
             rblDayNo.Enabled = false;
             int dayNo = Convert.ToInt32(e.CommandArgument);
@@ -119,7 +132,12 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         else if (commandName == "delete")
         { 
                int dayNo = Convert.ToInt32(e.CommandArgument);
-               CurrentGroup.Routes = CurrentGroup.Routes.Where(x => x.DayNo != dayNo).ToList();
+          //     CurrentGroup.Routes = CurrentGroup.Routes.Where(x => x.DayNo != dayNo).ToList();
+               IList<DJ_Route> routeToBeDeleted = CurrentGroup.Routes.Where(x => x.DayNo == dayNo).ToList();
+               foreach (DJ_Route r in routeToBeDeleted)
+               {
+                   CurrentGroup.Routes.Remove(r);
+               }
                bllGroup.Save(CurrentGroup);
                LoadData();
                pnlEditRoute.Visible = false;
@@ -164,6 +182,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         {
             lblMsg_SaveRoute.Text = "操作成功";
         }
+        //ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('" + lblMsg_SaveRoute.Text + "')", true);
         btnAddRoute.Visible = true;
     }
     protected void btnClose_Click(object sender, EventArgs e)

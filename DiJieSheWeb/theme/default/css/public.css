@@ -116,6 +116,17 @@ table tr td
     cursor:pointer;
     font-weight:bold;
 }
+.btn2:hover
+{
+    border:1px solid #009282;
+    color:#009282;
+    height:25px;
+    line-height:20px;
+    text-align:center;
+    background:url("/theme/default/image/btn2_bg.jpg");
+    cursor:pointer;
+    font-weight:bold;
+}
 .rbl
 {
     margin:0px auto;

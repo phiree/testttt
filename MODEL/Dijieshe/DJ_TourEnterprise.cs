@@ -50,10 +50,10 @@ namespace Model
         public virtual string Level { get; set; }
         private DateTime lastUpdateTime = DateTime.Now;
         public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
-        public virtual RewardType GetRewart(DJ_GovManageDepartment gov)
+        public virtual RewardType GetRewart(Area area)
         {
             RewardType t = 0;
-            switch (gov.Area.Level)
+            switch (area.Level)
             {
                 case AreaLevel.区县: t = CountryVeryfyState; break;
                 case AreaLevel.省: t = ProvinceVeryfyState; break;

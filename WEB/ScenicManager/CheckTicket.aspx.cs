@@ -95,7 +95,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (TicketAssign item in list)
         {
-            data.Add(new Guid().ToString(), item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
+            data.Add(Guid.NewGuid().ToString(), item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
         }
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
         using (MemoryStream ms = new MemoryStream())

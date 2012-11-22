@@ -46,6 +46,7 @@ public partial class LocalTravelAgent_GuideDetail : System.Web.UI.Page
             worker.DJ_Workers.Phone = txtPhone.Text;
             worker.DJ_Workers.IDCard = txtidcard.Text;
             worker.DJ_Workers.SpecificIdCard = txtGuideid.Text;
+            worker.CompanyBelong = tbxBelong.Text;
             bllworker.UpdateData(worker);
             Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('修改成功, 返回列表页!')", true);
             Response.Redirect("/LocalTravelAgent/GuideList.aspx");

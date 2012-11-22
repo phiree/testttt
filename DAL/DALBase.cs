@@ -24,7 +24,7 @@ namespace DAL
         }
         public void Update(object o)
         {
-            session.Update(o);
+            session.SaveOrUpdate(o);
             session.Flush();
         }
 

@@ -20,11 +20,7 @@ namespace Model
         /// 所属团队. 简单起见,做成多对一的关系.
         /// </summary>
         public virtual DJ_TourGroup DJ_TourGroup { get; set; }
-        public virtual void CopyTo(DJ_Group_Worker newWorker)
-        {
-            newWorker = this;
-        }
-       
+        
     }
 
 }

@@ -32,40 +32,45 @@
                     var tbx = this.element[0];
                     var entType = $(tbx).attr("entType");
                     $.get("/ajaxservice/EntpriseAutoCompleteHanlder.ashx?entName=" + request.term + "&entType=" + entType
-                    , function (data) { 
-                    response( $.map( data, function( item ) {
-                    var labelStr=item.Name;
-                    var verifyState=0;
-                          if(item.CityVeryfyState==1||item.CountryVeryfyState==1||item.ProvinceVeryfyState==1)
-                          {
-                            labelStr="☆"+labelStr;
-                            verifyState=1;
-                          }
-                        return {
-                            label: labelStr,
-                            value: item.Name,
-                            verifyState:verifyState
-                        }
-                    })); 
+                    , function (data) {
+                        response($.map(data, function (item) {
+                            var labelStr = item.Name;
+                            var verifyState = 0;
+                            if (item.CityVeryfyState == 1 || item.CountryVeryfyState == 1 || item.ProvinceVeryfyState == 1) {
+                                labelStr = "☆" + labelStr;
+                                verifyState = 1;
+                            }
+                            return {
+                                label: labelStr,
+                                value: item.Name,
+                                verifyState: verifyState
+                            }
+                        }));
                     });
                 },
+                //                focus: function (event, ui) {
+                //                    event.target.className -= " rewardbg";
+                //                },
                 select: function (event, ui) {
-                    if(ui.item.verifyState==1)
-                    event.target.className+=" rewardbg";
+                    if (ui.item.verifyState == 1)
+                        event.target.className += " rewardbg";
+                    else {
+                        event.target.className = event.target.className.replace("rewardbg", "");
+                    }
                     event.target.value = ui.item.Name;
                 }
             });
-          
-          /*隐藏/显示多余的文本框*/
-          $(".EditEntName[entType='景点']").each(
-          function(index){
-          if(index>=4 && $(this).val()=="")
-          $(this).hide();
+
+            /*隐藏/显示多余的文本框*/
+            $(".EditEntName[entType='景点']").each(
+          function (index) {
+              if (index >= 4 && $(this).val() == "")
+                  $(this).hide();
           }
           );
-           $(".EditEntName[entType='宾馆']").each(function(index){if(index>=2)$(this).hide();});
-           $("#btnAddMoreScenic").click(function(){ $(".EditEntName[entType='景点']").show();});
-           $("#btnAddMoreHotel").click(function(){$(".EditEntName[entType='宾馆']").show();});
+            $(".EditEntName[entType='宾馆']").each(function (index) { if (index >= 2) $(this).hide(); });
+            $("#btnAddMoreScenic").click(function () { $(".EditEntName[entType='景点']").show(); });
+            $("#btnAddMoreHotel").click(function () { $(".EditEntName[entType='宾馆']").show(); });
         });
     </script>
 </asp:Content>
@@ -136,8 +141,8 @@
                         </td>
                         <td>
                             <asp:Button runat="server" ID="btnModifyRoute" CommandArgument='<%#Eval("DayNo") %>'
-                                CommandName="Edit" Text="修改" />
-                            <asp:Button runat="server" ID="Button1" CommandArgument='<%#Eval("DayNo") %>' CommandName="Delete"
+                                CommandName="Edit" Text="修改" CssClass="btn" />
+                            <asp:Button runat="server" ID="Button1" CommandArgument='<%#Eval("DayNo") %>' CommandName="Delete" CssClass="btn"
                                 Text="删除" OnClientClick="javascript:return confirm('确定要删除这一天的行程么?');" />
                         </td>
                     </tr>
@@ -162,7 +167,7 @@
                         <div>
                             <asp:Repeater runat="server" ID="rptEditScenics" OnItemDataBound="rptEditEnt_ItemDataBound">
                                 <ItemTemplate>
-                                    <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
+                                    <asp:TextBox runat="server"   Text='<%#Container.DataItem %>' CssClass="EditEntName"
                                         ID="tbxEntEdit" entType="景点"></asp:TextBox></ItemTemplate>
                             </asp:Repeater>
                             <input type="button" id="btnAddMoreScenic" value="增加更多" class="btn" /></div>
@@ -201,8 +206,7 @@
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText" Width="100%"></asp:TextBox>
             <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的行程信息将清除,是否继续?');"
                 Text="保存" CssClass="btn" />
-                 <asp:Button runat="server" ID="btnClose" OnClick="btnClose_Click"
-                Text="关闭" CssClass="btn" />
+              
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>
     </div>

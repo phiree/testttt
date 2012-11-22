@@ -20,7 +20,8 @@
                     地区
                 </td>
                 <td>
-                   <asp:DropDownList ID="ddlArea" runat="server" Width="80%">
+                <asp:Label runat="server" ID="lblArea"></asp:Label>
+                   <asp:DropDownList ID="ddlArea" Visible=false runat="server" Width="80%">
                     </asp:DropDownList>
                 </td>
             </tr>

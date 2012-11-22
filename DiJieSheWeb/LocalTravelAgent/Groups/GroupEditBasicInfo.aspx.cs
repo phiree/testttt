@@ -155,7 +155,8 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         {
             Response.Redirect("GroupEditMember.aspx?groupid=" + CurrentGroup.Id);
         }
-        lblMsg.Text = "保存成功";
+        //lblMsg.Text = "保存成功";
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功')", true);
     }
 
 }

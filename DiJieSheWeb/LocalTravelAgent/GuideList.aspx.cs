@@ -13,6 +13,7 @@ public partial class LocalTravelAgent_GuideList : basepageDJS
     {
         if (!IsPostBack)
         {
+            
             BindList();
         }
     }

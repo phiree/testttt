@@ -96,9 +96,9 @@
                         </td>
                         <td>
                             <asp:Button runat="server" ID="btnModifyMember" CommandArgument='<%#Eval("Id") %>'
-                                CommandName="Edit" Text="修改" />
+                                CommandName="Edit" Text="修改" CssClass="btn" />
                                  <asp:Button runat="server" ID="btnDeleteMember"  OnClientClick="javascript:return confirm('确定删除?');"  CommandArgument='<%#Eval("Id") %>'
-                                CommandName="Delete" Text="删除" />
+                                CommandName="Delete" Text="删除" CssClass="btn" />
                         </td>
                     </tr>
                 </ItemTemplate>
