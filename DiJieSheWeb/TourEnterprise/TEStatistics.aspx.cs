@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 using System.IO;
 using System.Data;
 
-public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
+public partial class TourEnterprise_TEStatistics : basepage
 {
     BLLDJConsumRecord bllrecord = new BLLDJConsumRecord();
     BLLDJRoute BLLDJRoute = new BLLDJRoute();
@@ -28,7 +28,6 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
     private void bind()
     {
         ListRecord = GetRecordList();
-        //ListRecord= OrderByList(ListRecord);
         rptTgRecord.DataSource = ListRecord;
         rptTgRecord.DataBind();
     }
@@ -116,46 +115,6 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
         return ListRecord;
     }
 
-    //#region 排序方法
-    //private List<DJ_GroupConsumRecord> OrderByList(List<DJ_GroupConsumRecord> ListRecord)
-    //{
-    //    string[] orderbyStrs = Request.Cookies["orderstr"].Value.Split('_');
-    //    int orderIndex = int.Parse(orderbyStrs[0]);
-    //    string orderType = orderbyStrs[1];
-    //    switch (orderIndex)
-    //    {
-    //        case 0:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.ConsumeTime).ToList() : ListRecord.OrderByDescending(x => x.ConsumeTime).ToList();
-    //                break;
-    //            }
-    //        case 1:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.Route.DJ_TourGroup.Name).ToList() : ListRecord.OrderByDescending(x => x.Route.DJ_TourGroup.Name).ToList();
-    //                break;
-    //            }
-    //        case 2:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name).ToList() : ListRecord.OrderByDescending(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Name).ToList();
-    //                break;
-    //            }
-    //        case 3:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.LiveDay).ToList() : ListRecord.OrderByDescending(x => x.LiveDay).ToList();
-    //                break;
-    //            }
-    //        case 4:
-    //            {
-    //                ListRecord = orderType == "asc" ? ListRecord.OrderBy(x => x.AdultsAmount).OrderBy(x => x.ChildrenAmount).ToList() : ListRecord.OrderByDescending(x => x.AdultsAmount).OrderByDescending(x => x.ChildrenAmount).ToList();
-    //                break;
-    //            }
-    //        default:
-    //            break;
-    //    }
-    //    return ListRecord;
-
-    //}
-    //#endregion
     protected void BtnCreatexls_Click(object sender, EventArgs e)
     {
         List<DJ_GroupConsumRecord> WListRec = new List<DJ_GroupConsumRecord>();
@@ -182,42 +141,6 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
 
     public void CreateExcels(List<DJ_GroupConsumRecord> WListRecord, List<DJ_GroupConsumRecord> YListRecord, string FileName)
     {
-        //HttpResponse resp;
-        //resp = Page.Response;
-        //resp.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
-        //resp.AppendHeader("Content-Disposition", "attachment;filename=" + FileName);
-        //// resp.ContentType = "application/vnd.ms-excel";
-        //string colCaption = "",colContent="",colfooter="";
-        //colCaption = "序号\t住宿时间\t团队名称\t旅行社名称\t住宿天数\t人数\t验证状态\n";
-        //resp.Write(colCaption);
-        //foreach (DJ_GroupConsumRecord record in WListRecord)
-        //{
-        //    colContent += Index++ + "\t";
-        //    colContent += record.ConsumeTime + "\t";
-        //    colContent += record.Route.DJ_TourGroup.Name + "\t";
-        //    colContent += record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name + "\t";
-        //    colContent += record.LiveDay + "\t";
-        //    colContent += "成人" + record.AdultsAmount + "儿童" + record.ChildrenAmount + "\t";
-        //    colContent += "未验证\n";
-        //}
-        //foreach (DJ_GroupConsumRecord record in YListRecord)
-        //{
-        //    colContent += Index++ + "\t";
-        //    colContent += record.ConsumeTime + "\t";
-        //    colContent += record.Route.DJ_TourGroup.Name + "\t";
-        //    colContent += record.Route.DJ_TourGroup.DJ_DijiesheInfo.Name + "\t";
-        //    colContent += record.LiveDay + "\t";
-        //    colContent += "成人" + record.AdultsAmount + "儿童" + record.ChildrenAmount + "\t";
-        //    colContent += "已验证\n";
-        //}
-        //resp.Write(colContent);
-        //int groupcount,adultcount,childrencount;
-        //    bllrecord.GetCountInfoByETid(Master.CurrentTE.Id, out groupcount, out adultcount, out childrencount, ListRecord);
-        //    colfooter = "共接待团对数" + groupcount + "其中包括成人" + adultcount + "儿童" + childrencount;
-        //resp.Write(colfooter);
-        ////写缓冲区中的数据到HTTP头文档中 
-        //resp.End();
-
         List<string> titlelist = new List<string>() { "序号", "住宿时间", "团队名称", "旅行社名称", "住宿天数", "人数", "验证状态" };
         DataTable dt = new DataTable();
         for (int i = 0; i < titlelist.Count; i++)
@@ -255,6 +178,6 @@ public partial class TourEnterprise_TEStatistics : System.Web.UI.Page
         DataRow drend = dt.NewRow();
         drend[0] = "共接待团对数" + groupcount + "其中包括成人" + adultcount + "儿童" + childrencount;
         dt.Rows.Add(drend);
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist);
+        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist,"统计数据");
     }
 }

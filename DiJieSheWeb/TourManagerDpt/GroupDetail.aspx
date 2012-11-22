@@ -156,19 +156,19 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <%#Eval("WorkerType").ToString()%>
+                        <%#Eval("DJ_Workers.WorkerType").ToString()%>
                     </td>
                     <td>
-                        <%#Eval("Name")%>
+                        <%#Eval("DJ_Workers.Name")%>
                     </td>
                     <td>
-                        <%#Eval("IDCard")%>
+                        <%#Eval("DJ_Workers.IDCard")%>
                     </td>
                     <td>
-                        <%#Eval("Phone")%>
+                        <%#Eval("DJ_Workers.Phone")%>
                     </td>
                     <td>
-                        <%#Eval("SpecificIdCard")%>
+                        <%#Eval("DJ_Workers.SpecificIdCard")%>
                     </td>
                 </tr>
             </ItemTemplate>

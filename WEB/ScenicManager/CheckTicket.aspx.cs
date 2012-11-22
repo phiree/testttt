@@ -50,11 +50,11 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         foreach (DJ_Group_Worker gw in listdjGW)
         {
             //排除以后的人员信息
-            if (list.Where(x => x.IdCard == gw.IDCard).Count() == 0)
+            if (list.Where(x => x.IdCard == gw.DJ_Workers.IDCard).Count() == 0)
             {
                 TicketAssign ta = new TicketAssign();
-                ta.Name = gw.Name;
-                ta.IdCard = gw.IDCard;
+                ta.Name = gw.DJ_Workers.Name;
+                ta.IdCard = gw.DJ_Workers.IDCard;
                 list.Add(ta);
             }
         }
@@ -84,11 +84,11 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         foreach (DJ_Group_Worker gw in listdjGW)
         {
             //排除以后的人员信息
-            if (list.Where(x => x.IdCard == gw.IDCard).Count() == 0)
+            if (list.Where(x => x.IdCard == gw.DJ_Workers.IDCard).Count() == 0)
             {
                 TicketAssign ta = new TicketAssign();
-                ta.Name = gw.Name;
-                ta.IdCard = gw.IDCard;
+                ta.Name = gw.DJ_Workers.Name;
+                ta.IdCard = gw.DJ_Workers.IDCard;
                 list.Add(ta);
             }
         }
@@ -129,10 +129,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         {
             foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList())
             {
-                if (work.IDCard.Substring(0, 6) + "********" + work.IDCard.Substring(14) == idcard)
+                if (work.DJ_Workers.IDCard.Substring(0, 6) + "********" + work.DJ_Workers.IDCard.Substring(14) == idcard)
                 {
                     flag = 1;
-                    idcard = work.IDCard;
+                    idcard = work.DJ_Workers.IDCard;
                 }
             }
         }
@@ -165,10 +165,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         {
             foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList())
             {
-                if (work.IDCard.Substring(0, 6) + "********" + work.IDCard.Substring(14) == idcard)
+                if (work.DJ_Workers.IDCard.Substring(0, 6) + "********" + work.DJ_Workers.IDCard.Substring(14) == idcard)
                 {
                     flag = 1;
-                    idcard = work.IDCard;
+                    idcard = work.DJ_Workers.IDCard;
                 }
             }
         }
@@ -524,7 +524,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             int Index = 0;
             DJ_TourGroup tourgroup= e.Item.DataItem as DJ_TourGroup;
             Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
-            laGuideName.Text = tourgroup.Workers.Where(x => x.WorkerType == DJ_GroupWorkerType.导游).ToList<DJ_Group_Worker>()[0].Name;
+            laGuideName.Text = tourgroup.Workers.Where(x => x.DJ_Workers.WorkerType == DJ_GroupWorkerType.导游).ToList<DJ_Group_Worker>()[0].DJ_Workers.Name;
             HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
             int flag = 0;
             foreach (DJ_Route route in tourgroup.Routes)
@@ -681,7 +681,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             TicketAssign ta = e.Item.DataItem as TicketAssign;
             Literal laType = e.Item.FindControl("laType") as Literal;
             List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList();
-            if (listdjGW.Where(x => x.IDCard == ta.IdCard).Count() > 0)
+            if (listdjGW.Where(x => x.DJ_Workers.IDCard == ta.IdCard).Count() > 0)
             {
                 laType.Text = "导游";
             }

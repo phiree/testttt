@@ -71,8 +71,8 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     /// </summary>
     private void LoadGroupWorkers()
     {
-        ListControlHelper.CheckItems(cbxDrivers, CurrentGroup.Workers.Select(x => x.Name).ToList());
-        ListControlHelper.CheckItems(cbxGuides, CurrentGroup.Workers.Select(x => x.Name).ToList());
+        ListControlHelper.CheckItems(cbxDrivers, CurrentGroup.Workers.Select(x => x.DJ_Workers.Name).ToList());
+        ListControlHelper.CheckItems(cbxGuides, CurrentGroup.Workers.Select(x => x.DJ_Workers.Name).ToList());
     }
 
   

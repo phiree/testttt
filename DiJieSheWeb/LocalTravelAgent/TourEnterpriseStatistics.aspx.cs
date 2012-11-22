@@ -8,6 +8,7 @@ using System.Web.UI.HtmlControls;
 using BLL;
 using Model;
 using System.Text.RegularExpressions;
+using System.Data;
 
 public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.Page
 {
@@ -65,7 +66,52 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
     {
         bind();
     }
-
+    protected void btnOutput3_Click(object sender, EventArgs e)
+    {
+        if (!Regex.Match(txtDate.Text.Trim(), "^[0-9]{4}年[0-9]{2}月$").Success)
+        {
+            txtDate.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月";
+        }
+        string begintime, endtime;
+        begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
+        endtime = DateTime.Parse(txtDate.Text.Trim()).Year + "-12-30";
+        listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), int.Parse(ddlType.SelectedValue), Master.CurrentDJS.Id).ToList();
+        var result = bindEntStatis(listEnt);
+        //创建datatable
+        DataTable tblDatas = new DataTable("Datas");
+        tblDatas.Columns.Add("id", Type.GetType("System.String"));
+        tblDatas.Columns.Add("qtype", Type.GetType("System.String"));
+        tblDatas.Columns.Add("qname", Type.GetType("System.String"));
+        tblDatas.Columns.Add("mtotal", Type.GetType("System.String"));
+        tblDatas.Columns.Add("mhotel", Type.GetType("System.String"));
+        tblDatas.Columns.Add("mplay", Type.GetType("System.String"));
+        tblDatas.Columns.Add("ytotal", Type.GetType("System.String"));
+        tblDatas.Columns.Add("yhotel", Type.GetType("System.String"));
+        tblDatas.Columns.Add("yplay", Type.GetType("System.String"));
+        int i = 1;
+        int t_month_total = 0;
+        int t_month_live = 0;
+        int t_month_visited = 0;
+        int t_year_total = 0;
+        int t_year_live = 0;
+        int t_year_visited = 0;
+        foreach (var item in result)
+        {
+            tblDatas.Rows.Add(new object[] { i++, item.Type, item.Name, item.month_total, 
+                item.month_live,item.month_visited,item.year_total,item.year_live,item.year_visited });
+            t_month_total += item.month_total;
+            t_month_live += item.month_live;
+            t_month_visited += item.month_visited;
+            t_year_total += item.year_total;
+            t_year_live += item.year_live;
+            t_year_visited += item.year_visited;
+        }
+        tblDatas.Rows.Add(new object[] { "总计", "", "", t_month_total, 
+                t_month_live,t_month_visited,t_year_total,t_year_live,t_year_visited });
+        ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
+            "序号","企业类型","企业名称","本月总人数","本月住宿人天数","本月游玩人数","本年总人数","本年住宿人天数","本年游玩人数"
+        }, "旅游企业统计信息");
+    }
 
     private List<EntStatis> bindEntStatis(List<DJ_TourEnterprise> listEnt)
     {

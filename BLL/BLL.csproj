@@ -121,6 +121,7 @@
     <Compile Include="Dijieshe\BLLDJ_GovManageDepartment.cs" />
     <Compile Include="Dijieshe\BLLDJ_User.cs" />
     <Compile Include="Dijieshe\BLLTourGroupMember.cs" />
+    <Compile Include="Dijieshe\BLLWorker.cs" />
     <Compile Include="Dijieshe\JsonObjects.cs" />
     <Compile Include="RouteConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

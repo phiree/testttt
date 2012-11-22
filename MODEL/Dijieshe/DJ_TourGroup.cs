@@ -11,7 +11,6 @@ namespace Model
         public DJ_TourGroup()
         {
             Members = new List<DJ_TourGroupMember>();
-            Workers = new List<DJ_Group_Worker>();
             Vehicles = new List<DJ_Group_Vehicle>();
             Routes = new List<DJ_Route>();
         }
@@ -103,15 +102,8 @@ namespace Model
         /// 路线描述
         /// </summary>
         public virtual IList<DJ_Route> Routes { get; set; }
-        /// <summary>
-        ///导游和司机信息
-        /// </summary>
-        public virtual IList<DJ_Group_Worker> Workers { get; set; }
-
-        /// <summary>
-        /// 车辆信息
-        /// </summary>
-        public virtual IList<DJ_Group_Vehicle> Vehicles { get; set; }
+        public virtual IList<Model.DJ_Group_Worker> Workers { get; set; }
+        public virtual IList<Model.DJ_Group_Vehicle> Vehicles { get; set; }
 
         /// <summary>
         /// 成员详细信息
@@ -136,10 +128,10 @@ namespace Model
                 r.CopyTo(newRoute);
                 newGroup.Routes.Add(newRoute);
             }
-            foreach (DJ_Group_Worker worker in Workers)
-            {
-                newGroup.Workers.Add(worker);
-            }
+            //foreach (DJ_Group_Worker worker in Workers)
+            //{
+            //    newGroup.Workers.Add(worker);
+            //}
             
             
         }

@@ -83,19 +83,23 @@ public partial class Admin_Demo : System.Web.UI.Page
         
         DJ_Group_Worker memberdaoyou = new DJ_Group_Worker();
         memberdaoyou.DJ_TourGroup = group;
-        memberdaoyou.IDCard = "210905197807210546";
-        memberdaoyou.SpecificIdCard = "导游证号: D-3706-004050";
-        memberdaoyou.WorkerType = DJ_GroupWorkerType.导游;
-        memberdaoyou.Phone = "13280008000";
-        memberdaoyou.Name = "张三";
+        DJ_Workers temp_dy = new DJ_Workers();
+        temp_dy.IDCard = "210905197807210546";
+        temp_dy.SpecificIdCard = "导游证号: D-3706-004050";
+        temp_dy.WorkerType = DJ_GroupWorkerType.导游;
+        temp_dy.Phone = "13280008000";
+        temp_dy.Name = "张三";
+        memberdaoyou.DJ_Workers = temp_dy;
 
         DJ_Group_Worker membersiji = new DJ_Group_Worker();
         membersiji.DJ_TourGroup = group;
-        membersiji.IDCard = "210905197807210546";
-        membersiji.SpecificIdCard = "驾驶证号:362101096266";
-        membersiji.WorkerType = DJ_GroupWorkerType.司机;
-        membersiji.Phone = "13280008000";
-        membersiji.Name = "王师傅";
+        DJ_Workers temp_sj = new DJ_Workers();
+        temp_sj.IDCard = "210905197807210546";
+        temp_sj.SpecificIdCard = "驾驶证号:362101096266";
+        temp_sj.WorkerType = DJ_GroupWorkerType.司机;
+        temp_sj.Phone = "13280008000";
+        temp_sj.Name = "王师傅";
+        membersiji.DJ_Workers = temp_sj;
 
 
         DJ_TourGroupMember member1 = new DJ_TourGroupMember();

@@ -43,11 +43,11 @@ namespace BLL
             var listGw2 = new List<Model.DJ_Group_Worker>();
             foreach (var tg in listTg)
             {
-                listGw.AddRange(tg.Workers.Where(x => x.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>());
+                listGw.AddRange(tg.Workers.Where(x => x.DJ_Workers.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>());
             }
             foreach (var item in listGw)
             {
-                if (listGw2.Count(x => x.IDCard == item.IDCard) == 0)
+                if (listGw2.Count(x => x.DJ_Workers.IDCard == item.DJ_Workers.IDCard) == 0)
                 {
                     listGw2.Add(item);
                 }
@@ -88,7 +88,7 @@ namespace BLL
         /// <returns></returns>
         public IList<Model.DJ_Group_Worker> GetGuiderWorkerByTE(Model.DJ_TourEnterprise TE)
         {
-            return Idjtourgroup.GetGuiderWorkerByTE(TE).Where(x => x.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>();
+            return Idjtourgroup.GetGuiderWorkerByTE(TE).Where(x => x.DJ_Workers.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>();
         }
         /// <summary>
         /// 
