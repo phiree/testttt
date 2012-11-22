@@ -48,9 +48,15 @@
                         }));
                     });
                 },
+                //                focus: function (event, ui) {
+                //                    event.target.className -= " rewardbg";
+                //                },
                 select: function (event, ui) {
                     if (ui.item.verifyState == 1)
                         event.target.className += " rewardbg";
+                    else {
+                        event.target.className = event.target.className.replace("rewardbg", "");
+                    }
                     event.target.value = ui.item.Name;
                 }
             });
