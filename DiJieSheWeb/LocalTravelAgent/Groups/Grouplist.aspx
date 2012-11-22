@@ -87,11 +87,10 @@
                         <asp:Panel runat="server" ID="pnlOperation">
                             <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改</a> <a href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>
                                 从Excel文件更新</a>
-                            <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="delete"
+                            <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="delete" CssClass="btn"
                                 Text="删除" OnClientClick='javascript:return confirm("您确认要删除这个团队么?");' />
                         </asp:Panel>
                             <asp:Button runat="server" ID="btnCopy" CommandArgument='<%#Eval("Id") %>' CommandName="Copy" Text="复制" CssClass="btn" />
-                            Text="复制" />
                     </td>
                     <td>
                         <asp:LinkButton ID="lblMember_bz" Text="" runat="server" /><br />
@@ -103,7 +102,7 @@
                 </tbody> </table>
             </FooterTemplate>
         </asp:Repeater>
-        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" />
+        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn" />
         <div class="">
             <asp:Label runat="server" ID="lblMsg"></asp:Label>
         </div>

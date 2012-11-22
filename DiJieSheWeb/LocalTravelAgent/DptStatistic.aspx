@@ -106,7 +106,7 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
-        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" />
+        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn" />
     </div>
 </asp:Content>
 

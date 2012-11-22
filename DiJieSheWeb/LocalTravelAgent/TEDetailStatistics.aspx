@@ -10,7 +10,9 @@
         旅游企业详细信息
     </div>
     <div class="searchdiv">
-        旅游企业的名称:<span runat="server" id="ETName" style="font-size: 14px; font-weight: bold"></span>
+        旅游企业的名称:<span runat="server" id="ETName" style="font-size: 14px; font-weight: bold"></span><asp:Button
+            ID="btnExcel" runat="server" Text="导出" CssClass="btn" 
+            onclick="btnExcel_Click" />
     </div>
     <div class="detaillist">
         <div class="detailtitle">
