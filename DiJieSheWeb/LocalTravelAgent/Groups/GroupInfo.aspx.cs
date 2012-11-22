@@ -38,6 +38,7 @@ public partial class Groups_GroupInfo : basepageDJS
                 ExcelOplib.Entity.GroupAll group_excel = excel.getGroup(excelPath + "temp." + typ2, out message);
                 group_excel.GroupMemberList = group_excel.GroupMemberList.Where(x => !string.IsNullOrEmpty(x.Memtype)).ToList();
 
+                #region group modify
                 //group修改
                 if (!string.IsNullOrEmpty(Request.QueryString["groupid"]))
                 {
@@ -94,6 +95,8 @@ public partial class Groups_GroupInfo : basepageDJS
                     }
                     bllgroup.Save(group_db);
                 }
+                #endregion
+                #region group new
                 //group上传
                 else
                 {
@@ -158,6 +161,7 @@ public partial class Groups_GroupInfo : basepageDJS
                     }
                     bllgroup.Save(group_model);
                 }
+                #endregion
                 Response.Redirect("/LocalTravelAgent/Groups/GroupDetail.aspx?guid=" + group_model.Id);
             }
             else

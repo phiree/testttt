@@ -8,6 +8,7 @@ namespace DAL
 {
     public class DALDJ_Group_Worker:DalBase,IDAL.IDJ_Group_Worker
     {
+        #region 关系表
 
         public IList<Model.DJ_TourGroup> GetTgListByIdcard(string idcard)
         {
@@ -28,17 +29,6 @@ namespace DAL
             return query.FutureValue<Model.DJ_Group_Worker>().Value;
         }
 
-        /// <summary>
-        /// 多重查询信息
-        /// </summary>
-        /// <param name="id">id</param>
-        /// <param name="name">姓名</param>
-        /// <param name="phone">手机</param>
-        /// <param name="idcard">身份证</param>
-        /// <param name="specificidcard">特殊证件</param>
-        /// <param name="memtype">Model.MemberType类型</param>
-        /// <param name="gid">团队id</param>
-        /// <returns></returns>
         public IList<Model.DJ_Group_Worker> Get8Multi(string id, string name, string phone, string idcard, string specificidcard, object memtype, string gid,string djsid)
         {
             bool ifcondition = false;
@@ -46,32 +36,32 @@ namespace DAL
             if (!string.IsNullOrEmpty(id))
             {
                 ifcondition = true;
-                sql += " gw.Id='" + id + "' and";
+                sql += " gw.DJ_Workers.Id='" + id + "' and";
             }
             if (!string.IsNullOrEmpty(name))
             {
                 ifcondition = true;
-                sql += "gw.Name='" + name + "' and";
+                sql += "gw.DJ_Workers.Name='" + name + "' and";
             }
             if (!string.IsNullOrEmpty(phone))
             {
                 ifcondition = true;
-                sql += " gw.Phone='" + phone + "' and";
+                sql += " gw.DJ_Workers.Phone='" + phone + "' and";
             }
             if (!string.IsNullOrEmpty(idcard))
             {
                 ifcondition = true;
-                sql += " gw.IDCard='" + idcard + "' and";
+                sql += " gw.DJ_Workers.IDCard='" + idcard + "' and";
             }
             if (!string.IsNullOrEmpty(specificidcard))
             {
                 ifcondition = true;
-                sql += " gw.SpecificIdCard='" + specificidcard + "' and";
+                sql += " gw.DJ_Workers.SpecificIdCard='" + specificidcard + "' and";
             }
             if (memtype!=null)
             {
                 ifcondition = true;
-                sql += " gw.WorkerType=" + (int)(Model.MemberType)memtype + " and";
+                sql += " gw.DJ_Workers.WorkerType=" + (int)(Model.MemberType)memtype + " and";
             }
             if (!string.IsNullOrEmpty(gid))
             {
@@ -81,7 +71,7 @@ namespace DAL
             if (!string.IsNullOrEmpty(djsid))
             {
                 ifcondition = true;
-                sql += " gw.DJ_Dijiesheinfo.Id='" + djsid + "' and";
+                sql += " gw.DJ_Workers.DJ_Dijiesheinfo.Id='" + djsid + "' and";
             }
 
             if (ifcondition)//如果有条件的string截取方式
@@ -95,5 +85,63 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_Group_Worker>().ToList();
         }
+
+        #endregion
+
+        #region 导游司机列表
+
+        public IList<Model.DJ_Workers> Get8Multi(string id, string name, string phone, string idcard, string specificidcard, object memtype, string djsid)
+        {
+            bool ifcondition = false;
+            string sql = "select w from DJ_Workers w where ";
+            if (!string.IsNullOrEmpty(id))
+            {
+                ifcondition = true;
+                sql += " w.Id='" + id + "' and";
+            }
+            if (!string.IsNullOrEmpty(name))
+            {
+                ifcondition = true;
+                sql += " w.Name='" + name + "' and";
+            }
+            if (!string.IsNullOrEmpty(phone))
+            {
+                ifcondition = true;
+                sql += " w.Phone='" + phone + "' and";
+            }
+            if (!string.IsNullOrEmpty(idcard))
+            {
+                ifcondition = true;
+                sql += " w.IDCard='" + idcard + "' and";
+            }
+            if (!string.IsNullOrEmpty(specificidcard))
+            {
+                ifcondition = true;
+                sql += " w.SpecificIdCard='" + specificidcard + "' and";
+            }
+            if (memtype != null)
+            {
+                ifcondition = true;
+                sql += " w.WorkerType=" + (int)(Model.MemberType)memtype + " and";
+            }
+            if (!string.IsNullOrEmpty(djsid))
+            {
+                ifcondition = true;
+                sql += " w.DJ_Dijiesheinfo.Id='" + djsid + "' and";
+            }
+
+            if (ifcondition)//如果有条件的string截取方式
+            {
+                sql = sql.Substring(0, sql.Length - 3);
+            }
+            else//如果没条件的string截取方式
+            {
+                sql = sql.Substring(0, sql.Length - 5);
+            }
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_Workers>().ToList();
+        }
+        
+        #endregion
     }
 }

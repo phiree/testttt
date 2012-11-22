@@ -10,10 +10,6 @@ namespace ExcelOplib
 {
     /// <summary>
     /// Excel操作类 
-    /// <!--说明程序约定3条-->
-    /// 1.将excel放在d盘下, 文件名为"2012年浙江省A级旅游景区汇总统计表.xls"
-    /// 2.在d盘下创建scenicimg文件夹, 并确保是空.
-    /// 3.将各景区图片放在以景区命名的文件夹中, 并将此文件夹放到d盘的图片文件夹中.
     /// </summary>
     public class ExcelOpr
     {
