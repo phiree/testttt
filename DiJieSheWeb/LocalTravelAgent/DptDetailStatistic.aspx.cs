@@ -11,7 +11,8 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
 {
     string Year;
     string dptid;
-    int totalLmonth_child = 0, totalVmonth_child = 0, totalLmonth_audlt = 0, totalVmonth_audlt = 0, totalLyear_child = 0,totalVyear_child = 0,totalLyear_adult = 0, totalVyear_adult = 0;
+    static IList<GovdetailModel> gdmList;
+    int totalLmonth_child = 0, totalVmonth_child = 0, totalLmonth_audlt = 0, totalVmonth_audlt = 0, totalLyear_child = 0, totalVyear_child = 0, totalLyear_adult = 0, totalVyear_adult = 0;
     BLLDJ_GovManageDepartment bllgovdepart = new BLLDJ_GovManageDepartment();
     BLLDJConsumRecord bllRecord = new BLLDJConsumRecord();
     protected void Page_Load(object sender, EventArgs e)
@@ -32,6 +33,8 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
         }
         rptETDetail.DataSource = List;
         rptETDetail.DataBind();
+        #region 报表处理
+        #endregion
         Year = Request.QueryString["year"];
         dptid = Request.QueryString["dptid"];
         ETName.InnerHtml = bllgovdepart.GetById(Guid.Parse(dptid)).Name;
@@ -41,9 +44,12 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
     {
         Year = Request.QueryString["year"];
         dptid = Request.QueryString["dptid"];
-        DJ_GovManageDepartment depart=bllgovdepart.GetById(Guid.Parse(dptid));
+        DJ_GovManageDepartment depart = bllgovdepart.GetById(Guid.Parse(dptid));
         Literal laMonthVTotal = e.Item.FindControl("laMonthVTotal") as Literal;
         Literal laMonthLTotal = e.Item.FindControl("laMonthLTotal") as Literal;
+        #region 报表处理
+        gdmList = new List<GovdetailModel>();
+        #endregion
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             totalLmonth_audlt = 0;
@@ -53,7 +59,9 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
             month m = e.Item.DataItem as month;
             Repeater rptETMonthDetail = e.Item.FindControl("rptETMonthDetail") as Repeater;
             rptETMonthDetail.ItemDataBound += new RepeaterItemEventHandler(rptETMonthDetail_ItemDataBound);
-            rptETMonthDetail.DataSource = bllRecord.GetByDate(int.Parse(Year), m.MonthIndex, depart.Area.Code,Master.CurrentDJS.Id);
+            var rptETMonthDetail_source = bllRecord.GetByDate(int.Parse(Year), m.MonthIndex, depart.Area.Code, Master.CurrentDJS.Id);
+
+            rptETMonthDetail.DataSource = rptETMonthDetail_source;
             rptETMonthDetail.DataBind();
             laMonthVTotal.Text = "成人" + totalVmonth_audlt.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalVmonth_child.ToString();
             laMonthLTotal.Text = "成人" + totalLmonth_audlt.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalLmonth_child.ToString();
@@ -64,7 +72,16 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
             Literal laYearLTotal = e.Item.FindControl("laYearLTotal") as Literal;
             laYearVTotal.Text = "成人" + totalVyear_adult.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalVyear_child.ToString();
             laYearLTotal.Text = "成人" + totalLyear_adult.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalLyear_child.ToString();
+            #region 报表处理
+            gdmList.Add(new GovdetailModel()
+            {
+                Riqi = "总计",
+                Pnum = "成人" + totalVyear_adult.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalVyear_child.ToString(),
+                Lnum = "成人" + totalLyear_adult.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalLyear_child.ToString()
+            });
+            #endregion
         }
+
     }
 
     protected void rptETMonthDetail_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -74,7 +91,7 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
             DJ_GroupConsumRecord record = e.Item.DataItem as DJ_GroupConsumRecord;
             Literal laVisitedCount = e.Item.FindControl("laVisitedCount") as Literal;
             Literal laLiveCount = e.Item.FindControl("laLiveCount") as Literal;
-            if (record.LiveDay>0)
+            if (record.LiveDay > 0)
             {
                 totalLmonth_audlt += record.AdultsAmount * record.LiveDay;
                 totalLmonth_child += record.ChildrenAmount * record.LiveDay;
@@ -85,10 +102,10 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
             }
             else
             {
-                totalVmonth_audlt += record.AdultsAmount ;
-                totalVmonth_child += record.ChildrenAmount ;
-                totalVyear_adult += record.AdultsAmount ;
-                totalVyear_child += record.ChildrenAmount ;
+                totalVmonth_audlt += record.AdultsAmount;
+                totalVmonth_child += record.ChildrenAmount;
+                totalVyear_adult += record.AdultsAmount;
+                totalVyear_child += record.ChildrenAmount;
                 laVisitedCount.Text = "成人" + record.AdultsAmount.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + record.ChildrenAmount.ToString();
                 laLiveCount.Text = "成人0" + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童0";
             }
@@ -100,8 +117,15 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
     }
 
     protected void btnOutput3_Click(object sender, EventArgs e)
-    { 
-        
+    {
+
     }
+}
+
+public class GovdetailModel
+{
+    public string Riqi { get; set; }
+    public string Pnum { get; set; }
+    public string Lnum { get; set; }
 }
 
