@@ -119,11 +119,13 @@ namespace BLL
             }
         }
 
-        public IList<DJ_Route> CreateRouteFromMultiLineString(string multiLineString, out string errMsg)
+        public void CreateRouteFromMultiLineString(DJ_TourGroup group, string multiLineString, out string errMsg)
         {
             errMsg = string.Empty;
+            group.Routes.Clear();
             IList<DJ_Route> allRoutes = new List<DJ_Route>();
             string[] arrSingleLine = multiLineString.Split(Environment.NewLine.ToCharArray()).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+
             for (int i = 1; i <= arrSingleLine.Length; i++)
             {
                 int dayNo = i;
@@ -131,7 +133,12 @@ namespace BLL
                 IList<DJ_Route> dayRoutes = CreateRouteFromNameList(dayNo, entNames, out errMsg);
                 allRoutes = allRoutes.Concat(dayRoutes).ToList();
             }
-            return allRoutes;
+            foreach (DJ_Route r in allRoutes)
+            {
+                group.Routes.Add(r);
+            }
+           // group.Routes = allRoutes;
+           // return allRoutes;
 
 
         }
