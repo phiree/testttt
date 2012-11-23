@@ -14,6 +14,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
   
     BLL.BLLDJTourGroup bllGroup = new BLLDJTourGroup();
     BLLDJRoute bllRoute = new BLLDJRoute();
+    BLLWorker bllWorker = new BLLWorker();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -71,8 +72,11 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     /// </summary>
     private void LoadGroupWorkers()
     {
-        ListControlHelper.CheckItems(cbxDrivers, CurrentGroup.Workers.Select(x => x.DJ_Workers.Name).ToList());
-        ListControlHelper.CheckItems(cbxGuides, CurrentGroup.Workers.Select(x => x.DJ_Workers.Name).ToList());
+        IList<string> guides= bllGroupWorker.GetWorkersForGroup(CurrentGroup, DJ_GroupWorkerType.导游).Select(x=>x.DJ_Workers.Name).ToList();
+        IList<string> drivers = bllGroupWorker.GetWorkersForGroup(CurrentGroup, DJ_GroupWorkerType.司机).Select(x => x.DJ_Workers.Name).ToList();
+  
+        ListControlHelper.CheckItems(cbxDrivers,drivers);
+        ListControlHelper.CheckItems(cbxGuides,guides);
     }
 
   
@@ -92,7 +96,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         cbxGuides.DataSource = guides;
         cbxGuides.DataBind();
     }
-    BLLDJGroup_Worker bllWorker = new BLLDJGroup_Worker();
+    BLLDJGroup_Worker bllGroupWorker = new BLLDJGroup_Worker();
     private bool UpdateForm()
     {
         CurrentGroup.Name = tbxName.Text;
@@ -108,12 +112,33 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         CurrentGroup.DijiesheEditor =(DJ_User_TourEnterprise) CurrentMember;
         ///司机和导游
         bool hasSelectGuide = false;
+        bllGroupWorker.DeleteFromGroup(CurrentGroup);
+       // bllGroup.Save(CurrentGroup);
         foreach (ListItem item in cbxGuides.Items)
+        {
+           
+            if (item.Selected)
+            {
+                Model.DJ_Group_Worker gw = new DJ_Group_Worker();
+                hasSelectGuide = true;
+                DJ_Workers worker = bllWorker.GetOne(new Guid(item.Value));
+                gw.DJ_Workers = worker;
+                gw.DJ_TourGroup = CurrentGroup;
+                bllGroupWorker.Save(gw);
+                //CurrentGroup.Workers.Add(bllGroupWorker.Get(new Guid(item.Value)));
+            }
+        }
+        ///两个方法应该合并.
+        foreach (ListItem item in cbxDrivers.Items)
         {
             if (item.Selected)
             {
+                Model.DJ_Group_Worker gw = new DJ_Group_Worker();
                 hasSelectGuide = true;
-                CurrentGroup.Workers.Add(bllWorker.Get(new Guid(item.Value)));
+                DJ_Workers worker = bllWorker.GetOne(new Guid(item.Value));
+                gw.DJ_Workers = worker;
+                gw.DJ_TourGroup = CurrentGroup;
+                bllGroupWorker.Save(gw);
             }
         }
         if (hasSelectGuide == false)
@@ -123,13 +148,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
             return false;
         }
         
-        foreach (ListItem item in cbxDrivers.Items)
-        {
-            if (item.Selected)
-            {
-                CurrentGroup.Workers.Add(bllWorker.Get(new Guid(item.Value)));
-            }
-        }
+       
 
         return true;
     }

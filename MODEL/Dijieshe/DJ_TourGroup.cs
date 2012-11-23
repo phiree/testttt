@@ -13,6 +13,7 @@ namespace Model
             Members = new List<DJ_TourGroupMember>();
             Vehicles = new List<DJ_Group_Vehicle>();
             Routes = new List<DJ_Route>();
+            Workers = new List<DJ_Group_Worker>();
         }
         public virtual Guid Id { get; set; }
 
@@ -117,9 +118,14 @@ namespace Model
         public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
         public virtual void CopyTo(DJ_TourGroup newGroup)
         {
+            CopyTo(newGroup,true);
+        }
+        public virtual void CopyTo(DJ_TourGroup newGroup, bool copyMember)
+        {
             newGroup.Name = Name + "[复制]";
             newGroup.BeginDate = BeginDate;
             newGroup.DaysAmount = DaysAmount;
+            newGroup.EndDate = BeginDate.AddDays(DaysAmount - 1);
             newGroup.DijiesheEditor = DijiesheEditor;
             newGroup.DJ_DijiesheInfo = DJ_DijiesheInfo;
             foreach (DJ_Route r in Routes)
@@ -133,11 +139,16 @@ namespace Model
             //{
             //    newGroup.Workers.Add(worker);
             //}
-            foreach (DJ_TourGroupMember member in Members)
+            if (copyMember)
             {
-                newGroup.Members.Add(member);
+                foreach (DJ_TourGroupMember member in Members)
+                {
+                    DJ_TourGroupMember newMember = new DJ_TourGroupMember();
+                    member.CopyTo(newMember);
+                    newGroup.Members.Add(newMember);
 
 
+                }
             }
         }
     }

@@ -7,7 +7,7 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALWorkers:DalBase
+    public class DALWorkers:DalBase<DJ_Workers>
     {
 
         #region 导游司机列表

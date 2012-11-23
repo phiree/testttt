@@ -6,7 +6,7 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALDJ_Group_Worker:DalBase,IDAL.IDJ_Group_Worker
+    public class DALDJ_Group_Worker:DalBase<Model.DJ_Group_Worker>
     {
         #region 关系表
 
@@ -28,7 +28,11 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_Group_Worker>().Value;
         }
+        //public void Delete(Model.DJ_Group_Worker worker)
+        //{
+        //   base.Delete Delete(worker);
 
+        //}
         public IList<Model.DJ_Group_Worker> Get8Multi(string id, string name, string phone, string idcard, string specificidcard, object memtype, string gid,string djsid)
         {
             bool ifcondition = false;
