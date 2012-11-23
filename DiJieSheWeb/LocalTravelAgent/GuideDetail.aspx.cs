@@ -25,14 +25,13 @@ public partial class LocalTravelAgent_GuideDetail : System.Web.UI.Page
     {
         if (!string.IsNullOrEmpty(id))
         {
-            var source = bllworker.Get8Multi(id, null, null, null, null, Model.DJ_GroupWorkerType.导游, null, null);
+            var source = bllworker.GetWorkers8Multi(id, null, null, null, null, Model.DJ_GroupWorkerType.导游, null);
             if (source.Count > 0)
             {
-                lblname.Text = source[0].DJ_Workers.Name;
-                txtPhone.Text = source[0].DJ_Workers.Phone;
-                txtidcard.Text = source[0].DJ_Workers.IDCard;
-                txtGuideid.Text = source[0].DJ_Workers.SpecificIdCard;
-                //lbldjs.Text = source[0].DJ_Workers.DJ_Dijiesheinfo.Name;
+                lblname.Text = source[0].Name;
+                txtPhone.Text = source[0].Phone;
+                txtidcard.Text = source[0].IDCard;
+                txtGuideid.Text = source[0].SpecificIdCard;
             }
         }
     }

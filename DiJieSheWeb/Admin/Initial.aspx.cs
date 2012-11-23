@@ -48,7 +48,7 @@ public partial class Admin_Initial : System.Web.UI.Page
             if (blldjuser.GetGov_UserByName(item.seoname) == null)
             {
                 user_gov.Name = item.seoname;
-                user_gov.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(item.seoname, "MD5"); ;
+                user_gov.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5"); ;
                 user_gov.GovDpt = bllgov.GetGovDptByName(item.Name)[0];
                 user_gov.PermissionType = Model.PermissionType.报表查看员
                     | Model.PermissionType.信息编辑员 | Model.PermissionType.用户管理员;
@@ -129,10 +129,11 @@ public partial class Admin_Initial : System.Web.UI.Page
                     Enterprise = blldjs.GetDJS8name(item.name).First(),
                     Name = item.seoname,
                     PermissionType = PermissionType.报表查看员 | PermissionType.团队录入员 | PermissionType.信息编辑员 | PermissionType.用户管理员,
-                    Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(item.seoname, "MD5")
+                    Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5")
                 });
             }
         }
+        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('初始化成功!')", true);
     }
 }
 

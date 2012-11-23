@@ -19,7 +19,7 @@ public partial class LocalTravelAgent_DriverList : basepageDJS
 
     private void BindList()
     {
-        var driver_source = bllworker.Get8Multi(null, txtName.Text, null, txtIdcardid.Text, txtDrivercardid.Text, Model.DJ_GroupWorkerType.司机, null, CurrentDJS.Id.ToString());
+        var driver_source = bllworker.GetWorkers8Multi(null, null, null, null, null, Model.DJ_GroupWorkerType.司机, CurrentDJS.Id.ToString());
         rptDrivers.DataSource = driver_source;
         rptDrivers.DataBind();
     }

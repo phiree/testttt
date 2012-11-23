@@ -46,7 +46,6 @@
                     所属区域
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbxAreaCode"></asp:TextBox>
                     <uc:dllcitycode ID="ddlarea" runat="server" />
                 </td>
             </tr>
