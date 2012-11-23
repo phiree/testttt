@@ -79,7 +79,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
 
     private void InitWorkers()
     {
-        IList<DJ_Group_Worker> drivers = CurrentDJS.Drivers;
+        IList<DJ_Workers> drivers = CurrentDJS.Drivers;
         cbxDrivers.DataTextField = "Name";
         cbxDrivers.DataValueField = "Id";
         cbxDrivers.DataSource = drivers;
@@ -88,7 +88,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
 
         cbxGuides.DataTextField = "Name";
         cbxGuides.DataValueField = "Id";
-        IList<DJ_Group_Worker> guides = CurrentDJS.Guides;
+        IList<DJ_Workers> guides = CurrentDJS.Guides;
         cbxGuides.DataSource = guides;
         cbxGuides.DataBind();
     }
