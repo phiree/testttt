@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 using Model;
 using BLL;
 
@@ -85,4 +86,62 @@ public partial class LocalTravelAgent_TEDetailStatistics : System.Web.UI.Page
             laMonthTotal.Text = "成人" + totalmonth_audlt.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalmonth_child.ToString();
         }
     }
+    protected void btnExcel_Click(object sender, EventArgs e)
+    {
+        List<ExcelTable> listExcel = new List<ExcelTable>();
+        totalmonth_child = 0; totalmonth_audlt = 0; totalyear_child = 0; totalyear_adult = 0;
+        Year = Request.QueryString["year"];
+        entid = int.Parse(Request.QueryString["entid"]);
+        for (int i = 1; i < 13; i++)
+        {
+            List<DJ_GroupConsumRecord> listRecord = bllRecord.GetByDate(int.Parse(Year), i, int.Parse(Request.QueryString["entid"]), Master.CurrentDJS.Id);
+            foreach (DJ_GroupConsumRecord record in listRecord)
+            {
+                ExcelTable et = new ExcelTable();
+                et.date = record.ConsumeTime.ToString("yyyy-MM-dd");
+                if (blldjent.GetDJS8id(entid.ToString())[0].Type == EnterpriseType.景点)
+                {
+                    totalmonth_audlt += record.AdultsAmount;
+                    totalmonth_child += record.ChildrenAmount;
+                    totalyear_child += record.ChildrenAmount;
+                    totalyear_adult += record.AdultsAmount;
+                    et.detail = "成人" + record.AdultsAmount.ToString() + "儿童" + record.ChildrenAmount.ToString();
+                    listExcel.Add(et);
+                }
+                if (blldjent.GetDJS8id(entid.ToString())[0].Type == EnterpriseType.宾馆)
+                {
+                    totalmonth_audlt += record.AdultsAmount * record.LiveDay;
+                    totalmonth_child += record.ChildrenAmount * record.LiveDay;
+                    totalyear_adult += record.AdultsAmount * record.LiveDay;
+                    totalyear_child += record.ChildrenAmount * record.LiveDay;
+                    et.detail = "成人" + (record.AdultsAmount * record.LiveDay).ToString() + "儿童" + (record.ChildrenAmount * record.LiveDay).ToString();
+                    listExcel.Add(et);
+                }
+            }
+            ExcelTable etotal = new ExcelTable();
+            etotal.date = i + "月份小计";
+            etotal.detail = "成人" + totalmonth_audlt.ToString() + "儿童" + totalmonth_child.ToString();
+            listExcel.Add(etotal);
+        }
+        ExcelTable etyear = new ExcelTable();
+        etyear.date = "总计";
+        etyear.detail = "成人" + totalyear_adult.ToString() + "儿童" + totalyear_child.ToString();
+        listExcel.Add(etyear);
+        DataTable dt = new DataTable("ExcelData");
+        dt.Columns.Add("date", Type.GetType("System.String"));
+        dt.Columns.Add("detail", Type.GetType("System.String"));
+        foreach (ExcelTable et in listExcel)
+	    {
+            dt.Rows.Add(new object[] { et.date, et.detail });
+	    }
+        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "日期", "游玩人数或住宿人天数" }, ETName.InnerHtml + "详细统计报表");
+    }
+}
+
+
+
+public class ExcelTable
+{
+    public string date { get; set; }
+    public string detail { get; set; }
 }

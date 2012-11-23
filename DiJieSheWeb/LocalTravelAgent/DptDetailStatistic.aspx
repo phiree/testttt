@@ -11,7 +11,7 @@
     </div>
     <div class="searchdiv">
         旅游企业的名称:<span runat="server" id="ETName" style="font-size: 14px; font-weight: bold"></span>
-    <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" />
+    <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn" />
     </div>
     <div class="detaillist">
         <div class="detailtitle">

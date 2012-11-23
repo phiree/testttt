@@ -7,4 +7,5 @@ WEB/config/app.config
 DiJieSheWEB/config/connectionStrings.config
 *.scc
 /DAL/*.scc
+packages
 

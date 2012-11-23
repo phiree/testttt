@@ -18,11 +18,11 @@
         导游管理
     </div>
         <div class="searchdiv">
-            姓名:<asp:TextBox ID="txtName_add" runat="server" style="margin-right:100px;margin-left:50px" />
-            手机:<asp:TextBox ID="txtPhone_add" runat="server" style="margin-left:50px" /><br />
-            身份证号:<asp:TextBox ID="txtId_add" runat="server" style="margin-right:100px;margin-left:27px" />
-            导游证号:<asp:TextBox ID="txtGuideid_add" runat="server" style="margin-left:27px" /><br />
-             所属公司:<asp:TextBox ID="tbxBelong" runat="server" style="margin-left:27px" /><br />
+            姓名:<asp:TextBox ID="txtName_add" runat="server" style="margin-right:100px;margin-left:50px;width:150px;" />
+            手机:<asp:TextBox ID="txtPhone_add" runat="server" style="margin-left:50px;width:150px;" /><br />
+            身份证号:<asp:TextBox ID="txtId_add" runat="server" style="margin-right:100px;margin-left:27px;width:150px;" />
+            导游证号:<asp:TextBox ID="txtGuideid_add" runat="server" style="margin-left:27px;width:150px;" /><br />
+             所属公司:<asp:TextBox ID="tbxBelong" runat="server" style="margin-left:27px;width:150px;" /><br />
             <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn" OnClick="btnQuickadd_Click" />
         </div>
     <div class="detaillist">
