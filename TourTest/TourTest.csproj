@@ -97,6 +97,9 @@
     <Reference Include="Selenium.WebDriverBackedSelenium">
       <HintPath>..\lib\selenium\Selenium.WebDriverBackedSelenium.dll</HintPath>
     </Reference>
+    <Reference Include="SimplyTestData">
+      <HintPath>..\packages\SimplyTestData.0.5.1.1\lib\net40\SimplyTestData.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -160,6 +163,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
