@@ -83,6 +83,10 @@ public partial class Admin_Demo : System.Web.UI.Page
     {
         DemoLogin(dijiesheAdminAcount1, "/LocalTravelAgent/");
     }
+    protected void btnDjsLogin_Click2(object sender, EventArgs e)
+    {
+        DemoLogin(dijiesheAdminAcount2, "/LocalTravelAgent/");
+    }
     protected void btnEntLogin_Click(object sender, EventArgs e)
     {
         DemoLogin(hoteladmin1, "/TourEnterprise/");
