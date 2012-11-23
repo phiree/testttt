@@ -8,8 +8,8 @@ using System.Web.UI.WebControls;
 public partial class LocalTravelAgent_DriverDetail : System.Web.UI.Page
 {
     string id = string.Empty;
-    BLL.BLLDJGroup_Worker bllworker = new BLL.BLLDJGroup_Worker();
-
+    BLL.BLLDJGroup_Worker bllgroupworker = new BLL.BLLDJGroup_Worker();
+    BLL.BLLWorker bllworker = new BLL.BLLWorker();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,7 +25,7 @@ public partial class LocalTravelAgent_DriverDetail : System.Web.UI.Page
     {
         if (!string.IsNullOrEmpty(id))
         {
-            var source=bllworker.GetWorkers8Multi(id, null, null, null, null, Model.DJ_GroupWorkerType.司机, null);
+            var source = bllworker.GetWorkers8Multi(id, null, null, null, null, Model.DJ_GroupWorkerType.司机, null);
             if (source.Count > 0)
             {
                 lblname.Text = source[0].Name;

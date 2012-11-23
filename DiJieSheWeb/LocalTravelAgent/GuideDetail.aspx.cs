@@ -8,7 +8,8 @@ using System.Web.UI.WebControls;
 public partial class LocalTravelAgent_GuideDetail : System.Web.UI.Page
 {
     string id = string.Empty;
-    BLL.BLLDJGroup_Worker bllworker = new BLL.BLLDJGroup_Worker();
+    BLL.BLLDJGroup_Worker bllgroupworker = new BLL.BLLDJGroup_Worker();
+    BLL.BLLWorker bllworker = new BLL.BLLWorker();
 
 
     protected void Page_Load(object sender, EventArgs e)
@@ -38,7 +39,7 @@ public partial class LocalTravelAgent_GuideDetail : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        var workers = bllworker.Get8Multi(id, null, null, null, null, Model.DJ_GroupWorkerType.导游, null, null);
+        var workers = bllgroupworker.Get8Multi(id, null, null, null, null, Model.DJ_GroupWorkerType.导游, null, null);
         if (workers.Count > 0)
         {
             var worker = workers[0];
@@ -46,7 +47,7 @@ public partial class LocalTravelAgent_GuideDetail : System.Web.UI.Page
             worker.DJ_Workers.IDCard = txtidcard.Text;
             worker.DJ_Workers.SpecificIdCard = txtGuideid.Text;
             worker.DJ_Workers.CompanyBelong = tbxBelong.Text;
-            bllworker.UpdateData(worker);
+            bllgroupworker.UpdateData(worker);
             Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('修改成功, 返回列表页!')", true);
             Response.Redirect("/LocalTravelAgent/GuideList.aspx");
         }
