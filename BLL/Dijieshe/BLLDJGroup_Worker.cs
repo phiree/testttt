@@ -78,17 +78,5 @@ namespace BLL
             return DalWorker.GetById(id);
         }
         #endregion
-
-        #region workers list
-        public IList<Model.DJ_Workers> GetWorkers8Multi(string id, string name, string phone, string idcard,
-            string specificidcard, object memtype, string djsid)
-        {
-            return DalWorker.Get8Multi(id, name, phone, idcard, specificidcard, memtype, djsid);
-        }
-        public void UpdateWorkers(Model.DJ_Workers worker)
-        {
-            DalWorker.Update(worker);
-        }
-        #endregion
     }
 }
