@@ -9,8 +9,10 @@ namespace DAL
 {
     public class DALWorkers:DalBase
     {
-        public IList<Model.DJ_Workers> GetWorkers8Multy(string id, string name, string idcard,string SpecificIdCard,
-            int WorkerType, DJ_DijiesheInfo DJ_DijiesheInfo, string CompanyBelong)
+
+        #region 导游司机列表
+
+        public IList<Model.DJ_Workers> Get8Multi(string id, string name, string phone, string idcard, string specificidcard, object memtype, string djsid)
         {
             bool ifcondition = false;
             string sql = "select w from DJ_Workers w where ";
@@ -22,32 +24,32 @@ namespace DAL
             if (!string.IsNullOrEmpty(name))
             {
                 ifcondition = true;
-                sql += "w.Name='" + name + "' and";
+                sql += " w.Name='" + name + "' and";
+            }
+            if (!string.IsNullOrEmpty(phone))
+            {
+                ifcondition = true;
+                sql += " w.Phone='" + phone + "' and";
             }
             if (!string.IsNullOrEmpty(idcard))
             {
                 ifcondition = true;
                 sql += " w.IDCard='" + idcard + "' and";
             }
-            if (!string.IsNullOrEmpty(SpecificIdCard))
+            if (!string.IsNullOrEmpty(specificidcard))
             {
                 ifcondition = true;
-                sql += " w.SpecificIdCard='" + SpecificIdCard + "' and";
+                sql += " w.SpecificIdCard='" + specificidcard + "' and";
             }
-            if (WorkerType!=0)
+            if (memtype != null)
             {
                 ifcondition = true;
-                sql += " w.WorkerType='" + WorkerType + "' and";
+                sql += " w.WorkerType=" + (int)(Model.MemberType)memtype + " and";
             }
-            if (DJ_DijiesheInfo != null)
+            if (!string.IsNullOrEmpty(djsid))
             {
                 ifcondition = true;
-                sql += " w.DJ_Dijiesheinfo=" + DJ_DijiesheInfo + " and";
-            }
-            if (!string.IsNullOrEmpty(CompanyBelong))
-            {
-                ifcondition = true;
-                sql += " w.CompanyBelong.Id='" + CompanyBelong + "' and";
+                sql += " w.DJ_Dijiesheinfo.Id='" + djsid + "' and";
             }
 
             if (ifcondition)//如果有条件的string截取方式
@@ -61,5 +63,7 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_Workers>().ToList();
         }
+
+        #endregion
     }
 }

@@ -48,7 +48,7 @@ public partial class Groups_GroupInfo : basepageDJS
                     group_db.DaysAmount = int.Parse(group_excel.GroupBasic.Days);
                     group_db.EndDate = DateTime.Parse(group_excel.GroupBasic.Begindate).AddDays(int.Parse(group_excel.GroupBasic.Days));
                     //group_db.Workers.Clear();
-                    
+
                     group_db.Members.Clear();
                     group_db.Routes.Clear();
                     group_model.DijiesheEditor = (Model.DJ_User_TourEnterprise)CurrentMember;
@@ -97,7 +97,6 @@ public partial class Groups_GroupInfo : basepageDJS
                 }
                 #endregion
                 #region group new
-                //group上传
                 else
                 {
                     group_model.Name = group_excel.GroupBasic.Name;
@@ -111,18 +110,37 @@ public partial class Groups_GroupInfo : basepageDJS
                     group_model.DijiesheEditor = (Model.DJ_User_TourEnterprise)CurrentMember;
                     foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype == "导游" || x.Memtype == "司机"))
                     {
-                        group_model.Workers.Add(new Model.DJ_Group_Worker()
+                        //是否已经存在该worker
+                        var worker = bllworker.GetWorkers8Multi(null, item.Memname, null, null, null,
+                            Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype), CurrentDJS.Id.ToString());
+                        //不存在，添加
+                        if (worker.Count == 0)
                         {
-                            DJ_TourGroup = group_model,
-                            DJ_Workers = new Model.DJ_Workers()
+                            var new_worker = new Model.DJ_Workers()
+                                {
+                                    IDCard = item.Memid,
+                                    SpecificIdCard = item.Cardno,
+                                    WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
+                                    Phone = item.Memphone,
+                                    Name = item.Memname,
+                                    DJ_Dijiesheinfo=CurrentDJS
+                                };
+                            bllworker.Save(new_worker);
+                            group_model.Workers.Add(new Model.DJ_Group_Worker()
                             {
-                                IDCard = item.Memid,
-                                SpecificIdCard = item.Cardno,
-                                WorkerType = (Model.DJ_GroupWorkerType)Enum.Parse(typeof(Model.DJ_GroupWorkerType), item.Memtype),
-                                Phone = item.Memphone,
-                                Name = item.Memname
-                            }
-                        });
+                                DJ_TourGroup = group_model,
+                                DJ_Workers = new_worker
+                            });
+                        }
+                        //存在
+                        else
+                        {
+                            group_model.Workers.Add(new Model.DJ_Group_Worker()
+                            {
+                                DJ_TourGroup = group_model,
+                                DJ_Workers = worker.First()
+                            });
+                        }
                     }
                     foreach (var item in group_excel.GroupMemberList.Where(x => x.Memtype != "导游" && x.Memtype != "司机"))
                     {
