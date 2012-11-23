@@ -227,7 +227,8 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
        
         //保存新的成员
       string errMsg;
-      CurrentGroup.Routes = bllRoute.CreateRouteFromMultiLineString(tbxSimple.Text.Trim(), out errMsg);
+     
+      bllRoute.CreateRouteFromMultiLineString(CurrentGroup, tbxSimple.Text.Trim(), out errMsg);
       bllGroup.Save(CurrentGroup);
       if (string.IsNullOrEmpty(errMsg))
       {
