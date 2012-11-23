@@ -36,7 +36,7 @@
             </asp:DropDownList>
         <asp:Button ID="BtnSearch" runat="server" Text="查询" CssClass="btn" onclick="BtnSearch_Click" />
             <asp:Button ID="BtnCreatexls" runat="server" Text="导出成excel" 
-                onclick="BtnCreatexls_Click" />
+                onclick="BtnCreatexls_Click" CssClass="btn2" />
     </div>
     <div class="detaillist">
         <div class="detailtitle">

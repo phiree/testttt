@@ -40,7 +40,7 @@ namespace DAL
         /// <returns></returns>
         public IList<Scenic> GetScenicByAreacode(string areacode)
         {
-            string sql = "select sc from Scenic sc where sc.Area.Code=" + areacode + "";
+            string sql = "select sc from Scenic sc where sc.Area.Code like '" + areacode.Substring(0,4) + "__'";
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.Scenic>().ToList<Model.Scenic>();
         }

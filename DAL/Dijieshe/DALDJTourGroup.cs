@@ -63,7 +63,7 @@ namespace DAL
        {
            if (routeitem.DJ_TourGroup.BeginDate.AddDays(routeitem.DayNo-1).ToShortDateString() == DateTime.Now.ToShortDateString())
            {
-               //Listgw.AddRange(routeitem.DJ_TourGroup.Workers);
+               Listgw.AddRange(routeitem.DJ_TourGroup.Workers);
            }
        }
        return Listgw;

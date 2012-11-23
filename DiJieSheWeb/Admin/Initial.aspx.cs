@@ -15,6 +15,7 @@ public partial class Admin_Initial : System.Web.UI.Page
     BLL.BLLScenic bllscenic = new BLL.BLLScenic();
     BLL.BLLDJ_User blldjuser = new BLL.BLLDJ_User();
     BLL.BLLMembership bllmem = new BLL.BLLMembership();
+    BLL.BLLScenicAdmin bllscenicadmin = new BLL.BLLScenicAdmin();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -79,6 +80,7 @@ public partial class Admin_Initial : System.Web.UI.Page
         foreach (var item in templist)
         {
             var area = bllarea.GetAraByAreaname(item.area);
+            #region MyRegion
             switch (item.type)
             {
                 case "地接社":
@@ -115,6 +117,7 @@ public partial class Admin_Initial : System.Web.UI.Page
                     }
                     break;
             }
+            #endregion
             var mem = bllmem.GetMember(item.seoname);
             if (mem != null)
             {
@@ -124,13 +127,25 @@ public partial class Admin_Initial : System.Web.UI.Page
             }
             else
             {
-                bllmem.CreateUpdateMember(new Model.DJ_User_TourEnterprise()
+                var membership=new Model.DJ_User_TourEnterprise()
                 {
                     Enterprise = blldjs.GetDJS8name(item.name).First(),
                     Name = item.seoname,
                     PermissionType = PermissionType.报表查看员 | PermissionType.团队录入员 | PermissionType.信息编辑员 | PermissionType.用户管理员,
                     Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5")
-                });
+                };
+                bllmem.CreateUpdateMember(membership);
+                //如果是景区再添加一个scenicadmin
+                if (item.type == "景区")
+                {
+                    bllscenicadmin.SaveOrUpdate(new ScenicAdmin() { 
+                        RealName=item.name,
+                        Scenic=bllscenic.GetScenicByScenicName(item.name,null,0,null).FirstOrDefault(),
+                        Membership=membership,
+                        AdminType = Model.ScenicAdminType.检票员 | Model.ScenicAdminType.景区财务 | Model.ScenicAdminType.景区资料员,
+                        IsDisabled=false
+                    });
+                }
             }
         }
         Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('初始化成功!')", true);

@@ -31,7 +31,7 @@ public partial class Manager_ScenicAdminSetting : System.Web.UI.Page
 
     private void GetPageIndex()
     {
-        IList<Model.Scenic> scenicList =  bllmanager.GetScenicList(" where s.Area.Code=" + ddlArea.SelectedValue);
+        IList<Model.Scenic> scenicList =  bllmanager.GetScenicList(" where s.Area.Code like '" + ddlArea.SelectedValue.Substring(0,4)+"__'");
         rptScenicAdmin.DataSource = scenicList;
         rptScenicAdmin.DataBind();
     }

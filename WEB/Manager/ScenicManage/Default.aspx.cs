@@ -31,7 +31,7 @@ public partial class Manager_ScenicinList : System.Web.UI.Page
     }
     private void BindList()
     {
-        string where= " where s.Area.Code=" + ddlArea.SelectedValue;
+        string where= " where s.Area.Code like '" + ddlArea.SelectedValue.Substring(0,4)+"__'";
         if (rblFrom.SelectedValue != "0")
         {
             where = " where s.MipangId is not null";
