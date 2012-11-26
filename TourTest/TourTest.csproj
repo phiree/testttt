@@ -154,7 +154,6 @@
     <Compile Include="TDD\ScenicCheck\TestCode.cs" />
     <Compile Include="TestDAL\TestDALBase.cs" />
     <Compile Include="TestData.cs" />
-    <Compile Include="TestTicketCount.cs" />
     <Compile Include="VoteTest.cs" />
     <Compile Include="webtest\pageobjects\default.cs" />
     <Compile Include="webtest\pageobjects\login.cs" />
