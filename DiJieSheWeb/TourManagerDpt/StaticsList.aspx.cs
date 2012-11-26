@@ -531,7 +531,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         tblDatas.Rows.Add(new object[] { "总计", "", m_total, m_play, m_hotel, y_total, y_play, y_hotel });
         ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","地接社名称","本月总人数","本月游览人次","本月住宿人数","本年总人数","本年游览人数","本年住宿人数"
-        },"已接待情况");
+        }, CurrentDpt.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已接待情况");
     }
 
     protected void btnOutput2_Click(object sender, EventArgs e)
@@ -605,7 +605,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         }
         ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","拟接待人数","实际接待人数"
-        },"接待情况明细表");
+        }, CurrentDpt.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "接待情况明细表");
     }
 
     protected void btnOutput3_Click(object sender, EventArgs e)
@@ -711,7 +711,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         }
         ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","地接社名称","团队名称","时间","游览情况"
-        },"团队旅游情况表");
+        }, CurrentDpt.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "团队旅游情况表");
     }
 }
 

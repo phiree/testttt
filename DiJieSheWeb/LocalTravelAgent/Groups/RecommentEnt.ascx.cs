@@ -59,7 +59,7 @@ public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserCo
             dr[1] = "奖励政策";
             dt.Rows.Add(dr);
         }
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "名称", "奖励政策" },"奖励企业");
+        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "名称", "奖励政策" }, "奖励企业"+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]");
     }
 
     protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
