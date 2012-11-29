@@ -110,7 +110,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics : System.Web.UI.P
                 t_month_live,t_month_visited,t_year_total,t_year_live,t_year_visited });
         ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","企业类型","企业名称","本月总人数","本月住宿人天数","本月游玩人数","本年总人数","本年住宿人天数","本年游玩人数"
-        }, "旅游企业统计信息");
+        }, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "统计信息");
     }
 
     private List<EntStatis> bindEntStatis(List<DJ_TourEnterprise> listEnt)

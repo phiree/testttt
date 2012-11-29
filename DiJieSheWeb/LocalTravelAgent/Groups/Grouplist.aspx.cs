@@ -154,7 +154,7 @@ public partial class Groups_Grouplist : basepageDJS
         }
         ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","名称","时间","几日游"
-        },"团队列表");
+        }, result.First().DJ_DijiesheInfo.Name+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "团队列表");
     }
     #endregion
 }

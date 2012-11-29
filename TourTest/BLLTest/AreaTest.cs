@@ -13,17 +13,16 @@ namespace TourTest
         [Test]
         public void GetAreaProvinceTest()
         {
-            
+
             dal.GetAreaProvince();
         }
         [Test]
         public void GetChildAreaIds()
         {
             BLL.BLLArea bllArea = new BLL.BLLArea();
-         string ids=   bllArea.GetChildAreaIds("330100");
-         Console.Write(ids);
-         Assert.IsTrue(ids.Length > 10);
-            
+            string ids = bllArea.GetChildAreaIds("330100");
+            Console.Write(ids);
+            Assert.IsTrue(ids.Length > 10);
         }
     }
 }

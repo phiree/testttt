@@ -12,7 +12,7 @@ public partial class LocalTravelAgent_TEDetailStatistics : System.Web.UI.Page
 {
     string Year;
     int entid;
-    int totalmonth_child = 0, totalmonth_audlt = 0,totalyear_child=0,totalyear_adult=0;
+    int totalmonth_child = 0, totalmonth_audlt = 0, totalyear_child = 0, totalyear_adult = 0;
     BLLDJEnterprise blldjent = new BLLDJEnterprise();
     BLLDJConsumRecord bllRecord = new BLLDJConsumRecord();
     protected void Page_Load(object sender, EventArgs e)
@@ -48,8 +48,8 @@ public partial class LocalTravelAgent_TEDetailStatistics : System.Web.UI.Page
             totalmonth_audlt = 0;
             month m = e.Item.DataItem as month;
             Repeater rptETMonthDetail = e.Item.FindControl("rptETMonthDetail") as Repeater;
-            rptETMonthDetail.ItemDataBound+=new RepeaterItemEventHandler(rptETMonthDetail_ItemDataBound);
-            rptETMonthDetail.DataSource = bllRecord.GetByDate(int.Parse(Year), m.MonthIndex, entid,Master.CurrentDJS.Id);
+            rptETMonthDetail.ItemDataBound += new RepeaterItemEventHandler(rptETMonthDetail_ItemDataBound);
+            rptETMonthDetail.DataSource = bllRecord.GetByDate(int.Parse(Year), m.MonthIndex, entid, Master.CurrentDJS.Id);
             rptETMonthDetail.DataBind();
             laMonthTotal.Text = "成人" + totalmonth_audlt.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;" + "儿童" + totalmonth_child.ToString();
         }
@@ -131,10 +131,11 @@ public partial class LocalTravelAgent_TEDetailStatistics : System.Web.UI.Page
         dt.Columns.Add("date", Type.GetType("System.String"));
         dt.Columns.Add("detail", Type.GetType("System.String"));
         foreach (ExcelTable et in listExcel)
-	    {
+        {
             dt.Rows.Add(new object[] { et.date, et.detail });
-	    }
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "日期", "游玩人数或住宿人天数" }, ETName.InnerHtml + "详细统计报表");
+        }
+        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "日期", "游玩人数或住宿人天数" },
+            ETName.InnerHtml + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "详细统计报表");
     }
 }
 
