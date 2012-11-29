@@ -54,7 +54,7 @@
                     已接待情况</div>
                 <div class="searchdiv">
                     日期：<asp:TextBox ID="txt_yijiedai" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
-                    地接社名称：<asp:TextBox ID="txt_name1" runat="server" />
+                    地接社名称：<asp:TextBox ID="txt_name1" runat="server" style="width:150px" />
                     <asp:Button ID="btn_yijiedai" Text="查询" runat="server" OnClick="btn_yijiedai_Click"
                         CssClass="btn" />
                 </div>
@@ -158,7 +158,7 @@
                     旅游企业接待情况明细表</div>
                 <div class="searchdiv">
                     日期：<asp:TextBox ID="txt_yijiedai2" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
-                    企业名称(*必填)：<asp:TextBox ID="txt_name2" runat="server" />
+                    企业名称(*必填)：<asp:TextBox ID="txt_name2" runat="server" style="width:150px" />
                     <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click"
                         CssClass="btn" /></div>
                 <div style="display:none">
@@ -211,7 +211,7 @@
                     团队旅游情况表</div>
                 <div class="searchdiv">
                     日期：<asp:TextBox ID="txt_yijiedai3" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
-                    企业名称(*必填)：<asp:TextBox ID="txt_name3djs" runat="server" />
+                    企业名称(*必填)：<asp:TextBox ID="txt_name3djs" runat="server" style="width:150px" />
                     <asp:Button ID="btn_yijiedai3" Text="查询" runat="server" OnClick="btn_yijiedai3_Click"
                         CssClass="btn" /></div>
                 <asp:Repeater ID="rptGov3" runat="server">

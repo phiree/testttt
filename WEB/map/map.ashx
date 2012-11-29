@@ -40,7 +40,7 @@ public class map : IHttpHandler {
         List<Model.ScenicMap> list2 = new List<Model.ScenicMap>();
             foreach (Scenic item in list)
             {
-                if (!string.IsNullOrEmpty(item.Position))
+                if ((!string.IsNullOrEmpty(item.Position))&&(item.Position!="null"))
                 {
                     Model.ScenicMap m = new Model.ScenicMap();
                     m.id = item.Id;
