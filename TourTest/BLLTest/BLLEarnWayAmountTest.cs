@@ -5,7 +5,7 @@ using Model;
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace TESTDEMO
+namespace TourTest.BLLTest
 {
     
     

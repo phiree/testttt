@@ -3,7 +3,7 @@ using System;
 using Model;
 using NUnit.Framework;
 
-namespace TESTDEMO
+namespace TourTest.BLLTest
 {
     
     

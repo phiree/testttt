@@ -3,7 +3,7 @@ using System;
 using IDAL;
 using NUnit.Framework;
 
-namespace TESTDEMO
+namespace TourTest.BLLTest
 {
     
     

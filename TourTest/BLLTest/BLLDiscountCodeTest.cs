@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using IDAL;
 using NUnit.Framework;
 
-namespace TESTDEMO
+namespace TourTest.BLLTest
 {
     
     
