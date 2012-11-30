@@ -23,12 +23,6 @@ namespace IDAL
         /// <param name="pageSize">每页数量</param>
         /// <returns></returns>
         List<Model.Scenic> GetScenicList(string strCondition, int pageIndex, int pageSize,out long totalRecord);
-        /// <summary>
-        /// 景区信息通过
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        bool ScenicinfoPass(int id);
 
         #endregion
 

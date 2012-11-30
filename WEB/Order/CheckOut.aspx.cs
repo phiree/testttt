@@ -58,7 +58,7 @@ public partial class Scenic_CheckOut : AuthPage
     /*常用联系人*/
     private void BindContacts()
     {
-        IList<CommonUser> cu = bllCu.GetCommonUserByUserIdandidcard(CurrentMember.Id);
+        IList<CommonUser> cu = bllCu.GetCommonUserByUserId(CurrentMember.Id);
         rptContacts.DataSource = cu;
         rptContacts.DataBind();
     }

@@ -10,13 +10,20 @@ namespace DAL
     {
         public List<Model.Scenic> GetScenicList(string strCondition)
         {
-            string str="select s from Scenic s";
-            if (!string.IsNullOrWhiteSpace(strCondition))
+            try
             {
-                str += strCondition;
+                string str = "select s from Scenic s ";
+                if (!string.IsNullOrWhiteSpace(strCondition))
+                {
+                    str += strCondition;
+                }
+                IQuery query = session.CreateQuery(str);
+                return query.Future<Model.Scenic>().ToList<Model.Scenic>();
             }
-            IQuery query = session.CreateQuery(str);
-            return query.Future<Model.Scenic>().ToList<Model.Scenic>();
+            catch (Exception e)
+            {
+                return null;
+            }
         }
         
         public List<Model.Scenic> GetScenicList(string strCondition, int pageIndex, int pageSize,out long totalRecord)
@@ -35,12 +42,6 @@ namespace DAL
             List<Model.Scenic> scenicList = qry.Future<Model.Scenic>().Skip(pageIndex*pageSize).Take(pageSize). ToList();
             totalRecord = qryTotal.FutureValue<long>().Value;
             return scenicList;
-        }
-
-        public bool ScenicinfoPass(int id)
-        {
-            bool result = false;
-            return result;
         }
 
         public List<Model.PromotionStatic> GetPromList(string strCondition)

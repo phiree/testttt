@@ -122,6 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLTest\AreaTest.cs" />
+    <Compile Include="BLLTest\BackManagerTest.cs" />
+    <Compile Include="BLLTest\BuyTicketTest.cs" />
+    <Compile Include="BLLTest\CommonUserTest.cs" />
     <Compile Include="BLLTest\DJS\DJSTest.cs" />
     <Compile Include="BLLTest\DJS\DJSTourGroupTest.cs" />
     <Compile Include="BLLTest\DJS\DJSTourEnterpriseTest.cs" />
