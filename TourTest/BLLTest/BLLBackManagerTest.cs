@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace TourTest.BLLTest
 {
     [TestFixture]
-    public class BackManagerTest
+    public class BLLBackManagerTest
     {
         BLL.BLLBackManager bllbackmanager = new BLL.BLLBackManager();
 

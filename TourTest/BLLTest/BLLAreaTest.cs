@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace TourTest.BLLTest
 {
     [TestFixture]
-    public class AreaTest
+    public class BLLAreaTest
     {
         //IDAL.IArea dal = new DAL.DALArea();
         //[Test]

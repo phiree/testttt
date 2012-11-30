@@ -8,7 +8,7 @@ using Model;
 namespace TourTest.BLLTest
 {
     [TestFixture]
-    public class CommonUserTest
+    public class BLLCommonUserTest
     {
         BLL.BLLCommonUser bllcommonuser = new BLL.BLLCommonUser();
 

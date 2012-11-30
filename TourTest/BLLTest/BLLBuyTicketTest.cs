@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace TourTest.BLLTest
 {
     [TestFixture]
-    public class BuyTicketTest
+    public class BLLBuyTicketTest
     {
         [Test]
         [Ignore]
