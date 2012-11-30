@@ -1,7 +1,7 @@
 ﻿using BLL;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using IDAL;
+using NUnit.Framework;
 
 namespace TESTDEMO
 {
@@ -11,7 +11,7 @@ namespace TESTDEMO
     ///这是 BLLDefaultTest 的测试类，旨在
     ///包含所有 BLLDefaultTest 单元测试
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class BLLDefaultTest
     {
 
@@ -68,7 +68,7 @@ namespace TESTDEMO
         /// <summary>
         ///BLLDefault 构造函数 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void BLLDefaultConstructorTest()
         {
             BLLDefault target = new BLLDefault();
@@ -78,7 +78,7 @@ namespace TESTDEMO
         /// <summary>
         ///Imem 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void ImemTest()
         {
             BLLDefault target = new BLLDefault(); // TODO: 初始化为适当的值

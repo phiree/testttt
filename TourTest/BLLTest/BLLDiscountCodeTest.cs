@@ -1,9 +1,9 @@
 ﻿using BLL;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Model;
 using System.Collections.Generic;
 using IDAL;
+using NUnit.Framework;
 
 namespace TESTDEMO
 {
@@ -13,7 +13,7 @@ namespace TESTDEMO
     ///这是 BLLDiscountCodeTest 的测试类，旨在
     ///包含所有 BLLDiscountCodeTest 单元测试
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class BLLDiscountCodeTest
     {
 
@@ -70,7 +70,7 @@ namespace TESTDEMO
         /// <summary>
         ///BLLDiscountCode 构造函数 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void BLLDiscountCodeConstructorTest()
         {
             BLLDiscountCode target = new BLLDiscountCode();
@@ -80,7 +80,7 @@ namespace TESTDEMO
         /// <summary>
         ///GetDiscountCodeByCardid 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void GetDiscountCodeByCardidTest()
         {
             BLLDiscountCode target = new BLLDiscountCode(); // TODO: 初始化为适当的值
@@ -95,7 +95,7 @@ namespace TESTDEMO
         /// <summary>
         ///GetDiscountCodeByDisCode 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void GetDiscountCodeByDisCodeTest()
         {
             BLLDiscountCode target = new BLLDiscountCode(); // TODO: 初始化为适当的值
@@ -110,7 +110,7 @@ namespace TESTDEMO
         /// <summary>
         ///updateDiscountCode 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void updateDiscountCodeTest()
         {
             BLLDiscountCode target = new BLLDiscountCode(); // TODO: 初始化为适当的值
@@ -122,7 +122,7 @@ namespace TESTDEMO
         /// <summary>
         ///Idiscountcode 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void IdiscountcodeTest()
         {
             BLLDiscountCode target = new BLLDiscountCode(); // TODO: 初始化为适当的值

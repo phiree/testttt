@@ -121,10 +121,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLLTest\AreaTest.cs" />
-    <Compile Include="BLLTest\BackManagerTest.cs" />
-    <Compile Include="BLLTest\BuyTicketTest.cs" />
-    <Compile Include="BLLTest\CommonUserTest.cs" />
+    <Compile Include="BLLTest\BLLAreaTest.cs" />
+    <Compile Include="BLLTest\BLLBackManagerTest.cs" />
+    <Compile Include="BLLTest\BLLContractScenicPriceTest.cs" />
+    <Compile Include="BLLTest\BLLDefaultTest.cs" />
+    <Compile Include="BLLTest\BLLDiscountCodeTest.cs" />
+    <Compile Include="BLLTest\BLLEarnWayAmountTest.cs" />
+    <Compile Include="BLLTest\BLLFactoryTest.cs" />
+    <Compile Include="BLLTest\BLLFormatSerialNoTest.cs" />
+    <Compile Include="BLLTest\BLLBuyTicketTest.cs" />
+    <Compile Include="BLLTest\BLLCommonUserTest.cs" />
     <Compile Include="BLLTest\DJS\DJSTest.cs" />
     <Compile Include="BLLTest\DJS\DJSTourGroupTest.cs" />
     <Compile Include="BLLTest\DJS\DJSTourEnterpriseTest.cs" />

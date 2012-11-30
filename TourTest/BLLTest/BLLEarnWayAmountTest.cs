@@ -1,8 +1,9 @@
 ﻿using BLL;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using System;
 using Model;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace TESTDEMO
 {
@@ -12,7 +13,7 @@ namespace TESTDEMO
     ///这是 BLLEarnWayAmountTest 的测试类，旨在
     ///包含所有 BLLEarnWayAmountTest 单元测试
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class BLLEarnWayAmountTest
     {
 
@@ -69,7 +70,7 @@ namespace TESTDEMO
         /// <summary>
         ///BLLEarnWayAmount 构造函数 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void BLLEarnWayAmountConstructorTest()
         {
             BLLEarnWayAmount target = new BLLEarnWayAmount();
@@ -79,7 +80,7 @@ namespace TESTDEMO
         /// <summary>
         ///GetList 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void GetListTest()
         {
             BLLEarnWayAmount target = new BLLEarnWayAmount(); // TODO: 初始化为适当的值
@@ -93,7 +94,7 @@ namespace TESTDEMO
         /// <summary>
         ///Save 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void SaveTest()
         {
             BLLEarnWayAmount target = new BLLEarnWayAmount(); // TODO: 初始化为适当的值

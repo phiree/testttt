@@ -1,6 +1,6 @@
 ﻿using BLL;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using NUnit.Framework;
 
 namespace TESTDEMO
 {
@@ -10,7 +10,7 @@ namespace TESTDEMO
     ///这是 BLLFactoryTest 的测试类，旨在
     ///包含所有 BLLFactoryTest 单元测试
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class BLLFactoryTest
     {
 
@@ -67,7 +67,7 @@ namespace TESTDEMO
         /// <summary>
         ///BLLFactory 构造函数 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void BLLFactoryConstructorTest()
         {
             BLLFactory target = new BLLFactory();
@@ -77,7 +77,7 @@ namespace TESTDEMO
         /// <summary>
         ///CreateBLLMember 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void CreateBLLMemberTest()
         {
             BLLMembership expected = null; // TODO: 初始化为适当的值
@@ -90,7 +90,7 @@ namespace TESTDEMO
         /// <summary>
         ///CreateBLLScenic 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void CreateBLLScenicTest()
         {
             BLLScenic expected = null; // TODO: 初始化为适当的值

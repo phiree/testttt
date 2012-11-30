@@ -1,7 +1,7 @@
 ﻿using BLL;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Model;
+using NUnit.Framework;
 
 namespace TESTDEMO
 {
@@ -11,7 +11,7 @@ namespace TESTDEMO
     ///这是 BLLContractScenicPriceTest 的测试类，旨在
     ///包含所有 BLLContractScenicPriceTest 单元测试
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class BLLContractScenicPriceTest
     {
 
@@ -68,7 +68,7 @@ namespace TESTDEMO
         /// <summary>
         ///BLLContractScenicPrice 构造函数 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void BLLContractScenicPriceConstructorTest()
         {
             BLLContractScenicPrice target = new BLLContractScenicPrice();
@@ -78,7 +78,7 @@ namespace TESTDEMO
         /// <summary>
         ///GetcspByscid 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void GetcspByscidTest()
         {
             BLLContractScenicPrice target = new BLLContractScenicPrice(); // TODO: 初始化为适当的值
@@ -93,7 +93,7 @@ namespace TESTDEMO
         /// <summary>
         ///SaveOrUpdate 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void SaveOrUpdateTest()
         {
             BLLContractScenicPrice target = new BLLContractScenicPrice(); // TODO: 初始化为适当的值

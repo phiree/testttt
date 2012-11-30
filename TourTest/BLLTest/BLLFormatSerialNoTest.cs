@@ -1,7 +1,7 @@
 ﻿using BLL;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using IDAL;
+using NUnit.Framework;
 
 namespace TESTDEMO
 {
@@ -11,7 +11,7 @@ namespace TESTDEMO
     ///这是 BLLFormatSerialNoTest 的测试类，旨在
     ///包含所有 BLLFormatSerialNoTest 单元测试
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class BLLFormatSerialNoTest
     {
 
@@ -68,7 +68,7 @@ namespace TESTDEMO
         /// <summary>
         ///BLLFormatSerialNo 构造函数 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void BLLFormatSerialNoConstructorTest()
         {
             BLLFormatSerialNo target = new BLLFormatSerialNo();
@@ -78,7 +78,7 @@ namespace TESTDEMO
         /// <summary>
         ///EnsureFormatItemLength 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void EnsureFormatItemLengthTest()
         {
             BLLFormatSerialNo target = new BLLFormatSerialNo(); // TODO: 初始化为适当的值
@@ -94,7 +94,7 @@ namespace TESTDEMO
         /// <summary>
         ///GetSerialNo 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void GetSerialNoTest()
         {
             BLLFormatSerialNo target = new BLLFormatSerialNo(); // TODO: 初始化为适当的值
@@ -109,7 +109,7 @@ namespace TESTDEMO
         /// <summary>
         ///GetSerialNo 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void GetSerialNoTest1()
         {
             BLLFormatSerialNo target = new BLLFormatSerialNo(); // TODO: 初始化为适当的值
@@ -125,7 +125,7 @@ namespace TESTDEMO
         /// <summary>
         ///IdalFS 的测试
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void IdalFSTest()
         {
             BLLFormatSerialNo target = new BLLFormatSerialNo(); // TODO: 初始化为适当的值
