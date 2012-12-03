@@ -12,20 +12,20 @@ namespace BLL
     public class BLLFormatSerialNo
     {
 
-        DALFormatSerialNo dalFS;
-        public DALFormatSerialNo DalFS
+        IDAL.IDALFormatSerialNo idalFS;
+        public IDAL.IDALFormatSerialNo IdalFS
         {
             get
             {
-                if (dalFS == null)
+                if (idalFS == null)
                 {
-                    dalFS = new DALFormatSerialNo();
+                    idalFS = new DALFormatSerialNo();
                 }
-                return dalFS;
+                return idalFS;
             }
             set
             {
-                dalFS = value;
+                idalFS = value;
             }
         }
 
@@ -49,7 +49,7 @@ namespace BLL
         {
             string serialNo = string.Empty;
 
-            IList<FormatSerialNo> flagNos = dalFS.GetSerialNoList(flag);
+            IList<FormatSerialNo> flagNos = idalFS.GetSerialNoList(flag);
             FormatSerialNo format = new FormatSerialNo();
             DateTime now = DateTime.Now;
             if (flagNos.Count == 0)
@@ -61,7 +61,7 @@ namespace BLL
                 format.Year = EnsureFormatItemLength(2, now.Year);
                 format.Value = EnsureFormatItemLength(4, 1);
                 serialNo = format.ToString();
-                dalFS.Save(format);
+                idalFS.Save(format);
 
             }
             else if (flagNos.Count == 1)
@@ -117,14 +117,13 @@ namespace BLL
                 format.Year = EnsureFormatItemLength(2, now.Year);
                 format.Value = EnsureFormatItemLength(4, value);
                 serialNo = format.ToString();
-                dalFS.Save(format);
+                idalFS.Save(format);
             }
             else
             {
                 throw new ArgumentException("流水号生成错误:出现" + flagNos.Count + "个相同的Flag");
             }
             return serialNo;
-
         }
 
         /// <summary>

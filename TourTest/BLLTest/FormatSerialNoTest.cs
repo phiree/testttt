@@ -15,12 +15,12 @@ namespace TourTest.BLLTest
         {
             //20120612 ->20120612TK001
             string expect = "120626TK0001";
-            var IdalFormat = MockRepository.GenerateStub<DALFormatSerialNo>();
-            List<Model.FormatSerialNo> nos = new List<Model.FormatSerialNo>();
+            var IdalFormat = MockRepository.GenerateStub<IDAL.IDALFormatSerialNo>();
+            IList<Model.FormatSerialNo> nos = new List<Model.FormatSerialNo>();
             IdalFormat.Stub(x => x.GetSerialNoList("TK")).Return(nos);
 
             BLL.BLLFormatSerialNo bllFS = new BLL.BLLFormatSerialNo();
-            bllFS.DalFS = IdalFormat;
+            bllFS.IdalFS = IdalFormat;
             string actual = bllFS.GetSerialNo("TK");
             Assert.AreEqual(expect, actual);
 
