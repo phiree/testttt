@@ -47,7 +47,7 @@
                     </asp:Repeater>
         </div>
         <input id="txtSearch" type="text" class="selkeyword" />
-        <input id="Button1" type="button" class="btnsearch" onclick="check2();" value="地图查找" />
+        <input id="Button1" type="button" class="btnsearch" onclick="getCoordinatesNotScId(null);" value="地图查找" />
         <div id="container">
         </div>
         </div>

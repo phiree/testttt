@@ -125,6 +125,12 @@ function clearOverlays() {
     overlayMarker.length = 0;
 
 }
+/*关闭所有的窗口*/
+function closeWinInfo() {
+    for (var i = 0; i < infoWindow.length; i++) {
+        infoWindow[i].close();
+    }
+}
 /*创建google自定义覆盖物*/
 function customOverlay_Large(map, options) {
     //初始化参数
@@ -173,6 +179,7 @@ customOverlay_Large.prototype.onAdd = function () {
     div.appendChild(arrow);
     //注册div点击事件
     $(div).click(function () {
+        closeWinInfo();
         var index = that._id;
         infoWindow[index - 1].open(map);
     });
@@ -220,6 +227,7 @@ customOverlay_Small.prototype.onAdd = function () {
     div.style.MozUserSelect = "none";
     //注册div点击事件
     $(div).click(function () {
+        closeWinInfo();
         var index = that._id;
         infoWindow[index - 1].open(map);
     });
