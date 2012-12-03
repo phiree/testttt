@@ -51,7 +51,7 @@ namespace ExcelOplib
                     s.Address = item.address;
                     s.Level = item.level;
                     s.SeoName = string.IsNullOrEmpty(s.SeoName) ? item.seoname : s.SeoName;
-                    s.Area = bllarea.GetAraByAreaname(item.areaid);
+                    s.Area = bllarea.GetAreaByAreaname(item.areaid);
                     //处理topic字符串
                     var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
                     blltopic.SaveScenictopic(temptopic, s.Id);
@@ -110,7 +110,7 @@ namespace ExcelOplib
                     s = new Model.Scenic();
                     s.Name = item.name;
                     s.Address = item.address;
-                    s.Area = bllarea.GetAraByAreaname(item.areaid);
+                    s.Area = bllarea.GetAreaByAreaname(item.areaid);
                     s.BookNote = item.bookintro;
                     s.Level = item.level;
                     s.Type = Model.EnterpriseType.景点;

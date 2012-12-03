@@ -60,7 +60,7 @@
                         <%= Index++ %>
                     </td>
                     <td style=" width:150px;">
-                        <%# Eval("ConsumeTime")%>
+                        <%# Eval("ConsumeTime","{0:yyyy-MM-dd}")%>
                     </td>
                     <td style="width:100px;">
                         <%# Eval("Route.DJ_TourGroup.Name")%>

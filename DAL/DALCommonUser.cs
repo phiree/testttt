@@ -9,7 +9,7 @@ namespace DAL
 {
     public class DALCommonUser:DalBase,IDAL.ICommonUser
     {
-        public IList<Model.CommonUser> GetCommonUserByUserIdandidcard(Guid userid)
+        public IList<Model.CommonUser> GetCommonUserByUserId(Guid userid)
         {
             string sql = "select cu from CommonUser cu where cu.User.Id='" + userid + "'";
             IQuery query = session.CreateQuery(sql);

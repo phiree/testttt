@@ -19,7 +19,7 @@ public partial class UserCenter_CommonUserInfo : basepage
 
     private void bind()
     {
-        rptcu.DataSource = bllcommonuser.GetCommonUserByUserIdandidcard((Guid)CurrentUser.ProviderUserKey);
+        rptcu.DataSource = bllcommonuser.GetCommonUserByUserId((Guid)CurrentUser.ProviderUserKey);
         rptcu.DataBind();
     }
     protected void btndelete_Click(object sender, EventArgs e)

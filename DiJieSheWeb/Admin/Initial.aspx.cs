@@ -35,7 +35,7 @@ public partial class Admin_Initial : System.Web.UI.Page
             govDic.Add(new Model.DJ_GovManageDepartment()
             {
                 Name = item.Department1,
-                Area = bllarea.GetAraByAreaname(item.Diqu),
+                Area = bllarea.GetAreaByAreaname(item.Diqu),
                 seoname = item.Seoname
             });
         }
@@ -79,7 +79,7 @@ public partial class Admin_Initial : System.Web.UI.Page
 
         foreach (var item in templist)
         {
-            var area = bllarea.GetAraByAreaname(item.area);
+            var area = bllarea.GetAreaByAreaname(item.area);
             #region MyRegion
             switch (item.type)
             {

@@ -30,7 +30,7 @@
         <%=ParamEntType %>管理
     </div>
     <div class="searchdiv">
-            企业名称:&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox runat="server" ID="tbxName"></asp:TextBox>
+            企业名称:&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox runat="server" ID="tbxName" style="width:150px"></asp:TextBox>
       
         <asp:Button runat="server" ID="btnAdd" Text="纳入奖励范围" OnClick="btnAdd_Click" CssClass="btn2"/>
         <asp:Label runat="server" ID="lblMsg" CssClass="success" Visible="false">操作成功</asp:Label><br />

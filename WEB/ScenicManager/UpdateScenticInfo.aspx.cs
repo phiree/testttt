@@ -31,6 +31,11 @@ public partial class ScenticManager_UpdateScenticInfo :basepage
         ScenicArea.Text = scenic.Area.Name;
         Address.Text = scenic.Address;
         Desc.Text = scenic.Desec;
+        Email.Text = scenic.Email;
+        if (!string.IsNullOrEmpty(scenic.Position))
+        {
+            hfposition.Value = scenic.Position;
+        }
         IList<ScenicImg> list= bllscenicimg.GetSiByType(scenic,1);
         if (list.Count > 0)
         {
@@ -48,6 +53,7 @@ public partial class ScenticManager_UpdateScenticInfo :basepage
         scenic.Address = Address.Text;
         scenic.Desec = Desc.Text;
         scenic.Photo = "";
+        scenic.Email = Email.Text;
         scenic.Position = hfposition.Value;
         ScenicCheckProgress temp=scenic.CheckProgress.First<ScenicCheckProgress>(x => x.Module == ScenicModule.SellOnLine);
         temp.CheckStatus = CheckStatus.NotApplied;

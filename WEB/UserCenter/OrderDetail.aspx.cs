@@ -140,7 +140,7 @@ public partial class UserCenter_MyOrder : basepage
         //rptnamelist.DataSource = bllcommonuser.GetCommonUserByUserIdandidcard((Guid)CurrentUser.ProviderUserKey);
         //rptnamelist.DataBind();
 
-        IList<CommonUser> cu = bllcommonuser.GetCommonUserByUserIdandidcard((Guid)CurrentUser.ProviderUserKey);
+        IList<CommonUser> cu = bllcommonuser.GetCommonUserByUserId((Guid)CurrentUser.ProviderUserKey);
         rptContacts.DataSource = cu;
         rptContacts.DataBind();
     }
