@@ -33,6 +33,8 @@ $(function () {
 });
 /*不带有地区id的查询方法*/
 function getCoordinatesNotScId(scid) {
+    //显示加载提示
+    $(".loaddiv").css("display", "block");
     var randomParam = new Date().toString();
     var url;
     if(scid==null)
@@ -106,8 +108,12 @@ function getCoordinatesNotScId(scid) {
 
             $("#resultscenic").html(loadstr);
             $("#countscenic").html($.cookie("numcount"));
+            //加载完关闭加载图片
+            $(".loaddiv").css("display", "none");
             //添加一个地图加载完毕的事件监听
             google.maps.event.addListener(map, "tilesloaded", function () {
+                //加载完关闭加载图片
+                $(".loaddiv").css("display", "none");
                 //为了兼容crome和ff的不兼容，不添加讲无法点击图标，具体原因不详
                 var condiv = $(".divicon").parent().parent();
                 $(condiv).css("z-index", "202");
@@ -124,6 +130,12 @@ function clearOverlays() {
     }
     overlayMarker.length = 0;
 
+}
+/*关闭所有的窗口*/
+function closeWinInfo() {
+    for (var i = 0; i < infoWindow.length; i++) {
+        infoWindow[i].close();
+    }
 }
 /*创建google自定义覆盖物*/
 function customOverlay_Large(map, options) {
@@ -173,6 +185,7 @@ customOverlay_Large.prototype.onAdd = function () {
     div.appendChild(arrow);
     //注册div点击事件
     $(div).click(function () {
+        closeWinInfo();
         var index = that._id;
         infoWindow[index - 1].open(map);
     });
@@ -220,6 +233,7 @@ customOverlay_Small.prototype.onAdd = function () {
     div.style.MozUserSelect = "none";
     //注册div点击事件
     $(div).click(function () {
+        closeWinInfo();
         var index = that._id;
         infoWindow[index - 1].open(map);
     });
