@@ -2,11 +2,15 @@
 using System;
 using IDAL;
 using NUnit.Framework;
+using Rhino.Mocks;
+using System.Collections.Generic;
+using Model;
+using DAL;
 
 namespace TourTest.BLLTest
 {
-    
-    
+
+
     /// <summary>
     ///这是 BLLFormatSerialNoTest 的测试类，旨在
     ///包含所有 BLLFormatSerialNoTest 单元测试
@@ -15,64 +19,64 @@ namespace TourTest.BLLTest
     public class BLLFormatSerialNoTest
     {
 
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///获取或设置测试上下文，上下文提供
-        ///有关当前测试运行及其功能的信息。
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-        #region 附加测试特性
-        // 
-        //编写测试时，还可使用以下特性:
-        //
-        //使用 ClassInitialize 在运行类中的第一个测试前先运行代码
-        //[ClassInitialize()]
-        //public static void MyClassInitialize(TestContext testContext)
-        //{
-        //}
-        //
-        //使用 ClassCleanup 在运行完类中的所有测试后再运行代码
-        //[ClassCleanup()]
-        //public static void MyClassCleanup()
-        //{
-        //}
-        //
-        //使用 TestInitialize 在运行每个测试前先运行代码
-        //[TestInitialize()]
-        //public void MyTestInitialize()
-        //{
-        //}
-        //
-        //使用 TestCleanup 在运行完每个测试后运行代码
-        //[TestCleanup()]
-        //public void MyTestCleanup()
-        //{
-        //}
-        //
-        #endregion
-
+        BLLFormatSerialNo target = new BLLFormatSerialNo(); // TODO: 初始化为适当的值
 
         /// <summary>
-        ///BLLFormatSerialNo 构造函数 的测试
+        ///GetSerialNo 的测试
         ///</summary>
         [Test]
-        public void BLLFormatSerialNoConstructorTest()
+        public void GetSerialNoTest_multiflag()
         {
-            BLLFormatSerialNo target = new BLLFormatSerialNo();
-            Assert.Inconclusive("TODO: 实现用来验证目标的代码");
+            //mock对象
+            var mocks = new MockRepository();
+            var dal = mocks.Stub<DALFormatSerialNo>();
+            List<FormatSerialNo> formatlist = new List<FormatSerialNo>();
+            formatlist.Add(new FormatSerialNo() { 
+                Flag="FA",
+                Year="2012",
+                Month="12",
+                Day="3",
+                Value="001"
+            });
+            formatlist.Add(new FormatSerialNo()
+            {
+                Flag = "FA",
+                Year = "2013",
+                Month = "12",
+                Day = "3",
+                Value = "001"
+            });
+            dal.Stub(x => x.GetSerialNoList("FA")).Return(formatlist);
+            target.IdalFS = dal;
+
+            //test
+            Assert.Throws<ArgumentException>(delegate { target.GetSerialNo("FA"); },"this is a message");
+        }
+
+        /// <summary>
+        ///GetSerialNo 的测试
+        ///</summary>
+        [Test]
+        public void GetSerialNoTest_wrongyear()
+        {
+            //mock对象
+            MockRepository mocks = new MockRepository();
+            DALFormatSerialNo idal = mocks.Stub<DALFormatSerialNo>();
+            IList<FormatSerialNo> formatlist = new List<FormatSerialNo>();
+            formatlist.Add(new FormatSerialNo()
+            {
+                Flag = "FA",
+                Year = "2012",
+                Month = "12",
+                Day = "3",
+                Value = "FA201212030003",
+                FormatId = 1
+            });
+            idal.Stub(x => x.GetSerialNoList("FA")).Return(formatlist);
+            target.IdalFS = idal;
+
+            //test
+
         }
 
         /// <summary>
@@ -81,60 +85,8 @@ namespace TourTest.BLLTest
         [Test]
         public void EnsureFormatItemLengthTest()
         {
-            BLLFormatSerialNo target = new BLLFormatSerialNo(); // TODO: 初始化为适当的值
-            int length = 0; // TODO: 初始化为适当的值
-            int value = 0; // TODO: 初始化为适当的值
-            string expected = string.Empty; // TODO: 初始化为适当的值
-            string actual;
-            actual = target.EnsureFormatItemLength(length, value);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("验证此测试方法的正确性。");
+
         }
 
-        /// <summary>
-        ///GetSerialNo 的测试
-        ///</summary>
-        [Test]
-        public void GetSerialNoTest()
-        {
-            BLLFormatSerialNo target = new BLLFormatSerialNo(); // TODO: 初始化为适当的值
-            string flag = string.Empty; // TODO: 初始化为适当的值
-            string expected = string.Empty; // TODO: 初始化为适当的值
-            string actual;
-            actual = target.GetSerialNo(flag);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("验证此测试方法的正确性。");
-        }
-
-        /// <summary>
-        ///GetSerialNo 的测试
-        ///</summary>
-        [Test]
-        public void GetSerialNoTest1()
-        {
-            BLLFormatSerialNo target = new BLLFormatSerialNo(); // TODO: 初始化为适当的值
-            string flag = string.Empty; // TODO: 初始化为适当的值
-            bool includeDay = false; // TODO: 初始化为适当的值
-            string expected = string.Empty; // TODO: 初始化为适当的值
-            string actual;
-            actual = target.GetSerialNo(flag, includeDay);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("验证此测试方法的正确性。");
-        }
-
-        /// <summary>
-        ///IdalFS 的测试
-        ///</summary>
-        [Test]
-        public void IdalFSTest()
-        {
-            BLLFormatSerialNo target = new BLLFormatSerialNo(); // TODO: 初始化为适当的值
-            IDALFormatSerialNo expected = null; // TODO: 初始化为适当的值
-            IDALFormatSerialNo actual;
-            target.IdalFS = expected;
-            actual = target.IdalFS;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("验证此测试方法的正确性。");
-        }
     }
 }

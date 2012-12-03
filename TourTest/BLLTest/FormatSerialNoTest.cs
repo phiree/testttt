@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Rhino.Mocks;
+using DAL;
 namespace TourTest.BLLTest
 {
     [TestFixture]
@@ -15,20 +16,22 @@ namespace TourTest.BLLTest
             //20120612 ->20120612TK001
             string expect = "120626TK0001";
             var IdalFormat = MockRepository.GenerateStub<IDAL.IDALFormatSerialNo>();
-            List<Model.FormatSerialNo> nos = new List<Model.FormatSerialNo>();
-            Model.FormatSerialNo n1 = new Model.FormatSerialNo();
-            n1.Year = "12";
-            n1.Month = "06";
-            n1.Day = "26";
-            n1.Value = "0001";
-            n1.Flag = "TK";
+            IList<Model.FormatSerialNo> nos = new List<Model.FormatSerialNo>();
             IdalFormat.Stub(x => x.GetSerialNoList("TK")).Return(nos);
 
             BLL.BLLFormatSerialNo bllFS = new BLL.BLLFormatSerialNo();
             bllFS.IdalFS = IdalFormat;
             string actual = bllFS.GetSerialNo("TK");
             Assert.AreEqual(expect, actual);
+
+            Model.FormatSerialNo n1 = new Model.FormatSerialNo();
+            n1.Year = "12";
+            n1.Month = "06";
+            n1.Day = "26";
+            n1.Value = "0001";
+            n1.Flag = "TK";
             nos.Add(n1);
+
             IdalFormat.Stub(x => x.GetSerialNoList("TK")).Return(nos);
             expect = "120626TK0002";
             actual = bllFS.GetSerialNo("TK");

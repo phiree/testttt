@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class Manager_ScenicAdminDetail : System.Web.UI.Page
 {
-    IDAL.IArea dalarea = new DAL.DALArea();
+    DAL.DALArea dalarea = new DAL.DALArea();
     IDAL.IScenic dalscenic = new DAL.DALScenic();
     BLL.BLLMembership bllMembership = new BLL.BLLMembership();
     public Model.TourMembership User;
-   
+
     Guid userId;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,9 +35,9 @@ public partial class Manager_ScenicAdminDetail : System.Web.UI.Page
 
     private void BindScenic()
     {
-      Model.ScenicAdmin sa=  bllMembership.GetScenicAdmin(userId);
-      lblScenic.Text = sa == null ? "无" : sa.Scenic.Name;
-      btnDelete.Visible = sa != null;
+        Model.ScenicAdmin sa = bllMembership.GetScenicAdmin(userId);
+        lblScenic.Text = sa == null ? "无" : sa.Scenic.Name;
+        btnDelete.Visible = sa != null;
     }
 
     private void BindProvince()
@@ -71,7 +71,7 @@ public partial class Manager_ScenicAdminDetail : System.Web.UI.Page
 
     protected void ddlCity_TextChanged(object sender, EventArgs e)
     {
-       
+
         BindScenicList(ddlCity.SelectedValue);
     }
     private void BindScenicList(string cityAreaCode)
@@ -86,7 +86,7 @@ public partial class Manager_ScenicAdminDetail : System.Web.UI.Page
     {
         foreach (ListItem item in cblSceniclist.Items)
         {
-            if (item.Selected==true)
+            if (item.Selected == true)
             {
                 bllMembership.CreateUpdateScenicAdmin(new Guid(Request["userid"]), int.Parse(item.Value));
             }
