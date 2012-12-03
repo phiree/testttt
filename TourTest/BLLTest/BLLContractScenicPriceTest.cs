@@ -5,8 +5,8 @@ using NUnit.Framework;
 
 namespace TourTest.BLLTest
 {
-    
-    
+
+
     /// <summary>
     ///这是 BLLContractScenicPriceTest 的测试类，旨在
     ///包含所有 BLLContractScenicPriceTest 单元测试
@@ -15,65 +15,17 @@ namespace TourTest.BLLTest
     public class BLLContractScenicPriceTest
     {
 
-
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///获取或设置测试上下文，上下文提供
-        ///有关当前测试运行及其功能的信息。
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-        #region 附加测试特性
-        // 
-        //编写测试时，还可使用以下特性:
-        //
-        //使用 ClassInitialize 在运行类中的第一个测试前先运行代码
-        //[ClassInitialize()]
-        //public static void MyClassInitialize(TestContext testContext)
-        //{
-        //}
-        //
-        //使用 ClassCleanup 在运行完类中的所有测试后再运行代码
-        //[ClassCleanup()]
-        //public static void MyClassCleanup()
-        //{
-        //}
-        //
-        //使用 TestInitialize 在运行每个测试前先运行代码
-        //[TestInitialize()]
-        //public void MyTestInitialize()
-        //{
-        //}
-        //
-        //使用 TestCleanup 在运行完每个测试后运行代码
-        //[TestCleanup()]
-        //public void MyTestCleanup()
-        //{
-        //}
-        //
-        #endregion
-
+        BLLContractScenicPrice target = new BLLContractScenicPrice(); // TODO: 初始化为适当的值
 
         /// <summary>
         ///BLLContractScenicPrice 构造函数 的测试
         ///</summary>
-        [Test]
-        public void BLLContractScenicPriceConstructorTest()
-        {
-            BLLContractScenicPrice target = new BLLContractScenicPrice();
-            Assert.Inconclusive("TODO: 实现用来验证目标的代码");
-        }
+        //[Test]
+        //public void BLLContractScenicPriceConstructorTest()
+        //{
+        //    BLLContractScenicPrice target = new BLLContractScenicPrice();
+        //    Assert.Inconclusive("TODO: 实现用来验证目标的代码");
+        //}
 
         /// <summary>
         ///GetcspByscid 的测试
@@ -81,7 +33,7 @@ namespace TourTest.BLLTest
         [Test]
         public void GetcspByscidTest()
         {
-            BLLContractScenicPrice target = new BLLContractScenicPrice(); // TODO: 初始化为适当的值
+
             int scid = 0; // TODO: 初始化为适当的值
             ContractScenicPrice expected = null; // TODO: 初始化为适当的值
             ContractScenicPrice actual;
@@ -91,15 +43,41 @@ namespace TourTest.BLLTest
         }
 
         /// <summary>
+        ///SaveOrUpdate 的测试_null param
+        ///</summary>
+        [Test]
+        public void SaveOrUpdateTest_null()
+        {
+
+            ContractScenicPrice csp = null; // TODO: 初始化为适当的值
+
+            Assert.Throws<ArgumentNullException>(delegate { target.SaveOrUpdate(csp); });
+        }
+
+        /// <summary>
         ///SaveOrUpdate 的测试
         ///</summary>
         [Test]
-        public void SaveOrUpdateTest()
+        public void SaveOrUpdateTest_rightcondition()
         {
-            BLLContractScenicPrice target = new BLLContractScenicPrice(); // TODO: 初始化为适当的值
-            ContractScenicPrice csp = null; // TODO: 初始化为适当的值
-            target.SaveOrUpdate(csp);
-            Assert.Inconclusive("无法验证不返回值的方法。");
+            ContractScenicPrice csp = null;
+            Scenic scenic = new BLL.BLLScenic().GetScenic()[0];
+            if (scenic != null)
+            {
+                csp = new ContractScenicPrice()
+                {
+                    PriceContract = "pricecontract",
+                    Scenic = scenic
+                };
+                target.SaveOrUpdate(csp);
+                var result = target.GetcspByscid(scenic.Id);
+                Assert.AreEqual("pricecontract", result.PriceContract);
+            }
+            else
+            {
+                Assert.Throws<ArgumentNullException>(delegate { target.SaveOrUpdate(csp); });
+            }
         }
+
     }
 }

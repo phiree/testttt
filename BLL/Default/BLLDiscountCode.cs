@@ -29,6 +29,7 @@ namespace BLL
         {
             return  Idiscountcode.GetDiscountCodeByCardid(cardid);
         }
+
         public Model.DiscountCode GetDiscountCodeByDisCode(string discode)
         {
             return Idiscountcode.GetDiscountByDisCode(discode);
