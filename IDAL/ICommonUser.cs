@@ -9,13 +9,13 @@ namespace IDAL
     public interface ICommonUser
     {
         CommonUser GetCommonUserByUserIdandidcard(Guid userid, string idcard);
-        IList<CommonUser> GetCommonUserByUserIdandidcard(Guid userid);
+        IList<CommonUser> GetCommonUserByUserId(Guid userid);
+        IList<CommonUser> GetCommonUserByIdCard(string idcard);
         void SaveCommonUser(CommonUser commonuser);
         CommonUser Get(Guid userid, string name, string idcard);
         IList<CommonUser> SearchCommonUser(string name);
         void deleteCommonUser(int id);
         CommonUser GetCommonUserByid(int id);
         void updatecu(CommonUser cu);
-        IList<CommonUser> GetCommonUserByIdCard(string idcard);
     }
 }

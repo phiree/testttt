@@ -115,6 +115,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Codeviews", "Codeviews", "{
 		todo.txt = todo.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E582A8FA-3A6A-48F2-8EF1-453D765C253E}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		TourOnline.vsmdi = TourOnline.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TourOnline.vsmdi
