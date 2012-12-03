@@ -5,10 +5,10 @@ using System.Text;
 using Model;
 namespace DAL
 {
-    public class DALFormatSerialNo : DalBase, IDAL.IDALFormatSerialNo
+    public class DALFormatSerialNo : DalBase
     {
 
-        public IList<FormatSerialNo> GetSerialNoList(string flag)
+        public virtual IList<FormatSerialNo> GetSerialNoList(string flag)
         {
             IList<FormatSerialNo> list = session.CreateQuery("select s from FormatSerialNo s where s.Flag='" + flag + "' ").List<FormatSerialNo>();
 

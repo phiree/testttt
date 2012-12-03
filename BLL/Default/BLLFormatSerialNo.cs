@@ -12,8 +12,8 @@ namespace BLL
     public class BLLFormatSerialNo
     {
 
-        IDAL.IDALFormatSerialNo idalFS;
-        public IDAL.IDALFormatSerialNo IdalFS
+        DALFormatSerialNo idalFS;
+        public DALFormatSerialNo IdalFS
         {
             get
             {

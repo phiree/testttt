@@ -33,24 +33,25 @@ namespace TourTest.BLLTest
             List<FormatSerialNo> formatlist = new List<FormatSerialNo>();
             formatlist.Add(new FormatSerialNo() { 
                 Flag="FA",
-                Year="2012",
-                Month="12",
-                Day="3",
-                Value="001"
+                Year=DateTime.Today.Year.ToString().Substring(2, 2),
+                Month = DateTime.Today.Month.ToString("D2"),
+                Day = DateTime.Today.Day.ToString("D2"),
+                Value="0001"
             });
             formatlist.Add(new FormatSerialNo()
             {
                 Flag = "FA",
-                Year = "2013",
-                Month = "12",
-                Day = "3",
-                Value = "001"
+                Year = DateTime.Today.Year.ToString().Substring(2, 2),
+                Month = DateTime.Today.Month.ToString("D2"),
+                Day = DateTime.Today.Day.ToString("D2"),
+                Value = "0002"
             });
             dal.Stub(x => x.GetSerialNoList("FA")).Return(formatlist);
             target.IdalFS = dal;
 
             //test
-            Assert.Throws<ArgumentException>(delegate { target.GetSerialNo("FA"); },"this is a message");
+            Assert.AreEqual("121203FA0001", target.GetSerialNo("FA"));
+            //Assert.Throws<ArgumentException>(delegate { target.GetSerialNo("FA"); });
         }
 
         /// <summary>
