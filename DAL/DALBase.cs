@@ -57,22 +57,42 @@ namespace DAL
         {
             return session.Get<T>(id);
         }
+        public T GetOneByQuery(string where)
+        {
+            IList<T> listT = GetList(where);
+            
+            if (listT.Count == 1)
+            {
+                return listT[0];
+            }
+            else if (listT.Count == 0)
+            {
+                return default(T);
+            }
+            else {
+                throw new Exception("有"+listT.Count+"个值返回.应该只能返回一个值.");
+            }
+        }
         public IList<T> GetAll<T>() where T:class 
         {
             return session.QueryOver<T>().List();
         }
-       
+
+        protected IList<T> GetList(string where)
+        {
+            int totalRecords;
+            return GetList(where, 0, 99999, out totalRecords);
+        }
 
         protected IList<T> GetList(string where,int pageIndex, int pageSize, out int totalRecords)
         {
             IQuery qry = session.CreateQuery(where);
 
-            IList<T> itemList = new List<T>();
-            totalRecords = itemList.Count;
-          
-                itemList = qry.Future<T>().Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList<T>();
-           
-            return itemList;
+          var  itemList = qry.Future<T>().ToList();
+          totalRecords = itemList.Count;
+          var returnList = itemList.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+          return returnList;
         }
 
     }

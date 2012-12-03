@@ -7,7 +7,7 @@ using IDAL;
 
 namespace BLL
 {
-    public class BLLArea:DalBase<Model.Area>
+    public class BLLArea
     {
         DALArea iarea;
 
