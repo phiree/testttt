@@ -33,6 +33,8 @@ $(function () {
 });
 /*不带有地区id的查询方法*/
 function getCoordinatesNotScId(scid) {
+    //显示加载提示
+    $(".loaddiv").css("display", "block");
     var randomParam = new Date().toString();
     var url;
     if(scid==null)
@@ -106,8 +108,12 @@ function getCoordinatesNotScId(scid) {
 
             $("#resultscenic").html(loadstr);
             $("#countscenic").html($.cookie("numcount"));
+            //加载完关闭加载图片
+            $(".loaddiv").css("display", "none");
             //添加一个地图加载完毕的事件监听
             google.maps.event.addListener(map, "tilesloaded", function () {
+                //加载完关闭加载图片
+                $(".loaddiv").css("display", "none");
                 //为了兼容crome和ff的不兼容，不添加讲无法点击图标，具体原因不详
                 var condiv = $(".divicon").parent().parent();
                 $(condiv).css("z-index", "202");

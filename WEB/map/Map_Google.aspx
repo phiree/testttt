@@ -50,6 +50,9 @@
         <input id="Button1" type="button" class="btnsearch" onclick="getCoordinatesNotScId(null);" value="地图查找" />
         <div id="container">
         </div>
+        <div class="loaddiv">
+            <img src="../theme/default/image/loadImg.gif" width="18px" height="18px" style="margin-top:6px; margin-left:10px; display:block; float:left;" /><span>正在加载,请稍等</span>
+        </div>
         </div>
     <div id="right">
             <%--<div class="searchdiv">
