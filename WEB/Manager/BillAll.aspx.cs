@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class Manager_BillAll : System.Web.UI.Page
 {
-    IDAL.IArea dalarea = new DAL.DALArea();
+    DAL.DALArea dalarea = new DAL.DALArea();
     BLL.BLLOrder bllOrder = new BLL.BLLOrder();
     IDAL.IScenic dalscenic = new DAL.DALScenic();
     protected void Page_Load(object sender, EventArgs e)

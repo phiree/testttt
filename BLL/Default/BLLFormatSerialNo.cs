@@ -9,35 +9,47 @@ namespace BLL
     /// <summary>
     /// 根据当前日期,以及 标志符 生成 序列号.
     /// </summary>
-    public class BLLFormatSerialNo 
+    public class BLLFormatSerialNo
     {
 
-        IDAL.IDALFormatSerialNo idalFS;
-     public   IDAL.IDALFormatSerialNo IdalFS
+        DALFormatSerialNo dalFS;
+        public DALFormatSerialNo DalFS
         {
             get
             {
-                if (idalFS == null)
+                if (dalFS == null)
                 {
-                    idalFS = new DALFormatSerialNo();
-               }
-                return idalFS;
+                    dalFS = new DALFormatSerialNo();
+                }
+                return dalFS;
             }
-            set {
-                idalFS = value;
+            set
+            {
+                dalFS = value;
             }
         }
 
-    
+        /// <summary>
+        /// 获取序列号
+        /// </summary>
+        /// <param name="flag"></param>
+        /// <returns></returns>
         public string GetSerialNo(string flag)
         {
             return GetSerialNo(flag, true);
         }
+
+        /// <summary>
+        /// 获取序列号
+        /// </summary>
+        /// <param name="flag"></param>
+        /// <param name="includeDay"></param>
+        /// <returns></returns>
         public string GetSerialNo(string flag, bool includeDay)
         {
             string serialNo = string.Empty;
 
-            IList<FormatSerialNo> flagNos = idalFS.GetSerialNoList(flag);
+            IList<FormatSerialNo> flagNos = dalFS.GetSerialNoList(flag);
             FormatSerialNo format = new FormatSerialNo();
             DateTime now = DateTime.Now;
             if (flagNos.Count == 0)
@@ -49,7 +61,7 @@ namespace BLL
                 format.Year = EnsureFormatItemLength(2, now.Year);
                 format.Value = EnsureFormatItemLength(4, 1);
                 serialNo = format.ToString();
-                idalFS.Save(format);
+                dalFS.Save(format);
 
             }
             else if (flagNos.Count == 1)
@@ -96,7 +108,7 @@ namespace BLL
                 }
                 else
                 {
-                    throw new Exception("年份错误,请检查电脑的时间设置");
+                    throw new ArgumentException("年份错误,请检查电脑的时间设置","Date");
                 }
 
 
@@ -105,11 +117,11 @@ namespace BLL
                 format.Year = EnsureFormatItemLength(2, now.Year);
                 format.Value = EnsureFormatItemLength(4, value);
                 serialNo = format.ToString();
-                idalFS.Save(format);
+                dalFS.Save(format);
             }
             else
             {
-                throw new Exception("流水号生成错误:出现" + flagNos.Count + "个相同的Flag");
+                throw new ArgumentException("流水号生成错误:出现" + flagNos.Count + "个相同的Flag");
             }
             return serialNo;
 
