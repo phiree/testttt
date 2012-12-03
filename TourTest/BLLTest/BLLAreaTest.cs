@@ -24,6 +24,14 @@ namespace TourTest.BLLTest
         //    Console.Write(ids);
         //    Assert.IsTrue(ids.Length > 10);
         //}
+        DAL.DALArea dalArea;
+        BLL.BLLArea bllArea;
+        [SetUp]
+        public void Init()
+        {
+            bllarea = new BLL.BLLArea();
+
+        }
 
         BLL.BLLArea bllarea = new BLL.BLLArea();
         [Test]

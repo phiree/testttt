@@ -286,3 +286,24 @@
     margin-right:5px;
     color:#E8641B;
 }
+.loaddiv
+{
+    position:absolute;
+    display:none;
+    width:160px;
+    height:30px;
+    border:2px solid #CDCDCD;
+    background-color:White;
+    left:450px;
+    top:200px;
+    line-height:30px;
+    word-spacing:5px;
+}
+.loaddiv span
+{
+    display:block;
+    float:left;
+    letter-spacing:3px;
+    margin-left:3px;
+    font-weight:bold;
+}
