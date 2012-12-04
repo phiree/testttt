@@ -27,6 +27,12 @@ namespace TourTest.BLLTest
         [Test]
         public void GetSerialNoTest_multiflag()
         {
+            //expected
+            var expected = string.Empty;
+            expected = DateTime.Today.Year.ToString().Substring(2, 2)
+                + DateTime.Today.Month.ToString("D2")
+                + DateTime.Today.Day.ToString("D2")
+                + "FA0001";
             //mock对象
             var mocks = new MockRepository();
             var dal = mocks.Stub<DALFormatSerialNo>();
@@ -36,7 +42,8 @@ namespace TourTest.BLLTest
                 Year=DateTime.Today.Year.ToString().Substring(2, 2),
                 Month = DateTime.Today.Month.ToString("D2"),
                 Day = DateTime.Today.Day.ToString("D2"),
-                Value="0001"
+                Value="0001",
+                FormatId=1
             });
             formatlist.Add(new FormatSerialNo()
             {
@@ -44,13 +51,14 @@ namespace TourTest.BLLTest
                 Year = DateTime.Today.Year.ToString().Substring(2, 2),
                 Month = DateTime.Today.Month.ToString("D2"),
                 Day = DateTime.Today.Day.ToString("D2"),
-                Value = "0002"
+                Value = "0002",
+                FormatId=2
             });
             dal.Stub(x => x.GetSerialNoList("FA")).Return(formatlist);
             target.IdalFS = dal;
 
             //test
-            Assert.AreEqual("121203FA0001", target.GetSerialNo("FA"));
+            Assert.AreEqual(expected, target.GetSerialNo("FA"));
             //Assert.Throws<ArgumentException>(delegate { target.GetSerialNo("FA"); });
         }
 
