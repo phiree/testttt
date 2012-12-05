@@ -8,7 +8,7 @@ using BLL;
 
 public partial class Manager_BillCheck : basepage
 {
-    IDAL.IArea dalarea = new DAL.DALArea();
+    DAL.DALArea dalarea = new DAL.DALArea();
     BLLOrder bllOrder = new BLLOrder();
     IDAL.IScenic dalscenic = new DAL.DALScenic();
     protected void Page_Load(object sender, EventArgs e)

@@ -7,7 +7,7 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALArea : DalBase, IArea
+    public class DALArea : DalBase<Model.Area>
     {
         public IList<Model.Area> GetArea(int areaid)
         {
@@ -34,6 +34,11 @@ namespace DAL
             return query.FutureValue<Model.Area>().Value;
         }
 
+        /// <summary>
+        /// todo:需要将逻辑部分移至bll层
+        /// </summary>
+        /// <param name="areacode"></param>
+        /// <returns></returns>
         public IList<Model.Area> GetSubArea(string areacode)
         {
             string sql = "";
@@ -64,6 +69,11 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.Area>().ToList<Model.Area>();
         }
+        /// <summary>
+        /// todo:需要移至bll层
+        /// </summary>
+        /// <param name="areacode"></param>
+        /// <returns></returns>
         public string GetSubAreaIds(string areacode)
         {
             string ids = string.Empty;

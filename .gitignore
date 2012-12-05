@@ -5,6 +5,8 @@ obj
 WEB/config/connectionStrings.config
 WEB/config/app.config
 DiJieSheWEB/config/connectionStrings.config
+TourTest/app.config
+TourTest/App.config
 *.scc
 /DAL/*.scc
 packages
