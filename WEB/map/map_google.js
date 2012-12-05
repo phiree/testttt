@@ -73,33 +73,36 @@ function getCoordinatesNotScId(scid) {
                 var myOptions = {
                     zoom: 8,
                     center: latlng,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    zoomControlOptions: { position: google.maps.ControlPosition.LEFT_CENTER },
+                    panControlOptions: { position: google.maps.ControlPosition.LEFT_CENTER }
                 };
                 numcount = 0;
                 infoWindow = new Array();
                 map = new google.maps.Map(document.getElementById("container"), myOptions);
+
             }
-            numcount=0;
+            numcount = 0;
             var loadstr = ""; //右边加载的数据
             for (var i = 0; ; i++) {
                 if (allCoordinates[i] == undefined)
                     break;
-                if (allCoordinates[i].position != null) {
+                if (allCoordinates[i].position != null && allCoordinates[i].position != "undefined") {
                     numcount++;
                     var point = new google.maps.LatLng(allCoordinates[i].position.split(",")[1], allCoordinates[i].position.split(",")[0]);
                     var txt = allCoordinates[i].name;
                     var overlay;
                     if (numcount <= 15) {
-                        overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: i + 1 });
+                        overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: numcount });
                         loadstr += "<div class='scenicinfo'>";
-                        loadstr += "<span class='sceincnum'>" + ((parseInt($.cookie("pager_currPage")) - 1) * 15 + numcount) + "</span><span onmouseover='changescnamecl(this)' onmouseout='changescnamecl2(this)' class='spansceincname' onclick='mapscenic(" + i + ")'>" + allCoordinates[i].name + "</span><a href='/Tickets/" + allCoordinates[i].areaseoname + "/" + allCoordinates[i].scseoname + ".html' >[预定]</a>"
+                        loadstr += "<span class='sceincnum'>" + ((parseInt($.cookie("pager_currPage")) - 1) * 15 + numcount) + "</span><span onmouseover='changescnamecl(this)' onmouseout='changescnamecl2(this)' class='spansceincname' onclick='mapscenic(" + numcount + ")'>" + allCoordinates[i].name + "</span><a href='/Tickets/" + allCoordinates[i].areaseoname + "/" + allCoordinates[i].scseoname + ".html' >[预定]</a>"
                         loadstr += "</div>";
                     }
                     else {
-                        overlay = new customOverlay_Small(map, { latlng: point, id: i + 1 });
+                        overlay = new customOverlay_Small(map, { latlng: point, id: numcount });
                     }
                     overlayMarker.push(overlay);
-                    infoWindow[i] = new google.maps.InfoWindow({
+                    infoWindow[numcount] = new google.maps.InfoWindow({
                         content: InfoWindowContent(allCoordinates[i]),
                         position: point
                     });
@@ -133,7 +136,7 @@ function clearOverlays() {
 }
 /*关闭所有的窗口*/
 function closeWinInfo() {
-    for (var i = 0; i < infoWindow.length; i++) {
+    for (var i = 1; i < infoWindow.length; i++) {
         infoWindow[i].close();
     }
 }
@@ -187,7 +190,7 @@ customOverlay_Large.prototype.onAdd = function () {
     $(div).click(function () {
         closeWinInfo();
         var index = that._id;
-        infoWindow[index - 1].open(map);
+        infoWindow[index].open(map);
     });
     this._div = div;
     var panes = this.getPanes();
@@ -235,7 +238,7 @@ customOverlay_Small.prototype.onAdd = function () {
     $(div).click(function () {
         closeWinInfo();
         var index = that._id;
-        infoWindow[index - 1].open(map);
+        infoWindow[index].open(map);
     });
     this._div = div;
     var panes = this.getPanes();
@@ -286,15 +289,15 @@ function btnshowinfo() {
     for (var k = 0; ; k++) {
         if (allCoordinates[k] == undefined)
             break;
-        if (allCoordinates[k].position != null) {
+        if (allCoordinates[k].position != null && allCoordinates[k].position != "undefined") {
             numCount++;
             var point = new google.maps.LatLng(allCoordinates[k].position.split(",")[1], allCoordinates[k].position.split(",")[0]);
             var txt = allCoordinates[k].name;
             var overlay;
-            if (numCount < begin || numCount >= begin + 15)
-                overlay = new customOverlay_Small(map, { latlng: point, id: k + 1 });
+            if (numCount < begin || numCount > begin + 15)
+                overlay = new customOverlay_Small(map, { latlng: point, id: numCount });
             else
-                overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: k + 1 });
+                overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: numCount });
             overlayMarker.push(overlay);
         }
     }
@@ -304,9 +307,11 @@ function btnshowinfo() {
         sc++;
         if (allCoordinates[i] == undefined)
             break;
+        else if (allCoordinates[i].position == "undefined" || allCoordinates[i].position == null)
+            break;
         //loadstr += "<tr><td><font class='num'>" + parseInt(i + 1) + "</font></td><td><a style='cursor: pointer;' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + " </a> </td><td>" + allpoint[i].level + "</td><td>" + allpoint[i].price + "</td></tr>";
         loadstr += "<div class='scenicinfo'>";
-        loadstr += "<span class='sceincnum'>" + parseInt(i + 1) + "</span><span class='spansceincname' onmouseout='changescnamecl2(this)' onmouseover='changescnamecl(this)' onclick='mapscenic(" + i + ")'>" + allCoordinates[i].name + "</span><a href='/Tickets/" + allCoordinates[i].areaseoname + "/" + allCoordinates[i].scseoname + ".html' >[预定]</a>"
+        loadstr += "<span class='sceincnum'>" + parseInt(i + 1) + "</span><span class='spansceincname' onmouseout='changescnamecl2(this)' onmouseover='changescnamecl(this)' onclick='mapscenic(" + i+1 + ")'>" + allCoordinates[i].name + "</span><a href='/Tickets/" + allCoordinates[i].areaseoname + "/" + allCoordinates[i].scseoname + ".html' >[预定]</a>"
         loadstr += "</div>";
     }
     $("#resultscenic").html(loadstr);
@@ -314,6 +319,7 @@ function btnshowinfo() {
 /*打开指定信息窗口*/
 function mapscenic(iwId) {
     var index = iwId;
+    closeWinInfo();
     infoWindow[index].open(map);
 }
 

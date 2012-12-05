@@ -105,7 +105,7 @@ public partial class Layout : System.Web.UI.MasterPage
     //绑定周边景区
     private void bindzbsc()
     {
-        if (scenic != null&&!string.IsNullOrEmpty(scenic.Position)&&scenic.Position!="null")
+        if (scenic != null && !string.IsNullOrEmpty(scenic.Position) && scenic.Position != "null" && scenic.Position != "undefined")
         {
             IList<Scenic> list = bllscenic.GetScenic();
             bindimg(list, scenic);
@@ -122,7 +122,7 @@ public partial class Layout : System.Web.UI.MasterPage
     {
         foreach (Scenic item in list)
         {
-            if (!string.IsNullOrEmpty(item.Position) && item.Position!="null")
+            if (!string.IsNullOrEmpty(item.Position) && item.Position != "null" && item.Position != "undefined")
             {
                 string[] str = scenic.Position.Split(',');
                 string[] str2 = item.Position.Split(',');

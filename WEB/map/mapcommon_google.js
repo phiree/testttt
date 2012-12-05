@@ -163,7 +163,14 @@ $(function () {
         }
     });
 });
-
+document.onkeydown = function (e) {
+    if (window.event)
+        e = window.event;
+    var int_keycode = e.charCode || e.keyCode;
+    if (int_keycode == 13 && $("#txtSearch").val() != "请输入您要搜索的景区" && $("#txtSearch").val() != "") {
+        getCoordinatesNotScId(null);
+    }
+}
 
 function btnarea(obj) {
     if (obj.innerHTML == "全部") {
