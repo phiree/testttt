@@ -142,13 +142,13 @@
     <Compile Include="BLLTest\TicketXmlParserTest.cs" />
     <Compile Include="BLLTest\ScenicTest.cs" />
     <Compile Include="BLLTest\DJS\RouteTest.cs" />
-    <Compile Include="Common\ContentReader.cs" />
-    <Compile Include="Common\testStringHelper.cs" />
-    <Compile Include="Common\UrlParamHelperTest.cs" />
-    <Compile Include="Common\JsonHelperTest.cs" />
-    <Compile Include="Common\ListHelperTest.cs" />
-    <Compile Include="Model\TourGroupTest.cs" />
-    <Compile Include="TestDAL\OrderTest.cs" />
+    <Compile Include="CommonLibraryTest\ContentReader.cs" />
+    <Compile Include="CommonLibraryTest\testStringHelper.cs" />
+    <Compile Include="CommonLibraryTest\UrlParamHelperTest.cs" />
+    <Compile Include="CommonLibraryTest\JsonHelperTest.cs" />
+    <Compile Include="CommonLibraryTest\ListHelperTest.cs" />
+    <Compile Include="ModelTest\TourGroupTest.cs" />
+    <Compile Include="DALTest\OrderTest.cs" />
     <Compile Include="BLLTest\PromStaticTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -158,9 +158,9 @@
     </Compile>
     <Compile Include="BLLTest\CheckoutTEst.cs" />
     <Compile Include="BLLTest\TetsPayment.cs" />
-    <Compile Include="Common\JsonTest.cs" />
-    <Compile Include="TestDAL\TestDALBase.cs" />
-    <Compile Include="TestDAL\VoteTest.cs" />
+    <Compile Include="CommonLibraryTest\JsonTest.cs" />
+    <Compile Include="DALTest\TestDALBase.cs" />
+    <Compile Include="DALTest\VoteTest.cs" />
     <Compile Include="webtest\pageobjects\default.cs" />
   </ItemGroup>
   <ItemGroup>
