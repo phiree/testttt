@@ -147,25 +147,21 @@
     <Compile Include="Common\UrlParamHelperTest.cs" />
     <Compile Include="Common\JsonHelperTest.cs" />
     <Compile Include="Common\ListHelperTest.cs" />
-    <Compile Include="EnumTEst.cs" />
     <Compile Include="Model\TourGroupTest.cs" />
-    <Compile Include="OrderTest.cs" />
-    <Compile Include="PromStaticTest.cs" />
+    <Compile Include="TestDAL\OrderTest.cs" />
+    <Compile Include="BLLTest\PromStaticTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="TDD\order\CheckoutTEst.cs" />
-    <Compile Include="TDD\Payment\TetsPayment.cs" />
-    <Compile Include="TDD\RoleTest.cs" />
-    <Compile Include="TDD\ScenicCheck\TestCode.cs" />
+    <Compile Include="BLLTest\CheckoutTEst.cs" />
+    <Compile Include="BLLTest\TetsPayment.cs" />
+    <Compile Include="Common\JsonTest.cs" />
     <Compile Include="TestDAL\TestDALBase.cs" />
-    <Compile Include="TestData.cs" />
-    <Compile Include="VoteTest.cs" />
+    <Compile Include="TestDAL\VoteTest.cs" />
     <Compile Include="webtest\pageobjects\default.cs" />
-    <Compile Include="webtest\pageobjects\login.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -209,7 +205,6 @@
     <Content Include="IEDriverServer.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TDD\order\todo.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
