@@ -63,7 +63,6 @@
     <Compile Include="IArea.cs" />
     <Compile Include="IBackManager.cs" />
     <Compile Include="ICommonUser.cs" />
-    <Compile Include="IContractScenicPrice.cs" />
     <Compile Include="IDALSeoDescription.cs" />
     <Compile Include="Dijieshe\IDijieshe.cs" />
     <Compile Include="Dijieshe\IDiscountCode.cs" />

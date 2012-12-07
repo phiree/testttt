@@ -57,7 +57,6 @@
   <ItemGroup>
     <Compile Include="CommonUser.cs" />
     <Compile Include="ContractImg.cs" />
-    <Compile Include="ContractScenicPrice.cs" />
     <Compile Include="Dijieshe\DJ_DijiesheInfo.cs" />
     <Compile Include="Dijieshe\DJ_GovManageDepartment.cs" />
     <Compile Include="Dijieshe\DJ_GroupConsumRecord.cs" />
@@ -91,7 +90,6 @@
     <Compile Include="ScenicMap.cs" />
     <Compile Include="Mapping\CommonUserMap.cs" />
     <Compile Include="Mapping\ContractImgMap.cs" />
-    <Compile Include="Mapping\ContractScenicPriceMap.cs" />
     <Compile Include="Mapping\DiscountCodeMap.cs" />
     <Compile Include="Mapping\Order\OrderDetailMap.cs" />
     <Compile Include="Mapping\Order\OrderMap.cs" />

@@ -123,7 +123,6 @@
   <ItemGroup>
     <Compile Include="BLLTest\BLLAreaTest.cs" />
     <Compile Include="BLLTest\BLLBackManagerTest.cs" />
-    <Compile Include="BLLTest\BLLContractScenicPriceTest.cs" />
     <Compile Include="BLLTest\BLLDefaultTest.cs" />
     <Compile Include="BLLTest\BLLDiscountCodeTest.cs" />
     <Compile Include="BLLTest\BLLEarnWayAmountTest.cs" />

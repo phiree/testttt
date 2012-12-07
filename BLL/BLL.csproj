@@ -86,7 +86,6 @@
     <Compile Include="Default\BLLBackManager.cs" />
     <Compile Include="Default\BLLBuyTicket.cs" />
     <Compile Include="Default\BLLCommonUser.cs" />
-    <Compile Include="Default\BLLContractScenicPrice.cs" />
     <Compile Include="Default\BLLDiscountCode.cs" />
     <Compile Include="Default\BLLFactory.cs" />
     <Compile Include="Default\BLLLog.cs" />
