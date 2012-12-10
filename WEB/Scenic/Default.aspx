@@ -118,7 +118,7 @@
             <p class="captitle">
                 订票说明</p>
             <%--<div class="otinfo" runat="server" id="dp_info">--%>
-                <self:ContentReader runat="server" ID="sc_dp" scFuncType="订票说明" type="景区" CssClass="otinfo"/>
+                <self:ContentReader runat="server" HasBorder="true" ID="sc_dp" scFuncType="订票说明" type="景区" CssClass="otinfo"/>
             <%--</div>--%>
         </div>
         <div id="allinfo">
@@ -130,7 +130,7 @@
             </div>
             <div id="changeinfo">
                     <div id="scdetailplate">
-                    <self:ContentReader runat="server" ID="plate2" scFuncType="景区详情" type="景区"/>
+                    <self:ContentReader runat="server" ID="plate2" HasBorder="true" scFuncType="景区详情" type="景区"/>
                     </div>
                 <p id="plap">
                     交通指南</p>
