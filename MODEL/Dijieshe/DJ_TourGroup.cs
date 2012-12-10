@@ -82,14 +82,16 @@ namespace Model
 
                 DateTime now = DateTime.Now;
 
-                DateTime nowDay = new DateTime(now.Year, now.Month, now.Day);
+                DateTime nowDay = DateTime.Now.Date;
 
+                DateTime dateBegin = BeginDate.Date;
+                DateTime dateEnd = EndDate.Date;
 
-                if (nowDay < BeginDate)
+                if (nowDay < dateBegin)
                 {
                     return TourGroupState.尚未开始;
                 }
-                else if (nowDay <= BeginDate && nowDay <= EndDate)
+                else if (nowDay >= dateBegin && nowDay <= dateEnd)
                 {
                     return TourGroupState.正在进行;
                 }
@@ -111,10 +113,7 @@ namespace Model
         /// </summary>
         public virtual IList<DJ_TourGroupMember> Members { get; set; }
 
-        public virtual void DeleteMember(DJ_TourGroupMember member)
-        {
-            this.Members.Remove(member);
-        }   private DateTime lastUpdateTime = DateTime.Now;
+        private DateTime lastUpdateTime = DateTime.Now;
         public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
         public virtual void CopyTo(DJ_TourGroup newGroup)
         {
