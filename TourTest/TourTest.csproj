@@ -55,8 +55,8 @@
     <Reference Include="Castle.Core">
       <HintPath>..\lib\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FizzWare.NBuilder">
-      <HintPath>..\lib\FizzWare.NBuilder.dll</HintPath>
+    <Reference Include="FizzWare.NBuilder, Version=3.0.1.0, Culture=neutral, PublicKeyToken=5651b03e12e42c12, processorArchitecture=MSIL">
+      <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\lib\FluentNHibernate.dll</HintPath>
@@ -123,7 +123,6 @@
   <ItemGroup>
     <Compile Include="BLLTest\BLLAreaTest.cs" />
     <Compile Include="BLLTest\BLLBackManagerTest.cs" />
-    <Compile Include="BLLTest\BLLContractScenicPriceTest.cs" />
     <Compile Include="BLLTest\BLLDefaultTest.cs" />
     <Compile Include="BLLTest\BLLDiscountCodeTest.cs" />
     <Compile Include="BLLTest\BLLEarnWayAmountTest.cs" />
@@ -142,30 +141,28 @@
     <Compile Include="BLLTest\TicketXmlParserTest.cs" />
     <Compile Include="BLLTest\ScenicTest.cs" />
     <Compile Include="BLLTest\DJS\RouteTest.cs" />
-    <Compile Include="Common\ContentReader.cs" />
-    <Compile Include="Common\testStringHelper.cs" />
-    <Compile Include="Common\UrlParamHelperTest.cs" />
-    <Compile Include="Common\JsonHelperTest.cs" />
-    <Compile Include="Common\ListHelperTest.cs" />
-    <Compile Include="EnumTEst.cs" />
-    <Compile Include="Model\TourGroupTest.cs" />
-    <Compile Include="OrderTest.cs" />
-    <Compile Include="PromStaticTest.cs" />
+    <Compile Include="CommonLibraryTest\ContentReader.cs" />
+    <Compile Include="CommonLibraryTest\testStringHelper.cs" />
+    <Compile Include="CommonLibraryTest\UrlParamHelperTest.cs" />
+    <Compile Include="CommonLibraryTest\JsonHelperTest.cs" />
+    <Compile Include="CommonLibraryTest\ListHelperTest.cs" />
+    <Compile Include="ModelTest\TourGroupTest.cs" />
+    <Compile Include="DALTest\OrderTest.cs" />
+    <Compile Include="BLLTest\PromStaticTest.cs" />
+    <Compile Include="ModelTest\AreaTest.cs" />
+    <Compile Include="ModelTest\TourGroupMemberTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="TDD\order\CheckoutTEst.cs" />
-    <Compile Include="TDD\Payment\TetsPayment.cs" />
-    <Compile Include="TDD\RoleTest.cs" />
-    <Compile Include="TDD\ScenicCheck\TestCode.cs" />
-    <Compile Include="TestDAL\TestDALBase.cs" />
-    <Compile Include="TestData.cs" />
-    <Compile Include="VoteTest.cs" />
+    <Compile Include="BLLTest\CheckoutTEst.cs" />
+    <Compile Include="BLLTest\TetsPayment.cs" />
+    <Compile Include="CommonLibraryTest\JsonTest.cs" />
+    <Compile Include="DALTest\TestDALBase.cs" />
+    <Compile Include="DALTest\VoteTest.cs" />
     <Compile Include="webtest\pageobjects\default.cs" />
-    <Compile Include="webtest\pageobjects\login.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -209,7 +206,6 @@
     <Content Include="IEDriverServer.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TDD\order\todo.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

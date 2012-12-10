@@ -10,10 +10,10 @@ using BLL;
 public partial class Manager_ScenicManage_ScenicPrice : basepage
 {
     protected Scenic scenic;
-    protected ContractScenicPrice csp;
+   
     BLLScenic bllScenic = new BLLScenic();
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
-    BLLContractScenicPrice bllcsp = new BLLContractScenicPrice();
+   
     protected void Page_Load(object sender, EventArgs e)
     {
         //这里注释掉是因为前台审核价格需要的是显示价格列表，需要重做

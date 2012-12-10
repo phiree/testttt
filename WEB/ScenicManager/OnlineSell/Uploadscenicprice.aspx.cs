@@ -9,7 +9,7 @@ using BLL;
 
 public partial class ScenicManager_OnlineSell_Uploadscenicprice : basepage
 {
-    BLLContractScenicPrice bllcsp = new BLLContractScenicPrice();
+   // BLLContractScenicPrice bllcsp = new BLLContractScenicPrice();
     BLLScenic bllscenic = new BLLScenic();
     protected void Page_Load(object sender, EventArgs e)
     {
