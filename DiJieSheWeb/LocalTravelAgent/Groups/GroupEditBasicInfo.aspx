@@ -2,10 +2,10 @@
     CodeFile="GroupEditBasicInfo.aspx.cs" Inherits="LocalTravelAgent_Groups_GroupEditBasicInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="../../Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
+    <link href="../../Content/themes/base/minified/jquery-ui.min.css"
         rel="stylesheet" type="text/css" />
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
+    <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui-1.9.2.min.js"></script>
     <script language="javascript" type="text/javascript">
         $(function () {
             $("#<%=tbxDateBegin.ClientID %>").datepicker({ minDate:new Date() });

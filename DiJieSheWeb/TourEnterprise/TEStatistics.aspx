@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourEnterprise/TE.master" AutoEventWireup="true" CodeFile="TEStatistics.aspx.cs" Inherits="TourEnterprise_TEStatistics" %>
 <%@ MasterType VirtualPath="~/TourEnterprise/TE.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" Runat="Server">
-<link href="/Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
+<link href="/Content/themes/base/minified/jquery-ui.min.css"
         rel="stylesheet" type="text/css" />
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
+    <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui-1.9.2.min.js"></script>
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="../Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>

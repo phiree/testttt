@@ -5,8 +5,8 @@
 <head runat="server">
     <title></title>
     <meta http-equiv="x-ua-compatible" content="ie=8" />
-    <script src="Scripts/jquery.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
     <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
     <link href="/theme/default/css/Login.css" rel="stylesheet" type="text/css" />
