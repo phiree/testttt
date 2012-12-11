@@ -37,10 +37,13 @@ input{cursor:pointer;}
     <fieldset>
         <legend>旅行社</legend>
         <ul>
+         <li>
+            <asp:Button runat="server" Text="旅行社管理员登录界面" OnClick="btnDjsLoginUI_Click" ID="Button2" /></li>
+           
             <li>
-            <asp:Button runat="server" Text="旅行社管理员登录" OnClick="btnDjsLogin_Click" ID="btnDjsLogin" /></li>
+            <asp:Button runat="server" Text="旅行社管理员直接登录" OnClick="btnDjsLogin_Click" ID="btnDjsLogin" /></li>
             <li>
-              <asp:Button runat="server" Text="旅行社管理员登录2" OnClick="btnDjsLogin_Click2" ID="Button1" /></li>
+              <asp:Button runat="server" Text="旅行社管理员直接登录2" OnClick="btnDjsLogin_Click2" ID="Button1" /></li>
          
            </li>
            
