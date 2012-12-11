@@ -8,12 +8,14 @@ using BLL;
 using Model;
 using System.Web.UI.HtmlControls;
 using System.Data;
+using CommonLibrary;
 public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserControl
 {
     public string AreaCode { get; set; }
     public string redirtRecEntList { get; set; }
     BLLDJ_GovManageDepartment BllGov = new BLLDJ_GovManageDepartment();
     BLLArea bllArea = new BLLArea();
+    BLLDJ_Recommand bllRec = new BLLDJ_Recommand();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -41,7 +43,23 @@ public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserCo
         {
             DJ_GovManageDepartment Gov = e.Item.DataItem as DJ_GovManageDepartment;
             HtmlAnchor redirtLink = e.Item.FindControl("redirtLink") as HtmlAnchor;
+            Literal laPolicy=e.Item.FindControl("laPolicy") as Literal;
+            Button btnUpload = e.Item.FindControl("btnUpload") as Button;
             redirtLink.HRef = redirtRecEntList + "?dptid=" + Gov.Id;
+            DJ_Recommand rec=bllRec.GetByGovId(Gov);
+            if (rec != null)
+            {
+                laPolicy.Text = rec.RewardPolicy;
+                if (rec.UploadFile != "")
+                {
+                    btnUpload.CommandArgument = rec.UploadFile;
+                    btnUpload.Visible = true;
+                }
+            }
+            else if (laPolicy.Text == "" || btnUpload.CommandArgument=="")
+            {
+                e.Item.Visible = false;
+            }
         }
     }
     protected void btnExport_Click(object sender, EventArgs e)
@@ -141,6 +159,15 @@ public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserCo
         else
         {
             return ddlCountry.SelectedValue;
+        }
+    }
+    protected void rptRecomEnt_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "upload")
+        {
+            downloadFile df = new downloadFile();
+            string filename = "/PolicyFile/" + e.CommandArgument;
+            df.download(e.CommandArgument.ToString(),filename, Page);
         }
     }
 }

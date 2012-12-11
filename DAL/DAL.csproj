@@ -100,6 +100,7 @@
     <Compile Include="DALBackManager.cs" />
     <Compile Include="DalBase.cs" />
     <Compile Include="DALCommonUser.cs" />
+    <Compile Include="Dijieshe\DALDJ_Recommand.cs" />
     <Compile Include="Dijieshe\DALDJTourGroup.cs" />
     <Compile Include="Dijieshe\DALDJEnterprise.cs" />
     <Compile Include="DALDiscountCode.cs" />

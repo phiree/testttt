@@ -32,7 +32,8 @@
             奖励统计列表
         </div>
 <asp:Repeater runat="server" ID="rptRecomEnt" 
-        onitemdatabound="rptRecomEnt_ItemDataBound">
+        onitemdatabound="rptRecomEnt_ItemDataBound" 
+        onitemcommand="rptRecomEnt_ItemCommand">
     <HeaderTemplate>
      <table class="tablesorter IndexTable">
         </table>
@@ -51,11 +52,12 @@
     </HeaderTemplate>
     <ItemTemplate>
         <tr>
-            <td>
+            <td style="width:200px">
                 <a runat="server"  id="redirtLink"><%#Eval("Name")%></a>
             </td>
             <td>
-                &nbsp;
+                <asp:Literal ID="laPolicy" runat="server"></asp:Literal>
+                <asp:Button ID="btnUpload" runat="server" Text="下载相关文件" CssClass="btn2" CommandName="upload" Visible="false" />
             </td>
         </tr>
     </ItemTemplate>
