@@ -113,6 +113,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         ///司机和导游
         bool hasSelectGuide = false;
         bllGroupWorker.DeleteFromGroup(CurrentGroup);
+        CurrentGroup.Workers.Clear();
        // bllGroup.Save(CurrentGroup);
         foreach (ListItem item in cbxGuides.Items)
         {
