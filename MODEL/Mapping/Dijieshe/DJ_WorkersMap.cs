@@ -15,6 +15,7 @@ namespace Model.Mapping
             Map(x => x.Name);
             Map(x => x.Phone);
             Map(x => x.SpecificIdCard);
+            Map(x => x.CompanyBelong);
             Map(x => x.WorkerType).CustomType<int>();
             References<DJ_DijiesheInfo>(x => x.DJ_Dijiesheinfo);
         }
