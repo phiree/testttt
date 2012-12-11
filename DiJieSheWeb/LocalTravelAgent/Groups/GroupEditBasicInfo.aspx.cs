@@ -18,7 +18,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     protected void Page_Load(object sender, EventArgs e)
     {
 
-
+        
         string paramstr = Request["groupid"];
         if (!Guid.TryParse(paramstr, out groupId))
         {
