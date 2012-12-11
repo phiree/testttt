@@ -33,6 +33,7 @@ public partial class LocalTravelAgent_GuideDetail : System.Web.UI.Page
                 txtPhone.Text = source[0].Phone;
                 txtidcard.Text = source[0].IDCard;
                 txtGuideid.Text = source[0].SpecificIdCard;
+                tbxBelong.Text = source[0].CompanyBelong;
             }
         }
     }
