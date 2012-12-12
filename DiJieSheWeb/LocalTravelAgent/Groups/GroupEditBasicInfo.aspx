@@ -3,8 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     ///<reference path="/Scripts/jquery-1.6.4-vsdoc.js" />
-    <link href="/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet"
-        type="text/css" />
+    <link href="/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/json2.js" type="text/javascript"></script>
     <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script type="text/javascript" src="/Scripts/jquery-ui-1.9.2.min.js"></script>
@@ -70,8 +69,8 @@
                 <td>
                     <asp:CheckBoxList runat="server" ID="cbxGuides" CssClass="rbl" Style="margin: 0px 0px 5px 0px">
                     </asp:CheckBoxList>
-                     <input type="button" name="showDiag_AddGuide" class="showAddDiag" value="增加导游" />
-                    <span><a href="/LocalTravelAgent/GuideList.aspx">导游列表</a></span>
+                    <input type="button" name="showDiag_AddGuide" class="showAddDiag" value="增加导游" />
+                    <span><a target="_blank" href="/LocalTravelAgent/GuideList.aspx">导游列表</a></span>
                 </td>
             </tr>
             <tr>
@@ -82,8 +81,8 @@
                     <asp:CheckBoxList runat="server" ID="cbxDrivers">
                     </asp:CheckBoxList>
                     <span>
-                        <input type="button"  name="showDiag_AddDriver" class="showAddDiag"  value="增加车辆司机" />
-                        <a href="/LocalTravelAgent/DriverList.aspx">车辆司机列表</a></span>
+                        <input type="button" name="showDiag_AddDriver" class="showAddDiag" value="增加车辆司机" />
+                        <a target="_blank" href="/LocalTravelAgent/DriverList.aspx">车辆司机列表</a></span>
                 </td>
             </tr>
         </table>
@@ -98,13 +97,19 @@
     </div>
     <div id="DvAddWorker">
         <div class="searchdiv">
-            姓名:<input type="text" name="Name" style="margin-right: 100px; margin-left: 50px;
-                width: 150px;" />
-            手机:<input type="text" name="Phone" style="margin-left: 50px; width: 150px;" /><br />
-            身份证号:<input type="text" name="IDCard" style="margin-right: 100px; margin-left: 27px;
-                width: 150px;" />
-            导游证号:<input type="text" name="SpecificIdCard" style="margin-left: 27px; width: 150px;" /><br />
-            所属公司:<input type="text" name="CompanyBelong" style="margin-left: 27px; width: 150px;" /><br />
+            <div>
+                姓名:<input type="text" name="Name" style="margin-right: 100px; margin-left: 50px;
+                    width: 150px;" /></div>
+            <div>
+                手机:<input type="text" name="Phone" style="margin-left: 50px; width: 150px;" /></div>
+            <div>
+                身份证号:<input type="text" name="IDCard" style="margin-right: 100px; margin-left: 27px;
+                    width: 150px;" /></div>
+            <div>
+                <span id="spcardno">导游证号:</span>
+                <input type="text" name="SpecificIdCard" style="margin-left: 27px; width: 150px;" /></div>
+            <div id="dvbelong">
+                所属公司:<input type="text" name="CompanyBelong" style="margin-left: 27px; width: 150px;" /></div>
             <input id="btnAddWorker" type="button" value="添加" />
             <input type="hidden" id="hiWorkType" name="WorkerType" value="1" />
         </div>
@@ -124,9 +129,13 @@
                 if(this.name=="showDiag_AddDriver")
                 {
                     $("#hiWorkType").val("2");
+                     $("#spcardno").text("车牌证号");
+                     $("#dvbelong").hide();
                 }
                 else{
                      $("#hiWorkType").val("1");
+                       $("#spcardno").text("导游证号");
+                     $("#dvbelong").show();
                 }
              });
             $("#btnAddWorker").click(function () {
