@@ -26,7 +26,11 @@ public partial class TourManagerDpt_RePolicyManager : basepageMgrDpt
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        DJ_Recommand recommand = new DJ_Recommand();
+        DJ_Recommand recommand = bllRec.GetByGovId(CurrentDpt);
+        if (recommand == null)
+        {
+            recommand = new DJ_Recommand();
+        }
         recommand.DJ_GovManageDepartment = CurrentDpt;
         recommand.RewardPolicy = txtPolicy.Text;
         if (fuFile.HasFile)
