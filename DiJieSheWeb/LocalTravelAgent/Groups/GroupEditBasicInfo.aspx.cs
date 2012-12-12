@@ -217,7 +217,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
          bllGroup.Save(CurrentGroup);
          if (IsNew)
          {
-             Response.Redirect("GroupEditBasicInfo.aspx?flag=t&groupid=" + CurrentGroup.Id);
+             Response.Redirect("GroupEditMember.aspx?flag=t&groupid=" + CurrentGroup.Id);
          }
         
         lblMsg.Text = "保存成功";
