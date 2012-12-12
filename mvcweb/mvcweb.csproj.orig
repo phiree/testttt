@@ -193,7 +193,11 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
+<<<<<<< HEAD
+          <DevelopmentServerPort>53439</DevelopmentServerPort>
+=======
           <DevelopmentServerPort>34347</DevelopmentServerPort>
+>>>>>>> 65924412006d481437b6be5ad87c1c4ab54182d4
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
