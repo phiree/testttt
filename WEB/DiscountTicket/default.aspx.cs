@@ -14,29 +14,34 @@ using System.Text.RegularExpressions;
 
 public partial class DiscountTicket_DiscountTicket : basepage
 {
-    /// <summary>   BLLTicketPrice bllticketprice = new BLLTicketPrice();
+    #region 页面参数初始化
     BLLScenic bllscenic = new BLLScenic();
     BLLTicket bllTicket = new BLLTicket();
     BLLMembership bllMember = new BLLMembership();
     BLLTopic blltopic = new BLLTopic();
     BLLArea bllArea = new BLLArea();
+    BLLScenicImg bllSI = new BLLScenicImg();
+    #endregion
+
+    #region seo链接设置
+    /// <summary> 
     /// 用于构建两个查询的链接
     /// </summary>
     string UrlQuery = string.Empty;
     int areaId = 0, level = 0;
-    public string areaSeoName, levelname,topicname,countyname;
+    public string areaSeoName, levelname, topicname, countyname;
     Area area;
     Area areacounty;
     Topic topic;
     CommonLibrary.UrlParamHelper urlParamHelper;
-    protected void Page_Load(object sender, EventArgs e)
+    //初始化关于url
+    private void initurl()
     {
         //第三方登录的处理
         Uri from = Request.UrlReferrer;
         UrlQuery = Request.RawUrl;
         if (from != null)
         {
-
             if (from.Host == "open.t.qq.com")
             {
                 new LoginRedirect();
@@ -44,7 +49,6 @@ public partial class DiscountTicket_DiscountTicket : basepage
 
         }
         urlParamHelper = new CommonLibrary.UrlParamHelper(Request.Url.AbsoluteUri);
-
         areaSeoName = Request["area"];
         levelname = Request.QueryString["level"];
         topicname = Request.QueryString["topic"];
@@ -68,21 +72,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         {
             pagerGot.UrlRewritePattern = "/Tickets/%area%_%county%/%level%/page_{0}.html";
         }
-
-        if (!IsPostBack)
-        {
-            GetAreaId();
-            BindArea();
-            BindCounty();
-            BindBread();
-            BindLevelLinks();
-            BindTicketList();
-            SetSeo();
-            BindTopic();
-        }
-
     }
-
     private void GetAreaId()
     {
         area = bllArea.GetAreaBySeoName(areaSeoName);
@@ -101,7 +91,73 @@ public partial class DiscountTicket_DiscountTicket : basepage
             areaId = areacounty.Id;
         }
     }
+    /// <summary>
+    /// 为两个筛选条件项 构建url
+    /// </summary>
+    /// <param name="queryParam"></param>
+    /// <param name="id"></param>
+    /// <param name="isRemove"></param>
+    /// <returns></returns>
 
+
+    private string BuildLink(string type, string value)
+    {
+        return BuildLink(type, value, false);
+    }
+    private string BuildLink(string type, string value, bool isAll)
+    {
+        return "/Tickets" + urlParamHelper.BuildLink2(type, value, isAll);
+
+    }
+
+    /// <summary>
+    /// 设置seo
+    /// </summary>
+    private void SetSeo()
+    {
+        BatchSeoData seodata = SeoHandler.GetSeoData_Home(area, areacounty, level, topic, pageIndex);
+        this.Title = seodata.Title;
+        this.MetaKeywords = seodata.KeyWord;
+        if (level == 0 && topic == null && area != null)
+        { this.MetaDescription = area.MetaDescription; }
+        else
+        {
+            this.MetaDescription = seodata.Description;
+        }
+        liH1.Text = seodata.H1Text;
+    }
+    private string BindHref(Area area, string countyname, int level, string themeseoname)
+    {
+        string url = "/Tickets";
+        if (area != null)
+            url += "/" + area.SeoName;
+        if (countyname != null)
+            url += "_" + countyname;
+        if (level != 0)
+            url += "/" + level + "A";
+        if (themeseoname != null)
+            url += "/t_" + themeseoname;
+        return url;
+    }
+    #endregion
+
+    #region Load
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        initurl();
+        if (!IsPostBack)
+        {
+            GetAreaId();
+            BindArea();
+            BindCounty();
+            BindBread();
+            BindLevelLinks();
+            BindTicketList();
+            SetSeo();
+            BindTopic();
+        }
+
+    }
     /// <summary>
     /// 面包屑
     /// </summary>
@@ -112,21 +168,21 @@ public partial class DiscountTicket_DiscountTicket : basepage
 
         if (areaId != 0)
         {
-           
+
             breadareaurl.InnerText = area.Name.Substring(3, 2);
-           urlBase= breadareaurl.HRef = urlBase + area.SeoName;
-           if (countyname != null)
-           {
-               breadcountyurl.InnerText = areacounty.Name.Substring(3);
-               if (breadcountyurl.InnerText.Trim().Length>=6)
-                   breadcountyurl.InnerText = breadcountyurl.InnerText.Trim().Substring(3);
-               urlBase = breadcountyurl.HRef = urlBase + '_' + countyname + "/";
-           }
-           else
-           {
-               phCounty.Visible = false;
-               urlBase = breadareaurl.HRef = urlBase + "/";
-           }
+            urlBase = breadareaurl.HRef = urlBase + area.SeoName;
+            if (countyname != null)
+            {
+                breadcountyurl.InnerText = areacounty.Name.Substring(3);
+                if (breadcountyurl.InnerText.Trim().Length >= 6)
+                    breadcountyurl.InnerText = breadcountyurl.InnerText.Trim().Substring(3);
+                urlBase = breadcountyurl.HRef = urlBase + '_' + countyname + "/";
+            }
+            else
+            {
+                phCounty.Visible = false;
+                urlBase = breadareaurl.HRef = urlBase + "/";
+            }
         }
         else
         {
@@ -136,7 +192,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         {
             breadlevelurl.InnerText = levelname.ToUpper();
             //lArrow.Visible = true;
-          urlBase=  breadlevelurl.HRef = urlBase + levelname.ToLower()+"/";
+            urlBase = breadlevelurl.HRef = urlBase + levelname.ToLower() + "/";
         }
         else
         {
@@ -152,8 +208,6 @@ public partial class DiscountTicket_DiscountTicket : basepage
         {
             phTopic.Visible = false;
         }
-       
-
     }
     int totalRecord;
     int pageIndex;
@@ -168,8 +222,8 @@ public partial class DiscountTicket_DiscountTicket : basepage
             level = int.Parse(levelname.Substring(0, 1));
         }
         IList<Model.Scenic> ticketList;
-        if(countyname==null)
-             ticketList = bllTicket.GetTicketByAreaIdAndLevel(area, level,topicname, pageIndex, pageSize, out totalRecord);
+        if (countyname == null)
+            ticketList = bllTicket.GetTicketByAreaIdAndLevel(area, level, topicname, pageIndex, pageSize, out totalRecord);
         else
             ticketList = bllTicket.GetTicketByAreaIdAndLevel(areacounty, level, topicname, pageIndex, pageSize, out totalRecord);
 
@@ -201,9 +255,66 @@ public partial class DiscountTicket_DiscountTicket : basepage
             countydiv.Visible = false;
         }
     }
+    private int GetPageIndex()
+    {
+        string paramPageIndex = Request[pagerGot.UrlPageIndexName];
+        int pageIndex;
+        int.TryParse(paramPageIndex, out pageIndex);
+        return pageIndex;
+    }
 
+    private void BindArea()
+    {
+        rptAreas.DataSource = new BLLArea().GetSubArea("330000");
+        rptAreas.DataBind();
+    }
+    /// <summary>
+    /// 高亮显示当前菜单项
+    /// </summary>
+    private void BuildHignLightItems()
+    {
+        if (string.IsNullOrEmpty(levelname))
+        {
+            hlLevelAll.Attributes["class"] = "hlv";
+            return;
+        }
+        if (levelname.ToLower() == "3a")
+        {
+            hlLevel3.Attributes["class"] = "hlv";
+            return;
+        }
+        if (levelname.ToLower() == "4a")
+        {
+            hlLevel4.Attributes["class"] = "hlv";
+            return;
+        }
 
-    BLLScenicImg bllSI = new BLLScenicImg();
+        if (levelname.ToLower() == "5a")
+        {
+            hlLevel5.Attributes["class"] = "hlv";
+            return;
+        }
+    }
+    /// <summary>
+    /// 为 "全部"筛选条件 和 A级  构造符合seo的 链接(给链接添加锚点)
+    /// </summary>
+    /// <returns></returns>
+    private void BindLevelLinks()
+    {
+
+        hrefAllArea.HRef = BindHref(null, null, level, topicname);
+        hrefTopicAll.HRef = BuildLink(queryTopic, "", true);
+        hlLevelAll.HRef = BuildLink(queryLevel, "", true);
+        hlLevel3.HRef = BuildLink(queryLevel, "3a");
+        hlLevel4.HRef = BuildLink(queryLevel, "4a");
+        hlLevel5.HRef = BuildLink(queryLevel, "5a");
+
+        BuildHignLightItems();
+
+    }
+    #endregion
+
+    #region event
     protected void rptscenic_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -268,22 +379,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
             lblTotalRecord.Text = totalRecord.ToString();
         }
     }
-    private int GetPageIndex()
-    {
-        string paramPageIndex = Request[pagerGot.UrlPageIndexName];
-        int pageIndex;
-        int.TryParse(paramPageIndex, out pageIndex);
-        return pageIndex;
-    }
-
-    private void BindArea()
-    {
-        rptAreas.DataSource = new BLLArea().GetSubArea("330000");
-        rptAreas.DataBind();
-
-
-
-    }
+    
     const string queryArea = "area";
     const string queryLevel = "level";
     const string queryTopic = "topic";
@@ -311,88 +407,9 @@ public partial class DiscountTicket_DiscountTicket : basepage
     }
 
 
-    /// <summary>
-    /// 为 "全部"筛选条件 和 A级  构造符合seo的 链接(给链接添加锚点)
-    /// </summary>
-    /// <returns></returns>
-    private void BindLevelLinks()
-    {
+  
 
-        hrefAllArea.HRef = BindHref(null, null, level, topicname);
-        hrefTopicAll.HRef = BuildLink(queryTopic, "", true);
-        hlLevelAll.HRef = BuildLink(queryLevel, "", true);
-        hlLevel3.HRef = BuildLink(queryLevel, "3a");
-        hlLevel4.HRef = BuildLink(queryLevel, "4a");
-        hlLevel5.HRef = BuildLink(queryLevel, "5a");
-
-        BuildHignLightItems();
-
-    }
-    /// <summary>
-    /// 高亮显示当前菜单项
-    /// </summary>
-    private void BuildHignLightItems()
-    {
-        if (string.IsNullOrEmpty(levelname))
-        {
-            hlLevelAll.Attributes["class"] = "hlv";
-            return;
-        }
-        if (levelname.ToLower() == "3a")
-        {
-            hlLevel3.Attributes["class"] = "hlv";
-            return;
-        }
-        if (levelname.ToLower() == "4a")
-        {
-            hlLevel4.Attributes["class"] = "hlv";
-            return;
-        }
-
-        if (levelname.ToLower() == "5a")
-        {
-            hlLevel5.Attributes["class"] = "hlv";
-            return;
-        }
-
-
-    }
-
-    /// <summary>
-    /// 为两个筛选条件项 构建url
-    /// </summary>
-    /// <param name="queryParam"></param>
-    /// <param name="id"></param>
-    /// <param name="isRemove"></param>
-    /// <returns></returns>
-
-
-    private string BuildLink(string type, string value)
-    {
-        return BuildLink(type, value, false);
-    }
-    private string BuildLink(string type, string value, bool isAll)
-    {
-        return "/Tickets"+ urlParamHelper.BuildLink2(type, value, isAll);
-
-    }
-
-    /// <summary>
-    /// 设置seo
-    /// </summary>
-    private void SetSeo()
-    {
-        BatchSeoData seodata = SeoHandler.GetSeoData_Home(area, areacounty, level, topic, pageIndex);
-        this.Title = seodata.Title;
-        this.MetaKeywords = seodata.KeyWord;
-        if (level == 0 && topic == null&&area!=null)
-        { this.MetaDescription = area.MetaDescription; }
-        else
-        {
-            this.MetaDescription = seodata.Description;
-        }
-        liH1.Text = seodata.H1Text;
-    }
+   
     protected void rptTopic_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
@@ -429,17 +446,5 @@ public partial class DiscountTicket_DiscountTicket : basepage
         }
     }
 
-    private string BindHref(Area area,string countyname, int level, string themeseoname)
-    {
-        string url = "/Tickets";
-        if (area != null)
-            url += "/" + area.SeoName;
-        if (countyname != null)
-            url += "_" + countyname;
-        if (level != 0)
-            url += "/" + level+"A";
-        if (themeseoname != null)
-            url += "/t_" + themeseoname;
-        return url;
-    }
+    #endregion
 }

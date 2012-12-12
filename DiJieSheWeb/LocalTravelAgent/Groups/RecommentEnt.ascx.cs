@@ -50,7 +50,7 @@ public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserCo
             if (rec != null)
             {
                 laPolicy.Text = rec.RewardPolicy;
-                if (rec.UploadFile != "")
+                if (!string.IsNullOrEmpty(rec.UploadFile))
                 {
                     btnUpload.CommandArgument = rec.UploadFile;
                     btnUpload.Visible = true;
