@@ -69,13 +69,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     BLL.BLLDJGroup_Worker bllgw = new BLLDJGroup_Worker();
     protected void btnAddWorker_Click(object sender, EventArgs e)
     {
-        DJ_Workers worker = new DJ_Workers();
-        worker.CompanyBelong = tbxBelong.Value;
-        worker.DJ_Dijiesheinfo = CurrentDJS;
-        worker.IDCard = tbxIdCard.Value;
-        worker.Name = tbxWorkerName.Value;
-        worker.Phone = tbxPhone.Value;
-        worker.SpecificIdCard = tbxSpecialCardNo.Value;
+     
        var wt =( DJ_GroupWorkerType)( Convert.ToInt16( hiWorkType.Value));
        string errMsg;
        bool r= bllWorker.Save(tbxWorkerName.Value,tbxPhone.Value,tbxIdCard.Value
@@ -84,7 +78,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
        if (r)
        {
            InitWorkers();
-           LoadForm();
+           LoadGroupWorkers();
        }
        else
        {
