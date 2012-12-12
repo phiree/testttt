@@ -2,7 +2,10 @@
     CodeFile="GroupEditBasicInfo.aspx.cs" Inherits="LocalTravelAgent_Groups_GroupEditBasicInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    ///<reference path="/Scripts/jquery-1.6.4-vsdoc.js" />
+    <% if (false)
+       { %>
+    <script src="/Scripts/jquery-1.6.4-vsdoc.js" type="text/javascript"></script>
+    <% } %>
     <link href="/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/json2.js" type="text/javascript"></script>
     <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
@@ -37,8 +40,8 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="tbxName"></asp:TextBox><asp:RequiredFieldValidator
-                        ID="RequiredFieldValidator1" ControlToValidate="tbxName" Display="Dynamic" runat="server"
-                        ErrorMessage="请填写团队名称"></asp:RequiredFieldValidator>
+                        ID="RequiredFieldValidator1" ValidationGroup="vgGroup" ControlToValidate="tbxName"
+                        Display="Dynamic" runat="server" ErrorMessage="请填写团队名称"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -47,8 +50,8 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="tbxDateBegin"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" Display="Dynamic" runat="server"
-                        ControlToValidate="tbxDateBegin" ErrorMessage="请输入开始时间"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ValidationGroup="vgGroup" ID="RequiredFieldValidator2"
+                        Display="Dynamic" runat="server" ControlToValidate="tbxDateBegin" ErrorMessage="请输入开始时间"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -57,10 +60,11 @@
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="tbxDateAmount"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" Display="Dynamic"
-                        ControlToValidate="tbxDateAmount" runat="server" ValidationExpression="\d+" ErrorMessage="请输入数字"></asp:RegularExpressionValidator>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" Display="Dynamic" ControlToValidate="tbxDateAmount"
-                        runat="server" ErrorMessage="请输入游玩天数"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ValidationGroup="vgGroup" ID="RegularExpressionValidator1"
+                        Display="Dynamic" ControlToValidate="tbxDateAmount" runat="server" ValidationExpression="\d+"
+                        ErrorMessage="请输入数字"></asp:RegularExpressionValidator>
+                    <asp:RequiredFieldValidator ValidationGroup="vgGroup" ID="RequiredFieldValidator3"
+                        Display="Dynamic" ControlToValidate="tbxDateAmount" runat="server" ErrorMessage="请输入游玩天数"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -68,7 +72,8 @@
                     导游
                 </td>
                 <td>
-                    <asp:CheckBoxList runat="server" RepeatColumns="5" ID="cbxGuides" RepeatDirection="Horizontal" CssClass="rbl" Style="margin: 0px 0px 5px 0px">
+                    <asp:CheckBoxList runat="server" RepeatColumns="5" ID="cbxGuides" RepeatDirection="Horizontal"
+                        CssClass="rbl" Style="margin: 0px 0px 5px 0px">
                     </asp:CheckBoxList>
                     <input type="button" name="showDiag_AddGuide" class="showAddDiag" value="增加导游" />
                     <span><a target="_blank" href="/LocalTravelAgent/GuideList.aspx">导游列表</a></span>
@@ -79,7 +84,8 @@
                     司机
                 </td>
                 <td>
-                    <asp:CheckBoxList runat="server" ID="cbxDrivers" RepeatDirection="Horizontal" CssClass="rbl"  RepeatColumns="5" Style="margin: 0px 0px 5px 0px">
+                    <asp:CheckBoxList runat="server" ID="cbxDrivers" RepeatDirection="Horizontal" CssClass="rbl"
+                        RepeatColumns="5" Style="margin: 0px 0px 5px 0px">
                     </asp:CheckBoxList>
                     <span>
                         <input type="button" name="showDiag_AddDriver" class="showAddDiag" value="增加车辆司机" />
@@ -87,8 +93,8 @@
                 </td>
             </tr>
         </table>
-        <asp:Button runat="server" ID="btnSaveBasicInfo" OnClick="btnBasicInfo_Click" Text="保存"
-            CssClass="btn" Style="margin-left: 350px" />
+        <asp:Button runat="server" ID="btnSaveBasicInfo" ValidationGroup="vgGroup" OnClick="btnBasicInfo_Click"
+            Text="保存" CssClass="btn" Style="margin-left: 350px" />
         <asp:Label runat="server" ID="lblMsg"></asp:Label>
         <%--<asp:Panel runat="server" ID="pnlLinks">
             <a href="GroupEditMember.aspx?groupid=<%=groupId %>">编辑成员信息</a>
@@ -99,35 +105,57 @@
     <div id="DvAddWorker">
         <div class="searchdiv">
             <div>
-                姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:<input type="text" name="Name" style="
-                    width: 150px;" /></div>
+                姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:<input id="tbxWorkerName" runat="server" clientidmode="Static"
+                    type="text" name="Name" style="width: 150px;" /><asp:RequiredFieldValidator ID="RequiredFieldValidator4"
+                        ForeColor="Red" ValidationGroup="vgWorker" runat="server" Display="Dynamic" ControlToValidate="tbxWorkerName"
+                        ErrorMessage="必填"></asp:RequiredFieldValidator>
+            </div>
             <div>
-                手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机:<input type="text" name="Phone" style="mwidth: 150px;" /></div>
+                手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机:<input id="tbxPhone" runat="server" clientidmode="Static"
+                    type="text" name="Phone" style="width: 150px;" /><asp:RequiredFieldValidator ID="RequiredFieldValidator5"
+                        runat="server" Display="Dynamic" ErrorMessage="必填" ControlToValidate="tbxPhone"
+                        ValidationGroup="vgWorker" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator21"
+                    runat="server" ValidationGroup="vgWorker" ControlToValidate="tbxPhone" ErrorMessage="格式有误"
+                    ForeColor="Red" ValidationExpression="^0{0,1}(13[0-9]|15[0-9])[0-9]{8}$"></asp:RegularExpressionValidator>
+            </div>
             <div>
-                身份证号:<input type="text" name="IDCard" style="
-                    width: 150px;" /></div>
+                身份证号:<input type="text" name="IDCard" id="tbxIdCard" runat="server" clientidmode="Static"
+                    style="width: 150px;" />
+                <asp:RequiredFieldValidator Display="Dynamic" ControlToValidate="tbxIdCard" ID="RequiredFieldValidator6"
+                    runat="server" ValidationGroup="vgWorker"  ForeColor="Red" ErrorMessage="必填"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator2"
+                    runat="server" ValidationGroup="vgWorker" ControlToValidate="tbxIdCard" ErrorMessage="格式有误"
+                    ForeColor="Red" ValidationExpression="^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$"></asp:RegularExpressionValidator>
+            </div>
             <div>
                 <span id="spcardno">导游证号:</span>
-                <input type="text" name="SpecificIdCard" style=" width: 150px;" /></div>
+                <input type="text" id="tbxSpecialCardNo" runat="server" clientidmode="Static" name="SpecificIdCard"
+                    style="width: 150px;" /></div>
             <div id="dvbelong">
-                所属公司:<input type="text" name="CompanyBelong" style=" width: 150px;" /></div>
-            <input id="btnAddWorker" type="button" value="添加" />
-            <input type="hidden" id="hiWorkType" name="WorkerType" value="1" />
+                所属公司:<input type="text" id="tbxBelong" runat="server" clientidmode="Static" name="CompanyBelong"
+                    style="width: 150px;" /></div>
+            <asp:Button ID="btnAddWorker" ValidationGroup="vgWorker" runat="server" OnClick="btnAddWorker_Click"
+                Text="添加" />
+            <input runat="server" type="hidden" clientidmode="Static" id="hiWorkType" name="WorkerType"
+                value="0" />
         </div>
     </div>
     <script type="text/javascript" language="javascript">
         $(function () {
-                
-                 $("#DvAddWorker" ).dialog({
+               
+                var dig= $("#DvAddWorker" ).dialog({
             autoOpen: false,
             height: 300,
             width: 350,
-            modal: true
+            modal: true,
+            title:"添加"
            });
-
+           dig.parent().appendTo(jQuery("form:first"));
+           
            var addType=1;
              $(".showAddDiag").click(function(){
-             $("#DvAddWorker" ).dialog("open");
+            $("#DvAddWorker" ).dialog("open");
                 if(this.name=="showDiag_AddDriver")
                 {
                 addType=2;
@@ -142,6 +170,7 @@
                      $("#dvbelong").show();
                 }
              });
+             /**/
             $("#btnAddWorker").click(function () {
                 
                 var json = $("#DvAddWorker").ContainerToJson();
@@ -149,7 +178,7 @@
                 $.get("AddGuide.ashx?entId="+<%=CurrentDJS.Id %>+"&jr=" + jsonString,
                 function (data) {
                 var currentHref=removeURLParam(window.location.href,"at");
-                currentHref=removeURLParam(currentHref,"flag");
+              //  currentHref=removeURLParam(currentHref,"flag");
                 if(currentHref.indexOf("?")>=0)
                 {
                   currentHref=currentHref+"&at="+addType;
@@ -161,7 +190,7 @@
 
                 
                 
-                window.location.href=currentHref;
+                window.location.href= window.location.href;//currentHref;
                   /*  alert(data);
                     var addedItem=" <tr><td><input id='main_ContentPlaceHolder2_cbxGuides_4'"
                     +" type='checkbox' name='ctl00$ctl00$main$ContentPlaceHolder2$cbxGuides$4'"

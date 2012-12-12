@@ -19,6 +19,8 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     string flag = "f";
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        tbxBelong.Value = CurrentDJS.Name;
         flag=Request["flag"];
         if (flag == "t")
         {
@@ -64,6 +66,31 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         }
     }
 
+    BLL.BLLDJGroup_Worker bllgw = new BLLDJGroup_Worker();
+    protected void btnAddWorker_Click(object sender, EventArgs e)
+    {
+        DJ_Workers worker = new DJ_Workers();
+        worker.CompanyBelong = tbxBelong.Value;
+        worker.DJ_Dijiesheinfo = CurrentDJS;
+        worker.IDCard = tbxIdCard.Value;
+        worker.Name = tbxWorkerName.Value;
+        worker.Phone = tbxPhone.Value;
+        worker.SpecificIdCard = tbxSpecialCardNo.Value;
+       var wt =( DJ_GroupWorkerType)( Convert.ToInt16( hiWorkType.Value));
+       string errMsg;
+       bool r= bllWorker.Save(tbxWorkerName.Value,tbxPhone.Value,tbxIdCard.Value
+            ,tbxSpecialCardNo.Value,tbxBelong.Value,wt,CurrentDJS,out errMsg);
+
+       if (r)
+       {
+           InitWorkers();
+           LoadForm();
+       }
+       else
+       {
+           ScriptManager.RegisterClientScriptBlock(this,this.GetType(),"addworkererr","alert('"+errMsg+"')",true);
+       }
+    }
     private void LoadForm()
     {
         //绑定链接
@@ -85,18 +112,20 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
   
         ListControlHelper.CheckItems(cbxDrivers,drivers);
         ListControlHelper.CheckItems(cbxGuides,guides);
-
+        addType = hiWorkType.Value;
         if (!string.IsNullOrEmpty(addType))
         {
             if (addType == "1")
             {
                 cbxGuides.Items[cbxGuides.Items.Count - 1].Selected = true;
+                
             }
             else if (addType == "2")
             {
                 cbxDrivers.Items[cbxDrivers.Items.Count - 1].Selected = true;
             }
         }
+        hiWorkType.Value = "0";
         
     }
 
@@ -192,12 +221,13 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         }
         
          bllGroup.Save(CurrentGroup);
-         
-         Response.Redirect("GroupEditBasicInfo.aspx?flag=t&groupid=" + CurrentGroup.Id);
-       
+         if (IsNew)
+         {
+             Response.Redirect("GroupEditBasicInfo.aspx?flag=t&groupid=" + CurrentGroup.Id);
+         }
         
         lblMsg.Text = "保存成功";
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功')", true);
+      //  ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功')", true);
     }
 
 }
