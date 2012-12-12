@@ -8,6 +8,7 @@
     <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script type="text/javascript" src="/Scripts/jquery-ui-1.9.2.min.js"></script>
     <script src="/Scripts/jqueryplugin/ContainerToJson.js" type="text/javascript"></script>
+    <script src="/Scripts/Common.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
         $(function () {
             //限制日期选择范围
@@ -67,7 +68,7 @@
                     导游
                 </td>
                 <td>
-                    <asp:CheckBoxList runat="server" ID="cbxGuides" CssClass="rbl" Style="margin: 0px 0px 5px 0px">
+                    <asp:CheckBoxList runat="server" RepeatColumns="5" ID="cbxGuides" RepeatDirection="Horizontal" CssClass="rbl" Style="margin: 0px 0px 5px 0px">
                     </asp:CheckBoxList>
                     <input type="button" name="showDiag_AddGuide" class="showAddDiag" value="增加导游" />
                     <span><a target="_blank" href="/LocalTravelAgent/GuideList.aspx">导游列表</a></span>
@@ -78,7 +79,7 @@
                     司机
                 </td>
                 <td>
-                    <asp:CheckBoxList runat="server" ID="cbxDrivers">
+                    <asp:CheckBoxList runat="server" ID="cbxDrivers" RepeatDirection="Horizontal" CssClass="rbl"  RepeatColumns="5" Style="margin: 0px 0px 5px 0px">
                     </asp:CheckBoxList>
                     <span>
                         <input type="button" name="showDiag_AddDriver" class="showAddDiag" value="增加车辆司机" />
@@ -98,18 +99,18 @@
     <div id="DvAddWorker">
         <div class="searchdiv">
             <div>
-                姓名:<input type="text" name="Name" style="margin-right: 100px; margin-left: 50px;
+                姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:<input type="text" name="Name" style="
                     width: 150px;" /></div>
             <div>
-                手机:<input type="text" name="Phone" style="margin-left: 50px; width: 150px;" /></div>
+                手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机:<input type="text" name="Phone" style="mwidth: 150px;" /></div>
             <div>
-                身份证号:<input type="text" name="IDCard" style="margin-right: 100px; margin-left: 27px;
+                身份证号:<input type="text" name="IDCard" style="
                     width: 150px;" /></div>
             <div>
                 <span id="spcardno">导游证号:</span>
-                <input type="text" name="SpecificIdCard" style="margin-left: 27px; width: 150px;" /></div>
+                <input type="text" name="SpecificIdCard" style=" width: 150px;" /></div>
             <div id="dvbelong">
-                所属公司:<input type="text" name="CompanyBelong" style="margin-left: 27px; width: 150px;" /></div>
+                所属公司:<input type="text" name="CompanyBelong" style=" width: 150px;" /></div>
             <input id="btnAddWorker" type="button" value="添加" />
             <input type="hidden" id="hiWorkType" name="WorkerType" value="1" />
         </div>
@@ -124,15 +125,18 @@
             modal: true
            });
 
+           var addType=1;
              $(".showAddDiag").click(function(){
              $("#DvAddWorker" ).dialog("open");
                 if(this.name=="showDiag_AddDriver")
                 {
+                addType=2;
                     $("#hiWorkType").val("2");
                      $("#spcardno").text("车牌证号");
                      $("#dvbelong").hide();
                 }
                 else{
+                addType=1;
                      $("#hiWorkType").val("1");
                        $("#spcardno").text("导游证号");
                      $("#dvbelong").show();
@@ -144,7 +148,20 @@
                 var jsonString = JSON.stringify(json);
                 $.get("AddGuide.ashx?entId="+<%=CurrentDJS.Id %>+"&jr=" + jsonString,
                 function (data) {
-                window.location.href=window.location.href;
+                var currentHref=removeURLParam(window.location.href,"at");
+                currentHref=removeURLParam(currentHref,"flag");
+                if(currentHref.indexOf("?")>=0)
+                {
+                  currentHref=currentHref+"&at="+addType;
+                }
+                else
+                {
+                  currentHref=currentHref+"?at="+addType;
+                }
+
+                
+                
+                window.location.href=currentHref;
                   /*  alert(data);
                     var addedItem=" <tr><td><input id='main_ContentPlaceHolder2_cbxGuides_4'"
                     +" type='checkbox' name='ctl00$ctl00$main$ContentPlaceHolder2$cbxGuides$4'"

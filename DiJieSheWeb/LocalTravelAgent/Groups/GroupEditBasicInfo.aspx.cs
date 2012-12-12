@@ -15,10 +15,18 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     BLL.BLLDJTourGroup bllGroup = new BLLDJTourGroup();
     BLLDJRoute bllRoute = new BLLDJRoute();
     BLLWorker bllWorker = new BLLWorker();
+    string addType = "1";
+    string flag = "f";
     protected void Page_Load(object sender, EventArgs e)
     {
+        flag=Request["flag"];
+        if (flag == "t")
+        {
+            lblMsg.Text = "保存成功";
+        }
 
-        
+
+        addType = Request["at"];
         string paramstr = Request["groupid"];
         if (!Guid.TryParse(paramstr, out groupId))
         {
@@ -77,6 +85,19 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
   
         ListControlHelper.CheckItems(cbxDrivers,drivers);
         ListControlHelper.CheckItems(cbxGuides,guides);
+
+        if (!string.IsNullOrEmpty(addType))
+        {
+            if (addType == "1")
+            {
+                cbxGuides.Items[cbxGuides.Items.Count - 1].Selected = true;
+            }
+            else if (addType == "2")
+            {
+                cbxDrivers.Items[cbxDrivers.Items.Count - 1].Selected = true;
+            }
+        }
+        
     }
 
   
@@ -171,11 +192,11 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         }
         
          bllGroup.Save(CurrentGroup);
-        if (IsNew)
-        {
-            Response.Redirect("GroupEditMember.aspx?groupid=" + CurrentGroup.Id);
-        }
-        //lblMsg.Text = "保存成功";
+         
+         Response.Redirect("GroupEditBasicInfo.aspx?flag=t&groupid=" + CurrentGroup.Id);
+       
+        
+        lblMsg.Text = "保存成功";
         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功')", true);
     }
 
