@@ -19,8 +19,24 @@ public partial class Login2 : Page
     protected void lg_LoggedIn(object sender, EventArgs e)
     {
 
-        TourMembership CurrentMember = bllMember.GetMember(lg.UserName);
-        string redirectUrl = Redirector.RedirectForUser(CurrentMember);
-        Response.Redirect(redirectUrl);
+        string returnUrl = "/";
+        string userName = lg.UserName;
+
+        string[] roles = Roles.GetRolesForUser(userName);
+
+        if (Roles.IsUserInRole(userName, "SiteAdmin"))
+        {
+            var targetFromParam = Request["returnUrl"];
+            if (!string.IsNullOrEmpty(targetFromParam))
+            {
+                returnUrl = targetFromParam;
+            }
+            Response.Redirect(returnUrl);
+        }
+        else
+        { 
+          
+        }
+
     }
 }

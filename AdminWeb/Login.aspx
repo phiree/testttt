@@ -36,7 +36,7 @@
                                 <tr >
                                     <td align="center" colspan="2" style="height:80px;">
                                         <p class="LoginTilte">
-                                            浙江旅游&nbsp;&nbsp;单位管理平台</p>
+                                            旅游在线后台管理</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -98,9 +98,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <p class="login_bottom">
-                    &nbsp;&nbsp;&nbsp;&nbsp;平台开发:杭州笨牛信息&nbsp;&nbsp;&nbsp;&nbsp;0571-87801108
-                </p>
+                
             </td>
         </tr>
     </table>
