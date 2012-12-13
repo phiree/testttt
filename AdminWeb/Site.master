@@ -1,8 +1,6 @@
-﻿
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="m" %>
+﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="_Site" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
@@ -13,12 +11,12 @@
     <link href="/theme/default/css/MaterPage.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/MasterPage.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
-     <script type="text/javascript">
-         $(function () {
-             $(".nav a").HighLightLink();
-         });
+    <script type="text/javascript">
+        $(function () {
+            $(".nav a").HighLightLink();
+        });
     </script>
-    <asp:ContentPlaceHolder id="head" runat="server">
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -29,17 +27,19 @@
                 <div id="pageTop">
                     <div class="userinfo">
                         <div class="username">
-                            当前单位:<span style="color:#006E5A;margin-right:10px;"><asp:Literal ID="laETName" runat="server"></asp:Literal></span>
-                            用户:<asp:LoginName ID="LoginName1" runat="server" CssClass="userFontType" />
+                            当前单位:<span style="color: #006E5A; margin-right: 10px;"><asp:Literal ID="laETName"
+                                runat="server"></asp:Literal></span> 用户:<asp:LoginName ID="LoginName1" runat="server"
+                                    CssClass="userFontType" />
                         </div>
                         <div class="useraction">
-                            <a runat="server" id="changedetails" href="">修改资料</a>
-                            <a runat="server" id="changepwd" href="/Login.aspx">修改密码</a>
-                            <asp:LoginStatus ID="LoginStatus1"  runat="server" LogoutPageUrl="/Login.aspx" />
+                            <a runat="server" id="changedetails" href="">修改资料</a> <a runat="server" id="changepwd"
+                                href="/Login.aspx">修改密码</a>
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutPageUrl="/Login.aspx" />
                             <a href="">帮助</a>
                         </div>
                     </div>
-                    <h2>浙江旅游管理统计系统</h2>
+                    <h2>
+                        浙江旅游管理统计系统</h2>
                     <div class="timeinfo">
                         <img src="/theme/default/image/body_time.gif" /><span id="timer"></span>
                     </div>
@@ -49,68 +49,41 @@
                         <div class="Func_Title">
                             功能菜单
                         </div>
-                        <%--<ul class="nav">
-                            <li id="djsBlock">
-                                <ul class="nav">
-                                   <li><span>地接社</span></li>
-                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
-                                   <li><a href="">线路制定</a></li>
-                                   <li><a href="">线路列表</a></li>
-                                   <li><a href="">团队录入</a></li>
-                                   <li><a href="">团队列表</a></li>
-                                   <li><a href="">统计信息</a></li>
-                                   <li><a href="">协议单位录入</a></li>
-                                   <li><a href="">协议单位列表</a></li>
-                                   <li><a href="">工作人员录入</a></li>
-                                   <li><a href="">工作人员列表</a></li>
-                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
-                               </ul>
-                            </li>
-                            <li id="tourEnterprise">
-                                <ul class="nav">
-                                   <li><span>旅游单位</span></li>
-                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
-                                   <li><a href="">预知</a></li>
-                                   <li><a href="">刷卡</a></li>
-                                   <li><a href="">信息统计</a></li>
-                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
-                               </ul>
-                            </li>
-                            <li id="tourManager">
-                                <ul class="nav">
-                                   <li><span>旅游管理部门</span></li>
-                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
-                                   <li><a href="">旅游单位录入</a></li>
-                                   <li><a href="">单位列表</a></li>
-                                   <li><a href="">统计信息</a></li>
-                                   <li style="background-color:#009383; height:15px; display:block; line-height:0px"></li>
-                               </ul>
-                            </li>
-                        </ul>--%>
-                        <asp:ContentPlaceHolder ID="cphFunction" runat="server">
-                        </asp:ContentPlaceHolder>
-                        <%--<div class="TechSupport">
-                            <p>技术支持</p>
-                            <span><img src="/theme/default/image/Func_Icon.gif" />Tel:0571-86933134</span>
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;Mo:13868130983</span>
-                            <span><img src="/theme/default/image/Func_Icon.gif" />QQ:364819046</span>
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;858580604</span>
-                            <span><img src="/theme/default/image/Func_Icon.gif" />E-Mail:lzq@tourol.cn</span>
-                        </div>--%>
-                        <div class="TechSupport">
-                            <img width="100%" src="/image/rewardBg.jpg" />
-                        </div>
-
+                        <ul class="nav">
+                            <li><span>地接社</span></li>
+                            <li><a href="/Dijieshe/ManageDptList.aspx">旅游管理部门列表</a></li>
+                            <li><a href="/Dijieshe/ManageDptEdit.aspx">增加旅游管理部门</a></li>
+                            <li><a href="/Dijieshe/UserList.aspx">用户列表</a></li>
+                            <li><a href="/Dijieshe/EnterpriseList.aspx">企业列表</a></li>
+                            <li><a href="/Dijieshe/EnterpriseEdit.aspx">增加企业</a></li>
+                            <li><a href="/Dijieshe/LogViewer.aspx">日志查看</a></li>
+                            <li><span>旅游在线</span></li>
+                            <li><a href="/Manager/ScenicManage/">景区资料审核</a></li>
+                            <li><a href="/Manager/ScenicAdminSetting.aspx">景区账号管理</a></li>
+                            <li><a href="/Manager/ScenicTopicSetting.aspx">景区主题管理</a></li>
+                            <li><a href="#">景区图片管理</a></li>
+                            <%--<li><a href="/Manager/AccountManager.aspx">用户账号管理</a></li>--%>
+                            <%--<li><a href="/Manager/RoleManage.aspx">用户角色管理</a></li>--%>
+                            <%--<li><a href="/Manager/BillCheck.aspx">当前账单管理</a></li>--%>
+                            <li><a href="/Manager/BillAll.aspx">已结账单管理</a></li>
+                            <li><a href="/Manager/SeoInit.aspx">景区SEO修改</a></li>
+                            <li><a href="/Manager/ScenicTopicSetting3.aspx">景区主题SEO</a></li>
+                            <li><a href="/Manager/ScenicimgInit.aspx">EXCEL导入</a></li>
+                            <li><a href="/Manager/ScenicMapPoint.aspx">景区坐标初始化</a></li><li><a href="/Manager/ImportMipangTicket.aspx">
+                                米胖门票导入</a></li>
+                        </ul>
+                      
+                      
+                       
                     </div>
                     <div class="pageMid_right">
-                        <asp:ContentPlaceHolder id="main" runat="server">
+                        <asp:ContentPlaceHolder ID="main" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
     </form>
 </body>
 </html>

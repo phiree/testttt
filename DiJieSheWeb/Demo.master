@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Demo.master.cs" Inherits="Admin_Demo" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/m.master" AutoEventWireup="true" CodeFile="Demo.master.cs" Inherits="Admin_Demo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />

@@ -8,35 +8,38 @@ using System.Web.Security;
 using BLL;
 using Model;
 
-public partial class m : System.Web.UI.MasterPage
+public partial class _Site : System.Web.UI.MasterPage
 {
     public string dptId_dptdetai = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
-        bind();
+       // bind();
     }
 
     private void bind()
     {
         MembershipUser mu = Membership.GetUser();
-        BLLDJ_User blldj_user = new BLLDJ_User();
-        Model.TourMembership tm = new Model.TourMembership();
+        string returnUrl = "/";
         if (mu != null)
         {
-            tm = new BLLMembership().GetMemberById((Guid)mu.ProviderUserKey);
-            if (tm is DJ_User_TourEnterprise)
-            {
-                laETName.Text = (tm as DJ_User_TourEnterprise).Enterprise.Name;
-            }
-            if (tm is DJ_User_Gov)
-            {
-                laETName.Text = (tm as DJ_User_Gov).GovDpt.Name;
+            string[] roles = Roles.GetRolesForUser(mu.UserName);
 
+            if (!Roles.IsUserInRole(mu.UserName, "SiteAdmin"))
+            {
+                var targetFromParam = Request["returnUrl"];
+                if (!string.IsNullOrEmpty(targetFromParam))
+                {
+                    returnUrl = targetFromParam;
+                }
+                Response.Redirect(returnUrl);
             }
         }
         else
         {
-
+            returnUrl = "/Login.aspx?returnUrl="+Server.UrlEncode(Request.RawUrl);
+            Response.Redirect(returnUrl);
         }
+        
+
     }
 }
