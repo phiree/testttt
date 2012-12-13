@@ -4,11 +4,59 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <% if(false) 
+{ %>
+      <script src="/Scripts/jquery-1.6.4-vsdoc.js" type="text/javascript"></script>
+<% } %>
+  
     <meta http-equiv="x-ua-compatible" content="ie=8" />
     <script src="/Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
     <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
     <link href="/theme/default/css/Login.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script language="javascript">
+        function PopMsg(msg, type, redirecturl,autoClose) {
+
+            var ele = "<div id='popMsg'></div>";
+            $("form").append(ele);
+            $("#popMsg").html(msg);
+            var sec = 0;
+            var outSec = 4;
+            var interval = null;
+
+            $("#popMsg").dialog({
+                modal: true,
+
+                open: function (event, ui) {
+                    sec = 0;
+                    if (autoClose) {
+                        interval = setInterval(closeTimer, 1000);
+                    }
+                    $('.ui-widget-overlay').bind('click', function () { $("#popMsg").dialog('close'); });
+                }
+                ,
+                close: function (event, ui) {
+                    if (redirecturl != null && redirecturl + "" != "undefined") {
+                        window.location.href = redirecturl;
+                    }
+                }
+
+            });
+
+            function closeTimer() {
+                if (sec >= outSec) {
+                    $('#popMsg').dialog('close');
+                    interval = null;
+                }
+                else {
+                  $('#popMsg').dialog({ title: outSec-sec });
+                    sec++;
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -30,7 +78,7 @@
             </td>
             <td>
                 <div id="login">
-                    <asp:Login runat="server" ID="lg" OnLoggedIn="lg_LoggedIn">
+                    <asp:Login runat="server" ID="lg">
                         <LayoutTemplate>
                             <table cellspacing="0" cellpadding="0" class="tblogin">
                                 <tr >
@@ -73,12 +121,13 @@
                                 <tr>
                                     <td align="right" colspan="2" style="height:75px; text-align:center;">
                                         <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="登录" ValidationGroup="lg" CssClass="btn_login" style="margin-right:20px;" />
-                                        
+                                         <asp:Button ID="Button1" OnClick="democlick" runat="server" Text="Button" />
                                     </td>
                                 </tr>
                             </table>
                         </LayoutTemplate>
                     </asp:Login>
+                   
                 </div>
             </td>
             <td>
@@ -101,7 +150,9 @@
                 
             </td>
         </tr>
+
     </table>
+    
     </form>
 </body>
 </html>

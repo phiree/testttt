@@ -12,13 +12,21 @@ public partial class Login2 : Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
     BLLMembership bllMember = new BLLMembership();
-    protected void lg_LoggedIn(object sender, EventArgs e)
+    protected void democlick(object o, EventArgs e)
     {
-
+        ClientScript.RegisterClientScriptBlock(Page.GetType(), "pop",
+                        "$(function(){PopMsg('Iam here!',null,'/',true);});",true
+                        );
+    }
+  
+    bool isvalid = false;
+  
+   
+    private void PopMsg() {
         string returnUrl = "/";
         string userName = lg.UserName;
 
@@ -31,12 +39,16 @@ public partial class Login2 : Page
             {
                 returnUrl = targetFromParam;
             }
-            Response.Redirect(returnUrl);
+            //  ClientScript.RegisterClientScriptBlock
+            ClientScript.RegisterStartupScript(Page.GetType(), "pop",
+                      "$(function(){PopMsg('Iam here!,null," + returnUrl + "');});"
+                      );
+            // Response.Redirect(returnUrl);
         }
         else
-        { 
-          
-        }
+        {
 
+        }
     }
+  
 }
