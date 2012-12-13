@@ -13,7 +13,7 @@
       
         <li runat="server" id="li_3"><a href="/tourmanagerdpt/StaticsList.aspx">统计信息</a></li>
         <li runat="server" id="li_4"><a href="/tourmanagerdpt/UserManager.aspx">用户管理</a></li>
-        <li runat="server" id="li_5"><a href="/tourmanagerdpt/RePolicyManager.aspx">奖励政策编辑</a></li>
+        <%--<li runat="server" id="li_5"><a href="/tourmanagerdpt/RePolicyManager.aspx">奖励政策编辑</a></li>--%>
         <%--<li><a href="DjsList.aspx">制订统计规则</a></li>--%>
     </ul>
 </asp:Content>

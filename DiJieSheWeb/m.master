@@ -35,7 +35,7 @@
                         <div class="useraction">
                             <a runat="server" id="changedetails" href="">修改资料</a>
                             <a runat="server" id="changepwd" href="/Login.aspx">修改密码</a>
-                            <asp:LoginStatus  runat="server" LogoutPageUrl="/Login.aspx" />
+                            <asp:LoginStatus  runat="server" LogoutPageUrl="/Login.aspx" ID="LoginStatus1" LogoutAction="Redirect"  />
                             <a href="">帮助</a>
                         </div>
                     </div>

@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using Model;
 using BLL;
 using System.Web.UI.HtmlControls;
+using System.Web.Security;
+using System.Web.ClientServices.Providers;
 
 public partial class LocalTravelAgent_LTAUserManager : basepageDJS
 {
@@ -31,17 +33,38 @@ public partial class LocalTravelAgent_LTAUserManager : basepageDJS
     }
     protected void rptUser_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
+        Guid userid = Guid.Parse(e.CommandArgument.ToString());
+        DJ_User_TourEnterprise user = bllUser.GetByMemberId(userid);
         if (e.CommandName == "delete")
         {
-            Guid userid = Guid.Parse(e.CommandArgument.ToString());
-            DJ_User_TourEnterprise user= bllUser.GetByMemberId(userid);
             if ((Guid)CurrentUser.ProviderUserKey == user.Id)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('不得删除本人')", true);
                 return;
             }
+            else if(int.Parse(user.PermissionType.ToString())==15)
+            {
+                IList<DJ_User_TourEnterprise> Listuser = bllUser.GetUser_TEbyId(CurrentDJS.Id, 15);
+                if (Listuser != null && Listuser.Count <= 1)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('目前仅有这一个超级管理员，无法删除')", true);
+                    return;
+                }
+            }
             bllUser.DeleteGov_User(user);
             bind();
+        }
+        if (e.CommandName == "reset")
+        {
+            user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
+            string message;
+            bllUser.SaveOrUpdate(user, out message);
+            if ((Guid)CurrentUser.ProviderUserKey == user.Id)
+            {
+                FormsAuthentication.SignOut();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('重置成功，重置后的密码为123456');window.location='/LTALogin.aspx'", true); 
+            }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('重置成功，重置后的密码为123456')", true);
         }
     }
     protected void rptUser_ItemDataBound(object sender, RepeaterItemEventArgs e)

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using Model;
 using BLL;
+using System.Web.Security;
 
 public partial class TourManagerDpt_UserManager : basepageMgrDpt
 {
@@ -80,22 +81,41 @@ public partial class TourManagerDpt_UserManager : basepageMgrDpt
     }
     protected void rptUser_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
+        Guid userid = Guid.Parse(e.CommandArgument.ToString());
+        DJ_User_Gov user = blldj_user.GetGov_UserById(userid);
         if (e.CommandName == "delete")
         {
-            Guid userid = Guid.Parse(e.CommandArgument.ToString());
-            if (userid == CurrentMember.Id)
-            {
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), null, "alert('不能删除自己!')", true);
-                return;
-            }
-            DJ_User_Gov user = blldj_user.GetGov_UserById(userid);
             if ((Guid)CurrentUser.ProviderUserKey == userid)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('不得删除本人');", true);
                 return;
             }
+            else if (int.Parse(user.PermissionType.ToString()) == 7)
+            {
+                IList<DJ_User_Gov> Listuser = blldj_user.GetGov_UserBygovId(CurrentDpt.Id, 7);
+                if (Listuser != null && Listuser.Count <= 1)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('目前仅有这一个超级管理员，无法删除')", true);
+                    return;
+                }
+            }
             blldj_user.DeleteGov_User(user);
             bind();
+        }
+        if (e.CommandName == "reset")
+        {
+            user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
+            string message;
+            blldj_user.SaveOrUpdate(user, out message);
+            if ((Guid)CurrentUser.ProviderUserKey == user.Id)
+            {
+                FormsAuthentication.SignOut();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('重置成功，重置后的密码为123456');window.location='/Login.aspx'", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('重置成功，重置后的密码为123456')", true);
+            }
         }
     }
     protected void BtnAdd_Click(object sender, EventArgs e)

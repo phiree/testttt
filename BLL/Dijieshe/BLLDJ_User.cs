@@ -17,7 +17,11 @@ namespace BLL
         {
             return Idj_user_enterprise.GetByMemberId(id);
         }
-        public Model.DJ_User_TourEnterprise GetUser_TEbyId(int id, int permis)
+        public Model.DJ_User_TourEnterprise GetUser_TEbyName(string name)
+        {
+            return Idj_user_enterprise.GetUser_TEbyName(name);
+        }
+        public IList<Model.DJ_User_TourEnterprise> GetUser_TEbyId(int id, int permis)
         {
             return Idj_user_enterprise.GetUser_TEbyId(id, permis);
         }
@@ -45,8 +49,23 @@ namespace BLL
             return Idj_user_enterprise.GetGov_UserByName(seoname);
         }
 
-        public void SaveOrUpdate(Model.TourMembership m)
+        public IList<Model.DJ_User_Gov> GetGov_UserBygovId(Guid govid)
         {
+            return Idj_user_enterprise.GetGov_UserBygovIdAndPermis(govid, 0);
+        }
+        public IList<Model.DJ_User_Gov> GetGov_UserBygovId(Guid govid,int permis)
+        {
+            return Idj_user_enterprise.GetGov_UserBygovIdAndPermis(govid, permis);
+        }
+
+        public void SaveOrUpdate(Model.TourMembership m,out string message)
+        {
+            message = "";
+            if (Guid.Empty == m.Id && Idj_user_enterprise.GetUser_TEbyName(m.Name) != null)
+            {
+                message = "用户名已存在";
+                return;
+            }
             Idj_user_enterprise.SaveOrUpdate(m);
         }
         #endregion

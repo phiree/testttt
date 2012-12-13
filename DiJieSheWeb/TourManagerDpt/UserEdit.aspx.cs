@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using Model;
 using BLL;
 
-public partial class TourManagerDpt_UserEdit : System.Web.UI.Page
+public partial class TourManagerDpt_UserEdit : basepageMgrDpt
 {
     BLLDJ_User blldj_user = new BLLDJ_User();
     BLLDJMgrDpt bllDpt = new BLLDJMgrDpt();
@@ -76,8 +76,23 @@ public partial class TourManagerDpt_UserEdit : System.Web.UI.Page
                 sat = sat | permisson;
             }
         }
+        if (int.Parse(mgrUser.PermissionType.ToString()) == 7 && int.Parse(sat.ToString()) != 7)
+        {
+            IList<DJ_User_Gov> Listuser = blldj_user.GetGov_UserBygovId(CurrentDpt.Id, 7);
+            if (Listuser != null && Listuser.Count <= 1)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('目前仅有这一个超级管理员，无法更改权限')", true);
+                return;
+            }
+        }
         mgrUser.PermissionType = sat;
-        blldj_user.SaveOrUpdate(mgrUser);
-        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "s", "alert('保存成功');window.location='/TourManagerDpt/UserManager.aspx'", true);
+        string message;
+        blldj_user.SaveOrUpdate(mgrUser,out message);
+        if (message != "")
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "s", "alert('" + message + "')", true);
+        }
+        else
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "s", "alert('保存成功');window.location='/TourManagerDpt/UserManager.aspx'", true);
     }
 }

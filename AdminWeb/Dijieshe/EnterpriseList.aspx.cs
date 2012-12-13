@@ -32,7 +32,7 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
         {
             DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
             Label lblAdmin = e.Item.FindControl("lblAdmin") as Label;
-            DJ_User_TourEnterprise user = bllUser.GetUser_TEbyId(ent.Id, 15);
+            DJ_User_TourEnterprise user = bllUser.GetUser_TEbyId(ent.Id, 15) == null ? null : bllUser.GetUser_TEbyId(ent.Id, 15)[0];
             Button btn = e.Item.FindControl("btnadmin") as Button;
             TextBox tbx = e.Item.FindControl("tbxAccount") as TextBox;
             if (user != null)

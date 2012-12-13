@@ -40,6 +40,7 @@
                 </td>
                 <td>
                     <a runat="server" id="aedit" href="">编辑</a>
+                    <asp:Button ID="Button1" runat="server" Text="密码重置" CommandArgument='<%# Eval("Id") %>' CommandName="reset" style="margin-left:15px;border:none; background:none; cursor:pointer;"  />
                     <asp:Button ID="btndelete" runat="server" Text="删除" CommandArgument='<%# Eval("Id") %>' CommandName="delete" style="margin-left:15px;border:none; background:none; cursor:pointer;"  />
                 </td>
             </tr>
