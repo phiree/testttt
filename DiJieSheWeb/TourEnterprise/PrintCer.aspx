@@ -75,7 +75,8 @@
                     </td>
                     <td colspan="3" style="height: 100px; text-align: left; vertical-align: top;">
                         地接社名称:<%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>
-                        &nbsp;&nbsp;团队名称:<%# Eval("Route.DJ_TourGroup.Name")%>
+                        &nbsp;&nbsp;团队名称:<%# Eval("Route.DJ_TourGroup.Name")%>&nbsp;&nbsp;<asp:Literal ID="laAppendBed"
+                            runat="server"></asp:Literal>
                     </td>
                 </tr>
             </table>

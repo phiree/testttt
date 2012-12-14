@@ -55,15 +55,47 @@
                     <td>
                         <asp:HiddenField ID="hfrouteId" runat="server" />
                         <h5>团队信息:</h5>
-                        <p>导游:<asp:Literal ID="laGuideName" runat="server"></asp:Literal></p>
-                        <p>地接社名称:<%# Eval("DJ_DijiesheInfo.Name")%></p>
-                        <p>团队名称:<%# Eval("Name") %></p>
-                        <p>人数:成人<%# Eval("AdultsAmount")%>人&nbsp;儿童<%# Eval("ChildrenAmount")%>人</p>
-                            <h5>实际信息：</h5>
-                            实到人数:成人<asp:TextBox ID="txtAdultsAmount" runat="server"></asp:TextBox>&nbsp;儿童<asp:TextBox
-                            ID="txtChildrenAmount" runat="server"></asp:TextBox>人<br />
-                            住宿天数:<asp:TextBox ID="txtLiveDay" runat="server"></asp:TextBox>天
-                            房间数:<asp:TextBox ID="txtRoom" runat="server"></asp:TextBox>间<br />
+                        <table border="0" cellpadding="0" cellspacing="0" style="margin-left:-5px;margin-top:5px">
+                            <tr>
+                                <td>
+                                    <p>地接社名称:<%# Eval("DJ_DijiesheInfo.Name")%></p>
+                                </td>
+                                <td>
+                                    <p>团队名称:<%# Eval("Name") %></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                     <p>导游:<asp:Literal ID="laGuideName" runat="server"></asp:Literal></p>
+                                </td>
+                                <td>
+                                    <p>人数:成人<%# Eval("AdultsAmount")%>人&nbsp;儿童<%# Eval("ChildrenAmount")%>人</p>
+                                </td>
+                            </tr>
+                        </table>
+                            <h5 style="margin-top:-10px">实际信息：</h5>
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                         实到成人数<asp:TextBox ID="txtAdultsAmount" runat="server" Width="50px" style="margin-left:15px"></asp:TextBox>
+                                    </td>
+                                    <td>
+                                        实到儿童数<asp:TextBox ID="txtChildrenAmount" runat="server" Width="50px" style="margin-left:15px"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        住宿天数:<asp:TextBox ID="txtLiveDay" runat="server" Width="50px" style="margin-left:24px"></asp:TextBox>
+                                    </td>
+                                    <td>
+                                         房间数:<asp:TextBox ID="txtRoom" runat="server" Width="50px" style="margin-left:35px"></asp:TextBox>
+                                    </td>
+                                    <td>
+                                        加床数:<asp:TextBox ID="txtBed" runat="server" Width="50px" style="margin-left:15px"></asp:TextBox>
+                                    </td>
+                                </tr>
+                            </table>
+                           
                             
                     </td>
                     

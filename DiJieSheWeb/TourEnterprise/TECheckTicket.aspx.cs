@@ -105,6 +105,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                         TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
                         TextBox tbLiveDay = e.Item.FindControl("txtLiveDay") as TextBox;
                         TextBox txtRoom = e.Item.FindControl("txtRoom") as TextBox;
+                        TextBox txtBed = e.Item.FindControl("txtBed") as TextBox;
                         //TextBox txtRoomInfo = e.Item.FindControl("txtRoomInfo") as TextBox;
                         DJ_GroupConsumRecord record= blldjcr.GetGroupConsumRecordByRouteId(route.Id);
                         if ( record!= null)
@@ -116,11 +117,13 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                             tbChild.Enabled = false;
                             tbLiveDay.Enabled = false;
                             txtRoom.Enabled = false;
+                            txtBed.Enabled = false;
                             //txtRoomInfo.Enabled = false;
                             tbAdult.Text = record.AdultsAmount.ToString();
                             tbChild.Text = record.ChildrenAmount.ToString();
                             tbLiveDay.Text = record.LiveDay.ToString();
                             txtRoom.Text = record.RoomNum.ToString();
+                            txtBed.Text = record.AppendBed.ToString();
                             //txtRoomInfo.Text = record.RoomDetailInfo;
                         }
                         else
@@ -157,6 +160,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                     TextBox tbChild = guideritem.FindControl("txtChildrenAmount") as TextBox;
                     TextBox tbLiveDay = guideritem.FindControl("txtLiveDay") as TextBox;
                     TextBox txtRoom = guideritem.FindControl("txtRoom") as TextBox;
+                    TextBox txtBed = guideritem.FindControl("txtBed") as TextBox;
                     //TextBox txtRoomInfo = guideritem.FindControl("txtRoomInfo") as TextBox;
                     int MaxLiveDay;
                     HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
@@ -169,7 +173,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                     }
                     else if (tbAdult.Text != "" && tbChild.Text != "")
                     {
-                        blldjcr.SaveList(listWroute, int.Parse(tbAdult.Text), int.Parse(tbChild.Text), int.Parse(tbLiveDay.Text),int.Parse(txtRoom.Text));
+                        blldjcr.SaveList(listWroute, int.Parse(tbAdult.Text), int.Parse(tbChild.Text), int.Parse(tbLiveDay.Text),int.Parse(txtRoom.Text),int.Parse(txtBed.Text));
                         BindPrintLink();
                         success = 1;
                     }
@@ -283,10 +287,12 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 TextBox tbChild = rpitem.FindControl("txtChildrenAmount") as TextBox;
                 TextBox tbLiveDay = rpitem.FindControl("txtLiveDay") as TextBox;
                 TextBox txtRoom = rpitem.FindControl("txtRoom") as TextBox;
+                TextBox txtBed = rpitem.FindControl("txtBed") as TextBox;
                 tbAdult.Text = Regex.Replace(tbAdult.Text, "[^0-9]", "");
                 tbChild.Text = Regex.Replace(tbChild.Text, "[^0-9]", "");
                 tbLiveDay.Text = Regex.Replace(tbLiveDay.Text, "[^0-9]", "");
                 txtRoom.Text = Regex.Replace(txtRoom.Text, "[^0-9]", "");
+                txtBed.Text = Regex.Replace(txtBed.Text, "[^0-9]", "");
                 if (tbAdult.Text == "" || tbChild.Text == "" || tbLiveDay.Text==""||txtRoom.Text=="")
                 {
                     guideritems++;

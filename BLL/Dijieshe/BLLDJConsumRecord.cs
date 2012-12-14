@@ -24,7 +24,7 @@ namespace BLL
             set { dal = value; }
         }
 
-        public void Save(DJ_TourEnterprise Enterprise, DJ_Route route, DateTime consumtime, int AdultsAmount, int ChildrenAmount, int LiveDay, int roomNum)
+        public void Save(DJ_TourEnterprise Enterprise, DJ_Route route, DateTime consumtime, int AdultsAmount, int ChildrenAmount, int LiveDay, int roomNum, int AppendBed)
         {
             DJ_GroupConsumRecord dj_group = new DJ_GroupConsumRecord();
             dj_group.AdultsAmount = AdultsAmount;
@@ -35,15 +35,16 @@ namespace BLL
             dj_group.LiveDay = LiveDay;
             dj_group.RoomNum = roomNum;
             dj_group.No = "Lv" + new Random((int)DateTime.Now.Ticks).Next(100000, 999999);
+            dj_group.AppendBed = AppendBed;
             if (IDjgroup.GetGroupConsumRecordByRouteId(route.Id) == null)
                 IDjgroup.Save(dj_group);
         }
 
-        public void SaveList(List<DJ_Route> listroute, int AdultsAmount, int ChildrenAmount, int LiveDay, int roomNum)
+        public void SaveList(List<DJ_Route> listroute, int AdultsAmount, int ChildrenAmount, int LiveDay, int roomNum, int AppendBed)
         {
             foreach (DJ_Route route in listroute)
             {
-                Save(route.Enterprise, route, DateTime.Now, AdultsAmount, ChildrenAmount, LiveDay, roomNum);
+                Save(route.Enterprise, route, DateTime.Now, AdultsAmount, ChildrenAmount, LiveDay, roomNum,AppendBed);
             }
         }
 
