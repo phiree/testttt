@@ -373,5 +373,17 @@ namespace BLL
         }
 
 
+        public List<DJ_DijiesheInfo> SelectFromRecord(string groupname, string EntName, string BeginTime, string EndTime, int enterid)
+        {
+            List<DJ_GroupConsumRecord> ListRecord= IDjgroup.GetRecordByAllCondition(groupname, EntName, BeginTime, EndTime, enterid);
+            List<DJ_DijiesheInfo> ListDJS=new List<DJ_DijiesheInfo>();
+            foreach (var item in ListRecord.GroupBy(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo))
+	        {
+                ListDJS.Add(item.Key);
+	        }
+            return ListDJS;
+        }
+
+        
     }
 }
