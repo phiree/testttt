@@ -28,11 +28,11 @@ public partial class LocalTravelAgent_DriverDetail : System.Web.UI.Page
             var source = bllworker.GetWorkers8Multi(id, null, null, null, null, Model.DJ_GroupWorkerType.司机, null);
             if (source.Count > 0)
             {
-                lblname.Text = source[0].Name;
+                tbxName.Text = source[0].Name;
                 txtPhone.Text = source[0].Phone;
                 txtidcard.Text = source[0].IDCard;
                 txtdriverid.Text = source[0].SpecificIdCard;
-                lbldjs.Text = source[0].DJ_Dijiesheinfo.Name;
+                tbxBelong.Text = source[0].DJ_Dijiesheinfo.Name;
             }
         }
     }
@@ -43,6 +43,8 @@ public partial class LocalTravelAgent_DriverDetail : System.Web.UI.Page
         if (workers.Count >0)
         {
             var worker = workers[0];
+            worker.Name = tbxName.Text;
+            worker.CompanyBelong = tbxBelong.Text;
             worker.Phone = txtPhone.Text;
             worker.IDCard = txtidcard.Text;
             worker.SpecificIdCard = txtdriverid.Text;

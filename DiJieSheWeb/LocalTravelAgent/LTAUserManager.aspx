@@ -47,6 +47,9 @@
                     </td>
                     <td>
                         <a runat="server" id="aedit" href="">编辑</a>
+                        <asp:Button ID="btnReset" runat="server" Text="重置密码" CommandArgument='<%# Eval("Id") %>'
+                            CommandName="reset" Style="margin-left: 15px; border: none; background: none;
+                            cursor: pointer;" />
                         <asp:Button ID="btndelete" runat="server" Text="删除" CommandArgument='<%# Eval("Id") %>'
                             CommandName="delete" Style="margin-left: 15px; border: none; background: none;
                             cursor: pointer;" />

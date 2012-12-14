@@ -6,8 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Model;
 using BLL;
+using System.Web.Security;
 
-public partial class TourManagerDpt_UserEdit : System.Web.UI.Page
+public partial class TourManagerDpt_UserEdit : basepageMgrDpt
 {
     BLLDJ_User blldj_user = new BLLDJ_User();
     BLLDJMgrDpt bllDpt = new BLLDJMgrDpt();
@@ -62,6 +63,7 @@ public partial class TourManagerDpt_UserEdit : System.Web.UI.Page
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('对不起,该用户名已被注册!')", true);
                 return;
             }
+            mgrUser.Password = FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
         }
         //整理用户数据
         DJ_GovManageDepartment mgrDpt = bllDpt.GetMgrDpt(Guid.Parse(Master.dptid));
@@ -76,8 +78,26 @@ public partial class TourManagerDpt_UserEdit : System.Web.UI.Page
                 sat = sat | permisson;
             }
         }
+        int result, result2;
+        int.TryParse(mgrUser.PermissionType.ToString(), out result);
+        int.TryParse(sat.ToString(), out result2);
+        if (result == 7 && result2 != 7)
+        {
+            IList<DJ_User_Gov> Listuser = blldj_user.GetGov_UserBygovId(CurrentDpt.Id, 7);
+            if (Listuser != null && Listuser.Count <= 1)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('目前仅有这一个超级管理员，无法更改权限')", true);
+                return;
+            }
+        }
         mgrUser.PermissionType = sat;
-        blldj_user.SaveOrUpdate(mgrUser);
-        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "s", "alert('保存成功');window.location='/TourManagerDpt/UserManager.aspx'", true);
+        string message;
+        blldj_user.SaveOrUpdate(mgrUser,out message);
+        if (message != "")
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "s", "alert('" + message + "')", true);
+        }
+        else
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "s", "alert('保存成功');window.location='/TourManagerDpt/UserManager.aspx'", true);
     }
 }

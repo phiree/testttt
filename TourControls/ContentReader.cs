@@ -99,6 +99,35 @@ namespace TourControls
                 ViewState["BaseData"] = value;
             }
         }
+        //该控件是否需要边框,默认没有
+        [
+           Bindable(true), Category("Appearance"), DefaultValue(false), Description("该控件是否需要边框,默认没有"), Localizable(true)
+        ]
+        public virtual bool HasBorder
+        {
+            get
+            {
+                
+                bool hasborder;
+                if(ViewState["HasBorder"]==null)
+                    hasborder=false;
+                else
+                    hasborder= (bool)ViewState["HasBorder"];
+                return hasborder;
+            }
+            set
+            {
+                ViewState["HasBorder"] = value;
+            }
+        }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+            string resourceName = "TourControls.contentReader.js";
+            ClientScriptManager cs = this.Page.ClientScript;
+            cs.RegisterClientScriptResource(typeof(TourControls.ContentReader), resourceName);
+        }
 
         protected override void Render(HtmlTextWriter output)
         {
@@ -112,8 +141,8 @@ namespace TourControls
             if (CanEdit)
             {
                 output.AddAttribute("onmouseover", "EditHTMLInfo(this)");
-                output.AddAttribute("onmouseout", "CancelHTMLInfo(this)");
-                output.AddAttribute("ondblclick", "EditHTMLInfoBtn(this,'" + scname + "','" + scFuncType + "')");
+                output.AddAttribute("onmouseout", "CancelHTMLInfo(this,'"+HasBorder+"')");
+                output.AddAttribute("ondblclick", "EditHTMLInfoBtn(this,'"+type+"','" + scname + "','" + scFuncType + "')");
                 output.AddAttribute("class", CssClass);
                 output.AddAttribute("id", ID);
                 output.RenderBeginTag(HtmlTextWriterTag.Div);

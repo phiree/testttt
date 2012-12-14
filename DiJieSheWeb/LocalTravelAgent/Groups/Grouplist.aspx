@@ -85,15 +85,17 @@
                     </td>
                     <td>
                         <asp:Panel runat="server" ID="pnlOperation">
-                            <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改</a> <a href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>
-                                从Excel文件更新</a>
-                            <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="delete" CssClass="btn"
-                                Text="删除" OnClientClick='javascript:return confirm("您确认要删除这个团队么?");' />
+                            <a class="btn" href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改</a> <a
+                                class="btn" href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>
+                                更新</a>
+                            <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="delete"
+                                CssClass="btn" Text="删除" OnClientClick='javascript:return confirm("您确认要删除这个团队么?");' />
                         </asp:Panel>
-                            <asp:Button runat="server" ID="btnCopy" CommandArgument='<%#Eval("Id") %>' CommandName="Copy" Text="复制" CssClass="btn" />
+                        <asp:Button runat="server" Visible="false" ID="btnCopy" CommandArgument='<%#Eval("Id") %>' CommandName="Copy"
+                            Text="复制" CssClass="btn" />
                     </td>
                     <td>
-                        <asp:LinkButton ID="lblMember_bz" Text="" runat="server" /><br />
+                        <asp:LinkButton ID="lblMember_bz" Text="" runat="server" />
                         <asp:LinkButton ID="lblRoute_bz" Text="" runat="server" />
                     </td>
                 </tr>

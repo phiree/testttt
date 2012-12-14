@@ -169,7 +169,7 @@ namespace BLL
                 DJ_TourEnterprise ent = bllEnt.GetEntByName(entName);
                 if (ent == null)
                 {
-                    errMsg = "企业名称有误:" + entName + Environment.NewLine;
+                    errMsg = "企业名称有误:" + entName;
                     continue;
                 }
                 DJ_Route newRoute = new DJ_Route();

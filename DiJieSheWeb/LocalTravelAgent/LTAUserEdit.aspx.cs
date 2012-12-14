@@ -6,8 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
 using Model;
+using System.Web.Security;
 
-public partial class LocalTravelAgent_LTAUserEdit : System.Web.UI.Page
+public partial class LocalTravelAgent_LTAUserEdit : basepageDJS
 {
     BLLDJ_User blldj_user = new BLLDJ_User();
     protected void Page_Load(object sender, EventArgs e)
@@ -58,9 +59,14 @@ public partial class LocalTravelAgent_LTAUserEdit : System.Web.UI.Page
         {
             mgrUser = blldj_user.GetByMemberId(Guid.Parse(Request.QueryString["userid"]));
         }
+        else
+        {
+            mgrUser.Password=FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
+        }
         mgrUser.Enterprise = Master.CurrentDJS;
         mgrUser.Name = txtName.Text;
         Model.PermissionType sat = 0;
+        int result, result2;
         foreach (ListItem item in cbList.Items)
         {
             if (item.Selected)
@@ -69,8 +75,26 @@ public partial class LocalTravelAgent_LTAUserEdit : System.Web.UI.Page
                 sat = sat | permisson;
             }
         }
+        int.TryParse(mgrUser.PermissionType.ToString(), out result);
+        int.TryParse(sat.ToString(), out result2);
+        if (result == 15&&result2!=15)
+        {
+            IList<DJ_User_TourEnterprise> Listuser = blldj_user.GetUser_TEbyId(CurrentDJS.Id, 15);
+            if (Listuser != null && Listuser.Count <= 1)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('目前仅有这一个超级管理员，无法更改权限')", true);
+                return;
+            }
+        }
         mgrUser.PermissionType = sat;
-        blldj_user.SaveOrUpdate(mgrUser);
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功');window.location='/LocalTravelAgent/LTAUserManager.aspx'", true);
+        
+        string message;
+        blldj_user.SaveOrUpdate(mgrUser,out message);
+        if (message != "")
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('"+message+"')", true);
+        }
+        else
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功');window.location='/LocalTravelAgent/LTAUserManager.aspx'", true);
     }
 }

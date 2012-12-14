@@ -35,8 +35,6 @@
     font-size:16px;
     color:#8BB06D;
     font-weight:bold;
-    width:15px;
-    display:inline-block;
 }
 .spansceincname
 {
@@ -68,6 +66,8 @@
     top:-2px;
     text-decoration:none;
     color:#8BB06D;
+    float:right;
+    display:block;
 }
 /*新版本*/
 .selbg

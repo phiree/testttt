@@ -5,8 +5,8 @@
     TagPrefix="uc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
-    <link href="/Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
+    <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
+    <link href="/Content/themes/base/minified/jquery-ui.min.css"
         rel="stylesheet" type="text/css" />
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
@@ -86,8 +86,7 @@
         团队名称:<%=CurrentGroup.Name %>行程信息录入
         </b>
     </h3>
-    <div style="background-color: Green">
-        <asp:Label runat="server" ID="lblMsg_SaveRoute"></asp:Label></div>
+  
     <div class="tabintro">
         根据您方便，选择其中一种方式录入游客信息</div>
     <div id="tabs">
@@ -143,7 +142,7 @@
                             <asp:Button runat="server" ID="btnModifyRoute" CommandArgument='<%#Eval("DayNo") %>'
                                 CommandName="Edit" Text="修改" CssClass="btn" />
                             <asp:Button runat="server" ID="Button1" CommandArgument='<%#Eval("DayNo") %>' CommandName="Delete" CssClass="btn"
-                                Text="删除" OnClientClick="javascript:return confirm('确定要删除这一天的行程么?');" />
+                                Text="清空" OnClientClick="javascript:return confirm('确定要清空这一天的行程么?');" />
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -151,15 +150,16 @@
                     </tbody></table>
                 </FooterTemplate>
             </asp:Repeater>
-            <asp:Button runat="server" ID="btnAddRoute" OnClick="btnAddRoute_Click" Text="增加行程" CssClass="btn" style="margin-top:10px" />
+            <asp:Button runat="server" ID="btnAddRoute" OnClick="btnAddRoute_Click" Visible="false" Text="增加行程" CssClass="btn" style="margin-top:10px" />
             <asp:Panel runat="server" ID="pnlEditRoute" Visible="false">
                 <div class="addoredit" style="margin-top:15px">
                     <div style="float:left;width:150px;font-weight:bold;">
-                        行程日期（第几天）
+                       第 <asp:Label ForeColor="Brown" runat="server" ID="lblDayNo"></asp:Label> 天行程
                     </div>
                     <div  style="float:left;width:300px;">
-                        <asp:RadioButtonList runat="server" ID="rblDayNo" RepeatDirection="Horizontal">
+                        <asp:RadioButtonList runat="server" Visible="false" ID="rblDayNo" RepeatDirection="Horizontal">
                         </asp:RadioButtonList>
+                        
                     </div>
                     <div style="clear:both">
                         <div style="font-weight:bold;">

@@ -5,7 +5,7 @@
 <head runat="server">
     <title></title>
     <link href="/theme/default/css/Print.css" rel="stylesheet" type="text/css" />
-    <script src="../Scripts/jquery-1.4.1.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             printInfo();
@@ -75,7 +75,8 @@
                     </td>
                     <td colspan="3" style="height: 100px; text-align: left; vertical-align: top;">
                         地接社名称:<%# Eval("Route.DJ_TourGroup.DJ_DijiesheInfo.Name")%>
-                        &nbsp;&nbsp;团队名称:<%# Eval("Route.DJ_TourGroup.Name")%>
+                        &nbsp;&nbsp;团队名称:<%# Eval("Route.DJ_TourGroup.Name")%>&nbsp;&nbsp;<asp:Literal ID="laAppendBed"
+                            runat="server"></asp:Literal>
                     </td>
                 </tr>
             </table>

@@ -20,7 +20,8 @@
         姓名:<asp:TextBox ID="txtName_add" runat="server" style="margin-right:100px;margin-left:50px;width:150px;" />
         手机:<asp:TextBox ID="txtPhone_add" runat="server" style="margin-left:50px;width:150px;"  /><br />
         身份证号:<asp:TextBox ID="txtId_add" runat="server" style="margin-right:100px;margin-left:27px;width:150px;"  />
-        驾照证号:<asp:TextBox ID="txtDriverid_add" runat="server" style="margin-left:27px;width:150px;" /><br />
+        车牌号:<asp:TextBox ID="txtDriverid_add" runat="server" style="margin-left:38px;width:150px;" /><br />
+         所属车队:<asp:TextBox ID="tbxBelong" runat="server" style="margin-left:38px;width:150px;" /><br />
         <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn" OnClick="btnQuickadd_Click" />
     </div>
     <div class="detaillist">
@@ -32,7 +33,7 @@
             <div class="searchdiv">
                 姓名:<asp:TextBox ID="txtName" runat="server" />
                 身份证号:<asp:TextBox ID="txtIdcardid" runat="server" />
-                驾驶证号:<asp:TextBox ID="txtDrivercardid" runat="server" />
+                车牌号:<asp:TextBox ID="txtDrivercardid" runat="server" />
                 <asp:Button ID="btnSearch" Text="查询" runat="server" CssClass="btn" OnClick="btnSearch_Click" />
             </div>
         </fieldset>
@@ -53,7 +54,10 @@
                                 <asp:LinkButton ID="lblidcard" Text="身份证号" runat="server" CommandName="lblidcard" />
                             </th>
                             <th>
-                                <asp:LinkButton ID="lbldriver" Text="驾照证号" runat="server" CommandName="lbldriver" />
+                                <asp:LinkButton ID="lbldriver" Text="车牌号" runat="server" CommandName="lbldriver" />
+                            </th>
+                             <th>
+                                <asp:LinkButton ID="LinkButton1" Text="所属车队" runat="server" CommandName="lblCompanyBelong" />
                             </th>
                         </tr>
                     </thead>
@@ -73,6 +77,9 @@
                     </td>
                     <td>
                         <%#Eval("SpecificIdCard")%>
+                    </td>
+                     <td>
+                        <%#Eval("CompanyBelong")%>
                     </td>
                 </tr>
             </ItemTemplate>

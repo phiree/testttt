@@ -96,7 +96,7 @@ namespace BLL
             return Idjtourgroup.GetGuiderWorkerByTE(TE).Where(x => x.DJ_Workers.WorkerType == Model.DJ_GroupWorkerType.导游).ToList<Model.DJ_Group_Worker>();
         }
         /// <summary>
-        /// 
+        /// 删除demo测试数据
         /// </summary>
         /// <param name="nameLike"></param>
         /// <returns></returns>
@@ -104,12 +104,6 @@ namespace BLL
         public void DeleteDemoGroups(string nameLike)
         {
           var demoGroups= Idjtourgroup.GetList(0, nameLike, true, string.Empty);
-          //DJ_TourGroup[] arrGroups = new DJ_TourGroup[] { };
-          //demoGroups.CopyTo(arrGroups, 0);
-          //for (int i = 0; i < arrGroups.Length;i++ )
-          //{
-          //    Delete(demoGroups[i]);
-          //}
           foreach (var g in demoGroups)
           {
               bllGW.DeleteFromGroup(g);
@@ -125,6 +119,72 @@ namespace BLL
             group.LastUpdateTime = DateTime.Now;
             group.EndDate = group.BeginDate.AddDays(group.DaysAmount - 1);
             Idjtourgroup.Save(group);
+        }
+        BLLDJGroup_Worker bllGroupWorker = new BLLDJGroup_Worker();
+        BLLWorker bllWorker = new BLLWorker();
+        public bool UpdateForm(DJ_TourGroup CurrentGroup,string groupName,string beginDate,
+            string daysAmount, DJ_DijiesheInfo CurrentDJS, DJ_User_TourEnterprise CurrentMember,IList<string> workerIds, out string errMsg)
+        {
+            errMsg = string.Empty;
+            CurrentGroup.Name = groupName;
+            CurrentGroup.BeginDate = Convert.ToDateTime(beginDate);
+            if (CurrentGroup.BeginDate.DayOfYear < DateTime.Now.DayOfYear)
+            {
+                errMsg = "开始时间不能小于当天时间";
+                return false;
+            }
+            int iDayAmount=Convert.ToInt32(daysAmount);
+            //if (CurrentGroup.DaysAmount>iDayAmount)
+            //{
+            //    errMsg = string.Format("操作无法完成:当前输入的天数({1})小于已录入行程的天数({0}).为保证数据安全,输入天数应该大于等于已录入行程天数.请修改数字,或者在行程编辑页面删除部分行程.", CurrentGroup.DaysAmount, iDayAmount);
+            //    return false;
+            //}
+            //for (int i = 0; i < iDayAmount; i++)
+            //{
+                
+            //    DJ_Route r = new DJ_Route();
+            //    r.DayNo = i + 1;
+            //    r.DJ_TourGroup = CurrentGroup;
+            //    CurrentGroup.Routes.Add(r);
+            //}
+
+            CurrentGroup.DaysAmount = iDayAmount;
+            CurrentGroup.EndDate = CurrentGroup.BeginDate.AddDays(CurrentGroup.DaysAmount - 1);
+            CurrentGroup.DJ_DijiesheInfo = CurrentDJS;
+            CurrentGroup.DijiesheEditor = (DJ_User_TourEnterprise)CurrentMember;
+            ///司机和导游
+            bool hasSelectGuide = false;
+            bool hasSelectDriver = false;
+            bllGroupWorker.DeleteFromGroup(CurrentGroup);
+            IList<DJ_Workers> workers = new List<DJ_Workers>();
+            foreach(string workerId in workerIds)
+            {
+               
+                    Model.DJ_Group_Worker gw = new DJ_Group_Worker();
+                    hasSelectGuide = true;
+                    DJ_Workers worker = bllWorker.GetOne(new Guid(workerId));
+                    if (worker.WorkerType == DJ_GroupWorkerType.司机) { hasSelectDriver = true; }
+                    if (worker.WorkerType == DJ_GroupWorkerType.导游) { hasSelectGuide = true; }
+                    gw.DJ_Workers = worker;
+                    gw.DJ_TourGroup = CurrentGroup;
+                    bllGroupWorker.Save(gw);
+            }
+           
+            if (!hasSelectGuide)
+            {
+                errMsg = "必须指定导游";
+
+                return false;
+            }
+            if (!hasSelectDriver)
+            {
+                errMsg = "必须指定司机";
+
+                return false;
+            }
+            //路线信息
+
+            return true;
         }
         public DJ_TourGroup GetOne(Guid id)
         {

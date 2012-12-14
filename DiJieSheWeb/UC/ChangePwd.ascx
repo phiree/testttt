@@ -17,7 +17,7 @@
                             <td>
                                 <asp:TextBox ID="CurrentPassword" runat="server" TextMode="Password"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="CurrentPasswordRequired" runat="server" 
-                                    ControlToValidate="CurrentPassword" ErrorMessage="必须填写“密码”。" 
+                                    ControlToValidate="CurrentPassword" ErrorMessage="必须填写“密码”。"  ForeColor="Red"
                                     ToolTip="必须填写“密码”。" ValidationGroup="ctl00$ChangePassword1">*</asp:RequiredFieldValidator>
                             </td>
                         </tr>
@@ -28,7 +28,7 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="NewPassword" runat="server" TextMode="Password"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="NewPasswordRequired" runat="server" 
+                                <asp:RequiredFieldValidator ID="NewPasswordRequired" runat="server"  ForeColor="Red"
                                     ControlToValidate="NewPassword" ErrorMessage="必须填写“新密码”。" ToolTip="必须填写“新密码”。" 
                                     ValidationGroup="ctl00$ChangePassword1">*</asp:RequiredFieldValidator>
                             </td>
@@ -40,14 +40,14 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="ConfirmNewPassword" runat="server" TextMode="Password"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="ConfirmNewPasswordRequired" runat="server" 
+                                <asp:RequiredFieldValidator ID="ConfirmNewPasswordRequired" runat="server"  ForeColor="Red"
                                     ControlToValidate="ConfirmNewPassword" ErrorMessage="必须填写“确认新密码”。" 
                                     ToolTip="必须填写“确认新密码”。" ValidationGroup="ctl00$ChangePassword1">*</asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
                             <td align="center" colspan="2">
-                                <asp:CompareValidator ID="NewPasswordCompare" runat="server" 
+                                <asp:CompareValidator ID="NewPasswordCompare" runat="server"  ForeColor="Red"
                                     ControlToCompare="NewPassword" ControlToValidate="ConfirmNewPassword" 
                                     Display="Dynamic" ErrorMessage="“确认新密码”与“新密码”项必须匹配。" 
                                     ValidationGroup="ctl00$ChangePassword1"></asp:CompareValidator>

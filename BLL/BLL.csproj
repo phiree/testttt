@@ -86,7 +86,6 @@
     <Compile Include="Default\BLLBackManager.cs" />
     <Compile Include="Default\BLLBuyTicket.cs" />
     <Compile Include="Default\BLLCommonUser.cs" />
-    <Compile Include="Default\BLLContractScenicPrice.cs" />
     <Compile Include="Default\BLLDiscountCode.cs" />
     <Compile Include="Default\BLLFactory.cs" />
     <Compile Include="Default\BLLLog.cs" />
@@ -119,6 +118,7 @@
     <Compile Include="Dijieshe\BLLDJRoute.cs" />
     <Compile Include="Dijieshe\BLLDJTourGroup.cs" />
     <Compile Include="Dijieshe\BLLDJ_GovManageDepartment.cs" />
+    <Compile Include="Dijieshe\BLLDJ_Recommand.cs" />
     <Compile Include="Dijieshe\BLLDJ_User.cs" />
     <Compile Include="Dijieshe\BLLTourGroupMember.cs" />
     <Compile Include="Dijieshe\BLLWorker.cs" />

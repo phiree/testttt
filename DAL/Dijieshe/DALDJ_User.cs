@@ -6,7 +6,7 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALDJ_User:DalBase,IDAL.IDJ_User
+    public class DALDJ_User:DalBase<Model.DJ_User_TourEnterprise>
     {
         #region User_TourEnterprise
         /// <summary>
@@ -20,12 +20,16 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_User_TourEnterprise>().Value;
         }
+        public Model.DJ_User_TourEnterprise GetUser_TEbyName(string name)
+        {
+           return GetOneByQuery("select u from DJ_User_TourEnterprise u where u.Name='" + name + "'");
+        }
 
-        public Model.DJ_User_TourEnterprise GetUser_TEbyId(int id,int permis)
+        public IList<Model.DJ_User_TourEnterprise> GetUser_TEbyId(int id,int permis)
         {
             string sql = "select u from DJ_User_TourEnterprise u where u.Enterprise.Id='" + id + "' and PermissionType=" + permis + "";
             IQuery query = session.CreateQuery(sql);
-            return query.FutureValue<Model.DJ_User_TourEnterprise>().Value;
+            return query.Future<Model.DJ_User_TourEnterprise>().ToList < Model.DJ_User_TourEnterprise>();
         }
         #endregion
 
@@ -36,6 +40,18 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_User_TourEnterprise>().Value;
         }
+
+        public IList<Model.DJ_User_Gov> GetGov_UserBygovIdAndPermis(Guid govid, int permis)
+        {
+            string sql = "select u from DJ_User_Gov u where u.GovDpt.Id='" + govid + "'";
+            if (permis == 0)
+            {
+                sql += " u.PermissionType=" + permis + "";
+            }
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.DJ_User_Gov>().ToList<Model.DJ_User_Gov>();
+        }
+
 
 
         public IList<Model.DJ_User_Gov> GetAllGov_User()
@@ -70,6 +86,7 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.DJ_User_Gov>().Value;
         }
+
 
 
         public void SaveOrUpdate(Model.TourMembership m)

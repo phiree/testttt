@@ -34,5 +34,7 @@ namespace Model
         public virtual int RoomNum { get; set; }
         ////如果是住宿的，房间详情
         //public virtual string RoomDetailInfo { get; set; }
+        //如果是住宿的，需要的加床数，可以不填
+        public virtual int AppendBed { get; set; }
     }
 }

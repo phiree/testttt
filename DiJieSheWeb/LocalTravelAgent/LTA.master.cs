@@ -20,7 +20,7 @@ public partial class LocalTravelAgent_LTA : System.Web.UI.MasterPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Master.Pageurl = "/LTALogin.aspx";
     }
 
     protected override void OnInit(EventArgs e)

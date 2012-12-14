@@ -17,8 +17,8 @@
             <li runat="server" id="li_6"><a href="/localtravelagent/LTAUserManager.aspx">用户管理</a></li>
                             <li runat="server" id="li_1"><a href="/localtravelagent/djsedit.aspx">企业信息</a> </li>
 
-                  <li runat="server" id="li_7"><a href="/localtravelagent/GuideList.aspx">导游列表</a></li>
-                        <li runat="server" id="li_8"><a href="/localtravelagent/DriverList.aspx">司机列表</a></li>
+                  <li runat="server" id="li_7"><a href="/localtravelagent/GuideList.aspx">导游管理</a></li>
+                        <li runat="server" id="li_8"><a href="/localtravelagent/DriverList.aspx">司机管理</a></li>
         </ul>
     </div>
 </asp:Content>

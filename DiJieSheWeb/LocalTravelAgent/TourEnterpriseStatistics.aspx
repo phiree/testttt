@@ -3,12 +3,12 @@
 
 <%@ MasterType VirtualPath="~/LocalTravelAgent/LTA.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="/Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
+    <link href="/Content/themes/base/minified/jquery-ui.min.css"
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/Sequence.js" type="text/javascript"></script>
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
+    <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui-1.9.2.min.js"></script>
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
@@ -17,6 +17,9 @@
         $(function () {
             $(".tablesorter").tablesorter();
             $(".IndexTable").orderIndex('2');
+            $("[id$='txtDate']").focus(function () {
+                WdatePicker({ dateFmt: 'yyyy年MM月' })
+            });
         });
         
     </script>
@@ -28,12 +31,12 @@
     <div class="searchdiv">
         <h5>
             按条件查询</h5>
-        日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})"></asp:TextBox>&nbsp;&nbsp;旅游企业名称&nbsp;&nbsp;<asp:TextBox
+        日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>&nbsp;&nbsp;旅游企业名称&nbsp;&nbsp;<asp:TextBox
             ID="txtEntName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;企业类型;&nbsp;&nbsp;<asp:DropDownList
                 ID="ddlType" runat="server">
                 <asp:ListItem Value="0">全部</asp:ListItem>
                 <asp:ListItem Value="1">景区</asp:ListItem>
-                <asp:ListItem Value="3">宾馆</asp:ListItem>
+                <asp:ListItem Value="4">宾馆</asp:ListItem>
             </asp:DropDownList>
         &nbsp;&nbsp;
         <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn" OnClick="BtnSearch_Click" />

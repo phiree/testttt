@@ -14,7 +14,7 @@
                 姓名:
             </td>
             <td>
-                <asp:Label ID="lblname" runat="server" />
+                 <asp:TextBox ID="tbxName" runat="server" />
             </td>
         </tr>
         <tr>
@@ -43,10 +43,10 @@
         </tr>
         <tr>
             <td>
-                归属部门:
+                所属车队:
             </td>
             <td>
-                <asp:Label ID="lbldjs" runat="server" />
+                <asp:TextBox ID="tbxBelong" runat="server" />
             </td>
         </tr>
         <tr>

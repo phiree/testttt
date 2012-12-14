@@ -73,9 +73,9 @@ public partial class Scenic_Default : basepage
     {
 
         maintitlett.InnerHtml = scenic.Name;
-        scpoint = scenic.Position;
+        hfposition.Value = scenic.Position;
         scbindname = scenic.Name;
-        scmapname = scenic.Name;
+        hfscname.Value = scenic.Name;
         scid = scenic.Id;
         Area parentarea = new BLLArea().GetAreaByCode(scenic.Area.Code.Substring(0,4)+"00");
         Area childarea = scenic.Area;

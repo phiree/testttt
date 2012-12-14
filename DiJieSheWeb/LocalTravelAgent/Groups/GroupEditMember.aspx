@@ -3,8 +3,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
-    <link href="/Scripts/jqueryplugin/jqueryui/css/smoothness/jquery-ui-1.9.1.custom.min.css"
+    <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
+    <link href="/Content/themes/base/minified/jquery-ui.min.css"
         rel="stylesheet" type="text/css" />
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
@@ -122,8 +122,8 @@
                                 <asp:RadioButtonList runat="server" ID="rblMemberType" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="1">成人游客</asp:ListItem>
                                     <asp:ListItem Value="2">儿童</asp:ListItem>
-                                    <asp:ListItem Value="3">外宾</asp:ListItem>
-                                    <asp:ListItem Value="4">港澳台</asp:ListItem>
+                                    <%--<asp:ListItem  Value="3">外宾</asp:ListItem>
+                                    <asp:ListItem Value="4">港澳台</asp:ListItem>--%>
                                 </asp:RadioButtonList>
                             </td>
                         </tr>
@@ -140,18 +140,10 @@
                         </tr>
                         <tr>
                             <td>
-                                身份证号码
+                               有效证件号:
                             </td>
                             <td>
                                 <asp:TextBox runat="server" ID="tbxIdCardNo"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                其他证件号码
-                            </td>
-                            <td>
-                                <asp:TextBox runat="server" ID="tbxSpecialCardNo"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -184,16 +176,16 @@
                         1)单个游客的资料用<color style=" color:#ED6942; font-weight:bold;">反斜杠\</color>分隔,
                     </span>
                     <span style="margin-bottom:10px;display:block;margin-left:12px">
-                        按序依次为:<color style=" color:#ED6942; font-weight:bold;">成员类型</color>(成人游客,儿童，外宾，港澳台),<color style=" color:#ED6942; font-weight:bold;">姓名,证件号码</color>(身份证或者其他有效证件),<color style=" color:#ED6942; font-weight:bold;">联系电话</color>
+                        按序依次为:<color style=" color:#ED6942; font-weight:bold;">成员类型</color>(成人,儿童)\<color style=" color:#ED6942; font-weight:bold;">姓名\证件号码</color>(身份证或者其他有效证件)\<color style=" color:#ED6942; font-weight:bold;">联系电话</color>
                     </span>
                     <span style="margin-bottom:10px; display:block;">
                         2)每一行只录一名游客的信息，如果没有对应信息可以不录
                     </span>
                     <span style="margin-bottom:10px;display:block;margin-left:12px">
-                        范例：成人游客\张晓华\51332919880321639X\13287839485（游客类型,姓名,证件号码,联系电话）
+                        范例：成人\张晓华\51332919880321639X\13287839485（游客类型,姓名,身份证号码,联系电话）
                     </span>
                     <span style="margin-bottom:10px;display:block;margin-left:48px">
-                        外宾\Jim Green\CH1034123\13287839485（游客类型,姓名,证件号码,联系电话）
+                        成\Jim Green\CH1034123\13287839485（游客类型,姓名,护照号码,联系电话）
                     </span>
                     <span style="margin-bottom:10px;display:block;margin-left:48px">
                         儿童\李晓彤（游客类型,姓名）

@@ -32,13 +32,16 @@ public partial class TourEnterprise_PrintCer : System.Web.UI.Page
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
-            //Literal laGuiderName = e.Item.FindControl("laGuiderName") as Literal;
-            //DJ_GroupConsumRecord gcr = e.Item.DataItem as DJ_GroupConsumRecord;
-            //foreach (DJ_Group_Worker work in gcr.Route.DJ_TourGroup.Workers.Where(x=>x.WorkerType==DJ_GroupWorkerType.导游))
-            //{
-            //    laGuiderName.Text += work.Name + " ";
-            //}
-            
+            DJ_GroupConsumRecord record = e.Item.DataItem as DJ_GroupConsumRecord;
+            Literal laAppendBed = e.Item.FindControl("laAppendBed") as Literal;
+            if (record.AppendBed > 0)
+            {
+                laAppendBed.Text = "加床数" + record.AppendBed;
+            }
+            else
+            {
+                laAppendBed.Visible = false;
+            }
         }
     }
     protected void BtnExit_Click(object sender, EventArgs e)

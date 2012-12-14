@@ -31,6 +31,32 @@ namespace BLL
         {
             dalworkers.Save(worker);
         }
+        public bool Save(string name, string phone, string idcardno,
+            string specialidcard, string belong,
+            DJ_GroupWorkerType workertype,DJ_DijiesheInfo currentDjs, out string errMsg)
+        {
+            bool result = true ;
+            errMsg = string.Empty;
+            var workers = GetWorkers8Multi(string.Empty, name, phone, idcardno, string.Empty, workertype, currentDjs.Id.ToString());
+            if (workers.Count > 0)
+            {
+                result = false;
+                errMsg = "此工作人员已录入，不能重复添加";
+            }
+            else
+            {
+                DJ_Workers worker = new DJ_Workers();
+                worker.CompanyBelong = belong;
+                worker.DJ_Dijiesheinfo = currentDjs;
+                worker.IDCard = idcardno;
+                worker.Name = name;
+                worker.Phone = phone;
+                worker.SpecificIdCard = specialidcard;
+               worker.WorkerType= workertype;
+               Save(worker);
+            }
+            return result;
+        }
         public DJ_Workers GetOne(Guid id)
         {
             return dalworkers.GetOne(id);

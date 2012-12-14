@@ -7,7 +7,7 @@
 <head runat="server">
     <title></title>
     <meta http-equiv="x-ua-compatible" content="ie=8" />
-    <script src="/Scripts/jquery.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
     <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
     <link href="/theme/default/css/MaterPage.css" rel="stylesheet" type="text/css" />
@@ -35,7 +35,7 @@
                         <div class="useraction">
                             <a runat="server" id="changedetails" href="">修改资料</a>
                             <a runat="server" id="changepwd" href="/Login.aspx">修改密码</a>
-                            <asp:LoginStatus  runat="server" LogoutPageUrl="/Login.aspx" />
+                            <asp:LoginStatus  runat="server" LogoutPageUrl="/Login.aspx" ID="LoginStatus1" LogoutAction="Redirect"  />
                             <a href="">帮助</a>
                         </div>
                     </div>

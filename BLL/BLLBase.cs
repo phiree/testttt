@@ -24,5 +24,10 @@ namespace BLL
        {
            DalBase.Save(t);
        }
+
+       public void SaveOrUpdate(T t)
+       {
+           DalBase.SaveOrUpdate(t);
+       }
     }
 }

@@ -2,7 +2,7 @@
     CodeFile="Default.aspx.cs" Inherits="About_Default" %>
 <%@ Register TagPrefix="self" Namespace="TourControls" Assembly="TourControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
 
         var boderwidth;
         function EditHTMLInfo(obj) {
@@ -31,7 +31,7 @@
             var h = (winHeight - 600) / 2;
             window.open(encodeURI('/Scenic/EditHTMLInfo.aspx?scname=' + scname + '&scfunctype=' + scfunctype + '&type=关于我们&flag=' + flag + ''), 'newwindow', 'height=600,width=740,top=' + h + ',left=' + w + ',toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no');
         }
-    </script>
+    </script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cc" runat="Server">
     <div id="wenzi">
