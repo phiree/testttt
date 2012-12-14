@@ -26,7 +26,7 @@
                             管理员
                         </td>
                         <td>
-                            认证状态
+                            认证状态(省，市，县）
                         </td>
                     </tr>
             </HeaderTemplate>
@@ -48,8 +48,7 @@
                             CommandName="AddAdmin" CssClass="btn" />
                     </td>
                     <td>
-                        <asp:Button runat="server" ID="btnSetVerify" CommandArgument='<%#Eval("Id") %>' CssClass="btn"
-                            CommandName="SetVerify" />
+                        <asp:Label runat="server" ID="lblVerify"  />
                     </td>
                 </tr>
             </ItemTemplate>
