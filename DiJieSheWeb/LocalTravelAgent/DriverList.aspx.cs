@@ -14,6 +14,7 @@ public partial class LocalTravelAgent_DriverList : basepageDJS
     {
         if (!IsPostBack)
         {
+            tbxBelong.Text = CurrentDJS.Name;
             BindList();
         }
     }
@@ -32,6 +33,7 @@ public partial class LocalTravelAgent_DriverList : basepageDJS
         txtPhone_add.Text = string.Empty;
         txtId_add.Text = string.Empty;
         txtDriverid_add.Text = string.Empty;
+        tbxBelong.Text = string.Empty;
     }
 
     //检查完整性
@@ -67,7 +69,7 @@ public partial class LocalTravelAgent_DriverList : basepageDJS
         if (!CheckComplete()) return;
         string message = string.Empty;
         bllgroupworker.SaveData(txtName_add.Text, txtPhone_add.Text, txtId_add.Text,
-            txtDriverid_add.Text,CurrentDJS.Name, Model.DJ_GroupWorkerType.司机, CurrentDJS,out message);
+            txtDriverid_add.Text,tbxBelong.Text, Model.DJ_GroupWorkerType.司机, CurrentDJS,out message);
         if (!string.IsNullOrEmpty(message))
         {
             Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('" + message + "')", true);
