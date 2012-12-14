@@ -85,12 +85,14 @@ public partial class TourManagerDpt_UserManager : basepageMgrDpt
         DJ_User_Gov user = blldj_user.GetGov_UserById(userid);
         if (e.CommandName == "delete")
         {
+            int result;
+            int.TryParse(user.PermissionType.ToString(), out result);
             if ((Guid)CurrentUser.ProviderUserKey == userid)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('不得删除本人');", true);
                 return;
             }
-            else if (int.Parse(user.PermissionType.ToString()) == 7)
+            else if (result == 7)
             {
                 IList<DJ_User_Gov> Listuser = blldj_user.GetGov_UserBygovId(CurrentDpt.Id, 7);
                 if (Listuser != null && Listuser.Count <= 1)

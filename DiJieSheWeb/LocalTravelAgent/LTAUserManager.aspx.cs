@@ -37,12 +37,14 @@ public partial class LocalTravelAgent_LTAUserManager : basepageDJS
         DJ_User_TourEnterprise user = bllUser.GetByMemberId(userid);
         if (e.CommandName == "delete")
         {
+            int result;
+            int.TryParse(user.PermissionType.ToString(), out result);
             if ((Guid)CurrentUser.ProviderUserKey == user.Id)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('不得删除本人')", true);
                 return;
             }
-            else if(int.Parse(user.PermissionType.ToString())==15)
+            else if(result==15)
             {
                 IList<DJ_User_TourEnterprise> Listuser = bllUser.GetUser_TEbyId(CurrentDJS.Id, 15);
                 if (Listuser != null && Listuser.Count <= 1)

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Model;
 using BLL;
+using System.Web.Security;
 
 public partial class TourManagerDpt_UserEdit : basepageMgrDpt
 {
@@ -62,6 +63,7 @@ public partial class TourManagerDpt_UserEdit : basepageMgrDpt
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('对不起,该用户名已被注册!')", true);
                 return;
             }
+            mgrUser.Password = FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
         }
         //整理用户数据
         DJ_GovManageDepartment mgrDpt = bllDpt.GetMgrDpt(Guid.Parse(Master.dptid));
@@ -76,7 +78,10 @@ public partial class TourManagerDpt_UserEdit : basepageMgrDpt
                 sat = sat | permisson;
             }
         }
-        if (int.Parse(mgrUser.PermissionType.ToString()) == 7 && int.Parse(sat.ToString()) != 7)
+        int result, result2;
+        int.TryParse(mgrUser.PermissionType.ToString(), out result);
+        int.TryParse(sat.ToString(), out result2);
+        if (result == 7 && result2 != 7)
         {
             IList<DJ_User_Gov> Listuser = blldj_user.GetGov_UserBygovId(CurrentDpt.Id, 7);
             if (Listuser != null && Listuser.Count <= 1)
