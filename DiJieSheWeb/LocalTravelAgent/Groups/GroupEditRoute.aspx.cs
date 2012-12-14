@@ -52,7 +52,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
     {
        
 
-        IList<UIRoute> uiRoutes = RouteConverter.ConvertToUI(CurrentGroup.Routes);
+        IList<UIRoute> uiRoutes = RouteConverter.ConvertToUI(CurrentGroup);
 
         if (uiRoutes.Count == CurrentGroup.DaysAmount)
         {
@@ -72,6 +72,14 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
             Repeater rptHotels = e.Item.FindControl("rptHotels") as Repeater;
             rptHotels.ItemDataBound += new RepeaterItemEventHandler(rptHotels_ItemDataBound);
             UIRoute uiRoute = e.Item.DataItem as UIRoute;
+            Button btnModifyRoute = e.Item.FindControl("btnModifyRoute") as Button;
+            if (uiRoute.Hotels.Count == 0 && uiRoute.Scenics.Count == 0)
+            {
+                btnModifyRoute.Text = "添加行程";
+            }
+            else {
+                btnModifyRoute.Text = "修改";
+            }
             rptHotels.DataSource = uiRoute.Hotels;
             rptHotels.DataBind();
             rptScenics.DataSource = uiRoute.Scenics;
@@ -127,6 +135,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
             IList<string> scenicNames = routes.Where(x => x.Enterprise.Type == EnterpriseType.景点).Select(x => x.Enterprise.Name).ToList();
             IList<string> hotelNames = routes.Where(x => x.Enterprise.Type == EnterpriseType.宾馆).Select(x => x.Enterprise.Name).ToList();
             rblDayNo.SelectedValue = dayNo.ToString();
+            lblDayNo.Text = dayNo.ToString();
             LoadEditRepeater(scenicNames, hotelNames);
         }
         else if (commandName == "delete")
@@ -177,11 +186,13 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
       
         LoadData();
         pnlEditRoute.Visible = false;
-        lblMsg_SaveRoute.Text = errMsg;
+        
+     
         if (string.IsNullOrEmpty(errMsg))
         {
-            lblMsg_SaveRoute.Text = "操作成功";
+            errMsg = "操作成功";
         }
+        ShowNotification(errMsg);
         //ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('" + lblMsg_SaveRoute.Text + "')", true);
         btnAddRoute.Visible = true;
     }
@@ -232,14 +243,15 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
       bllGroup.Save(CurrentGroup);
       if (string.IsNullOrEmpty(errMsg))
       {
-          lblSimpleMsg.ForeColor = System.Drawing.Color.Green;
-          lblSimpleMsg.Text = "保存成功";
+         
+          errMsg = "保存成功";
       }
       else
       {
-          lblSimpleMsg.ForeColor = System.Drawing.Color.Red;
-          lblSimpleMsg.Text = errMsg;
+        
+        
       }
+      ShowNotification(errMsg);
        
     }
   

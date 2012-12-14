@@ -85,7 +85,7 @@ table tr td
     width:7% !important;
     overflow:hidden;
 }
-.btn
+.btn,a.btn
 {
     width:64px;
     height:19px;
@@ -93,6 +93,8 @@ table tr td
     color:#009383;
     font-weight:bold;
     background-color:White;
+    display:inline-block;
+    text-align:center;
 }
 
 

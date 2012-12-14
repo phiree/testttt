@@ -11,11 +11,12 @@ namespace BLL
     public class RouteConverter
     {
 
-        public static List<UIRoute> ConvertToUI(IList<DJ_Route> routes)
+        public static List<UIRoute> ConvertToUI(DJ_TourGroup Group)
         {
+            IList<DJ_Route> routes = Group.Routes;
             List<UIRoute> uiRoutes = new List<UIRoute>();
-            if (routes.Count == 0) { return uiRoutes; }
-            int totalDays = routes.Select(x => x.DayNo).Max();
+           // if (routes.Count == 0) { return uiRoutes; }
+            int totalDays = Group.DaysAmount;
             for (int i = 1; i <= totalDays; i++)
             {
                 List<DJ_TourEnterprise> scenics = new List<DJ_TourEnterprise>();
