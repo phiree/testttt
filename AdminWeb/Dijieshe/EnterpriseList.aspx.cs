@@ -32,22 +32,22 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
         {
             DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
             Label lblAdmin = e.Item.FindControl("lblAdmin") as Label;
-            DJ_User_TourEnterprise user = bllUser.GetUser_TEbyId(ent.Id, 15) == null ? null : bllUser.GetUser_TEbyId(ent.Id, 15)[0];
-            Button btn = e.Item.FindControl("btnadmin") as Button;
+            IList<DJ_User_TourEnterprise> members = bllUser.GetUser_TEbyId(ent.Id, 15);
+           
             TextBox tbx = e.Item.FindControl("tbxAccount") as TextBox;
-            if (user != null)
+            if (members.Count>=1)
             {
-                tbx.Text = user.Name;
+                tbx.Text = members[0].Name;
 
             }
-            Button btnVerify = e.Item.FindControl("btnSetVerify") as Button;
-            //if (ent.IsVeryfied)
-            //{
-            //    btnVerify.Text = "已认证";
-            //}
-            //else{
-            //    btnVerify.Text = "尚未认证";
-            //}
+            Label lblVerify = e.Item.FindControl("lblVerify") as Label;
+
+            string state = string.Format("{0},{1},{2}", ent.ProvinceVeryfyState.ToString()
+            , ent.CityVeryfyState.ToString()
+                , ent.CountryVeryfyState.ToString());
+            lblVerify.Text = state;
+
+
         }
     }
     BLLDJ_User bllDjUser = new BLLDJ_User();
@@ -63,14 +63,14 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
             string loginname = tbx.Text;
             if (string.IsNullOrEmpty(loginname))
             {
-                ScriptManager.RegisterStartupScript(this,this.GetType(),"accountcannotnull","alert('帐号名不能为空');",true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "accountcannotnull", "alert('帐号名不能为空');", true);
                 return;
             }
             DJ_User_TourEnterprise djuserent = new DJ_User_TourEnterprise();
             djuserent.Enterprise = bllDJEnt.GetDJS8id(entId.ToString())[0];
             djuserent.Name = loginname;
             djuserent.PermissionType = PermissionType.报表查看员 | PermissionType.团队录入员 | PermissionType.信息编辑员 | PermissionType.用户管理员;
-            djuserent.Password=  System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
+            djuserent.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             bllMember.CreateUpdateMember(djuserent);
         }
 
@@ -81,6 +81,6 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
             //bllDJEnt.Save(ent);
         }
         BindList();
-            
+
     }
 }
