@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
 using Model;
+using System.Web.Security;
 
 public partial class LocalTravelAgent_LTAUserEdit : basepageDJS
 {
@@ -58,9 +59,14 @@ public partial class LocalTravelAgent_LTAUserEdit : basepageDJS
         {
             mgrUser = blldj_user.GetByMemberId(Guid.Parse(Request.QueryString["userid"]));
         }
+        else
+        {
+            mgrUser.Password=FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
+        }
         mgrUser.Enterprise = Master.CurrentDJS;
         mgrUser.Name = txtName.Text;
         Model.PermissionType sat = 0;
+        int result, result2;
         foreach (ListItem item in cbList.Items)
         {
             if (item.Selected)
@@ -69,7 +75,9 @@ public partial class LocalTravelAgent_LTAUserEdit : basepageDJS
                 sat = sat | permisson;
             }
         }
-        if (int.Parse(mgrUser.PermissionType.ToString()) == 15&&int.Parse(sat.ToString())!=15)
+        int.TryParse(mgrUser.PermissionType.ToString(), out result);
+        int.TryParse(sat.ToString(), out result2);
+        if (result == 15&&result2!=15)
         {
             IList<DJ_User_TourEnterprise> Listuser = blldj_user.GetUser_TEbyId(CurrentDJS.Id, 15);
             if (Listuser != null && Listuser.Count <= 1)
