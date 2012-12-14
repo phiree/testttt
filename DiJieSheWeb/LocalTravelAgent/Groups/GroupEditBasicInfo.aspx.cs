@@ -16,18 +16,11 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
     BLLDJRoute bllRoute = new BLLDJRoute();
     BLLWorker bllWorker = new BLLWorker();
     string addType = "1";
-    string flag = "f";
+ 
     protected void Page_Load(object sender, EventArgs e)
     {
 
         tbxBelong.Value = CurrentDJS.Name;
-        flag=Request["flag"];
-        if (flag == "t")
-        {
-            lblMsg.Text = "保存成功";
-        }
-
-
         addType = Request["at"];
         string paramstr = Request["groupid"];
         if (!Guid.TryParse(paramstr, out groupId))
@@ -141,13 +134,14 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         cbxGuides.DataBind();
     }
     BLLDJGroup_Worker bllGroupWorker = new BLLDJGroup_Worker();
-    private bool UpdateForm()
+    private bool UpdateForm(out string errMsg)
     {
+        errMsg = string.Empty;
         CurrentGroup.Name = tbxName.Text;
         CurrentGroup.BeginDate = Convert.ToDateTime(tbxDateBegin.Text);
         if (CurrentGroup.BeginDate.DayOfYear <  DateTime.Now.DayOfYear)
         {
-            ScriptManager.RegisterStartupScript(this,this.GetType(),"begindayerr",  "alert('开始时间不能小于当天时间');",true);
+            errMsg = "开始时间不能小于当天时间";
             return false;
         }
         CurrentGroup.DaysAmount = Convert.ToInt32(tbxDateAmount.Text);
@@ -156,6 +150,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         CurrentGroup.DijiesheEditor =(DJ_User_TourEnterprise) CurrentMember;
         ///司机和导游
         bool hasSelectGuide = false;
+        bool hasSelectDriver = false;
         bllGroupWorker.DeleteFromGroup(CurrentGroup);
         CurrentGroup.Workers.Clear();
        // bllGroup.Save(CurrentGroup);
@@ -179,7 +174,7 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
             if (item.Selected)
             {
                 Model.DJ_Group_Worker gw = new DJ_Group_Worker();
-                hasSelectGuide = true;
+                hasSelectDriver = true;
                 DJ_Workers worker = bllWorker.GetOne(new Guid(item.Value));
                 gw.DJ_Workers = worker;
                 gw.DJ_TourGroup = CurrentGroup;
@@ -188,12 +183,16 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
         }
         if (hasSelectGuide == false)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "mustselectguide", "alert('必须指定导游');", true);
+            errMsg="必须指定导游";
 
             return false;
         }
-        
-       
+        if (hasSelectDriver == false)
+        {
+            errMsg = "必须指定司机";
+
+            return false;
+        }
 
         return true;
     }
@@ -208,19 +207,20 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo :basepageDjsGrou
 
     protected void btnBasicInfo_Click(object sender, EventArgs e)
     {
-        if (!UpdateForm())
+        string errMsg;
+        if (!UpdateForm(out errMsg))
         {
             BLLLog.Log("更新团队基本信息失败", 1, "basicinfo");
+            ShowNotification(errMsg);
             return;
         }
         
          bllGroup.Save(CurrentGroup);
          if (IsNew)
          {
-             Response.Redirect("GroupEditMember.aspx?flag=t&groupid=" + CurrentGroup.Id);
+             ShowNotification("新建团队", "保存成功", "GroupEditMember.aspx?flag=t&groupid=" + CurrentGroup.Id);
          }
         
-        lblMsg.Text = "保存成功";
       //  ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功')", true);
     }
 

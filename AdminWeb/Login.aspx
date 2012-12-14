@@ -17,45 +17,45 @@
     <link href="/theme/default/css/Login.css" rel="stylesheet" type="text/css" />
     <link href="/Content/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script language="javascript">
-        function PopMsg(msg, type, redirecturl,autoClose) {
+//        function PopMsg(msg, type, redirecturl,autoClose) {
 
-            var ele = "<div id='popMsg'></div>";
-            $("form").append(ele);
-            $("#popMsg").html(msg);
-            var sec = 0;
-            var outSec = 4;
-            var interval = null;
+//            var ele = "<div id='popMsg'></div>";
+//            $("form").append(ele);
+//            $("#popMsg").html(msg);
+//            var sec = 0;
+//            var outSec = 4;
+//            var interval = null;
 
-            $("#popMsg").dialog({
-                modal: true,
+//            $("#popMsg").dialog({
+//                modal: true,
 
-                open: function (event, ui) {
-                    sec = 0;
-                    if (autoClose) {
-                        interval = setInterval(closeTimer, 1000);
-                    }
-                    $('.ui-widget-overlay').bind('click', function () { $("#popMsg").dialog('close'); });
-                }
-                ,
-                close: function (event, ui) {
-                    if (redirecturl != null && redirecturl + "" != "undefined") {
-                        window.location.href = redirecturl;
-                    }
-                }
+//                open: function (event, ui) {
+//                    sec = 0;
+//                    if (autoClose) {
+//                        interval = setInterval(closeTimer, 1000);
+//                    }
+//                    $('.ui-widget-overlay').bind('click', function () { $("#popMsg").dialog('close'); });
+//                }
+//                ,
+//                close: function (event, ui) {
+//                    if (redirecturl != null && redirecturl + "" != "undefined") {
+//                        window.location.href = redirecturl;
+//                    }
+//                }
 
-            });
+//            });
 
-            function closeTimer() {
-                if (sec >= outSec) {
-                    $('#popMsg').dialog('close');
-                    interval = null;
-                }
-                else {
-                  $('#popMsg').dialog({ title: outSec-sec });
-                    sec++;
-                }
-            }
-        }
+//            function closeTimer() {
+//                if (sec >= outSec) {
+//                    $('#popMsg').dialog('close');
+//                    interval = null;
+//                }
+//                else {
+//                  $('#popMsg').dialog({ title: outSec-sec });
+//                    sec++;
+//                }
+//            }
+//        }
     </script>
 </head>
 <body>
