@@ -21,58 +21,55 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
     <div class="detail_titlebg">
-        统计
+        已入住统计
     </div>
         <div class="searchdiv">
         <h5>按条件查询</h5>
-        团队名称<asp:TextBox ID="txtGroupName" runat="server" Width="100px"></asp:TextBox>
         旅行社名称<asp:TextBox ID="txtEntName" runat="server" Width="100px"></asp:TextBox>
-        验证时间<asp:TextBox ID="txtBeginTime" runat="server" Width="100px"></asp:TextBox>至<asp:TextBox ID="txtEndTime" runat="server" Width="100px"></asp:TextBox>
-        验证状态<asp:DropDownList ID="ddlState" runat="server">
-            <asp:ListItem Value="全部">全部</asp:ListItem>
-            <asp:ListItem Value="已验证">已验证</asp:ListItem>
-            <asp:ListItem Value="未验证">未验证</asp:ListItem>
-            </asp:DropDownList>
+        验证时间<asp:TextBox ID="txtTime" runat="server" Width="100px"></asp:TextBox>
         <asp:Button ID="BtnSearch" runat="server" Text="查询" CssClass="btn" onclick="BtnSearch_Click" />
             <asp:Button ID="BtnCreatexls" runat="server" Text="导出成excel" 
                 onclick="BtnCreatexls_Click" CssClass="btn2" />
     </div>
     <div class="detaillist">
         <div class="detailtitle">
-            统计列表
+            已入住统计列表
         </div>
         <table class="tablesorter IndexTable">
         </table>
         <table  id="myTable" class="tablesorter InfoTable">
             <thead>
             <tr>
-                <th>
-                    住宿时间
-                </th>
-                <th>
-                    团队名称
-                </th>
-                <th>
+                <th rowspan="2">
                     旅行社名称
                 </th>
+                <td colspan="2">
+                    本月
+                </td>
+                <td colspan="2">
+                    本年
+                </td>
+            </tr>
+            <tr>
                 <th>
-                    住宿天数
+                    房间数
                 </th>
                 <th>
-                    人数
+                    加床数
                 </th>
                 <th>
-                    验证状态
+                    房间数
+                </th>
+                <th>
+                    加床数
                 </th>
             </tr>
         </thead>
-        
         <tbody>
             <asp:Repeater runat="server" ID="rptTgRecord" 
                 onitemdatabound="rptTgRecord_ItemDataBound">
                 <ItemTemplate>
                    <tr>
-                       
                        <td>
                            <%# Eval("ConsumeTime","{0:yyyy-MM-dd}")%></td>
                        <td>
