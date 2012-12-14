@@ -36,5 +36,17 @@ public class basepage : System.Web.UI.Page
 
         base.OnLoad(e);
     }
+    protected void ShowNotification(string title,string content,string redirectUrl)
+    {
+        CommonLibrary.Notification.Show(this, title, content, redirectUrl);
+    }
+    protected void ShowNotification(string title, string content)
+    {
+        ShowNotification(title, content, string.Empty);
+    }
+    protected void ShowNotification(string content)
+    {
+       ShowNotification(string.Empty, content);
+    }
 
 }

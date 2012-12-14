@@ -18,9 +18,10 @@ public partial class Login2 : Page
     BLLMembership bllMember = new BLLMembership();
     protected void democlick(object o, EventArgs e)
     {
-        ClientScript.RegisterClientScriptBlock(Page.GetType(), "pop",
-                        "$(function(){PopMsg('Iam here!',null,'/',true);});",true
-                        );
+        CommonLibrary.Notification.Show(this, "登录提示", "登录成功","");
+        //ClientScript.RegisterClientScriptBlock(Page.GetType(), "pop",
+        //                "$(function(){PopMsg('Iam here!',null,'/',true);});",true
+        //                );
     }
   
     bool isvalid = false;
@@ -40,6 +41,7 @@ public partial class Login2 : Page
                 returnUrl = targetFromParam;
             }
             //  ClientScript.RegisterClientScriptBlock
+            //ScriptManager
             ClientScript.RegisterStartupScript(Page.GetType(), "pop",
                       "$(function(){PopMsg('Iam here!,null," + returnUrl + "');});"
                       );

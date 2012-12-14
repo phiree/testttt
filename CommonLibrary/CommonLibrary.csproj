@@ -79,6 +79,7 @@
     <Compile Include="StringHelper.cs" />
     <Compile Include="UrlParamHelper.cs" />
     <Compile Include="ValidateHelper.cs" />
+    <Compile Include="Notification.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
