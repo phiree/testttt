@@ -70,7 +70,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     {
         tbxIdCardNo.Text = currentGroupMember.IdCardNo;
         tbxName.Text = currentGroupMember.RealName;
-        tbxSpecialCardNo.Text = currentGroupMember.SpecialCardNo;
+
         tbxPhone.Text = currentGroupMember.PhoneNum;
         try { rblMemberType.SelectedValue = ((int)currentGroupMember.MemberType).ToString(); }
         catch {
@@ -80,7 +80,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
     private void UpdateMemberForm()
     {
         currentGroupMember.IdCardNo = tbxIdCardNo.Text.Trim();
-        currentGroupMember.SpecialCardNo = tbxSpecialCardNo.Text.Trim();
+       
         currentGroupMember.RealName = tbxName.Text.Trim();
         currentGroupMember.PhoneNum = tbxPhone.Text.Trim();
 
@@ -89,6 +89,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         {
             mt = MemberType.成人游客;
         }
+        
         currentGroupMember.MemberType = mt;
 
         currentGroupMember.DJ_TourGroup = CurrentGroup;
@@ -118,7 +119,6 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         tbxIdCardNo.Text = string.Empty;
         tbxName.Text = string.Empty;
         tbxPhone.Text = string.Empty;
-        tbxSpecialCardNo.Text = string.Empty;
         rblMemberType.SelectedValue = "1";
 
     }
