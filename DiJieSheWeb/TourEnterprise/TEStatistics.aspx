@@ -12,15 +12,14 @@
         $(function () {
             $("[id$='txtBeginTime']").datepicker();
             $("[id$='txtEndTime']").datepicker();
-            $("#myTable").tablesorter({ headers: { 5: { sorter: false}} });
+            $("#myTable").tablesorter({ headers: { 5: { sorter: false }, 4: {sorter:false}} });
             $(".IndexTable").orderIndex();
-            
+
         });
 
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
-    <asp:HiddenField ID="hforder" runat="server" Value="0_desc" />
     <div class="detail_titlebg">
         统计
     </div>
@@ -75,7 +74,7 @@
                    <tr>
                        
                        <td>
-                           <%# Eval("ConsumeTime","{0:yyyy-MM-dd}")%>
+                           <%# Eval("ConsumeTime","{0:yyyy-MM-dd}")%></td>
                        <td>
                            <a href='/TourEnterprise/GroupDetail.aspx?id=<%# Eval("Route.DJ_TourGroup.Id")%>'>
                            <%# Eval("Route.DJ_TourGroup.Name")%></a>
