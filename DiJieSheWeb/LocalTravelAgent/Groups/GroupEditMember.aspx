@@ -6,11 +6,12 @@
     <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
     <link href="/Content/themes/base/minified/jquery-ui.min.css"
         rel="stylesheet" type="text/css" />
+    <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
-    <style type="text/css">
-    </style>
+    <link rel="stylesheet" type="text/css" href="/theme/default/css/routeedit.css" />
+   
     <script language="javascript" type="text/javascript">
         $(function () {
 
@@ -35,23 +36,24 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="navlist">
-        <a runat="server" id="a_link_1" href="/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx" >录入团队基本信息</a>
-        <a runat="server" id="a_link_2" href="/LocalTravelAgent/Groups/GroupEditMember.aspx" class="selectstate">录入游客信息</a>
-        <a runat="server" id="a_link_3" href="/LocalTravelAgent/Groups/GroupEditRoute.aspx">录入行程信息</a>
+        <a runat="server" id="a_link_1" href="/LocalTravelAgent/Groups/GroupEditBasicInfo.aspx" >团队基本信息</a>
+        <a runat="server" id="a_link_2" href="/LocalTravelAgent/Groups/GroupEditMember.aspx" class="selectstate">游客信息</a>
+        <a runat="server" id="a_link_3" href="/LocalTravelAgent/Groups/GroupEditRoute.aspx">行程信息</a>
+       
+          <span id="groupname" > 团队名称:<%=CurrentGroup.Name %></span> 
     </div>
     <div style="clear:both">
     </div>
-    <h3 style="margin-left:15px;margin-top:30px">
-        <b>
-            团队名称:<%=CurrentGroup.Name %>游客列表</b></h3>
-    <div class="tabintro">
-        根据您方便，选择其中一种方式录入游客信息
-    </div>
+   
+    
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">直接录入</a></li>
             <li><a href="#tabs-2">文本录入</a></li>
             <li><a href="#tabs-3">Excel导入</a></li>
+            <div class="tabintro">
+        根据您方便，选择其中一种方式录入游客信息
+    </div>
         </ul>
         <div id="tabs-1">
             <asp:Repeater runat="server" ID="rptMembers" OnItemCommand="rptMembers_ItemCommand">
