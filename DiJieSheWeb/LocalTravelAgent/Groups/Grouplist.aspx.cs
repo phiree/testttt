@@ -74,7 +74,7 @@ public partial class Groups_Grouplist : basepageDJS
                 break;
         }
 
-        lblMsg.Text = errMsg;
+        ShowNotification(errMsg);
     }
 
     protected void rptGroups_ItemDataBound(object sender, RepeaterItemEventArgs e)
