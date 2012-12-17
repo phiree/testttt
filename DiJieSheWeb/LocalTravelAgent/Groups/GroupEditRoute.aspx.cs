@@ -56,7 +56,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
 
         if (uiRoutes.Count == CurrentGroup.DaysAmount)
         {
-            btnAddRoute.Visible = false;
+          //  btnAddRoute.Visible = false;
         }
 
 
@@ -73,13 +73,19 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
             rptHotels.ItemDataBound += new RepeaterItemEventHandler(rptHotels_ItemDataBound);
             UIRoute uiRoute = e.Item.DataItem as UIRoute;
             Button btnModifyRoute = e.Item.FindControl("btnModifyRoute") as Button;
+            Button btnClear = e.Item.FindControl("btnClear") as Button;
             if (uiRoute.Hotels.Count == 0 && uiRoute.Scenics.Count == 0)
             {
                 btnModifyRoute.Text = "添加行程";
+                btnClear.Visible = false;
             }
             else {
                 btnModifyRoute.Text = "修改";
+                btnClear.Visible = true;
             }
+          
+
+
             rptHotels.DataSource = uiRoute.Hotels;
             rptHotels.DataBind();
             rptScenics.DataSource = uiRoute.Scenics;
@@ -127,7 +133,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         string commandName=e.CommandName.ToLower();
         if (commandName== "edit")
         {
-            btnAddRoute.Visible = true;
+          //  btnAddRoute.Visible = true;
             pnlEditRoute.Visible = true;
             rblDayNo.Enabled = false;
             int dayNo = Convert.ToInt32(e.CommandArgument);
@@ -150,7 +156,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
                bllGroup.Save(CurrentGroup);
                LoadData();
                pnlEditRoute.Visible = false;
-               btnAddRoute.Visible = true;
+            //   btnAddRoute.Visible = true;
         }
     }
     private void LoadEditRepeater(IList<string> scenicNames,IList<string> hotelNames)
@@ -194,18 +200,18 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         }
         ShowNotification(errMsg);
         //ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('" + lblMsg_SaveRoute.Text + "')", true);
-        btnAddRoute.Visible = true;
+       // btnAddRoute.Visible = true;
     }
     protected void btnClose_Click(object sender, EventArgs e)
     {
         pnlEditRoute.Visible = false;
-        btnAddRoute.Visible = true;
+      //  btnAddRoute.Visible = true;
     }
     protected void btnAddRoute_Click(object sender, EventArgs e)
     {
         rblDayNo.Enabled = true;
         pnlEditRoute.Visible = true;
-        btnAddRoute.Visible = false;
+     //   btnAddRoute.Visible = false;
         IList<int> daynos = CurrentGroup.Routes.Select(x => x.DayNo).Distinct().ToList();
 
 
@@ -229,7 +235,7 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
         UpdateSimple();
         LoadData();
         pnlEditRoute.Visible = false;
-        btnAddRoute.Visible = true;
+       // btnAddRoute.Visible = true;
      //   Response.Redirect("/localtravelagent/Groups/GroupList.aspx");
     }
 
