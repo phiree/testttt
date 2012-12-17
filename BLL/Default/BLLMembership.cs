@@ -7,7 +7,7 @@ using System.Web.Security;
 using NHibernate;
 namespace BLL
 {
-    public class BLLMembership:DAL.DalBase
+    public class BLLMembership : DAL.DalBase
     {
         IDAL.IMembership dal = new DAL.DALMembership();
 
@@ -21,7 +21,7 @@ namespace BLL
         /// <param name="loginname"></param>
         /// <param name="password"></param>
         public void CreateUser(string realname, string phone, string address, string idcard,
-            string loginname, string password,string email)
+            string loginname, string password, string email)
         {
             //valid parameters
             string encryptedPwd = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(password, "MD5");
@@ -33,7 +33,7 @@ namespace BLL
                 IdCard = idcard,
                 Name = loginname,
                 Password = encryptedPwd,
-                Email=email
+                Email = email
             };
             CreateUpdateMember(user);
         }
@@ -135,13 +135,13 @@ namespace BLL
                 sa = new ScenicAdmin();
                 sa.Membership = GetMemberById(memid);
             }
-            
+
             Model.Scenic sc = new BLL.BLLScenic().GetScenicById(scenicid);
             sa.Scenic = sc;
             dal.UpdateScenicAdmin(sa);
-         
-         
-            string[] names = { sa.Membership.Name};
+
+
+            string[] names = { sa.Membership.Name };
             trp.AddUsersToRoles(names, roles);
 
         }
@@ -153,15 +153,15 @@ namespace BLL
         {
             return dal.GetScenicAdmin(scenicid);
         }
-        public IList<Model.ScenicAdmin> GetScenicAdmin(int scenicid,string code)
+        public IList<Model.ScenicAdmin> GetScenicAdmin(int scenicid, string code)
         {
-            return dal.GetScenicAdmin(scenicid,code);
+            return dal.GetScenicAdmin(scenicid, code);
         }
         public void DeleteScenicAdmin(Model.ScenicAdmin sa)
         {
             dal.DeleteScenicAdmin(sa);
-             
-            string[] names = { sa.Membership.Name};
+
+            string[] names = { sa.Membership.Name };
             trp.RemoveUsersFromRoles(names, roles);
         }
         public void DeleteScenicAdmin(Guid id)
@@ -182,20 +182,26 @@ namespace BLL
         }
         public void CreateUpdateDptAdmin(DJ_GovManageDepartment mgrDpt)
         {
-            TourMembership admin = GetMgrDptAdmin(mgrDpt.Id,7);
+            TourMembership admin = GetMgrDptAdmin(mgrDpt.Id, 7);
             DJ_User_Gov mgrUser = new DJ_User_Gov();
-            if (admin!= null)
+            if (admin != null)
             {
                 mgrUser = (DJ_User_Gov)admin;
             }
-
+            else
+            {
+                TourMembership member = GetMember(mgrDpt.seoname);
+                if (member != null)
+                {
+                    mgrUser = (DJ_User_Gov)member;
+                }
+            }
             string loginname = mgrDpt.seoname;
             mgrUser.GovDpt = mgrDpt;
             mgrUser.Name = loginname;
             mgrUser.PermissionType = PermissionType.报表查看员 | PermissionType.信息编辑员 | PermissionType.用户管理员;
             mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
-           CreateUpdateMember(mgrUser);
+            CreateUpdateMember(mgrUser);
         }
-      
     }
 }

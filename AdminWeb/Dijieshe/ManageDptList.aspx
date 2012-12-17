@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dijieshe/admin.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dijieshe/admin.master" AutoEventWireup="true" EnableEventValidation="false"
     CodeFile="ManageDptList.aspx.cs" Inherits="Admin_ManageDptList" %>
 <%@ Register TagPrefix="uc"  Src="~/UC/CityCode.ascx" TagName="dllcitycode"%>
     <asp:Content ID="Content2" ContentPlaceHolderID="cphhead" runat="server">
@@ -47,6 +47,7 @@
             <asp:TemplateField HeaderText="操作">
             <ItemTemplate>
            <asp:Label runat="server" ID="lblAdmin"></asp:Label>  <asp:Button runat="server" Text="生成管理员" ID="btnSetAdmin" CommandName="SetAdmin" CommandArgument='<%#Eval("Id") %>' />
+                <asp:Button Text="重置密码" ID="resetPwd"  CommandName="ResetPwd" CommandArgument='<%# Eval("Id") %>' runat="server" />
             </ItemTemplate>
             </asp:TemplateField>
         </Columns>

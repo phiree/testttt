@@ -42,7 +42,8 @@ function cgbg2(obj) {
 }
 var t;
 function timedCheck() {
-    show();
+    if (! +[1, ])
+        show();
     t = setTimeout("timedCheck()", 1000);
 }
 function show() {

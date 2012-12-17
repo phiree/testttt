@@ -20,7 +20,7 @@ namespace CommonLibrary
 $(function(){PopMsg('_title_','_content_','_returnUrl_',true);});
 
 function PopMsg(title,content, redirecturl,autoClose) {
-            debugger;
+            
             var ele = '<div id=""popMsg""></div>';
             $('form').append(ele);
             $('#popMsg').append(content);
