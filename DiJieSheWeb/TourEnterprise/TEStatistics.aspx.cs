@@ -14,89 +14,19 @@ public partial class TourEnterprise_TEStatistics : basepage
 {
     BLLDJConsumRecord bllrecord = new BLLDJConsumRecord();
     BLLDJRoute BLLDJRoute = new BLLDJRoute();
+    BLLDJEnterprise bllEnt = new BLLDJEnterprise();
     int Index = 1;
     List<DJ_GroupConsumRecord> ListRecord = new List<DJ_GroupConsumRecord>();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            InitTime();
             BindLiveStatistic();
-            //txtBeginTime.Text = DateTime.Now.ToString("yyyy-MM-dd"); txtEndTime.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            //bind();
         }
     }
 
-    private void bind()
-    {
-        //ListRecord = GetRecordList();
-        //rptTgRecord.DataSource = ListRecord;
-        //rptTgRecord.DataBind();
-    }
-
-    //private List<DJ_GroupConsumRecord> GetRecordList()
-    //{
-    //    List<DJ_GroupConsumRecord> ListRec = new List<DJ_GroupConsumRecord>();
-    //    if (ddlState.SelectedValue == "已验证")
-    //        ListRec = 
-    //    if (ddlState.SelectedValue == "未验证")
-    //        ListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
-    //    if (ddlState.SelectedValue == "全部")
-    //    {
-    //        ListRec = bllrecord.GetRecordByAllCondition(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text, Master.CurrentTE.Id);
-    //        ListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
-    //    }
-    //    return ListRec;
-    //}
-
-
-    protected void rptTgRecord_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        //if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
-        //{
-        //    DJ_GroupConsumRecord record = e.Item.DataItem as DJ_GroupConsumRecord;
-        //    //Literal laNo = e.Item.FindControl("laNo") as Literal;
-        //    Literal laIsChecked = e.Item.FindControl("laIsChecked") as Literal;
-        //    if (record.Id.Equals(Guid.Empty))
-        //    {
-        //        laIsChecked.Text = "未验证";
-        //    }
-        //    else
-        //        laIsChecked.Text = "已验证";
-        //    //laNo.Text = Index++.ToString();
-        //}
-        //if (e.Item.ItemType == ListItemType.Footer)
-        //{
-        //    Literal laGuiderCount = e.Item.FindControl("laGuiderCount") as Literal;
-        //    Literal laAdultCount = e.Item.FindControl("laAdultCount") as Literal;
-        //    Literal laChildrenCount = e.Item.FindControl("laChildrenCount") as Literal;
-        //    int groupcount, adultcount, childrencount;
-        //    bllrecord.GetCountInfoByETid(Master.CurrentTE.Id, out groupcount, out adultcount, out childrencount, ListRecord);
-        //    laGuiderCount.Text = groupcount.ToString();
-        //    laAdultCount.Text = adultcount.ToString();
-        //    laChildrenCount.Text = childrencount.ToString();
-        //}
-    }
-    protected void BtnSearch_Click(object sender, EventArgs e)
-    {
-    //    DateTime BeginTime, EndTime;
-    //    if (DateTime.TryParse(txtBeginTime.Text, out BeginTime) && DateTime.TryParse(txtEndTime.Text, out EndTime))
-    //    {
-    //        if (BeginTime > EndTime)
-    //        {
-    //            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('起始时间大于终止时间')", true);
-    //            txtBeginTime.Text = "";
-    //            txtEndTime.Text = "";
-    //        }
-    //    }
-    //    else
-    //    {
-    //        txtBeginTime.Text = "";
-    //        txtEndTime.Text = "";
-    //    }
-    //    bind();
-    }
-
-    private void BindLiveStatistic()
+    private void InitTime()
     {
         DateTime dt;
         if (!DateTime.TryParse(txtTime.Text, out dt))
@@ -112,7 +42,32 @@ public partial class TourEnterprise_TEStatistics : basepage
                 txtTime.Text = DateTime.Now.ToString("yyyy年MM月");
             }
         }
+    }
+
+    protected void BtnSearch_Click(object sender, EventArgs e)
+    {
+        BindLiveStatistic();
+    }
+
+    private void BindLiveStatistic()
+    {
+        InitTime();
+        report_total.Visible = true;
+        report_detail.Visible = false;
         List<DJ_DijiesheInfo> ListRecord= bllrecord.SelectFromRecord("", txtEntName.Text.Trim(), "", txtTime.Text, Master.CurrentTE.Id);
+        if (ListRecord.Count == 1)
+        {
+            ShowDetailReport(ListRecord[0].Id);
+            return;
+        }
+        
+        rptTgRecord.DataSource = BindLive();
+        rptTgRecord.DataBind();
+    }
+
+    private List<LiveStatistic> BindLive()
+    {
+        List<DJ_DijiesheInfo> ListRecord = bllrecord.SelectFromRecord("", txtEntName.Text.Trim(), "", txtTime.Text, Master.CurrentTE.Id);
         List<LiveStatistic> ListLive = new List<LiveStatistic>();
         int Index = 1;
         foreach (var djs in ListRecord)
@@ -120,30 +75,79 @@ public partial class TourEnterprise_TEStatistics : basepage
             LiveStatistic LiveStatistic = new LiveStatistic();
             LiveStatistic.Index = Index++;
             LiveStatistic.EntName = djs.Name;
-            //TODO:报表绑定
+            LiveStatistic.djsId = djs.Id.ToString();
+            foreach (var item in bllrecord.GetRecordByAllCondition("", djs.Name, DateTime.Parse(txtTime.Text).ToString(), DateTime.Parse(txtTime.Text).AddMonths(1).ToString(), Master.CurrentTE.Id))
+            {
+                LiveStatistic.RoomCount_Month += item.RoomNum;
+                LiveStatistic.AppendBed_Month += item.AppendBed;
+                LiveStatistic.LiveCount_Month += item.LiveDay;
+            }
+            foreach (var item in bllrecord.GetRecordByAllCondition("", djs.Name, (DateTime.Parse(txtTime.Text).Year.ToString()) + "-01-01", DateTime.Parse(txtTime.Text).AddMonths(1).ToString(), Master.CurrentTE.Id))
+            {
+                LiveStatistic.RoomCount_Year += item.RoomNum;
+                LiveStatistic.AppendBed_Year += item.AppendBed;
+                LiveStatistic.LiveCount_Year += item.LiveDay;
+            }
+            ListLive.Add(LiveStatistic);
         }
+        return ListLive;
     }
+
+
 
     protected void BtnCreatexls_Click(object sender, EventArgs e)
     {
-    //    List<DJ_GroupConsumRecord> WListRec = new List<DJ_GroupConsumRecord>();
-    //    List<DJ_GroupConsumRecord> YListRec = new List<DJ_GroupConsumRecord>();
-    //    if (ddlState.SelectedValue == "已验证")
-    //    {
-    //        YListRec = bllrecord.GetRecordByAllCondition(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text, Master.CurrentTE.Id);
-    //        WListRec = null;
-    //    }
-    //    if (ddlState.SelectedValue == "未验证")
-    //    {
-    //        WListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
-    //        YListRec = null;
-    //    }
-    //    if (ddlState.SelectedValue == "全部")
-    //    {
-    //        YListRec = bllrecord.GetRecordByAllCondition(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text, Master.CurrentTE.Id);
-    //        WListRec.AddRange(BindForeast(txtGroupName.Text.Trim(), txtEntName.Text.Trim(), txtBeginTime.Text, txtEndTime.Text));
-    //    }
-    //    CreateExcels(WListRec, YListRec, Master.CurrentTE.Name + "信息统计.xls");
+        if (report_total.Visible)
+        {
+            List<LiveStatistic> listLive = BindLive();
+            List<string> titlelist = new List<string>() { "序号", "旅行社名称", "", "入住天数(本月)", "房间数(本月)", "加床数(本月)", "入住天数(本年)","房间数(本年)","加床数(本年)" };
+            DataTable dt = new DataTable();
+            for (int i = 0; i < titlelist.Count; i++)
+            {
+                dt.Columns.Add(new DataColumn());
+            }
+            foreach (var item in listLive)
+            {
+                DataRow dr = dt.NewRow();
+                dr[0] = item.Index;
+                dr[1] = item.EntName;
+                dr[2] = item.LiveCount_Month;
+                dr[3] = item.RoomCount_Month;
+                dr[4] = item.AppendBed_Month;
+                dr[5] = item.LiveCount_Year;
+                dr[6] = item.RoomCount_Year;
+                dr[7] = item.AppendBed_Year;
+                dt.Rows.Add(dr);
+            }
+            ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已入住统计列表");
+        }
+        if (report_detail.Visible)
+        {
+            DJ_TourEnterprise ent = bllEnt.GetDJS8id(hfdetail.Value)[0];
+            List<DJ_GroupConsumRecord> listRecord= bllrecord.GetRecordByAllCondition("", ent.Name, (DateTime.Parse(txtTime.Text).Year.ToString()) + "-01-01", DateTime.Parse(txtTime.Text).AddMonths(1).ToString(), Master.CurrentTE.Id);
+            List<string> titlelist = new List<string>() { "序号", "入住时间", "团队名称", "旅行社名称", "成人(人数)","儿童(人数)", "入住天数", "房间数", "加床数" };
+            DataTable dt = new DataTable();
+            for (int i = 0; i < titlelist.Count; i++)
+            {
+                dt.Columns.Add(new DataColumn());
+            }
+            int index=1;
+            foreach (var item in listRecord)
+            {
+                DataRow dr = dt.NewRow();
+                dr[0] = index++;
+                dr[1] = item.ConsumeTime;
+                dr[2] = item.Route.DJ_TourGroup.Name;
+                dr[3] = item.Route.DJ_TourGroup.DJ_DijiesheInfo.Name;
+                dr[4] = item.AdultsAmount;
+                dr[5] = item.ChildrenAmount;
+                dr[6] = item.LiveDay;
+                dr[7] = item.RoomNum;
+                dr[8] = item.AppendBed;
+                dt.Rows.Add(dr);
+            }
+            ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已入住统计详细列表");
+        }
     }
 
 
@@ -189,14 +193,32 @@ public partial class TourEnterprise_TEStatistics : basepage
         dt.Rows.Add(drend);
         ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "统计数据");
     }
+
+    public void ShowDetailReport(object djsId)
+    {
+        InitTime();
+        report_total.Visible = false;
+        report_detail.Visible = true;
+        DJ_TourEnterprise ent= bllEnt.GetDJS8id(djsId.ToString())[0];
+        rptDetail.DataSource= bllrecord.GetRecordByAllCondition("", ent.Name, (DateTime.Parse(txtTime.Text).Year.ToString()) + "-01-01", DateTime.Parse(txtTime.Text).AddMonths(1).ToString(), Master.CurrentTE.Id);
+        rptDetail.DataBind();
+    }
+
+    protected void btndetail_Click(object sender, EventArgs e)
+    {
+        ShowDetailReport(hfdetail.Value);
+    }
 }
 
 public class LiveStatistic
 {
     public int Index { get; set; }
+    public string djsId { get; set; }
     public string EntName { get; set; }
+    public int LiveCount_Month { get; set; }
     public int RoomCount_Month { get; set; }
     public int AppendBed_Month { get; set; }
+    public int LiveCount_Year { get; set; }
     public int RoomCount_Year { get; set; }
     public int AppendBed_Year { get; set; }
 }
