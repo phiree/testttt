@@ -41,7 +41,8 @@ namespace DAL
         {
             if (string.IsNullOrEmpty(username)) return null;
             IQuery query = session.CreateQuery("select m from  TourMembership as m where Name='" + username + "'");
-            Model.TourMembership user = query.FutureValue<Model.TourMembership>().Value;
+            var temp = query.FutureValue<Model.TourMembership>();
+            var user=temp.Value;
             return user;
         }
 
