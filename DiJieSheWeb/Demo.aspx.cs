@@ -14,7 +14,7 @@ public partial class Admin_Demo : System.Web.UI.Page
     string dptAdminAccount1 = "tz10";//临海市风景旅游管理局
     string dptAdminAccount2 = "lis1";//莲都区风景旅游局
 
-    string dijiesheAdminAcount1 = "linhai_lhsjtlxs2";//地接社管理员
+    string dijiesheAdminAcount1 = "linhai_lhsjtlxs";//地接社管理员
     string dijiesheName1 = "临海市交通旅行社";
     
 
