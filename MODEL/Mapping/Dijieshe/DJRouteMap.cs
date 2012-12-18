@@ -17,6 +17,7 @@ namespace Model
             Map(x => x.DayNo);
             References(x => x.Enterprise);
             Map(x => x.Description);
+            Map(x => x.RD_EnterpriseName);
             References<DJ_TourGroup>(x => x.DJ_TourGroup);
         }
     }

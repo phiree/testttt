@@ -30,8 +30,6 @@ namespace Model
         /// </summary>
         public virtual DateTime BeginDate { get; set; }
 
-
-
         /// <summary>
         /// 结束日期
         /// </summary>

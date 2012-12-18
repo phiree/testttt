@@ -12,7 +12,7 @@ using System.Web.Services;
 using System.Runtime.Serialization.Json;
 using System.IO;
 
-public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
+public partial class TourEnterprise_TECheckTicket : basepage
 {
     BLLDJTourGroup blldjtourgroup = new BLLDJTourGroup();
     BLLDJConsumRecord blldjcr = new BLLDJConsumRecord();
@@ -58,19 +58,19 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+                    ShowNotification("提示","无此导游身份证信息");
                     txtTE_info.Text = "";
                 }
             }
             else
             {
-                ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+                ShowNotification("提示", "无此导游身份证信息");
                 txtTE_info.Text = "";
             }
         }
         else
         {
-            ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+            ShowNotification("提示", "无此导游身份证信息");
             txtTE_info.Text = "";
         }
         BindPrintLink();
@@ -168,7 +168,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
                     List<DJ_Route> listWroute= blldjcr.GetLiveRouteByDay(out MaxLiveDay, int.Parse(tbLiveDay.Text), Master.CurrentTE, route);
                     if (MaxLiveDay < int.Parse(tbLiveDay.Text))
                     {
-                        ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('住宿天数大于预定天数，请重新填写')", true);
+                        ShowNotification("提示", "住宿天数大于预定天数，请重新填写");
                         break;
                     }
                     else if (tbAdult.Text != "" && tbChild.Text != "")
@@ -191,7 +191,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
     {
         if (adultamout == "" || childrenamout == "")
         {
-            ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('成人或者儿童数量不能为空，请重新填写')", true);
+            ShowNotification("提示", "成人或者儿童数量不能为空，请重新填写");
             return false;
         }
         return true;
@@ -214,7 +214,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         else
         {
             detailinfo.Visible = false;
-            ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+            ShowNotification("提示", "无此导游身份证信息");
         }
     }
 
@@ -240,12 +240,12 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             }
             else
             {
-                 ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+                ShowNotification("提示", "无此导游身份证信息");
             }
         }
         else
         {
-            ScriptManager.RegisterStartupScript(txtTE_info, txtTE_info.GetType(), "s", "alert('无此导游身份证信息')", true);
+            ShowNotification("提示", "无此导游身份证信息");
         }
         BindPrintLink();
     }
@@ -308,12 +308,13 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
             if(HaveYz==1)
                 ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "printTicket('请选择一个未验证的团队信息，是否对已验证的团队进行打印？')", true);
             else
-                ScriptManager.RegisterStartupScript(btnCheckOut, btnCheckOut.GetType(), "s", "alert('请选择一个未验证的团队信息')", true);
+                ShowNotification("提示", "请选择一个未验证的团队信息");
+                
             return false;
         }
         else if (guideritems!=0)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入完整使用人数、住宿天数和房间数')", true);
+            ShowNotification("提示", "请输入完整使用人数、住宿天数和房间数");
             return false;
         }
         return true;
@@ -333,7 +334,7 @@ public partial class TourEnterprise_TECheckTicket : System.Web.UI.Page
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (DJ_Workers item in ListGw)
         {
-            data.Add(new Guid().ToString(), item.Name + "/" + item.IDCard.Substring(0, 6) + "********" + item.IDCard.Substring(14));
+            data.Add(Guid.NewGuid().ToString(), item.Name + "/" + item.IDCard.Substring(0, 6) + "********" + item.IDCard.Substring(14));
         }
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
         using (MemoryStream ms = new MemoryStream())

@@ -16,22 +16,35 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
     BLLMembership bllMember = new BLLMembership();
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindList();
+        if (!IsPostBack)
+        {
+            ViewState["area"] = 1;
+            BindList();
+        }
     }
     private void BindList()
     {
-        IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList(ddlarea.Areacode.Trim());
-        gv.DataSource = dptList;
-        gv.DataBind();
-        if (gv.Rows.Count > 0)
+        string area = ViewState["area"].ToString();
+        if (area != "1")
         {
-            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+            IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList(txtDptName.Text,ddlarea.Areacode.Trim());
+            gv.DataSource = dptList;
+            gv.DataBind();
+            if (gv.Rows.Count > 0)
+            {
+                gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+            gv.Style.Add("border-collapse", "inherit !important");
+            gv.Style.Add("border-spacing", "2px");
         }
-        gv.Style.Add("border-collapse", "inherit !important");
-        gv.Style.Add("border-spacing", "2px");
+        else
+        {
+            btn_All_Click(null, null);
+        }
     }
     protected void btn_Click(object sender, EventArgs e)
     {
+        ViewState["area"] =2;
         BindList();
     }
     protected void gv_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -43,10 +56,15 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
             TourMembership member = bllMember.GetMgrDptAdmin(mgrDpt.Id,7);
             Label lblAdmin = e.Row.FindControl("lblAdmin") as Label;
             Button btnSetAdmin = e.Row.FindControl("btnSetAdmin") as Button;
+            Button btnResetPwd = e.Row.FindControl("resetPwd") as Button;
             if (member != null)
             {
                 lblAdmin.Text = member.Name;
                 btnSetAdmin.Visible = false;
+            }
+            else
+            {
+                btnResetPwd.Visible = false;
             }
         }
     }
@@ -59,13 +77,21 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
                 DJ_GovManageDepartment mgrDpt = bllDpt.GetMgrDpt(govId);
                 bllMember.CreateUpdateDptAdmin(mgrDpt);
                 BindList();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('生成成功!')", true);
+                break;
+            case "resetpwd":
+                mgrDpt = bllDpt.GetMgrDpt(govId);
+                bllMember.CreateUpdateDptAdmin(mgrDpt);
+                BindList();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('重置成功!')", true);
                 break;
             default: break;
         }
     }
     protected void btn_All_Click(object sender, EventArgs e)
     {
-        IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList("");
+        ViewState["area"] = 1;
+        IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList(txtDptName.Text,"");
         gv.DataSource = dptList;
         gv.DataBind();
         if (gv.Rows.Count > 0)

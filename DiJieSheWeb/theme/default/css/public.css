@@ -87,7 +87,7 @@ table tr td
 }
 .btn,a.btn
 {
-    width:64px;
+ 
     height:19px;
     border:1px solid #CDCDCD;
     color:#009383;
@@ -102,10 +102,10 @@ table tr td
 {
     background:url("/theme/default/image/button_bg.gif");
     height:19px;
-    width:64px;
+   
     color:#009383;
     cursor:pointer;
-    border:none;
+   
 }
 .btn2
 {
@@ -401,8 +401,8 @@ color:Red;
 .tabintro
 {
     text-align:right;
-    margin-top:0px;
-    margin-bottom:0px;
-    padding-right:20px;
-    color:#009385;
+    margin-top:6px;
+  margin-left:20px;
+  display:inline-block;
+    color:#777;
 }

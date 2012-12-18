@@ -29,7 +29,7 @@
                 <div id="pageTop">
                     <div class="userinfo">
                         <div class="username">
-                            当前单位:<span style="color:#006E5A;margin-right:10px;"><asp:Literal ID="laETName" runat="server"></asp:Literal></span>
+                            当前单位:<span style="margin-right:10px;"><asp:Literal ID="laETName" runat="server"></asp:Literal></span>
                             用户:<asp:LoginName ID="LoginName1" runat="server" CssClass="userFontType" />
                         </div>
                         <div class="useraction">
@@ -39,6 +39,7 @@
                             <a href="">帮助</a>
                         </div>
                     </div>
+                   
                     <h2>浙江旅游管理统计系统</h2>
                     <div class="timeinfo">
                         <img src="/theme/default/image/body_time.gif" /><span id="timer"></span>

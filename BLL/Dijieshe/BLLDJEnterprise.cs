@@ -169,12 +169,18 @@ namespace BLL
         /// <returns></returns>
         /// <param name="areacode">当前用户所管辖的区�/param>
 
-        public IList<Model.DJ_TourEnterprise> GetEntList_ExcludeScenic(string areacode)
+        public IList<Model.DJ_TourEnterprise> GetEntList_ExcludeScenic(string entName,string type,string areacode)
         {
-
-
-            return dalEnt.GetList(areacode, EnterpriseType.宾馆 | EnterpriseType.饭店 | EnterpriseType.购物点 | EnterpriseType.旅行社
-                 , null);
+            List<DJ_TourEnterprise> ListTE = dalEnt.GetList(entName,true,areacode, EnterpriseType.宾馆 | EnterpriseType.饭店 | EnterpriseType.购物点 | EnterpriseType.旅行社
+                 , null).ToList();
+            if (!string.IsNullOrEmpty(type))
+            {
+                if (type == "旅行社")
+                    ListTE = ListTE.Where(x => x.Type == EnterpriseType.旅行社).ToList();
+                if(type=="宾馆")
+                    ListTE = ListTE.Where(x => x.Type == EnterpriseType.宾馆).ToList();
+            }
+            return ListTE;
 
             //DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
             //BLLArea bllArea = new BLLArea();
