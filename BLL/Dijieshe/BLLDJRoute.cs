@@ -100,7 +100,7 @@ namespace BLL
         /// <param name="dayNo"></param>
         /// <param name="entNames"></param>
         /// <param name="errMsg"></param>
-        public void SaveFromNameList(Model.DJ_TourGroup group, int dayNo, List<string> entNames, out string errMsg)
+        public void SaveFromNameList(Model.DJ_TourGroup group, int dayNo, Dictionary<EnterpriseType, IList<string>> entNames, out string errMsg)
         {
             //todo: group移除route,保存后,route的 外键会变成null...
             //解决方法:http://stackoverflow.com/questions/302720/how-to-delete-child-object-in-nhibernate
@@ -126,19 +126,36 @@ namespace BLL
             IList<DJ_Route> allRoutes = new List<DJ_Route>();
             string[] arrSingleLine = multiLineString.Split(Environment.NewLine.ToCharArray()).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
 
+            Dictionary<EnterpriseType, IList<String>> entDicts = new Dictionary<EnterpriseType, IList<string>>();
+
             for (int i = 1; i <= arrSingleLine.Length; i++)
             {
                 int dayNo = i;
-                List<string> entNames = arrSingleLine[i - 1].Split(new char[] { '\\', '＼', '、' }).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
-                IList<DJ_Route> dayRoutes = CreateRouteFromNameList(dayNo, entNames, out errMsg);
+                string currentLine = arrSingleLine[i - 1];
+                string[] diffEnts = currentLine.Split(new char[] { ';', '；' });
+                if (diffEnts.Length > 2 || diffEnts.Length == 0)
+                {
+                    errMsg = "格式错误:请用分号将景点和宾馆隔开." + currentLine;
+                    return;
+                }
+                List<string> entNames = diffEnts[0].Split(new char[] { '\\', '＼', '、' }).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+                entDicts.Add(EnterpriseType.景点, entNames);
+                List<string> entHotels = new List<string>();
+                if (diffEnts.Length == 2)
+                {
+                    entHotels = diffEnts[1].Split(new char[] { '\\', '＼', '、' }).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+                    entDicts.Add(EnterpriseType.宾馆, entNames);
+                }
+
+                IList<DJ_Route> dayRoutes = CreateRouteFromNameList(dayNo, entDicts, out errMsg);
                 allRoutes = allRoutes.Concat(dayRoutes).ToList();
             }
             foreach (DJ_Route r in allRoutes)
             {
                 group.Routes.Add(r);
             }
-           // group.Routes = allRoutes;
-           // return allRoutes;
+            // group.Routes = allRoutes;
+            // return allRoutes;
 
 
         }
@@ -159,29 +176,36 @@ namespace BLL
             return sb;
         }
 
-        public IList<DJ_Route> CreateRouteFromNameList(int dayNo, List<string> entNames, out string errMsg)
+        public IList<DJ_Route> CreateRouteFromNameList(int dayNo, Dictionary<EnterpriseType, IList<string>> entDicts, out string errMsg)
         {
             IList<DJ_Route> routes = new List<DJ_Route>();
             errMsg = string.Empty;
-            foreach (string entName in entNames)
-            {
-                if (string.IsNullOrEmpty(entName)) continue;
-                DJ_TourEnterprise ent = bllEnt.GetEntByName(entName);
-                if (ent == null)
-                {
-                    ///创建新企业,只有名称
-                   // errMsg = "企业名称有误:" + entName;
-                    ent = new DJ_TourEnterprise();
-                    ent.Name = entName;
-                    
-                   // continue;
-                }
-                DJ_Route newRoute = new DJ_Route();
-                newRoute.DayNo = dayNo;
 
-                newRoute.Enterprise = ent;
-                newRoute.RD_EnterpriseName = entName;
-                routes.Add(newRoute);
+            foreach (EnterpriseType type in entDicts.Keys)
+            {
+               IList<string> entNames = entDicts[type];
+
+                foreach (string entName in entNames)
+                {
+                    if (string.IsNullOrEmpty(entName)) continue;
+                    DJ_TourEnterprise ent = bllEnt.GetEntByName(entName);
+                    if (ent == null)
+                    {
+                        ///创建新企业,只有名称
+                        // errMsg = "企业名称有误:" + entName;
+                        ent = new DJ_TourEnterprise();
+                        ent.Name = entName;
+                        ent.Type = type;
+
+                        // continue;
+                    }
+                    DJ_Route newRoute = new DJ_Route();
+                    newRoute.DayNo = dayNo;
+
+                    newRoute.Enterprise = ent;
+                    newRoute.RD_EnterpriseName = entName;
+                    routes.Add(newRoute);
+                }
             }
             return routes;
         }
