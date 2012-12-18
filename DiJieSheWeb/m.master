@@ -29,7 +29,7 @@
                 <div id="pageTop">
                     <div class="userinfo">
                         <div class="username">
-                            当前单位:<span style="color:#006E5A;margin-right:10px;"><asp:Literal ID="laETName" runat="server"></asp:Literal></span>
+                            当前单位:<span style="margin-right:10px;"><asp:Literal ID="laETName" runat="server"></asp:Literal></span>
                             用户:<asp:LoginName ID="LoginName1" runat="server" CssClass="userFontType" />
                         </div>
                         <div class="useraction">

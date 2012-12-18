@@ -6,7 +6,7 @@
 {
     display:block;
     width:960px;
-    background:url("/theme/default/image/body_bg.gif") repeat-x;
+    background:url("/theme/default/image/topBg.jpg") repeat-x;
     background-position:top;
     margin:0px auto;
     height:100px;
@@ -14,7 +14,7 @@
 }
 #mainPage
 {
-    background:#00302D url("/theme/default/image/body_bg2.gif") repeat-x fixed top;
+    background-color:#365F5B;
     display:block;
     padding-bottom:10px;
 }
@@ -69,17 +69,21 @@
 {
     display:block;
     float:left;
+    color:#009383 !important;
 }
 .username span
 {
-    font-size:14px;
-    font-weight:bold;
+    font-size:12px;
     margin-left:5px;
 }
 .useraction
 {
     display:block;
     float:right;
+}
+.useraction a
+{
+    margin-left:10px;
 }
 .userFontType
 {
@@ -137,27 +141,27 @@ a:hover
     padding:0px;
     width:150px;
 }
-.nav,.nav li span
+/*.nav,.nav li span
 {
     display:block;
     background:url("/theme/default/image/Func_Titlebg2.gif") repeat-x;
-    height:33px;
-    line-height:33px;
+    background-position:bottom;
+    height:30px;
+    line-height:30px;
     text-align:center;
     color:#006B5E;
     word-spacing:5px;
     font-weight:bold;
-}
+}*/
 .nav,.nav li a,.nav,.nav li a:link,.nav,.nav li a:active,.nav,.nav li a:hover,.nav,.nav li a:visited
 {
     display:block;
     border-bottom:1px solid #29A294;
-    height:33px;
-    line-height:33px;
+    height:30px;
+    line-height:30px;
     text-align:center;
-    font-weight:bold;
     background-color:#009383;
-    color:#444D5E;
+    color:White;
 }
 .nav
 {
@@ -174,7 +178,7 @@ a:hover
     line-height:33px;
     text-align:center;
     font-weight:bold;
-    background-color:#60CCC2 !important;
+    background:url("/theme/default/image/HighLinkBg.jpg");
     color:White !important;
 }
 .TechSupport

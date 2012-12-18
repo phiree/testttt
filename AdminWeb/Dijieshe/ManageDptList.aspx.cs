@@ -27,7 +27,7 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
         string area = ViewState["area"].ToString();
         if (area != "1")
         {
-            IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList(ddlarea.Areacode.Trim());
+            IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList(txtDptName.Text,ddlarea.Areacode.Trim());
             gv.DataSource = dptList;
             gv.DataBind();
             if (gv.Rows.Count > 0)
@@ -44,7 +44,7 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
     }
     protected void btn_Click(object sender, EventArgs e)
     {
-        ViewState["area"] = 1;
+        ViewState["area"] =2;
         BindList();
     }
     protected void gv_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -91,7 +91,7 @@ public partial class Admin_ManageDptList : System.Web.UI.Page
     protected void btn_All_Click(object sender, EventArgs e)
     {
         ViewState["area"] = 1;
-        IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList("");
+        IList<DJ_GovManageDepartment> dptList = bllDpt.GetMgrDptList(txtDptName.Text,"");
         gv.DataSource = dptList;
         gv.DataBind();
         if (gv.Rows.Count > 0)
