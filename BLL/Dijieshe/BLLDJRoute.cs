@@ -176,7 +176,7 @@ namespace BLL
                 newRoute.DayNo = dayNo;
 
                 newRoute.Enterprise = ent;
-
+                newRoute.RD_EnterpriseName = entName;
                 routes.Add(newRoute);
             }
             return routes;

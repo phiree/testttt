@@ -59,7 +59,6 @@ public partial class LocalTravelAgent_Groups_GroupEditBasicInfo : basepageDjsGro
         }
     }
 
-    BLL.BLLDJGroup_Worker bllgw = new BLLDJGroup_Worker();
     protected void btnAddWorker_Click(object sender, EventArgs e)
     {
 
