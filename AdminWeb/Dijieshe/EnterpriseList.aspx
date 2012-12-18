@@ -5,6 +5,16 @@
     <div class="detail_titlebg">
         企业列表
     </div>
+    <div class="searchdiv">
+        名称<asp:TextBox runat="server" ID="txtEntName" />&nbsp;&nbsp;&nbsp;&nbsp;
+        类型<asp:DropDownList
+            ID="ddlType" runat="server">
+            <asp:ListItem Text="所有" Value="所有"></asp:ListItem>
+            <asp:ListItem Text="旅行社" Value="旅行社"></asp:ListItem>
+            <asp:ListItem Text="宾馆" Value="宾馆"></asp:ListItem>
+        </asp:DropDownList>
+        <asp:Button ID="btnSearch" Text="查询" runat="server" OnClick="btnSearch_Click" />
+    </div>
     <div class="detaillist">
         <div class="detailtitle">
             企业列表
@@ -42,10 +52,11 @@
                         <a href='enterpriseedit.aspx?entid=<%#Eval("Id") %>'>修改企业信息</a>
                     </td>
                     <td>
-                        <asp:Label Visible="false" runat="server" ID="lblAdmin"></asp:Label>
-                        <asp:TextBox runat="server" ID="tbxAccount"></asp:TextBox>
+                        <asp:Label runat="server" ID="lblAdmin"></asp:Label>
                         <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' Text="指派" ID="btnadmin"
                             CommandName="AddAdmin" CssClass="btn" />
+                        <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' Text="重置密码" ID="btnreset"
+                            CommandName="ResetPwd" CssClass="btn" />
                     </td>
                     <td>
                         <asp:Label runat="server" ID="lblVerify"  />

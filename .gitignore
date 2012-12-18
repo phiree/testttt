@@ -10,4 +10,5 @@ TourTest/App.config
 *.scc
 /DAL/*.scc
 packages
+/AdminWeb/connectionStrings.config
 

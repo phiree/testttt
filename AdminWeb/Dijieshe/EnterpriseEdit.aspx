@@ -21,10 +21,10 @@
             </tr>
             <tr>
                 <td>
-                    登录帐号
+                    SeoName
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbxAccount"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="tbxSeoName"></asp:TextBox>
                 </td>
             </tr>
             <tr>

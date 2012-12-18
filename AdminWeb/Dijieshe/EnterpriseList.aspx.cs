@@ -23,7 +23,7 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
 
     protected void BindList()
     {
-        rpt.DataSource = bllDJEnt.GetEntList_ExcludeScenic(string.Empty);
+        rpt.DataSource = bllDJEnt.GetEntList_ExcludeScenic(txtEntName.Text,ddlType.SelectedValue, string.Empty);
         rpt.DataBind();
     }
     protected void rpt_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -32,13 +32,18 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
         {
             DJ_TourEnterprise ent = e.Item.DataItem as DJ_TourEnterprise;
             Label lblAdmin = e.Item.FindControl("lblAdmin") as Label;
+            Button btnadmin = e.Item.FindControl("btnadmin") as Button;
+            Button btnreset = e.Item.FindControl("btnreset") as Button;
             IList<DJ_User_TourEnterprise> members = bllUser.GetUser_TEbyId(ent.Id, 15);
-           
-            TextBox tbx = e.Item.FindControl("tbxAccount") as TextBox;
-            if (members.Count>=1)
+            if (members.Count >= 1)
             {
-                tbx.Text = members[0].Name;
-
+                lblAdmin.Text = members[0].Name;
+                btnadmin.Visible = false;
+            }
+            else
+            {
+                lblAdmin.Visible = false;
+                btnreset.Visible = false;
             }
             Label lblVerify = e.Item.FindControl("lblVerify") as Label;
 
@@ -59,13 +64,18 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
 
         if (e.CommandName.ToLower() == "addadmin")
         {
-            TextBox tbx = e.Item.FindControl("tbxAccount") as TextBox;
-            string loginname = tbx.Text;
-            if (string.IsNullOrEmpty(loginname))
+            DJ_TourEnterprise ent = bllDJEnt.GetDJS8id(entId.ToString())[0];
+            if (string.IsNullOrEmpty(ent.SeoName))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "accountcannotnull", "alert('帐号名不能为空');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "accountcannotnull", "alert('该企业还没有seoname，请先填写seoname');", true);
                 return;
             }
+            if (bllMember.GetMember(ent.SeoName) != null)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "accountcannotnull", "alert('用户名重复，请检查seoname是否重复');", true);
+                return;
+            }
+            string loginname = ent.SeoName;
             DJ_User_TourEnterprise djuserent = new DJ_User_TourEnterprise();
             djuserent.Enterprise = bllDJEnt.GetDJS8id(entId.ToString())[0];
             djuserent.Name = loginname;
@@ -74,13 +84,18 @@ public partial class Admin_EnterpriseList : System.Web.UI.Page
             bllMember.CreateUpdateMember(djuserent);
         }
 
-        if (e.CommandName.ToLower() == "setverify")
+        if (e.CommandName.ToLower() == "resetpwd")
         {
             DJ_TourEnterprise ent = bllDJEnt.GetDJS8id(entId.ToString())[0];
-            //ent.IsVeryfied = !ent.IsVeryfied;
-            //bllDJEnt.Save(ent);
+            bllMember.ResetEntAdmin(ent);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "accountcannotnull", "alert('重置密码成功');", true);
         }
         BindList();
 
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        BindList();
     }
 }

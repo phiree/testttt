@@ -203,5 +203,12 @@ namespace BLL
             mgrUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
             CreateUpdateMember(mgrUser);
         }
+
+        public void ResetEntAdmin(Model.DJ_TourEnterprise ent)
+        {
+            DJ_User_TourEnterprise djUser = (DJ_User_TourEnterprise)new BLLDJ_User().GetUser_TEbyId(ent.Id, 15)[0];
+            djUser.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
+            CreateUpdateMember(djUser);
+        }
     }
 }
