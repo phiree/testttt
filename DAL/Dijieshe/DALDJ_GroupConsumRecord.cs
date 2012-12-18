@@ -160,7 +160,7 @@ namespace DAL
             }
             if (endtime != "")
             {
-                sql.Append(" and r.ConsumeTime<='" + endtime + "'");
+                sql.Append(" and r.ConsumeTime<'" + endtime + "'");
             }
             if (type != 0)
                 sql.Append(" and r.Enterprise.Type=" + type + "");
