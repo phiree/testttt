@@ -45,9 +45,10 @@ public partial class Admin_EnterpriseEdit : System.Web.UI.Page
         tbxOfficePhone.Text = CurrentEnterprise.Phone;
         tbxPhone.Text = CurrentEnterprise.ChargePersonPhone;
         rblType.SelectedValue = CurrentEnterprise.Type.ToString();
-        DJ_User_TourEnterprise djuserEnt = bllDjUser.GetUser_TEbyId(CurrentEnterprise.Id);
-        if (djuserEnt != null)
-        { tbxAccount.Text = djuserEnt.Name; }
+        //DJ_User_TourEnterprise djuserEnt = bllDjUser.GetUser_TEbyId(CurrentEnterprise.Id);
+        //if (djuserEnt != null)
+        //{ tbxAccount.Text = djuserEnt.Name; }
+        tbxSeoName.Text = CurrentEnterprise.SeoName;
     }
     private void UpdateForm()
     {
@@ -58,11 +59,12 @@ public partial class Admin_EnterpriseEdit : System.Web.UI.Page
         CurrentEnterprise.Phone = tbxOfficePhone.Text;
         CurrentEnterprise.ChargePersonPhone = tbxPhone.Text;
         CurrentEnterprise.Type = (EnterpriseType)(Convert.ToInt32(rblType.SelectedValue));
-        DJ_User_TourEnterprise djuserEnt = bllDjUser.GetUser_TEbyId(CurrentEnterprise.Id);
-        if (djuserEnt == null)
-        { 
-            //创建新用户
-        }
+        //DJ_User_TourEnterprise djuserEnt = bllDjUser.GetUser_TEbyId(CurrentEnterprise.Id);
+        //if (djuserEnt == null)
+        //{ 
+        //    //创建新用户
+        //}
+        CurrentEnterprise.SeoName = tbxSeoName.Text;
     }
 
     public void Save()
