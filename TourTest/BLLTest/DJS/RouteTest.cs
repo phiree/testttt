@@ -30,10 +30,14 @@ namespace TourTest.BLLTest
 
             
             string errMsg;
-          IList<Model.DJ_Route> routes= bllRoute.CreateRouteFromNameList(1, new List<string>() { "a", "b", "cc" }, out errMsg);
+            Dictionary<Model.EnterpriseType, IList<string>> entDicts = new Dictionary<Model.EnterpriseType, IList<string>>();
+            entDicts.Add(Model.EnterpriseType.宾馆, new List<string>() { "宾馆1", "宾馆2", "宾馆3" });
+            entDicts.Add(Model.EnterpriseType.景点, new List<string>() { "景区1", "景区2", "景区3" });
+            IList<Model.DJ_Route> routes = bllRoute.CreateRouteFromNameList(1, entDicts, out errMsg);
 
-          Assert.AreEqual(0, routes.Count);
-          Assert.IsTrue(errMsg.Length > 2);
+          Assert.AreEqual(6, routes.Count);
+          Console.Write("errMSG:"+errMsg+".");
+        //  Assert.IsTrue(errMsg.Length > 2);
         }
     }
 }

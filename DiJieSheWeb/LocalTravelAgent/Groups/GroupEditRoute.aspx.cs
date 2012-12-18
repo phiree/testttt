@@ -173,21 +173,32 @@ public partial class LocalTravelAgent_Groups_GroupEditRoute : basepageDjsGroupEd
     protected void btnSaveRoute_Click(object sender, EventArgs e)
     {
         int dayNo =Convert.ToInt32( rblDayNo.Text);
+        Dictionary<EnterpriseType, IList<string>> entDictionary = new Dictionary<EnterpriseType, IList<string>>();
         List<string> entNames = new List<string>();
         foreach (RepeaterItem item in rptEditScenics.Items)
         {
+            if (!entDictionary.ContainsKey(EnterpriseType.景点))
+            {
+                entDictionary.Add(EnterpriseType.景点, new List<string>());
+            }
             TextBox tbxScenic = item.FindControl("tbxEntEdit") as TextBox;
             string scenicName = CommonLibrary.StringHelper.TrimAll(tbxScenic.Text);
+            entDictionary[EnterpriseType.景点].Add(scenicName);
             entNames.Add(scenicName);
         }
         foreach (RepeaterItem itemHotel in rptEditHotels.Items)
         {
+            if (!entDictionary.ContainsKey(EnterpriseType.宾馆))
+            {
+                entDictionary.Add(EnterpriseType.宾馆, new List<string>());
+            }
             TextBox tbxHotel = itemHotel.FindControl("tbxEntEdit") as TextBox;
             string hotelName = CommonLibrary.StringHelper.TrimAll(tbxHotel.Text);
+            entDictionary[EnterpriseType.宾馆].Add(hotelName);
             entNames.Add(hotelName);
         }
         string errMsg;
-        bllRoute.SaveFromNameList(CurrentGroup, dayNo, entNames,out errMsg);
+        bllRoute.SaveFromNameList(CurrentGroup, dayNo, entDictionary, out errMsg);
         bllGroup.Save(CurrentGroup);
       
         LoadData();

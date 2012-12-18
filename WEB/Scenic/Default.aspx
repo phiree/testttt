@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="Scenic_Default" %>
+
 <%@ Register TagPrefix="self" Namespace="TourControls" Assembly="TourControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
-    <script type="text/javascript"
-    src="https://maps.google.com/maps/api/js?sensor=true">
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true">
     </script>
     <link href="/theme/default/css/TCCSS.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
@@ -13,15 +13,13 @@
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/scenic.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&amp;services=true"> </script>
-    
-   
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
     <asp:HiddenField ID="hfposition" runat="server" />
     <asp:HiddenField ID="hfscname" runat="server" />
     <p class="navsc">
-        您选择的景区门票：浙江省&nbsp;>&nbsp;<a
-            runat="server" id="areaname"></a>&nbsp;<a runat="server" id="county"></a>&nbsp;<a runat="server" id="scenicname"></a></p>
+        您选择的景区门票：浙江省&nbsp;>&nbsp;<a runat="server" id="areaname"></a>&nbsp;<a runat="server"
+            id="county"></a>&nbsp;<a runat="server" id="scenicname"></a></p>
     <div id="mainscenic">
         <div class="mainscbg">
             <img runat="server" id="ImgMainScenic" class="mainscenicimg" src="" /></div>
@@ -83,11 +81,11 @@
                         </td>
                     </tr>
                 </tbody>
-                    <asp:Repeater ID="rpttp" runat="server">
-                        <ItemTemplate>
-                            <tr class="pttr" onmouseover="" onmouseout="">
-                            <td style="text-align:left;padding-left:60px;">
-                            <input type="hidden" value='<%#Eval("Id") %>' />
+                <asp:Repeater ID="rpttp" runat="server">
+                    <ItemTemplate>
+                        <tr class="pttr" onmouseover="" onmouseout="">
+                            <td style="text-align: left; padding-left: 60px;">
+                                <input type="hidden" value='<%#Eval("Id") %>' />
                                 <%# Eval("Name") %>
                             </td>
                             <td>
@@ -97,7 +95,6 @@
                                 <%# Eval("TicketPrice[1].Price", "{0:0}")%>
                             </td>
                             <td style="color: #EC6B9E; font-weight: bold">
-                                <%--<%# Eval("TicketPrice[2].Price", "{0:0}")%>--%>
                                 0
                             </td>
                             <td>
@@ -106,11 +103,9 @@
                             <td style="text-align: center;">
                                 <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart(this)" />
                             </td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                
-                   
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
             </table>
             <hr />
         </div>
@@ -118,7 +113,8 @@
             <p class="captitle">
                 订票说明</p>
             <%--<div class="otinfo" runat="server" id="dp_info">--%>
-                <self:ContentReader runat="server" HasBorder="true" ID="sc_dp" scFuncType="订票说明" type="景区" CssClass="otinfo"/>
+            <self:ContentReader runat="server" HasBorder="true" ID="sc_dp" scFuncType="订票说明"
+                type="景区" CssClass="otinfo" />
             <%--</div>--%>
         </div>
         <div id="allinfo">
@@ -129,22 +125,22 @@
                     交通指南</span>
             </div>
             <div id="changeinfo">
-                    <div id="scdetailplate">
-                    <self:ContentReader runat="server" ID="plate2" HasBorder="true" scFuncType="景区详情" type="景区"/>
-                    </div>
+                <div id="scdetailplate">
+                    <self:ContentReader runat="server" ID="plate2" HasBorder="true" scFuncType="景区详情"
+                        type="景区" />
+                </div>
                 <p id="plap">
                     交通指南</p>
                 <div id="plate1">
-                    <a onclick="gotocenter()" style="float:right;margin-right:15px;cursor:pointer;color:#53C46C">恢复坐标中心</a>
+                    <a onclick="gotocenter()" style="float: right; margin-right: 15px; cursor: pointer;
+                        color: #53C46C">恢复坐标中心</a>
                     <div id="containtermap">
                     </div>
-                    <self:ContentReader runat="server" ID="sc_jtzn" scFuncType="交通指南" type="景区" CssClass="rdinfo"/>
-
+                    <self:ContentReader runat="server" ID="sc_jtzn" scFuncType="交通指南" type="景区" CssClass="rdinfo" />
                 </div>
             </div>
         </div>
     </div>
-    
     <img src="/theme/default/image/newversion/backtop.png" width="41px" height="49px"
         class="backtop" />
 </asp:Content>

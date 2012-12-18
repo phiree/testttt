@@ -430,13 +430,16 @@ namespace BLL
         }
 
         #endregion
-
-        public string BuildJsonEnterprise(string nameLike, string strEntType)
+        public string BuildJsonEnterprise(string nameLike, string strEntType,bool isVerified)
         {
             EnterpriseType entType;
             Enum.TryParse(strEntType, out entType);
 
             IList<DJ_TourEnterprise> ents = dalEnt.GetList(nameLike, true, string.Empty, entType, null);
+            if (isVerified)
+            {
+                ents = ents.Where(x => x.IsVerified).ToList() ;
+            }
             var list = (from row in ents
                         select new DJ_TourEnterprise
                         {
@@ -450,6 +453,11 @@ namespace BLL
             string jsonNames = CommonLibrary.JosnHelper.GetJson<IList<DJ_TourEnterprise>>(list);
 
             return jsonNames;
+
+        }
+        public string BuildJsonEnterprise(string nameLike, string strEntType)
+        {
+            return BuildJsonEnterprise(nameLike, strEntType, true);
 
         }
     }

@@ -45,7 +45,7 @@ input{cursor:pointer;}
             <li>
               <asp:Button runat="server" Text="旅行社管理员直接登录2" OnClick="btnDjsLogin_Click2" ID="Button1" /></li>
          
-           </li>
+           
            
         </ul>
     </fieldset>
