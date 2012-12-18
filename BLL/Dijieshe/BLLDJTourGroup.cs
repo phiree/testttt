@@ -167,6 +167,11 @@ namespace BLL
                     if (worker.WorkerType == DJ_GroupWorkerType.导游) { hasSelectGuide = true; }
                     gw.DJ_Workers = worker;
                     gw.DJ_TourGroup = CurrentGroup;
+
+                    gw.RD_WorkerName = worker.Name;
+                    gw.RD_WorkerIdCard = worker.IDCard;
+                    gw.RD_Phone = worker.Phone;
+
                     bllGroupWorker.Save(gw);
             }
            

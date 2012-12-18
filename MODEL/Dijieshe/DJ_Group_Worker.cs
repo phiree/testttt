@@ -16,6 +16,13 @@ namespace Model
         /// 员工
         /// </summary>
         public virtual DJ_Workers DJ_Workers { get; set; }
+
+        /// <summary>
+        /// 冗余字段
+        /// </summary>
+        public virtual string RD_WorkerName { get; set; }
+        public virtual string RD_WorkerIdCard { get; set; }
+        public virtual string RD_Phone { get; set; }
         /// <summary>
         /// 所属团队. 简单起见,做成多对一的关系.
         /// </summary>

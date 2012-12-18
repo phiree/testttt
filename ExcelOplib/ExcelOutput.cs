@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using Microsoft.Office.Core;
+//using Microsoft.Office.Core;
 using System.IO;
 using System.Reflection;
 using System.Diagnostics;

@@ -19,6 +19,8 @@ namespace Model
         public virtual int DayNo { get; set; }
 
         public virtual DJ_TourEnterprise Enterprise { get; set; }
+        //冗余字段
+        public virtual string RD_EnterpriseName { get; set; }
 
         public virtual string Description { get; set; }
 
@@ -28,6 +30,7 @@ namespace Model
             newRoute.DayNo = DayNo;
             newRoute.Enterprise = Enterprise;
             newRoute.Description = Description;
+            newRoute.RD_EnterpriseName = RD_EnterpriseName;
 
         }
 
