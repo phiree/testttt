@@ -294,7 +294,9 @@ namespace ExcelOplib
                 }
                 fs.Close();
                 fs2.Close();
-                var img_index=filename.IndexOf(Math.Abs(scenic.Photo.GetHashCode()).ToString()) >= 0 ;
+                //var img_index=filename.IndexOf(Math.Abs(scenic.Photo.GetHashCode()).ToString()) >= 0 ;
+                var img_index = filename.IndexOf(scenic.Photo.Split(
+                    new string[] { "/scenicimg/mainimg/" }, StringSplitOptions.RemoveEmptyEntries)[0].ToString()) >= 0;
                 silist.Add(new Model.ScenicImg()
                 {
                     Name = filename,
