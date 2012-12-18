@@ -19,7 +19,7 @@
         旅游管理部门列表
     </div>
     <div class="searchdiv">
-        
+        名称<asp:TextBox runat="server" ID="txtDptName" />&nbsp;&nbsp;&nbsp;&nbsp;
         区域编码筛选
         <uc:dllcitycode ID="ddlarea" runat="server" />
         &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="Button1" runat="server"

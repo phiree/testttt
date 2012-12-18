@@ -19,15 +19,18 @@ namespace BLL
            session.Save(mgrDpt);
            session.Flush();
        }
-       public IList<Model.DJ_GovManageDepartment> GetMgrDptList(string areaCode)
+       public IList<Model.DJ_GovManageDepartment> GetMgrDptList(string dptName,string areaCode)
        {
            string ids = new BLLArea().GetChildAreaIds(areaCode);
-           string sql = "select gcr from DJ_GovManageDepartment gcr";
+           string sql = "select gcr from DJ_GovManageDepartment gcr where 1=1 ";
            if (ids != string.Empty)
            {
-              sql+=" where gcr.Area.Id in (" + ids + ")";
+              sql+=" and gcr.Area.Id in (" + ids + ")";
            }
-      
+           if (!string.IsNullOrEmpty(dptName))
+           {
+               sql += " and gcr.Name like '%" + dptName + "%'";
+           }
            IQuery query = session.CreateQuery(sql);
            return query.Future<Model.DJ_GovManageDepartment>().ToList();
 
