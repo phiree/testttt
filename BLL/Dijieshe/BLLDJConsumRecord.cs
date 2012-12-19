@@ -183,8 +183,7 @@ namespace BLL
             {
                 foreach (DJ_GroupConsumRecord item in List)
                 {
-                    //count += item.AdultsAmount + item.ChildrenAmount;
-                    //visitedcount += item.AdultsAmount + item.ChildrenAmount;
+                    people += item.AdultsAmount + item.ChildrenAmount;
                 }
             }
             if (Enttype == 4)

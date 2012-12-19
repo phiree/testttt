@@ -12,6 +12,7 @@
         <ul class="nav">
             <li runat="server" id="li_2"><a href="/localtravelagent/Groups/GroupList.aspx">团队管理</a></li>
            <li runat="server" id="li_3"><a href="/localtravelagent/TourEnterpriseStatistics_Hotel.aspx">宾馆统计信息</a></li>
+           <li runat="server" id="li_9"><a href="/localtravelagent/TourEnterpriseStatistics_Scenic.aspx">景区统计信息</a></li>
             <li runat="server" id="li_4"><a href="/localtravelagent/DptStatistic.aspx">旅游管理部门统计信息</a></li>
             <li runat="server" id="li_5"><a href="/localtravelagent/RecEntList.aspx">奖励政策</a></li>
             <li runat="server" id="li_6"><a href="/localtravelagent/LTAUserManager.aspx">用户管理</a></li>
