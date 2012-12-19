@@ -145,9 +145,9 @@ namespace BLL
         /// <param name="EntName">查询企业名称</param>
         /// <param name="EntId">所在地接社id</param>
         /// <returns>查询出的企业列表</returns>
-        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string bengintime, string endtime, string EntName, int type, int EntId)
+        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string bengintime, string endtime, string EntName, int type, int EntId, bool? IsVerified)
         {
-            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(bengintime, endtime, EntName, type, EntId).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(bengintime, endtime, EntName, type, EntId, IsVerified).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -165,10 +165,10 @@ namespace BLL
             return ListTE;
         }
 
-        public void GetCountByStatics(string begintime, string endtime, string EntName, int type, int EntId, int Enttype, int Wentid,out int count,out int livecount,out int visitedcount)
+        public void GetCountByStatics(string begintime, string endtime, string EntName, int type, int EntId, int Enttype, int Wentid,out int people,out int room,out int appendbed)
         {
-            count = livecount = visitedcount = 0;
-            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(begintime, endtime, EntName, type, EntId).ToList();
+            people = room = appendbed = 0;
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(begintime, endtime, EntName, type, EntId,null).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -183,22 +183,27 @@ namespace BLL
             {
                 foreach (DJ_GroupConsumRecord item in List)
                 {
-                    count += item.AdultsAmount + item.ChildrenAmount;
-                    visitedcount += item.AdultsAmount + item.ChildrenAmount;
+                    //count += item.AdultsAmount + item.ChildrenAmount;
+                    //visitedcount += item.AdultsAmount + item.ChildrenAmount;
                 }
             }
             if (Enttype == 4)
             {
                 foreach (DJ_GroupConsumRecord item in List)
                 {
-                    count += item.AdultsAmount + item.ChildrenAmount;
-                    livecount += (item.AdultsAmount + item.ChildrenAmount) * item.LiveDay;
+                    people += (item.AdultsAmount + item.ChildrenAmount)*item.LiveDay;
+                    room += item.RoomNum;
+                    appendbed += item.AppendBed;
                 }
             }
         }
 
-        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string begintime, string endtime, string EntName, int type, int EntId)
+        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string begintime, string endtime, string EntName, int type, int EntId, bool? IsVerified)
         {
+            if (IsVerified != null)
+            {
+                return IDjgroup.GetRecordByCondition(begintime, endtime, EntName, type, EntId).Where(x=>x.Enterprise.IsVerified==(bool)IsVerified).ToList();
+            }
             return IDjgroup.GetRecordByCondition(begintime, endtime, EntName, type, EntId);
         }
 
