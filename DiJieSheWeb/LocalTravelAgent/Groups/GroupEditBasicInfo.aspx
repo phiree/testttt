@@ -24,10 +24,12 @@
             $("form").validateWebForm({ rules: {
                 <%=tbxDateAmount.UniqueID %>: {
                  min:1,
-                 max:99
+                 max:99,
+                 required:true
                 },
                 <%=tbxDateBegin.UniqueID %>:{
-                 date:true
+                 date:true,
+                 required:true
                 }
             }
             });
@@ -56,7 +58,7 @@
                     团队名称
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbxName" CssClass="required" Width="400"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="tbxName" CssClass="title required" Width="400"></asp:TextBox>
                 </td>
             </tr>
             <tr>
