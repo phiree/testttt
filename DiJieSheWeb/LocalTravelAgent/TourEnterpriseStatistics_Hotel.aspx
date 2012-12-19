@@ -21,12 +21,27 @@
                 WdatePicker({ dateFmt: 'yyyy年MM月',maxDate:new Date() })
             });
         });
-        
+        function showDetail(entId) {
+            $("[id$='hfentId']").val(entId);
+            $("[id$='btnShowSearch']").click();
+        }
     </script>
+    <style type="text/css">
+        .link_ent
+        {
+            color:Black;
+            text-decoration:none;
+            cursor:pointer;
+        }
+        .link_ent:hover
+        {
+            text-decoration:underline;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
-        旅游企业统计信息
+        宾馆统计信息
     </div>
     <div class="searchdiv">
         <h5>
@@ -40,10 +55,11 @@
             </asp:DropDownList>
         &nbsp;&nbsp;
         <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn2" OnClick="BtnSearch_Click" />
+        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn2" />
     </div>
-    <div class="detaillist">
+    <div class="detaillist" runat="server" id="total_report">
         <div class="detailtitle">
-            统计列表
+            宾馆统计列表
         </div>
         <table class="tablesorter IndexTable">
         </table>
@@ -88,7 +104,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <a href="" runat="server" id="aname">
+                        <a onclick='showDetail(<%# Eval("entid") %>)' class="link_ent">
                             <%# Eval("Name")%></a>
                     </td>
                     <td>
@@ -141,6 +157,55 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
-        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn" />
+        
+    </div>
+
+    <div class="detaillist" runat="server" id="detail_report">
+        <div class="detailtitle" id="entName" runat="server">
+            宾馆统计列表
+        </div>
+         <asp:Repeater ID="rptETDetail" runat="server" >
+            <HeaderTemplate>
+                <table border="0" cellpadding="0" cellspacing="0" class="tablesorter" style="margin-top:3px;width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                日期
+                            </th>
+                            <th>
+                                成人/儿童(住宿人天数)
+                            </th>
+                            <th>
+                                房间数
+                            </th>
+                            <th>
+                                加床数
+                            </th>
+                        </tr>
+                    </thead>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <%# Eval("Date")%>
+                    </td>
+                    <td>
+                        <%# Eval("AllPeople")%>
+                    </td>
+                    <td>
+                        <%# Eval("Room")%>
+                    </td>
+                    <td>
+                        <%# Eval("AppendBed")%>
+                    </td>
+                </tr>
+            </ItemTemplate>
+            
+        </asp:Repeater>
+        </table>
+    </div>
+    <div style="display:none">
+        <asp:Button ID="btnShowSearch" runat="server" Text="Button" OnClick="btnShowSearch_Click" />
+        <asp:HiddenField runat="server" ID="hfentId" />
     </div>
 </asp:Content>
