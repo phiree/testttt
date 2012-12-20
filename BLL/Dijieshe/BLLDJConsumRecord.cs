@@ -268,11 +268,9 @@ namespace BLL
             return ListGovWdpt;
         }
 
-        public void GetDetailDptCount(string beginTime, string endTime, string code, int entid, out int totalcount, out int livecount, out int visitedcount)
+        public void GetDetailDptCount(string beginTime, string endTime, string code, int entid, out int people, out int room, out int appendbed,out int visited)
         {
-            totalcount = 0;
-            livecount = 0;
-            visitedcount = 0;
+            people = room = appendbed = visited = 0;
             List<Model.DJ_GroupConsumRecord> ListRecord = IDjgroup.GetDptRecordByCondition(beginTime, endTime, "", entid).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
@@ -292,15 +290,16 @@ namespace BLL
                 foreach (DJ_GroupConsumRecord item in List.Where(x => x.Enterprise.Area.Code.Substring(0, 4) == code.Substring(0, 4)))
                 {
                     if (item.Enterprise.CityVeryfyState == RewardType.已纳入)
-                    {
-                        totalcount += item.AdultsAmount + item.ChildrenAmount;
-                        if (item.LiveDay > 0)
+                    {   
+                        if (item.Enterprise.Type==EnterpriseType.宾馆)
                         {
-                            livecount += (item.AdultsAmount + item.ChildrenAmount) * (item.LiveDay);
+                            people += (item.AdultsAmount + item.ChildrenAmount) * (item.LiveDay);
+                            room += item.RoomNum;
+                            appendbed += item.AppendBed;
                         }
-                        else
+                        else if (item.Enterprise.Type == EnterpriseType.景点)
                         {
-                            visitedcount += item.AdultsAmount + item.ChildrenAmount;
+                            visited += item.AdultsAmount + item.ChildrenAmount;
                         }
                     }
                 }
@@ -311,14 +310,15 @@ namespace BLL
                 {
                     if (item.Enterprise.CountryVeryfyState == RewardType.已纳入)
                     {
-                        totalcount += item.AdultsAmount + item.ChildrenAmount;
-                        if (item.LiveDay > 0)
+                        if (item.Enterprise.Type == EnterpriseType.宾馆)
                         {
-                            livecount += (item.AdultsAmount + item.ChildrenAmount) * (item.LiveDay);
+                            people += (item.AdultsAmount + item.ChildrenAmount) * (item.LiveDay);
+                            room += item.RoomNum;
+                            appendbed += item.AppendBed;
                         }
-                        else
+                        else if (item.Enterprise.Type == EnterpriseType.景点)
                         {
-                            visitedcount += item.AdultsAmount + item.ChildrenAmount;
+                            visited += item.AdultsAmount + item.ChildrenAmount;
                         }
                     }
                 }

@@ -190,18 +190,14 @@ namespace DAL
             string sql = "select r from DJ_GroupConsumRecord r where 1=1";
             
             sql += " and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + entid + "";
-            if (begintime != "" && endtime == "")
+            if (begintime != "")
             {
                 sql += " and r.ConsumeTime>='" + begintime + "'";
                     
             }
-            if (begintime == "" && endtime != "")
+            if ( endtime != "")
             {
-                sql += " and r.ConsumeTime<='" + endtime + "'";
-            }
-            if (begintime != "" && endtime != "")
-            {
-                sql += " and r.ConsumeTime between '" + begintime + "' and '" + endtime + "'";
+                sql += " and r.ConsumeTime<'" + endtime + "'";
             }
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();

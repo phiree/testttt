@@ -10,12 +10,35 @@
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <script type="text/javascript" src="/Scripts/My97DatePicker/WdatePicker.js"></script>
+    <style type="text/css">
+        .report_2 th
+        {
+            line-height:15px !important;
+        }
+        .link_djs
+        {
+            color:Black;
+            text-decoration:none;
+            cursor:pointer;
+        }
+        .link_djs:hover
+        {
+            text-decoration:underline;
+        }
+    </style>
     <script type="text/javascript">
         $(function () {
-            $(".tablesorter").tablesorter();
+            $(".tablesorter").tablesorter({ headers: { 1: { sorter: false }, 2: { sorter: false }, 3: { sorter: false }, 4: { sorter: false }, 5: { sorter: false }, 6: { sorter: false }, 7: { sorter: false }, 8: { sorter: false}} });
             $(".IndexTable").orderIndex();
+            $("[id$='txtDate']").focus(function () {
+                WdatePicker({ dateFmt: 'yyyy年MM月', maxDate: new Date() })
+            });
         });
-        
+
+        function showDetail(DptId) {
+            $("[id$='hfdetail']").val($(".link_djs").attr("dptid"));
+            $("[id$='btndetail']").click();
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
@@ -24,78 +47,89 @@
     </div>
 <div class="searchdiv">
         <h5>按条件查询</h5>
-        日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})"></asp:TextBox>
+        日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
         旅游管理部门名称&nbsp;&nbsp;<asp:TextBox ID="txtEntName" runat="server"></asp:TextBox>
-         <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn" 
+         <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn2" 
              onclick="BtnSearch_Click" />
+        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn2" />
     </div>
-    <div class="detaillist">
+    <div class="detaillist" runat="server" id="report_total">
         <div class="detailtitle">
-            统计列表
+            旅游管理部门统计列表
         </div>
-        <table class="tablesorter IndexTable">
+        <table class="tablesorter IndexTable" >
         </table>
-
-
-
-        <asp:Repeater ID="rptDpt" runat="server" onitemdatabound="rptDpt_ItemDataBound">
-            <HeaderTemplate>
-                <table border="0" cellpadding="0" cellspacing="0" class="tablesorter InfoTable">
+        <table border="0" cellpadding="0" cellspacing="0" class="tablesorter InfoTable" >
                     <thead>
                     <tr>
                         <th rowspan="2">
-                            旅游管理部门名称
+                            管理部门名称
                         </th>
-                        <td colspan="3">
+                        <td colspan="4">
                             本月
                         </td>
-                        <td colspan="3">
+                        <td colspan="4">
                             本年
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            总人数
+                           住宿人天数
                         </th>
                         <th>
-                            住宿人天数
+                            房间数
                         </th>
                         <th>
-                           游玩人数
+                           加床数
                         </th>
                         <th>
-                           总人数
+                           景区游览人次
                         </th>
                         <th>
-                            住宿人天数
+                           住宿人天数
                         </th>
                         <th>
-                           游玩人数
+                            房间数
+                        </th>
+                        <th>
+                           加床数
+                        </th>
+                        <th>
+                           景区游览人次
                         </th>
                     </tr>
                 </thead>
+        <asp:Repeater ID="rptDpt" runat="server">
+            <HeaderTemplate>
+                
             </HeaderTemplate>
             <ItemTemplate>
                     <tr>
                         <td>
-                            <a runat="server" id="anamehref" href='/LocalTravelAgent/DptDetailStatistic.aspx?dptid=<%# Eval("Id") %>'>
-                            <%# Eval("dptName")%>
+                            <a class="link_djs" dptid='<%# Eval("DptId") %>' onclick='showDetail()' >
+                                <%# Eval("dptName")%>
                             </a>
                         </td>
                         <td>
-                            <%# Eval("month_total")%>
+                            <%# Eval("month_people")%>
                         </td>
                         <td>
-                            <%# Eval("month_live")%>
+                            <%# Eval("month_room")%>
+                        </td>
+                        <td>
+                            <%# Eval("month_appendbed")%>
                         </td>
                         <td>
                             <%# Eval("month_visited")%>
                         </td>
                         <td>
-                            <%# Eval("year_total")%>
+                            <%# Eval("year_people")%>
                         </td>
                         <td>
-                            <%# Eval("year_live")%>
+                            <%# Eval("year_room")%>
+                        </td>
+                        <td>
+                            <%# Eval("year_appendbed")%>
                         </td>
                         <td>
                             <%# Eval("year_visited")%>
@@ -106,7 +140,63 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
-        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn" />
+        
+    </div>
+
+
+    <div class="detaillist" runat="server" id="report_detail">
+        <div class="detailtitle" runat="server" id="dptname">
+            旅游管理部门统计列表
+        </div>
+        <asp:Repeater ID="rptETDetail" runat="server" >
+            <HeaderTemplate>
+                <table border="0" cellpadding="0" cellspacing="0" class="tablesorter" style="margin-top:3px;width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                日期
+                            </th>
+                            <th>
+                                成人/儿童(住宿人天数)
+                            </th>
+                            <th>
+                                房间数
+                            </th>
+                            <th>
+                                加床数
+                            </th>
+                            <th>
+                                成人/儿童(景区游览人次)
+                            </th>
+                        </tr>
+                    </thead>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <%# Eval("Date")%>
+                    </td>
+                    <td>
+                        <%# Eval("People")%>
+                    </td>
+                    <td>
+                        <%# Eval("Room")%>
+                    </td>
+                    <td>
+                        <%# Eval("Appendbed")%>
+                    </td>
+                    <td>
+                        <%# Eval("Visited")%>
+                    </td>
+                </tr>
+            </ItemTemplate>
+            
+        </asp:Repeater>
+        </table>
+    </div>
+    <div style="display:none">
+        <asp:Button ID="btndetail" runat="server" Text="Button" OnClick="btndetail_Click" />
+        <asp:HiddenField ID="hfdetail" runat="server" />
     </div>
 </asp:Content>
 
