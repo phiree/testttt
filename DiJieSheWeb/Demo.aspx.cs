@@ -282,9 +282,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         //小组信息(包括司机,导游关系表)
         bllGroup.DeleteDemoGroups(demoGroupNamePrefix);
 
-        //地接社工作人员
-        bllWorker.DeleteDjsWorks(demoDjs1.Id.ToString());
-        bllWorker.DeleteDjsWorks(demoDjs2.Id.ToString());
+        
         
 
 

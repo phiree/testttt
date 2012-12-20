@@ -55,7 +55,7 @@ public partial class TourEnterprise_TEStatistics : basepage
         report_total.Visible = true;
         report_detail.Visible = false;
         List<DJ_DijiesheInfo> ListRecord= bllrecord.SelectFromRecord("", txtEntName.Text.Trim(), "", txtTime.Text, Master.CurrentTE.Id);
-        if (ListRecord.Count == 1)
+        if (ListRecord.Count == 1&&txtEntName.Text!="")
         {
             ShowDetailReport(ListRecord[0].Id);
             return;

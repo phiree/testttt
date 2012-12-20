@@ -7,17 +7,37 @@ using System.Web.UI;
 using System.Web;
 namespace CommonLibrary
 {
+    public enum NotificationType
+    {
+     success,
+        error
+
+    }
+
     public class Notification
     {
-        public static void Show(Page page, string title, string content,string returnUrl)
+        public static void Show(Page page, string title, string content, NotificationType type, string returnUrl)
         {
-            string injectedScript = BuildInjectScript(title, content, returnUrl,5);
+            string injectedScript = BuildInjectScript(title, content,type, returnUrl, 3);
             page.ClientScript.RegisterClientScriptBlock(page.GetType(), "_nf", injectedScript, true);
         }
-        private static string BuildInjectScript(string title, string content, string returnUrl,int autocloseduration)
+        public static void Show(Page page, string title, string content,string returnUrl)
         {
+            Show(page, title, content, NotificationType.success, returnUrl);
+           
+        }
+        private static string BuildInjectScript(string title, string content,NotificationType type, string returnUrl,int autocloseduration)
+        {
+            string notificationStyle = string.Empty;
+            switch (type)
+            {
+                case NotificationType.error: notificationStyle = "error";
+                    break;
+                case NotificationType.success: notificationStyle = "success";
+                    break;
+            }
             string injectedScript = @"
-$(function(){PopMsg('_title_','_content_','_returnUrl_',true);});
+$(function(){PopMsg('_title_','<div class=""_notificationStyle_"">_content_</div>','_returnUrl_',true);});
 
 function PopMsg(title,content, redirecturl,autoClose) {
             
@@ -61,7 +81,8 @@ modal:true,
             }
         }";
             injectedScript = injectedScript.Replace("_title_", title).Replace("_content_", content).Replace("_returnUrl_",returnUrl)
-                .Replace("_autocloseduration_",autocloseduration.ToString());
+                .Replace("_autocloseduration_",autocloseduration.ToString())
+                .Replace("_notificationStyle_",notificationStyle);
             return injectedScript;
         }
         
