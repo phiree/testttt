@@ -34,7 +34,7 @@ namespace ExcelOplib
             List<string> topics1 = temptseo.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
             List<string> topicc2 = topicc1.Distinct().ToList<string>();
             List<string> topics2 = topics1.Distinct().ToList<string>();
-            blltopic.SaveTopic(topicc2, topics2);
+            //blltopic.SaveTopic(topicc2, topics2);
 
             List<Model.Scenic> orgslist = bllscenic.GetScenic().ToList<Model.Scenic>();
             bllscenic.DeleteScenicimg();
