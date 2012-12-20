@@ -79,11 +79,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
-        新建团队(EXCEL导入)
+      
     </div>
     <div class="drInfo">
         <h1>
-            Excel导入新建团队</h1>
+            <asp:Label runat="server" ID="lblTitle"></asp:Label></h1>
         <div class="drbtn">
             <input type="button" class="but" value="选择文件" /><span id="selecfile">未选择文件</span>
             <asp:FileUpload ID="FileUpload1" runat="server" CssClass="fu" />
