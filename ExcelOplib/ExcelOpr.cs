@@ -54,7 +54,7 @@ namespace ExcelOplib
                     s.Area = bllarea.GetAreaByAreaname(item.areaid);
                     //处理topic字符串
                     var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
-                    blltopic.SaveScenictopic(temptopic, s.Id);
+                   // blltopic.SaveScenictopic(temptopic, s.Id);
                     s.Trafficintro = item.trafficintro;
                     s.BookNote = item.bookintro;
                     s.ScenicDetail = item.scenicdetail;
@@ -140,7 +140,7 @@ namespace ExcelOplib
                     s.Tickets = tickets;
                     s.Photo = item.mainpic;
                     bllscenic.UpdateScenicInfo(s);
-                    blltopic.SaveScenictopic(temptopic, bllscenic.GetScenicBySeoName(item.seoname).Id);
+                 //   blltopic.SaveScenictopic(temptopic, bllscenic.GetScenicBySeoName(item.seoname).Id);
                     List<Model.ScenicImg> silist = CopyFile(s);
                     if (silist != null)
                     {
