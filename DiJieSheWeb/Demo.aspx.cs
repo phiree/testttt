@@ -27,6 +27,7 @@ public partial class Admin_Demo : System.Web.UI.Page
     string hoteladmin2 = "linhai_lhsjtbg";
     string hotelName2 = "临海市交通宾馆";
 
+
     string scenicName1 = "情人谷";
     string scenicAdminAccount1 = "linhai_qrg";
     string scenicName2 = "东湖公园";
@@ -78,6 +79,10 @@ public partial class Admin_Demo : System.Web.UI.Page
     protected void btnAdminLogin_Click(object sender, EventArgs e)
     {
         DemoLogin("admin", "/admin/");
+    }
+    protected void btnScenicLogin_Click(object sender, EventArgs e)
+    {
+        DemoLogin(scenicName1, "http://www.tourol.com/ScenicManager/CheckTicket.aspx");
     }
     protected void btnDjsLogin_Click(object sender, EventArgs e)
     {
@@ -255,7 +260,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         foreach (DJ_TourGroup g in Groups)
         {
             //只对过去的验票.
-            if (g.BeginDate >= DateTime.Now)
+            if (g.BeginDate.DayOfYear>= DateTime.Now.DayOfYear)
             {
                 continue;
             }
