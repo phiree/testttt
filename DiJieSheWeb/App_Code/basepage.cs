@@ -36,17 +36,29 @@ public class basepage : System.Web.UI.Page
 
         base.OnLoad(e);
     }
+    protected void ShowNotification(string title, string content, CommonLibrary.NotificationType nt, string redirectUrl)
+    {
+        CommonLibrary.Notification.Show(this, title, content,nt, redirectUrl);
+    }
     protected void ShowNotification(string title,string content,string redirectUrl)
     {
-        CommonLibrary.Notification.Show(this, title, content, redirectUrl);
+        ShowNotification(title, content, CommonLibrary.NotificationType.success, redirectUrl);
+    }
+    protected void ShowNotification(string title, string content,CommonLibrary.NotificationType nt)
+    {
+        ShowNotification(title, content,nt, string.Empty);
     }
     protected void ShowNotification(string title, string content)
     {
-        ShowNotification(title, content, string.Empty);
+        ShowNotification(title, content, CommonLibrary.NotificationType.success);
+    }
+    protected void ShowNotification(string content,CommonLibrary.NotificationType nt)
+    {
+        ShowNotification(string.Empty, content,nt);
     }
     protected void ShowNotification(string content)
     {
-       ShowNotification(string.Empty, content);
+       ShowNotification(content,CommonLibrary.NotificationType.success);
     }
 
 }

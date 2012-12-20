@@ -34,7 +34,7 @@ namespace ExcelOplib
             List<string> topics1 = temptseo.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
             List<string> topicc2 = topicc1.Distinct().ToList<string>();
             List<string> topics2 = topics1.Distinct().ToList<string>();
-            blltopic.SaveTopic(topicc2, topics2);
+            //blltopic.SaveTopic(topicc2, topics2);
 
             List<Model.Scenic> orgslist = bllscenic.GetScenic().ToList<Model.Scenic>();
             bllscenic.DeleteScenicimg();
@@ -54,7 +54,7 @@ namespace ExcelOplib
                     s.Area = bllarea.GetAreaByAreaname(item.areaid);
                     //处理topic字符串
                     var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
-                    blltopic.SaveScenictopic(temptopic, s.Id);
+                   // blltopic.SaveScenictopic(temptopic, s.Id);
                     s.Trafficintro = item.trafficintro;
                     s.BookNote = item.bookintro;
                     s.ScenicDetail = item.scenicdetail;
@@ -140,7 +140,7 @@ namespace ExcelOplib
                     s.Tickets = tickets;
                     s.Photo = item.mainpic;
                     bllscenic.UpdateScenicInfo(s);
-                    blltopic.SaveScenictopic(temptopic, bllscenic.GetScenicBySeoName(item.seoname).Id);
+                 //   blltopic.SaveScenictopic(temptopic, bllscenic.GetScenicBySeoName(item.seoname).Id);
                     List<Model.ScenicImg> silist = CopyFile(s);
                     if (silist != null)
                     {
