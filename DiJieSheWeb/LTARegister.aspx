@@ -121,7 +121,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align:center">
-                            <asp:Button ID="BtnRegister" runat="server" Text="申请加入" CssClass="btn" 
+                            <asp:Button ID="BtnRegister" runat="server" Text="申请加入" CssClass="btn2" 
                                 style="margin-top:20px" onclick="BtnRegister_Click" />
                         </td>
                     </tr>

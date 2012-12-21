@@ -61,7 +61,7 @@
             </FooterTemplate>
         </asp:Repeater>
         <div>
-            <asp:Button ID="BtnAdd" runat="server" Text="新增" CssClass="btn" OnClick="BtnAdd_Click" />
+            <asp:Button ID="BtnAdd" runat="server" Text="新增" CssClass="btn2" OnClick="BtnAdd_Click" />
         </div>
     </div>
 </asp:Content>

@@ -3,13 +3,34 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $(".tablesorter").tablesorter({ headers: { 3: { sorter: false }, 4: { sorter: false}} });
             $(".IndexTable").orderIndex();
+            if ($.cookie("select_tab") != null || $.cookie("select_tab") != undefined) {
+                var index = $.cookie("select_tab");
+                $(".tabSelect a").removeClass("Select_Tab");
+                $(".tabSelect a").eq(index).addClass("Select_Tab");
+            }
+
+
+            $(".tabSelect a").each(function () {
+                var that = this;
+                $(that).click(function () {
+                    var index = $(".tabSelect a").index(that);
+                    var indexvalue = parseInt(index) * 2;
+                    if (indexvalue == 0)
+                        indexvalue = 1;
+                    $.cookie("select_tab", index);
+                    $("[id$='hfState']").val(indexvalue);
+                    $("[id$='btnSearch']").click();
+                });
+            });
         });
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
@@ -22,13 +43,13 @@
         <div class="actiondiv">
             <h3 style="margin-top: 5px">
                 新增团队</h3>
-            <asp:Button ID="Btnzjlr" runat="server" Text="直接录入" CssClass="btn2" OnClick="Btnzjlr_Click" />
+            <asp:Button ID="Btnzjlr" runat="server" Text="直接录入" CssClass="btn2" OnClick="Btnzjlr_Click" />&nbsp;&nbsp;或选&nbsp;&nbsp;
             <asp:Button ID="Btnxlslr" runat="server" Text="Excel导入" CssClass="btn2" OnClick="Btnxlslr_Click" />
             <div>
-                选择其中一种方式新增团队
+                操作提示：选择其中一种方式新增团队
             </div>
         </div>
-        <div class="actiondiv">
+        <div class="actiondiv" style="display:none">
             <h3 style="margin-top: 5px">
                 选择条件查询</h3>
             <asp:RadioButtonList runat="server" ID="cblState" OnSelectedIndexChanged="cblState_Changed"
@@ -38,12 +59,15 @@
                 <asp:ListItem Value="4">已经结束</asp:ListItem>
             </asp:RadioButtonList>
         </div>
-        <div class="detailtitle">
-            团队列表
-            <%--<span class="colorWord">未开始的行程</span><span class="colorpicker" id="colorpicker3"></span>
-            <span class="colorWord">进行中的行程</span><span class="colorpicker" id="colorpicker2"></span>
-            <span class="colorWord">完成的行程</span><span class="colorpicker" id="colorpicker1"></span>--%>
+        <div style="display:none">
+            <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" />
+            <asp:HiddenField runat="server" ID="hfState" Value="1" />
         </div>
+        <div class="tabSelect">
+            <a class="Select_Tab">尚未开始的团</a><a>进程中的团</a><a style="border:none">已结束的团</a>
+            <asp:Button ID="btnOutput3" Text="导出列表" runat="server" OnClick="btnOutput3_Click" CssClass="btn2 Select_Btn" />
+        </div>
+        
         <asp:Repeater ID="rptGroups" runat="server" OnItemDataBound="rptGroups_ItemDataBound"
             OnItemCommand="rptGroups_ItemCommand">
             <HeaderTemplate>
@@ -62,10 +86,10 @@
                                 <asp:LinkButton ID="lbdays" runat="server" Text="天数" CommandName="lbdays"></asp:LinkButton>
                             </th>
                             <th>
-                                操作
+                                团队编辑
                             </th>
                             <th>
-                                备注
+                                团队资料录入提示
                             </th>
                         </tr>
                     </thead>
@@ -74,8 +98,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <a href='/LocalTravelAgent/Groups/GroupDetail.aspx?id=<%#Eval("Id")%>'>
-                            <%#Eval("Name")%></a>
+                            <%#Eval("Name")%>
                     </td>
                     <td>
                         <%#((DateTime)Eval("BeginDate")).Year == DateTime.Now.Year ? ((DateTime)Eval("BeginDate")).ToString("MM月dd日") : ((DateTime)Eval("BeginDate")).ToString("yyyy年MM月dd日")%>
@@ -85,28 +108,33 @@
                     </td>
                     <td>
                         <asp:Panel runat="server" ID="pnlOperation">
-                            <a class="btn" href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改</a> <a
-                                class="btn" href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>
+                            <a  href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改</a> <a
+                                 href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>
                                 更新</a>
                             <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="delete"
-                                CssClass="btn" Text="删除" OnClientClick='javascript:return confirm("您确认要删除这个团队么?");' />
+                                 Text="删除" OnClientClick='javascript:return confirm("您确认要删除这个团队么?");' CssClass="a_btn" />
+
+                            <a href='/LocalTravelAgent/Groups/GroupDetail.aspx?id=<%#Eval("Id")%>'>查询</a>
                         </asp:Panel>
                         <asp:Button runat="server" Visible="false" ID="btnCopy" CommandArgument='<%#Eval("Id") %>' CommandName="Copy"
-                            Text="复制" CssClass="btn" />
+                            Text="复制" CssClass="btn2" />
                     </td>
                     <td>
-                        <asp:LinkButton ID="lblMember_bz" Text="" runat="server" />
-                        <asp:LinkButton ID="lblRoute_bz" Text="" runat="server" />
+                        <asp:LinkButton ID="lblMember_bz" Text="" runat="server" style=" color:#F19145" />
+                        <asp:LinkButton ID="lblRoute_bz" Text="" runat="server" style=" color:#F19145" />
+                        <asp:Label ID="lblSuccess" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
-                </tbody> </table>
+                </tbody> 
+                </table>
             </FooterTemplate>
+            
         </asp:Repeater>
-        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn" />
-        <div class="">
-            <asp:Label runat="server" ID="lblMsg"></asp:Label>
+        
+        <div class="NoRecord" runat="server" id="NoRecord">
+            <asp:Label runat="server" ID="lblMsg" Text="您目前没有团队记录" style="font-size:14px"></asp:Label>
         </div>
     </div>
 </asp:Content>

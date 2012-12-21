@@ -14,7 +14,6 @@
     奖励政策
 </div>
 <div class="searchdiv">
-<h5>筛选条件</h5>
 行政区域:<asp:DropDownList ID="ddlProvince" runat="server" AutoPostBack="True" 
                                 onselectedindexchanged="ddlProvince_SelectedIndexChanged">
                             </asp:DropDownList>
@@ -24,12 +23,13 @@
                             <asp:DropDownList ID="ddlCountry" runat="server">
                             </asp:DropDownList>
 
-    <asp:Button ID="BtnSearch" runat="server" Text="搜索" onclick="BtnSearch_Click" CssClass="btn" />
+    <asp:Button ID="BtnSearch" runat="server" Text="搜索" onclick="BtnSearch_Click" CssClass="btn2" />
 </div>
    
 <div class="detaillist">
-<div class="detailtitle">
-            奖励统计列表
+<div class="tabSelect">
+            <a class="Select_Tab">奖励政策列表</a>
+            <asp:Button runat="server" ID="btnExport"  Text="导出列表" OnClick="btnExport_Click" CssClass="btn2 Select_Btn"/>
         </div>
 <asp:Repeater runat="server" ID="rptRecomEnt" 
         onitemdatabound="rptRecomEnt_ItemDataBound" 
@@ -66,5 +66,5 @@
    
         </table></FooterTemplate>
 </asp:Repeater>
-<asp:Button runat="server" ID="btnExport"  Text="导出为Excel表格" OnClick="btnExport_Click" CssClass="btn2"/>
+
 </div>

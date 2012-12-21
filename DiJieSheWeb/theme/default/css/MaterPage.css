@@ -117,7 +117,7 @@ a:hover
     display:block;
     float:left;
     background-color:White;
-    min-height:730px;
+    min-height:743px;
     _height:730px;
 }
 .Func_Title
@@ -167,8 +167,8 @@ a:hover
 {
     background-color:#009383;
     display:block;
-    min-height:268px;
-    _height:268px;
+    min-height:280px;
+    _height:280px;
 }
 .highLightLink a,.highLightLink a:link,.highLightLink a:active,.highLightLink a:hover,.highLightLink a:visited
 {

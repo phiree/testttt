@@ -22,11 +22,12 @@
         身份证号:<asp:TextBox ID="txtId_add" runat="server" style="margin-right:100px;margin-left:27px;width:150px;"  />
         车牌号:<asp:TextBox ID="txtDriverid_add" runat="server" style="margin-left:38px;width:150px;" /><br />
          所属车队:<asp:TextBox ID="tbxBelong" runat="server" style="margin-left:38px;width:150px;" /><br />
-        <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn" OnClick="btnQuickadd_Click" />
+        <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn2" OnClick="btnQuickadd_Click" />
     </div>
     <div class="detaillist">
-        <div class="detailtitle">
-            司机管理
+        <div class="tabSelect">
+            <a class="Select_Tab">司机列表</a>
+            
         </div>
         <fieldset style="padding-top: 0px; display: none">
             <legend style="font-size: 12px;">搜索条件：</legend>
@@ -34,7 +35,7 @@
                 姓名:<asp:TextBox ID="txtName" runat="server" />
                 身份证号:<asp:TextBox ID="txtIdcardid" runat="server" />
                 车牌号:<asp:TextBox ID="txtDrivercardid" runat="server" />
-                <asp:Button ID="btnSearch" Text="查询" runat="server" CssClass="btn" OnClick="btnSearch_Click" />
+                <asp:Button ID="btnSearch" Text="查询" runat="server" CssClass="btn2" OnClick="btnSearch_Click" />
             </div>
         </fieldset>
         <table class="tablesorter IndexTable">

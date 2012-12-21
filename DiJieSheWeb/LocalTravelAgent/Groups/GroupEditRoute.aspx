@@ -92,12 +92,11 @@
             <li><a href="#tabs-2">文本录入</a></li>  <div class="tabintro">
         根据您方便，选择其中一种方式录入游客信息</div>
         </ul>-->
-        <div id="tabs-1">
+        <div id="tabs-1" style="margin-top:4px">
             <asp:Repeater runat="server" ID="rptRoutes" OnItemCommand="rptRoutes_ItemCommand"
                 OnItemDataBound="rptRoutes_ItemDataBound">
                 <HeaderTemplate>
-                    <table class="tablesorter IndexTable" style="margin:0px">
-        </table>
+                    <table class="tablesorter IndexTable" style="margin-top:0px !important;"></table>
                     <table class="tablesorter InfoTable" style="width:650px;margin:0px;margin-top:2px">
                         <thead>
                         <tr>
@@ -138,8 +137,8 @@
                         </td>
                         <td>
                             <asp:Button runat="server" ID="btnModifyRoute" CommandArgument='<%#Eval("DayNo") %>'
-                                CommandName="Edit" Text="修改" CssClass="btn" />
-                            <asp:Button runat="server" ID="btnClear" CommandArgument='<%#Eval("DayNo") %>' CommandName="Delete" CssClass="btn"
+                                CommandName="Edit" Text="修改" CssClass="btn2" />
+                            <asp:Button runat="server" ID="btnClear" CommandArgument='<%#Eval("DayNo") %>' CommandName="Delete" CssClass="btn2"
                                 Text="清空" OnClientClick="javascript:return confirm('确定要清空这一天的行程么?');" />
                         </td>
                     </tr>
@@ -148,7 +147,7 @@
                     </tbody></table>
                 </FooterTemplate>
             </asp:Repeater>
-            <asp:Button runat="server" ID="btnAddRoute" OnClick="btnAddRoute_Click" Visible="false" Text="增加行程" CssClass="btn" style="margin-top:10px" />
+            <asp:Button runat="server" ID="btnAddRoute" OnClick="btnAddRoute_Click" Visible="false" Text="增加行程" CssClass="btn2" style="margin-top:10px" />
             <asp:Panel runat="server" ID="pnlEditRoute"  CssClass="pnlEditRoute" Visible="false">
                
                  <fieldset>
@@ -171,7 +170,7 @@
                                     <asp:TextBox runat="server"   Text='<%#Container.DataItem %>' CssClass="EditEntName"
                                         ID="tbxEntEdit" entType="景点"></asp:TextBox></ItemTemplate>
                             </asp:Repeater>
-                            <input type="button" id="btnAddMoreScenic" value="增加更多" class="btn" /></div>
+                            <input type="button" id="btnAddMoreScenic" value="增加更多" class="btn2" /></div>
                     </div>
                     <div>
                         <div style="font-weight:bold;">
@@ -182,9 +181,9 @@
                                     <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
                                         ID="tbxEntEdit" entType="宾馆"></asp:TextBox></ItemTemplate>
                             </asp:Repeater>
-                            <input type="button" style="display:none" id="btnAddMoreHotel" value="增加更多" class="btn" /></div>
+                            <input type="button" style="display:none" id="btnAddMoreHotel" value="增加更多" class="btn2" /></div>
                     </div>
-                     <asp:Button runat="server" ID="btnSaveRoute" OnClick="btnSaveRoute_Click" Text="保存" CssClass="btn" />
+                     <asp:Button runat="server" ID="btnSaveRoute" OnClick="btnSaveRoute_Click" Text="保存" CssClass="btn2" />
                 </div>
                  </fieldset>
                
@@ -209,7 +208,7 @@
             </p>
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText" Width="100%"></asp:TextBox>
             <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的行程信息将清除,是否继续?');"
-                Text="保存" CssClass="btn" />
+                Text="保存" CssClass="btn2" />
               
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
         </div>

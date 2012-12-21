@@ -27,7 +27,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn" 
+                    <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn2" 
                         style="margin-top:15px" onclick="btnSave_Click" />
                 </td>
             </tr>

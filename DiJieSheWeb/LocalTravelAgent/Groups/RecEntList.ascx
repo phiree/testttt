@@ -13,13 +13,13 @@
     详细奖励名单
 </div>
 <div class="searchdiv">
-<h5>筛选条件</h5>
+
 旅游单位类型:<asp:DropDownList ID="ddlArea" runat="server">
         <asp:ListItem Value="全部">全部</asp:ListItem>
         <asp:ListItem Value="景区">景区</asp:ListItem>
         <asp:ListItem Value="宾馆">宾馆</asp:ListItem>
     </asp:DropDownList>
-    <asp:Button ID="BtnSearch" runat="server" Text="搜索" onclick="BtnSearch_Click" CssClass="btn" />
+    <asp:Button ID="BtnSearch" runat="server" Text="搜索" onclick="BtnSearch_Click" CssClass="btn2" />
 </div>
 <div class="detaillist">
     <div class="detailtitle">

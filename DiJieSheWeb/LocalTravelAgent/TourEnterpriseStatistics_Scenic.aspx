@@ -43,8 +43,6 @@
         景区统计信息
     </div>
     <div class="searchdiv">
-        <h5>
-            按条件查询</h5>
         日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>&nbsp;&nbsp;景区名称&nbsp;&nbsp;<asp:TextBox
             ID="txtEntName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;奖励单位;&nbsp;&nbsp;<asp:DropDownList
                 ID="ddlIsReward" runat="server">
@@ -54,11 +52,12 @@
             </asp:DropDownList>
         &nbsp;&nbsp;
         <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn2" OnClick="BtnSearch_Click" />
-        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn2" />
+        
     </div>
     <div class="detaillist" runat="server" id="total_report">
-        <div class="detailtitle">
-            景区统计列表
+        <div class="tabSelect">
+            <a class="Select_Tab">景区列表</a>
+            <asp:Button ID="btnOutput3" Text="导出列表" runat="server" OnClick="btnOutput3_Click" CssClass="btn2 Select_Btn" />
         </div>
         <table class="tablesorter IndexTable">
         </table>

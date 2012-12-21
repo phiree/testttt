@@ -20,7 +20,7 @@
         <h5>按条件查询</h5>
         团队名称 &nbsp;&nbsp;<asp:TextBox ID="txtGroupName" runat="server"></asp:TextBox> &nbsp;&nbsp;旅行社名称 &nbsp;&nbsp;<asp:TextBox ID="txtEntName" runat="server"></asp:TextBox>
         <br />抵达时间 &nbsp;&nbsp;<asp:TextBox ID="txtBeginTime" runat="server"></asp:TextBox>&nbsp;&nbsp;至&nbsp;&nbsp;<asp:TextBox ID="txtEndTime" runat="server"></asp:TextBox>
-        <asp:Button  ID="BtnSearch" runat="server" Text="搜索" CssClass="btn" 
+        <asp:Button  ID="BtnSearch" runat="server" Text="搜索" CssClass="btn2" 
             style="margin-left:15px" onclick="BtnSearch_Click" />
     </div>
     <div class="detaillist">

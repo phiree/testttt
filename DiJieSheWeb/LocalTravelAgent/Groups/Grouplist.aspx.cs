@@ -13,10 +13,14 @@ public partial class Groups_Grouplist : basepageDJS
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        lblMsg.Text = string.Empty;
         if (!IsPostBack)
         {
+            NoRecord.Visible = false;
             BindGroups();
+            if (Request.Cookies["select_tab"] != null)
+            {
+                Response.Cookies["select_tab"].Value = "0";
+            }
         }
     }
     #region method
@@ -25,10 +29,14 @@ public partial class Groups_Grouplist : basepageDJS
     {
         IList<Model.DJ_TourGroup> tglist = blltg.GetGroupsForDjsAdmin((DJ_User_TourEnterprise)CurrentMember);
 
-        TourGroupState state = (TourGroupState)Convert.ToInt16(cblState.SelectedValue);
+        TourGroupState state = (TourGroupState)Convert.ToInt16(hfState.Value);
 
         rptGroups.DataSource = tglist.Where(x => x.GroupState == state);
         rptGroups.DataBind();
+        if (rptGroups.Items.Count == 0)
+        {
+            NoRecord.Visible = true;
+        }
     }
 
     #endregion
@@ -86,7 +94,9 @@ public partial class Groups_Grouplist : basepageDJS
             Model.DJ_TourGroup group = e.Item.DataItem as Model.DJ_TourGroup;
             LinkButton lblRoute_bz = e.Item.FindControl("lblRoute_bz") as LinkButton;
             LinkButton lblMember_bz = e.Item.FindControl("lblMember_bz") as LinkButton;
+            Label lblSuccess = e.Item.FindControl("lblSuccess") as Label;
             Panel pnl = e.Item.FindControl("pnlOperation") as Panel;
+            int state = 0;
             if (group.GroupState == TourGroupState.正在进行 || group.GroupState == TourGroupState.已经结束)
             {
                 pnl.Visible = lblMember_bz.Visible = lblRoute_bz.Visible = false;
@@ -95,33 +105,39 @@ public partial class Groups_Grouplist : basepageDJS
 
             if (group.Members.Count == 0)
             {
-                lblMember_bz.Text = group.Members.Count + "位团员, 请补充团员信息";
-                lblMember_bz.BackColor = System.Drawing.Color.Yellow;
+                //lblMember_bz.Text = group.Members.Count + "位团员, 请补充团员信息";
+                lblMember_bz.Text = "补充成员信息";
             }
             else
             {
-                lblMember_bz.Text = group.Members.Count + "位团员√";
+                state++;
             }
             lblMember_bz.PostBackUrl = "/LocalTravelAgent/Groups/GroupEditMember.aspx?groupid=" + group.Id;
 
 
             if (group.Routes.GroupBy(x => x.DayNo).Count() > group.DaysAmount)
             {
-                lblRoute_bz.Text = group.Routes.GroupBy(x => x.DayNo).Count() + "日线路, 超出计划天数" +
-                    (group.Routes.GroupBy(x => x.DayNo).Count() - group.DaysAmount) + "天";
-                lblRoute_bz.BackColor = System.Drawing.Color.Yellow;
+                //lblRoute_bz.Text = group.Routes.GroupBy(x => x.DayNo).Count() + "日线路, 超出计划天数" +
+                //    (group.Routes.GroupBy(x => x.DayNo).Count() - group.DaysAmount) + "天";
+                //lblRoute_bz.BackColor = System.Drawing.Color.Yellow;
+                lblRoute_bz.Text = "补充线路信息";
             }
             else if (group.Routes.GroupBy(x => x.DayNo).Count() < group.DaysAmount)
             {
-                lblRoute_bz.Text = group.Routes.GroupBy(x => x.DayNo).Count() + "日线路, 原计划天数" +
-                    (group.DaysAmount - group.Routes.GroupBy(x => x.DayNo).Count()) + "天";
-                lblRoute_bz.BackColor = System.Drawing.Color.Aqua;
+                //lblRoute_bz.Text = group.Routes.GroupBy(x => x.DayNo).Count() + "日线路, 原计划天数" +
+                //    (group.DaysAmount - group.Routes.GroupBy(x => x.DayNo).Count()) + "天";
+                //lblRoute_bz.BackColor = System.Drawing.Color.Aqua;
+                lblRoute_bz.Text = "补充线路信息";
             }
             else
             {
-                lblRoute_bz.Text = group.Routes.GroupBy(x => x.DayNo).Count() + "日线路√";
+                state++;
             }
             lblRoute_bz.PostBackUrl = "/LocalTravelAgent/Groups/GroupEditRoute.aspx?groupid=" + group.Id;
+            if (state == 2)
+            {
+                lblSuccess.Text = "已完成资料录入";
+            }
         }
     }
 
@@ -157,4 +173,9 @@ public partial class Groups_Grouplist : basepageDJS
         }, result.First().DJ_DijiesheInfo.Name+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "团队列表");
     }
     #endregion
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        BindGroups();
+    }
 }

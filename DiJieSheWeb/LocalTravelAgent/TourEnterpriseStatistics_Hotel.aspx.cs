@@ -201,7 +201,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Hotel : System.We
     {
         detail_report.Visible = true;
         total_report.Visible = false;
-        entName.InnerHtml = ent.Name + "统计列表";
+        entName.InnerHtml = ent.Name+"统计列表";
         rptETDetail.DataSource = BindEntDetailStatis(ent, datetime);
         rptETDetail.DataBind();
     }

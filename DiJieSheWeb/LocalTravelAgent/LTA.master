@@ -8,7 +8,7 @@
     </asp:ContentPlaceHolder>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="cphFunction" runat="server">
-    <div>
+    <div >
         <ul class="nav">
             <li runat="server" id="li_2"><a href="/localtravelagent/Groups/GroupList.aspx">团队管理</a></li>
            <li runat="server" id="li_3"><a href="/localtravelagent/TourEnterpriseStatistics_Hotel.aspx">宾馆统计信息</a></li>
