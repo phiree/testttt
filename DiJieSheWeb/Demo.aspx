@@ -32,7 +32,7 @@ input{cursor:pointer;}
         <legend>旅游管理部门</legend>
         <ul>
             <li>
-                <asp:Button runat="server" ID="btnDptAdminLogin" Text="管理部门管理员登录" OnClick="btnDptAdminLogin_Click"  /></li></ul>
+                <asp:Button runat="server" ID="btnDptAdminLogin" Text="临海市风景旅游管理局 管理员登录" OnClick="btnDptAdminLogin_Click"  /></li></ul>
     </fieldset>
     <fieldset>
         <legend>旅行社</legend>
@@ -41,9 +41,9 @@ input{cursor:pointer;}
             <asp:Button runat="server" Text="旅行社管理员登录界面" OnClick="btnDjsLoginUI_Click" ID="Button2" /></li>
            
             <li>
-            <asp:Button runat="server" Text="旅行社管理员直接登录" OnClick="btnDjsLogin_Click" ID="btnDjsLogin" /></li>
+            <asp:Button runat="server" Text="临海市交通旅行社 管理员直接登录" OnClick="btnDjsLogin_Click" ID="btnDjsLogin" /></li>
             <li>
-              <asp:Button runat="server" Text="旅行社管理员直接登录2" OnClick="btnDjsLogin_Click2" ID="Button1" /></li>
+              <asp:Button runat="server" Text="台州海创旅游有限公司 管理员直接登录" OnClick="btnDjsLogin_Click2" ID="Button1" /></li>
          
            
            
@@ -53,7 +53,14 @@ input{cursor:pointer;}
         <legend>宾馆</legend>
         <ul>
             <li>
-                <asp:Button runat="server" Text="宾馆管理员登录" OnClick="btnEntLogin_Click" ID="btnEntLogin" /></li>
+                <asp:Button runat="server" Text="临海市交通宾馆 管理员登录" OnClick="btnEntLogin_Click" ID="btnEntLogin" /></li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend>景区</legend>
+        <ul>
+            <li>
+                <asp:Button runat="server" Text="情人谷 管理员登录" OnClick="btnScenicLogin_Click" ID="Button3" /></li>
         </ul>
     </fieldset>
      <fieldset>

@@ -169,6 +169,7 @@ a:hover
     display:block;
     min-height:268px;
     _height:268px;
+ margin-bottom:10px;
 }
 .highLightLink a,.highLightLink a:link,.highLightLink a:active,.highLightLink a:hover,.highLightLink a:visited
 {

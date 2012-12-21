@@ -29,31 +29,42 @@ namespace BLL
 
         public void Save(Model.DJ_Workers worker)
         {
+            
+
             dalworkers.Save(worker);
         }
         public bool Save(string name, string phone, string idcardno,
             string specialidcard, string belong,
             DJ_GroupWorkerType workertype,DJ_DijiesheInfo currentDjs, out string errMsg)
         {
-            bool result = true ;
+            DJ_Workers worker = new DJ_Workers();
+            return Save(name, phone, idcardno, specialidcard, belong, workertype, currentDjs, out worker, out errMsg);
+        }
+        public bool Save(string name, string phone, string idcardno,
+            string specialidcard, string belong,
+            DJ_GroupWorkerType workertype, DJ_DijiesheInfo currentDjs,out DJ_Workers worker, out string errMsg)
+        {
+            worker = new DJ_Workers();
+            bool result = true;
             errMsg = string.Empty;
             var workers = GetWorkers8Multi(string.Empty, name, phone, idcardno, string.Empty, workertype, currentDjs.Id.ToString());
             if (workers.Count > 0)
             {
                 result = false;
+                worker = workers[0];
                 errMsg = "此工作人员已录入，不能重复添加";
             }
             else
             {
-                DJ_Workers worker = new DJ_Workers();
+                
                 worker.CompanyBelong = belong;
                 worker.DJ_Dijiesheinfo = currentDjs;
                 worker.IDCard = idcardno;
                 worker.Name = name;
                 worker.Phone = phone;
                 worker.SpecificIdCard = specialidcard;
-               worker.WorkerType= workertype;
-               Save(worker);
+                worker.WorkerType = workertype;
+                Save(worker);
             }
             return result;
         }

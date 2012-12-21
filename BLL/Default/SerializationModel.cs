@@ -86,11 +86,19 @@ namespace BLL
                     break;
             }
             Model.DJ_TourGroupMember member = new Model.DJ_TourGroupMember();
-            Model.MemberType memberType;
-          
-            if (!Enum.TryParse<MemberType>(strType, out memberType))
+            Model.MemberType memberType= MemberType.成人游客;
+
+            if (new string[] { "成", "成人", "成人游客" }.Contains(strType))
             {
-                errMsg = "此行游客类型有误,请输入四种类型中的一个:" + singleModelString;
+                memberType = MemberType.成人游客;
+            }
+            else if (new string[] { "儿", "儿童","儿童游客" }.Contains(strType))
+            {
+                memberType = MemberType.儿童;
+            }
+            else
+            {
+                errMsg = "此行游客类型有误,请输入 '成人' 或者 '儿童' " + singleModelString;
                 return null;
             }
             member.MemberType = memberType;

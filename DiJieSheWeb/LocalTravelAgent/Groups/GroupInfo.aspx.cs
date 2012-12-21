@@ -42,7 +42,11 @@ public partial class Groups_GroupInfo : basepageDJS
                 //group修改
                 if (!string.IsNullOrEmpty(Request.QueryString["groupid"]))
                 {
+                    lblTitle.Text = "从excel文件更新团队";
                     var group_db = bllgroup.GetOne(new Guid(Request.QueryString[0]));
+                    /*
+                     todo 显示要更新的团队信息
+                     */
                     group_db.Name = group_excel.GroupBasic.Name;
                     group_db.BeginDate = DateTime.Parse(group_excel.GroupBasic.Begindate);
                     group_db.DaysAmount = int.Parse(group_excel.GroupBasic.Days);
@@ -99,6 +103,7 @@ public partial class Groups_GroupInfo : basepageDJS
                 #region group new
                 else
                 {
+                    lblTitle.Text = "从excel文件新建团队";
                     group_model.Name = group_excel.GroupBasic.Name;
                     group_model.BeginDate = DateTime.Parse(group_excel.GroupBasic.Begindate);
                     group_model.DaysAmount = int.Parse(group_excel.GroupBasic.Days);
@@ -197,7 +202,7 @@ public partial class Groups_GroupInfo : basepageDJS
     }
     protected void btn_download_Click(object sender, EventArgs e)
     {
-        new ExcelOplib.ExcelOutput().Download2ExcelModel(this.Page);
+        ExcelOplib.ExcelOutput.Download2ExcelModel(this.Page);
     }
 }
 
