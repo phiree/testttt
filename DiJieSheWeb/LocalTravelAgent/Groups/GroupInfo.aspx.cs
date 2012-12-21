@@ -202,7 +202,7 @@ public partial class Groups_GroupInfo : basepageDJS
     }
     protected void btn_download_Click(object sender, EventArgs e)
     {
-        ExcelOplib.ExcelOutput.Download2ExcelModel(this.Page);
+        new ExcelOplib.ExcelOutput().Download2ExcelModel(this.Page);
     }
 }
 

@@ -507,6 +507,10 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         y_play = sm1.Sum(x => x.y_Playnums);
         y_hotel = sm1.Sum(x => x.y_LiveDays);
 
+        if (sm1.Count() < 1)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+        }
         //创建datatable
         DataTable tblDatas = new DataTable("Datas");
         //tblDatas.Columns.Add("id", Type.GetType("System.Int32"));
@@ -585,6 +589,10 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
                 ChildrenAmount_act = item2.Sum(x => x.ChildrenAmount)
 
             });
+        }
+        if (sm2.Count < 1)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
         }
 
         //创建datatable
@@ -695,6 +703,10 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
                 temp.t_scenic = "无";
             }
             sm3.Add(temp);
+        }
+        if (sm3.Count < 1)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
         }
         //创建datatable
         DataTable tblDatas = new DataTable("Datas");

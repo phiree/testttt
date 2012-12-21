@@ -100,6 +100,10 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Hotel : System.We
         {
             listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), 4, Master.CurrentDJS.Id, IsVerified).ToList();
             var result = bindEntStatis(listEnt);
+            if (result.Count < 1)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+            }
             //创建datatable
             DataTable tblDatas = new DataTable("Datas");
             tblDatas.Columns.Add("id", Type.GetType("System.String"));

@@ -34,7 +34,11 @@ public partial class TourEnterprise_TE_UnLiveStatistics : System.Web.UI.Page
 
     protected void BtnCreatexls_Click(object sender, EventArgs e)
     {
-        List<UnLiveStatistics> List= BindUnlive();
+        List<UnLiveStatistics> List = BindUnlive();
+        if (List.Count < 1)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+        }
         List<string> titlelist = new List<string>() { "序号", "预住时间", "旅行社名称", "住宿天数", "成人/儿童(儿童)", "导游","联系电话" };
         DataTable dt = new DataTable();
         for (int i = 0; i < titlelist.Count; i++)

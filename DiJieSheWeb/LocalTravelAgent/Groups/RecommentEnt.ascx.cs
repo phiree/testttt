@@ -65,6 +65,10 @@ public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserCo
     protected void btnExport_Click(object sender, EventArgs e)
     {
         var collection = BllGov.GetSubDptByCode(GetCode());
+        if (collection.Count < 1)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;return;
+        }
         DataTable dt = new DataTable();
         DataColumn dc = new DataColumn("col1");
         dt.Columns.Add(dc);

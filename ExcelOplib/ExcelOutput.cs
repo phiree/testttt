@@ -54,6 +54,7 @@ namespace ExcelOplib
         /// <param name="title">文件名称</param>
         public void Download2Excel(DataTable dt, Page page, List<string> titlelist, string filename)
         {
+            if (dt.Rows.Count < 1) return;
             var resp = page.Response;
             resp.ContentType = "application/vnd.ms-excel";
             resp.AddHeader("Content-Disposition", string.Format("attachment;filename={0}.xls", filename));
@@ -78,6 +79,7 @@ namespace ExcelOplib
             }
             #endregion
 
+            resp.BinaryWrite(WriteToStream().GetBuffer());
             //写缓冲区中的数据到HTTP头文档中 
             resp.End();
         }
@@ -95,6 +97,7 @@ namespace ExcelOplib
             resp.AddHeader("Content-Disposition","attachment;filename=团队模版.xls");
             resp.Clear();
             InitializeWorkbook();
+
             #region generate data
             ISheet sheet1 = hssfworkbook.CreateSheet("Sheet1");
             IRow row0 = sheet1.CreateRow(0);
@@ -165,30 +168,7 @@ namespace ExcelOplib
             sheet1.CreateRow(7).CreateCell(0).SetCellValue("根据示例内容，从下一行开始填写团队内容");
             #endregion
 
-            //colCaption += "团队名称\t";
-            //colCaption += "开始时间\t";
-            //colCaption += "天数\t";
-            //colCaption += "\t";
-            //colCaption += "导游姓名\t";
-            //colCaption += "导游身份证号\t";
-            //colCaption += "导游电话号码\t";
-            //colCaption += "导游证号\t";
-            //colCaption += "\t";
-            //colCaption += "司机姓名\t";
-            //colCaption += "司机身份证号\t";
-            //colCaption += "司机电话号码\t";
-            //colCaption += "司机证号\t";
-            //colCaption += "\t";
-            //colCaption += "类型\t";
-            //colCaption += "游客姓名\t";
-            //colCaption += "游客身份证号\t";
-            //colCaption += "游客电话号码\t";
-            //colCaption += "\t";
-            //colCaption += "日期\t";
-            //colCaption += "景点\t";
-            //colCaption += "住宿\t";
-            //colCaption += "\n";
-            //resp.Write(colCaption);
+            resp.BinaryWrite(WriteToStream().GetBuffer());
             //写缓冲区中的数据到HTTP头文档中 
             resp.End();
         }

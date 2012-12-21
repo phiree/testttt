@@ -141,6 +141,10 @@ public partial class Groups_Grouplist : basepageDJS
         IList<Model.DJ_TourGroup> tglist = blltg.GetGroupsForDjsAdmin((DJ_User_TourEnterprise)CurrentMember);
         TourGroupState state = (TourGroupState)Convert.ToInt16(cblState.SelectedValue);
         var result = tglist.Where(x => x.GroupState == state);
+        if (result.Count() < 1)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;return;
+        }
         DataTable tblDatas = new DataTable("Datas");
         tblDatas.Columns.Add("id", Type.GetType("System.String"));
         tblDatas.Columns.Add("name", Type.GetType("System.String"));

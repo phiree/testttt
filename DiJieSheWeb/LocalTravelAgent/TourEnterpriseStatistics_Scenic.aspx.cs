@@ -92,6 +92,10 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Scenic : System.W
         {
             listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), 1, Master.CurrentDJS.Id, IsVerified).ToList();
             var result = bindEntStatis(listEnt);
+            if (result.Count < 1)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;return;
+            }
             //创建datatable
             DataTable tblDatas = new DataTable("Datas");
             tblDatas.Columns.Add("id", Type.GetType("System.String"));
@@ -117,6 +121,10 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Scenic : System.W
         {
             DJ_TourEnterprise ent = bllenterprise.GetDJS8id(hfentId.Value)[0];
             List<EntDetailStatis_Scenic> ListDetail = BindEntDetailStatis(ent, endtime);
+            if (ListDetail.Count < 1)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+            }
             List<string> titlelist = new List<string>() { "日期", "成人(景区游览人次)", "儿童(景区游览人次)"};
             DataTable dt = new DataTable();
             for (int i = 0; i < titlelist.Count; i++)
