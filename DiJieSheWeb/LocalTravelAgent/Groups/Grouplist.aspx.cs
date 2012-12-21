@@ -157,6 +157,10 @@ public partial class Groups_Grouplist : basepageDJS
         IList<Model.DJ_TourGroup> tglist = blltg.GetGroupsForDjsAdmin((DJ_User_TourEnterprise)CurrentMember);
         TourGroupState state = (TourGroupState)Convert.ToInt16(cblState.SelectedValue);
         var result = tglist.Where(x => x.GroupState == state);
+        if (result.Count() < 1)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;return;
+        }
         DataTable tblDatas = new DataTable("Datas");
         tblDatas.Columns.Add("id", Type.GetType("System.String"));
         tblDatas.Columns.Add("name", Type.GetType("System.String"));
@@ -168,7 +172,7 @@ public partial class Groups_Grouplist : basepageDJS
             tblDatas.Rows.Add(new object[] { i++, item.Name, item.BeginDate.ToString("yyyy年MM月dd日"), 
                 item.DaysAmount+"日游" });
         }
-        ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
+        new ExcelOplib.ExcelOutput().Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","名称","时间","几日游"
         }, result.First().DJ_DijiesheInfo.Name+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "团队列表");
     }

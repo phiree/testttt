@@ -50,6 +50,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{3A2FC873-64D
 		lib\log4net.dll = lib\log4net.dll
 		lib\NHibernate.ByteCode.Castle.dll = lib\NHibernate.ByteCode.Castle.dll
 		lib\NHibernate.dll = lib\NHibernate.dll
+		lib\NPOI.dll = lib\NPOI.dll
 		lib\nunit.framework.dll = lib\nunit.framework.dll
 		lib\nunit.mocks.dll = lib\nunit.mocks.dll
 		lib\QConnectSDK.dll = lib\QConnectSDK.dll

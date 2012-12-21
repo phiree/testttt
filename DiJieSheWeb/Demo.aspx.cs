@@ -103,30 +103,23 @@ public partial class Admin_Demo : System.Web.UI.Page
 
     private void SaveWorkers()
     {
-        memberdaoyou.DJ_Dijiesheinfo = (Model.DJ_DijiesheInfo)demoDjs1;
-        memberdaoyou.IDCard = "210905197807210546";//110101196605096119
-        memberdaoyou.SpecificIdCard = "导游证号: D-3706-004050";
-        memberdaoyou.WorkerType = DJ_GroupWorkerType.导游;
-        memberdaoyou.Phone = "13280008000";
-        memberdaoyou.Name = "张三";
+        string errMsg;
+        bllWorker.Save("李晓", "13282139128", "110101196605096119", "D-3829-13904"
+            , demoDjs1.Name, DJ_GroupWorkerType.导游
+            , (Model.DJ_DijiesheInfo)demoDjs1,out  memberdaoyou,  out errMsg);
+     
+        bllWorker.Save("张三", "13282139128", "210905197807210546", " D-3706-004050"
+         , demoDjs1.Name, DJ_GroupWorkerType.导游
+         , (Model.DJ_DijiesheInfo)demoDjs1, out memberdaoyou2, out errMsg);
 
+        bllWorker.Save("王勇", "13282139128", "210905197807210546", " 浙A U7863"
+       , demoDjs1.Name, DJ_GroupWorkerType.司机
+       , (Model.DJ_DijiesheInfo)demoDjs1, out membersiji, out errMsg);
 
-        memberdaoyou2.DJ_Dijiesheinfo = (DJ_DijiesheInfo)demoDjs2;
-        memberdaoyou2.IDCard = "110101196605096119";// "210905197807210546";
-        memberdaoyou2.SpecificIdCard = "导游证号: D-3829-13904";
-        memberdaoyou2.WorkerType = DJ_GroupWorkerType.导游;
-        memberdaoyou2.Phone = "13280008000";
-        memberdaoyou2.Name = "李晓";
+        bllWorker.Save("赵光", "1893821234", "210905197807210546", " 浙A 84932"
+      , demoDjs1.Name, DJ_GroupWorkerType.司机
+      , (Model.DJ_DijiesheInfo)demoDjs1, out membersiji2, out errMsg);
 
-        membersiji.DJ_Dijiesheinfo = (Model.DJ_DijiesheInfo)demoDjs1;
-        membersiji.IDCard = "210905197807210546";
-        membersiji.SpecificIdCard = "驾驶证号:362101096266";
-        membersiji.WorkerType = DJ_GroupWorkerType.司机;
-        membersiji.Phone = "13280008000";
-        membersiji.Name = "王师傅";
-        bllWorker.Save(memberdaoyou);
-        bllWorker.Save(memberdaoyou2);
-        bllWorker.Save(membersiji); ;
     }
    
     BLLDJTourGroup bllGroup = new BLLDJTourGroup();
@@ -286,6 +279,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         bllConsum.DeleteDemoRecords(demoGroupNamePrefix);
         //小组信息(包括司机,导游关系表)
         bllGroup.DeleteDemoGroups(demoGroupNamePrefix);
+        
 
         
         

@@ -90,6 +90,11 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
             List<DJ_GovManageDepartment> ListGov = bllrecord.GetDptRecord(begintime, endtime, txtEntName.Text, Master.CurrentDJS.Id);
             List<dptStatistic> ListDpt= bindDptStatistic(ListGov);
 
+            if (ListDpt.Count < 1)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+            }
+
             List<string> titlelist = new List<string>() { "序号", "管理部门名称", "住宿人天数(本月)", "房间数(本月)", "加床数(本月)","景区浏览人次(本月)","住宿人天数(本年)","房间数(本年)","加床数(本年)","景区浏览人次(本年)" };
             DataTable dt = new DataTable();
             for (int i = 0; i < titlelist.Count; i++)
@@ -111,12 +116,18 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
                 dr[9] = statis.year_visited;
                 dt.Rows.Add(dr);
             }
-            ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "管理部门统计数据");
+            new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "管理部门统计数据");
         }
         if (report_detail.Visible)
         {
             DJ_GovManageDepartment dpt= blldpt.GetById(Guid.Parse(hfdetail.Value));
             List<dptDetail> ListdptDetail= BinddptDetail(dpt, txtDate.Text);
+
+            if (ListdptDetail.Count < 1)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+            }
+
             List<string> titlelist = new List<string>() { "日期", "成人住宿天数", "儿童住宿天数", "房间数", "加床数", "成人景区浏览人次","儿童景区游览人次" };
             DataTable dt = new DataTable();
             for (int i = 0; i < titlelist.Count; i++)
@@ -135,7 +146,7 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
                 dr[6] = dptDetail.Visited.Split('/')[1];
                 dt.Rows.Add(dr);
             }
-            ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" +dpt.Name+ "统计数据");
+            new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" +dpt.Name+ "统计数据");
         }
         //DateTime selectTime;
         //if (!DateTime.TryParse(txtDate.Text.Trim(), out selectTime))

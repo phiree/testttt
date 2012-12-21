@@ -48,6 +48,10 @@ public partial class LocalTravelAgent_Groups_RecEntList : System.Web.UI.UserCont
     protected void BtnPrint_Click(object sender, EventArgs e)
     {
         var collection = GetList();
+        if (collection.Count < 1)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;return;
+        }
         DataTable dt = new DataTable();
         DataColumn dc = new DataColumn("col1");
         dt.Columns.Add(dc);
@@ -60,6 +64,6 @@ public partial class LocalTravelAgent_Groups_RecEntList : System.Web.UI.UserCont
             dr[1] = item.Name;
             dt.Rows.Add(dr);
         }
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "类型", "名称" }, "详细奖励名单"+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" );
+        new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, new List<string>() { "类型", "名称" }, "详细奖励名单"+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" );
     }
 }

@@ -100,6 +100,10 @@ public partial class TourEnterprise_TEStatistics : basepage
         if (report_total.Visible)
         {
             List<LiveStatistic> listLive = BindLive();
+            if (listLive.Count < 1)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+            }
             List<string> titlelist = new List<string>() { "序号", "旅行社名称", "", "入住天数(本月)", "房间数(本月)", "加床数(本月)", "入住天数(本年)","房间数(本年)","加床数(本年)" };
             DataTable dt = new DataTable();
             for (int i = 0; i < titlelist.Count; i++)
@@ -119,12 +123,16 @@ public partial class TourEnterprise_TEStatistics : basepage
                 dr[7] = item.AppendBed_Year;
                 dt.Rows.Add(dr);
             }
-            ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已入住统计列表");
+            new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已入住统计列表");
         }
         if (report_detail.Visible)
         {
             DJ_TourEnterprise ent = bllEnt.GetDJS8id(hfdetail.Value)[0];
-            List<DJ_GroupConsumRecord> listRecord= bllrecord.GetRecordByAllCondition("", ent.Name, (DateTime.Parse(txtTime.Text).Year.ToString()) + "-01-01", DateTime.Parse(txtTime.Text).AddMonths(1).ToString(), Master.CurrentTE.Id);
+            List<DJ_GroupConsumRecord> listRecord = bllrecord.GetRecordByAllCondition("", ent.Name, (DateTime.Parse(txtTime.Text).Year.ToString()) + "-01-01", DateTime.Parse(txtTime.Text).AddMonths(1).ToString(), Master.CurrentTE.Id);
+            if (listRecord.Count < 1)
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+            }
             List<string> titlelist = new List<string>() { "序号", "入住时间", "团队名称", "旅行社名称", "成人(人数)","儿童(人数)", "入住天数", "房间数", "加床数" };
             DataTable dt = new DataTable();
             for (int i = 0; i < titlelist.Count; i++)
@@ -146,7 +154,7 @@ public partial class TourEnterprise_TEStatistics : basepage
                 dr[8] = item.AppendBed;
                 dt.Rows.Add(dr);
             }
-            ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已入住统计详细列表");
+            new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已入住统计详细列表");
         }
     }
 
@@ -154,6 +162,10 @@ public partial class TourEnterprise_TEStatistics : basepage
 
     public void CreateExcels(List<DJ_GroupConsumRecord> WListRecord, List<DJ_GroupConsumRecord> YListRecord, string FileName)
     {
+        if (YListRecord.Count < 1)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+        }
         List<string> titlelist = new List<string>() { "序号", "住宿时间", "团队名称", "旅行社名称", "住宿天数", "人数", "验证状态" };
         DataTable dt = new DataTable();
         for (int i = 0; i < titlelist.Count; i++)
@@ -191,7 +203,7 @@ public partial class TourEnterprise_TEStatistics : basepage
         DataRow drend = dt.NewRow();
         drend[0] = "共接待团对数" + groupcount + "其中包括成人" + adultcount + "儿童" + childrencount;
         dt.Rows.Add(drend);
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "统计数据");
+        new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "统计数据");
     }
 
     public void ShowDetailReport(object djsId)

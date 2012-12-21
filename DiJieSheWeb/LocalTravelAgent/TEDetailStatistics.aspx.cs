@@ -134,7 +134,7 @@ public partial class LocalTravelAgent_TEDetailStatistics : System.Web.UI.Page
         {
             dt.Rows.Add(new object[] { et.date, et.detail });
         }
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "日期", "游玩人数或住宿人天数" },
+        new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, new List<string>() { "日期", "游玩人数或住宿人天数" },
             ETName.InnerHtml + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "详细统计报表");
     }
 }

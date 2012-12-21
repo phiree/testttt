@@ -65,6 +65,10 @@ public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserCo
     protected void btnExport_Click(object sender, EventArgs e)
     {
         var collection = BllGov.GetSubDptByCode(GetCode());
+        if (collection.Count < 1)
+        {
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;return;
+        }
         DataTable dt = new DataTable();
         DataColumn dc = new DataColumn("col1");
         dt.Columns.Add(dc);
@@ -77,7 +81,7 @@ public partial class LocalTravelAgent_Groups_RecommentEnt : System.Web.UI.UserCo
             dr[1] = "奖励政策";
             dt.Rows.Add(dr);
         }
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "名称", "奖励政策" }, "奖励企业"+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]");
+        new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, new List<string>() { "名称", "奖励政策" }, "奖励企业"+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]");
     }
 
     protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
