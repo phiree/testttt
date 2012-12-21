@@ -113,7 +113,7 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
             tblDatas.Rows.Add(new object[] { i++, item.dptName, item.month_total, 
                 item.month_live,item.month_visited,item.year_total,item.year_live,item.year_visited });
         }
-        ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
+        new ExcelOplib.ExcelOutput().Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","旅游管理部门名称","本月总人数","本月住宿人天数","本月游玩人数","本年总人数","本年住宿人天数","本年游玩人数"
         }, Master.CurrentDJS.Name+"["+DateTime.Today.ToString("yyyy-MM-dd") +"]"+ "统计信息");
     }

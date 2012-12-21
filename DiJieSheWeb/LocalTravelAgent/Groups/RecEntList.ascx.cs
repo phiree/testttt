@@ -60,6 +60,6 @@ public partial class LocalTravelAgent_Groups_RecEntList : System.Web.UI.UserCont
             dr[1] = item.Name;
             dt.Rows.Add(dr);
         }
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "类型", "名称" }, "详细奖励名单"+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" );
+        new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, new List<string>() { "类型", "名称" }, "详细奖励名单"+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" );
     }
 }

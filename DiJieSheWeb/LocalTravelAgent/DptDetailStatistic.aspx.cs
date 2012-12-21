@@ -161,7 +161,7 @@ public partial class LocalTravelAgent_DptDetailStatistic : System.Web.UI.Page
         {
             dt.Rows.Add(new object[] {gov.Riqi,gov.Pnum,gov.Lnum });
         }
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, new List<string>() { "日期", "游玩人数", "住宿人天数" }, ETName.InnerHtml 
+        new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, new List<string>() { "日期", "游玩人数", "住宿人天数" }, ETName.InnerHtml 
             + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "详细列表");
     }
 }

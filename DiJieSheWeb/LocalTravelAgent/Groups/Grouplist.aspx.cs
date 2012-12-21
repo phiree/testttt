@@ -152,7 +152,7 @@ public partial class Groups_Grouplist : basepageDJS
             tblDatas.Rows.Add(new object[] { i++, item.Name, item.BeginDate.ToString("yyyy年MM月dd日"), 
                 item.DaysAmount+"日游" });
         }
-        ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
+        new ExcelOplib.ExcelOutput().Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","名称","时间","几日游"
         }, result.First().DJ_DijiesheInfo.Name+"[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "团队列表");
     }

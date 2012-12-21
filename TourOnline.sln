@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{9FD4644B-034E-4D19-BF9E-E77FDFD4A080}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB\", "{61ADBB5F-2F02-4E98-A926-2451F5F75638}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB", "{61ADBB5F-2F02-4E98-A926-2451F5F75638}"
 	ProjectSection(WebsiteProperties) = preProject
 		SccProjectName = ""
 		SccAuxPath = ""
@@ -50,6 +50,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{3A2FC873-64D
 		lib\log4net.dll = lib\log4net.dll
 		lib\NHibernate.ByteCode.Castle.dll = lib\NHibernate.ByteCode.Castle.dll
 		lib\NHibernate.dll = lib\NHibernate.dll
+		lib\NPOI.dll = lib\NPOI.dll
 		lib\nunit.framework.dll = lib\nunit.framework.dll
 		lib\nunit.mocks.dll = lib\nunit.mocks.dll
 		lib\QConnectSDK.dll = lib\QConnectSDK.dll
@@ -90,7 +91,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebTest", "WebTest", "{2EA5
 		docs\WebTest\ScenicWebTest.html = docs\WebTest\ScenicWebTest.html
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DiJieSheWeb", "DiJieSheWeb\", "{11A77A92-29B8-41A4-8787-FEFE328EF8A1}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DiJieSheWeb", "DiJieSheWeb", "{11A77A92-29B8-41A4-8787-FEFE328EF8A1}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		ProjectReferences = "{9FD4644B-034E-4D19-BF9E-E77FDFD4A080}|BLL.dll;{F6166241-9344-49CC-8787-36FA08000B34}|CommonLibrary.dll;{81A65767-666A-4C51-A374-EE9AC1A1E4C3}|DAL.dll;{D1050179-E4D5-4DF8-AFC4-305A93F90EE6}|IDAL.dll;{9D0253F0-B0A7-4D66-BE57-7C32C4953340}|Model.dll;{86A9D97C-AB59-4C06-93B5-7724675CD97A}|ExcelOplib.dll;"
@@ -122,7 +123,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AdminWeb", "AdminWeb\", "{08ED506B-3C07-4197-BA89-5419F998A55F}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AdminWeb", "AdminWeb", "{08ED506B-3C07-4197-BA89-5419F998A55F}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		ProjectReferences = "{9FD4644B-034E-4D19-BF9E-E77FDFD4A080}|BLL.dll;{F6166241-9344-49CC-8787-36FA08000B34}|CommonLibrary.dll;{81A65767-666A-4C51-A374-EE9AC1A1E4C3}|DAL.dll;{D1050179-E4D5-4DF8-AFC4-305A93F90EE6}|IDAL.dll;{9D0253F0-B0A7-4D66-BE57-7C32C4953340}|Model.dll;{86A9D97C-AB59-4C06-93B5-7724675CD97A}|ExcelOplib.dll;"

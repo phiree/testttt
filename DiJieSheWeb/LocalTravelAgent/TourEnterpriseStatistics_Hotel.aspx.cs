@@ -130,7 +130,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Hotel : System.We
             }
             tblDatas.Rows.Add(new object[] { "总计", "", t_month_total, 
                 t_month_live,t_month_visited,t_year_total,t_year_live,t_year_visited });
-            ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
+            new ExcelOplib.ExcelOutput().Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","单位名称","本月住宿人天数","本月房间数","本月加床数","本年住宿人天数","本年房间数","本年加床数"
         }, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "统计信息");
         }
@@ -154,7 +154,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Hotel : System.We
                 dr[4] = statis.AppendBed;
                 dt.Rows.Add(dr);
             }
-            ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" +ent.Name+ "统计数据");
+            new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" +ent.Name+ "统计数据");
         }
     }
 

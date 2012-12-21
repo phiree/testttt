@@ -53,7 +53,7 @@ public partial class TourEnterprise_TE_UnLiveStatistics : System.Web.UI.Page
             dr[6] = item.telephone;
             dt.Rows.Add(dr);
         }
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "拟入住数据");
+        new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "拟入住数据");
     }
 
     private List<UnLiveStatistics> BindUnlive()

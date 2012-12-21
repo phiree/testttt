@@ -109,7 +109,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Scenic : System.W
             }
             tblDatas.Rows.Add(new object[] { "总计", "", t_month_total, 
                 t_year_total });
-            ExcelOplib.ExcelOutput.Download2Excel(tblDatas, this.Page, new List<string>() { 
+            new ExcelOplib.ExcelOutput().Download2Excel(tblDatas, this.Page, new List<string>() { 
             "序号","单位名称","本月景区游览人次","本年景区游览人次"
         }, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "统计信息");
         }
@@ -131,7 +131,7 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Scenic : System.W
                 dr[2] = statis.Child_Count;
                 dt.Rows.Add(dr);
             }
-            ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + ent.Name + "统计数据");
+            new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentDJS.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + ent.Name + "统计数据");
         }
     }
 

@@ -52,7 +52,7 @@ public partial class Admin_Initial : System.Web.UI.Page
                 user_gov.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5"); ;
                 user_gov.GovDpt = bllgov.GetGovDptByName(item.Name)[0];
                 user_gov.PermissionType = Model.PermissionType.报表查看员
-                    | Model.PermissionType.信息编辑员 | Model.PermissionType.用户管理员;
+                    | Model.PermissionType.信息编辑员 | Model.PermissionType.用户管理员; 
                 /*此处需要修改*/
                 //blldjuser.SaveOrUpdate(user_gov);
             }

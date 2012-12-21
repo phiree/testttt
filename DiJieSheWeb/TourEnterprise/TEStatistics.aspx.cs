@@ -119,7 +119,7 @@ public partial class TourEnterprise_TEStatistics : basepage
                 dr[7] = item.AppendBed_Year;
                 dt.Rows.Add(dr);
             }
-            ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已入住统计列表");
+            new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已入住统计列表");
         }
         if (report_detail.Visible)
         {
@@ -146,7 +146,7 @@ public partial class TourEnterprise_TEStatistics : basepage
                 dr[8] = item.AppendBed;
                 dt.Rows.Add(dr);
             }
-            ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已入住统计详细列表");
+            new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "已入住统计详细列表");
         }
     }
 
@@ -191,7 +191,7 @@ public partial class TourEnterprise_TEStatistics : basepage
         DataRow drend = dt.NewRow();
         drend[0] = "共接待团对数" + groupcount + "其中包括成人" + adultcount + "儿童" + childrencount;
         dt.Rows.Add(drend);
-        ExcelOplib.ExcelOutput.Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "统计数据");
+        new ExcelOplib.ExcelOutput().Download2Excel(dt, this.Page, titlelist, Master.CurrentTE.Name + "[" + DateTime.Today.ToString("yyyy-MM-dd") + "]" + "统计数据");
     }
 
     public void ShowDetailReport(object djsId)
