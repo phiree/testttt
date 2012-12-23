@@ -33,7 +33,7 @@ public partial class Manager_ScenicTopicSetting : System.Web.UI.Page
 
     private void BindTopics()
     {
-        IList<Model.Scenic> scenicList = bllmanager.GetScenicList(" where s.Area.Code=" + ddlArea.SelectedValue);
+        IList<Model.Scenic> scenicList = bllmanager.GetScenicList(" where s.Area.Code like '" + ddlArea.SelectedValue.Substring(0,4)+"__'");
         rptScenic.DataSource = scenicList;
         rptScenic.DataBind();
     }
