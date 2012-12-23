@@ -100,7 +100,7 @@ namespace BLL
         /// </summary>
         /// <param name="nameLike"></param>
         /// <returns></returns>
-       
+        BLLDJGroup_Worker bllGW = new BLLDJGroup_Worker();
         public void DeleteDemoGroups(string nameLike)
         {
           var demoGroups= Idjtourgroup.GetList(0, nameLike, true, string.Empty);
@@ -112,6 +112,7 @@ namespace BLL
           //}
           foreach (var g in demoGroups)
           {
+              bllGW.DeleteFromGroup(g);
               Delete(g);
           }
         }

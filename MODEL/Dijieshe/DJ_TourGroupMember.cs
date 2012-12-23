@@ -37,6 +37,16 @@ namespace Model
         public virtual string SpecialCardNo { get; set; }
         public virtual MemberType MemberType { get; set; }
         public virtual DJ_TourGroup DJ_TourGroup { get; set; }
+        public virtual void CopyTo(DJ_TourGroupMember newMember)
+        {
+            newMember.Gender = Gender;
+            newMember.IdCardNo = IdCardNo;
+            newMember.MemberType = MemberType;
+            newMember.PhoneNum = PhoneNum;
+            newMember.RealName = RealName;
+            newMember.SpecialCardNo = SpecialCardNo;
+            
+        }
 
     }
     public enum MemberType

@@ -44,10 +44,22 @@ public partial class Admin_Demo : System.Web.UI.Page
     DJ_TourEnterprise demoScenic1;
     DJ_TourEnterprise demoScenic2;
     DJ_TourEnterprise demoScenic3;
+
+    DJ_Workers memberdaoyou = new DJ_Workers();
+    DJ_Workers memberdaoyou2 = new DJ_Workers();
+
+    DJ_Workers membersiji = new DJ_Workers();
+    DJ_Workers membersiji2 = new DJ_Workers();
+   
     //测试团队名称前缀,与正常团队区分.
     string demoGroupNamePrefix = "DEMO临海两日游";
     protected void Page_Load(object sender, EventArgs e)
     {
+
+
+       
+     //   bllWorker.Save(membersiji2);
+
         demoHotel1 = bllEnt.GetDJS8name(hotelName1)[0];
         demoHotel2 = bllEnt.GetDJS8name(hotelName2)[0];
         demoDjs1 = bllEnt.GetDJS8name(dijiesheName1)[0];
@@ -71,9 +83,41 @@ public partial class Admin_Demo : System.Web.UI.Page
     {
         DemoLogin(dijiesheAdminAcount1, "/LocalTravelAgent/");
     }
+    protected void btnDjsLogin_Click2(object sender, EventArgs e)
+    {
+        DemoLogin(dijiesheAdminAcount2, "/LocalTravelAgent/");
+    }
     protected void btnEntLogin_Click(object sender, EventArgs e)
     {
         DemoLogin(hoteladmin1, "/TourEnterprise/");
+    }
+
+    private void SaveWorkers()
+    {
+        memberdaoyou.DJ_Dijiesheinfo = (Model.DJ_DijiesheInfo)demoDjs1;
+        memberdaoyou.IDCard = "210905197807210546";//110101196605096119
+        memberdaoyou.SpecificIdCard = "导游证号: D-3706-004050";
+        memberdaoyou.WorkerType = DJ_GroupWorkerType.导游;
+        memberdaoyou.Phone = "13280008000";
+        memberdaoyou.Name = "张三";
+
+
+        memberdaoyou2.DJ_Dijiesheinfo = (DJ_DijiesheInfo)demoDjs2;
+        memberdaoyou2.IDCard = "110101196605096119";// "210905197807210546";
+        memberdaoyou2.SpecificIdCard = "导游证号: D-3829-13904";
+        memberdaoyou2.WorkerType = DJ_GroupWorkerType.导游;
+        memberdaoyou2.Phone = "13280008000";
+        memberdaoyou2.Name = "李晓";
+
+        membersiji.DJ_Dijiesheinfo = (Model.DJ_DijiesheInfo)demoDjs1;
+        membersiji.IDCard = "210905197807210546";
+        membersiji.SpecificIdCard = "驾驶证号:362101096266";
+        membersiji.WorkerType = DJ_GroupWorkerType.司机;
+        membersiji.Phone = "13280008000";
+        membersiji.Name = "王师傅";
+        bllWorker.Save(memberdaoyou);
+        bllWorker.Save(memberdaoyou2);
+        bllWorker.Save(membersiji); ;
     }
    
     BLLDJTourGroup bllGroup = new BLLDJTourGroup();
@@ -88,31 +132,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         group.DaysAmount =2;
         group.EndDate = beginTime.AddDays(group.DaysAmount);
 
-        DJ_Workers memberdaoyou = new DJ_Workers();
-
-        memberdaoyou.DJ_Dijiesheinfo = (Model.DJ_DijiesheInfo)demoDjs1;
-        memberdaoyou.IDCard = "210905197807210546";//110101196605096119
-        memberdaoyou.SpecificIdCard = "导游证号: D-3706-004050";
-        memberdaoyou.WorkerType = DJ_GroupWorkerType.导游;
-        memberdaoyou.Phone = "13280008000";
-        memberdaoyou.Name = "张三";
-        DJ_Group_Worker gwmemberdaoyou = new DJ_Group_Worker();
-        gwmemberdaoyou.DJ_TourGroup = group;
-        gwmemberdaoyou.DJ_Workers = memberdaoyou;
-        bllGW.Save(gwmemberdaoyou);
-
-        DJ_Workers membersiji = new DJ_Workers();
-        membersiji.DJ_Dijiesheinfo = (Model.DJ_DijiesheInfo)demoDjs1;
-        membersiji.IDCard = "210905197807210546";
-        membersiji.SpecificIdCard = "驾驶证号:362101096266";
-        membersiji.WorkerType = DJ_GroupWorkerType.司机;
-        membersiji.Phone = "13280008000";
-        membersiji.Name = "王师傅";
-        DJ_Group_Worker gwmembersiji = new DJ_Group_Worker();
-        gwmembersiji.DJ_Workers = membersiji;
-        gwmembersiji.DJ_TourGroup = group;
-        bllGW.Save(gwmembersiji);
-
+       
         DJ_TourGroupMember member1 = new DJ_TourGroupMember();
         member1.DJ_TourGroup = group;
         member1.IdCardNo = "210905197807210546";
@@ -141,8 +161,8 @@ public partial class Admin_Demo : System.Web.UI.Page
         member4.PhoneNum = "13280008000";
         member4.RealName = "Carl Smith";
 
-       // group.Workers.Add(membersiji);
-       // group.Workers.Add(memberdaoyou);
+      //  group.Workers.Add(gwmembersiji);
+       // group.Workers.Add(gwmemberdaoyou);
         group.Members.Add(member1);
         group.Members.Add(member2);
         group.Members.Add(member3);
@@ -194,32 +214,37 @@ public partial class Admin_Demo : System.Web.UI.Page
      
     }
     public void BuildDemoDeta()
-    { 
+    {
+        //创建工作人员
+        SaveWorkers();
          List<DJ_TourGroup> Groups = new List<DJ_TourGroup>();
         for (int i = 1; i <= 12; i++)
         {
             DateTime beginDate = new DateTime(DateTime.Now.Year, i, DateTime.Now.Day);
-            DJ_TourGroup g1 = CreateDemoGroup(beginDate);
+            DJ_TourGroup g1 = CreateDemoGroup(beginDate);  
+            bllGroup.Save(g1);
+            DJ_Group_Worker gwmemberdaoyou1 = new DJ_Group_Worker();
+            gwmemberdaoyou1.DJ_TourGroup = g1;
+            gwmemberdaoyou1.DJ_Workers = memberdaoyou;
+            bllGW.Save(gwmemberdaoyou1);
 
             DJ_TourGroup g2 = new DJ_TourGroup();
             g1.CopyTo(g2);
             g2.DJ_DijiesheInfo =(DJ_DijiesheInfo) demoDjs2;
             g2.DijiesheEditor = (DJ_User_TourEnterprise)new BLLMembership().GetMember(dijiesheAdminAcount2);
 
-            DJ_Workers memberdaoyou = new DJ_Workers();
-            memberdaoyou.DJ_Dijiesheinfo =(DJ_DijiesheInfo)demoDjs2;
-            memberdaoyou.IDCard = "110101196605096119";// "210905197807210546";
-            memberdaoyou.SpecificIdCard = "导游证号: D-3829-13904";
-            memberdaoyou.WorkerType = DJ_GroupWorkerType.导游;
-            memberdaoyou.Phone = "13280008000";
-            memberdaoyou.Name = "李晓";
+          
            // g2.Workers.Add(memberdaoyou);
             g2.Name = demoGroupNamePrefix + Guid.NewGuid().GetHashCode().ToString().Substring(0, 6);
             DJ_Group_Worker gwmemberdaoyou = new DJ_Group_Worker();
+            gwmemberdaoyou.DJ_TourGroup = g2;
+            gwmemberdaoyou.DJ_Workers = memberdaoyou2;
+           bllGroup.Save(g2); 
+            bllGW.Save(gwmemberdaoyou);
 
-            bllGroup.Save(g2);
+           
             Groups.Add(g2);
-            bllGroup.Save(g1);
+       
             Groups.Add(g1);
         }
         //刷卡.验票
@@ -244,12 +269,22 @@ public partial class Admin_Demo : System.Web.UI.Page
             }
         }
     }
-    
+
+    BLLWorker bllWorker = new BLLWorker();
     private void DeleteDemoData()
     {
+        //消费记录
         bllConsum.DeleteDemoRecords(demoGroupNamePrefix);
-
+        //小组信息(包括司机,导游关系表)
         bllGroup.DeleteDemoGroups(demoGroupNamePrefix);
+
+        //地接社工作人员
+        bllWorker.DeleteDjsWorks(demoDjs1.Id.ToString());
+        bllWorker.DeleteDjsWorks(demoDjs2.Id.ToString());
+        
+
+
+        
     }
 
     private void DemoLogin(string userName, string targetUrl)

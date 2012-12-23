@@ -31,6 +31,10 @@ namespace BLL
         {
             dalworkers.Save(worker);
         }
+        public DJ_Workers GetOne(Guid id)
+        {
+            return dalworkers.GetOne(id);
+        }
 
         /// <summary>
         /// 更新worker
@@ -39,6 +43,19 @@ namespace BLL
         public void UpdateWorkers(Model.DJ_Workers worker)
         {
             dalworkers.Update(worker);
+        }
+        public void Delete(Model.DJ_Workers worker)
+        {
+            dalworkers.Delete(worker);
+        }
+        public void DeleteDjsWorks(string dijiesheId)
+        {
+            IList<DJ_Workers> workers = dalworkers.Get8Multi(string.Empty, string.Empty, string.Empty, string.Empty,
+                string.Empty, null, dijiesheId);
+            foreach (DJ_Workers worker in workers)
+            {
+                Delete(worker);
+            }
         }
     }
 }

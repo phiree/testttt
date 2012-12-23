@@ -40,6 +40,8 @@ input{cursor:pointer;}
             <li>
             <asp:Button runat="server" Text="旅行社管理员登录" OnClick="btnDjsLogin_Click" ID="btnDjsLogin" /></li>
             <li>
+              <asp:Button runat="server" Text="旅行社管理员登录2" OnClick="btnDjsLogin_Click2" ID="Button1" /></li>
+         
            </li>
            
         </ul>
