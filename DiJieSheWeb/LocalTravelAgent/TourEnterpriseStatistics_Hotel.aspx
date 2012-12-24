@@ -46,10 +46,12 @@
     <div class="searchdiv">
         日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>&nbsp;&nbsp;宾馆名称&nbsp;&nbsp;<asp:TextBox
             ID="txtEntName" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;奖励单位;&nbsp;&nbsp;<asp:DropDownList
-                ID="ddlIsReward" runat="server">
-                <asp:ListItem Value="全部">全部</asp:ListItem>
-                <asp:ListItem Value="是">是</asp:ListItem>
-                <asp:ListItem Value="否">否</asp:ListItem>
+                ID="ddlIsReward" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlIsReward_SelectedIndexChanged">
+                <asp:ListItem Value="0">全部</asp:ListItem>
+                <asp:ListItem Value="1">是市级奖励</asp:ListItem>
+                <asp:ListItem Value="2">否市级奖励</asp:ListItem>
+                <asp:ListItem Value="3">是县级奖励</asp:ListItem>
+                <asp:ListItem Value="4">否县级奖励</asp:ListItem>
             </asp:DropDownList>
         &nbsp;&nbsp;
         <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn2" OnClick="BtnSearch_Click" />

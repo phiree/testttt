@@ -16,8 +16,8 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Scenic : System.W
     BLLDJConsumRecord bllrecord = new BLLDJConsumRecord();
     BLLDJEnterprise bllenterprise = new BLLDJEnterprise();
     List<Model.DJ_TourEnterprise> listEnt = new List<DJ_TourEnterprise>();
-    int people_month_total, room_month_total, bed_month_total;
-    int people_year_total, room_year_total, bed_year_total;
+    int people_month_total;
+    int people_year_total;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -37,16 +37,18 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Scenic : System.W
         string begintime, endtime;
         begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
         endtime = DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01";
-        bool? IsVerified = null;
-        if (ddlIsReward.SelectedValue == "是")
+        bool? IsVerified_City = null, IsVerified_Country = null;
+        switch (int.Parse(ddlIsReward.SelectedValue))
         {
-            IsVerified = true;
+            case 0: IsVerified_City = null; IsVerified_Country = null; break;
+            case 1: IsVerified_City = true; IsVerified_Country = null; break;
+            case 2: IsVerified_City = false; IsVerified_Country = null; break;
+            case 3: IsVerified_City = null; IsVerified_Country = true; break;
+            case 4: IsVerified_City = null; IsVerified_Country = false; break;
+            default:
+                break;
         }
-        if (ddlIsReward.SelectedValue == "否")
-        {
-            IsVerified = false;
-        }
-        listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), 1, Master.CurrentDJS.Id, IsVerified).ToList();
+        listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), 1, Master.CurrentDJS.Id, IsVerified_City,IsVerified_Country).ToList();
         if (listEnt.Count == 1 && txtEntName.Text != "")
         {
             hfentId.Value = listEnt[0].Id.ToString();
@@ -79,18 +81,20 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Scenic : System.W
         string begintime, endtime;
         begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
         endtime = DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01";
-        bool? IsVerified = null;
-        if (ddlIsReward.SelectedValue == "是")
+        bool? IsVerified_City = null, IsVerified_Country = null;
+        switch (int.Parse(ddlIsReward.SelectedValue))
         {
-            IsVerified = true;
-        }
-        if (ddlIsReward.SelectedValue == "否")
-        {
-            IsVerified = false;
+            case 0: IsVerified_City = null; IsVerified_Country = null; break;
+            case 1: IsVerified_City = true; IsVerified_Country = null; break;
+            case 2: IsVerified_City = false; IsVerified_Country = null; break;
+            case 3: IsVerified_City = null; IsVerified_Country = true; break;
+            case 4: IsVerified_City = null; IsVerified_Country = false; break;
+            default:
+                break;
         }
         if (total_report.Visible)
         {
-            listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), 1, Master.CurrentDJS.Id, IsVerified).ToList();
+            listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), 1, Master.CurrentDJS.Id, IsVerified_City,IsVerified_Country).ToList();
             var result = bindEntStatis(listEnt);
             if (result.Count < 1)
             {
@@ -230,6 +234,11 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Scenic : System.W
         endtime = DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01";
         DJ_TourEnterprise ent = bllenterprise.GetDJS8id(hfentId.Value)[0];
         ShowEntDetailStatis(ent, endtime);
+    }
+
+    protected void ddlIsReward_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        bind();
     }
 }
 
