@@ -192,9 +192,20 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Scenic : System.W
         List<EntDetailStatis_Scenic> ListEntDetailStatis = new List<EntDetailStatis_Scenic>();
         DateTime dt = DateTime.Parse(datetime).AddDays(-1);
         int allchild_total2 = 0, alladult_total2 = 0;
+        bool? IsVerified_City = null, IsVerified_Country = null;
+        switch (int.Parse(ddlIsReward.SelectedValue))
+        {
+            case 0: IsVerified_City = null; IsVerified_Country = null; break;
+            case 1: IsVerified_City = true; IsVerified_Country = null; break;
+            case 2: IsVerified_City = false; IsVerified_Country = null; break;
+            case 3: IsVerified_City = null; IsVerified_Country = true; break;
+            case 4: IsVerified_City = null; IsVerified_Country = false; break;
+            default:
+                break;
+        }
         for (int i = 1; i <= dt.Month; i++)
         {
-            List<DJ_GroupConsumRecord> ListRecord = bllrecord.GetByDate(dt.Year, i, ent.Id, Master.CurrentDJS.Id);
+            List<DJ_GroupConsumRecord> ListRecord = bllrecord.GetByDate(dt.Year, i, ent.Id, Master.CurrentDJS.Id, IsVerified_City, IsVerified_Country);
             int allchild_total = 0, alladult_total = 0;
             foreach (DJ_GroupConsumRecord record in ListRecord)
             {

@@ -47,7 +47,14 @@
     </div>
 <div class="searchdiv">
         日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
-        旅游管理部门名称&nbsp;&nbsp;<asp:TextBox ID="txtEntName" runat="server"></asp:TextBox>
+        旅游管理部门名称&nbsp;&nbsp;<asp:TextBox ID="txtEntName" runat="server"></asp:TextBox>奖励单位:
+        <asp:DropDownList ID="ddlIsReward" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlIsReward_SelectedIndexChanged">
+                <asp:ListItem Value="0">全部</asp:ListItem>
+                <asp:ListItem Value="1">是市级奖励</asp:ListItem>
+                <asp:ListItem Value="2">否市级奖励</asp:ListItem>
+                <asp:ListItem Value="3">是县级奖励</asp:ListItem>
+                <asp:ListItem Value="4">否县级奖励</asp:ListItem>
+            </asp:DropDownList>
          <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn2" 
              onclick="BtnSearch_Click" />
         

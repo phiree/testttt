@@ -35,7 +35,18 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
         string begintime, endtime;
         begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
         endtime = DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year +"-"+ DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01";
-        List<DJ_GovManageDepartment> ListGov = bllrecord.GetDptRecord(begintime, endtime, txtEntName.Text, Master.CurrentDJS.Id);
+        bool? IsVerified_City = null, IsVerified_Country = null;
+        switch (int.Parse(ddlIsReward.SelectedValue))
+        {
+            case 0: IsVerified_City = null; IsVerified_Country = null; break;
+            case 1: IsVerified_City = true; IsVerified_Country = null; break;
+            case 2: IsVerified_City = false; IsVerified_Country = null; break;
+            case 3: IsVerified_City = null; IsVerified_Country = true; break;
+            case 4: IsVerified_City = null; IsVerified_Country = false; break;
+            default:
+                break;
+        }
+        List<DJ_GovManageDepartment> ListGov = bllrecord.GetDptRecord(begintime, endtime, txtEntName.Text, Master.CurrentDJS.Id, IsVerified_City, IsVerified_Country);
         if (ListGov.Count == 1 && txtEntName.Text != "")
         {
             hfdetail.Value = ListGov[0].Id.ToString();
@@ -64,12 +75,23 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
             string endtime_month = DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year+"-" + DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01";
             int People_month, Room_month, AppendBed_month,Visited_month;
             int People_year, Room_year, AppendBed_year, Visited_year;
-            bllrecord.GetDetailDptCount(begintime_month, endtime_month, Gov.Area.Code, Master.CurrentDJS.Id, out People_month, out Room_month, out AppendBed_month,out Visited_month);
+            bool? IsVerified_City = null, IsVerified_Country = null;
+            switch (int.Parse(ddlIsReward.SelectedValue))
+            {
+                case 0: IsVerified_City = null; IsVerified_Country = null; break;
+                case 1: IsVerified_City = true; IsVerified_Country = null; break;
+                case 2: IsVerified_City = false; IsVerified_Country = null; break;
+                case 3: IsVerified_City = null; IsVerified_Country = true; break;
+                case 4: IsVerified_City = null; IsVerified_Country = false; break;
+                default:
+                    break;
+            }
+            bllrecord.GetDetailDptCount(begintime_month, endtime_month, Gov.Area.Code, Master.CurrentDJS.Id, out People_month, out Room_month, out AppendBed_month,out Visited_month,IsVerified_City,IsVerified_Country);
             dpt.month_people = People_month;
             dpt.month_room = Room_month;
             dpt.month_appendbed = AppendBed_month;
             dpt.month_visited = Visited_month;
-            bllrecord.GetDetailDptCount(begintime_year, endtime_year, Gov.Area.Code, Master.CurrentDJS.Id, out People_year, out Room_year, out AppendBed_year, out Visited_year);
+            bllrecord.GetDetailDptCount(begintime_year, endtime_year, Gov.Area.Code, Master.CurrentDJS.Id, out People_year, out Room_year, out AppendBed_year, out Visited_year,IsVerified_City,IsVerified_Country);
             dpt.year_people = People_year;
             dpt.year_room = Room_year;
             dpt.year_appendbed = AppendBed_year;
@@ -87,7 +109,18 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
             string begintime, endtime;
             begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
             endtime = DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01";
-            List<DJ_GovManageDepartment> ListGov = bllrecord.GetDptRecord(begintime, endtime, txtEntName.Text, Master.CurrentDJS.Id);
+            bool? IsVerified_City = null, IsVerified_Country = null;
+            switch (int.Parse(ddlIsReward.SelectedValue))
+            {
+                case 0: IsVerified_City = null; IsVerified_Country = null; break;
+                case 1: IsVerified_City = true; IsVerified_Country = null; break;
+                case 2: IsVerified_City = false; IsVerified_Country = null; break;
+                case 3: IsVerified_City = null; IsVerified_Country = true; break;
+                case 4: IsVerified_City = null; IsVerified_Country = false; break;
+                default:
+                    break;
+            }
+            List<DJ_GovManageDepartment> ListGov = bllrecord.GetDptRecord(begintime, endtime, txtEntName.Text, Master.CurrentDJS.Id, IsVerified_City, IsVerified_Country);
             List<dptStatistic> ListDpt= bindDptStatistic(ListGov);
 
             if (ListDpt.Count < 1)
@@ -182,10 +215,21 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
     private List<dptDetail> BinddptDetail(DJ_GovManageDepartment dpt, string datetime)
     {
         List<dptDetail> ListdptDetail = new List<dptDetail>();
+       bool? IsVerified_City = null, IsVerified_Country = null;
+            switch (int.Parse(ddlIsReward.SelectedValue))
+            {
+                case 0: IsVerified_City = null; IsVerified_Country = null; break;
+                case 1: IsVerified_City = true; IsVerified_Country = null; break;
+                case 2: IsVerified_City = false; IsVerified_Country = null; break;
+                case 3: IsVerified_City = null; IsVerified_Country = true; break;
+                case 4: IsVerified_City = null; IsVerified_Country = false; break;
+                default:
+                    break;
+            }
         int adult_live_year = 0, child_live_year = 0, room_year = 0, appendbed_year = 0, adult_visited_year=0,child_visited_year = 0;
-        for (int i=1 ; i <=12; i++)
+        for (int i=1 ; i <=DateTime.Parse(datetime).Month; i++)
         {
-            List<DJ_GroupConsumRecord> record = bllrecord.GetByDate(DateTime.Parse(datetime).Year, i, dpt.Area.Code, Master.CurrentDJS.Id).ToList();
+            List<DJ_GroupConsumRecord> record = bllrecord.GetByDate(DateTime.Parse(datetime).Year, i, dpt.Area.Code, Master.CurrentDJS.Id,IsVerified_City,IsVerified_Country).ToList();
             int adult_live_month = 0, child_live_month = 0, room_month = 0, appendbed_month = 0, adult_visited_month = 0,child_visited_month=0;
             
             foreach (var r in record)
@@ -244,6 +288,11 @@ public partial class LocalTravelAgent_DptStatistic : System.Web.UI.Page
         report_detail.Visible = true;
         rptETDetail.DataSource = BinddptDetail(dpt, txtDate.Text);
         rptETDetail.DataBind();
+    }
+
+    protected void ddlIsReward_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        bind();
     }
 }
 

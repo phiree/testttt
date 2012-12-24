@@ -7,7 +7,7 @@ using NHibernate;
 using Model;
 namespace DAL
 {
-    public class DALDJ_GroupConsumRecord:DalBase,IDJGroupConsumRecord
+    public class DALDJ_GroupConsumRecord:DalBase
     {
 
         public void Save(Model.DJ_GroupConsumRecord group)
@@ -176,16 +176,33 @@ namespace DAL
         }
 
 
-        public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, int entid,int djsid)
+        public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, int entid, int djsid, bool? IsVerified_City, bool? IsVerified_Country)
         {
             string sql = "select r from DJ_GroupConsumRecord r where r.Enterprise.Id=" + entid + " and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + djsid + "";
             sql += " and ConsumeTime>='" + year.ToString() + "-" + month.ToString() + "-01 00:00:00" + "' and  ConsumeTime<'" +DateTime.Parse(year+"-"+month+"-"+"1").AddMonths(1) + "'";
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+            List<DJ_GroupConsumRecord> ListRecord = query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+            if (IsVerified_City == true)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CityVeryfyState == RewardType.已纳入).ToList();
+            }
+            if (IsVerified_City == false)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CityVeryfyState != RewardType.已纳入).ToList();
+            }
+            if (IsVerified_Country == true)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CountryVeryfyState == RewardType.已纳入).ToList();
+            }
+            if (IsVerified_Country == false)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CountryVeryfyState != RewardType.已纳入).ToList();
+            }
+            return ListRecord;
         }
 
 
-        public IList<Model.DJ_GroupConsumRecord> GetDptRecordByCondition(string begintime, string endtime, string dptname,int entid)
+        public IList<Model.DJ_GroupConsumRecord> GetDptRecordByCondition(string begintime, string endtime, string dptname, int entid, bool? IsVerified_City, bool? IsVerified_Country)
         {
             string sql = "select r from DJ_GroupConsumRecord r where 1=1";
             
@@ -200,11 +217,28 @@ namespace DAL
                 sql += " and r.ConsumeTime<'" + endtime + "'";
             }
             IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+            List<DJ_GroupConsumRecord> ListRecord= query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+            if (IsVerified_City == true)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CityVeryfyState == RewardType.已纳入).ToList();
+            }
+            if (IsVerified_City == false)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CityVeryfyState != RewardType.已纳入).ToList();
+            }
+            if (IsVerified_Country == true)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CountryVeryfyState == RewardType.已纳入).ToList();
+            }
+            if (IsVerified_Country == false)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CountryVeryfyState != RewardType.已纳入).ToList();
+            }
+            return ListRecord;
         }
 
 
-        public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, string code, int djsid)
+        public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, string code, int djsid, bool? IsVerified_City, bool? IsVerified_Country)
         {
             //string sql = "select r from DJ_GroupConsumRecord r where r.Enterprise.Area.Code like '%"+code+"%' and r.Route.DJ_TourGroup.DJ_DijiesheInfo.Id=" + djsid + "";
 
@@ -224,7 +258,24 @@ namespace DAL
             }
             sql.Append(" and ConsumeTime>='" + year.ToString() + "-" + month.ToString() + "-01 00:00:00" + "' and  ConsumeTime<'" + DateTime.Parse(year + "-" + month + "-" + "1").AddMonths(1) + "'");
             IQuery query = session.CreateQuery(sql.ToString());
-            return query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+            List<DJ_GroupConsumRecord> ListRecord = query.Future<Model.DJ_GroupConsumRecord>().ToList<Model.DJ_GroupConsumRecord>();
+            if (IsVerified_City == true)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CityVeryfyState == RewardType.已纳入).ToList();
+            }
+            if (IsVerified_City == false)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CityVeryfyState != RewardType.已纳入).ToList();
+            }
+            if (IsVerified_Country == true)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CountryVeryfyState == RewardType.已纳入).ToList();
+            }
+            if (IsVerified_Country == false)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CountryVeryfyState != RewardType.已纳入).ToList();
+            }
+            return ListRecord;
         }
 
         public IList<DJ_GroupConsumRecord> GetList_DemoRecords(string groupNamePrefix)
