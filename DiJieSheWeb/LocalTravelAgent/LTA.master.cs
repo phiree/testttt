@@ -34,7 +34,7 @@ public partial class LocalTravelAgent_LTA : System.Web.UI.MasterPage
         }
         if (mu == null || mu.UserName == string.Empty || DJ_User_TourEnterprise == null || !(DJ_User_TourEnterprise.Enterprise is DJ_DijiesheInfo))
         {
-            Response.Redirect("/Login.aspx");
+            Response.Redirect("/LTALogin.aspx");
         }
         int perType=(int)DJ_User_TourEnterprise.PermissionType;
         if (perType == 1 || perType == 3 || perType == 5 || perType == 9 || perType == 7 || perType == 11 || perType == 13 || perType == 15)
