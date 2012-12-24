@@ -161,7 +161,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
             }
             else
             {
-                btnVerifyState.Attributes.CssStyle["color"] = "#009282";
+                btnVerifyState.Attributes.CssStyle["color"] = "#11406C";
             }
         }
     }

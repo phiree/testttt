@@ -36,11 +36,12 @@ public partial class m : System.Web.UI.MasterPage
             if (tm is DJ_User_TourEnterprise)
             {
                 laETName.Text = (tm as DJ_User_TourEnterprise).Enterprise.Name;
+                MasterCss.Href = "/theme/default/css/MasterPage.css";
             }
             if (tm is DJ_User_Gov)
             {
                 laETName.Text = (tm as DJ_User_Gov).GovDpt.Name;
-                
+                MasterCss.Href = "/theme/default/css/MasterPage2.css";
             }
         }
         else
