@@ -98,9 +98,9 @@
                         </td>
                         <td>
                             <asp:Button runat="server" ID="btnModifyMember" CommandArgument='<%#Eval("Id") %>'
-                                CommandName="Edit" Text="修改" CssClass="btn" />
+                                CommandName="Edit" Text="修改" CssClass="btn2" />
                                  <asp:Button runat="server" ID="btnDeleteMember"  OnClientClick="javascript:return confirm('确定删除?');"  CommandArgument='<%#Eval("Id") %>'
-                                CommandName="Delete" Text="删除" CssClass="btn" />
+                                CommandName="Delete" Text="删除" CssClass="btn2" />
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -108,7 +108,7 @@
                     </tbody></table>
                 </FooterTemplate>
             </asp:Repeater>
-            <asp:Button runat="server" ID="btnAddMember" OnClick="btnAddMember_Click" Text="增加成员" CssClass="btn" style="margin-top:15px" />
+            <asp:Button runat="server" ID="btnAddMember" OnClick="btnAddMember_Click" Text="增加成员" CssClass="btn2" style="margin-top:15px" />
             <div style="display:none">
                 <asp:Button ID="btnCss" runat="server" OnClick="btnCss_Click" />
             </div>
@@ -158,8 +158,8 @@
                         </tr>
                     </table>
                     <asp:Button runat="server" OnClick="btnSaveMember_Click" ID="btnSave" Text="保存" 
-                        CssClass="btn" ValidationGroup="SaveMember" />
-                    <asp:Button runat="server" OnClick="btnCancel_Click" ID="btnCancel" Text="取消" CssClass="btn" />
+                        CssClass="btn2" ValidationGroup="SaveMember" />
+                    <asp:Button runat="server" OnClick="btnCancel_Click" ID="btnCancel" Text="取消" CssClass="btn2" />
                 </fieldset>
             </asp:Panel>
         </div>
@@ -167,7 +167,7 @@
             
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxSimple" CssClass="tbMemberSingleText" style="width:97%"></asp:TextBox>
             <asp:Button runat="server" ID="btnSaveSimple" OnClick="btnSave_Click" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
-                Text="保存" CssClass="btn" />
+                Text="保存" CssClass="btn2" />
             <asp:Label runat="server" ID="lblSimpleMsg" ForeColor="green"></asp:Label>
             <div style="padding:10px 15px 10px 15px">
                 <p style=" font-weight:bold">
@@ -204,9 +204,9 @@
             <asp:TextBox TextMode="MultiLine" runat="server" ID="tbxExcel" CssClass="tbMemberSingleText" style="width:97%"></asp:TextBox>
             <p>
                 <asp:FileUpload runat="server" ID="fuMemberExcel" />
-                <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" CssClass="btn" />
+                <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" CssClass="btn2" />
                 <asp:Label ID="Label1" runat="server" />
-                <asp:Button runat="server" ID="Button1" OnClick="btnExcel_Click" CssClass="btn" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
+                <asp:Button runat="server" ID="Button1" OnClick="btnExcel_Click" CssClass="btn2" OnClientClick="javascript:return confirm('原有的团队成员信息将清除,是否继续?');"
                     Text="保存" />
             </p>
         </div>

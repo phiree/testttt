@@ -34,11 +34,11 @@
     <div class="detail_titlebg">
         验证
     </div>
-    <div class="searchdiv">
+    <div class="searchdiv" style="background-color:inherit">
         <h5>
             按导游姓名或者身份证号查询</h5>
         <asp:TextBox runat="server" ID="txtTE_info" Style="margin-right: 10px;width:250px;" /><asp:Button
-            ID="BtnCheck" runat="server" Text="确定" OnClick="txtTE_info_Click" CssClass="btn" />
+            ID="BtnCheck" runat="server" Text="确定" OnClick="txtTE_info_Click" CssClass="btn2" />
         <span id="yklistt"><span style="margin-left: 260px; padding-left: 0px; cursor: pointer; vertical-align: middle;"
             >当日导游列表&nbsp;&nbsp;</span><img height="15px"
                 width="10px" src="/theme/default/image/downicon.png" style="vertical-align: middle;

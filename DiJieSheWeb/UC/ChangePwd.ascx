@@ -61,11 +61,11 @@
                         <tr>
                             <td align="right">
                                 <asp:Button ID="ChangePasswordPushButton" runat="server" 
-                                    CommandName="ChangePassword" Text="更改密码"  CssClass="btn"
+                                    CommandName="ChangePassword" Text="更改密码"  CssClass="btn2"
                                     ValidationGroup="ctl00$ChangePassword1" />
                             </td>
                             <td>
-                                <asp:Button ID="CancelPushButton" runat="server" CausesValidation="False" CssClass="btn"
+                                <asp:Button ID="CancelPushButton" runat="server" CausesValidation="False" CssClass="btn2"
                                     CommandName="Cancel" Text="取消" />
                             </td>
                         </tr>

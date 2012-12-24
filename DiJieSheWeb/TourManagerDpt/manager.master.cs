@@ -14,6 +14,7 @@ public partial class TourManagerDpt_manager : System.Web.UI.MasterPage
     public string dptid { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
+        Master.Pageurl = "/DptLogin.aspx";
         bind();
     }
     private void bind()

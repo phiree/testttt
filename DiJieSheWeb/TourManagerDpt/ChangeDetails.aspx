@@ -45,7 +45,7 @@
                 </td>
             </tr>
         </table>
-        <asp:Button runat="server" ID="btnSave" OnClick="btnSave_Click" Text="保存" CssClass="btn"
+        <asp:Button runat="server" ID="btnSave" OnClick="btnSave_Click" Text="保存" CssClass="btn2"
             Style="margin-left: 360px" />
     </div>
 </asp:Content>

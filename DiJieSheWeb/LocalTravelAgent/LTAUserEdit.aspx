@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <td colspan="2" style=" text-align:center">
-                    <asp:Button ID="BtnSave" runat="server" Text="保存" CssClass="btn" 
+                    <asp:Button ID="BtnSave" runat="server" Text="保存" CssClass="btn2" 
                         onclick="BtnSave_Click" />
                 </td>
             </tr>

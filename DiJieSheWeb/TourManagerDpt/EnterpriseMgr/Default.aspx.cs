@@ -26,6 +26,10 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
         if (!IsPostBack)
         {
             BindList();
+            if (Request.Cookies["select_tab"] != null)
+            {
+                Response.Cookies["select_tab"].Value = "0";
+            }
         }
     }
     private void ParseParam()
@@ -79,8 +83,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
             lblMsg.Text = errMsg;
             lblMsg.Visible = true;
         }
-       
-        cbxState.SelectedIndex = 1;
+      
         BindList();
       
 
@@ -92,11 +95,12 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
     private void BindList()
     {
         RewardType rt = 0;
-        if (cbxState.Items[0].Selected)
+        int index = int.Parse(hfState.Value);
+        if (index==0)
         { rt = RewardType.已纳入 | RewardType.纳入后移除; }
-        if (cbxState.Items[1].Selected)
+        if (index == 1)
         { rt = RewardType.已纳入; }
-        if (cbxState.Items[2].Selected)
+        if (index == 2)
         { rt = RewardType.纳入后移除; }
 
 
@@ -157,8 +161,13 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
             }
             else
             {
-                btnVerifyState.Attributes.CssStyle["color"] = "#009282";
+                btnVerifyState.Attributes.CssStyle["color"] = "#11406C";
             }
         }
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        BindList();
     }
 }

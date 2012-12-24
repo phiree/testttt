@@ -4,7 +4,7 @@
     background:url("/theme/default/image/Detail_Titlebg.gif");
     height:33px;
     padding-left:10px;
-    color:#5E716B;
+    color:#022950;
     line-height:33px;
     font-weight:bold;
     font-size:13px;
@@ -92,7 +92,7 @@ table tr td
  
     height:19px;
     border:1px solid #CDCDCD;
-    color:#009383;
+    color:#11406C;
     font-weight:bold;
     background-color:White;
     display:inline-block;
@@ -105,15 +105,15 @@ table tr td
     background:url("/theme/default/image/button_bg.gif");
     height:19px;
    
-    color:#009383;
+    color:#11406C;
     cursor:pointer;
    
 }
 .btn2
 {
     border:1px solid #CDCDCD;
-    color:#009282;
-    height:25px;
+    color:#11406C;
+    height:24px;
     line-height:20px;
     text-align:center;
     background-color:White;
@@ -123,11 +123,11 @@ table tr td
 .btn2:hover
 {
     border:1px solid #009282;
-    color:#009282;
-    height:25px;
+    color:#11406C;
+    height:24px;
     line-height:20px;
     text-align:center;
-    background:url("/theme/default/image/btn2_bg.jpg");
+    background:url("/theme/default/image/btn2_bg2.jpg");
     cursor:pointer;
     font-weight:bold;
 }
@@ -412,7 +412,7 @@ color:Red;
 {
     margin:5px 0px 5px 4px;
     height:30px;
-    border-bottom:2px solid #45AA88;
+    border-bottom:2px solid #2399C9;
 }
 .tabSelect a
 {
@@ -422,7 +422,7 @@ color:Red;
     height:30px;
     width:100px;
     background-color:#E7EEE7;
-    border-right:1px solid #45AA88;
+    border-right:1px solid #2399C9;
     line-height:30px;
     text-align:center;
     color:Black;
@@ -430,7 +430,7 @@ color:Red;
 }
 .Select_Tab
 {
-    background-color:#45AA88 !important;
+    background-color:#2399C9 !important;
     color:White !important;
 }
 .Select_Btn

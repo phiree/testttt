@@ -50,13 +50,13 @@
                 <li><a href="#tabs-3">团队旅游情况表</a></li>
             </ul>
             <div id="tabs-1">
-                <div class="detailtitle">
-                    已接待情况</div>
+                
                 <div class="searchdiv">
-                    日期：<asp:TextBox ID="txt_yijiedai" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
+                    日期：<asp:TextBox ID="txt_yijiedai" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月',maxDate:new Date()})" />
                     地接社名称：<asp:TextBox ID="txt_name1" runat="server" style="width:150px" />
                     <asp:Button ID="btn_yijiedai" Text="查询" runat="server" OnClick="btn_yijiedai_Click"
-                        CssClass="btn" />
+                        CssClass="btn2" />
+                    <asp:Button ID="btnOutput" Text="导出列表" runat="server" OnClick="btnOutput1_Click" CssClass="btn2" />
                 </div>
                 <table class="tablesorter IndexTable">
                 </table>
@@ -150,17 +150,15 @@
                     </tfoot>
                 </table>
                 <div style="clear: both">
-                    <asp:Button ID="btnOutput" Text="导出" runat="server" OnClick="btnOutput1_Click" CssClass="btn" />
+                    
                 </div>
             </div>
             <div id="tabs-2">
-                <div class="detailtitle">
-                    旅游企业接待情况明细表</div>
                 <div class="searchdiv">
-                    日期：<asp:TextBox ID="txt_yijiedai2" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
+                    日期：<asp:TextBox ID="txt_yijiedai2" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月',maxDate:new Date()})" />
                     企业名称(*必填)：<asp:TextBox ID="txt_name2" runat="server" style="width:150px" />
                     <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click"
-                        CssClass="btn" /></div>
+                        CssClass="btn2" /><asp:Button ID="btnOutput2" Text="导出列表" runat="server" OnClick="btnOutput2_Click" CssClass="btn2" /></div>
                 <div style="display:none">
                     <asp:Button ID="btn_ys" runat="server" />
                 </div>
@@ -203,17 +201,15 @@
                     </FooterTemplate>
                 </asp:Repeater>
                 <div style="clear: both">
-                    <asp:Button ID="btnOutput2" Text="导出" runat="server" OnClick="btnOutput2_Click" CssClass="btn" />
+                    
                 </div>
             </div>
             <div id="tabs-3">
-                <div class="detailtitle">
-                    团队旅游情况表</div>
                 <div class="searchdiv">
-                    日期：<asp:TextBox ID="txt_yijiedai3" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月'})" />
+                    日期：<asp:TextBox ID="txt_yijiedai3" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月',maxDate:new Date()})" />
                     企业名称(*必填)：<asp:TextBox ID="txt_name3djs" runat="server" style="width:150px" />
                     <asp:Button ID="btn_yijiedai3" Text="查询" runat="server" OnClick="btn_yijiedai3_Click"
-                        CssClass="btn" /></div>
+                        CssClass="btn2" /><asp:Button ID="btnOutput3" Text="导出列表" runat="server" OnClick="btnOutput3_Click" CssClass="btn2" /></div>
                 <asp:Repeater ID="rptGov3" runat="server">
                     <HeaderTemplate>
                         <table class="tablesorter IndexTable">
@@ -260,7 +256,7 @@
                     </FooterTemplate>
                 </asp:Repeater>
                 <div style="clear: both">
-                    <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn" />
+                    
                 </div>
             </div>
         </div>

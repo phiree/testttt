@@ -23,11 +23,12 @@
             身份证号:<asp:TextBox ID="txtId_add" runat="server" style="margin-right:100px;margin-left:27px;width:150px;" />
             导游证号:<asp:TextBox ID="txtGuideid_add" runat="server" style="margin-left:27px;width:150px;" /><br />
              所属公司:<asp:TextBox ID="tbxBelong" runat="server" style="margin-left:27px;width:150px;" /><br />
-            <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn" OnClick="btnQuickadd_Click" />
+            <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn2" OnClick="btnQuickadd_Click" />
         </div>
     <div class="detaillist">
-        <div class="detailtitle">
-            导游管理
+        <div class="tabSelect">
+            <a class="Select_Tab">导游列表</a>
+            
         </div>
          <fieldset style="padding-top:0px;display:none">
         <legend style="font-size:12px;">搜索条件：</legend>
@@ -35,7 +36,7 @@
             姓名:<asp:TextBox ID="txtName" runat="server" />
             身份证号:<asp:TextBox ID="txtIdcardid" runat="server" />
             导游证号:<asp:TextBox ID="txtGuidecardid" runat="server" />
-            <asp:Button ID="btnSearch" Text="查询" runat="server" CssClass="btn" OnClick="btnSearch_Click" />
+            <asp:Button ID="btnSearch" Text="查询" runat="server" CssClass="btn2" OnClick="btnSearch_Click" />
         </div>
         </fieldset>
         <table class="tablesorter IndexTable">

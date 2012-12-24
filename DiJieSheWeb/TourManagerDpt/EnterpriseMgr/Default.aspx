@@ -8,11 +8,27 @@
     <script language="javascript" type="text/javascript" src="/Scripts/json2.js"></script>
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $(".tablesorter").tablesorter();
             $(".IndexTable").orderIndex();
+            if ($.cookie("select_tab") != null || $.cookie("select_tab") != undefined) {
+                var index = $.cookie("select_tab");
+                $(".tabSelect a").removeClass("Select_Tab");
+                $(".tabSelect a").eq(index).addClass("Select_Tab");
+            }
+
+            $(".tabSelect a").each(function () {
+                var that = this;
+                $(that).click(function () {
+                    var index = $(".tabSelect a").index(that);
+                    $.cookie("select_tab", index);
+                    $("[id$='hfState']").val(index);
+                    $("[id$='btnSearch']").click();
+                });
+            });
         });
     </script>
     <script language="javascript" type="text/javascript">
@@ -34,17 +50,15 @@
       
         <asp:Button runat="server" ID="btnAdd" Text="纳入奖励范围" OnClick="btnAdd_Click" CssClass="btn2"/>
         <asp:Label runat="server" ID="lblMsg" CssClass="success" Visible="false">操作成功</asp:Label><br />
-            纳入状态:&nbsp;&nbsp;&nbsp;&nbsp;<asp:RadioButtonList runat="server" AutoPostBack="true" ID="cbxState" RepeatDirection="Horizontal"
-                RepeatLayout="Flow" OnSelectedIndexChanged="cbxState_SelectedIndexChanged">
-                <asp:ListItem Value="0" Selected="True">全部</asp:ListItem>
-                <asp:ListItem>已纳入</asp:ListItem>
-                <asp:ListItem>已移除</asp:ListItem>
-            </asp:RadioButtonList>
+            
         </div>
     <div class="detaillist">
-        
-        <div class="detailtitle">
-            <%=ParamEntType %>统计列表
+        <div style="display:none">
+            <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" />
+            <asp:HiddenField runat="server" ID="hfState" Value="1" />
+        </div>
+         <div class="tabSelect">
+            <a class="Select_Tab">全部</a><a>已纳入</a><a style="border:none">已移除</a>
         </div>
         <table class="tablesorter IndexTable">
         </table>

@@ -46,16 +46,16 @@
         旅游管理部门统计信息
     </div>
 <div class="searchdiv">
-        <h5>按条件查询</h5>
         日期&nbsp;&nbsp;<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
         旅游管理部门名称&nbsp;&nbsp;<asp:TextBox ID="txtEntName" runat="server"></asp:TextBox>
          <asp:Button ID="BtnSearch" runat="server" Text="搜索" CssClass="btn2" 
              onclick="BtnSearch_Click" />
-        <asp:Button ID="btnOutput3" Text="导出" runat="server" OnClick="btnOutput3_Click" CssClass="btn2" />
+        
     </div>
     <div class="detaillist" runat="server" id="report_total">
-        <div class="detailtitle">
-            旅游管理部门统计列表
+        <div class="tabSelect">
+            <a class="Select_Tab">旅游管理部门</a>
+            <asp:Button ID="btnOutput3" Text="导出列表" runat="server" OnClick="btnOutput3_Click" CssClass="btn2 Select_Btn" />
         </div>
         <table class="tablesorter IndexTable" >
         </table>

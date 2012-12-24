@@ -47,16 +47,16 @@
         已入住统计
     </div>
         <div class="searchdiv">
-        <h5>按条件查询</h5>
         旅行社名称<asp:TextBox ID="txtEntName" runat="server" Width="100px"></asp:TextBox>
         验证时间<asp:TextBox ID="txtTime" runat="server" Width="100px"></asp:TextBox>
         <asp:Button ID="BtnSearch" runat="server" Text="查询" CssClass="btn2" onclick="BtnSearch_Click" />
-            <asp:Button ID="BtnCreatexls" runat="server" Text="导出成excel" 
-                onclick="BtnCreatexls_Click" CssClass="btn2" />
+            
     </div>
     <div class="detaillist" runat="server" id="report_total" >
-        <div class="detailtitle">
-            已入住统计列表
+        <div class="tabSelect">
+            <a class="Select_Tab">已入住统计</a>
+            <asp:Button ID="BtnCreatexls" runat="server" Text="导出列表" 
+                onclick="BtnCreatexls_Click" CssClass="btn2 Select_Btn" />
         </div>
         <table class="tablesorter IndexTable">
         </table>

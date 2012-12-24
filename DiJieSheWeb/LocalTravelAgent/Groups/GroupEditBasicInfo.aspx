@@ -28,7 +28,7 @@
                  required:true
                 },
                 <%=tbxDateBegin.UniqueID %>:{
-                 date:true,
+                 dateISO:true,
                  required:true
                 }
             }
@@ -87,7 +87,7 @@
                         CssClass="rbl" Style="margin: 0px 0px 5px 0px">
                     </asp:CheckBoxList>
                     <label for="guide" class="error" style="display:none">请选择导游</label>
-                    <input type="button" name="showDiag_AddGuide" class="showAddDiag" value="增加导游" />
+                    <input type="button" name="showDiag_AddGuide" class="showAddDiag btn2" value="增加导游" />
                     <span><a target="_blank" href="/LocalTravelAgent/GuideList.aspx">导游列表</a></span>
                 </td>
             </tr>
@@ -102,13 +102,13 @@
                     <br />
                     <label for="driver" class="error" style="display:none">请选择司机</label>
                     <span>
-                        <input type="button" name="showDiag_AddDriver" class="showAddDiag" value="增加车辆司机" />
+                        <input type="button" name="showDiag_AddDriver" class="showAddDiag btn2" value="增加车辆司机" />
                         <a target="_blank" href="/LocalTravelAgent/DriverList.aspx">车辆司机列表</a></span>
                 </td>
             </tr>
         </table>
         <asp:Button runat="server" ID="btnSaveBasicInfo"  ValidationGroup="vgGroup" OnClick="btnBasicInfo_Click"
-            Text="保存" CssClass="btn submit" Style="margin-left: 350px" />
+            Text="保存" CssClass="btn2 submit" Style="margin-left: 350px" />
         <%--<asp:Panel runat="server" ID="pnlLinks">
             <a href="GroupEditMember.aspx?groupid=<%=groupId %>">编辑成员信息</a>
              <a href="GroupEditRoute.aspx?groupid=<%=groupId %>">
