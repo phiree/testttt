@@ -28,7 +28,7 @@
                  required:true
                 },
                 <%=tbxDateBegin.UniqueID %>:{
-                 date:true,
+                 dateISO:true,
                  required:true
                 }
             }

@@ -29,19 +29,19 @@ public class ExcelHandler : IHttpHandler {
         tg.DJ_DijiesheInfo = djsinfo;
         //团员信息
         var tgmlist = new System.Collections.Generic.List<Model.DJ_TourGroupMember>();
-        foreach (var item in ga.GroupMemberList.Where(x=>x.Memtype=="成人游客"))
+        foreach (var item in ga.GroupMemberList.Where(x=>x.Memtype=="成"))
         {
             tgmlist.Add(new Model.DJ_TourGroupMember()
             {
                 RealName = item.Memname,
                 IdCardNo = item.Memid,
                 PhoneNum = item.Memphone,
-                MemberType=Model.MemberType.成人游客,
+                MemberType=Model.MemberType.成,
                 DJ_TourGroup=tg,
                 IsChild = false
             });
         }
-        foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "儿童"))
+        foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "儿"))
         {
             tgmlist.Add(new Model.DJ_TourGroupMember()
             {
@@ -49,12 +49,12 @@ public class ExcelHandler : IHttpHandler {
                 IdCardNo = item.Memid,
                 PhoneNum = item.Memphone,
                 IsChild = true,
-                MemberType = Model.MemberType.儿童,
+                MemberType = Model.MemberType.儿,
                 DJ_TourGroup = tg,
                 Keeper = item.Cardno
             });
         }
-        foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "港澳台游客"))
+        foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "港澳台"))
         {
             tgmlist.Add(new Model.DJ_TourGroupMember()
             {
@@ -66,7 +66,7 @@ public class ExcelHandler : IHttpHandler {
                 IsChild = false
             });
         }
-        foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "外宾"))
+        foreach (var item in ga.GroupMemberList.Where(x => x.Memtype == "外"))
         {
             tgmlist.Add(new Model.DJ_TourGroupMember()
             {
@@ -75,7 +75,7 @@ public class ExcelHandler : IHttpHandler {
                 PhoneNum = item.Memphone,
                 IsChild = true,
                 Keeper = item.Cardno,
-                MemberType = Model.MemberType.外宾,
+                MemberType = Model.MemberType.外,
             
                 DJ_TourGroup=tg
             });

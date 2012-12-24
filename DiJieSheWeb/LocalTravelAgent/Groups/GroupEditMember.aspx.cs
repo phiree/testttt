@@ -87,7 +87,7 @@ public partial class LocalTravelAgent_Groups_GroupEditMember : basepageDjsGroupE
         MemberType mt;
         if (!Enum.TryParse<MemberType>(rblMemberType.SelectedValue, out mt))
         {
-            mt = MemberType.成人游客;
+            mt = MemberType.成;
         }
         
         currentGroupMember.MemberType = mt;

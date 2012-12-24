@@ -60,13 +60,13 @@ namespace TourTest.ModelTest
          {
              var members = Builder<DJ_TourGroupMember>.CreateListOfSize(10)
                  .Section(0, 2)
-                 .With(x => x.MemberType = MemberType.成人游客)
+                 .With(x => x.MemberType = MemberType.成)
                  .Section(3, 5)
-                 .With(x => x.MemberType = MemberType.儿童)
+                 .With(x => x.MemberType = MemberType.儿)
                  .Section(6, 7)
                  .With(x => x.MemberType = MemberType.港澳台)
                  .Section(8, 9)
-                 .With(x => x.MemberType = MemberType.外宾)
+                 .With(x => x.MemberType = MemberType.外)
                  .Build();
              var group = Builder<DJ_TourGroup>.CreateNew().With(x => x.Members = members).Build();
              Assert.AreEqual(group.AdultsAmount, 7);
