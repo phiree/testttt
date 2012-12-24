@@ -138,14 +138,14 @@ public partial class Admin_Demo : System.Web.UI.Page
         DJ_TourGroupMember member1 = new DJ_TourGroupMember();
         member1.DJ_TourGroup = group;
         member1.IdCardNo = "210905197807210546";
-        member1.MemberType = MemberType.成人游客;
+        member1.MemberType = MemberType.成;
         member1.PhoneNum = "13280008000";
         member1.RealName = "张三";
 
         DJ_TourGroupMember member2 = new DJ_TourGroupMember();
         member2.DJ_TourGroup = group;
         member2.IdCardNo = "210905197807210546";
-        member2.MemberType = MemberType.儿童;
+        member2.MemberType = MemberType.儿;
         member2.PhoneNum = "13280008000";
         member2.RealName = "张小明";
 
@@ -159,7 +159,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         DJ_TourGroupMember member4 = new DJ_TourGroupMember();
         member4.DJ_TourGroup = group;
         member4.SpecialCardNo = "证件号:019203493l";
-        member4.MemberType = MemberType.外宾;
+        member4.MemberType = MemberType.外;
         member4.PhoneNum = "13280008000";
         member4.RealName = "Carl Smith";
 

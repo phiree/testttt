@@ -46,12 +46,12 @@ namespace Model
         public virtual DJ_User_TourEnterprise DijiesheEditor { get; set; }
         public virtual int AdultsAmount
         {
-            get { return Members.Where(x => x.MemberType == MemberType.成人游客 || x.MemberType == MemberType.港澳台 || x.MemberType == MemberType.外宾).Count(); }
+            get { return Members.Where(x => x.MemberType == MemberType.成 || x.MemberType == MemberType.港澳台 || x.MemberType == MemberType.外).Count(); }
         }
         /// <summary>
         /// 儿童总人数
         /// </summary>
-        public virtual int ChildrenAmount { get { return Members.Where(x => x.MemberType == MemberType.儿童).Count(); } }
+        public virtual int ChildrenAmount { get { return Members.Where(x => x.MemberType == MemberType.儿).Count(); } }
         /// <summary>
         /// 港澳台人数
         /// </summary>
@@ -59,7 +59,7 @@ namespace Model
         /// <summary>
         /// 外宾人数
         /// </summary>
-        public virtual int ForeignersAmount { get { return Members.Where(x => x.MemberType == MemberType.外宾).Count(); } }
+        public virtual int ForeignersAmount { get { return Members.Where(x => x.MemberType == MemberType.外).Count(); } }
         ///// <summary>
         ///// 集合点
         ///// </summary>

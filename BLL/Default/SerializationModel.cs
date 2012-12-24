@@ -86,15 +86,15 @@ namespace BLL
                     break;
             }
             Model.DJ_TourGroupMember member = new Model.DJ_TourGroupMember();
-            Model.MemberType memberType= MemberType.成人游客;
+            Model.MemberType memberType= MemberType.成;
 
             if (new string[] { "成", "成人", "成人游客" }.Contains(strType))
             {
-                memberType = MemberType.成人游客;
+                memberType = MemberType.成;
             }
             else if (new string[] { "儿", "儿童","儿童游客" }.Contains(strType))
             {
-                memberType = MemberType.儿童;
+                memberType = MemberType.儿;
             }
             else
             {

@@ -51,9 +51,9 @@ namespace Model
     }
     public enum MemberType
     {
-        成人游客 = 1,
-        儿童,
-        外宾,
+        成 = 1,
+        儿,
+        外,
         港澳台
        
     }

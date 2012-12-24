@@ -101,6 +101,7 @@ namespace ExcelOplib
             #region generate data
             ISheet sheet1 = hssfworkbook.CreateSheet("Sheet1");
             IRow row0 = sheet1.CreateRow(0);
+            IRow row1=sheet1.CreateRow(1);
             //标题头
             row0.CreateCell(0).SetCellValue("团队名称");
             row0.CreateCell(1).SetCellValue("开始时间");
@@ -116,16 +117,17 @@ namespace ExcelOplib
             row0.CreateCell(11).SetCellValue("司机电话号码");
             row0.CreateCell(12).SetCellValue("司机证号");
             row0.CreateCell(13).SetCellValue("");
-            row0.CreateCell(14).SetCellValue("类型(成/儿/外/港澳台)");
+            row0.CreateCell(14).SetCellValue("类型");
+            row1.CreateCell(14).SetCellValue("填写成/儿/外/港澳台");
             row0.CreateCell(15).SetCellValue("游客姓名");
-            row0.CreateCell(16).SetCellValue("游客身份证号");
+            row0.CreateCell(16).SetCellValue("游客证件号码");
             row0.CreateCell(17).SetCellValue("游客电话号码");
             row0.CreateCell(18).SetCellValue("");
             row0.CreateCell(19).SetCellValue("日程");
             row0.CreateCell(20).SetCellValue("景点");
             row0.CreateCell(21).SetCellValue("住宿");
             //示例说明
-            var cel=sheet1.CreateRow(1).CreateCell(0);
+            var cel=row1.CreateCell(0);
             cel.SetCellValue("示例如下");
             //示例内容
             IRow row2 = sheet1.CreateRow(2);
@@ -156,7 +158,7 @@ namespace ExcelOplib
             row3.CreateCell(17).SetCellValue("无");
             row2.CreateCell(18).SetCellValue("");
             row2.CreateCell(19).SetCellValue("1");
-            row2.CreateCell(20).SetCellValue("西湖,西溪湿地");
+            row2.CreateCell(20).SetCellValue("西湖-西溪湿地");
             row2.CreateCell(21).SetCellValue("希尔顿酒店");
             row3.CreateCell(19).SetCellValue("2");
             row3.CreateCell(20).SetCellValue("乌镇");

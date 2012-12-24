@@ -34,8 +34,8 @@ public partial class Groups_GroupInfo : basepageDJS
         {
             if (size <= 4134904)
             {
-                FileUpload1.SaveAs(excelPath + "temp." + typ2);
-                ExcelOplib.Entity.GroupAll group_excel = excel.getGroup(excelPath + "temp." + typ2, out message);
+                FileUpload1.SaveAs(excelPath + "temp-"+CurrentDJS.SeoName+"." + typ2);
+                ExcelOplib.Entity.GroupAll group_excel = excel.getGroup(excelPath + "temp-" + CurrentDJS.SeoName + "." + typ2, out message);
                 group_excel.GroupMemberList = group_excel.GroupMemberList.Where(x => !string.IsNullOrEmpty(x.Memtype)).ToList();
 
                 #region group modify
@@ -165,15 +165,32 @@ public partial class Groups_GroupInfo : basepageDJS
                         var temp_hotel = item.Hotel.Split(new char[] { ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
                         foreach (var item2 in temp_scenic)
                         {
+                            var sceniclist=bllenterp.GetDJS8name(item2);
+                            if(sceniclist.Count==0)
+                            {
+                                bllenterp.Save(new Model.DJ_TourEnterprise(){
+                                    Name=item2,
+                                    Type=Model.EnterpriseType.景点
+                                });
+                            }
                             group_model.Routes.Add(new Model.DJ_Route()
                             {
                                 DJ_TourGroup = group_model,
                                 DayNo = int.Parse(item.RouteDate),
-                                Enterprise = bllenterp.GetDJS8name(item2).Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                                Enterprise = sceniclist.Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
                             });
                         }
                         foreach (var item2 in temp_hotel)
                         {
+                            var hotellist = bllenterp.GetDJS8name(item2);
+                            if (hotellist.Count == 0)
+                            {
+                                bllenterp.Save(new Model.DJ_TourEnterprise()
+                                {
+                                    Name = item2,
+                                    Type = Model.EnterpriseType.宾馆
+                                });
+                            }
                             group_model.Routes.Add(new Model.DJ_Route()
                             {
                                 DJ_TourGroup = group_model,
