@@ -79,7 +79,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
-      
+      团队管理
     </div>
     <div class="drInfo">
         <h1>
@@ -90,25 +90,22 @@
             <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" CssClass="but"
                 Style="margin-left: 200px;" />
         </div>
-        <div class="drIntrod">
+        <%--<div class="drIntrod">
             点击"选择文件"按钮,从电脑里选择已经保存好的团队信息文件，再点击“上传”,即完成
-        </div>
+        </div>--%>
     </div>
     <div class="exdrintro">
-        <h3>
+       <%-- <h3>
             Excel表格导入说明:
-        </h3>
+        </h3>--%>
         <p>
-            1.使用地接社管理专用Excel模板填写团队信息，保存类型：<span style="color: #049286">Excel工作簿(*.xlsx)</span>
+            <img src="/theme/default/image/question.png" style=" position:relative; top:3px;margin-right:5px" />操作提示：点击"选择文件"按钮，从电脑里选择以<span style="color: #049286">地接社新建团队模板(Excel表格)</span>保存的文件，再点击"上传"，即完成。
         </p>
         <p>
-            2.一份表格只能输入一个团队信息
-        </p>
-        <div class="downloadexcel">
-            <asp:Button ID="btn_download" Text="下载地接社管理专用Excel模板" runat="server" 
-                onclick="btn_download_Click" />
+            <img src="/theme/default/image/xiazai.jpg" style=" position:relative; top:3px;margin-right:5px" /><asp:Button ID="btn_download" Text="下载地接社管理专用Excel模板" runat="server" 
+                onclick="btn_download_Click" CssClass="btn2" />
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl=""></asp:HyperLink>
-        </div>
+        </p>
     </div>
     <input type="hidden" id="hidden_scid" runat="server" />
     <asp:Label ID="Label1" runat="server" />

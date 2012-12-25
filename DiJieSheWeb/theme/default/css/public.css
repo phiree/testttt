@@ -315,11 +315,12 @@ color:Red;
 /*导入Excel样式*/
 .drInfo
 {
-    margin:40px 0px 40px 40px;
-    width:700px;
-    height:200px;
+    margin:10px 0px 10px 10px;
+    width:750px;
+    height:100px;
     display:block;
     border:1px solid #CDCDCD;
+    background-color:#DCDCDC;
 }
 .drInfo h1
 {
@@ -367,7 +368,7 @@ color:Red;
 }
 .exdrintro
 {
-    margin:40px 0px 40px 40px;
+    margin:20px 0px 20px 10px;
 }
 .exdrintro h3
 {
