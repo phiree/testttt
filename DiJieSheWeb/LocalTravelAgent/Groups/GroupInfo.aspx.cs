@@ -97,6 +97,7 @@ public partial class Groups_GroupInfo : basepageDJS
                             });
                         }
                     }
+                    group_model = group_db;
                     bllgroup.Save(group_db);
                 }
                 #endregion

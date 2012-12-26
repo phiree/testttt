@@ -16,8 +16,9 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
     <div class="detaillist">
-        <div class="detailtitle">
+        <div class="detailtitle" style="height:25px;">
             已接待情况
+            <asp:Button ID="btnOutput" Text="导出列表" runat="server" OnClick="btnOutput1_Click" style="float:right" CssClass="btn2"/>
         </div>
         <asp:Repeater ID="rptStaticDetail" runat="server" OnItemDataBound="rptStaticDetail_ItemDataBound">
             <HeaderTemplate>
