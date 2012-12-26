@@ -37,16 +37,18 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Hotel : System.We
         string begintime, endtime;
         begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
         endtime = DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01";
-        bool? IsVerified = null;
-        if (ddlIsReward.SelectedValue == "是")
+        bool? IsVerified_City = null, IsVerified_Country = null;
+        switch (int.Parse(ddlIsReward.SelectedValue))
         {
-            IsVerified = true;
+            case 0: IsVerified_City = null; IsVerified_Country = null; break;
+            case 1: IsVerified_City = true; IsVerified_Country = null; break;
+            case 2: IsVerified_City = false; IsVerified_Country = null; break;
+            case 3: IsVerified_City = null; IsVerified_Country = true; break;
+            case 4: IsVerified_City = null; IsVerified_Country = false; break;
+            default:
+                break;
         }
-        if (ddlIsReward.SelectedValue == "否")
-        {
-            IsVerified = false;
-        }
-        listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), 4, Master.CurrentDJS.Id, IsVerified).ToList();
+        listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), 4, Master.CurrentDJS.Id, IsVerified_City, IsVerified_Country).ToList();
         if (listEnt.Count == 1 && txtEntName.Text != "")
         {
             hfentId.Value = listEnt[0].Id.ToString();
@@ -87,18 +89,20 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Hotel : System.We
         string begintime, endtime;
         begintime = DateTime.Parse(txtDate.Text.Trim()).Year + "-01-01";
         endtime = DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01";
-        bool? IsVerified = null;
-        if (ddlIsReward.SelectedValue == "是")
+        bool? IsVerified_City = null, IsVerified_Country = null;
+        switch (int.Parse(ddlIsReward.SelectedValue))
         {
-            IsVerified = true;
-        }
-        if (ddlIsReward.SelectedValue == "否")
-        {
-            IsVerified = false;
+            case 0: IsVerified_City = null; IsVerified_Country = null; break;
+            case 1: IsVerified_City = true; IsVerified_Country = null; break;
+            case 2: IsVerified_City = false; IsVerified_Country = null; break;
+            case 3: IsVerified_City = null; IsVerified_Country = true; break;
+            case 4: IsVerified_City = null; IsVerified_Country = false; break;
+            default:
+                break;
         }
         if (total_report.Visible)
         {
-            listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), 4, Master.CurrentDJS.Id, IsVerified).ToList();
+            listEnt = bllrecord.GetDJStaticsEnt(begintime, endtime, txtEntName.Text.Trim(), 4, Master.CurrentDJS.Id, IsVerified_City, IsVerified_Country).ToList();
             var result = bindEntStatis(listEnt);
             if (result.Count < 1)
             {
@@ -215,9 +219,20 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Hotel : System.We
         List<EntDetailStatis> ListEntDetailStatis = new List<EntDetailStatis>();
         DateTime dt = DateTime.Parse(datetime).AddDays(-1);
         int allchild_total2 = 0, alladult_total2 = 0, room_total2 = 0, appendbed_total2 = 0;
+        bool? IsVerified_City = null, IsVerified_Country = null;
+        switch (int.Parse(ddlIsReward.SelectedValue))
+        {
+            case 0: IsVerified_City = null; IsVerified_Country = null; break;
+            case 1: IsVerified_City = true; IsVerified_Country = null; break;
+            case 2: IsVerified_City = false; IsVerified_Country = null; break;
+            case 3: IsVerified_City = null; IsVerified_Country = true; break;
+            case 4: IsVerified_City = null; IsVerified_Country = false; break;
+            default:
+                break;
+        }
         for (int i = 1; i <= dt.Month; i++)
         {
-            List<DJ_GroupConsumRecord> ListRecord = bllrecord.GetByDate(dt.Year, i, ent.Id, Master.CurrentDJS.Id);
+            List<DJ_GroupConsumRecord> ListRecord = bllrecord.GetByDate(dt.Year, i, ent.Id, Master.CurrentDJS.Id,IsVerified_City,IsVerified_Country);
             int allchild_total = 0, alladult_total = 0, room_total = 0, appendbed_total = 0;
             foreach (DJ_GroupConsumRecord record in ListRecord)
             {
@@ -264,6 +279,11 @@ public partial class LocalTravelAgent_TourEnterpriseStatistics_Hotel : System.We
         endtime = DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Year + "-" + DateTime.Parse(txtDate.Text.Trim()).AddMonths(1).Month + "-01";
         DJ_TourEnterprise ent = bllenterprise.GetDJS8id(hfentId.Value)[0];
         ShowEntDetailStatis(ent, endtime);
+    }
+
+    protected void ddlIsReward_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        bind();
     }
 }
 

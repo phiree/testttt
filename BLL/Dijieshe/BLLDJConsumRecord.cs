@@ -10,7 +10,7 @@ namespace BLL
 {
     public class BLLDJConsumRecord
     {
-        IDJGroupConsumRecord IDjgroup = new DALDJ_GroupConsumRecord();
+        DALDJ_GroupConsumRecord IDjgroup = new DALDJ_GroupConsumRecord();
 
         DALDJ_GroupConsumRecord dal;
         public DALDJ_GroupConsumRecord DAL
@@ -145,9 +145,9 @@ namespace BLL
         /// <param name="EntName">查询企业名称</param>
         /// <param name="EntId">所在地接社id</param>
         /// <returns>查询出的企业列表</returns>
-        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string bengintime, string endtime, string EntName, int type, int EntId, bool? IsVerified)
+        public IList<DJ_TourEnterprise> GetDJStaticsEnt(string bengintime, string endtime, string EntName, int type, int EntId, bool? IsVerified_City, bool? IsVerified_Country)
         {
-            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(bengintime, endtime, EntName, type, EntId, IsVerified).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(bengintime, endtime, EntName, type, EntId, IsVerified_City, IsVerified_Country).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -168,7 +168,7 @@ namespace BLL
         public void GetCountByStatics(string begintime, string endtime, string EntName, int type, int EntId, int Enttype, int Wentid,out int people,out int room,out int appendbed)
         {
             people = room = appendbed = 0;
-            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(begintime, endtime, EntName, type, EntId,null).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = GetRecordByCondition(begintime, endtime, EntName, type, EntId,null,null).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -197,18 +197,31 @@ namespace BLL
             }
         }
 
-        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string begintime, string endtime, string EntName, int type, int EntId, bool? IsVerified)
+        public IList<DJ_GroupConsumRecord> GetRecordByCondition(string begintime, string endtime, string EntName, int type, int EntId, bool? IsVerified_City, bool? IsVerified_Country)
         {
-            if (IsVerified != null)
+            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetRecordByCondition(begintime, endtime, EntName, type, EntId).ToList();
+            if (IsVerified_City == true)
             {
-                return IDjgroup.GetRecordByCondition(begintime, endtime, EntName, type, EntId).Where(x=>x.Enterprise.IsVerified==(bool)IsVerified).ToList();
+                ListRecord=ListRecord.Where(x => x.Enterprise.CityVeryfyState == RewardType.已纳入).ToList();
             }
-            return IDjgroup.GetRecordByCondition(begintime, endtime, EntName, type, EntId);
+            if (IsVerified_City == false)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CityVeryfyState != RewardType.已纳入).ToList();
+            }
+            if (IsVerified_Country == true)
+            {
+                ListRecord=ListRecord.Where(x => x.Enterprise.CountryVeryfyState == RewardType.已纳入).ToList();
+            }
+            if (IsVerified_Country == false)
+            {
+                ListRecord = ListRecord.Where(x => x.Enterprise.CountryVeryfyState != RewardType.已纳入).ToList();
+            }
+            return ListRecord;
         }
 
-        public List<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid, int djsid)
+        public List<DJ_GroupConsumRecord> GetByDate(int year, int month, int entid, int djsid, bool? IsVerified_City, bool? IsVerified_Country)
         {
-            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, entid, djsid).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, entid, djsid, IsVerified_City, IsVerified_Country).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -221,9 +234,9 @@ namespace BLL
             return List;
         }
 
-        public List<DJ_GovManageDepartment> GetDptRecord(string beginTime, string endTime, string dptname, int entid)
+        public List<DJ_GovManageDepartment> GetDptRecord(string beginTime, string endTime, string dptname, int entid, bool? IsVerified_City, bool? IsVerified_Country)
         {
-            List<Model.DJ_GroupConsumRecord> ListRecord = IDjgroup.GetDptRecordByCondition(beginTime, endTime, dptname, entid).ToList();
+            List<Model.DJ_GroupConsumRecord> ListRecord = IDjgroup.GetDptRecordByCondition(beginTime, endTime, dptname, entid, IsVerified_City, IsVerified_Country).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -268,10 +281,10 @@ namespace BLL
             return ListGovWdpt;
         }
 
-        public void GetDetailDptCount(string beginTime, string endTime, string code, int entid, out int people, out int room, out int appendbed,out int visited)
+        public void GetDetailDptCount(string beginTime, string endTime, string code, int entid, out int people, out int room, out int appendbed, out int visited, bool? IsVerified_City, bool? IsVerified_Country)
         {
             people = room = appendbed = visited = 0;
-            List<Model.DJ_GroupConsumRecord> ListRecord = IDjgroup.GetDptRecordByCondition(beginTime, endTime, "", entid).ToList();
+            List<Model.DJ_GroupConsumRecord> ListRecord = IDjgroup.GetDptRecordByCondition(beginTime, endTime, "", entid,IsVerified_City,IsVerified_Country).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -289,8 +302,7 @@ namespace BLL
             {
                 foreach (DJ_GroupConsumRecord item in List.Where(x => x.Enterprise.Area.Code.Substring(0, 4) == code.Substring(0, 4)))
                 {
-                    if (item.Enterprise.CityVeryfyState == RewardType.已纳入)
-                    {   
+
                         if (item.Enterprise.Type==EnterpriseType.宾馆)
                         {
                             people += (item.AdultsAmount + item.ChildrenAmount) * (item.LiveDay);
@@ -301,15 +313,13 @@ namespace BLL
                         {
                             visited += item.AdultsAmount + item.ChildrenAmount;
                         }
-                    }
                 }
             }
             else
             {
                 foreach (DJ_GroupConsumRecord item in List.Where(x => x.Enterprise.Area.Code.Substring(0, 6) == code.Substring(0, 6)))
                 {
-                    if (item.Enterprise.CountryVeryfyState == RewardType.已纳入)
-                    {
+
                         if (item.Enterprise.Type == EnterpriseType.宾馆)
                         {
                             people += (item.AdultsAmount + item.ChildrenAmount) * (item.LiveDay);
@@ -320,14 +330,13 @@ namespace BLL
                         {
                             visited += item.AdultsAmount + item.ChildrenAmount;
                         }
-                    }
                 }
             }
         }
 
-        public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, string code, int djsid)
+        public IList<Model.DJ_GroupConsumRecord> GetByDate(int year, int month, string code, int djsid, bool? IsVerified_City, bool? IsVerified_Country)
         {
-            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, code, djsid).ToList();
+            List<DJ_GroupConsumRecord> ListRecord = IDjgroup.GetByDate(year, month, code, djsid, IsVerified_City, IsVerified_Country).ToList();
             //过滤掉有相同团队的记录
             List<DJ_GroupConsumRecord> List = new List<DJ_GroupConsumRecord>();
             foreach (DJ_GroupConsumRecord item in ListRecord)
@@ -342,14 +351,14 @@ namespace BLL
                     }
                     else if (code.Substring(4, 2) == "00")
                     {
-                        if (item.Enterprise.Area.Code.Substring(0,4) == code.Substring(0,4) && item.Enterprise.CityVeryfyState == RewardType.已纳入)
+                        if (item.Enterprise.Area.Code.Substring(0,4) == code.Substring(0,4))
                         {
                             List.Add(item);
                         }
                     }
                     else
                     {
-                        if (item.Enterprise.Area.Code == code && item.Enterprise.CountryVeryfyState == RewardType.已纳入)
+                        if (item.Enterprise.Area.Code == code)
                         {
                             List.Add(item);
                         }
