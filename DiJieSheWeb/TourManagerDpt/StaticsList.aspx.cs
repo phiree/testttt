@@ -509,7 +509,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
 
         if (sm1.Count() < 1)
         {
-            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true); return;
         }
         //创建datatable
         DataTable tblDatas = new DataTable("Datas");
@@ -592,7 +592,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
         }
         if (sm2.Count < 1)
         {
-            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true); return;
         }
 
         //创建datatable
@@ -619,48 +619,59 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
     protected void btnOutput3_Click(object sender, EventArgs e)
     {
         //整理后数据Gov3
-        IList<Model.DJ_TourGroup> tglist = blltg.GetTourGroupByAll();
-        //筛选省市
+        if (string.IsNullOrEmpty(txt_name3djs.Text))
+        {
+            return;
+        }
+        IList<Model.DJ_GroupConsumRecord> gcrlist = bllCustomRecord.GetGCR8Multi(null, null, null, null, null);
+        #region 筛选省市
         if (CurrentDpt.Area.Level == Model.AreaLevel.省)
         {
-            tglist = tglist
-                .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 2)))
+            gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 2))).ToList();
+        }
+        else if (CurrentDpt.Area.Level == Model.AreaLevel.市)
+        {
+            gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 4))).ToList();
+        }
+        else if (CurrentDpt.Area.Level == Model.AreaLevel.区县)
+        {
+            gcrlist = gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6))).ToList();
+        }
+        #endregion
+        #region 筛选时间
+        string[] tempdate = txt_yijiedai3.Text.Split(new char[] { '年', '月' });
+        if (tempdate.Length >= 2)
+        {
+            var begin_date = new DateTime(int.Parse(tempdate[0]), int.Parse(tempdate[1]), 1);
+            var end_date = begin_date.AddMonths(1);
+            gcrlist = gcrlist
+                .Where(x => x.ConsumeTime >= begin_date && x.ConsumeTime < end_date)
                 .ToList();
+            //筛选企业
+            if (!string.IsNullOrEmpty(txt_name2.Text))
+            {
+                gcrlist = gcrlist.Where(x => x.Enterprise.Name == txt_name3djs.Text).ToList();
+            }
         }
-        if (CurrentDpt.Area.Level == Model.AreaLevel.市)
+        else
         {
-            tglist = tglist
-                .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 4)))
-                .ToList();
+            return;
         }
-        if (CurrentDpt.Area.Level == Model.AreaLevel.区县)
-        {
-            tglist = tglist
-                .Where(x => x.DJ_DijiesheInfo.Area.Code.StartsWith(CurrentDpt.Area.Code.Substring(0, 6)))
-                .ToList();
-        }
-        //筛选企业
-        if (!string.IsNullOrEmpty(txt_name3djs.Text))
-        {
-            tglist = tglist.Where(x => x.Routes.Where(y => y.Enterprise.Name == txt_name3djs.Text.Trim()).Count() > 0).ToList();
-        }
-        //筛选日期
-        if (!string.IsNullOrEmpty(txt_yijiedai3.Text))
-        {
-            tglist = tglist.Where(x => x.BeginDate <= DateTime.Parse(txt_yijiedai3.Text) && x.EndDate.AddDays(1) > DateTime.Parse(txt_yijiedai3.Text)).ToList();
-        }
+        #endregion
+        #region 整理数据
         IList<statics_Gov3> sm3 = new List<statics_Gov3>();
-        foreach (var item3 in tglist.Where(x => x.DJ_DijiesheInfo != null))
+        foreach (var item3 in gcrlist.Where(x => x.Route.DJ_TourGroup.DJ_DijiesheInfo != null))
         {
             var temp = new statics_Gov3();
-            temp.Name = item3.DJ_DijiesheInfo.Name;
-            temp.Gname = item3.Name;
-            temp.GId = item3.Id.ToString();
-            temp.Bedate = item3.BeginDate.ToShortDateString() + "~" + item3.EndDate.ToShortDateString();
+            temp.Name = item3.Route.DJ_TourGroup.DJ_DijiesheInfo.Name;
+            temp.Gname = item3.Route.DJ_TourGroup.Name;
+            temp.GId = item3.Route.DJ_TourGroup.Id.ToString();
+            temp.Bedate = item3.Route.DJ_TourGroup.BeginDate.ToShortDateString() + "~" + item3.Route.DJ_TourGroup.EndDate.ToShortDateString();
 
-            var temp_y_hotel = item3.Routes
+            #region 昨日住宿
+            var temp_y_hotel = item3.Route.DJ_TourGroup.Routes
                 .Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆)
-                .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.BeginDate).Days));
+                .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.Route.DJ_TourGroup.BeginDate).Days));
             if (temp_y_hotel.Count() > 0)
             {
                 foreach (var item in temp_y_hotel)
@@ -672,10 +683,12 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
             {
                 temp.y_hotel = "无";
             }
+            #endregion
 
-            var temp_t_hotel = item3.Routes
+            #region 今日住宿
+            var temp_t_hotel = item3.Route.DJ_TourGroup.Routes
                 .Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆)
-                .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.BeginDate).Days + 1));
+                .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.Route.DJ_TourGroup.BeginDate).Days + 1));
             if (temp_t_hotel.Count() > 0)
             {
                 foreach (var item in temp_t_hotel)
@@ -687,10 +700,12 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
             {
                 temp.t_hotel = "无";
             }
+            #endregion
 
-            var temp_t_scenic = item3.Routes
+            #region 今日景区
+            var temp_t_scenic = item3.Route.DJ_TourGroup.Routes
                 .Where(x => x.Enterprise.Type == Model.EnterpriseType.景点)
-                .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.BeginDate).Days + 1));
+                .Where(x => x.DayNo == ((DateTime.Parse(txt_yijiedai3.Text) - item3.Route.DJ_TourGroup.BeginDate).Days + 1));
             if (temp_t_scenic.Count() > 0)
             {
                 foreach (var item in temp_t_hotel)
@@ -702,12 +717,10 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
             {
                 temp.t_scenic = "无";
             }
+            #endregion
             sm3.Add(temp);
         }
-        if (sm3.Count < 1)
-        {
-            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('没有数据，无法使用导出功能！')", true);return;
-        }
+        #endregion
         //创建datatable
         DataTable tblDatas = new DataTable("Datas");
         tblDatas.Columns.Add("id", Type.GetType("System.String"));

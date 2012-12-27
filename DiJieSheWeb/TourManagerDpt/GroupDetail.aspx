@@ -1,27 +1,29 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master" AutoEventWireup="true" CodeFile="GroupDetail.aspx.cs" Inherits="TourManagerDpt_GroupDetail" %>
-<asp:Content ID="Content0" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<script type="text/javascript">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master"
+    AutoEventWireup="true" CodeFile="GroupDetail.aspx.cs" Inherits="TourManagerDpt_GroupDetail" %>
 
-    $(function () {
-        var tbody = $("#tbRoute>tbody");
-        var count = tbody.html().split("★");
-        $("#veriEnt").html(count.length - 1);
-    });
+<asp:Content ID="Content0" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script type="text/javascript">
 
-    function getArgs(strParame) {
-        var args = new Object();
-        var query = location.search.substring(1); // Get query string
-        var pairs = query.split("&"); // Break at ampersand
-        for (var i = 0; i < pairs.length; i++) {
-            var pos = pairs[i].indexOf('='); // Look for "name=value"
-            if (pos == -1) continue; // If not found, skip
-            var argname = pairs[i].substring(0, pos); // Extract the name
-            var value = pairs[i].substring(pos + 1); // Extract the value
-            value = decodeURIComponent(value); // Decode it, if needed
-            args[argname] = value; // Store as a property
-        }
-        return args[strParame]; // Return the object
-    };
+        $(function () {
+            var tbody = $("#tbRoute>tbody");
+            var count = tbody.html().split("★");
+            $("#veriEnt").html(count.length - 1);
+        });
+
+        function getArgs(strParame) {
+            var args = new Object();
+            var query = location.search.substring(1); // Get query string
+            var pairs = query.split("&"); // Break at ampersand
+            for (var i = 0; i < pairs.length; i++) {
+                var pos = pairs[i].indexOf('='); // Look for "name=value"
+                if (pos == -1) continue; // If not found, skip
+                var argname = pairs[i].substring(0, pos); // Extract the name
+                var value = pairs[i].substring(pos + 1); // Extract the value
+                value = decodeURIComponent(value); // Decode it, if needed
+                args[argname] = value; // Store as a property
+            }
+            return args[strParame]; // Return the object
+        };
     </script>
     <style type="text/css">
         .colorpicker
@@ -54,14 +56,14 @@
         }
     </style>
 </asp:Content>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="main" Runat="Server">
-<div class="detail_titlebg">
+<asp:Content ID="Content1" ContentPlaceHolderID="main" runat="Server">
+    <div class="detail_titlebg">
         团队详细信息
     </div>
     <div class="detaillist">
-        <div class="detailtitle">
+        <div class="detailtitle" style="height: 25px;">
             基本信息
+            <asp:Button ID="btnOutput" OnClick="btnOutput_Click" CssClass="btn2" style="float:right;" Text="导出" runat="server" />
         </div>
         <!-- 基本信息begin -->
         <table border="0" cellpadding="0" cellspacing="0">
@@ -70,7 +72,8 @@
                     团队名称：
                 </td>
                 <td>
-                    <b><asp:Label ID="lblName" runat="server" /></b>
+                    <b>
+                        <asp:Label ID="lblName" runat="server" /></b>
                 </td>
             </tr>
             <tr>
@@ -234,26 +237,26 @@
                     <td>
                         <asp:Repeater ID="rptRouteScenic" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
                             <ItemTemplate>
-                                    <li>
-                                        <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
+                                <li>
+                                    <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
                                 ((((Model.DJ_TourEnterprise)Eval("Enterprise")).ProvinceVeryfyState==Model.RewardType.已纳入||
                                 ((Model.DJ_TourEnterprise)Eval("Enterprise")).CityVeryfyState==Model.RewardType.已纳入||
                                 ((Model.DJ_TourEnterprise)Eval("Enterprise")).CountryVeryfyState==Model.RewardType.已纳入).ToString()=="True"?
                                 ("★"+Eval("Enterprise.Name")):Eval("Enterprise.Name")):""%>' runat="server" />
-                                    </li>
+                                </li>
                             </ItemTemplate>
                         </asp:Repeater>
                     </td>
                     <td>
                         <asp:Repeater ID="rptRouteHotel" runat="server" OnItemDataBound="rptRouteSub_ItemDataBound">
                             <ItemTemplate>
-                                    <li>
-                                        <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
+                                <li>
+                                    <asp:Label ID="lblName" Text='<%#Eval("Enterprise")!=null?
                                 ((((Model.DJ_TourEnterprise)Eval("Enterprise")).ProvinceVeryfyState==Model.RewardType.已纳入||
                                 ((Model.DJ_TourEnterprise)Eval("Enterprise")).CityVeryfyState==Model.RewardType.已纳入||
                                 ((Model.DJ_TourEnterprise)Eval("Enterprise")).CountryVeryfyState==Model.RewardType.已纳入).ToString()=="True"?
                                 ("★"+Eval("Enterprise.Name")):Eval("Enterprise.Name")):""%>' runat="server" />
-                                    </li>
+                                </li>
                             </ItemTemplate>
                         </asp:Repeater>
                     </td>
@@ -266,5 +269,3 @@
         <!-- 行程end -->
     </div>
 </asp:Content>
-
-
