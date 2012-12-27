@@ -98,7 +98,7 @@
                             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;858580604</span>
                             <span><img src="/theme/default/image/Func_Icon.gif" />E-Mail:lzq@tourol.cn</span>
                         </div>--%>
-                        <div class="TechSupport">
+                        <div id="techsupport" runat="server" class="TechSupport">
                             <img width="100%" src="/image/rewardBg.jpg" />
                         </div>
 

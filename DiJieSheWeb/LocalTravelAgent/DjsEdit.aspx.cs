@@ -52,7 +52,8 @@ public partial class LocalTravelAgent_DjsEdit : basepageDJS
         djs = CurrentDJS;
         if (!rh.bresult)
         { 
-            Page.ClientScript.RegisterStartupScript(this.GetType(),"","alert('"+rh.sresult+"')",true);
+            ShowNotification(rh.sresult);
+            //Page.ClientScript.RegisterStartupScript(this.GetType(),"","alert('"++"')",true);
             return;
         }
         else

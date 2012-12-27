@@ -54,11 +54,11 @@
     <div class="detaillist form">
         <table class="comTable">
             <tr>
-                <td>
+                <td style="width:120px">
                     团队名称
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbxName" CssClass="title required" Width="400"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="tbxName" CssClass="required" Width="400" Height="20px" style="vertical-align:middle"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -66,7 +66,7 @@
                     开始时间
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbxDateBegin" Width="100"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="tbxDateBegin" Width="100" Height="20px" style="vertical-align:middle"></asp:TextBox>
                             </td>
             </tr>
             <tr>
@@ -74,7 +74,7 @@
                     总天数
                 </td>
                 <td>
-                    <asp:TextBox runat="server"  ID="tbxDateAmount"    Width="100"></asp:TextBox>
+                    <asp:TextBox runat="server"  ID="tbxDateAmount"    Width="100" Height="20px" style="vertical-align:middle"></asp:TextBox>
                    
                 </td>
             </tr>
