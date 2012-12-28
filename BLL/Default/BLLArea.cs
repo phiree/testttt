@@ -73,6 +73,20 @@ namespace BLL
         }
 
         /// <summary>
+        /// 根据areaname获得area
+        /// </summary>
+        /// <param name="areaname">area名称</param>
+        /// <returns>area实体</returns>
+        public Model.Area GetAreaByAreanamelike(string areaname)
+        {
+            if (string.IsNullOrEmpty(areaname))
+            {
+                return null;
+            }
+            return DalArea.GetAreaByAreanamelike(areaname);
+        }
+
+        /// <summary>
         /// 根据seoname查询area
         /// </summary>
         /// <param name="seoName">seoname</param>
