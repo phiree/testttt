@@ -138,10 +138,6 @@ public partial class weixin_bb : System.Web.UI.Page
         imgpl += "<Content><![CDATA[]]></Content><ArticleCount>" + result.Count + "</ArticleCount><Articles>";
         for (int i = 0; i < result.Count; i++)
         {
-            //response_content += (i + 1).ToString() + ". " + result[i].Name + "  原价:￥" + result[i].Tickets[0].GetPrice(Model.PriceType.Normal).ToString("F0") +
-            //    " 网上订购价: ￥" + result[i].Tickets[0].GetPrice(Model.PriceType.PayOnline).ToString("F0") +
-            //    " 预订价: ￥" + result[i].Tickets[0].GetPrice(Model.PriceType.PreOrder).ToString("F0") +
-            //    "订票请点击：http://www.tourol.cn/Tickets/" + result[i].Area.SeoName + "_" + result[i].Area.SeoName + "/" + result[i] .SeoName+".html"+ "\n";
             var imgcount = bllimg.GetSiByType(result[i], 1);
             WriteLog("imgcount.Count.ToString()=" + imgcount.Count.ToString());
             imgpl += "<item><Title><![CDATA[" + result[i].Name + "]]></Title><Description><![CDATA[" +
@@ -149,7 +145,8 @@ public partial class weixin_bb : System.Web.UI.Page
                     " \n  网上订购价: ￥" + result[i].Tickets[0].GetPrice(Model.PriceType.PayOnline).ToString("F0") +
                     " \n  预订价: ￥" + result[i].Tickets[0].GetPrice(Model.PriceType.PreOrder).ToString("F0")
                 + "]]></Description>" +
-                "<PicUrl><![CDATA[http://www.tourol.cn" + (imgcount.Count.ToString() != "0" ? ("/ScenicImg/mainimg/" + imgcount[0].Name) : "/ScenicImg/mainimg/991509006.jpg") + "]]></PicUrl><Url><![CDATA[http://www.baidu.com]]></Url></item>";
+                "<PicUrl><![CDATA[http://www.tourol.cn" + (imgcount.Count.ToString() != "0" ? ("/ScenicImg/mainimg/" + imgcount[0].Name) : "/ScenicImg/mainimg/991509006.jpg")
+                + "]]></PicUrl><Url><![CDATA[http://www.tourol.cn/Tickets/" + result[i].Area.SeoName + "_" + result[i].Area.SeoName + "/" + result[i].SeoName + ".html]]></Url></item>";
 
         }
         imgpl += "</Articles><FuncFlag>0</FuncFlag></xml> ";
