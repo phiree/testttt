@@ -82,6 +82,7 @@ function showMap() {
     var myOptions = {
         zoom: 8,
         center: latlng,
+        scrollwheel:false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(document.getElementById("containtermap"), myOptions);
