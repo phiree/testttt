@@ -14,12 +14,16 @@ public partial class Groups_GroupInfo : basepageDJS
     public BLL.BLLWorker bllworker = new BLL.BLLWorker();
     ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
     Model.DJ_TourGroup group_model = new Model.DJ_TourGroup();
-
+    bool IsNew = false;
     protected void Page_Load(object sender, EventArgs e)
     {
         DJSId = CurrentDJS.Id.ToString();
-        string guid = Request.QueryString[0];
-        BindData(guid);
+        string guid = Request["groupid"];
+        if (!string.IsNullOrEmpty(guid))
+        {
+            dvGroupInfo.Visible = true;
+            BindData(guid);
+        }
     }
     private void BindData(string guid)
     {
