@@ -48,8 +48,12 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
             grlist.Add(new ExcelOplib.Entity.GroupRouteNew()
             {
                 RouteDate = item.First().DayNo.ToString(),
-                Hotel = item.Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆).Count() > 0 ? item.Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆).ToList<Model.DJ_Route>() : null,
-                Scenic = item.Where(x => x.Enterprise.Type == Model.EnterpriseType.景点).Count() > 0 ? item.Where(x => x.Enterprise.Type == Model.EnterpriseType.景点).ToList<Model.DJ_Route>() : null
+                Hotel = item.Where(x => 
+                    x.Enterprise.Type == Model.EnterpriseType.宾馆).Count() > 0 
+                    ? item.Where(x => x.Enterprise.Type == Model.EnterpriseType.宾馆).ToList<Model.DJ_Route>() : null,
+                Scenic = item.Where(x => 
+                    x.Enterprise.Type == Model.EnterpriseType.景点).Count() > 0 
+                    ? item.Where(x => x.Enterprise.Type == Model.EnterpriseType.景点).ToList<Model.DJ_Route>() : null
             });
         }
         rptRoute.DataSource = grlist.OrderBy(x => x.RouteDate);

@@ -81,37 +81,7 @@
     <div class="detail_titlebg">
         团队管理
     </div>
-    <div class="drInfo">
-        <h1>
-            <asp:Label runat="server" ID="lblTitle"></asp:Label></h1>
-        <div class="drbtn">
-            <input type="button" class="but" value="选择文件" /><span id="selecfile">未选择文件</span>
-            <asp:FileUpload ID="FileUpload1" runat="server" CssClass="fu" />
-            <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" CssClass="but"
-                Style="margin-left: 200px;" />
-        </div>
-        <%--<div class="drIntrod">
-            点击"选择文件"按钮,从电脑里选择已经保存好的团队信息文件，再点击“上传”,即完成
-        </div>--%>
-    </div>
-    <div class="exdrintro">
-        <%-- <h3>
-            Excel表格导入说明:
-        </h3>--%>
-        <p>
-            <img src="/theme/default/image/question.png" style="position: relative; top: 3px;
-                margin-right: 5px" />操作提示：点击"选择文件"按钮，从电脑里选择以<span style="color: #049286">地接社新建团队模板(Excel表格)</span>保存的文件，再点击"上传"，即完成。
-        </p>
-        <p>
-            <img src="/theme/default/image/xiazai.jpg" style="position: relative; top: 3px; margin-right: 5px" /><asp:Button
-                ID="btn_download" Text="下载地接社管理专用Excel模板" runat="server" OnClick="btn_download_Click"
-                CssClass="btn2" />
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl=""></asp:HyperLink>
-        </p>
-    </div>
-    <input type="hidden" id="hidden_scid" runat="server" />
-    <asp:Label ID="Label1" runat="server" />
-    <div class="detaillist">
+    <div class="detaillist" runat="server" id="dvGroupInfo" visible="false">
         <div class="detailtitle">
             修改的团队信息
         </div>
@@ -189,4 +159,35 @@
             </tr>
         </table>
     </div>
+    <div class="drInfo">
+        <h1>
+            <asp:Label runat="server" ID="lblTitle"></asp:Label></h1>
+        <div class="drbtn">
+            <input type="button" class="but" value="选择文件" /><span id="selecfile">未选择文件</span>
+            <asp:FileUpload ID="FileUpload1" runat="server" CssClass="fu" />
+            <asp:Button ID="btnUpload" runat="server" Text="上传" OnClick="btnUpload_Click" CssClass="but"
+                Style="margin-left: 200px;" />
+        </div>
+        <%--<div class="drIntrod">
+            点击"选择文件"按钮,从电脑里选择已经保存好的团队信息文件，再点击“上传”,即完成
+        </div>--%>
+    </div>
+    <div class="exdrintro">
+        <%-- <h3>
+            Excel表格导入说明:
+        </h3>--%>
+        <p>
+            <img src="/theme/default/image/question.png" style="position: relative; top: 3px;
+                margin-right: 5px" />操作提示：点击"选择文件"按钮，从电脑里选择以<span style="color: #049286">地接社新建团队模板(Excel表格)</span>保存的文件，再点击"上传"，即完成。
+        </p>
+        <p>
+            <img src="/theme/default/image/xiazai.jpg" style="position: relative; top: 3px; margin-right: 5px" /><asp:Button
+                ID="btn_download" Text="下载地接社管理专用Excel模板" runat="server" OnClick="btn_download_Click"
+                CssClass="btn2" />
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl=""></asp:HyperLink>
+        </p>
+    </div>
+    <input type="hidden" id="hidden_scid" runat="server" />
+    <asp:Label ID="Label1" runat="server" />
+    
 </asp:Content>

@@ -14,12 +14,16 @@ public partial class Groups_GroupInfo : basepageDJS
     public BLL.BLLWorker bllworker = new BLL.BLLWorker();
     ExcelOplib.ExcelGroupOpr excel = new ExcelOplib.ExcelGroupOpr();
     Model.DJ_TourGroup group_model = new Model.DJ_TourGroup();
-
+    bool IsNew = false;
     protected void Page_Load(object sender, EventArgs e)
     {
         DJSId = CurrentDJS.Id.ToString();
-        string guid = Request.QueryString[0];
-        BindData(guid);
+        string guid = Request["groupid"];
+        if (!string.IsNullOrEmpty(guid))
+        {
+            dvGroupInfo.Visible = true;
+            BindData(guid);
+        }
     }
     private void BindData(string guid)
     {
@@ -108,15 +112,42 @@ public partial class Groups_GroupInfo : basepageDJS
                     }
                     foreach (var item in group_excel.GroupRouteList)
                     {
-                        var temp1 = item.Scenic.Split(new char[] { ',', '-' });
-                        var temp2 = item.Scenic.Split(new char[] { ',', '-' });
-                        foreach (var item2 in temp1)
+                        var temp_scenic = item.Scenic.Split(new char[] { ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
+                        var temp_hotel = item.Hotel.Split(new char[] { ',', '-' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var item2 in temp_scenic)
                         {
-                            group_db.Routes.Add(new Model.DJ_Route()
+                            var sceniclist = bllenterp.GetDJS8name(item2);
+                            if (sceniclist.Count == 0)
                             {
-                                DJ_TourGroup = group_db,
+                                bllenterp.Save(new Model.DJ_TourEnterprise()
+                                {
+                                    Name = item2,
+                                    Type = Model.EnterpriseType.景点
+                                });
+                            }
+                            group_model.Routes.Add(new Model.DJ_Route()
+                            {
+                                DJ_TourGroup = group_model,
                                 DayNo = int.Parse(item.RouteDate),
-                                Enterprise = bllenterp.GetDJS8name(item2).Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                                Enterprise = sceniclist.Count == 0 ? bllenterp.GetDJS8name(item2).First() : sceniclist[0]
+                            });
+                        }
+                        foreach (var item2 in temp_hotel)
+                        {
+                            var hotellist = bllenterp.GetDJS8name(item2);
+                            if (hotellist.Count == 0)
+                            {
+                                bllenterp.Save(new Model.DJ_TourEnterprise()
+                                {
+                                    Name = item2,
+                                    Type = Model.EnterpriseType.宾馆
+                                });
+                            }
+                            group_model.Routes.Add(new Model.DJ_Route()
+                            {
+                                DJ_TourGroup = group_model,
+                                DayNo = int.Parse(item.RouteDate),
+                                Enterprise = hotellist.Count == 0 ? bllenterp.GetDJS8name(item2).First() : hotellist[0]
                             });
                         }
                     }
@@ -201,7 +232,7 @@ public partial class Groups_GroupInfo : basepageDJS
                             {
                                 DJ_TourGroup = group_model,
                                 DayNo = int.Parse(item.RouteDate),
-                                Enterprise = sceniclist.Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                                Enterprise = sceniclist.Count == 0 ? bllenterp.GetDJS8name(item2).First() : sceniclist[0]
                             });
                         }
                         foreach (var item2 in temp_hotel)
@@ -219,7 +250,7 @@ public partial class Groups_GroupInfo : basepageDJS
                             {
                                 DJ_TourGroup = group_model,
                                 DayNo = int.Parse(item.RouteDate),
-                                Enterprise = bllenterp.GetDJS8name(item2).Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                                Enterprise = hotellist.Count == 0 ? bllenterp.GetDJS8name(item2).First() : hotellist[0]
                             });
                         }
                     }

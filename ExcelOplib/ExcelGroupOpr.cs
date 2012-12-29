@@ -162,16 +162,16 @@ namespace ExcelOplib
                 //如果excel中的行不为空,添加
                 gb = new Entity.GroupBasic()
                 {
-                    Name = dt0.Rows[10][0].ToString().Replace("\n", "").Trim(),
-                    Begindate = string.IsNullOrWhiteSpace(dt0.Rows[10][1].ToString()) ?
-                    DateTime.Today.AddDays(1).ToString("yyyy-MM-dd") : dt0.Rows[10][1].ToString().Replace("\n", "").Trim(),
-                    Days = dt0.Rows[10][2].ToString().Replace("\n", "").Trim()
+                    Name = dt0.Rows[0][0].ToString().Replace("\n", "").Trim(),
+                    Begindate = string.IsNullOrWhiteSpace(dt0.Rows[0][1].ToString()) ?
+                    DateTime.Today.AddDays(1).ToString("yyyy-MM-dd") : dt0.Rows[0][1].ToString().Replace("\n", "").Trim(),
+                    Days = dt0.Rows[0][2].ToString().Replace("\n", "").Trim()
                 };
                 #endregion
 
                 #region 团员信息
                 List<Entity.GroupMember> gmlist = new List<Entity.GroupMember>();
-                for (int i = 10; i < dt0.Rows.Count; i++)
+                for (int i = 0; i < dt0.Rows.Count; i++)
                 {
                     //如果excel中的行不为空,添加导游
                     if (!string.IsNullOrEmpty(dt0.Rows[i][3].ToString()))
@@ -213,7 +213,7 @@ namespace ExcelOplib
 
                 #region 行程信息
                 List<Entity.GroupRoute> grlist = new List<Entity.GroupRoute>();
-                for (int i = 10; i < dt0.Rows.Count; i++)
+                for (int i = 0; i < dt0.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
                     if (string.IsNullOrEmpty(dt0.Rows[i][15].ToString())) continue;
