@@ -129,7 +129,7 @@ public partial class Groups_GroupInfo : basepageDJS
                             {
                                 DJ_TourGroup = group_model,
                                 DayNo = int.Parse(item.RouteDate),
-                                Enterprise = sceniclist.Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                                Enterprise = sceniclist.Count == 0 ? bllenterp.GetDJS8name(item2).First() : sceniclist[0]
                             });
                         }
                         foreach (var item2 in temp_hotel)
@@ -147,7 +147,7 @@ public partial class Groups_GroupInfo : basepageDJS
                             {
                                 DJ_TourGroup = group_model,
                                 DayNo = int.Parse(item.RouteDate),
-                                Enterprise = bllenterp.GetDJS8name(item2).Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                                Enterprise = hotellist.Count == 0 ? bllenterp.GetDJS8name(item2).First() : hotellist[0]
                             });
                         }
                     }
@@ -232,7 +232,7 @@ public partial class Groups_GroupInfo : basepageDJS
                             {
                                 DJ_TourGroup = group_model,
                                 DayNo = int.Parse(item.RouteDate),
-                                Enterprise = sceniclist.Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                                Enterprise = sceniclist.Count == 0 ? bllenterp.GetDJS8name(item2).First() : sceniclist[0]
                             });
                         }
                         foreach (var item2 in temp_hotel)
@@ -250,7 +250,7 @@ public partial class Groups_GroupInfo : basepageDJS
                             {
                                 DJ_TourGroup = group_model,
                                 DayNo = int.Parse(item.RouteDate),
-                                Enterprise = bllenterp.GetDJS8name(item2).Count > 0 ? bllenterp.GetDJS8name(item2).First() : null
+                                Enterprise = hotellist.Count == 0 ? bllenterp.GetDJS8name(item2).First() : hotellist[0]
                             });
                         }
                     }
