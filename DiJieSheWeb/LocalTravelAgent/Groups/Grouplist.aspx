@@ -49,7 +49,7 @@
                 操作提示：选择其中一种方式新增团队
             </div>
         </div>
-        <div class="actiondiv" style="display:none">
+        <div class="actiondiv" style="display: none">
             <h3 style="margin-top: 5px">
                 选择条件查询</h3>
             <asp:RadioButtonList runat="server" ID="cblState" OnSelectedIndexChanged="cblState_Changed"
@@ -59,15 +59,15 @@
                 <asp:ListItem Value="4">已经结束</asp:ListItem>
             </asp:RadioButtonList>
         </div>
-        <div style="display:none">
+        <div style="display: none">
             <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" />
             <asp:HiddenField runat="server" ID="hfState" Value="1" />
         </div>
         <div class="tabSelect">
-            <a class="Select_Tab">尚未开始的团</a><a>进程中的团</a><a style="border:none">已结束的团</a>
-            <asp:Button ID="btnOutput3" Text="导出列表" runat="server" OnClick="btnOutput3_Click" CssClass="btn2 Select_Btn" />
+            <a class="Select_Tab">尚未开始的团</a><a>进程中的团</a><a style="border: none">已结束的团</a>
+            <asp:Button ID="btnOutput3" Text="导出列表" runat="server" OnClick="btnOutput3_Click"
+                CssClass="btn2 Select_Btn" />
         </div>
-        
         <asp:Repeater ID="rptGroups" runat="server" OnItemDataBound="rptGroups_ItemDataBound"
             OnItemCommand="rptGroups_ItemCommand">
             <HeaderTemplate>
@@ -98,7 +98,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                            <%#Eval("Name")%>
+                        <a href='/LocalTravelAgent/Groups/GroupDetail.aspx?id=<%#Eval("Id")%>'><%#Eval("Name")%></a>
                     </td>
                     <td>
                         <%#((DateTime)Eval("BeginDate")).Year == DateTime.Now.Year ? ((DateTime)Eval("BeginDate")).ToString("MM月dd日") : ((DateTime)Eval("BeginDate")).ToString("yyyy年MM月dd日")%>
@@ -108,33 +108,28 @@
                     </td>
                     <td>
                         <asp:Panel runat="server" ID="pnlOperation">
-                            <a  href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改</a> <a
-                                 href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>
+                            <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改</a> <a href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>
                                 更新</a>
                             <asp:Button runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="delete"
-                                 Text="删除" OnClientClick='javascript:return confirm("您确认要删除这个团队么?");' CssClass="a_btn" />
-
+                                Text="删除" OnClientClick='javascript:return confirm("您确认要删除这个团队么?");' CssClass="a_btn" />
                             <a href='/LocalTravelAgent/Groups/GroupDetail.aspx?id=<%#Eval("Id")%>'>查询</a>
                         </asp:Panel>
-                        <asp:Button runat="server" Visible="false" ID="btnCopy" CommandArgument='<%#Eval("Id") %>' CommandName="Copy"
-                            Text="复制" CssClass="btn2" />
+                        <asp:Button runat="server" Visible="false" ID="btnCopy" CommandArgument='<%#Eval("Id") %>'
+                            CommandName="Copy" Text="复制" CssClass="btn2" />
                     </td>
                     <td>
-                        <asp:LinkButton ID="lblMember_bz" Text="" runat="server" style=" color:#F19145" />
-                        <asp:LinkButton ID="lblRoute_bz" Text="" runat="server" style=" color:#F19145" />
+                        <asp:LinkButton ID="lblMember_bz" Text="" runat="server" Style="color: #F19145" />
+                        <asp:LinkButton ID="lblRoute_bz" Text="" runat="server" Style="color: #F19145" />
                         <asp:Label ID="lblSuccess" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
-                </tbody> 
-                </table>
+                </tbody> </table>
             </FooterTemplate>
-            
         </asp:Repeater>
-        
         <div class="NoRecord" runat="server" id="NoRecord">
-            <asp:Label runat="server" ID="lblMsg" Text="您目前没有团队记录" style="font-size:14px"></asp:Label>
+            <asp:Label runat="server" ID="lblMsg" Text="您目前没有团队记录" Style="font-size: 14px"></asp:Label>
         </div>
     </div>
 </asp:Content>

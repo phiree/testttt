@@ -28,12 +28,17 @@ public partial class Groups_GroupDetail : System.Web.UI.Page
         lblPchild.Text = tg.ChildrenAmount.ToString();
         lblForeigners.Text = tg.ForeignersAmount.ToString();
         lblGangaotais.Text = tg.GangaotaisAmount.ToString();
+        foreach (var item in tg.Workers.Where(x => x.DJ_Workers.WorkerType == Model.DJ_GroupWorkerType.导游))
+        {
+            lblGuides.Text += item.DJ_Workers.Name + ": " + item.DJ_Workers.SpecificIdCard + "\n";
+        }
+        foreach (var item in tg.Workers.Where(x => x.DJ_Workers.WorkerType == Model.DJ_GroupWorkerType.司机))
+        {
+            lblDrivers.Text += item.DJ_Workers.Name + ": " + item.DJ_Workers.SpecificIdCard + "\n";
+        }
 
         rptMem.DataSource = tg.Members;
         rptMem.DataBind();
-
-        rptWorkers.DataSource = tg.Workers;
-        rptWorkers.DataBind();
 
         #region v.2012/10/9
 

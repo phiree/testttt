@@ -28,6 +28,12 @@ namespace DAL
             return query.FutureValue<Model.Area>().Value;
         }
 
+        public Model.Area GetAreaByAreanamelike(string areaname)
+        {
+            IQuery query = session.CreateQuery("select a from Area a where a.Name like '%" + areaname + "%'");
+            return query.FutureValue<Model.Area>().Value;
+        }
+
         public Model.Area GetAreaBySeoName(string seoName)
         {
             IQuery query = session.CreateQuery("select a from Area a where a.SeoName='" + seoName + "'");

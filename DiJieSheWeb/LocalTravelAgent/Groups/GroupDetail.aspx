@@ -2,6 +2,13 @@
     CodeFile="GroupDetail.aspx.cs" Inherits="Groups_GroupDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script type="text/javascript">
+        $(function () {
+            var doc = $("#tbRoute").html();
+            var count = doc.split('★').length - 1;
+            $("#veriEnt").html(count);
+        });
+    </script>
     <style type="text/css">
         .colorpicker
         {
@@ -99,13 +106,27 @@
                     <asp:Label ID="lblGangaotais" runat="server" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    导游：
+                </td>
+                <td>
+                    <asp:Label ID="lblGuides" runat="server" />
+                </td>
+                <td>
+                    司机：
+                </td>
+                <td>
+                    <asp:Label ID="lblDrivers" runat="server" />
+                </td>
+            </tr>
         </table>
         <!-- 基本信息end -->
-        <!-- 工作人员begin -->
         <div class="detailtitle">
             人员信息
         </div>
-        <asp:Repeater ID="rptWorkers" runat="server">
+        <!-- 人员begin -->
+        <asp:Repeater ID="rptMem" runat="server">
             <HeaderTemplate>
                 <table class="tableMemberid comTable" id="tbMember">
                     <thead>
@@ -132,32 +153,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <%#Eval("DJ_Workers.WorkerType").ToString()%>
-                    </td>
-                    <td>
-                        <%#Eval("DJ_Workers.Name")%>
-                    </td>
-                    <td>
-                        <%#Eval("DJ_Workers.IDCard")%>
-                    </td>
-                    <td>
-                        <%#Eval("DJ_Workers.Phone")%>
-                    </td>
-                    <td>
-                        <%#Eval("DJ_Workers.SpecificIdCard")%>
-                    </td>
-                </tr>
-            </ItemTemplate>
-        </asp:Repeater>
-        <!-- 工作人员end -->
-        <!-- 人员begin -->
-        <asp:Repeater ID="rptMem" runat="server">
-            <HeaderTemplate>
-            </HeaderTemplate>
-            <ItemTemplate>
-                <tr>
-                    <td>
-                        游客
+                        <%#Eval("MemberType").ToString()%>
                     </td>
                     <td>
                         <%#Eval("RealName")%>
