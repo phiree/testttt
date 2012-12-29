@@ -58,7 +58,7 @@
                     团队名称
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="tbxName" CssClass="required" Width="400" Height="20px" style="vertical-align:middle"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="tbxName" CssClass="required" Width="400" Height="20px" style="padding:0px;vertical-align:middle"></asp:TextBox>
                 </td>
             </tr>
             <tr>

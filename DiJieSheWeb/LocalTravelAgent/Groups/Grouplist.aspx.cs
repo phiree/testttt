@@ -37,6 +37,10 @@ public partial class Groups_Grouplist : basepageDJS
         {
             NoRecord.Visible = true;
         }
+        else
+        {
+            NoRecord.Visible = false;
+        }
     }
 
     #endregion

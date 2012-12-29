@@ -21,7 +21,7 @@
         手机:<asp:TextBox ID="txtPhone_add" runat="server" style="margin-left:50px;width:150px;"  /><br />
         身份证号:<asp:TextBox ID="txtId_add" runat="server" style="margin-right:100px;margin-left:27px;width:150px;"  />
         车牌号:<asp:TextBox ID="txtDriverid_add" runat="server" style="margin-left:38px;width:150px;" /><br />
-         所属车队:<asp:TextBox ID="tbxBelong" runat="server" style="margin-left:38px;width:150px;" /><br />
+        所属车队:<asp:TextBox ID="tbxBelong" runat="server" style="margin-left:28px;width:150px;" /><br />
         <asp:Button ID="btnQuickadd" Text="快速添加" runat="server" CssClass="btn2" OnClick="btnQuickadd_Click" />
     </div>
     <div class="detaillist">

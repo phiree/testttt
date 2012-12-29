@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using BLL;
 using Model;
 
-public partial class TourManagerDpt_ChangeDetails : System.Web.UI.Page
+public partial class TourManagerDpt_ChangeDetails : basepage
 {
     bool IsNew = false;
     DJ_GovManageDepartment CurrentMgrDpt;
@@ -91,7 +91,8 @@ public partial class TourManagerDpt_ChangeDetails : System.Web.UI.Page
             return;
         }
         Save();
-        Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('修改成功!')", true);
+        ShowNotification("修改成功");
+        //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('修改成功!')", true);
         //Response.Redirect("/tourmanagerdpt/EnterpriseList.aspx");
     }
 }
