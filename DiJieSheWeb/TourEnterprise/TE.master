@@ -2,6 +2,7 @@
     Inherits="TourEnterprise_TE" %>
 <%@ MasterType VirtualPath="/m.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<title>旅游企业管理平台--旅游在线</title>
     <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
     
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
