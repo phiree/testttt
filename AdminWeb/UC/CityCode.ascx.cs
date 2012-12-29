@@ -45,7 +45,7 @@ public partial class UC_CityCode : System.Web.UI.UserControl
     }
     private void BindSubArea()
     {
-        ddlAreaCity.DataSource = bllArea.GetSubArea(ddlAreaProvince.SelectedValue);
+        ddlAreaCity.DataSource = bllArea.GetSubArea(ddlAreaProvince.SelectedValue,true);
         ddlAreaCity.DataTextField = "Name";
         ddlAreaCity.DataValueField = "Code";
         ddlAreaCity.DataBind();

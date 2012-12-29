@@ -42,12 +42,25 @@ namespace BLL
         /// <returns>该地区的下属地区</returns>
         public IList<Model.Area> GetSubArea(string areacode)
         {
-            if (string.IsNullOrEmpty(areacode) || areacode.Length!=6)
+            return GetSubArea(areacode, false);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="areacode"></param>
+        /// <returns></returns>
+        public IList<Model.Area> GetSubArea(string areacode,bool includeItself)
+        {
+            if (string.IsNullOrEmpty(areacode) || areacode.Length != 6)
             {
                 return null;
             }
-            return DalArea.GetSubArea(areacode);
+            Model.Area itself = GetAreaByCode(areacode);
+            IList<Model.Area> areas= DalArea.GetSubArea(areacode);
+            if (includeItself) areas.Add(itself);
+            return areas;
         }
+
         /// <summary>
         /// 根据areaid获取area
         /// </summary>

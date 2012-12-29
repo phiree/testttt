@@ -2,6 +2,7 @@
     Inherits="TourManagerDpt_manager" %>
 <%@ MasterType VirtualPath="/m.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<title>旅游部门管理平台--旅游在线</title>
     <link href="/theme/default/css/public2.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
