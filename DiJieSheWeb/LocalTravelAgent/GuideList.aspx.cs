@@ -42,17 +42,17 @@ public partial class LocalTravelAgent_GuideList : basepageDJS
     {
         if (string.IsNullOrEmpty(txtName_add.Text))
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('姓名未填写!')", true);
+            ShowNotification("姓名未填写!");
             return false;
         }
         if (string.IsNullOrEmpty(txtId_add.Text))
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('身份证号码未填写!')", true);
+            ShowNotification("身份证号码未填写!");
             return false;
         }
         if (string.IsNullOrEmpty(txtGuideid_add.Text))
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('导游证号未填写!')", true);
+            ShowNotification("导游证号未填写!");
             return false;
         }
         return true;
@@ -73,13 +73,13 @@ public partial class LocalTravelAgent_GuideList : basepageDJS
             txtGuideid_add.Text,tbxBelong.Text, Model.DJ_GroupWorkerType.导游, CurrentDJS, out message);
         if (!string.IsNullOrEmpty(message))
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('" + message + "')", true);
+            ShowNotification(message);
         }
         else
         {
             BindList();
             ClearTxt();
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('保存成功')", true);
+            ShowNotification("保存成功");
         }
     }
 

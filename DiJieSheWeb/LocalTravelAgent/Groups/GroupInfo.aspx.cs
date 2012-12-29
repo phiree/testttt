@@ -18,6 +18,29 @@ public partial class Groups_GroupInfo : basepageDJS
     protected void Page_Load(object sender, EventArgs e)
     {
         DJSId = CurrentDJS.Id.ToString();
+        string guid = Request.QueryString[0];
+        BindData(guid);
+    }
+    private void BindData(string guid)
+    {
+        Model.DJ_TourGroup tg = bllgroup.GetOne(Guid.Parse(guid));
+
+        lblName.Text = tg.Name;
+        lblDate.Text = tg.BeginDate.ToShortDateString() + "-" + tg.EndDate.ToShortDateString();
+        lblDays.Text = tg.DaysAmount.ToString();
+        lblPnum.Text = (tg.TotalTourist).ToString();
+        lblPadult.Text = tg.AdultsAmount.ToString();
+        lblPchild.Text = tg.ChildrenAmount.ToString();
+        lblForeigners.Text = tg.ForeignersAmount.ToString();
+        lblGangaotais.Text = tg.GangaotaisAmount.ToString();
+        foreach (var item in tg.Workers.Where(x => x.DJ_Workers.WorkerType == Model.DJ_GroupWorkerType.导游))
+        {
+            lblGuides.Text += item.DJ_Workers.Name + ": " + item.DJ_Workers.SpecificIdCard + "\n";
+        }
+        foreach (var item in tg.Workers.Where(x => x.DJ_Workers.WorkerType == Model.DJ_GroupWorkerType.司机))
+        {
+            lblDrivers.Text += item.DJ_Workers.Name + ": " + item.DJ_Workers.SpecificIdCard + "\n";
+        }
     }
 
     protected void btnUpload_Click(object sender, EventArgs e)

@@ -2,6 +2,19 @@
     CodeFile="DjsEdit.aspx.cs" Inherits="LocalTravelAgent_DjsEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <% if (false)
+       { %>
+    <script src="/Scripts/jquery-1.6.4-vsdoc.js" type="text/javascript"></script>
+    <% } %>
+    <link href="/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/json2.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Scripts/jquery-ui-1.9.2.min.js"></script>
+    <script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.validate.messages_zh.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.validation.net.webforms.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/ContainerToJson.js" type="text/javascript"></script>
+    <script src="/Scripts/Common.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <div class="detail_titlebg">
@@ -58,7 +71,7 @@
                     地址:
                 </td>
                 <td colspan="3">
-                    <asp:TextBox ID="txtAddress" runat="server" Width="92%" />
+                    <asp:TextBox ID="txtAddress" runat="server" Width="92%" CssClass="required" />
                 </td>
             </tr>
             <tr>
@@ -66,7 +79,7 @@
             </tr>
         </table>
     <div style="text-align:center">
-    <asp:Button ID="btnSave" Text="保存" runat="server" OnClick="btnSave_Click"  CssClass="btn2"
+    <asp:Button ID="btnSave" Text="保存" runat="server" ValidationGroup="vgGroup" OnClick="btnSave_Click"  CssClass="btn2 submit"
         />
     </div>
     </div>

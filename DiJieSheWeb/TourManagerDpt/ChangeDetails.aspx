@@ -8,9 +8,6 @@
         修改旅游管理部门
     </div>
     <div class="detaillist">
-        <div class="detailtitle">
-            修改旅游管理部门
-        </div>
         <table>
             <tr>
                 <td>
