@@ -54,6 +54,14 @@
             </tr>
             <tr>
                 <td>
+                    电子邮箱
+                </td>
+                <td>
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="atxt" Width="250px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
                 </td>
                 <td>
                     <asp:Button ID="btnModify" runat="server" OnClick="btnModify_Click" CssClass="achangebtn" Text="保存修改" />

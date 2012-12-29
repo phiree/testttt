@@ -9,12 +9,13 @@
                 $.get("ResetPwd.ashx?name=" + escape($("[id$='txtUserName']").val()), function (data) {
                     if (data == "wrong") {
                         alert("无此账号！")
-                        $("#tr1").css("display", "block");
+                        $("#tr1").css("display", "");
                         $("#tr2").css("display", "none");
                     }
                     else {
                         $("#tr1").css("display", "none");
-                        $("#tr2").css("display", "block");
+                        $("#tr2").css("display", "");
+                        $("[id$='BtnSend']").css("display", "none");
                     }
                 });
                 return false;

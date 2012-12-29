@@ -23,6 +23,7 @@ public partial class UserCenter_AccountInfo : System.Web.UI.Page
             txtBoxIdcard.Text = tm.IdCard;
             txtBoxAddress.Text = tm.Address;
             txtBoxPhone.Text = tm.Phone;
+            txtEmail.Text = tm.Email;
         }
     }
     protected void btnModify_Click(object sender, EventArgs e)
@@ -36,6 +37,7 @@ public partial class UserCenter_AccountInfo : System.Web.UI.Page
         user.IdCard = txtBoxIdcard.Text.Trim();
         user.Address = txtBoxAddress.Text.Trim();
         user.Phone = txtBoxPhone.Text.Trim();
+        user.Email = txtEmail.Text.Trim();
         bllMember.CreateUpdateMember(user);
         Page.ClientScript.RegisterStartupScript(typeof(Button), "buttonsave", "alert('修改成功')",true);
     }

@@ -19,7 +19,7 @@ public class ResetPwd : IHttpHandler {
             context.Response.Write("wrong");
         else
         {
-            string backurl = "http://www.tourol.cn/Account/BackPwd.aspx?id=" + user.Id + "&pwdcode=" + user.Password;
+            string backurl = System.Configuration.ConfigurationManager.AppSettings["DomainName"] + "/Account/BackPwd.aspx?id=" + user.Id + "&pwdcode=" + user.Password;
             TourMembership u = bllmember.GetUserByUserId(user.Id);
             //发送邮件
             string content = "<table><tr><td></td><td style='font-size:14px;'>" + user.Name + "，你好！</td></tr>"
