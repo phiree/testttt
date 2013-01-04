@@ -18,6 +18,9 @@ namespace Model
        public virtual Area Area { get; set; }
        public virtual string Phone { get; set; }
        public virtual string seoname { get; set; }
+       public virtual string ChargeName { get; set; }
+       public virtual string ChargeTel { get; set; }
+       public virtual string ChargeEmail { get; set; }
     }
 }
 //为绑定报表作用

@@ -43,7 +43,7 @@
         <div class="actiondiv">
             <h3 style="margin-top: 5px">
                 新增团队</h3>
-            <asp:Button ID="Btnzjlr" runat="server" Text="直接录入" CssClass="btn2" OnClick="Btnzjlr_Click" />&nbsp;&nbsp;或选&nbsp;&nbsp;
+            <asp:Button ID="Btnzjlr" runat="server" Text="直接录入" CssClass="btn2" OnClick="Btnzjlr_Click" />&nbsp;&nbsp;或&nbsp;&nbsp;
             <asp:Button ID="Btnxlslr" runat="server" Text="Excel导入" CssClass="btn2" OnClick="Btnxlslr_Click" />
             <div>
                 操作提示：选择其中一种方式新增团队
@@ -54,9 +54,9 @@
                 选择条件查询</h3>
             <asp:RadioButtonList runat="server" ID="cblState" OnSelectedIndexChanged="cblState_Changed"
                 RepeatDirection="Horizontal" AutoPostBack="true">
-                <asp:ListItem Value="1" Selected="True">尚未开始</asp:ListItem>
-                <asp:ListItem Value="2">正在进行</asp:ListItem>
-                <asp:ListItem Value="4">已经结束</asp:ListItem>
+                <asp:ListItem Value="1" Selected="True">未发团队</asp:ListItem>
+                <asp:ListItem Value="2">已发团队</asp:ListItem>
+                <asp:ListItem Value="4">完成团队</asp:ListItem>
             </asp:RadioButtonList>
         </div>
         <div style="display: none">
@@ -64,7 +64,7 @@
             <asp:HiddenField runat="server" ID="hfState" Value="1" />
         </div>
         <div class="tabSelect">
-            <a class="Select_Tab">尚未开始的团</a><a>进程中的团</a><a style="border: none">已结束的团</a>
+            <a class="Select_Tab">未发团队</a><a>已发团队</a><a style="border: none">完成团队</a>
             <asp:Button ID="btnOutput3" Text="导出列表" runat="server" OnClick="btnOutput3_Click"
                 CssClass="btn2 Select_Btn" />
         </div>

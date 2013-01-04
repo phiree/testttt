@@ -156,7 +156,7 @@
             <div id="tabs-2">
                 <div class="searchdiv">
                     日期：<asp:TextBox ID="txt_yijiedai2" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月',maxDate:new Date()})" />
-                    企业名称(*必填)：<asp:TextBox ID="txt_name2" runat="server" style="width:150px" />
+                    单位名称(*必填)：<asp:TextBox ID="txt_name2" runat="server" style="width:150px" />
                     <asp:Button ID="btn_yijiedai2" Text="查询" runat="server" OnClick="btn_yijiedai2_Click"
                         CssClass="btn2" /><asp:Button ID="btnOutput2" Text="导出列表" runat="server" OnClick="btnOutput2_Click" CssClass="btn2" /></div>
                 <div style="display:none">
@@ -207,7 +207,7 @@
             <div id="tabs-3">
                 <div class="searchdiv">
                     日期：<asp:TextBox ID="txt_yijiedai3" runat="server" onfocus="WdatePicker({dateFmt:'yyyy年MM月',maxDate:new Date()})" />
-                    企业名称(*必填)：<asp:TextBox ID="txt_name3djs" runat="server" style="width:150px" />
+                    单位名称(*必填)：<asp:TextBox ID="txt_name3djs" runat="server" style="width:150px" />
                     <asp:Button ID="btn_yijiedai3" Text="查询" runat="server" OnClick="btn_yijiedai3_Click"
                         CssClass="btn2" /><asp:Button ID="btnOutput3" Text="导出列表" runat="server" OnClick="btnOutput3_Click" CssClass="btn2" /></div>
                 <asp:Repeater ID="rptGov3" runat="server">

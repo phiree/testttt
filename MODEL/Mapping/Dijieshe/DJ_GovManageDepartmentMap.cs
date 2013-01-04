@@ -19,6 +19,9 @@ namespace Model.Mapping
             Map(x => x.Phone);
             Map(x => x.Address);
             Map(x => x.seoname);
+            Map(x => x.ChargeName);
+            Map(x => x.ChargeTel);
+            Map(x => x.ChargeEmail);
       }
     }
 }

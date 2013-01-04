@@ -42,6 +42,9 @@ public partial class TourManagerDpt_ChangeDetails : basepage
         ddlarea.Areacode = CurrentMgrDpt.Area.Code;
         tbxName.Text = CurrentMgrDpt.Name;
         tbxPhone.Text = CurrentMgrDpt.Phone;
+        tbxUserName.Text = CurrentMgrDpt.ChargeName;
+        tbxUserTel.Text = CurrentMgrDpt.ChargeTel;
+        tbxUserEmail.Text = CurrentMgrDpt.ChargeEmail;
 
     }
     private void UpdateForm()

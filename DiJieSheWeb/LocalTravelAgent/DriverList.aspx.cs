@@ -41,17 +41,22 @@ public partial class LocalTravelAgent_DriverList : basepageDJS
     {
         if (string.IsNullOrEmpty(txtName_add.Text))
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('姓名未填写!')", true);
+            ShowNotification("姓名未填写");
             return false;
         }
         if (string.IsNullOrEmpty(txtId_add.Text))
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('身份证号码未填写!')", true);
+            ShowNotification("身份证号码未填写!");
+            return false;
+        }
+        if (hfIdcardError.Value != "验证通过")
+        {
+            ShowNotification(hfIdcardError.Value);
             return false;
         }
         if (string.IsNullOrEmpty(txtDriverid_add.Text))
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('驾驶证号未填写!')", true);
+            ShowNotification("驾驶证号未填写!");
             return false;
         }
         return true;
@@ -78,7 +83,7 @@ public partial class LocalTravelAgent_DriverList : basepageDJS
         {
             BindList();
             ClearTxt();
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "", "alert('保存成功')", true);
+            ShowNotification("保存成功");
         }
     }
 

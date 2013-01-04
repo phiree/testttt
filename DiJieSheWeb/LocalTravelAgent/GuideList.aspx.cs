@@ -50,6 +50,12 @@ public partial class LocalTravelAgent_GuideList : basepageDJS
             ShowNotification("身份证号码未填写!");
             return false;
         }
+
+        if (hfIdcardError.Value != "验证通过")
+        {
+            ShowNotification(hfIdcardError.Value);
+            return false;
+        }
         if (string.IsNullOrEmpty(txtGuideid_add.Text))
         {
             ShowNotification("导游证号未填写!");

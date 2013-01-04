@@ -37,6 +37,7 @@ public partial class TourEnterprise_TE : System.Web.UI.MasterPage
             currentTE = DJ_User_TE.Enterprise;
         }
         (Master.FindControl("changepwd") as HtmlAnchor).HRef = "/TourEnterprise/TEChangePwd.aspx";
+        (Master.FindControl("changedetails") as HtmlAnchor).HRef = "/TourEnterprise/TEInfo.aspx";
         base.OnInit(e);
     }
 

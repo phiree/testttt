@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="/Scripts/jquery-ui-1.9.2.min.js"></script>
+    <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
@@ -10,6 +11,11 @@
         $(function () {
             $("#tbMain").tablesorter();
             $(".IndexTable").orderIndex();
+            $("[id$='btnQuickadd']").click(function () {
+                var error = test($("[id$='txtId_add']").val());
+                $("[id$='hfIdcardError']").val(error);
+            });
+
         });
     </script>
 </asp:Content>
@@ -89,6 +95,6 @@
                 </tbody> </table>
             </FooterTemplate>
         </asp:Repeater>
-        
+        <asp:HiddenField ID="hfIdcardError" runat="server" />
     </div>
 </asp:Content>

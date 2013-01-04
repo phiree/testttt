@@ -46,7 +46,7 @@
         <%=ParamEntType %>管理
     </div>
     <div class="searchdiv">
-            企业名称:&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox runat="server" ID="tbxName" style="width:150px"></asp:TextBox>
+            单位名称:&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox runat="server" ID="tbxName" style="width:150px"></asp:TextBox>
       
         <asp:Button runat="server" ID="btnAdd" Text="纳入奖励范围" OnClick="btnAdd_Click" CssClass="btn2"/>
         <asp:Label runat="server" ID="lblMsg" CssClass="success" Visible="false">操作成功</asp:Label><br />
@@ -78,6 +78,9 @@
                                 负责人电话
                             </th>
                             <th>
+                                负责人邮箱
+                            </th>
+                            <th>
                                 操作
                             </th>
                         </tr>
@@ -94,6 +97,9 @@
                     </td>
                     <td>
                         <%#Eval("ChargePersonPhone")%>
+                    </td>
+                    <td>
+                        <%# Eval("Email") %>
                     </td>
                     <td>
                         <asp:Button runat="server" ID="btnVerifyState" CommandArgument='<%#Eval("Id") %>'
