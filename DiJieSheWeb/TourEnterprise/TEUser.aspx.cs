@@ -8,7 +8,7 @@ using BLL;
 using Model;
 using System.Web.Security;
 
-public partial class TourEnterprise_TEUser : System.Web.UI.Page
+public partial class TourEnterprise_TEUser : basepage
 {
     BLLDJ_User blldj_user = new BLLDJ_User();
     protected void Page_Load(object sender, EventArgs e)
@@ -43,7 +43,7 @@ public partial class TourEnterprise_TEUser : System.Web.UI.Page
     {
         if (txtName.Text == "" || cbList.SelectedItem == null)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或权限未填写');", true);
+            ShowNotification("用户名或权限未填写");
             return;
         }
         DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
@@ -79,10 +79,10 @@ public partial class TourEnterprise_TEUser : System.Web.UI.Page
         int.TryParse(sat.ToString(), out result2);
         if (result == 7 && result2 != 7)
         {
-            IList<DJ_User_TourEnterprise> Listuser = blldj_user.GetUser_TEbyId(Master.CurrentTE.Id, 15);
+            IList<DJ_User_TourEnterprise> Listuser = blldj_user.GetUser_TEbyId(Master.CurrentTE.Id, 7);
             if (Listuser != null && Listuser.Count <= 1)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('目前仅有这一个超级管理员，无法更改权限')", true);
+                ShowNotification("目前仅有这一个超级管理员，无法更改权限");
                 return;
             }
         }
@@ -92,9 +92,9 @@ public partial class TourEnterprise_TEUser : System.Web.UI.Page
         blldj_user.SaveOrUpdate(mgrUser, out message);
         if (message != "")
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('" + message + "')", true);
+            ShowNotification(message);
         }
         else
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功');window.location='/TourEnterprise/TEUserManager.aspx'", true);
+            ShowNotification("提示", "保存成功", "/TourEnterprise/TEUserManager.aspx");
     }
 }

@@ -51,7 +51,7 @@ public partial class LocalTravelAgent_LTAUserEdit : basepageDJS
     {
         if (txtName.Text == "" || cbList.SelectedItem == null)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或权限未填写');", true);
+            ShowNotification("用户名或权限未填写");
             return;
         }
         DJ_User_TourEnterprise mgrUser = new DJ_User_TourEnterprise();
@@ -82,7 +82,7 @@ public partial class LocalTravelAgent_LTAUserEdit : basepageDJS
             IList<DJ_User_TourEnterprise> Listuser = blldj_user.GetUser_TEbyId(CurrentDJS.Id, 15);
             if (Listuser != null && Listuser.Count <= 1)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('目前仅有这一个超级管理员，无法更改权限')", true);
+                ShowNotification("目前仅有这一个超级管理员，无法更改权限");
                 return;
             }
         }
@@ -92,9 +92,9 @@ public partial class LocalTravelAgent_LTAUserEdit : basepageDJS
         blldj_user.SaveOrUpdate(mgrUser,out message);
         if (message != "")
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('"+message+"')", true);
+            ShowNotification(message);
         }
         else
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功');window.location='/LocalTravelAgent/LTAUserManager.aspx'", true);
+            ShowNotification("提示", "保存成功", "/LocalTravelAgent/LTAUserManager.aspx");
     }
 }

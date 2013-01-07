@@ -45,7 +45,7 @@ public partial class TourManagerDpt_UserEdit : basepageMgrDpt
     {
         if (txtName.Text == "" || cbList.SelectedItem == null)
         {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "s", "alert('用户名或权限未填写');", true);
+            ShowNotification("用户名或权限未填写");
             return;
         }
         DJ_User_Gov mgrUser = new DJ_User_Gov();
@@ -60,7 +60,7 @@ public partial class TourManagerDpt_UserEdit : basepageMgrDpt
         {
             if (blldj_user.GetGov_UserByName(txtName.Text) != null)
             {
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('对不起,该用户名已被注册!')", true);
+                ShowNotification("对不起,该用户名已被注册!");
                 return;
             }
             mgrUser.Password = FormsAuthentication.HashPasswordForStoringInConfigFile("123456", "MD5");
@@ -86,7 +86,7 @@ public partial class TourManagerDpt_UserEdit : basepageMgrDpt
             IList<DJ_User_Gov> Listuser = blldj_user.GetGov_UserBygovId(CurrentDpt.Id, 7);
             if (Listuser != null && Listuser.Count <= 1)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('目前仅有这一个超级管理员，无法更改权限')", true);
+                ShowNotification("目前仅有这一个超级管理员，无法更改权限");
                 return;
             }
         }
@@ -95,9 +95,9 @@ public partial class TourManagerDpt_UserEdit : basepageMgrDpt
         blldj_user.SaveOrUpdate(mgrUser,out message);
         if (message != "")
         {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "s", "alert('" + message + "')", true);
+            ShowNotification(message);
         }
         else
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "s", "alert('保存成功');window.location='/TourManagerDpt/UserManager.aspx'", true);
+            ShowNotification("提示", "保存成功", "/TourManagerDpt/UserManager.aspx");
     }
 }

@@ -13,11 +13,11 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphFunction" runat="server">
     <ul class="nav">
         <%--<li><a href="/TourEnterprise/TEGroupForecast.aspx">未验证预订单查询</a></li>--%>
-        <li><a href="/TourEnterprise/TE_UnLiveStatistics.aspx">旅行社预订查询</a></li>
-        <li><a href="/TourEnterprise/TECheckTicket.aspx">旅行社入住验证</a></li>
-        <li><a href="/TourEnterprise/TEStatistics.aspx">旅行社入住统计</a></li>
-        <li><a href="/TourEnterprise/TEInfo.aspx">企业信息</a></li>
-        <li><a href="/TourEnterprise/TEUserManager.aspx">用户管理</a></li>
+        <li runat="server" id="li_1"><a href="/TourEnterprise/TE_UnLiveStatistics.aspx">旅行社预订查询</a></li>
+        <li runat="server" id="li_2"><a href="/TourEnterprise/TECheckTicket.aspx">旅行社入住验证</a></li>
+        <li runat="server" id="li_3"><a href="/TourEnterprise/TEStatistics.aspx">旅行社入住统计</a></li>
+        <li runat="server" id="li_4"><a href="/TourEnterprise/TEInfo.aspx">企业信息</a></li>
+        <li runat="server" id="li_5"><a href="/TourEnterprise/TEUserManager.aspx">用户管理</a></li>
     </ul>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">

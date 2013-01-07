@@ -40,7 +40,7 @@ public partial class TourEnterprise_TEUserManager : basepage
             int.TryParse(user.PermissionType.ToString(), out result);
             if ((Guid)CurrentUser.ProviderUserKey == user.Id)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('不得删除本人')", true);
+                ShowNotification("不得删除本人");
                 return;
             }
             else if (result == 7)
@@ -48,7 +48,7 @@ public partial class TourEnterprise_TEUserManager : basepage
                 IList<DJ_User_TourEnterprise> Listuser = bllUser.GetUser_TEbyId(Master.CurrentTE.Id, 7);
                 if (Listuser != null && Listuser.Count <= 1)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('目前仅有这一个超级管理员，无法删除')", true);
+                    ShowNotification("目前仅有这一个超级管理员，无法删除");
                     return;
                 }
             }
@@ -63,9 +63,9 @@ public partial class TourEnterprise_TEUserManager : basepage
             if ((Guid)CurrentUser.ProviderUserKey == user.Id)
             {
                 FormsAuthentication.SignOut();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('重置成功，重置后的密码为123456');window.location='/LTALogin.aspx'", true);
+                ShowNotification("提示", "重置成功，重置后的密码为123456", "/LTALogin.aspx");
             }
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('重置成功，重置后的密码为123456')", true);
+            ShowNotification("重置成功，重置后的密码为123456");
         }
     }
     protected void rptUser_ItemDataBound(object sender, RepeaterItemEventArgs e)
