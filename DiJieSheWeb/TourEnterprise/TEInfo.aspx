@@ -10,13 +10,13 @@
         <table border="0" cellpadding="0" cellspacing="0" class="comTable">
             <tr>
                 <td>
-                    名称:
+                    单位名称:
                 </td>
                 <td>
                     <asp:TextBox ID="txtName" runat="server" Width="80%" Enabled="false" />
                 </td>
                 <td>
-                    地区
+                    行政辖区
                 </td>
                 <td>
                 <asp:Label runat="server" ID="lblArea"></asp:Label>
@@ -26,13 +26,13 @@
             </tr>
             <tr>
                 <td>
-                    联系电话:
+                    单位电话:
                 </td>
                 <td>
                     <asp:TextBox ID="txtTel" runat="server" Width="80%" />
                 </td>
                 <td>
-                    负责人名称:
+                    负责人姓名:
                 </td>
                 <td>
                     <asp:TextBox ID="txtCPN" runat="server" Width="80%" />
@@ -46,7 +46,7 @@
                     <asp:TextBox ID="txtCPP" runat="server" Width="80%" />
                 </td>
                 <td>
-                    电子邮箱
+                    负责人邮箱
                 </td>
                 <td>
                     <asp:TextBox ID="txtEmail" runat="server" Width="80%" />
@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <td>
-                    地址:
+                    邮寄地址:
                 </td>
                 <td colspan="3">
                     <asp:TextBox ID="txtAddress" runat="server" Width="92%" CssClass="required" />

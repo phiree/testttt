@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td>
-                    联系人名字
+                    联系人姓名
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="tbxUserName"></asp:TextBox>

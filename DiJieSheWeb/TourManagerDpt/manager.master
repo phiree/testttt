@@ -11,9 +11,9 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="cphFunction" runat="server">
     <ul class="nav">
-        <li runat="server" id="li_1"><a href="/tourmanagerdpt/EnterpriseMgr/Default.aspx?entType=<%=(int)Model.EnterpriseType.宾馆 %>">宾馆管理</a></li>
         <li runat="server" id="li_2"><a href="/tourmanagerdpt/EnterpriseMgr/Default.aspx?entType=<%=(int)Model.EnterpriseType.景点 %>">景点管理</a></li>
-      
+        <li><a href="/tourmanagerdpt/LTAList.aspx">地接社列表</a></li>
+        <li runat="server" id="li_1"><a href="/tourmanagerdpt/EnterpriseMgr/Default.aspx?entType=<%=(int)Model.EnterpriseType.宾馆 %>">宾馆管理</a></li>
         <li runat="server" id="li_3"><a href="/tourmanagerdpt/StaticsList.aspx">统计信息</a></li>
         <li runat="server" id="li_4"><a href="/tourmanagerdpt/UserManager.aspx">用户管理</a></li>
         <%--<li runat="server" id="li_5"><a href="/tourmanagerdpt/RePolicyManager.aspx">奖励政策编辑</a></li>--%>
