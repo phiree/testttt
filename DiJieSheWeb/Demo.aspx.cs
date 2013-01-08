@@ -220,7 +220,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         //创建工作人员
         SaveWorkers();
          List<DJ_TourGroup> Groups = new List<DJ_TourGroup>();
-        for (int i = 1; i <= 16; i++)
+        for (int i = 1; i <= 12; i++)
         {
             DateTime beginDate = DateTime.Now.AddMonths(i - 12);
             DJ_TourGroup g1 = CreateDemoGroup(beginDate);  
@@ -253,7 +253,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         foreach (DJ_TourGroup g in Groups)
         {
             //只对过去的验票.
-            if (g.BeginDate>DateTime.Now)
+            if (g.BeginDate> DateTime.Now)
             {
                 continue;
             }
@@ -292,7 +292,6 @@ public partial class Admin_Demo : System.Web.UI.Page
     {
         
         FormsAuthentication.SetAuthCookie(userName, true);
-        string ss= FormsAuthentication.CookieDomain;
         //  Response.Redirect(targetUrl);
         ClientScript.RegisterStartupScript(this.Page.GetType(), "",
         "var opener=window.open('" + targetUrl + "','Graph','width=960,height=650;'); opener=null;", true);

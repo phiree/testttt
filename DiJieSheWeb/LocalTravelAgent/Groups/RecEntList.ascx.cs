@@ -38,11 +38,11 @@ public partial class LocalTravelAgent_Groups_RecEntList : System.Web.UI.UserCont
         DJ_GovManageDepartment Gov = bllGov.GetById(dptid);
         List<DJ_TourEnterprise> ListEnt = new List<DJ_TourEnterprise>();
         if (ddlArea.SelectedValue == "全部")
-            ListEnt = bllEnt.GetRewardEntList(Gov, null, RewardType.已纳入).ToList();
+            ListEnt = bllEnt.GetRewardEntList(string.Empty,Gov, null, RewardType.已纳入).ToList();
         if (ddlArea.SelectedValue == "景区")
-            ListEnt = bllEnt.GetRewardEntList(Gov, EnterpriseType.景点, RewardType.已纳入).ToList();
+            ListEnt = bllEnt.GetRewardEntList(string.Empty,Gov, EnterpriseType.景点, RewardType.已纳入).ToList();
         if (ddlArea.SelectedValue == "宾馆")
-            ListEnt = bllEnt.GetRewardEntList(Gov, EnterpriseType.宾馆, RewardType.已纳入).ToList();
+            ListEnt = bllEnt.GetRewardEntList(string.Empty,Gov, EnterpriseType.宾馆, RewardType.已纳入).ToList();
         return ListEnt;
     }
     protected void BtnPrint_Click(object sender, EventArgs e)

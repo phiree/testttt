@@ -20,8 +20,13 @@ public partial class TourManagerDpt_LTAList : basepageMgrDpt
 
     private void bindData()
     {
-        List<DJ_TourEnterprise> ListDJS = bllEnt.GetRewardEntList(CurrentDpt, EnterpriseType.旅行社, 0).OrderByDescending(x => x.LastUpdateTime).ToList();
+        List<DJ_TourEnterprise> ListDJS = bllEnt.GetRewardEntList(tbxName.Text,CurrentDpt, EnterpriseType.旅行社, 0).OrderByDescending(x => x.LastUpdateTime).ToList();
         rptEntList.DataSource = ListDJS;
         rptEntList.DataBind();
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        bindData();
     }
 }
