@@ -14,7 +14,7 @@ public partial class Admin_Demo : System.Web.UI.Page
     string dptAdminAccount1 = "tz10";//临海市风景旅游管理局
     string dptAdminAccount2 = "lis1";//莲都区风景旅游局
 
-    string dijiesheAdminAcount1 = "lhsjtlxs";//地接社管理员
+    string dijiesheAdminAcount1 = "linhai_lhsjtlxs";//地接社管理员
     string dijiesheName1 = "临海市交通旅行社";
     
 
@@ -82,7 +82,7 @@ public partial class Admin_Demo : System.Web.UI.Page
     }
     protected void btnScenicLogin_Click(object sender, EventArgs e)
     {
-        DemoLogin(scenicName1, "http://www.tourol.cn/ScenicManager/CheckTicket.aspx");
+        DemoLogin(scenicAdminAccount1, "http://www.tourol.com/ScenicManager/CheckTicket.aspx");
     }
     protected void btnDjsLogin_Click(object sender, EventArgs e)
     {
@@ -290,6 +290,7 @@ public partial class Admin_Demo : System.Web.UI.Page
 
     private void DemoLogin(string userName, string targetUrl)
     {
+        
         FormsAuthentication.SetAuthCookie(userName, true);
         string ss= FormsAuthentication.CookieDomain;
         //  Response.Redirect(targetUrl);
