@@ -222,7 +222,7 @@ public partial class Admin_Demo : System.Web.UI.Page
          List<DJ_TourGroup> Groups = new List<DJ_TourGroup>();
         for (int i = 1; i <= 12; i++)
         {
-            DateTime beginDate = new DateTime(DateTime.Now.Year, i, DateTime.Now.Day);
+            DateTime beginDate = DateTime.Now.AddMonths(i - 12);
             DJ_TourGroup g1 = CreateDemoGroup(beginDate);  
             bllGroup.Save(g1);
             DJ_Group_Worker gwmemberdaoyou1 = new DJ_Group_Worker();
@@ -253,7 +253,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         foreach (DJ_TourGroup g in Groups)
         {
             //只对过去的验票.
-            if (g.BeginDate.DayOfYear>= DateTime.Now.DayOfYear)
+            if (g.BeginDate>DateTime.Now)
             {
                 continue;
             }
