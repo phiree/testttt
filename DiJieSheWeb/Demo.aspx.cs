@@ -220,7 +220,7 @@ public partial class Admin_Demo : System.Web.UI.Page
         //创建工作人员
         SaveWorkers();
          List<DJ_TourGroup> Groups = new List<DJ_TourGroup>();
-        for (int i = 1; i <= 12; i++)
+        for (int i = 1; i <= 16; i++)
         {
             DateTime beginDate = DateTime.Now.AddMonths(i - 12);
             DJ_TourGroup g1 = CreateDemoGroup(beginDate);  
