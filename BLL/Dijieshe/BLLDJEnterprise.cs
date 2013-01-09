@@ -321,8 +321,32 @@ namespace BLL
 
         public void Save(DJ_TourEnterprise ent)
         {
-
             dalEnt.Save(ent);
+        }
+
+        public void SaveOrUpdate(IList<DJ_TourEnterprise> telist)
+        {
+            foreach (var item in telist)
+            {
+                var result=dalEnt.GetDJS8Muti(0, "旅行社", null, item.Name);
+                if (result.Count == 0)
+                {
+                    dalEnt.Save(item);
+                }
+                else
+                {
+                    var enp = result[0];
+                    enp.Address = item.Address;
+                    enp.Area = item.Area;
+                    enp.ChargePersonName = item.ChargePersonName;
+                    enp.ChargePersonPhone = item.ChargePersonPhone;
+                    enp.Email = item.Email;
+                    enp.Fax = item.Fax;
+                    enp.LastUpdateTime = DateTime.Now;
+                    enp.Url = item.Url;
+                    dalEnt.Update(item);
+                }
+            }
         }
 
         #endregion

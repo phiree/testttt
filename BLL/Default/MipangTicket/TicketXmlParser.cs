@@ -53,10 +53,7 @@ TicketPrice(type,price) <ticket_price>60</ticket_price>
 
         public List<Scenic> Parse()
         {
-            
-          
-            XmlSerializer serializer =
-             new XmlSerializer(typeof(tourism_response));
+            XmlSerializer serializer =new XmlSerializer(typeof(tourism_response));
 
             tourism_response resp = (tourism_response)serializer.Deserialize(DocReader);
 
@@ -83,8 +80,6 @@ TicketPrice(type,price) <ticket_price>60</ticket_price>
             ///现有数据: 浙江/江苏/All/杭州/建德
             ///目标数据:浙江省杭州市
             s.Desec = item.city;
-            
-
 
             foreach (ticket ticket in item.tickets)
             {

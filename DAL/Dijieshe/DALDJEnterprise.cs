@@ -34,6 +34,14 @@ namespace DAL
             return query.Future<Model.DJ_TourEnterprise>().ToList<Model.DJ_TourEnterprise>();
         }
 
+        /// <summary>
+        /// 多条件查询企业
+        /// </summary>
+        /// <param name="areaid"></param>
+        /// <param name="type">景点 = 1,饭店 = 2,宾馆 = 4,购物点 = 8,旅行社 = 16</param>
+        /// <param name="id"></param>
+        /// <param name="namelike"></param>
+        /// <returns></returns>
         public IList<Model.DJ_TourEnterprise> GetDJS8Muti(int areaid, string type, string id, string namelike)
         {
             string sql = "select D from DJ_TourEnterprise D where ";
