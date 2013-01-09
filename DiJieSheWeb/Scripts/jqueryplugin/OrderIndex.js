@@ -2,7 +2,8 @@
     $.fn.orderIndex = function (param) {
         var options = $.extend(
         {
-            tableindex: "1"
+            tableindex: "1",
+            columnName: "序号"
         },
          param
     );
@@ -16,7 +17,7 @@
                 rh = parseInt(rh) * parseInt(rowcount) + (parseInt(rowcount) - 1) * 2;
             }
         }
-        $(this).append("<thead><tr><th style='line-height:" + rh + "px'>序号</th></tr></thead>");
+        $(this).append("<thead><tr><th style='line-height:" + rh + "px'>" + options.columnName + "</th></tr></thead>");
         $(this).append("<tbody>");
         for (var i = 1; i <= $(LinkTable).find("tbody").find("tr").length; i++) {
             var tdheight = $(LinkTable).find("tbody").find("tr").eq(i - 1).find("td").eq(0).height();

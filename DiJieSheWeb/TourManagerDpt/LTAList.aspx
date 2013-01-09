@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master" AutoEventWireup="true" CodeFile="LTAList.aspx.cs" Inherits="TourManagerDpt_LTAList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TourManagerDpt/manager.master"
+    AutoEventWireup="true" CodeFile="LTAList.aspx.cs" Inherits="TourManagerDpt_LTAList" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <link href="/Content/themes/base/minified/jquery-ui.min.css"
-        rel="stylesheet" type="text/css" />
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <link href="/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript" src="/Scripts/jquery-ui-1.9.2.min.js"></script>
     <script language="javascript" type="text/javascript" src="/Scripts/json2.js"></script>
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
@@ -16,14 +16,18 @@
         });
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="main" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="main" runat="Server">
     <div class="detail_titlebg">
         地接社列表
+    </div>
+    <div class="searchdiv">
+        地接社名称:&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox runat="server" ID="tbxName" Style="width: 150px"></asp:TextBox>
+        <asp:Button runat="server" ID="btnSearch" Text="搜索" OnClick="btnSearch_Click"  CssClass="btn2" />
     </div>
     <div class="detaillist">
         <table class="tablesorter IndexTable">
         </table>
-        <asp:Repeater runat="server" ID="rptEntList" >
+        <asp:Repeater runat="server" ID="rptEntList">
             <HeaderTemplate>
                 <table class="InfoTable tablesorter">
                     <thead>
@@ -65,4 +69,3 @@
         </asp:Repeater>
     </div>
 </asp:Content>
-

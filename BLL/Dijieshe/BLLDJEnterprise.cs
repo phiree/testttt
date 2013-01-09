@@ -358,9 +358,9 @@ namespace BLL
         /// </summary>
         /// <param name="gov"></param>
         /// <returns></returns>
-        public IList<DJ_TourEnterprise> GetRewardEntList(DJ_GovManageDepartment gov, EnterpriseType? entType, RewardType rewardType)
+        public IList<DJ_TourEnterprise> GetRewardEntList(string entName,DJ_GovManageDepartment gov, EnterpriseType? entType, RewardType rewardType)
         {
-            IList<DJ_TourEnterprise> entList = dalEnt.GetList(gov.Area.Code, entType, rewardType);
+            IList<DJ_TourEnterprise> entList = dalEnt.GetList(entName,true,gov.Area.Code, entType, rewardType);
 
             return entList;
         }

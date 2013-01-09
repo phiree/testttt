@@ -22,10 +22,13 @@ input{cursor:pointer;}
     line-height:33px;
     font-weight:bold;
     font-size:13px;
+}input[type='submit']
+{
+ width:250px;
 }
 </style>
     <div class="detail_titlebg">
-   TourOl地接社平台Demo演示
+地接社管理系统DEMO
     </div>
    <div class="detaillist">
     <fieldset>

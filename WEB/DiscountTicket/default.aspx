@@ -84,9 +84,9 @@
                             <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='' /></a>
                     </div>
                     <div class="scenicname">
-                        <a runat="server" id="schref2" style="display: block;font-size:14px;" >
+                        <a runat="server" id="schref2" title='<%# Eval("Name") %>' style="display: block;font-size:14px;" >
                             <!---->
-                            <%# Eval("Name")%></a>
+                            <%# Eval("Name").ToString().Length > 14 ? Eval("Name").ToString().Substring(0,14)+"..." : Eval("Name")%></a>
                     </div>
                     <div class="dvprice">
                         <div style="float: left">

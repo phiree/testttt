@@ -61,7 +61,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
 
     private void BuildEntNames()
     {
-        IList<DJ_TourEnterprise> ents = bllEnt.GetRewardEntList(CurrentDpt, ParamEntType, RewardType.从未纳入);
+        IList<DJ_TourEnterprise> ents = bllEnt.GetRewardEntList(string.Empty,CurrentDpt, ParamEntType, RewardType.从未纳入);
         System.Text.RegularExpressions.Regex Reg = new System.Text.RegularExpressions.Regex(@",|""|'");
         foreach (DJ_TourEnterprise ent in ents)
         {
@@ -104,7 +104,7 @@ public partial class TourManagerDpt_EnterpriseMgr_Default : basepageMgrDpt
         { rt = RewardType.纳入后移除; }
 
 
-        IList<Model.DJ_TourEnterprise> entList = bllEnt.GetRewardEntList(CurrentDpt, ParamEntType, rt).OrderByDescending(x => x.LastUpdateTime).ToList();
+        IList<Model.DJ_TourEnterprise> entList = bllEnt.GetRewardEntList(string.Empty,CurrentDpt, ParamEntType, rt).OrderByDescending(x => x.LastUpdateTime).ToList();
         rptEntList.DataSource = entList;
         rptEntList.DataBind();
 
