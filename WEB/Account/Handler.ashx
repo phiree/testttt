@@ -38,7 +38,9 @@ public class Handler : IHttpHandler
                 memberName = tm.Name;
             }
             System.Web.Security.FormsAuthentication.SetAuthCookie(memberName, false);
-            context.Response.Redirect("/");
+
+            new LoginRedirect();
+          //  context.Response.Redirect("/");
         }
     }
 

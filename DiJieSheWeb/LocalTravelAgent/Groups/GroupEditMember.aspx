@@ -3,7 +3,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
     <link href="/Content/themes/base/minified/jquery-ui.min.css"
         rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
@@ -124,8 +123,8 @@
                                 <asp:RadioButtonList runat="server" ID="rblMemberType" RepeatDirection="Horizontal">
                                     <asp:ListItem Value="1">成人游客</asp:ListItem>
                                     <asp:ListItem Value="2">儿童</asp:ListItem>
-                                    <%--<asp:ListItem  Value="3">外宾</asp:ListItem>
-                                    <asp:ListItem Value="4">港澳台</asp:ListItem>--%>
+                                   <asp:ListItem  Value="3">外宾</asp:ListItem>
+                                    <asp:ListItem Value="4">港澳台</asp:ListItem>
                                 </asp:RadioButtonList>
                             </td>
                         </tr>

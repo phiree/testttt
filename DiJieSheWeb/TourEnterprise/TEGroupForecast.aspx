@@ -4,7 +4,6 @@
 <link href="/Content/themes/base/minified/jquery-ui.min.css"
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery-ui-1.9.2.min.js"></script>
     <script type="text/javascript">
         $(function () {
             $("[id$='txtBeginTime']").datepicker();

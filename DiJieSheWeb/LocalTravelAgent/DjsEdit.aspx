@@ -9,7 +9,6 @@
     <link href="/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/json2.js" type="text/javascript"></script>
     <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
-    <script type="text/javascript" src="/Scripts/jquery-ui-1.9.2.min.js"></script>
     <script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.validate.messages_zh.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.validation.net.webforms.js" type="text/javascript"></script>

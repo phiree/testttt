@@ -22,11 +22,13 @@ namespace Model
            //Map(x => x.IsVeryfied);
            Map(x => x.ProvinceVeryfyState).CustomType<int>();
            Map(x => x.CityVeryfyState).CustomType<int>();
-           Map(x => x.CountryVeryfyState).CustomType<int>(); 
-           Map(x => x.Type).CustomType<int>();
+           Map(x => x.CountryVeryfyState).CustomType<int>();
+           Map(x => x.Type).CustomType<int>().UniqueKey("UniqueNameInSameArea");
            Map(x => x.SeoName);
            Map(x => x.Buslicense);
            Map(x => x.Email);
+           Map(x => x.Fax);
+           Map(x => x.Url);
            Map(x => x.Level);
            Map(x => x.LastUpdateTime);
        }

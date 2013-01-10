@@ -46,6 +46,8 @@ namespace Model
         public virtual EnterpriseType Type { get; set; }
         public virtual string SeoName { get; set; }
         public virtual string Email { get; set; }
+        public virtual string Fax { get; set; }
+        public virtual string Url { get; set; }
         public virtual string Buslicense { get; set; }
         public virtual string Level { get; set; }
         private DateTime lastUpdateTime = DateTime.Now;

@@ -16,6 +16,11 @@
                 $(".tabSelect a").eq(index).addClass("Select_Tab");
             }
 
+            //hide noused columns
+            var state = $("[id$='hfState']").val();
+            if (state + "" != "1") {
+                $(".coltohide").hide();
+            }
 
             $(".tabSelect a").each(function () {
                 var that = this;
@@ -85,10 +90,10 @@
                             <th>
                                 <asp:LinkButton ID="lbdays" runat="server" Text="天数" CommandName="lbdays"></asp:LinkButton>
                             </th>
-                            <th>
+                            <th class="coltohide">
                                 团队编辑
                             </th>
-                            <th>
+                            <th class="coltohide">
                                 团队资料录入提示
                             </th>
                         </tr>
@@ -106,7 +111,7 @@
                     <td>
                         <%#Eval("DaysAmount")%>日游
                     </td>
-                    <td>
+                    <td class="coltohide">
                         <asp:Panel runat="server" ID="pnlOperation">
                             <a href='GroupEditBasicInfo.aspx?groupid=<%#Eval("id") %>'>修改</a> <a href='/LocalTravelAgent/Groups/GroupInfo.aspx?groupid=<%#Eval("id") %>'>
                                 更新</a>
@@ -117,7 +122,7 @@
                         <asp:Button runat="server" Visible="false" ID="btnCopy" CommandArgument='<%#Eval("Id") %>'
                             CommandName="Copy" Text="复制" CssClass="btn2" />
                     </td>
-                    <td>
+                    <td class="coltohide">
                         <asp:LinkButton ID="lblMember_bz" Text="" runat="server" Style="color: #F19145" />
                         <asp:LinkButton ID="lblRoute_bz" Text="" runat="server" Style="color: #F19145" />
                         <asp:Label ID="lblSuccess" runat="server" Text=""></asp:Label>

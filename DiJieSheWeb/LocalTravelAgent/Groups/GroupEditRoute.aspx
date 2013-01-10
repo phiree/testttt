@@ -5,7 +5,7 @@
     TagPrefix="uc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
+
     <link href="/Content/themes/base/minified/jquery-ui.min.css"
         rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/routeedit.css" rel="stylesheet" type="text/css" />
@@ -17,14 +17,14 @@
         $(function () {
             /*记住最后一次选择的tab*/
             var cookieName = "djsmetab";
-//            $("#tabs").tabs({
-//                active: $.cookie(cookieName),
-//                activate: function (event, ui) {
-//                    $.cookie(cookieName, ui.newTab.index(), { expires: 365 });
-//                }
-//            });
+            //            $("#tabs").tabs({
+            //                active: $.cookie(cookieName),
+            //                activate: function (event, ui) {
+            //                    $.cookie(cookieName, ui.newTab.index(), { expires: 365 });
+            //                }
+            //            });
             $(".tablesorter").tablesorter();
-            $(".IndexTable").orderIndex();
+            $(".IndexTable").orderIndex({columnName:"行程日"});
             /*输入企业名称时的智能提示*/
 
             $(".EditEntName").autocomplete({
@@ -100,12 +100,12 @@
                     <table class="tablesorter InfoTable" style="width:650px;margin:0px;margin-top:2px">
                         <thead>
                         <tr>
-                            <th>
+                            <td>
                                 景点
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 住宿
-                            </th>
+                            </td>
                             <td>
                                 操作
                             </td>
