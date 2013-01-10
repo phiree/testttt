@@ -24,6 +24,7 @@ public class AuthPage : System.Web.UI.Page
          else
          {
              HttpCookie cookie = new HttpCookie("ru", Server.UrlEncode(Request.RawUrl));
+             
              cookie.Expires = DateTime.Now.AddMinutes(5);
              Response.Cookies.Add(cookie);
              Response.Redirect("/account/login.aspx");
