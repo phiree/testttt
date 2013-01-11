@@ -19,6 +19,7 @@ namespace Model
             Map(x => x.DaysAmount);
             Map(x => x.LastUpdateTime);
             Map(x => x.EndDate);
+            References<DJ_Product>(x => x.Product);
             References<DJ_User_TourEnterprise>(x => x.DijiesheEditor);
             HasMany<DJ_TourGroupMember>(x => x.Members).Cascade.All();//.Inverse();
             HasMany<DJ_Group_Worker>(x => x.Workers).Cascade.All();

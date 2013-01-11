@@ -1,52 +1,95 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RouteEditControl.ascx.cs" Inherits="LocalTravelAgent_RouteEditControl" %>
-<table>
-        <tr>
-            <td>
-            </td>
-            <td>
-                第<asp:TextBox runat="server" ID="tbxDayNo"></asp:TextBox>天
-             
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"  ControlToValidate="tbxDayNo"
-                    ErrorMessage="必填" ValidationGroup="ucrouteedit"></asp:RequiredFieldValidator>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                时间
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="tbxBeginTime"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="tbxBeginTime" runat="server" 
-                    ErrorMessage="必填" ValidationGroup="ucrouteedit"></asp:RequiredFieldValidator>
-                至
-                <asp:TextBox runat="server" ID="tbxEndTime"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                    ErrorMessage="必填" ValidationGroup="ucrouteedit" ControlToValidate="tbxEndTime"></asp:RequiredFieldValidator>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                地点
-            </td>
-            <td>
-                <asp:TextBox runat="server" ID="tbxEnterprise"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"  ControlToValidate="tbxEnterprise"
-                    ErrorMessage="必填" ValidationGroup="ucrouteedit"></asp:RequiredFieldValidator>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                安排
-            </td>
-            <td>
-                <asp:RadioButtonList runat="server" ID="rblBehavior">
-                    <asp:ListItem Value="游玩" Selected="True">游玩</asp:ListItem>
-                    <asp:ListItem Value="用餐">用餐</asp:ListItem>
-                    <asp:ListItem Value="住宿">住宿</asp:ListItem>
-                    <asp:ListItem Value="集合">集合</asp:ListItem>
-                    <asp:ListItem Value="自由活动">自由活动</asp:ListItem>
-                </asp:RadioButtonList>
-            </td>
-        </tr>
-    </table>
-    <asp:Button runat="server" ID="btnSave"  ValidationGroup="ucrouteedit" OnClick="btnSave_Click" Text="保存" />
+<asp:Repeater runat="server" ID="rptRoutes" OnItemCommand="rptRoutes_ItemCommand"
+                OnItemDataBound="rptRoutes_ItemDataBound">
+                <HeaderTemplate>
+                    <table class="tablesorter IndexTable" style="margin-top: 0px !important;">
+                    </table>
+                    <table class="tablesorter InfoTable" style="width: 650px; margin: 0px; margin-top: 2px">
+                        <thead>
+                            <tr>
+                                <td>
+                                    景点
+                                </td>
+                                <td>
+                                    住宿
+                                </td>
+                                <td>
+                                    操作
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <asp:Repeater runat="server" ID="rptScenics">
+                                <ItemTemplate>
+                                    <span class='<%#((bool)Eval("IsVerified"))?"rewardbg":"" %>'>
+                                        <%#Eval("Name") %></span>
+                                </ItemTemplate>
+                                <SeparatorTemplate>
+                                    ,</SeparatorTemplate>
+                            </asp:Repeater>
+                        </td>
+                        <td>
+                            <asp:Repeater runat="server" ID="rptHotels">
+                                <ItemTemplate>
+                                    <span class='<%#((bool)Eval("IsVerified"))?"rewardbg":"" %>'>
+                                        <%#Eval("Name") %></span>
+                                </ItemTemplate>
+                                <SeparatorTemplate>
+                                    ,</SeparatorTemplate>
+                            </asp:Repeater>
+                        </td>
+                        <td>
+                            <asp:Button runat="server" ID="btnModifyRoute" CommandArgument='<%#Eval("DayNo") %>'
+                                CommandName="Edit" Text="修改" CssClass="btn2" />
+                            <asp:Button runat="server" ID="btnClear" CommandArgument='<%#Eval("DayNo") %>' CommandName="Delete"
+                                CssClass="btn2" Text="清空" OnClientClick="javascript:return confirm('确定要清空这一天的行程么?');" />
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </tbody></table>
+                </FooterTemplate>
+            </asp:Repeater>
+               <asp:Panel runat="server" ID="pnlEditRoute" CssClass="pnlEditRoute" Visible="false">
+                <fieldset>
+                    <legend>第
+                        <asp:Label runat="server" Font-Size="Large" ID="lblDayNo"></asp:Label>
+                        天行程</legend>
+                    <div class="addoredit" style="margin-top: 15px; padding-left: 15px;">
+                        <div style="float: left; width: 150px; font-weight: bold;">
+                        </div>
+                        <div style="float: left; width: 300px;">
+                            <asp:RadioButtonList runat="server" Visible="false" ID="rblDayNo" RepeatDirection="Horizontal">
+                            </asp:RadioButtonList>
+                        </div>
+                        <div style="clear: both">
+                            <div style="font-weight: bold;">
+                                景点:</div>
+                            <div>
+                                <asp:Repeater runat="server" ID="rptEditScenics" OnItemDataBound="rptEditEnt_ItemDataBound">
+                                    <ItemTemplate>
+                                        <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
+                                            ID="tbxEntEdit" entType="景点"></asp:TextBox></ItemTemplate>
+                                </asp:Repeater>
+                                <input type="button" id="btnAddMoreScenic" value="增加更多" class="btn2" /></div>
+                        </div>
+                        <div>
+                            <div style="font-weight: bold;">
+                                饭店:</div>
+                            <div>
+                                <asp:Repeater runat="server" ID="rptEditHotels" OnItemDataBound="rptEditEnt_ItemDataBound">
+                                    <ItemTemplate>
+                                        <asp:TextBox runat="server" Text='<%#Container.DataItem %>' CssClass="EditEntName"
+                                            ID="tbxEntEdit" entType="宾馆"></asp:TextBox></ItemTemplate>
+                                </asp:Repeater>
+                                <input type="button" style="display: none" id="btnAddMoreHotel" value="增加更多" class="btn2" /></div>
+                        </div>
+                        <asp:Button runat="server" ID="btnSaveRoute" OnClick="btnSaveRoute_Click" Text="保存"
+                            CssClass="btn2" />
+                    </div>
+                </fieldset>
+            </asp:Panel>

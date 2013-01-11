@@ -69,6 +69,8 @@
     <Compile Include="Dijieshe\DJ_User.cs" />
     <Compile Include="Dijieshe\DJ_Product.cs" />
     <Compile Include="Dijieshe\DJ_Workers.cs" />
+    <Compile Include="Dijieshe\DJ_ProductRoute.cs" />
+    <Compile Include="Dijieshe\IProductPublisher.cs" />
     <Compile Include="DiscountCode.cs" />
     <Compile Include="Mapping\Dijieshe\DijiesheInfoMap.cs" />
     <Compile Include="Mapping\Dijieshe\DJ_Group_WorkerMap.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Mapping\Dijieshe\DJ_UserMap.cs" />
     <Compile Include="Mapping\Dijieshe\DJProductMap.cs" />
     <Compile Include="Mapping\Dijieshe\DJ_Group_VehicleMap.cs" />
+    <Compile Include="Mapping\Dijieshe\DJ_ProductRouteMap.cs" />
     <Compile Include="Mapping\Order\RefundMap.cs" />
     <Compile Include="Mapping\ScenicTicketMap.cs" />
     <Compile Include="Mapping\TicketsTypeMap.cs" />
@@ -153,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <Compile Include="Dijieshe\IProductSubServer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

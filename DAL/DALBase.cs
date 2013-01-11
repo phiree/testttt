@@ -84,9 +84,9 @@ namespace DAL
             return GetList(where, 0, 99999, out totalRecords);
         }
 
-        protected IList<T> GetList(string where,int pageIndex, int pageSize, out int totalRecords)
+        protected IList<T> GetList(string query,int pageIndex, int pageSize, out int totalRecords)
         {
-            IQuery qry = session.CreateQuery(where);
+            IQuery qry = session.CreateQuery(query);
 
           var  itemList = qry.Future<T>().ToList();
           totalRecords = itemList.Count;

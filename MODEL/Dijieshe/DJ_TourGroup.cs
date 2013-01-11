@@ -6,7 +6,7 @@ using System.Text;
 namespace Model
 {
     //团队信息
-    public class DJ_TourGroup
+    public class DJ_TourGroup:IProductObserver
     {
         public DJ_TourGroup()
         {
@@ -113,6 +113,12 @@ namespace Model
 
         private DateTime lastUpdateTime = DateTime.Now;
         public virtual DateTime LastUpdateTime { get { return lastUpdateTime; } set { lastUpdateTime = value; } }
+        public virtual DJ_Product Product { get; set; }
+        public virtual void CopyRouteFromProduct()
+        {
+            Product.CopyToGroup(this);
+        }
+
         public virtual void CopyTo(DJ_TourGroup newGroup)
         {
             CopyTo(newGroup,true);
@@ -147,6 +153,11 @@ namespace Model
 
                 }
             }
+        }
+
+        public virtual void BeNoticed()
+        {
+            CopyRouteFromProduct();
         }
     }
     public enum TourGroupState

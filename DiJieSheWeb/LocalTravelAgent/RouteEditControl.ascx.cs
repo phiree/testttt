@@ -16,8 +16,22 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
    BLLDJRoute bllDJRoute = new BLLDJRoute();
     BLLDJEnterprise bllDJS = new BLLDJEnterprise();
     BLLDJProduct bllProduct = new BLLDJProduct();
-    
 
+    private void LoadTab1Data()
+    {
+
+        //todo 
+        //IList<UIRoute> uiRoutes = RouteConverter.ConvertToUI(CurrentGroup);
+
+        //if (uiRoutes.Count == CurrentGroup.DaysAmount)
+        //{
+        //    //  btnAddRoute.Visible = false;
+        //}
+
+
+       // rptRoutes.DataSource = uiRoutes;
+        rptRoutes.DataBind();
+    }
     public Guid RouteId { get; set; }
     protected override void OnPreRender(EventArgs e)
     {
@@ -48,11 +62,7 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
 
     private void LoadForm()
     {
-        //tbxBeginTime.Text = CurrentRoute.BeginTime.ToString();
-        //tbxEndTime.Text = CurrentRoute.EndTime.ToString();
-        tbxDayNo.Text = CurrentRoute.DayNo.ToString();
-        tbxEnterprise.Text = CurrentRoute.Enterprise.Name;
-        //rblBehavior.SelectedValue = CurrentRoute.Behavior;
+       
 
 
     }
@@ -63,38 +73,31 @@ public partial class LocalTravelAgent_RouteEditControl : System.Web.UI.UserContr
         //CurrentRoute.EndTime = Convert.ToInt32(tbxEndTime.Text);
         //CurrentRoute.Behavior = rblBehavior.SelectedValue;
 
-        CurrentRoute.DayNo = Convert.ToInt16(tbxDayNo.Text);
-        IList<DJ_TourEnterprise> djs = bllDJS.GetDJS8name(tbxEnterprise.Text);
-        if (djs.Count != 1)
-        {
-            UpdateMsg = "请输入正确的企业名称";
-            return false;
-        }
-        CurrentRoute.Enterprise = djs[0];
-        //CurrentRoute.DJ_Product = CurrentProduct;
+     
 
         return true;
     }
     private void Save()
     {
-        bool updateRst = UpdateForm();
-        if (updateRst)
-        {
-            bllDJRoute.SaveOrUpdate(CurrentRoute);
-            UpdateMsg = "保存成功";
-            if (IsNew)
-            {
-                tbxBeginTime.Text = tbxDayNo.Text = tbxEndTime.Text = tbxEnterprise.Text = string.Empty;
-            }
-
-            this.Visible = false;
-
-        }
-
+        
 
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
         Save();
     }
+    protected void rptRoutes_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+
+    }
+    protected void rptRoutes_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+
+    }
+    protected void rptEditEnt_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+
+    }
+    protected void btnSaveRoute_Click(object sender, EventArgs e)
+    { }
 }
