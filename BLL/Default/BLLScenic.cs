@@ -9,8 +9,8 @@ namespace BLL
 {
     public class BLLScenic:DAL.DalBase
     {
-        IDAL.IScenic iscenic;
-        public IScenic IScenic
+        DAL.DALScenic iscenic;
+        public DAL.DALScenic IScenic
         {
             get
             {
@@ -74,6 +74,11 @@ namespace BLL
         public IList<Model.Scenic> GetScenicByScenicName(string scenicname, string level, int areaid, string topic)
         {
             return IScenic.GetScenicByScenicName(scenicname, level, areaid, topic);
+        }
+
+        public IList<ScenicMap> GetScenicMapByCondition(string scenicname, string level, int areaid, string topic)
+        {
+            return IScenic.GetScenicMapByCondition(scenicname, level, areaid, topic);
         }
         public Scenic GetScenicById(int scid)
         {

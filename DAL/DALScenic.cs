@@ -75,15 +75,8 @@ namespace DAL
 
         public IList<Scenic> GetScenicByScenicName(string scenicname, string level, int areaid,string topic)
         {
-            string sqlstr = "";
-            sqlstr = "select s from Scenic s where  s.Name like '%" + scenicname + "%'";
-            if (areaid != 0)
-            {
-                string areacode= new DALArea().GetAreaByAreaid(areaid).Code.Substring(0, 4);
-                sqlstr += " and s.Area.Code like '%" + areacode + "%'";
-            }
-            if (!string.IsNullOrEmpty(level))
-                sqlstr += " and s.Level like '%" + level.Substring(0,1) + "%'";
+            string sqlstr = "select s from Scenic s where 1=1 ";
+            sqlstr += ConStatement(scenicname, level, areaid);
             if (!string.IsNullOrEmpty(topic))
             {
                 IQuery query = session.CreateQuery(sqlstr);
@@ -100,6 +93,56 @@ namespace DAL
                 return query.Future<Scenic>().ToList<Scenic>();
             }
         }
+
+        private string ConStatement(string scenicname, string level, int areaid)
+        {
+            string sqlstr = "";
+            if (!string.IsNullOrEmpty(scenicname))
+                sqlstr = " and s.Name like '%" + scenicname + "%'";
+            if (areaid != 0)
+            {
+                string areacode = new DALArea().GetAreaByAreaid(areaid).Code.Substring(0, 4);
+                sqlstr += " and s.Area.Code like '" + areacode + "__'";
+            }
+            else
+                sqlstr += " and s.Area.Code like '33____'";
+            if (!string.IsNullOrEmpty(level))
+                sqlstr += " and s.Level = '" + level + "'";
+            return sqlstr;
+        }
+
+        public IList<ScenicMap> GetScenicMapByCondition(string scenicname, string level, int areaid, string topic)
+        {
+            string sqlstr = "select s.Id,s.Name,s.Position,s.SeoName from Scenic s where 1=1 ";
+            sqlstr += ConStatement(scenicname, level, areaid);
+            IQuery query = session.CreateQuery(sqlstr);
+            IList<object[]> List = query.List<object[]>();
+            List<ScenicMap> ScenicMapList = new List<ScenicMap>();
+            ScenicMap sm;
+            foreach (var item in List)
+            {
+                if (item[2]!=null&&(!string.IsNullOrEmpty(item[2].ToString())) && (item[2].ToString() != "null") && (item[2].ToString() != "undefined"))
+                {
+                    sm = new ScenicMap();
+                    sm.id = int.Parse(item[0].ToString());
+                    sm.name = item[1].ToString();
+                    sm.position = item[2].ToString();
+                    sm.scseoname = item[3].ToString();
+                    ScenicMapList.Add(sm);
+                }
+            }
+            if (!string.IsNullOrEmpty(topic))
+            {
+                string topicsql = "select st from ScenicTopic st where st.Topic.Name='" + topic + "'";
+                query = session.CreateQuery(topicsql);
+                List<Model.ScenicTopic> listtopic = query.Future<Model.ScenicTopic>().ToList<Model.ScenicTopic>();
+                var result = from t in listtopic join l in ScenicMapList on t.Scenic.Id equals l.id select l;
+                return result.ToList<ScenicMap>();
+            }
+            else
+                return ScenicMapList;
+        }
+
 
 
         public IList<Scenic> GetScenicByScenicPosition(string position)

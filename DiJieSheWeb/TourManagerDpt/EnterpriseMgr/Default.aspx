@@ -54,7 +54,7 @@
     <div class="detaillist">
         <div style="display:none">
             <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" />
-            <asp:HiddenField runat="server" ID="hfState" Value="1" />
+            <asp:HiddenField runat="server" ID="hfState" Value="0" />
         </div>
          <div class="tabSelect">
             <a class="Select_Tab">全部</a><a>已纳入</a><a style="border:none">已移除</a>
