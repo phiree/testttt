@@ -110,7 +110,7 @@ namespace BLL
 
                 group.Routes.Remove(r);
             }
-            IList<DJ_Route> routes = CreateRouteFromNameList(dayNo, entNames, out errMsg);
+            IList<DJ_Route> routes = CreateRouteFromNameList(dayNo, entNames, out errMsg).Cast<DJ_Route>().ToList();
 
             foreach (DJ_Route route in routes)
             {
@@ -147,7 +147,7 @@ namespace BLL
                     entDicts.Add(EnterpriseType.宾馆, entNames);
                 }
 
-                IList<DJ_Route> dayRoutes = CreateRouteFromNameList(dayNo, entDicts, out errMsg);
+                IList<DJ_Route> dayRoutes = CreateRouteFromNameList(dayNo, entDicts, out errMsg).Cast<DJ_Route>().ToList();
                 allRoutes = allRoutes.Concat(dayRoutes).ToList();
             }
             foreach (DJ_Route r in allRoutes)
@@ -176,9 +176,9 @@ namespace BLL
             return sb;
         }
 
-        public IList<DJ_Route> CreateRouteFromNameList(int dayNo, Dictionary<EnterpriseType, IList<string>> entDicts, out string errMsg)
+        public IList<DJ_ProductRoute> CreateRouteFromNameList(int dayNo, Dictionary<EnterpriseType, IList<string>> entDicts, out string errMsg)
         {
-            IList<DJ_Route> routes = new List<DJ_Route>();
+            IList<DJ_ProductRoute> routes = new List<DJ_ProductRoute>();
             errMsg = string.Empty;
 
             foreach (EnterpriseType type in entDicts.Keys)

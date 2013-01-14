@@ -17,6 +17,11 @@ public partial class LocalTravelAgent_ProductDetail : basepageDJS
     DJ_Product Product;
     BLLDJProduct bllProduct = new BLLDJProduct();
     BLLDJRoute bllRoute = new BLLDJRoute();
+    protected override void OnInit(EventArgs e)
+    {
+        ucRouteEditor.RoutesChanged += new EventHandler(ucEditor_RoutesChangedEvent);
+        base.OnInit(e);
+    }
     protected   void Page_Load(object sender, EventArgs e)
     {
       
@@ -45,6 +50,9 @@ public partial class LocalTravelAgent_ProductDetail : basepageDJS
 
     private void LoadForm()
     {
+        ucRouteEditor.DayAmount = Product.DaysAmount;
+        ucRouteEditor.Routes = Product.Routes;
+
         tbxName.Text = Product.Name;
         tbxDayAmount.Text = Product.DaysAmount.ToString();
 
@@ -64,7 +72,7 @@ public partial class LocalTravelAgent_ProductDetail : basepageDJS
 
     }
 
-    protected void btnSaeProduct_Click(object sender, EventArgs e)
+    protected void btnSaveProduct_Click(object sender, EventArgs e)
     {
         UpdateForm();
         bllProduct.Save(Product);
@@ -72,6 +80,26 @@ public partial class LocalTravelAgent_ProductDetail : basepageDJS
         {
             Response.Redirect("ProductEdit.aspx?productid=" + Product.Id);
         }
+        ShowNotification("产品保存成功");
     }
 
+    /// <summary>
+    /// 路线保存
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    public void ucEditor_RoutesChangedEvent(object sender,EventArgs e) {
+
+        IList<DJ_ProductRoute> productRoutes = ((RoutesChangedEventArgs)e).ProductRoutes;
+        Product.Routes.Clear();
+        foreach (DJ_ProductRoute pr in productRoutes)
+        {
+            Product.Routes.Add(pr);
+        }
+        bllProduct.Save(Product);
+        LoadForm();
+
+
+        ShowNotification("路线保存成功");
+    }
 }

@@ -1,4 +1,71 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RouteEditControl.ascx.cs" Inherits="LocalTravelAgent_RouteEditControl" %>
+    <link href="/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/default/css/routeedit.css" rel="stylesheet" type="text/css" />
+    <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>
+<script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
+  <script language="javascript" type="text/javascript">
+
+      $(function () {
+          /*记住最后一次选择的tab*/
+          var cookieName = "djsmetab";
+          //            $("#tabs").tabs({
+          //                active: $.cookie(cookieName),
+          //                activate: function (event, ui) {
+          //                    $.cookie(cookieName, ui.newTab.index(), { expires: 365 });
+          //                }
+          //            });
+          $(".tablesorter").tablesorter();
+          $(".IndexTable").orderIndex({ columnName: "行程日" });
+          /*输入企业名称时的智能提示*/
+
+          $(".EditEntName").autocomplete({
+              //source: "/ajaxservice/EntpriseAutoCompleteHanlder.ashx"
+              source: function (request, response) {
+                  var tbx = this.element[0];
+                  var entType = $(tbx).attr("entType");
+                  $.get("/ajaxservice/EntpriseAutoCompleteHanlder.ashx?entName=" + request.term + "&entType=" + entType
+                    , function (data) {
+                        response($.map(data, function (item) {
+                            var labelStr = item.Name;
+                            var verifyState = 0;
+                            if (item.CityVeryfyState == 1 || item.CountryVeryfyState == 1 || item.ProvinceVeryfyState == 1) {
+                                labelStr = "☆" + labelStr;
+                                verifyState = 1;
+                            }
+                            return {
+                                label: labelStr,
+                                value: item.Name,
+                                verifyState: verifyState
+                            }
+                        }));
+                    });
+              },
+              //                focus: function (event, ui) {
+              //                    event.target.className -= " rewardbg";
+              //                },
+              select: function (event, ui) {
+                  if (ui.item.verifyState == 1)
+                      event.target.className += " rewardbg";
+                  else {
+                      event.target.className = event.target.className.replace("rewardbg", "");
+                  }
+                  event.target.value = ui.item.Name;
+              }
+          });
+
+          /*隐藏/显示多余的文本框*/
+          $(".EditEntName[entType='景点']").each(
+          function (index) {
+              if (index >= 4 && $(this).val() == "")
+                  $(this).hide();
+          }
+          );
+          $(".EditEntName[entType='宾馆']").each(function (index) { if (index >= 2) $(this).hide(); });
+          $("#btnAddMoreScenic").click(function () { $(".EditEntName[entType='景点']").show(); });
+          $("#btnAddMoreHotel").click(function () { $(".EditEntName[entType='宾馆']").show(); });
+      });
+    </script>
 <asp:Repeater runat="server" ID="rptRoutes" OnItemCommand="rptRoutes_ItemCommand"
                 OnItemDataBound="rptRoutes_ItemDataBound">
                 <HeaderTemplate>
