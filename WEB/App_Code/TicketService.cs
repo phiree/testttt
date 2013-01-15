@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using BLL;
+using System.Data;
 /// <summary>
 ///WebService 的摘要说明
 /// </summary>
@@ -22,12 +23,31 @@ public class TicketService : System.Web.Services.WebService
         //InitializeComponent(); 
     }
     [WebMethod]
-    public string GetTicket(string clientFriendlyId, string idcardno, int ticketId)
+    public string buyProduct(string PartnerCode , string CardNumber, string ProductCode,int Number,out string errMsg)
     {
-        
+        errMsg = string.Empty;
         string result = string.Empty;
-        seller.SellTicket(clientFriendlyId, idcardno, ticketId);
+      //  seller.SellTicket(clientFriendlyId, idcardno, ticketId);
         return result;
     }
+    /// <summary>
+    /// 接入方
+    /// </summary>
+    /// <param name="PartnerCode"></param>
+    /// <param name="productCode"></param>
+    /// <param name="dt"></param>
+    /// <returns></returns>
+    [WebMethod]
+    public string ProductInfo(string PartnerCode, string productCode, DateTime dt)
+    {
 
+        return string.Empty;
+    }
+    [WebMethod]
+    public DataSet UserProductInfo(string idcardno)
+    {
+        DataSet dt = new DataSet();
+
+        return dt;
+    }
 }
