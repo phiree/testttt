@@ -92,6 +92,9 @@
     <Compile Include="Mapping\TopicMap.cs" />
     <Compile Include="Mapping\OperationLogMap.cs" />
     <Compile Include="Dijieshe\DJ_Recommand.cs" />
+    <Compile Include="QuZhouSpring\ClientTicketAsign.cs" />
+    <Compile Include="QuZhouSpring\QzClient.cs" />
+    <Compile Include="QuZhouSpring\TicketAsign.cs" />
     <Compile Include="ScenicMap.cs" />
     <Compile Include="Mapping\CommonUserMap.cs" />
     <Compile Include="Mapping\ContractImgMap.cs" />
