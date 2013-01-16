@@ -10,16 +10,16 @@ namespace Model
     /// </summary>
    public class QZSpringPartner
     {
-       public Guid Id { get; set; }
+       public virtual Guid Id { get; set; }
        //合作商代码
-       public string FriendlyId{get;set;}
+       public virtual string FriendlyId { get; set; }
        //名称
-       public string Name { get; set; }
+       public virtual string Name { get; set; }
        /// <summary>
        /// 请求源IP
        /// </summary>
-       public string RequestSource { get; set; }
+       public virtual string RequestSource { get; set; }
        //是否启用
-       public bool Enable { get; set; }
+       public virtual bool Enable { get; set; }
     }
 }

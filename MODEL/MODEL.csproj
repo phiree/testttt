@@ -88,14 +88,14 @@
     <Compile Include="Mapping\Dijieshe\DJ_ProductRouteMap.cs" />
     <Compile Include="Mapping\Order\RefundMap.cs" />
     <Compile Include="Mapping\QuZhouSpring\QZTicketAsignMap.cs" />
-    <Compile Include="Mapping\QuZhouSpring\PartnerTicketAsignMap.cs" />
+    <Compile Include="Mapping\QuZhouSpring\QZPartnerTicketAsignMap.cs" />
     <Compile Include="Mapping\QuZhouSpring\QZSpringPartnerMap.cs" />
     <Compile Include="Mapping\ScenicTicketMap.cs" />
     <Compile Include="Mapping\TicketsTypeMap.cs" />
     <Compile Include="Mapping\TopicMap.cs" />
     <Compile Include="Mapping\OperationLogMap.cs" />
     <Compile Include="Dijieshe\DJ_Recommand.cs" />
-    <Compile Include="QuZhouSpring\PartnerTicketAsign.cs" />
+    <Compile Include="QuZhouSpring\QZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\QZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\QZTicketAsign.cs" />
     <Compile Include="ScenicMap.cs" />

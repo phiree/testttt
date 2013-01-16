@@ -10,30 +10,38 @@ namespace Model
     /// </summary>
    public class QZTicketAsign
     {
-       public Guid Id { get; set; }
+       public virtual Guid Id { get; set; }
        //门票-->景区
        //本次活动的门票代码.
-       public string ProductCode { get; set; }
+       public virtual string ProductCode { get; set; }
        //网站对应的门票
-       public Ticket Ticket { get; set; }
+       public virtual Ticket Ticket { get; set; }
        //总数
-       public int Amount { get; set; }
+       public virtual int Amount { get; set; }
        //已售总数
-       public int SoldAmount { get; set; }
+       public virtual int SoldAmount { get; set; }
        //日期
-       public DateTime Date { get; set; }
+       public virtual DateTime Date { get; set; }
        /// <summary>
        /// 该景区门票的分配情况.
        /// </summary>
-       public IList<PartnerTicketAsign> PartnerTicketAsign
+       public virtual IList<QZPartnerTicketAsign> PartnerTicketAsign
        {
            get;
            set;
        }
-       public virtual bool ValidAmount()
+       /// <summary>
+       /// 分发门票
+       /// </summary>
+       public virtual void Asign()
+       { 
+       
+       }
+
+       public  virtual  bool ValidAmount()
        {
            int asigned = 0;
-           foreach (PartnerTicketAsign ct in PartnerTicketAsign)
+           foreach (QZPartnerTicketAsign ct in PartnerTicketAsign)
            {
                asigned += ct.AsignedAmount;
            }
