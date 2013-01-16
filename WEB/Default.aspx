@@ -5,9 +5,10 @@
     <title>中国旅游在线_浙江旅游景点门票预订官网</title>
     <script src="/Scripts/slide.js" type="text/javascript"></script>
     <script src="/Scripts/pages/default.js" type="text/javascript"></script>
+      <script src="/Scripts/contentReader.js" type="text/javascript"></script>
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/pager.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/Show.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/default/css/Show.css" rel="stylesheet" type="text/css" /> 
     <script type="text/javascript">
         $(function () {
             startscrolltime();
