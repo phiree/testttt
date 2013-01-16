@@ -16,8 +16,8 @@ public    class AppSettingsManagerTest
             dict.Add("startTime",startTime);
             dict.Add("endTime", DateTime.Now.ToString());
 
-            CommonLibrary.AppSettingsManager manager = new CommonLibrary.AppSettingsManager();
-            manager.Update(dict);
+           // CommonLibrary.AppSettingsManager manager = new CommonLibrary.AppSettingsManager();
+            CommonLibrary.AppSettingsManager.Update(dict);
 
             Assert.AreEqual(System.Configuration.ConfigurationManager.AppSettings["startTime"], "aabb");
         }

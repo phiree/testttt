@@ -98,6 +98,7 @@
     <Compile Include="QuZhouSpring\QZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\QZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\QZTicketAsign.cs" />
+    <Compile Include="QuZhouSpring\QZTicket.cs" />
     <Compile Include="ScenicMap.cs" />
     <Compile Include="Mapping\CommonUserMap.cs" />
     <Compile Include="Mapping\ContractImgMap.cs" />
