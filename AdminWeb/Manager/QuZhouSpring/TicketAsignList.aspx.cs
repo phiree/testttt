@@ -14,4 +14,17 @@ public partial class Manager_QuZhouSpring_TicketAsignList : System.Web.UI.Page
     {
 
     }
+    protected void txtTime_TextChanged(object sender, EventArgs e)
+    {
+        if (DateTime.Parse(txtTime.Text) < DateTime.Now)
+        {
+            btnSave.Visible = false;
+            txtAmount.Enabled = false;
+        }
+        else
+        {
+            btnSave.Visible = true;
+            txtAmount.Enabled = true;
+        }
+    }
 }

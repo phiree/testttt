@@ -13,4 +13,9 @@ public partial class Manager_QuZhouSpring_ClientManger : System.Web.UI.Page
     {
 
     }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/Manager/QuZhouSpring/ClientEditor.aspx");
+    }
 }
