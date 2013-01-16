@@ -13,30 +13,29 @@ namespace ExcelOplib
     /// </summary>
     public class ExcelOpr
     {
-        public BLL.BLLArea bllarea = new BLL.BLLArea();
-        public BLL.BLLTopic blltopic = new BLL.BLLTopic();
-        public BLL.BLLTicket bllticket = new BLL.BLLTicket();
+        private readonly BLL.BLLArea bllarea = new BLL.BLLArea();
+        private readonly BLL.BLLTicket bllticket = new BLL.BLLTicket();
 
         public void Run()
         {
-            BLL.BLLScenic bllscenic = new BLL.BLLScenic();
-            List<Entity.ScenicEntity> newslist = getSceniclist();
+            var bllscenic = new BLL.BLLScenic();
+            var newslist = getSceniclist();
 
             //收集景区topic,及topicseo
-            string temptp = string.Empty;
-            string temptseo = string.Empty;
+            var temptp = string.Empty;
+            var temptseo = string.Empty;
             foreach (var tstring in newslist)
             {
                 temptp += tstring.topic + ",";
                 temptseo += tstring.topicseo + ",";
             }
-            List<string> topicc1 = temptp.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
-            List<string> topics1 = temptseo.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
-            List<string> topicc2 = topicc1.Distinct().ToList<string>();
-            List<string> topics2 = topics1.Distinct().ToList<string>();
+            var topicc1 = temptp.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+            var topics1 = temptseo.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+            var topicc2 = topicc1.Distinct().ToList<string>();
+            var topics2 = topics1.Distinct().ToList<string>();
             //blltopic.SaveTopic(topicc2, topics2);
 
-            List<Model.Scenic> orgslist = bllscenic.GetScenic().ToList<Model.Scenic>();
+            var orgslist = bllscenic.GetScenic().ToList<Model.Scenic>();
             bllscenic.DeleteScenicimg();
             //循环景区
             foreach (Entity.ScenicEntity item in newslist)
@@ -61,8 +60,8 @@ namespace ExcelOplib
                     s.Desec = item.scenicintro;
                     s.Type = Model.EnterpriseType.景点;
                     //组装tickets
-                    List<Entity.TicketEntity> newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
-                    IList<Model.Ticket> tickets = bllticket.GetTicketByscId(s.Id);
+                    var newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
+                    var tickets = bllticket.GetTicketByscId(s.Id);
                     Model.Ticket t;
                     foreach (var te in newtlist)
                     {
@@ -74,32 +73,29 @@ namespace ExcelOplib
                             t.Scenic = s;
                             t.IsMain = true;
                             var tpnormal = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.Normal);
-                            if (tpnormal.Count() > 0)
-                                t.TicketPrice.Where(x => x.PriceType == Model.PriceType.Normal).First().Price = decimal.Parse(te.orgprice);
+                            if (tpnormal.Any())
+                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.Normal).Price = decimal.Parse(te.orgprice);
                             var tpol = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PayOnline);
-                            if (tpol.Count() > 0)
-                                t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PayOnline).First().Price = decimal.Parse(te.olprice);
+                            if (tpol.Any())
+                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.PayOnline).Price = decimal.Parse(te.olprice);
                             var tppre = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PreOrder);
-                            if (tppre.Count() > 0)
-                                t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price = decimal.Parse(te.orgprice) * (decimal)0.95;
+                            if (tppre.Any())
+                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.PreOrder).Price = decimal.Parse(te.orgprice) * (decimal)0.95;
                         }
                         else//不存在该票
                         {
-                            t = new Model.Ticket();
-                            t.Name = te.ticketname;
-                            t.Scenic = s;
-                            t.IsMain = true;
+                            t = new Model.Ticket {Name = te.ticketname, Scenic = s, IsMain = true};
                             t.TicketPrice = new List<Model.TicketPrice>() { 
                             new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
                             new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
                             new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}};
                             tickets.Add(t);
                         }
-                    };
+                    }
                     s.Tickets = tickets;
                     s.Photo = item.mainpic;
                     bllscenic.UpdateScenicInfo(s);
-                    List<Model.ScenicImg> silist = CopyFile(s);
+                    var silist = CopyFile(s);
                     if (silist != null)
                     {
                         bllscenic.SaveScenicimg(silist);
@@ -163,21 +159,19 @@ namespace ExcelOplib
                 DataTable dt = new DataTable();
                 #region 07
                 //path即是excel文档的路径。
-                string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\景区表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
-                //Sheet1为excel中表的名字
-                string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介,主图 from [Sheet1$]";
-                OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
-                OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
-                ad.Fill(dt);
+                //var conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\景区表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
+                //const string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介,主图 from [Sheet1$]";
+                //var cmd = new OleDbCommand(sql, new OleDbConnection(conn));
+                //var ad = new OleDbDataAdapter(cmd);
+                //ad.Fill(dt);
                 #endregion
                 #region 03
-                if (dt == null || dt.Rows.Count == 0)
-                {
-                    conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\景区表格式.xls;Extended Properties=Excel 8.0";
-                    cmd = new OleDbCommand(sql, new OleDbConnection(conn));
-                    ad = new OleDbDataAdapter(cmd);
+                
+                    const string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\衢州景区表格式.xls;Extended Properties=Excel 8.0";
+                    const string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介,主图 from [Sheet1$]";
+                    var cmd = new OleDbCommand(sql, new OleDbConnection(conn));
+                    var ad = new OleDbDataAdapter(cmd);
                     ad.Fill(dt);
-                }
                 #endregion
                 List<Entity.ScenicEntity> slist = new List<Entity.ScenicEntity>();
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -230,19 +224,19 @@ namespace ExcelOplib
                 DataTable dt = new DataTable();
                 #region 07
                 //path即是excel文档的路径。
-                string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\价格表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
-                //Sheet1为excel中表的名字
-                string sql = "select 景区名称,门票名称,原价,在线支付价 from [Sheet1$]";
-                OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
-                OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
-                ad.Fill(dt);
+                //string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\衢州价格表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
+                //string sql = "select 景区名称,门票名称,原价,在线支付价 from [Sheet1$]";
+                //OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
+                //OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
+                //ad.Fill(dt);
                 #endregion
                 #region 03
                 if (dt == null || dt.Rows.Count == 0)
                 {
-                    conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\景区表格式.xls;Extended Properties=Excel 8.0";
-                    cmd = new OleDbCommand(sql, new OleDbConnection(conn));
-                    ad = new OleDbDataAdapter(cmd);
+                    var conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\衢州价格表格式.xls;Extended Properties=Excel 8.0";
+                    var sql = "select 景区名称,门票名称,原价,在线支付价 from [Sheet1$]";
+                    var cmd = new OleDbCommand(sql, new OleDbConnection(conn));
+                    var ad = new OleDbDataAdapter(cmd);
                     ad.Fill(dt);
                 }
                 #endregion

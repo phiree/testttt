@@ -338,7 +338,7 @@ public partial class TourManagerDpt_StaticsList : basepageMgrDpt
                 .Where(x => x.ConsumeTime >= begin_date && x.ConsumeTime < end_date)
                 .ToList();
             //筛选企业
-            if (!string.IsNullOrEmpty(txt_name2.Text))
+            if (!string.IsNullOrEmpty(txt_name3djs.Text))
             {
                 gcrlist = gcrlist.Where(x => x.Enterprise.Name == txt_name3djs.Text).ToList();
             }

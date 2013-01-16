@@ -39,11 +39,11 @@ namespace IDAL
         /// <param name="scenicId"></param>
         /// <returns></returns>
         IList<ScenicCheckProgress> GetStatus(int scenicId);
+
         /// <summary>
         /// 申请开通功能
         /// </summary>
-        /// <param name="scenicId"></param>
-        /// <param name="module"></param>
+        /// <param name="progress"> </param>
         void SaveCheckProgress(ScenicCheckProgress progress);
         ScenicCheckProgress GetCheckProgressByscidandmouid(int scid, int module);
         /// <summary>

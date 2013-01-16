@@ -8,7 +8,7 @@ using Model;
 public partial class Manager_QuZhouSpring_ClientEditor : basepage
 {
     bool isNew = true;
-    QzClient qzclient;
+    QZSpringPartner qzclient;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!string.IsNullOrEmpty(Request["Id"]))
@@ -24,7 +24,7 @@ public partial class Manager_QuZhouSpring_ClientEditor : basepage
             }
             else
             {
-                qzclient = new QzClient();
+                qzclient = new QZSpringPartner();
             }
         }
     }
