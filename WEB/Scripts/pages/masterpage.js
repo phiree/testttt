@@ -88,7 +88,7 @@ $(function () {
     });
     var ileft = $(".logoleft").position().left;
     var itop = $(".logoleft").position().top;
-    $(".mainarea").css({ left: ileft + 370 + "px", top: itop + 70 + "px" });
+    $(".mainarea").css({ left: ileft + 370 + "px", top: itop + 60 + "px" });
     //var h = $(".popcartbg").css("height");
     //$(".popmain").css("height",  120 + "px");
     findDimensions();
@@ -127,7 +127,7 @@ window.onresize = function () {
     $("#popcart").css({ left: pleft + 330 + "px", top: ptop + 30 + "px" });
     var ileft = $(".logoleft").position().left;
     var itop = $(".logoleft").position().top;
-    $(".mainarea").css({ left: ileft + 370 + "px", top: itop + 70 + "px" });
+    $(".mainarea").css({ left: ileft + 370 + "px", top: itop + 60 + "px" });
     var ll = (winWidth - 955) / 2;
     $(".Filldiv").css("width", ll);
 }
