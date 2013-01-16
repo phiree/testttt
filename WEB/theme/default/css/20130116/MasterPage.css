@@ -1,0 +1,566 @@
+﻿
+/*override blueprint*/
+body
+{
+    /*background: url(../image/headerbg.png) top left repeat-x;*/
+    background: url("/theme/default/image/newversion/logobg2.png");
+    background-repeat: repeat-x;
+    font-family:微软雅黑;
+}
+.Filldiv
+{
+    position: absolute;
+    display: block;
+    height: 35px;
+    background-color: White;
+    top: 0px;
+    left: 0px;
+}
+a, a:link, a:visited, a:active
+{
+    color: Black;
+    border: 0;
+    text-decoration: none;
+}
+a:hover
+{
+    color: Black;
+    text-decoration: underline;
+}
+table
+{
+    margin: 0;
+}
+/*去除bp的隔行效果*/
+
+/*tbody tr:nth-child(even) td, tbody tr.even td {
+background-color:#fff !important;
+}*/
+
+#main
+{
+    background-image: url(/theme/default/image/20130116/webBg.jpg);
+    background-repeat:repeat;
+    position: relative;
+    z-index: 1000;
+    margin-top: 2px;
+}
+#main .container
+{
+    background-color: White;
+}
+
+/*网站头*/
+#logo
+{
+    width: 955px;
+    height: 116px;
+    margin: 0 auto;
+}
+#logotitle
+{
+    font-size: 3em;
+    font-weight: 600;
+    padding-left: 50px;
+    width: 270px;
+    float: left;
+    padding-top: 40px;
+}
+#logotitle a
+{
+    color: #CE5135;
+}
+
+#logoright
+{
+    margin-top: 50px;
+}
+#maplink
+{
+    padding-top: 10px;
+    display: block;
+    float: left;
+    margin-right: 40px;
+}
+#logosearch
+{
+    padding-top: 28px;
+    float: left;
+}
+
+#logosearch #tbxKeywords
+{
+    float: left;
+    border-style: none;
+    height: 31px;
+    line-height: 29px;
+    padding-left: 15px !important;
+    margin: 0; /*    *padding-top:9px;       *height:22px;     */
+    vertical-align: middle;
+    background: url(../image/searchtext.png) repeat-x;
+}
+
+
+#logosearch #btnSearch
+{
+    cursor: pointer;
+    width: 90px;
+    height: 33px;
+    float: left;
+    border: 0;
+    margin-left: 4px;
+    background: url(../image/searchbtn.png);
+}
+
+#topbar
+{
+    padding-top: 14px;
+    width: 100%;
+    height: 37px;
+    background: url(../image/barbg.png) top left repeat-x;
+    z-index: 1000;
+}
+#login
+{
+    margin-left: 50px;
+    font-size: 1em;
+    font-weight: 600;
+    color: #FDCC0D;
+    float: left;
+}
+#login a, #login a:hover, #login a:link
+{
+    color: #FDCC0D;
+}
+#login a, login span
+{
+    margin: 0 5px;
+}
+/*弹出购物车.*/
+#cart
+{
+    float: right;
+    margin-right: 76px;
+}
+#mycart
+{
+}
+#mycart a
+{
+    top: -10px;
+    color: White;
+    font-weight: 600;
+}
+#mycart a
+{
+}
+#mycart #cartsumwrap
+{
+    position: relative;
+    top: -8px;
+    color: #fff;
+    left: -10px;
+    font-size: 1.2em;
+    font-style: normal;
+    padding: 1px;
+    background-color: #E68A33;
+}
+
+#mycart img
+{
+    vertical-align: middle;
+}
+#popcart
+{
+    position: absolute;
+    width: 280px;
+    right: 0;
+    z-index: 9999;
+    padding-bottom: 20px;
+    min-height: 100px;
+    display: none; /*filter: alpha(opacity=80);     opacity: 0.7;*/
+}
+.popbg
+{
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #4FA600;
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    z-index: 9990;
+}
+.popmain
+{
+    display: block;
+}
+.popcartbg
+{
+    background-color: White;
+    margin: 5px 10px 10px 10px;
+    display: block;
+}
+#popcart #pchead
+{
+    font-weight: 500;
+    padding: 10px 0 0 22px;
+    height: 29px;
+    background: url(../image/itemstopbg.png) top left repeat-x;
+}
+#pcbody
+{
+    position: absolute;
+    z-index: 9991;
+    top: 0px;
+    left: 0px;
+    width: 260px;
+    margin: 8px 10px 10px 10px;
+    background-color: White;
+}
+#popcart
+{
+}
+.cartdelete
+{
+    cursor: pointer;
+}
+
+
+#pcbtn
+{
+    margin-top: 15px;
+    float: right;
+    height: 20px;
+}
+.deleted
+{
+    text-decoration: line-through;
+}
+#footer
+{
+    /*background-image: url(../image/footerbg.png);*/
+    clear: both;
+    height: 80px;
+    text-align: center;
+    width: 100%;
+    height:324px;
+    background:url("/theme/default/image/20130116/footerBg.jpg");
+    background-repeat:repeat;
+}
+.footer_main
+{
+    width:960px;
+    margin:0px auto;
+    background:url("/theme/default/image/20130116/footerMain.jpg") no-repeat;
+    height:324px;
+}
+.btnScLogin
+{
+    margin:145px 0px 0px 120px;
+    width:109px;
+    height:32px;
+    border:none;
+    cursor:pointer;
+    background:url("/theme/default/image/20130116/scloginBg.jpg") no-repeat;
+}
+.btnScLogin:hover
+{
+    background:url("/theme/default/image/20130116/scloginBg_hover.jpg") no-repeat;
+}
+.about
+{
+    margin:30px 0px 0px -255px;
+}
+.about a
+{
+    margin-left:10px;
+    margin-right:10px;
+    font-size:14px;
+}
+
+
+.footernb
+{
+    width: 100%;
+    margin: 0px auto;
+}
+#footerlink
+{
+    background-color: #D6D7D9;
+    height: 30px;
+    text-align: center;
+    width: 100%;
+}
+#footerlink a:link, #footerlink a:active, #footerlink a:visited
+{
+    font-size: 12px;
+    text-decoration: none;
+    line-height: 30px;
+    margin-left: 15px;
+}
+#footerlink a:hover
+{
+    font-size: 12px;
+    text-decoration: underline;
+    line-height: 30px;
+    margin-left: 15px;
+}
+#footer p
+{
+    font-size: 12px;
+    margin-top: 10px;
+    color: #919191;
+}
+#header
+{
+    text-align: center;
+    width: 100%;
+    height: 146px;
+}
+/*新版样式*/
+.logoleft
+{
+    background: url("/theme/default/image/newversion/Logo2.png");
+    width: 356px;
+    height: 115px;
+    float: left;
+}
+.logoleft img
+{
+    margin:30px 0px 0px 0px;
+}
+.logoright
+{
+    float: left;
+    background: url("/theme/default/image/newversion/logobg2.png");
+    width: 599px;
+    height: 115px;
+    background-repeat: repeat-x;
+    text-align: left;
+}
+.NavList
+{
+    /*background:url("/theme/default/image/newversion/navbg.png");*/
+    background-color: #4F8B11;
+    background-repeat: repeat-x;
+    border-top: 1px solid #1A9F47;
+    border-bottom: 1px solid #86C637;
+    height: 30px;
+    width: 100%;
+}
+.navlistnb
+{
+    margin: 0px auto;
+    width: 955px;
+    padding-left: 5px;
+}
+.uertool
+{
+    width: 340px;
+    margin-top: 7px;
+    text-align: left;
+}
+.uertool a
+{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.searchdiv
+{
+    margin-top: 35px;
+    margin-left: 120px;
+}
+.searchdiv #tbxKeywords
+{
+    float: left;
+    border-style: none;
+    padding:8px 0;
+    margin: 0;
+    width: 347px; /*    *padding-top:9px;       *height:22px;     */
+    padding-left: 15px;
+    background: url("/theme/default/image/20130116/keywordbg.png") repeat-x;
+}
+
+
+.searchdiv #btnSearch
+{
+    cursor: pointer;
+    width: 104px;
+    height: 32px;
+    float: left;
+    margin-left: 4px;
+    background: url("/theme/default/image/20130116/btnSearch.jpg");
+    color: White;
+    font-weight: 700;
+    border: none;
+    position:relative;
+    top:-1px;
+}
+
+#btnSearch:hover
+{
+    cursor: pointer;
+    width: 104px;
+    height: 32px;
+    float: left;
+    margin-left: 4px;
+    color: White;
+    font-weight: 700;
+    background: url("/theme/default/image/20130116/btnSearch_hover.jpg");
+    border: none;
+    position:relative;
+    top:-1px;
+}
+
+
+.navlistnb a, .navlistnb span
+{
+    display: block;
+    float: left;
+    width: 85px;
+    height: 25px;
+    margin-right: 0px;
+    color: White;
+    text-align: center;
+    padding-top: 6px;
+    margin-top: -1px;
+}
+.navlistnb a:hover
+{
+    background-color: #4FA600;
+}
+.navsper
+{
+    border-left: 1px solid #078632;
+    border-right: 1px solid #D1F5A4;
+    display: block;
+    float: left;
+    width: 0px;
+    height: 18px;
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-right: -2px;
+}
+.chartdiv
+{
+    display: block;
+    float: left;
+    width: 280px;
+    height: 30px;
+    margin-left: 330px;
+}
+.chartdiv img
+{
+    margin-left: 130px;
+    float: left;
+}
+.chartdiv span
+{
+    display: block;
+    width: 100px;
+}
+.chartdiv strong
+{
+    color: #F8F400;
+    font-weight: bold;
+    font-size: 14px;
+}
+.HighLightLink:link
+{
+    background-color: Black;
+}
+.navhight
+{
+    background-color: #93D126;
+    font-weight: 600;
+}
+.navhight:hover
+{
+    background-color: #51A42F;
+    font-weight: 600;
+}
+.mainarea
+{
+    position: absolute;
+    z-index: 9999;
+    display: block;
+    width: 72px;
+    height: 30px;
+    border: none;
+    border-right:1px solid #CDCDCD;
+    text-align: left;
+    background:url("/theme/default/image/20130116/keywordbg.png");
+    color:#777777;
+    line-height:30px;
+}
+.mainarea span
+{
+    display: block;
+    font-size:28px;
+    width: 13px;
+    height: 16px;
+    position: relative;
+    top: -22px;
+    left: 52px;
+    cursor: pointer;
+    border-left:1px solid #CDCDCD;
+    padding-left:5px;
+    line-height:33px;
+}
+
+.poptitle
+{
+    padding: 0px;
+    margin: 10px 0px 10px 10px;
+}
+#cartsumhead
+{
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    width: 100%;
+    background-color: #E6E6E6;
+}
+.poptable
+{
+    width: 90%;
+    margin: 0 auto;
+}
+.poptable tr td
+{
+    margin: 0px;
+    padding: 0px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-bottom:1px dashed #DDDDDD;
+}
+
+.popok,.popok:link,.popok:active,.popok:visited
+{
+    border:1px solid #E3007A;
+    font-weight:bold;
+    color:White;
+    background:url("/theme/default/image/newversion/popokbg1.png");
+    height:24px !important;
+    background-repeat:repeat-x;
+    width:90px;
+    line-height:24px;
+    text-align:center;
+    margin-bottom:10px;
+}
+.popok:hover
+{
+    border:1px solid #E3007A;
+    font-weight:bold;
+    color:White;
+    margin-bottom:10px;
+    background:url("/theme/default/image/newversion/popokbg2.png");
+}
+.emptypop
+{
+    display:block;
+    margin:10px 0px 10px 17px;
+}

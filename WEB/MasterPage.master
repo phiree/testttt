@@ -11,7 +11,7 @@
     <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
     <!--[if lt IE 8]><link rel="stylesheet" href="/theme/ie.css" type="text/css" media="screen, projection"/><![endif]-->
-    <link href="/theme/default/css/MasterPage.css" rel="stylesheet" type="text/css" media="screen, projection" />
+    <link href="/theme/default/css/20130116/MasterPage.css" rel="stylesheet" type="text/css" media="screen, projection" />
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
     <script src="/Scripts/json2.js" type="text/javascript"></script>
@@ -35,11 +35,11 @@
     <div class="Filldiv"></div>
     <div id="header">
             <div id="logo">
-                <div class="mainarea" style="padding-left:7px">
-                    浙江省<span></span></div>
+                <div class="mainarea" style="padding-left:15px">
+                    浙江省<span>ˇ</span></div>
                     <div class="logoleft">
                         <a href="/">
-                            <img src="/theme/default/image/newversion/tourol.jpg" alt="中国旅游在线" />
+                            <img src="/theme/default/image/20130116/tourol.jpg" alt="中国旅游在线" />
                         </a>
                     </div>
                 <div class="logoright">
@@ -60,7 +60,7 @@
                         <asp:TextBox runat="server" ClientIDMode="Static" ID="tbxKeywords">
                         </asp:TextBox>
                         <asp:Button runat="server" ID="btnSearch" ClientIDMode="Static" OnClick="btnSearch_Click"
-                            Text="门票搜索" />
+                            Text="" />
                     </div>
                 </div>
             </div>
@@ -79,14 +79,12 @@
             </asp:ContentPlaceHolder>
     </div>
     <div id="footer">
-                <div id="footerlink">
-                    <a href="/About/Default.aspx">关于旅游在线</a> <a href="/About/Link.aspx">联系我们</a> <a href="/ScenicManager/Login.aspx">
-                        景区登录</a>
-                </div>
-                <p>
-                    杭州笨牛信息技术有限公司版权所有 &nbsp;&nbsp;<a rel="nofollow" href="http://www.miibeian.gov.cn/"
-                        target="_blank" style="color:#919191">浙ICP备12017395号</a>
-                </p>
+       <div class="footer_main">
+           <asp:Button ID="btnScLogin" runat="server" Text="" CssClass="btnScLogin" OnClick="btnScLogin_Click" />
+           <div class="about">
+                <a href="/About/Default.aspx">关于旅游在线</a>|<a href="/About/Link.aspx">联系我们</a>
+           </div>
+       </div>
     </div>
     <div style="display: none">
         <div id="dasff">
