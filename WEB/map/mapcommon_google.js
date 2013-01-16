@@ -168,7 +168,7 @@ document.onkeydown = function (e) {
         e = window.event;
     var int_keycode = e.charCode || e.keyCode;
     if (int_keycode == 13 && $("#txtSearch").val() != "请输入您要搜索的景区" && $("#txtSearch").val() != "") {
-        getCoordinatesNotScId(null);
+        getCoordinatesNotScId();
     }
 }
 
@@ -192,7 +192,7 @@ function btnarea(obj) {
             }
         }
     });
-    getCoordinatesNotScId(null);
+    getCoordinatesNotScId();
     $(".sellevelinfo").slideToggle();
 }
 
@@ -243,6 +243,6 @@ function qdtopic(obj) {
             }
         }
     });
-    getCoordinatesNotScId(null);
+    getCoordinatesNotScId();
     $(".selthemeinfo").slideToggle();
 }

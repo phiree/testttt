@@ -3,7 +3,7 @@ var allCoordinates; //页面目前所查询出来的坐标
 var map; //google地图变量
 var overlayMarker = new Array(); //地图覆盖物
 var numcount; //右侧编码序号
-var infoWindow; //内容页集合
+var infoWindow; //内容页
 /*页面初始*/
 $(function () {
     //cookie初始化
@@ -22,25 +22,16 @@ $(function () {
     else {
         $.cookie("strurlareaid", "");
     }
-    if (strUrl.scenicid != undefined) {
-        //带有地区的页面查询
-        getCoordinatesNotScId(strUrl.scenicid);
-    }
-    else {
-        //不带有地区的页面查询
-        getCoordinatesNotScId(null);
-    }
+    getCoordinatesNotScId();
+
 });
-/*不带有地区id的查询方法*/
-function getCoordinatesNotScId(scid) {
+/*查询方法*/
+function getCoordinatesNotScId() {
     //显示加载提示
     $(".loaddiv").css("display", "block");
     var randomParam = new Date().toString();
     var url;
-    if(scid==null)
-        url = "/map/map.ashx?type=2&tP=" + randomParam;
-    else
-        url = "/map/SearchBigMap.ashx?scenicid=" + scid;
+    url = "/map/map.ashx?type=2&tP=" + randomParam;
     if ($("[id$='txtSearch']").val() == "请输入您要搜索的景区")
         $.cookie("scname", "");
     else
@@ -78,12 +69,10 @@ function getCoordinatesNotScId(scid) {
                     panControlOptions: { position: google.maps.ControlPosition.LEFT_CENTER }
                 };
                 numcount = 0;
-                infoWindow = new Array();
                 map = new google.maps.Map(document.getElementById("container"), myOptions);
 
             }
             numcount = 0;
-            var loadstr = ""; //右边加载的数据
             for (var i = 0; ; i++) {
                 if (allCoordinates[i] == undefined)
                     break;
@@ -91,25 +80,21 @@ function getCoordinatesNotScId(scid) {
                     numcount++;
                     var point = new google.maps.LatLng(allCoordinates[i].position.split(",")[1], allCoordinates[i].position.split(",")[0]);
                     var txt = allCoordinates[i].name;
+                    var scenicid = allCoordinates[i].id;
                     var overlay;
                     if (numcount <= 15) {
-                        overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: numcount });
-                        loadstr += "<div class='scenicinfo'>";
-                        loadstr += "<span class='sceincnum'>" + ((parseInt($.cookie("pager_currPage")) - 1) * 15 + numcount) + "</span><span onmouseover='changescnamecl(this)' onmouseout='changescnamecl2(this)' class='spansceincname' onclick='mapscenic(" + numcount + ")'>" + allCoordinates[i].name + "</span><a href='/Tickets/" + allCoordinates[i].areaseoname + "/" + allCoordinates[i].scseoname + ".html' >[预定]</a>"
-                        loadstr += "</div>";
+                        overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: numcount, scid: scenicid });
                     }
                     else {
-                        overlay = new customOverlay_Small(map, { latlng: point, id: numcount });
+                        overlay = new customOverlay_Small(map, { latlng: point, id: numcount, scid: scenicid });
                     }
                     overlayMarker.push(overlay);
-                    infoWindow[numcount] = new google.maps.InfoWindow({
-                        content: InfoWindowContent(allCoordinates[i]),
-                        position: point
-                    });
                 }
             }
 
-            $("#resultscenic").html(loadstr);
+            //$("#resultscenic").html(loadstr);
+            $.cookie("pageindex", '1');
+            btnshowinfo();
             $("#countscenic").html($.cookie("numcount"));
             //加载完关闭加载图片
             $(".loaddiv").css("display", "none");
@@ -136,8 +121,8 @@ function clearOverlays() {
 }
 /*关闭所有的窗口*/
 function closeWinInfo() {
-    for (var i = 1; i < infoWindow.length; i++) {
-        infoWindow[i].close();
+    if (infoWindow != undefined && infoWindow != null) {
+        infoWindow.close();
     }
 }
 /*创建google自定义覆盖物*/
@@ -146,6 +131,7 @@ function customOverlay_Large(map, options) {
     this._latlng = options.latlng; //设置图标位置
     this._text = options.text;
     this._id = options.id;
+    this._scid = options.scid;
     this._map = map;
     this._div = null;
     this.setMap(map);
@@ -189,8 +175,18 @@ customOverlay_Large.prototype.onAdd = function () {
     //注册div点击事件
     $(div).click(function () {
         closeWinInfo();
-        var index = that._id;
-        infoWindow[index].open(map);
+        var randomParam = new Date().toString();
+        $.get(
+            '/map/mapscenic.ashx?t=' + randomParam + '&scid=' + that._scid,
+            function (detail_scenic) {
+                var ds = eval("(" + detail_scenic + ")");
+                infoWindow = new google.maps.InfoWindow({
+                    content: InfoWindowContent(ds),
+                    position: that._latlng
+                });
+                infoWindow.open(map);
+            }
+        )
     });
     this._div = div;
     var panes = this.getPanes();
@@ -215,6 +211,7 @@ function customOverlay_Small(map, options) {
     this._map = map;
     this._div = null;
     this._id = options.id;
+    this._scid = options.scid;
     this.setMap(map);
 }
 customOverlay_Small.prototype = new google.maps.OverlayView();
@@ -237,8 +234,18 @@ customOverlay_Small.prototype.onAdd = function () {
     //注册div点击事件
     $(div).click(function () {
         closeWinInfo();
-        var index = that._id;
-        infoWindow[index].open(map);
+        var randomParam = new Date().toString();
+        $.get(
+            '/map/mapscenic.ashx?t=' + randomParam + '&scid=' + that._scid,
+            function (detail_scenic) {
+                var ds = eval("(" + detail_scenic + ")");
+                infoWindow = new google.maps.InfoWindow({
+                    content: InfoWindowContent(ds),
+                    position: that._latlng
+                });
+                infoWindow.open(map);
+            }
+        )
     });
     this._div = div;
     var panes = this.getPanes();
@@ -293,11 +300,14 @@ function btnshowinfo() {
             numCount++;
             var point = new google.maps.LatLng(allCoordinates[k].position.split(",")[1], allCoordinates[k].position.split(",")[0]);
             var txt = allCoordinates[k].name;
+            var scenicid = allCoordinates[k].id;
             var overlay;
-            if (numCount < begin || numCount > begin + 15)
-                overlay = new customOverlay_Small(map, { latlng: point, id: numCount });
-            else
-                overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: numCount });
+            if (numCount < begin || numCount > begin + 15) {
+                overlay = new customOverlay_Small(map, { latlng: point, id: numCount, scid: scenicid });
+            }
+            else {
+                overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: numCount, scid: scenicid });
+            }
             overlayMarker.push(overlay);
         }
     }
@@ -311,16 +321,27 @@ function btnshowinfo() {
             break;
         //loadstr += "<tr><td><font class='num'>" + parseInt(i + 1) + "</font></td><td><a style='cursor: pointer;' onclick='mapscenic(" + allpoint[i].position + ")'>" + allpoint[i].name + " </a> </td><td>" + allpoint[i].level + "</td><td>" + allpoint[i].price + "</td></tr>";
         loadstr += "<div class='scenicinfo'>";
-        loadstr += "<span class='sceincnum'>" + parseInt(i + 1) + "</span><span class='spansceincname' onmouseout='changescnamecl2(this)' onmouseover='changescnamecl(this)' onclick='mapscenic(" + i+1 + ")'>" + allCoordinates[i].name + "</span><a href='/Tickets/" + allCoordinates[i].areaseoname + "/" + allCoordinates[i].scseoname + ".html' >[预定]</a>"
+        loadstr += "<span class='sceincnum'>" + parseInt(i + 1) + "</span><span class='spansceincname' onmouseout='changescnamecl2(this)' onmouseover='changescnamecl(this)' onclick='mapscenic(" + allCoordinates[i].id + "," + allCoordinates[i].position + ")'>" + allCoordinates[i].name + "</span><a href='/Scenic/Default.aspx?sname=" + allCoordinates[i].scseoname + "' >[预定]</a>"
         loadstr += "</div>";
     }
     $("#resultscenic").html(loadstr);
 }
 /*打开指定信息窗口*/
-function mapscenic(iwId) {
-    var index = iwId;
+function mapscenic(iwId,lat,lng) {
+    var point = new google.maps.LatLng(lng, lat);
     closeWinInfo();
-    infoWindow[index].open(map);
+    var randomParam = new Date().toString();
+    $.get(
+            '/map/mapscenic.ashx?t=' + randomParam + '&scid=' + iwId,
+            function (detail_scenic) {
+                var ds = eval("(" + detail_scenic + ")");
+                infoWindow = new google.maps.InfoWindow({
+                    content: InfoWindowContent(ds),
+                    position: point
+                });
+                infoWindow.open(map);
+            }
+        )
 }
 
 /*获取url所带参数*/

@@ -136,11 +136,13 @@
     <Compile Include="BLLTest\ExcelOperTets.cs" />
     <Compile Include="BLLTest\FormatSerialNoTest.cs" />
     <Compile Include="BLLTest\OrderTest.cs" />
+    <Compile Include="BLLTest\Quzhou\BLLTicketSellerTest.cs" />
     <Compile Include="BLLTest\SerializationModelTest.cs" />
     <Compile Include="BLLTest\TicketTest.cs" />
     <Compile Include="BLLTest\TicketXmlParserTest.cs" />
     <Compile Include="BLLTest\ScenicTest.cs" />
     <Compile Include="BLLTest\DJS\RouteTest.cs" />
+    <Compile Include="CommonLibraryTest\AppSettingsManagerTest.cs" />
     <Compile Include="CommonLibraryTest\ContentReader.cs" />
     <Compile Include="CommonLibraryTest\testStringHelper.cs" />
     <Compile Include="CommonLibraryTest\UrlParamHelperTest.cs" />

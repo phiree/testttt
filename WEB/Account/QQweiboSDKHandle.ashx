@@ -38,7 +38,7 @@ public class QQweiboHandle : IHttpHandler, System.Web.SessionState.IRequiresSess
         QWeiboSDK.OauthKey oauthKey = new QWeiboSDK.OauthKey();
         oauthKey.customKey = customKey;
         oauthKey.customSecret = customSecret;
-        oauthKey.callbackUrl =  "http://www.tourol.cn/Account/QQweiboSDKRecieveHandle.ashx";
+        oauthKey.callbackUrl = System.Configuration.ConfigurationManager.AppSettings["QQWeiboCallBackUrl"];
 
         QWeiboSDK.QWeiboRequest request = new QWeiboSDK.QWeiboRequest();
         try

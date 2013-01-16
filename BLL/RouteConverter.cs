@@ -13,17 +13,20 @@ namespace BLL
 
         public static List<UIRoute> ConvertToUI(DJ_TourGroup Group)
         {
-            IList<DJ_Route> routes = Group.Routes;
+            return ConvertToUI(Group.Routes.Cast<DJ_ProductRoute>().ToList(), Group.DaysAmount);
+        }
+
+        public static List<UIRoute> ConvertToUI(IList<DJ_ProductRoute> routes,int dayAmount)
+        {
+           
             List<UIRoute> uiRoutes = new List<UIRoute>();
-           // if (routes.Count == 0) { return uiRoutes; }
-            int totalDays = Group.DaysAmount;
-            for (int i = 1; i <= totalDays; i++)
+            for (int i = 1; i <= dayAmount; i++)
             {
                 List<DJ_TourEnterprise> scenics = new List<DJ_TourEnterprise>();
                 List<DJ_TourEnterprise> hotels = new List<DJ_TourEnterprise>();
                 UIRoute uiroute = new UIRoute();
-                IList<DJ_Route> dayRoutes = routes.Where(x => x.DayNo == i).ToList<DJ_Route>();
-                foreach (DJ_Route dayroute in dayRoutes)
+                IList<DJ_ProductRoute> dayRoutes = routes.Where(x => x.DayNo == i).ToList<DJ_ProductRoute>();
+                foreach (DJ_ProductRoute dayroute in dayRoutes)
                 {
                     DJ_TourEnterprise ent = dayroute.Enterprise;
                     EnterpriseType type = dayroute.Enterprise.Type;

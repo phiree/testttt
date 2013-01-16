@@ -3,7 +3,6 @@
 
 <%@ Register src="RouteEditControl.ascx" tagname="RouteEditControl" tagprefix="uc1" %>
 
-<%@ Register src="RouteListControl.ascx" tagname="RouteListControl" tagprefix="uc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 </asp:Content>
@@ -26,6 +25,14 @@
                     <asp:TextBox runat="server" ID="tbxDayAmount"></asp:TextBox>
                 </td>
             </tr>
+              <tr>
+                <td>
+                  路线
+                </td>
+                <td>
+                   <uc1:RouteEditControl runat="server"  ID="ucRouteEditor" />
+                </td>
+            </tr>
             <tr>
                 <td>
                     备注
@@ -38,6 +45,6 @@
         </table>
                           
 
-        <asp:Button runat="server" ID="btnSaveProduct" OnClick="btnSaeProduct_Click" Text="保存" />
+        <asp:Button runat="server" ID="btnSaveProduct"     OnClick="btnSaveProduct_Click" Text="保存" />
     </div>
 </asp:Content>

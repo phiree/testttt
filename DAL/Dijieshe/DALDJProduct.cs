@@ -10,26 +10,13 @@ using NHibernate;
 namespace DAL
 {
 
-    public class DALDJProduct : DalBase, IDAL.IDJProduct
+    public class DALDJProduct : DalBase<Model.DJ_Product>
     {
 
-        public Model.DJ_Product GetById(Guid productId)
+        public IList<Model.DJ_Product> GetProductListByDjsId(int dijiesheId)
         {
-            return session.Get<Model.DJ_Product>(productId);
-        }
-        public void Save(Model.DJ_Product product)
-        {
-            session.Save(product);
-            session.Flush();
-        }
-
-
-        public IList<Model.DJ_Product> GetListByTEId(int TEId)
-        {
-            string sql = "select r.DJ_Product  from DJ_Route r where r.Enterprise.Id=" + TEId + "";
-            IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.DJ_Product>().ToList<Model.DJ_Product>();
-
+            string query = "select P from DJ_Product as P where P.DJ_DijiesheInfo.Id=" + dijiesheId;
+            return GetList(query);
         }
     }
 }

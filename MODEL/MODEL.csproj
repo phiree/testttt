@@ -69,6 +69,8 @@
     <Compile Include="Dijieshe\DJ_User.cs" />
     <Compile Include="Dijieshe\DJ_Product.cs" />
     <Compile Include="Dijieshe\DJ_Workers.cs" />
+    <Compile Include="Dijieshe\DJ_ProductRoute.cs" />
+    <Compile Include="Dijieshe\IProductPublisher.cs" />
     <Compile Include="DiscountCode.cs" />
     <Compile Include="Mapping\Dijieshe\DijiesheInfoMap.cs" />
     <Compile Include="Mapping\Dijieshe\DJ_Group_WorkerMap.cs" />
@@ -83,12 +85,19 @@
     <Compile Include="Mapping\Dijieshe\DJ_UserMap.cs" />
     <Compile Include="Mapping\Dijieshe\DJProductMap.cs" />
     <Compile Include="Mapping\Dijieshe\DJ_Group_VehicleMap.cs" />
+    <Compile Include="Mapping\Dijieshe\DJ_ProductRouteMap.cs" />
     <Compile Include="Mapping\Order\RefundMap.cs" />
+    <Compile Include="Mapping\QuZhouSpring\QZTicketAsignMap.cs" />
+    <Compile Include="Mapping\QuZhouSpring\PartnerTicketAsignMap.cs" />
+    <Compile Include="Mapping\QuZhouSpring\QZSpringPartnerMap.cs" />
     <Compile Include="Mapping\ScenicTicketMap.cs" />
     <Compile Include="Mapping\TicketsTypeMap.cs" />
     <Compile Include="Mapping\TopicMap.cs" />
     <Compile Include="Mapping\OperationLogMap.cs" />
     <Compile Include="Dijieshe\DJ_Recommand.cs" />
+    <Compile Include="QuZhouSpring\PartnerTicketAsign.cs" />
+    <Compile Include="QuZhouSpring\QZSpringPartner.cs" />
+    <Compile Include="QuZhouSpring\QZTicketAsign.cs" />
     <Compile Include="ScenicMap.cs" />
     <Compile Include="Mapping\CommonUserMap.cs" />
     <Compile Include="Mapping\ContractImgMap.cs" />
@@ -153,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <Compile Include="Dijieshe\IProductSubServer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

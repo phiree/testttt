@@ -11,10 +11,10 @@ namespace BLL
 {
     public class BLLTicket
     {
-        ITicket iticket;
+        DALTicket iticket;
         BLLScenic bllScenic = new BLLScenic();
 
-        public ITicket Iticket
+        public DALTicket Iticket
         {
             get
             {

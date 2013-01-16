@@ -73,4 +73,9 @@ public partial class MasterPage2 : System.Web.UI.MasterPage
             haa.HRef = "/Tickets/" + bllArea.GetAreaByCode(t.Scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + t.Scenic.Area.SeoName + "/" + t.Scenic.SeoName + ".html";
         }
     }
+
+    protected void btnScLogin_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/ScenicManager/Login.aspx");
+    }
 }

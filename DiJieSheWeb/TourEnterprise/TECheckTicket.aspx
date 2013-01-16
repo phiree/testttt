@@ -3,7 +3,6 @@
 
 <%@ MasterType VirtualPath="~/TourEnterprise/TE.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" runat="Server">
-    <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
     <script src="/Scripts/CheckTicket.js" type="text/javascript"></script>
     <%--<link href="/theme/default/css/Print.css" rel="stylesheet" type="text/css" />--%>
     <link href="/Content/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />

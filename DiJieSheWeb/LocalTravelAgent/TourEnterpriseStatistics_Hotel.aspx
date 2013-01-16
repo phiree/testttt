@@ -8,7 +8,6 @@
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/Sequence.js" type="text/javascript"></script>
     <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery-ui-1.9.2.min.js"></script>
     <link href="/Scripts/jqueryplugin/tablesorter/style.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jquery.tablesorter.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/OrderIndex.js" type="text/javascript"></script>

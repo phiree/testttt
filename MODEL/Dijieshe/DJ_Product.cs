@@ -8,14 +8,14 @@ namespace Model
     /// <summary>
     /// 产品
     /// </summary>
-    public class DJ_Product
+    public class DJ_Product:IProductPublisher
     {
         public virtual Guid Id { get; set; }
         public virtual string Name { get; set; }
         /// <summary>
         /// 产品模板:具体的产品信息会复制模板产品,并在此基础上做修改(如果必要)
         /// </summary>
-        public virtual bool IsTemplate { get; set; }
+       
         /// <summary>
         /// 天数
         /// </summary>
@@ -23,35 +23,40 @@ namespace Model
         /// <summary>
         /// 行程安排
         /// </summary>
-        public virtual IList<DJ_Route> Routes { get; set; }
-
-        public virtual DJ_Product Copy()
+        public virtual IList<DJ_ProductRoute> Routes { get; set; }
+        public virtual DJ_DijiesheInfo DJ_DijiesheInfo { get; set; }
+        public virtual void CopyToGroup(DJ_TourGroup group)
         {
-            if (!IsTemplate)
+            group.Routes.Clear();
+            foreach (DJ_ProductRoute pr in Routes)
             {
-                throw new Exception("只有模板产品才可以复制");
+                DJ_Route r = new DJ_Route();
+                r.DJ_TourGroup = group;
+                r.DayNo = pr.DayNo;
+                r.Description = pr.Description;
+                r.Enterprise = pr.Enterprise;
+                r.RD_EnterpriseName = pr.RD_EnterpriseName;
+                group.Routes.Add(r);
             }
-            DJ_Product product = new DJ_Product();
-            product.Id = Guid.NewGuid();
-            product.Name = this.Name;
-            product.IsTemplate = false;
-            product.DaysAmount = this.DaysAmount;
-
-            DJ_Route[] routesArr = new DJ_Route[] { };
-            // this.Routes.
-            this.Routes.CopyTo(routesArr, 0);
-            IList<DJ_Route> newRoutes = new List<DJ_Route>();
-            foreach (DJ_Route r in routesArr)
-            {
-                newRoutes.Add(r);
-            }
-            product.Routes = newRoutes;
-           
-
-            return product;
+        }
+        IList<IProductObserver> observers = new List<IProductObserver>();
+        public virtual void AddObserver(IProductObserver observer)
+        {
+            observers.Add(observer);
         }
 
-        public virtual DJ_DijiesheInfo DJ_DijiesheInfo { get; set; }
+        public virtual void RemoveObserver(IProductObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public virtual void NoticeObservers()
+        {
+            foreach (IProductObserver observer in observers)
+            {
+                observer.BeNoticed();
+            }
+        }
     }
 
 }
