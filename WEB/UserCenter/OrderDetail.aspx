@@ -135,8 +135,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" runat="Server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
+
     <div id="oscdpinfo">
         <div class="oscdptop">
             <span runat="server" id="paystate" style="color: #807940;font-weight:600;"></span>
