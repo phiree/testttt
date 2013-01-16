@@ -22,6 +22,15 @@ public class TicketService : System.Web.Services.WebService
         //如果使用设计的组件，请取消注释以下行 
         //InitializeComponent(); 
     }
+    /// <summary>
+    /// 合作方请求门票资源
+    /// </summary>
+    /// <param name="PartnerCode">合作方ID</param>
+    /// <param name="CardNumber">抢票者身份证号码</param>
+    /// <param name="ProductCode">门票代码</param>
+    /// <param name="Number">购买数量</param>
+    /// <param name="errMsg">如果返回值为F,则是错误消息,若是T则为空</param>
+    /// <returns>"T"(请票成功)或"F"(失败)</returns>
     [WebMethod]
     public string buyProduct(string PartnerCode , string CardNumber, string ProductCode,int Number,out string errMsg)
     {
@@ -31,18 +40,24 @@ public class TicketService : System.Web.Services.WebService
         return result;
     }
     /// <summary>
-    /// 接入方
+    /// 合作方查询剩某日期的剩余门票数量
     /// </summary>
-    /// <param name="PartnerCode"></param>
-    /// <param name="productCode"></param>
-    /// <param name="dt"></param>
-    /// <returns></returns>
+    /// <param name="PartnerCode">合作方ID</param>
+    /// <param name="productCode">门票代码</param>
+    /// <param name="dt">日期</param>
+    /// <returns>剩余数量</returns>
     [WebMethod]
-    public string ProductInfo(string PartnerCode, string productCode, DateTime dt)
+    public int ProductInfo(string PartnerCode, string productCode, DateTime dt)
     {
 
-        return string.Empty;
+        int leftAmount = 0;
+        return leftAmount;
     }
+    /// <summary>
+    /// 游客查询自己抢订到的门票
+    /// </summary>
+    /// <param name="idcardno">用户</param>
+    /// <returns></returns>
     [WebMethod]
     public DataSet UserProductInfo(string idcardno)
     {

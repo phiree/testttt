@@ -6,17 +6,26 @@ using System.Text;
 namespace Model
 {
     /// <summary>
-    /// 景区门票总量
+    /// 指定日期的门票分配情况
     /// </summary>
-   public class TicketAsign
+   public class QZTicketAsign
     {
        public Guid Id { get; set; }
        //门票-->景区
+       //本次活动的门票代码.
+       public string ProductCode { get; set; }
+       //网站对应的门票
        public Ticket Ticket { get; set; }
        //总数
        public int Amount { get; set; }
+       //已售总数
        public int SoldAmount { get; set; }
-       public IList<ClientTicketAsign> ClientTicketAsign
+       //日期
+       public DateTime Date { get; set; }
+       /// <summary>
+       /// 该景区门票的分配情况.
+       /// </summary>
+       public IList<PartnerTicketAsign> PartnerTicketAsign
        {
            get;
            set;
@@ -24,7 +33,7 @@ namespace Model
        public virtual bool ValidAmount()
        {
            int asigned = 0;
-           foreach (ClientTicketAsign ct in ClientTicketAsign)
+           foreach (PartnerTicketAsign ct in PartnerTicketAsign)
            {
                asigned += ct.AsignedAmount;
            }

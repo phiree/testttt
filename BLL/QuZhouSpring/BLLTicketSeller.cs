@@ -16,7 +16,7 @@ namespace BLL.QuZhouSpring
 
            //验证通过
            //1 为身份证号创建一个用户名
-           //2 为该用户购买id为ticketid的门票
+           //2 为该用户购买id为ticketid的门票 把门票分配额给该身份证号码.
            //3 该接入商该景区的已售门票+1
        }
     }
