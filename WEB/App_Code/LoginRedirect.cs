@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 /// <summary>
 ///LoginRedirect 的摘要说明
 /// </summary>

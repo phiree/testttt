@@ -15,10 +15,11 @@ namespace Model
         {
             Id(x => x.Id);
             Map(x => x.DaysAmount);
-            Map(x => x.IsTemplate);
+          
           //  Map(x => x.Gather);
             Map(x => x.Name);
-            HasMany<DJ_Route>(x => x.Routes);
+            References<DJ_DijiesheInfo>(x => x.DJ_DijiesheInfo);
+            HasMany<DJ_ProductRoute>(x => x.Routes);
         }
     }
 }

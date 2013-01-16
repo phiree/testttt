@@ -14,7 +14,7 @@ namespace TourTest.BLLTest
         [Test]
         public void EnsureTicket()
         {
-            IDAL.ITicket iticket = MockRepository.GenerateStub<IDAL.ITicket>();
+            var  iticket = MockRepository.GenerateStub<DAL.DALTicket>();
             int scid = 1;
             IList<Model.Ticket> tickets = new List<Model.Ticket>();
             Model.Ticket ticket = new Model.Ticket() { Name="test"};

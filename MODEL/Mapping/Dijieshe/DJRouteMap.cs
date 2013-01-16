@@ -9,15 +9,11 @@ namespace Model
     /// <summary>
     /// 行程路线
     /// </summary>
-    public class DJ_RouteMap : ClassMap<DJ_Route>
+    public class DJ_RouteMap : SubclassMap<DJ_Route>
     {
         public DJ_RouteMap()
         {
-            Id(x => x.Id);
-            Map(x => x.DayNo);
-            References(x => x.Enterprise).Cascade.SaveUpdate();
-            Map(x => x.Description);
-            Map(x => x.RD_EnterpriseName);
+          
             References<DJ_TourGroup>(x => x.DJ_TourGroup);
         }
     }
