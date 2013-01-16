@@ -72,7 +72,8 @@
                             <li><a href="/Manager/ScenicMapPoint.aspx">景区坐标初始化</a></li>
                             <li><a href="/Manager/ImportMipangTicket.aspx">
                                 米胖门票导入</a></li>
-                                <li><a href="/manager/quzhouspring/">衢州春节门票大放送</a></li>
+                                <li><a href="/manager/quzhouspring/ClientList.aspx">衢州春节门票(网站列表)</a></li>
+                                <li><a href="/manager/quzhouspring/TicketAsignList.aspx">衢州春节门票(门票分配)</a></li>
                         </ul>
                       
                       

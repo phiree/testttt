@@ -55,9 +55,17 @@ h5
     padding-left:10px;
     line-height:20px;
 }
+table
+{
+    width:100%;
+    border-left:1px solid #CDCDCD;
+    border-top:1px solid #CDCDCD;
+}
 table tr td
 {
     height:20px !important;
+    border-right:1px solid #CDCDCD;
+    border-bottom:1px solid #CDCDCD;
 }
 .detaillist .InfoTable
 {
