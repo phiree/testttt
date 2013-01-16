@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.OleDb;
 using System.Data;
 using System.IO;
+using System.Web;
 
 namespace ExcelOplib
 {
@@ -15,9 +16,38 @@ namespace ExcelOplib
     {
         private readonly BLL.BLLArea bllarea = new BLL.BLLArea();
         private readonly BLL.BLLTicket bllticket = new BLL.BLLTicket();
+        private readonly string mappath = HttpContext.Current.Server.MapPath(null) + "/d";
 
         public void Run()
         {
+            if(!Directory.Exists(mappath))
+            {
+                Directory.CreateDirectory(mappath);
+            }
+            if (!Directory.Exists(mappath + "/testMainimgLocalizer/"))
+            {
+                Directory.CreateDirectory(mappath + "/testMainimgLocalizer/");
+            }
+            if (!Directory.Exists(mappath + "/testDetailimgLocalizer/"))
+            {
+                Directory.CreateDirectory(mappath + "/testDetailimgLocalizer/"); 
+            }
+            if (!Directory.Exists(mappath + "/scenicimg/"))
+            {
+                Directory.CreateDirectory(mappath + "/scenicimg/");
+            }
+            if (!Directory.Exists(mappath + "/scenicimg/mainimg/"))
+            {
+                Directory.CreateDirectory(mappath + "/scenicimg/mainimg/");
+            }
+            if (!Directory.Exists(mappath + "/scenicimg/detailimg/"))
+            {
+                Directory.CreateDirectory(mappath + "/scenicimg/detailimg/");
+            }
+            if (!Directory.Exists(mappath + "/scenicimg/small/"))
+            {
+                Directory.CreateDirectory(mappath + "/scenicimg/small/");
+            }
             var bllscenic = new BLL.BLLScenic();
             var newslist = getSceniclist();
 
@@ -53,7 +83,7 @@ namespace ExcelOplib
                     s.Area = bllarea.GetAreaByAreaname(item.areaid);
                     //处理topic字符串
                     var temptopic = item.topic.Split(new char[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
-                   // blltopic.SaveScenictopic(temptopic, s.Id);
+                    // blltopic.SaveScenictopic(temptopic, s.Id);
                     s.Trafficintro = item.trafficintro;
                     s.BookNote = item.bookintro;
                     s.ScenicDetail = item.scenicdetail;
@@ -84,7 +114,7 @@ namespace ExcelOplib
                         }
                         else//不存在该票
                         {
-                            t = new Model.Ticket {Name = te.ticketname, Scenic = s, IsMain = true};
+                            t = new Model.Ticket { Name = te.ticketname, Scenic = s, IsMain = true };
                             t.TicketPrice = new List<Model.TicketPrice>() { 
                             new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
                             new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
@@ -136,7 +166,7 @@ namespace ExcelOplib
                     s.Tickets = tickets;
                     s.Photo = item.mainpic;
                     bllscenic.UpdateScenicInfo(s);
-                 //   blltopic.SaveScenictopic(temptopic, bllscenic.GetScenicBySeoName(item.seoname).Id);
+                    //   blltopic.SaveScenictopic(temptopic, bllscenic.GetScenicBySeoName(item.seoname).Id);
                     List<Model.ScenicImg> silist = CopyFile(s);
                     if (silist != null)
                     {
@@ -155,8 +185,8 @@ namespace ExcelOplib
         {
             try
             {
-                DataSet ds = new DataSet();
-                DataTable dt = new DataTable();
+                var ds = new DataSet();
+                var dt = new DataTable();
                 #region 07
                 //path即是excel文档的路径。
                 //var conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\景区表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
@@ -166,23 +196,23 @@ namespace ExcelOplib
                 //ad.Fill(dt);
                 #endregion
                 #region 03
-                
-                    const string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\衢州景区表格式.xls;Extended Properties=Excel 8.0";
-                    const string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介,主图 from [Sheet1$]";
-                    var cmd = new OleDbCommand(sql, new OleDbConnection(conn));
-                    var ad = new OleDbDataAdapter(cmd);
-                    ad.Fill(dt);
+
+                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + mappath + "/衢州景区表格式.xls;Extended Properties=Excel 8.0";
+                const string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介,主图 from [Sheet1$]";
+                var cmd = new OleDbCommand(sql, new OleDbConnection(conn));
+                var ad = new OleDbDataAdapter(cmd);
+                ad.Fill(dt);
                 #endregion
-                List<Entity.ScenicEntity> slist = new List<Entity.ScenicEntity>();
-                for (int i = 0; i < dt.Rows.Count; i++)
+                var slist = new List<Entity.ScenicEntity>();
+                for (var i = 0; i < dt.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
                     if (string.IsNullOrEmpty(dt.Rows[i][0].ToString())) continue;
 
                     //对景区详情处理
-                    string[] srclist = GetPiclist(dt.Rows[i][0].ToString().Replace("\n", "").Trim()).Split(new char[] { '$' }, StringSplitOptions.RemoveEmptyEntries);
-                    string scdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim();
-                    for (int j = 0; j < srclist.Length / 2; j++)
+                    var srclist = GetPiclist(dt.Rows[i][0].ToString().Replace("\n", "").Trim()).Split(new char[] { '$' }, StringSplitOptions.RemoveEmptyEntries);
+                    var scdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim();
+                    for (var j = 0; j < srclist.Length / 2; j++)
                     {
                         scdetail = scdetail.Replace(srclist[j], srclist[j + srclist.Length / 2]);
                     }
@@ -224,24 +254,24 @@ namespace ExcelOplib
                 DataTable dt = new DataTable();
                 #region 07
                 //path即是excel文档的路径。
-                //string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\衢州价格表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
+                //string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= "++"\衢州价格表格式.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
                 //string sql = "select 景区名称,门票名称,原价,在线支付价 from [Sheet1$]";
                 //OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                 //OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
                 //ad.Fill(dt);
                 #endregion
                 #region 03
-                if (dt == null || dt.Rows.Count == 0)
+                if (dt.Rows.Count == 0)
                 {
-                    var conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\衢州价格表格式.xls;Extended Properties=Excel 8.0";
-                    var sql = "select 景区名称,门票名称,原价,在线支付价 from [Sheet1$]";
+                    var conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + mappath + "/衢州价格表格式.xls;Extended Properties=Excel 8.0";
+                    const string sql = "select 景区名称,门票名称,原价,在线支付价 from [Sheet1$]";
                     var cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                     var ad = new OleDbDataAdapter(cmd);
                     ad.Fill(dt);
                 }
                 #endregion
-                List<Entity.TicketEntity> tlist = new List<Entity.TicketEntity>();
-                for (int i = 0; i < dt.Rows.Count; i++)
+                var tlist = new List<Entity.TicketEntity>();
+                for (var i = 0; i < dt.Rows.Count; i++)
                 {
                     tlist.Add(new Entity.TicketEntity()
                     {
@@ -266,11 +296,11 @@ namespace ExcelOplib
         /// <returns></returns>
         private List<Model.ScenicImg> CopyFile(Model.Scenic scenic)
         {
-            string sourcePath = @"d:\testMainimgLocalizer\" + scenic.Name.Trim();
+            string sourcePath = mappath + "/testMainimgLocalizer/" + scenic.Name.Trim() + "/";
             if (!Directory.Exists(sourcePath)) return null;
-            string destPath = @"d:\scenicimg\mainimg";
-            DirectoryInfo TheFolder = new DirectoryInfo(sourcePath);
-            List<Model.ScenicImg> silist = new List<Model.ScenicImg>();
+            string destPath = mappath+"/scenicimg/mainimg/";
+            var TheFolder = new DirectoryInfo(sourcePath);
+            var silist = new List<Model.ScenicImg>();
             foreach (FileInfo NextFile in TheFolder.GetFiles())
             {
                 string filename = NextFile.Name;
@@ -306,9 +336,9 @@ namespace ExcelOplib
         {
             try
             {
-                string result = string.Empty;
-                string line = string.Empty;
-                System.IO.StreamReader file = new System.IO.StreamReader(string.Format(@"d:\scenicfile\{0}.txt", scenicname));
+                var result = string.Empty;
+                string line;
+                var file = new System.IO.StreamReader(mappath+"/scenicfile/"+scenicname+".txt");
                 while ((line = file.ReadLine()) != null)
                 {
                     result += line + "$";
