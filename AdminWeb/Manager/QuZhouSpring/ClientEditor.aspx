@@ -41,10 +41,9 @@
                 </td>
                 <td>
                     <asp:CheckBox runat="server" ID="cbxEnable" Checked="true" /></td>
-                </td>
             </tr>
         </table>
-        <asp:Button runat="server" ID="btnSave" Text="保存" btnSave_Click CssClass="btn"
+        <asp:Button runat="server" ID="btnSave" Text="保存" OnClick="btnSave_Click" CssClass="btn"
             Style="margin-left: 350px;" />
     </div>
 </asp:Content>

@@ -5,10 +5,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Model;
+using BLL;
 public partial class Manager_QuZhouSpring_ClientEditor : basepage
 {
     bool isNew = true;
     QZSpringPartner qzclient;
+    BLLQZSpringPartner bllqz = new BLLQZSpringPartner();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!string.IsNullOrEmpty(Request["Id"]))
@@ -19,7 +21,8 @@ public partial class Manager_QuZhouSpring_ClientEditor : basepage
         {
             if (!isNew)
             {
-                //todo
+                Guid id = Guid.Parse(Request["Id"]);
+                qzclient= bllqz.GetOne(id);
                 LoadForm();
             }
             else
@@ -38,14 +41,23 @@ public partial class Manager_QuZhouSpring_ClientEditor : basepage
     }
     private void UpdateForm()
     {
+        if (string.IsNullOrEmpty(Request["Id"]))
+        {
+            qzclient = new QZSpringPartner();
+        }
+        else
+        {
+            qzclient = bllqz.GetOne(Guid.Parse(Request["Id"]));
+        }
         qzclient.Enable = cbxEnable.Checked;
         qzclient.FriendlyId = tbxFriendlyId.Text;
         qzclient.Name = tbxClientName.Text;
         qzclient.RequestSource = tbxRequestSource.Text;
+
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
         UpdateForm();
-        //todo save
+        bllqz.Save(qzclient);
     }
 }

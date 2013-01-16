@@ -7,8 +7,8 @@
         企业列表
     </div>
     <div class="searchdiv">
-        名称<asp:TextBox runat="server" ID="txtEntName" />&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnSearch" Text="查询" runat="server" />
+        名称<asp:TextBox runat="server" ID="txtName" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnSearch" Text="查询" runat="server" OnClick="btnSearch_Click" />
         <asp:Button ID="btnAdd" Text="新增" runat="server" OnClick="btnAdd_Click" />
     </div>
     <div class="detaillist">
