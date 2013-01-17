@@ -78,13 +78,13 @@ namespace DAL
             return session.QueryOver<T>().List();
         }
 
-        protected IList<T> GetList(string where)
+        public IList<T> GetList(string where)
         {
             int totalRecords;
             return GetList(where, 0, 99999, out totalRecords);
         }
 
-        protected IList<T> GetList(string query,int pageIndex, int pageSize, out int totalRecords)
+        public IList<T> GetList(string query, int pageIndex, int pageSize, out int totalRecords)
         {
             IQuery qry = session.CreateQuery(query);
 
