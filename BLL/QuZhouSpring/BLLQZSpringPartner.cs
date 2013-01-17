@@ -7,7 +7,7 @@ using DAL;
 
 namespace BLL
 {
-    public class BLLQZSpringPartner
+    public class BLLQZSpringPartner:BLLBase<QZSpringPartner>
     {
         DALQZSpringPartner dalqz = new DALQZSpringPartner();
         public IList<QZSpringPartner> GetListByName(string name)
@@ -15,14 +15,8 @@ namespace BLL
             return dalqz.GetListByName(name);
         }
 
-        public QZSpringPartner GetOne(Guid id)
-        {
-            return dalqz.GetOne(id);
-        }
+       
 
-        public void Save(QZSpringPartner qz)
-        {
-            dalqz.Save(qz);
-        }
+      
     }
 }
