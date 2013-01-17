@@ -9,7 +9,7 @@ namespace BLL
 {
     public class BLLTicketAssign
     {
-        IDAL.ITicketAssign Iticketassign = new DAL.DALTicketAssign();
+        DAL.DALTicketAssign Iticketassign = new DAL.DALTicketAssign();
 
         /// <summary>
         /// 保存更新
@@ -102,6 +102,11 @@ namespace BLL
         public IList<TicketAssign> GetTaByIdcardandscenic(string idcard, Scenic scenic)
         {
             return Iticketassign.GetTaByIdcardandscenic(idcard, scenic);
+        }
+        public IList<TicketAssign> GetTaByIdcardandTicketCode(string idcard,string ticketCode)
+        {
+
+            return Iticketassign.GetTaByIdcardandTicketCode(idcard, ticketCode);
         }
         public IList<Ticket> GetTicketTypeByIdCard(string idcard)
         {

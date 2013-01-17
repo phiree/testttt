@@ -23,7 +23,12 @@ namespace BLL
         public void CreateUser(string realname, string phone, string address, string idcard,
             string loginname, string password, string email)
         {
-            //valid parameters
+            CreateUser2(realname, phone, address, idcard,
+             loginname, password, email);
+        }
+        public TourMembership CreateUser2(string realname, string phone, string address, string idcard,
+           string loginname, string password, string email)
+        {
             string encryptedPwd = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(password, "MD5");
             Model.TourMembership user = new Model.TourMembership()
             {
@@ -36,6 +41,7 @@ namespace BLL
                 Email = email
             };
             CreateUpdateMember(user);
+            return user;
         }
 
         /// <summary>

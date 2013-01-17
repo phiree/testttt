@@ -7,7 +7,7 @@ namespace BLL
 {
    public class TourLog
     {
-       private static readonly ILog errLog = LogManager.GetLogger("ErrorLogger");
+       public static readonly ILog LogInstance = LogManager.GetLogger("ErrorLogger");
        private static readonly ILog payLog = LogManager.GetLogger("PaymentLogger");
 
        public static void LogPayment(string paymentMsg)
@@ -16,7 +16,7 @@ namespace BLL
        }
        public static void LogError(object errorMsg)
        {
-           errLog.Error( System.Web.HttpContext.Current.Request.RawUrl+Environment.NewLine+ errorMsg);
+           LogInstance.Error( System.Web.HttpContext.Current.Request.RawUrl+Environment.NewLine+ errorMsg);
            
        }
     }

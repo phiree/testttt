@@ -21,5 +21,6 @@ namespace Model
        public virtual string RequestSource { get; set; }
        //是否启用
        public virtual bool Enable { get; set; }
+      
     }
 }

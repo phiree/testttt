@@ -11,7 +11,7 @@ namespace TourTest.BLLTest.Quzhou
         [Test]
         public void SellerTest()
         { 
-            //
+         //  string client
         }
     }
 }
