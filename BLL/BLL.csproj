@@ -125,8 +125,8 @@
     <Compile Include="Dijieshe\BLLWorker.cs" />
     <Compile Include="Dijieshe\JsonObjects.cs" />
     <Compile Include="QuZhouSpring\BLLQZSpringPartner.cs" />
-    <Compile Include="QuZhouSpring\BLLTicketAsign.cs" />
-    <Compile Include="QuZhouSpring\BLLTicketSeller.cs" />
+    <Compile Include="QuZhouSpring\BLLQZTicketAsign.cs" />
+    <Compile Include="QuZhouSpring\BLLQZTicketSeller.cs" />
     <Compile Include="RouteConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SEO\SeoTitle.cs" />

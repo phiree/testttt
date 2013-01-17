@@ -15,7 +15,7 @@ using System.Data;
 public class TicketService : System.Web.Services.WebService
 {
 
-    BLL.QuZhouSpring.BLLTicketSeller seller = new BLL.QuZhouSpring.BLLTicketSeller();
+    BLL.QuZhouSpring.BLLQZTicketSeller seller = new BLL.QuZhouSpring.BLLQZTicketSeller();
     public TicketService()
     {
 

@@ -61,8 +61,8 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td><%# Container.DataItem%></td>
-                    <td><a href='/Manager/QuZhouSpring/DateTicketAsign.aspx?date=<%# Container.DataItem %>'>分配门票</a></td>
+                    <td><%# DateTime.Parse((Container.DataItem).ToString()).ToString("yyyy-MM-dd") %></td>
+                    <td><a href='/Manager/QuZhouSpring/DateTicketAsign.aspx?date=<%# DateTime.Parse((Container.DataItem).ToString()).ToString("yyyy-MM-dd") %>'>分配门票</a></td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
