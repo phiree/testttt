@@ -8,13 +8,10 @@ namespace CommonLibrary
 {
    public class AppSettingsManager
     {
-       public string ConfigFilePath { get; set; }
+     
        public AppSettingsManager() { }
-       public AppSettingsManager(string filePath)
-       {
-           ConfigFilePath = filePath;
-       }
-       public void Update(Dictionary<string, string> newValues)
+      
+       public static void  Update(Dictionary<string, string> newValues)
        {
            var map = new ExeConfigurationFileMap();
 

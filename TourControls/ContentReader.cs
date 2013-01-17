@@ -124,9 +124,7 @@ namespace TourControls
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
-            string resourceName = "TourControls.contentReader.js";
-            ClientScriptManager cs = this.Page.ClientScript;
-            cs.RegisterClientScriptResource(typeof(TourControls.ContentReader), resourceName);
+          
         }
 
         protected override void Render(HtmlTextWriter output)

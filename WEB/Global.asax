@@ -23,7 +23,7 @@
     void Application_Error(object sender, EventArgs e)
     {
         Exception ex = Server.GetLastError();
-   log.Error(ex);
+       log.Error(ex);
         //BLL.TourLog.LogError(ex);
 
         ////  Server.Transfer("/err.aspx?err=0");

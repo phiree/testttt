@@ -4,7 +4,7 @@
 <%@ Register TagPrefix="self" Namespace="TourControls" Assembly="TourControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true">
-    </script>
+    </script>  <script src="/Scripts/contentReader.js" type="text/javascript"></script>
     <link href="/theme/default/css/TCCSS.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
