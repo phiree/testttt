@@ -137,6 +137,7 @@
     <Compile Include="DALScenicTicket.cs" />
     <Compile Include="DALOperationLog.cs" />
     <Compile Include="QuZhouSpring\DALQZSpringPartner.cs" />
+    <Compile Include="QuZhouSpring\DALQZTicketAsign.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IDAL\IDAL.csproj">

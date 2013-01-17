@@ -31,6 +31,27 @@ namespace Model
         public virtual int OrderNumber { get; set; }
         public virtual IList<TicketPrice> TicketPrice { get; set; }
         /// <summary>
+        /// 起始有效期
+        /// </summary>
+        public virtual DateTime BeginDate { get; set; }
+        /// <summary>
+        /// 截止有效期
+        /// </summary>
+        public virtual DateTime EndDate { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public virtual string  Remark { get; set; }
+
+        /// <summary>
+        /// 总数量，默认不限制
+        /// </summary>
+        public virtual int Amount { get; set; }
+        /// <summary>
+        /// 门票编码
+        /// </summary>
+        public virtual string ProductCode { get; set; }
+        /// <summary>
         /// 获得某个类型的票价
         /// </summary>
         /// <param name="type"></param>
