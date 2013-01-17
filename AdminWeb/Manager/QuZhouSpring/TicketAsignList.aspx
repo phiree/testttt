@@ -2,10 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+    <%--<link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
-    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js"></script>--%>
+    <link href="/Styles/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("[id$='txtTime']").datepicker();
