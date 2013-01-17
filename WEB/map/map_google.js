@@ -302,7 +302,7 @@ function btnshowinfo() {
             var txt = allCoordinates[k].name;
             var scenicid = allCoordinates[k].id;
             var overlay;
-            if (numCount < begin || numCount > begin + 15) {
+            if (numCount <= begin || numCount > begin + 15) {
                 overlay = new customOverlay_Small(map, { latlng: point, id: numCount, scid: scenicid });
             }
             else {

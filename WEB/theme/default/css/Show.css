@@ -20,7 +20,7 @@
 .adcolum img
 {
     position:relative;
-    top:-160px;
+    top:-0px;
 }
 .fcolum
 {
@@ -84,7 +84,7 @@
 }
 .fcol1_bottom
 {
-    width:200px;
+    width:220px;
     margin:0px auto;
     margin-top:3px \0\9;
     *margin-top:-3px;
@@ -92,7 +92,8 @@
 .fcol1_bottom span
 {
     font-size:14px;
-    color:#E3007A;
+    color:#BC001D;
+    line-height:35px;
 }
 .fcol1_bottom span strong
 {
@@ -108,11 +109,15 @@
 {
     display:block;
     float:right;
-    background:url("/theme/default/image/newversion/icon2.png");
-    width:17px;
-    height:16px;
+    background:url("/theme/default/image/20130116/btnQuickBook.jpg");
+    width:87px;
+    height:22px;
     margin-top:8px;
     *margin-top:-20px;
+}
+.fcol1_bottom .btna:hover
+{
+    background:url("/theme/default/image/20130116/btnQuickBook_hover.jpg");
 }
 .scoloum
 {
@@ -596,4 +601,15 @@
 {
     min-height:100px;
     _height:100px;
+}
+#quzhouticket
+{
+    width:340px;
+    height:201px;
+    position:fixed;
+    right:0px;
+    bottom:-201px;
+    display:block;
+    background:url("/theme/default/image/20130116/quzhouad.jpg");
+    z-index:9999;
 }

@@ -10,7 +10,7 @@
     <link href="/theme/default/css/Show.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
-            startscrolltime();
+            //startscrolltime();
             $(".navlistnb a").attr("class", "");
             $(".navlistnb a:eq(0)").attr("class", "navhight");
             $(".navhight").next().attr("class", "");
@@ -36,6 +36,10 @@
                     });
                 }
             });
+            $("#quzhouticket").animate({ bottom: "0px" }, 1500);
+            $("#closeWin").click(function () {
+                $("#quzhouticket").animate({ bottom: "-201px" }, 1500);
+            });
         });
         function startscrolltime() {
             scrollimg();
@@ -54,9 +58,16 @@
             }
         }
         
+
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <self:ContentReader runat="server" ID="default" CanEdit="true" type="首页" CssClass="editdiv"/>
-
+    <div id="quzhouticket">
+        <a href="/Tickets/quzhou" style=" display:block; width:100%;height:100%; position:absolute; z-index:9990">
+        </a>
+        <a id="closeWin" style="width:20px; height:20px; display:block; position:absolute;top:0px; right:0px; z-index:9991;cursor:pointer">
+        </a>
+    </div>
 </asp:Content>

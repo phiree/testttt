@@ -159,12 +159,12 @@ div:246
 .dvprice .onlinepr em
 {
     font-size: 16pt;
-    color: #E3007A;
+    color: #E8360F;
     font-style: normal;
 }
 .onlinepr
 {
-    color:#E3007A;
+    color:#E8360F;
     margin-left:0px;
 }
 .scenicname
@@ -198,30 +198,29 @@ div:246
     float: right;
     margin-right: 5px;
     margin-top:5px;
-    background:url("/theme/default/image/newversion/ydbtn_visited.png");
-    background:url("/theme/default/image/newversion/ydbtn_hover.png");
-    background:url("/theme/default/image/newversion/ydbtn_link.png");
+    background:url("/theme/default/image/20130116/linkOrder.jpg");
+    background:url("/theme/default/image/20130116/linkOrder_hover.jpg");
 }
-.linkorder,.linkorder:link
+.linkorder,.linkorder:link,.linkorder:active,.linkorder:visited
 {
     display:block;
     width:60px;
     height:22px;
-    background:url("/theme/default/image/newversion/ydbtn_link.png");
+    background:url("/theme/default/image/20130116/linkOrder.jpg");
 }
 .linkorder:hover
 {
     display:block;
     width:60px;
     height:22px;
-    background:url("/theme/default/image/newversion/ydbtn_hover.png");
+    background:url("/theme/default/image/20130116/linkOrder_hover.jpg");
 }
-.linkorder:visited,.linkorder:active
+.linkorder:active
 {
     display:block;
     width:60px;
     height:22px;
-    background:url("/theme/default/image/newversion/ydbtn_visited.png");
+    background:url("/theme/default/image/20130116/linkOrder_hover.jpg");
 }
 /*
  图片切换
