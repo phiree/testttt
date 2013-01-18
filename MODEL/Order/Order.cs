@@ -13,6 +13,10 @@ namespace Model
         /// 门票总数
         /// </summary>
         private int totalNum = 0;
+        public Order()
+        {
+            OrderDetail = new List<OrderDetail>();
+         }
         public virtual int TotalNum
         {
             get
