@@ -33,5 +33,7 @@ namespace TourTest.BLLTest.Quzhou
 
             Assert.AreEqual(order.TotalPrice, 1);
         }
+       
+        
     }
 }

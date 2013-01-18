@@ -9,7 +9,7 @@ namespace BLL
 {
     public class BLLQZPartnerTicketAsign:BLLBase<QZPartnerTicketAsign>
     {
-        BLLQZPartnerTicketAsign bllqzPartnerTa = new BLLQZPartnerTicketAsign();
+        DAL.DALQZPartnerTicketAsign dalqzPartnerTa = new DAL.DALQZPartnerTicketAsign();
         /// <summary>
         /// 获取某天某企业在某景区分配的票数
         /// </summary>
@@ -17,7 +17,7 @@ namespace BLL
         /// <returns>该对象</returns>
         public QZPartnerTicketAsign GetOne(DateTime dateTime, string PartnerFriendlyId, string ProductCode)
         {
-            return bllqzPartnerTa.GetOne(dateTime, PartnerFriendlyId, ProductCode);
+            return dalqzPartnerTa.GetOne(dateTime, PartnerFriendlyId, ProductCode);
         }
     }
 }

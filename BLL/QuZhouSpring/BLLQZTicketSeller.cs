@@ -8,21 +8,32 @@ namespace BLL
 {
     //被抢一张票
 
-    public class BLLTicketSeller
+    public class BLLQZTicketSeller
     {
 
         BLLMembership bllMembership = new BLLMembership();
         BLLTicketAssign bllTicketAssign = new BLLTicketAssign();
         BLLTicket bllTicket = new BLLTicket();
         BLLOrder bllOrder = new BLLOrder();
+        BLLQZPartnerTicketAsign bllQZPartnerTicketAsign = new BLLQZPartnerTicketAsign();
+
+       
         public string SellTicket(string clientFriendlyId, string idcardno, string ticketCode, int amount, string phone)
         {
 
-            string returnMsg = "T";
-            Model.QZSpringPartner partner = new QZSpringPartner();//根据friendlyid获取合作网站
-            QZTicketAsign dateAsign = new QZTicketAsign();//todo: 获取 某日期 某个门票 的票数分配情况
-           QZPartnerTicketAsign partnerAsign = dateAsign.PartnerTicketAsign.First(x => x.Partner.FriendlyId == clientFriendlyId);
 
+            string returnMsg = "T";
+
+            //身份证号码验证
+            string checkIdCardNoErrMsg;
+            bool idcardnoValid = CommonLibrary.StringHelper.CheckIDCard(idcardno, out checkIdCardNoErrMsg);
+            if (!idcardnoValid)
+            {
+                return "F|" + checkIdCardNoErrMsg;
+            }
+            DateTime nowDay = DateTime.Now.Date;
+            Model.QZSpringPartner partner = new QZSpringPartner();//根据friendlyid获取合作网站
+            QZPartnerTicketAsign partnerAsign = bllQZPartnerTicketAsign.GetOne(nowDay, clientFriendlyId, ticketCode);//todo: 获取 某日期 某个门票 的票数分配情况
             Guid requestGUID = Guid.NewGuid();
             TourLog.LogInstance.Info(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", clientFriendlyId, idcardno, ticketCode, amount, phone, requestGUID));
             string validErrMsg;
@@ -58,7 +69,7 @@ namespace BLL
         /// <param name="ticketCode"></param>
         /// <param name="errMsg"></param>
         /// <returns></returns>
-        private bool ValidateRequst( QZPartnerTicketAsign partnerAsign,int amount, string idcardno, string ticketCode, out string errMsg)
+        private bool ValidateRequst(QZPartnerTicketAsign partnerAsign, int amount, string idcardno, string ticketCode, out string errMsg)
         {
 
 
@@ -95,7 +106,7 @@ namespace BLL
             return true;
         }
 
-        public Order BuildOrderForQZ(TourMembership member, Ticket currentTicket, int amount,string parnterName)
+        public Order BuildOrderForQZ(TourMembership member, Ticket currentTicket, int amount, string parnterName)
         {
             #region 开始出票
             //1 为身份证号创建一个用户名
@@ -122,7 +133,7 @@ namespace BLL
             order.PriceType = PriceType.PayOnline;
             order.PayTime = DateTime.Now;
             order.TradeNo = "QZFREE";
-            
+
             return order;
 
 
