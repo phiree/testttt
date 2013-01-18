@@ -136,6 +136,7 @@
     <Compile Include="DALRefund.cs" />
     <Compile Include="DALScenicTicket.cs" />
     <Compile Include="DALOperationLog.cs" />
+    <Compile Include="QuZhouSpring\DALQZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\DALQZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\DALQZTicketAsign.cs" />
   </ItemGroup>

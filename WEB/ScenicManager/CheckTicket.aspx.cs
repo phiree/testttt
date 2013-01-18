@@ -22,6 +22,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     BLLDJTourGroup blldjtourgroup = new BLLDJTourGroup();
     BLLDJRoute blldjroute = new BLLDJRoute();
     BLLDJConsumRecord bllrecord = new BLLDJConsumRecord();
+    BLLTicket bllTicket = new BLLTicket();
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -206,10 +207,20 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     int wtusecount = int.Parse(ydtb.Text);
                     int ttcount = Convert.ToInt32((yditem.FindControl("ydmpcount") as HtmlContainerControl).InnerHtml);
                     int usedydcount = Convert.ToInt32((yditem.FindControl("ydmpusedcount") as HtmlContainerControl).InnerHtml);
+                    //判断此票是否过期，当前版本的做法为判断ticket的起始状态，将来需要对ticketAssign做起始状态的冗余字段，来验证
+                    Ticket ticket= bllTicket.GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value));
+                    if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
+                    {
+                        string message="alert('该票的使用期限为"+ticket.BeginDate.ToString("yyyy-MM-dd")+"至"+ticket.EndDate.ToString("yyyy-MM-dd");
+                        message += "请在规定的时间内使用该门票！')";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", message, true);
+                        return;
+                    }
+
                     if (wtusecount > ttcount - usedydcount)
                     {
                         int jxydcount = wtusecount - ttcount + usedydcount;
-                        TicketAssign ta = bllticketassign.GetLasetRecordByidcard(ViewState["idcard"].ToString(), new BLLTicket().GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value)), 2);
+                        TicketAssign ta = bllticketassign.GetLasetRecordByidcard(ViewState["idcard"].ToString(), ticket, 2);
                         OrderDetail od = ta.OrderDetail;
                         od.Quantity = od.Quantity + jxydcount;
                         od.Remark = "在景区预定" + jxydcount + "张门票";
@@ -286,6 +297,16 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     }
                     else
                     {
+                        //判断此票是否过期，当前版本的做法为判断ticket的起始状态，将来需要对ticketAssign做起始状态的冗余字段，来验证
+                        Ticket ticket = bllTicket.GetTicket(int.Parse((repitem.FindControl("hfticketid") as HiddenField).Value));
+                        if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
+                        {
+                            string message = "alert('该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
+                            message += "请在规定的时间内使用该门票！')";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", message, true);
+                            return;
+                        }
+
                         for (int i = 0; i < oluse; i++)
                         {
                             IList<TicketAssign> list = bllticketassign.Getolnotusedticketassign(ViewState["idcard"].ToString(), int.Parse((repitem.FindControl("hfticketid") as HiddenField).Value), 3);

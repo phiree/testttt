@@ -11,7 +11,7 @@ using BLL;
 
 public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
 {
-    BLLTicketAsign bllta = new BLLTicketAsign();
+    BLLQZTicketAsign bllta = new BLLQZTicketAsign();
     BLLTicket bllTicket = new BLLTicket();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -43,9 +43,15 @@ public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('时间选择不正确')", true);
             return;
         }
-
-
-
+        string[] ticketId= ConfigurationManager.AppSettings["ticketId"].Split(',');
+        List<Ticket> listTicket = new List<Ticket>();
+        for (int i = 0; i < ticketId.Length; i++)
+        {
+             listTicket.Add(bllTicket.GetTicket(int.Parse(ticketId[i])));
+        }
+        bllta.SaveDate(DateTime.Parse(tbxStart.Text), DateTime.Parse(tbxEnd.Text), listTicket);
+        BindData();
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功')", true);
     }
 
     protected void btnSaveTicket_Click(object sender, EventArgs e)

@@ -18,6 +18,8 @@ namespace Model
         //售出总数
         public virtual int SoldAmount { get; set; }
 
+        public virtual QZTicketAsign QZTicketAsign { get; set; }
+
          public virtual bool HasEnoughTickets(int requestAmount)
        {
            return AsignedAmount >= SoldAmount + requestAmount;

@@ -14,7 +14,7 @@ namespace Model.Mapping
           Map(x => x.SoldAmount);
           References<Ticket>(x => x.Ticket);
           Map(x => x.Date);
-          HasMany<QZPartnerTicketAsign>(x => x.PartnerTicketAsign);
+          HasMany<QZPartnerTicketAsign>(x => x.PartnerTicketAsign).Cascade.All();
           Map(x => x.Amount);
       }
     }

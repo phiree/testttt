@@ -1,0 +1,176 @@
+2013-01-17 17:32:15,446 [5] ERROR ErrorLogger [(null)] - System.Web.HttpCompileException (0x80004005): e:\tourl\AdminWeb\Manager\QuZhouSpring\DateSettings.aspx.cs(14): error CS0246: 未能找到类型或命名空间名称“BLLTicketAsign”(是否缺少 using 指令或程序集引用?)
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   在 System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   在 System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
+   在 System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-17 19:29:11,133 [7] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlTypes.SqlDateTime.FromTimeSpan(TimeSpan value)
+   在 System.Data.SqlTypes.SqlDateTime.FromDateTime(DateTime value)
+   在 System.Data.SqlClient.MetaType.FromDateTime(DateTime dateTime, Byte cb)
+   在 System.Data.SqlClient.TdsParser.WriteValue(Object value, MetaType type, Byte scale, Int32 actualLength, Int32 encodingByteSize, Int32 offset, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(_SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(DbAsyncResult result, String methodName, Boolean sendToPipe)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteNonQuery(IDbCommand cmd) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:行号 216
+   在 NHibernate.AdoNet.NonBatchingBatcher.AddToBatch(IExpectation expectation) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\AdoNet\NonBatchingBatcher.cs:行号 39
+   在 NHibernate.Persister.Entity.AbstractEntityPersister.Update(Object id, Object[] fields, Object[] oldFields, Object rowId, Boolean[] includeProperty, Int32 j, Object oldVersion, Object obj, SqlCommandInfo sql, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Entity\AbstractEntityPersister.cs:行号 2789
+   在 NHibernate.Persister.Entity.AbstractEntityPersister.UpdateOrInsert(Object id, Object[] fields, Object[] oldFields, Object rowId, Boolean[] includeProperty, Int32 j, Object oldVersion, Object obj, SqlCommandInfo sql, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Entity\AbstractEntityPersister.cs:行号 2692
+   在 NHibernate.Persister.Entity.AbstractEntityPersister.Update(Object id, Object[] fields, Int32[] dirtyFields, Boolean hasDirtyCollection, Object[] oldFields, Object oldVersion, Object obj, Object rowId, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Entity\AbstractEntityPersister.cs:行号 3000
+   在 NHibernate.Action.EntityUpdateAction.Execute() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Action\EntityUpdateAction.cs:行号 79
+   在 NHibernate.Engine.ActionQueue.Execute(IExecutable executable) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\ActionQueue.cs:行号 136
+   在 NHibernate.Engine.ActionQueue.ExecuteActions(IList list) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\ActionQueue.cs:行号 126
+   在 NHibernate.Engine.ActionQueue.ExecuteActions() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\ActionQueue.cs:行号 170
+   在 NHibernate.Event.Default.AbstractFlushingEventListener.PerformExecutions(IEventSource session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\AbstractFlushingEventListener.cs:行号 241
+   在 NHibernate.Event.Default.DefaultFlushEventListener.OnFlush(FlushEvent event) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultFlushEventListener.cs:行号 19
+   在 NHibernate.Impl.SessionImpl.Flush() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:行号 1472
+   在 DAL.DALTicket.SaveOrUpdateTicket(Ticket ticket) 位置 E:\tourl\DAL\DALTicket.cs:行号 91
+   在 BLL.BLLTicket.SaveOrUpdateTicket(Ticket ticket) 位置 E:\tourl\BLL\Default\BLLTicket.cs:行号 127
+   在 Manager_QuZhouSpring_DateSettings.btnSaveTicket_Click(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateSettings.aspx.cs:行号 57
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_datesettings_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_z4v5pymf.2.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-17 19:31:22,912 [5] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlTypes.SqlDateTime.FromTimeSpan(TimeSpan value)
+   在 System.Data.SqlTypes.SqlDateTime.FromDateTime(DateTime value)
+   在 System.Data.SqlClient.MetaType.FromDateTime(DateTime dateTime, Byte cb)
+   在 System.Data.SqlClient.TdsParser.WriteValue(Object value, MetaType type, Byte scale, Int32 actualLength, Int32 encodingByteSize, Int32 offset, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(_SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(DbAsyncResult result, String methodName, Boolean sendToPipe)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteNonQuery(IDbCommand cmd) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:行号 216
+   在 NHibernate.AdoNet.NonBatchingBatcher.AddToBatch(IExpectation expectation) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\AdoNet\NonBatchingBatcher.cs:行号 39
+   在 NHibernate.Persister.Entity.AbstractEntityPersister.Update(Object id, Object[] fields, Object[] oldFields, Object rowId, Boolean[] includeProperty, Int32 j, Object oldVersion, Object obj, SqlCommandInfo sql, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Entity\AbstractEntityPersister.cs:行号 2789
+   在 NHibernate.Persister.Entity.AbstractEntityPersister.UpdateOrInsert(Object id, Object[] fields, Object[] oldFields, Object rowId, Boolean[] includeProperty, Int32 j, Object oldVersion, Object obj, SqlCommandInfo sql, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Entity\AbstractEntityPersister.cs:行号 2692
+   在 NHibernate.Persister.Entity.AbstractEntityPersister.Update(Object id, Object[] fields, Int32[] dirtyFields, Boolean hasDirtyCollection, Object[] oldFields, Object oldVersion, Object obj, Object rowId, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Entity\AbstractEntityPersister.cs:行号 3000
+   在 NHibernate.Action.EntityUpdateAction.Execute() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Action\EntityUpdateAction.cs:行号 79
+   在 NHibernate.Engine.ActionQueue.Execute(IExecutable executable) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\ActionQueue.cs:行号 136
+   在 NHibernate.Engine.ActionQueue.ExecuteActions(IList list) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\ActionQueue.cs:行号 126
+   在 NHibernate.Engine.ActionQueue.ExecuteActions() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\ActionQueue.cs:行号 170
+   在 NHibernate.Event.Default.AbstractFlushingEventListener.PerformExecutions(IEventSource session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\AbstractFlushingEventListener.cs:行号 241
+   在 NHibernate.Event.Default.DefaultFlushEventListener.OnFlush(FlushEvent event) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultFlushEventListener.cs:行号 19
+   在 NHibernate.Impl.SessionImpl.Flush() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:行号 1472
+   在 DAL.DALTicket.SaveOrUpdateTicket(Ticket ticket) 位置 E:\tourl\DAL\DALTicket.cs:行号 91
+   在 BLL.BLLTicket.SaveOrUpdateTicket(Ticket ticket) 位置 E:\tourl\BLL\Default\BLLTicket.cs:行号 127
+   在 Manager_QuZhouSpring_DateSettings.btnSaveTicket_Click(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateSettings.aspx.cs:行号 57
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_datesettings_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_z4v5pymf.2.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-17 21:17:54,802 [5] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> NHibernate.Hql.Ast.ANTLR.QuerySyntaxException: 引发类型为“Antlr.Runtime.NoViableAltException”的异常。
+   在 NHibernate.Hql.Ast.ANTLR.ErrorCounter.ThrowQueryException() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\ErrorCounter.cs:行号 67
+   在 NHibernate.Hql.Ast.ANTLR.HqlParseEngine.Parse() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\QueryTranslatorImpl.cs:行号 499
+   在 NHibernate.Hql.Ast.ANTLR.ASTQueryTranslatorFactory.CreateQueryTranslators(String queryString, String collectionRole, Boolean shallow, IDictionary`2 filters, ISessionFactoryImplementor factory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\ASTQueryTranslatorFactory.cs:行号 19
+   在 NHibernate.Engine.Query.QueryPlanCache.GetHQLQueryPlan(String queryString, Boolean shallow, IDictionary`2 enabledFilters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Query\QueryPlanCache.cs:行号 61
+   在 NHibernate.Impl.AbstractSessionImpl.GetHQLQueryPlan(String query, Boolean shallow) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\AbstractSessionImpl.cs:行号 304
+   在 NHibernate.Impl.AbstractSessionImpl.CreateQuery(String queryString) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\AbstractSessionImpl.cs:行号 283
+   在 DAL.DalBase`1.GetList(String query, Int32 pageIndex, Int32 pageSize, Int32& totalRecords) 位置 E:\tourl\DAL\DalBase.cs:行号 89
+   在 DAL.DalBase`1.GetList(String where) 位置 E:\tourl\DAL\DalBase.cs:行号 84
+   在 DAL.DALQZTicketAsign.GetQzByDate(DateTime dateTime) 位置 E:\tourl\DAL\QuZhouSpring\DALQZTicketAsign.cs:行号 20
+   在 BLL.BLLQZTicketAsign.GetQzByDate(DateTime dateTime) 位置 E:\tourl\BLL\QuZhouSpring\BLLQZTicketAsign.cs:行号 69
+   在 Manager_QuZhouSpring_DateTicketAsign.bindData() 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 24
+   在 Manager_QuZhouSpring_DateTicketAsign.Page_Load(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 17
+   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
+   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   在 System.Web.UI.Control.OnLoad(EventArgs e)
+   在 System.Web.UI.Control.LoadRecursive()
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_dateticketasign_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_vxlblstu.0.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-17 21:21:23,101 [9] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> NHibernate.Hql.Ast.ANTLR.QuerySyntaxException: 引发类型为“Antlr.Runtime.NoViableAltException”的异常。
+   在 NHibernate.Hql.Ast.ANTLR.ErrorCounter.ThrowQueryException() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\ErrorCounter.cs:行号 67
+   在 NHibernate.Hql.Ast.ANTLR.HqlParseEngine.Parse() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\QueryTranslatorImpl.cs:行号 499
+   在 NHibernate.Hql.Ast.ANTLR.ASTQueryTranslatorFactory.CreateQueryTranslators(String queryString, String collectionRole, Boolean shallow, IDictionary`2 filters, ISessionFactoryImplementor factory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\ASTQueryTranslatorFactory.cs:行号 19
+   在 NHibernate.Engine.Query.QueryPlanCache.GetHQLQueryPlan(String queryString, Boolean shallow, IDictionary`2 enabledFilters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Query\QueryPlanCache.cs:行号 61
+   在 NHibernate.Impl.AbstractSessionImpl.GetHQLQueryPlan(String query, Boolean shallow) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\AbstractSessionImpl.cs:行号 304
+   在 NHibernate.Impl.AbstractSessionImpl.CreateQuery(String queryString) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\AbstractSessionImpl.cs:行号 283
+   在 DAL.DalBase`1.GetList(String query, Int32 pageIndex, Int32 pageSize, Int32& totalRecords) 位置 E:\tourl\DAL\DalBase.cs:行号 89
+   在 DAL.DalBase`1.GetList(String where) 位置 E:\tourl\DAL\DalBase.cs:行号 84
+   在 DAL.DALQZTicketAsign.GetQzByDate(DateTime dateTime) 位置 E:\tourl\DAL\QuZhouSpring\DALQZTicketAsign.cs:行号 20
+   在 BLL.BLLQZTicketAsign.GetQzByDate(DateTime dateTime) 位置 E:\tourl\BLL\QuZhouSpring\BLLQZTicketAsign.cs:行号 69
+   在 Manager_QuZhouSpring_DateTicketAsign.bindData() 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 24
+   在 Manager_QuZhouSpring_DateTicketAsign.Page_Load(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 17
+   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
+   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   在 System.Web.UI.Control.OnLoad(EventArgs e)
+   在 System.Web.UI.Control.LoadRecursive()
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_dateticketasign_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_vxlblstu.0.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-17 21:56:46,556 [7] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> NHibernate.TransientObjectException: object references an unsaved transient instance - save the transient instance before flushing. Type: Model.QZPartnerTicketAsign, Entity: Model.QZPartnerTicketAsign
+   在 NHibernate.Engine.ForeignKeys.GetEntityIdentifierIfNotUnsaved(String entityName, Object entity, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\ForeignKeys.cs:行号 264
+   在 NHibernate.Type.EntityType.GetIdentifier(Object value, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Type\EntityType.cs:行号 159
+   在 NHibernate.Type.ManyToOneType.NullSafeSet(IDbCommand st, Object value, Int32 index, Boolean[] settable, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Type\ManyToOneType.cs:行号 48
+   在 NHibernate.Persister.Collection.AbstractCollectionPersister.WriteElement(IDbCommand st, Object elt, Int32 i, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Collection\AbstractCollectionPersister.cs:行号 747
+   在 NHibernate.Persister.Collection.AbstractCollectionPersister.PerformInsert(Object ownerId, IPersistentCollection collection, IExpectation expectation, Object entry, Int32 index, Boolean useBatch, Boolean callable, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Collection\AbstractCollectionPersister.cs:行号 1981
+   在 NHibernate.Persister.Collection.AbstractCollectionPersister.Recreate(IPersistentCollection collection, Object id, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Collection\AbstractCollectionPersister.cs:行号 1096
+   在 NHibernate.Action.CollectionRecreateAction.Execute() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Action\CollectionRecreateAction.cs:行号 31
+   在 NHibernate.Engine.ActionQueue.Execute(IExecutable executable) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\ActionQueue.cs:行号 136
+   在 NHibernate.Engine.ActionQueue.ExecuteActions(IList list) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\ActionQueue.cs:行号 126
+   在 NHibernate.Engine.ActionQueue.ExecuteActions() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\ActionQueue.cs:行号 173
+   在 NHibernate.Event.Default.AbstractFlushingEventListener.PerformExecutions(IEventSource session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\AbstractFlushingEventListener.cs:行号 249
+   在 NHibernate.Event.Default.DefaultFlushEventListener.OnFlush(FlushEvent event) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultFlushEventListener.cs:行号 19
+   在 NHibernate.Impl.SessionImpl.Flush() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:行号 1472
+   在 DAL.DalBase`1.Save(T o) 位置 E:\tourl\DAL\DalBase.cs:行号 44
+   在 BLL.BLLQZTicketAsign.SaveDate(DateTime beginDate, DateTime endDate, List`1 listTicket) 位置 E:\tourl\BLL\QuZhouSpring\BLLQZTicketAsign.cs:行号 78
+   在 Manager_QuZhouSpring_DateSettings.btnSave_Click(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateSettings.aspx.cs:行号 52
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_datesettings_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_y3o40swl.4.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
