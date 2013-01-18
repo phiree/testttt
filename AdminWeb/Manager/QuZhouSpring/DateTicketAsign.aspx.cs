@@ -33,7 +33,7 @@ public partial class Manager_QuZhouSpring_DateTicketAsign : System.Web.UI.Page
         {
             QZTicketAsign qzTa= e.Item.DataItem as QZTicketAsign;
             Repeater rptPartnerList= e.Item.FindControl("rptPartnerList") as Repeater;
-            rptPartnerList.DataSource = qzTa.PartnerTicketAsign;
+            rptPartnerList.DataSource = qzTa.PartnerTicketAsign.Where(x=>x.Partner.Enable==true).ToList();
             rptPartnerList.DataBind();
         }
     }

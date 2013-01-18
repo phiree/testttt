@@ -38,9 +38,12 @@ namespace BLL
             List<QZPartnerTicketAsign> ListQzPartnerTa = new List<QZPartnerTicketAsign>();
             foreach (var item in listQZSP)
             {
-                QZPartnerTicketAsign qzta = new QZPartnerTicketAsign();
-                qzta.Partner = item;
-                ListQzPartnerTa.Add(qzta);
+                if (item.Enable)
+                {
+                    QZPartnerTicketAsign qzta = new QZPartnerTicketAsign();
+                    qzta.Partner = item;
+                    ListQzPartnerTa.Add(qzta);
+                }
             }
             return ListQzPartnerTa;
         }
