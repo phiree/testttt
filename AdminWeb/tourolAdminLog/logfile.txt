@@ -462,3 +462,68 @@
    在 ASP.manager_scenicimginit_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\cc0615e9\8f5fd40a\App_Web_uh3m3cfq.2.cs:行号 0
    在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 19:25:05,554 [24] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> NHibernate.Exceptions.GenericADOException: could not execute query
+[ select userrole0_.RoleName as col_0_0_ from [UserRole] userrole0_ where userrole0_.MemberName='admin' ]
+[SQL: select userrole0_.RoleName as col_0_0_ from [UserRole] userrole0_ where userrole0_.MemberName='admin'] ---> System.InvalidOperationException: 已有打开的与此 Command 相关联的 DataReader，必须首先将它关闭。
+   在 System.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
+   在 System.Data.SqlClient.SqlConnection.ValidateConnectionForExecute(String method, SqlCommand command)
+   在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:行号 247
+   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 1349
+   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 413
+   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 243
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 1694
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 1703
+   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 1601
+   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 1595
+   在 NHibernate.Hql.Ast.ANTLR.Loader.QueryLoader.List(ISessionImplementor session, QueryParameters queryParameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Loader\QueryLoader.cs:行号 300
+   在 NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.List(ISessionImplementor session, QueryParameters queryParameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\QueryTranslatorImpl.cs:行号 111
+   在 NHibernate.Engine.Query.HQLQueryPlan.PerformList(QueryParameters queryParameters, ISessionImplementor session, IList results) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Query\HQLQueryPlan.cs:行号 105
+   在 NHibernate.Impl.SessionImpl.List(String query, QueryParameters queryParameters, IList results) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:行号 615
+   在 NHibernate.Impl.SessionImpl.List[T](String query, QueryParameters parameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:行号 591
+   在 NHibernate.Impl.QueryImpl.List[T]() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\QueryImpl.cs:行号 94
+   在 DAL.DALRole.GetRolesForUser(String userName) 位置 E:\workspace\testttt\DAL\DALRole.cs:行号 88
+   在 BLL.TourRoleProvider.GetRolesForUser(String username) 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 68
+   在 System.Web.Security.RolePrincipal.IsInRole(String role)
+   在 System.Web.Security.Roles.IsUserInRole(String username, String roleName)
+   在 Manager_manager.OnInit(EventArgs e) 位置 e:\workspace\testttt\AdminWeb\Manager\manager.master.cs:行号 27
+   在 System.Web.UI.Control.InitRecursive(Control namingContainer)
+   在 System.Web.UI.Control.InitRecursive(Control namingContainer)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_datesettings_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\cc0615e9\8f5fd40a\App_Web_5l52oatu.6.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 19:31:35,430 [23] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Manager_QuZhouSpring_DateTicketAsign.rptAsignList_ItemCommand(Object source, RepeaterCommandEventArgs e) 位置 e:\workspace\testttt\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 53
+   在 System.Web.UI.WebControls.Repeater.OnItemCommand(RepeaterCommandEventArgs e)
+   在 System.Web.UI.WebControls.Repeater.OnBubbleEvent(Object sender, EventArgs e)
+   在 System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   在 System.Web.UI.WebControls.RepeaterItem.OnBubbleEvent(Object source, EventArgs e)
+   在 System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   在 System.Web.UI.WebControls.Button.OnCommand(CommandEventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_dateticketasign_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\cc0615e9\8f5fd40a\App_Web_knkwgbsc.6.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
