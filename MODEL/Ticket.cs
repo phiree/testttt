@@ -14,6 +14,8 @@ namespace Model
         public Ticket()
         {
             TicketPrice = new List<TicketPrice>();
+            BeginDate = new DateTime(2013,1,1);
+            EndDate = DateTime.MaxValue;
         }
         public virtual int Id { get; set; }
         /// <summary>
@@ -30,9 +32,12 @@ namespace Model
         /// </summary>
         public virtual int OrderNumber { get; set; }
         public virtual IList<TicketPrice> TicketPrice { get; set; }
+
+        
         /// <summary>
         /// 起始有效期
         /// </summary>
+        
         public virtual DateTime BeginDate { get; set; }
         /// <summary>
         /// 截止有效期
@@ -62,7 +67,12 @@ namespace Model
             if (tp == null) return 0 ;
             return tp.Price;
         }
-
+        public virtual TicketPrice GetTicketPrice(PriceType type)
+        {
+             var tp = TicketPrice.Where<TicketPrice>(x => x.PriceType == type).FirstOrDefault();
+               if (tp == null) return null;
+               else return tp;
+        }
         /// <summary>
         /// 本门票对应的景区,联票需要重写此方法
         /// </summary>

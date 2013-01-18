@@ -50,6 +50,7 @@ namespace CommonLibrary
              }
              else
              {
+                 errMsg = "号码位数不对!";
                  return false;
              }
          }

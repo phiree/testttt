@@ -35,7 +35,7 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td><%# Eval("Ticket.Name")%>
+                    <td><%# Eval("Ticket.Scenic.Name")%> <%# Eval("Ticket.Name")%>
                     <asp:HiddenField runat="server" ID="hfTaId" Value='<%# Eval("Id") %>' />
                     </td>
                     <td><%# Eval("Amount")%></td>

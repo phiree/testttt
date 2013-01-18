@@ -52,12 +52,16 @@ namespace BLL
 
         public void SaveDate(DateTime beginDate, DateTime endDate, List<Ticket> listTicket)
         {
+            //门票分配(日期,景点,合作网站 数量.
             IList<QZTicketAsign> listQzTa = dalqzTa.GetAllList().OrderBy(x => x.Date).ToList();
+            //分配门票.
             for (int i = 0; beginDate.AddDays(i) <= endDate; i++)
             {
+                //分配每天的门票
                 foreach (var ticket in listTicket)
                 {
                     QZTicketAsign qz;
+                    //如果时间调整.
                     if (listQzTa.Where(x => x.Date == beginDate.AddDays(i)).Count() == 0)
                     {
                         qz = new QZTicketAsign();

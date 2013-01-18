@@ -32,8 +32,12 @@ namespace BLL
                 return "F|" + checkIdCardNoErrMsg;
             }
             DateTime nowDay = DateTime.Now.Date;
-            Model.QZSpringPartner partner = new QZSpringPartner();//根据friendlyid获取合作网站
+        
             QZPartnerTicketAsign partnerAsign = bllQZPartnerTicketAsign.GetOne(nowDay, clientFriendlyId, ticketCode);//todo: 获取 某日期 某个门票 的票数分配情况
+            if (partnerAsign == null)
+            {
+                return "F|没有查到对应的门票";
+            }
             Guid requestGUID = Guid.NewGuid();
             TourLog.LogInstance.Info(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", clientFriendlyId, idcardno, ticketCode, amount, phone, requestGUID));
             string validErrMsg;
@@ -51,7 +55,7 @@ namespace BLL
             }
             //自动创建订单
             Ticket currentTicket = bllTicket.GetByProductCode(ticketCode);
-            Order order = BuildOrderForQZ(member, currentTicket, amount, partner.Name);
+            Order order = BuildOrderForQZ(member, currentTicket, amount, partnerAsign.Partner.Name);
             bllOrder.SaveOrUpdateOrder(order);
 
             //3 该接入商该景区的已售门票+1
@@ -121,7 +125,7 @@ namespace BLL
             orderdetail.Remark = "衢州新春门票派送活动自动创建订单,请票来源:" + parnterName;
             orderdetail.TicketAssignList.Add(ta);
 
-            TicketPrice ticketPrice = currentTicket.TicketPrice[0];
+            TicketPrice ticketPrice = currentTicket.GetTicketPrice(PriceType.PayOnline);
             orderdetail.TicketPrice = ticketPrice;
 
             Order order = new Order();
