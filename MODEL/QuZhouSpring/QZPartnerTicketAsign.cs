@@ -20,5 +20,10 @@ namespace Model
 
         public virtual QZTicketAsign QZTicketAsign { get; set; }
 
+         public virtual bool HasEnoughTickets(int requestAmount)
+       {
+           return AsignedAmount >= SoldAmount + requestAmount;
+       }
+
     }
 }

@@ -32,10 +32,10 @@ public class TicketService : System.Web.Services.WebService
     /// <param name="errMsg">如果返回值为F,则是错误消息,若是T则为空</param>
     /// <returns>"T"(请票成功)或"F"(失败)</returns>
     [WebMethod]
-    public string buyProduct(string PartnerCode , string CardNumber, string ProductCode,int Number,out string errMsg)
+    public string buyProduct(string PartnerCode , string CardNumber, string ProductCode,int Number)
     {
-        errMsg = string.Empty;
-        string result = string.Empty;
+
+        string result = seller.SellTicket(PartnerCode, CardNumber, ProductCode, Number, string.Empty);
       //  seller.SellTicket(clientFriendlyId, idcardno, ticketId);
         return result;
     }
