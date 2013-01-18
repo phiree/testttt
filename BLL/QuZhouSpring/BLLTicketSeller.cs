@@ -15,19 +15,18 @@ namespace BLL
         BLLTicketAssign bllTicketAssign = new BLLTicketAssign();
         BLLTicket bllTicket = new BLLTicket();
         BLLOrder bllOrder = new BLLOrder();
-
-        QZPartnerTicketAsign partnerAsign;
         public string SellTicket(string clientFriendlyId, string idcardno, string ticketCode, int amount, string phone)
         {
+
             string returnMsg = "T";
             Model.QZSpringPartner partner = new QZSpringPartner();//根据friendlyid获取合作网站
             QZTicketAsign dateAsign = new QZTicketAsign();//todo: 获取 某日期 某个门票 的票数分配情况
-            partnerAsign = dateAsign.PartnerTicketAsign.First(x => x.Partner.FriendlyId == clientFriendlyId);
+           QZPartnerTicketAsign partnerAsign = dateAsign.PartnerTicketAsign.First(x => x.Partner.FriendlyId == clientFriendlyId);
 
             Guid requestGUID = Guid.NewGuid();
             TourLog.LogInstance.Info(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", clientFriendlyId, idcardno, ticketCode, amount, phone, requestGUID));
             string validErrMsg;
-            bool isValid = ValidateRequst(clientFriendlyId, amount, idcardno, ticketCode, out validErrMsg);
+            bool isValid = ValidateRequst(partnerAsign, amount, idcardno, ticketCode, out validErrMsg);
             if (!isValid)
             {
                 return "F|" + validErrMsg;
@@ -59,7 +58,7 @@ namespace BLL
         /// <param name="ticketCode"></param>
         /// <param name="errMsg"></param>
         /// <returns></returns>
-        private bool ValidateRequst(string clientFriendlyId, int amount, string idcardno, string ticketCode, out string errMsg)
+        private bool ValidateRequst( QZPartnerTicketAsign partnerAsign,int amount, string idcardno, string ticketCode, out string errMsg)
         {
 
 
