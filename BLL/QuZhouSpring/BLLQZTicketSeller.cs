@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BLL.QuZhouSpring
+namespace BLL
 {
     //被抢一张票
    public class BLLQZTicketSeller

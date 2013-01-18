@@ -11,7 +11,7 @@ using BLL;
 
 public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
 {
-    BLLTicketAsign bllta = new BLLTicketAsign();
+    BLLQZTicketAsign bllta = new BLLQZTicketAsign();
     BLLTicket bllTicket = new BLLTicket();
     protected void Page_Load(object sender, EventArgs e)
     {

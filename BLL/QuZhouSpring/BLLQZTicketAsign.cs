@@ -7,7 +7,7 @@ using DAL;
 namespace BLL
 {
     //将某天某景区门票分发给接入商
-    public class BLLTicketAsign
+    public class BLLQZTicketAsign:BLLBase<QZTicketAsign>
     {
         DALQZTicketAsign dalqzTa = new DALQZTicketAsign();
         public void Asign(DateTime date, Ticket t, Dictionary<Guid, int> partnersAsign, int asignedAmount)
@@ -30,6 +30,22 @@ namespace BLL
             }
             return listDT;
         }
+
+
+        private List<QZPartnerTicketAsign> createQzPartnerTa()
+        {
+            IList < QZSpringPartner > listQZSP= new BLLQZSpringPartner().GetListByName("");
+            List<QZPartnerTicketAsign> ListQzPartnerTa = new List<QZPartnerTicketAsign>();
+            foreach (var item in listQZSP)
+            {
+                QZPartnerTicketAsign qzta = new QZPartnerTicketAsign();
+                qzta.Partner = item;
+                ListQzPartnerTa.Add(qzta);
+            }
+            return ListQzPartnerTa;
+        }
+
+
 
         public void SaveDate(DateTime beginDate, DateTime endDate, List<Ticket> listTicket)
         {
@@ -58,10 +74,28 @@ namespace BLL
                     qz.Date = beginDate.AddDays(i);
                     qz.Ticket = ticket;
                     qz.ProductCode = ticket.ProductCode;
-                    dalqzTa.Save(qz);
+                    if (qz.PartnerTicketAsign == null || qz.PartnerTicketAsign.Count == 0)
+                        qz.PartnerTicketAsign = createQzPartnerTa();
+                    else
+                    {
+                        foreach (var item in createQzPartnerTa())
+                        {
+                            if (qz.PartnerTicketAsign.Where(x => x.Partner.Id == item.Partner.Id).Count() == 0)
+                            {
+                                item.QZTicketAsign = qz;
+                                new BLLQZPartnerTicketAsign().Save(item);
+                            }
+                        }
+                    }
+                    dalqzTa.SaveOrUpdate(qz);
                 }
 
             }
+        }
+
+        public IList<QZTicketAsign> GetQzByDate(DateTime dateTime)
+        {
+            return dalqzTa.GetQzByDate(dateTime);
         }
     }
 }

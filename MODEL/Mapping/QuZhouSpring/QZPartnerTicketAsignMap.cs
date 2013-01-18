@@ -13,7 +13,7 @@ namespace Model.Mapping
           Map(x => x.AsignedAmount);
           Map(x => x.SoldAmount);
           References<QZSpringPartner>(x => x.Partner);
-        
+          References<QZTicketAsign>(x => x.QZTicketAsign);
       }
     }
 }

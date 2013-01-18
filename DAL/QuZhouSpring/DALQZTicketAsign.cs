@@ -13,5 +13,11 @@ namespace DAL
         {
             return GetAll<QZTicketAsign>();
         }
+
+        public IList<QZTicketAsign> GetQzByDate(DateTime dateTime)
+        {
+            string sql = "select qz from QZTicketAsign qz where qz.Date='" + dateTime + "'";
+            return GetList(sql);
+        }
     }
 }
