@@ -102,7 +102,8 @@ function showywrecord() {
 
 var t;
 function timedCount() {
-    show();
+    if (! +[1, ])
+        show();
     t = setTimeout("timedCount()", 1000);
 }
 function show() {

@@ -17,7 +17,7 @@ namespace TourTest.BLLTest.Quzhou
         }
         [Test]
         public void BuildOrderForQZTest()
-        {
+        { 
             BLL.BLLQZTicketSeller seller = new BLLQZTicketSeller();
 
             TourMembership member = new TourMembership();
