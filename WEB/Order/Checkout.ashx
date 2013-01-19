@@ -133,13 +133,14 @@ public class CheckoutHandler : IHttpHandler
                
 
             }
-            /*
-           清空购物车
-           */
-
-            cookie.Value = "[]";
-            context.Response.Cookies.Add(cookie);
+          
         }
+        /*
+         清空购物车
+         */
+
+        cookie.Value = "[]";
+        context.Response.Cookies.Add(cookie);
         //保存常用联系人
         foreach (string ta in arrTicketAssign)
         {
