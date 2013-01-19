@@ -1,0 +1,68 @@
+2013-01-19 11:10:25,532 [8] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\tourl\WEB\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: SQL Network Interfaces, error: 26 - 定位指定的服务器/实例时出错)
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 NHibernate.Connection.DriverConnectionProvider.GetConnection() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Connection\DriverConnectionProvider.cs:行号 46
+   在 NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SuppliedConnectionProviderConnectionHelper.cs:行号 25
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 43
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 17
+   在 NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionFactoryImpl.cs:行号 169
+   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1246
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 60
+   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 25
+   在 DAL.DALMembership..ctor() 位置 E:\tourl\DAL\DALMembership.cs:行号 11
+   在 DAL.DalBase..ctor() 位置 E:\tourl\DAL\DalBase.cs:行号 13
+   在 DAL.DALRole..ctor()
+   在 BLL.TourRoleProvider..ctor() 位置 E:\tourl\BLL\Default\TourRoleProvider.cs:行号 13
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
+   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
+   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
+   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Security.Roles.Initialize()
+   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-19 11:10:26,323 [5] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\tourl\WEB\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: SQL Network Interfaces, error: 26 - 定位指定的服务器/实例时出错)
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 NHibernate.Connection.DriverConnectionProvider.GetConnection() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Connection\DriverConnectionProvider.cs:行号 46
+   在 NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SuppliedConnectionProviderConnectionHelper.cs:行号 25
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 43
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 17
+   在 NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionFactoryImpl.cs:行号 169
+   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1246
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 60
+   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 25
+   在 DAL.DALMembership..ctor() 位置 E:\tourl\DAL\DALMembership.cs:行号 11
+   在 DAL.DalBase..ctor() 位置 E:\tourl\DAL\DalBase.cs:行号 13
+   在 DAL.DALRole..ctor()
+   在 BLL.TourRoleProvider..ctor() 位置 E:\tourl\BLL\Default\TourRoleProvider.cs:行号 13
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
+   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
+   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
+   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Security.Roles.Initialize()
+   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

@@ -15,14 +15,14 @@ public partial class _Default : basepage
 
     private void CanEdit()
     {
-        if (CurrentUser != null && CurrentUser.UserName == "admin")
-        {
-            @default.CanEdit=true;
-        }
-        else
-        {
-            @default.CanEdit = false;
-        }
+        //if (CurrentUser != null && CurrentUser.UserName == "admin")
+        //{
+        //    @default.CanEdit=true;
+        //}
+        //else
+        //{
+        //    @default.CanEdit = false;
+        //}
     }
  
 }
