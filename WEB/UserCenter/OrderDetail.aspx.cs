@@ -156,6 +156,10 @@ public partial class UserCenter_MyOrder : basepage
             if (count > 0)
             {
                 (e.Item.FindControl("usedstate") as HtmlContainerControl).InnerHtml = "未使用完";
+                if (DateTime.Now > od.TicketPrice.Ticket.EndDate)
+                {
+                    (e.Item.FindControl("usedstate") as HtmlContainerControl).InnerHtml = "未使用完(已过期)";
+                }
                 //(e.Item.FindControl("itemod") as HtmlContainerControl).Attributes.Add("onclick", "btn2("+orderdetailid+")");
                 //(e.Item.FindControl("itemod") as HtmlContainerControl).Attributes.Add("style", "cursor:pointer");
             }
@@ -234,7 +238,12 @@ public partial class UserCenter_MyOrder : basepage
             (e.Item.FindControl("usedcount") as HtmlContainerControl).InnerHtml = (od.TicketAssignList.Count - count).ToString();
             if (count > 0)
             {
+                
                 (e.Item.FindControl("usedstate") as HtmlContainerControl).InnerHtml = "未使用完";
+                if (DateTime.Now > od.TicketPrice.Ticket.EndDate)
+                {
+                    (e.Item.FindControl("usedstate") as HtmlContainerControl).InnerHtml = "未使用完(已过期)";
+                }
                 //(e.Item.FindControl("itemod") as HtmlContainerControl).Attributes.Add("onclick", "btn2("+orderdetailid+")");
                 //(e.Item.FindControl("itemod") as HtmlContainerControl).Attributes.Add("style", "cursor:pointer");
             }

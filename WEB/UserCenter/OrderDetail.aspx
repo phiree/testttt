@@ -135,10 +135,9 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" runat="Server">
-
     <div id="oscdpinfo">
         <div class="oscdptop">
-            <span runat="server" id="paystate" style="color: #807940;font-weight:600;"></span>
+            <span runat="server" id="paystate" style="color: #807940; font-weight: 600;"></span>
             <asp:Button runat="server" Visible="false" OnClick="btnRefurb_Click" ID="btnRefurb"
                 Text="退订/退款" />
         </div>
@@ -182,7 +181,8 @@
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;" onmouseover="changebg(this)"
                     onmouseout="changebg2(this)">
-                    <span class="osczero" style="margin: 0px;"><a runat="server" id="ahref" style="color: #807940;" href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
+                    <span class="osczero" style="margin: 0px;"><a runat="server" id="ahref" style="color: #807940;"
+                        href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
                         <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span> <span class="oscfirst" style="margin: 0px;">
                             <%# Eval("TicketPrice.Ticket.Name")%></span> <span class="oscsecond" runat="server"
                                 id="ydprice" style="margin-left: 5px">
@@ -208,7 +208,8 @@
                 <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("Id") %>' />
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;" onmouseover="changebg(this)"
                     onmouseout="changebg2(this)">
-                    <span class="osczero" style="width: 200px;"><a runat="server" id="ahref" style="color: #807940;" href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
+                    <span class="osczero" style="width: 200px;"><a runat="server" id="ahref" style="color: #807940;"
+                        href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
                         <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span> <span class="oscfirst" style="width: 200px;">
                             <%# Eval("TicketPrice.Ticket.Name")%></span> <span class="oscsecond" runat="server"
                                 id="onlineprice" style="margin-left: 5px;">
@@ -239,7 +240,7 @@
     </div>
     <div id="oscupdateinfo">
         <div class="oscupdatetop">
-            <span style="margin-left: 25px; font-weight:600">取票人信息</span>
+            <span style="margin-left: 25px; font-weight: 600">取票人信息</span>
         </div>
         <div class="oscupdatesearch">
             <div id="contactlist">
@@ -267,9 +268,8 @@
                                 <%# Eval("TicketPrice.Ticket.Scenic.Name")%>
                             </span><span style="color: Red; margin-left: 10px; float: left;">*</span><span style="float: left">姓名</span><asp:TextBox
                                 ID="txtdetailname" Text='<%# Eval("TicketAssignList[0].Name") %>' runat="server"
-                                tid='<%#Eval("Id") %>' CssClass="aa" Style=" height: 20px;
-                                width: 150px; margin-left: 10px; float: left; padding: 0px; margin-top: 0px;
-                                line-height: 22px" onmouseover="showlx(this);"></asp:TextBox>
+                                tid='<%#Eval("Id") %>' CssClass="aa" Style="height: 20px; width: 150px; margin-left: 10px;
+                                float: left; padding: 0px; margin-top: 0px; line-height: 22px" onmouseover="showlx(this);"></asp:TextBox>
                             <span style="color: Red; margin-left: 100px; float: left;">*</span><span style="float: left">身份证号</span><asp:TextBox
                                 ID="txtdetailidcard" runat="server" Text='<%# Eval("TicketAssignList[0].IdCard") %>'
                                 Style="height: 20px; width: 150px; margin-left: 10px; float: left; padding: 0px;
