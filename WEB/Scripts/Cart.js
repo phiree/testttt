@@ -30,6 +30,8 @@ Cart.prototype.IsInCart = function (ticketId) {
     }
 }
 Cart.prototype.AddToCart = function (ticketId, qty) {
+    //quzhou special
+    this.CartItems = [];
     var item = this.IsInCart(ticketId);
     qty = EnsureCartQty(qty);
     if (item) {
