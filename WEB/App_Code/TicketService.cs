@@ -56,7 +56,9 @@ public class TicketService : System.Web.Services.WebService
         Model.QZPartnerTicketAsign qzPartnerTicketAsign = bllQzPartnerTicketAsign.GetOne(dt.Date, PartnerCode, productCode);
         if (qzPartnerTicketAsign == null)
         {
-            return 0;
+            TourLog.LogInstance.Error("没有查到相应信息");
+            return -1;
+           
         }
         int leftAmount = qzPartnerTicketAsign.AsignedAmount - qzPartnerTicketAsign.SoldAmount;
         if (leftAmount < 0) leftAmount = 0;
