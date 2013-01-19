@@ -13,7 +13,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <div class="login">
         <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
-        <asp:Login ID="scenicManagerLogin" runat="server">
+        <asp:Login ID="scenicManagerLogin" runat="server" 
+            onloggedin="scenicManagerLogin_LoggedIn" >
         </asp:Login>
     </div>
 </asp:Content>

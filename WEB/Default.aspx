@@ -99,14 +99,14 @@
         <a href="/Tickets/quzhou"></a>
     </div>
 
-    <div class="adcolum">
+   <%-- <div class="adcolum">
         <img src="/Img/农行.jpg" alt="农行优惠" />
-    </div>
-    <div class="lpcolum">
+    </div>--%>
+    <%--<div class="lpcolum">
         <a href="/topic/jiangshanlianpiao.aspx">
             <img src="/Img/jiangshanlianpiao_home.jpg" alt="套票江郎山" />
         </a>
-    </div>
+    </div>--%>
      <div class="fcolum">
         <div class="fcolum1">
             <span class="fcol1_scname">
