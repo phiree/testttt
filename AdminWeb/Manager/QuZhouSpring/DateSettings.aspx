@@ -22,44 +22,8 @@
         活动结束日期<asp:TextBox runat="server" ID="tbxEnd"></asp:TextBox>
         <asp:Button runat="server" ID="btnSave" Text="保存活动日期" OnClick="btnSave_Click" />
     </div>
-    <div class="detaillist">
-        <div class="detailtitle">
-            参与活动的门票列表.格式: 门票ID|门票代码
-        </div>
-        <asp:Repeater runat="server" ID="rptTicketList">
-            <HeaderTemplate>
-                <table>
-                    <tr>
-                        <td>门票ID</td>
-                        <td>门票代码</td>
-                        <td>
-                            起始时间
-                        </td>
-                        <td>
-                            结束时间
-                        </td>
-                    </tr>
-            </HeaderTemplate>
-            <ItemTemplate>
-                <tr>
-                    <td><%#Eval("Scenic.Name") %>_<%#Eval("Name") %>_<%# Eval("Id") %></td>
-                    <asp:HiddenField ID="hfId" runat="server" Value='<%# Eval("Id") %>' />
-                    <td>
-                        <asp:TextBox ID="tbxProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:TextBox></td>
-                    <td>
-                        <asp:TextBox ID="txtbeginDate" runat="server" CssClass="time" Text='<%# DateTime.Parse(Eval("BeginDate").ToString()).ToString("yyyy-MM-dd") %>'></asp:TextBox></td>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtendDate" runat="server" CssClass="time" Text='<%# DateTime.Parse(Eval("EndDate").ToString()).ToString("yyyy-MM-dd") %>'></asp:TextBox></td>
-                    </td>
-                </tr>
-            </ItemTemplate>
-            <FooterTemplate>
-                </table>
-            </FooterTemplate>
-        </asp:Repeater>
-    </div>
-    <asp:Button ID="btnSaveTicket" runat="server" Text="保存门票" OnClick="btnSaveTicket_Click" />
+    
+    
     <div class="detaillist">
         <div class="detailtitle">
             具体日期的门票分配情况

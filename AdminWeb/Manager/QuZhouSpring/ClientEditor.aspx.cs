@@ -58,6 +58,7 @@ public partial class Manager_QuZhouSpring_ClientEditor : basepage
     protected void btnSave_Click(object sender, EventArgs e)
     {
         UpdateForm();
-        bllqz.Save(qzclient);
+        bllqz.SaveOrUpdate(qzclient);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功');window.location='/manager/quzhouspring/ClientList.aspx'", true);
     }
 }

@@ -73,6 +73,7 @@
                             <li><a href="/Manager/ImportMipangTicket.aspx">
                                 米胖门票导入</a></li>
                                 <li><a href="/manager/quzhouspring/ClientList.aspx">衢州春节门票(网站列表)</a></li>
+                                <li><a href="/manager/quzhouspring/TicketList.aspx">衢州春节门票(门票列表)</a></li>
                                 <li><a href="/manager/quzhouspring/DateSettings.aspx">衢州春节门票(门票分配)</a></li>
                         </ul>
                       

@@ -24,6 +24,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     BLLDJConsumRecord bllrecord = new BLLDJConsumRecord();
     BLLTicket bllTicket = new BLLTicket();
     #endregion
+    #region Init初始化
     protected void Page_Load(object sender, EventArgs e)
     {
         hfscid.Value = Master.Scenic.Id.ToString();
@@ -34,7 +35,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         if (!IsPostBack)
         {
             Init();
-            
+
         }
     }
     /// <summary>
@@ -46,7 +47,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //绑定预定信息
 
         //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
-        List<TicketAssign> list= new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic);
+        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic);
         List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetGuiderWorkerByTE(CurrentScenic).ToList();
         foreach (DJ_Group_Worker gw in listdjGW)
         {
@@ -69,7 +70,8 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         ywdiv.Style.Add("visiblity", "hidden");
         rptguiderinfo.Visible = false;
     }
-    
+
+
     /// <summary>
     /// 为前台autocomplete插件做的ajax方法
     /// </summary>
@@ -105,8 +107,9 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             return System.Text.Encoding.UTF8.GetString(ms.ToArray());
         }
     }
+    #endregion
 
-
+    #region event
     protected void btnbind_Click(object sender, EventArgs e)
     {
         CurrentScenic = Master.Scenic;
@@ -120,7 +123,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         int flag = 0;
         foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic).Where(x => x.Name == name))
         {
-            if (item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14)== idcard)
+            if (item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14) == idcard)
             {
                 flag = 1;
                 idcard = item.IdCard;
@@ -189,8 +192,8 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
         }
-        int yditems,olrptitems,guideritems,IsSelecttiem;
-        if (!IsCanChecked(out yditems, out olrptitems,out guideritems,out IsSelecttiem))
+        int yditems, olrptitems, guideritems, IsSelecttiem;
+        if (!IsCanChecked(out yditems, out olrptitems, out guideritems, out IsSelecttiem))
         {
             return;
         }
@@ -208,10 +211,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     int ttcount = Convert.ToInt32((yditem.FindControl("ydmpcount") as HtmlContainerControl).InnerHtml);
                     int usedydcount = Convert.ToInt32((yditem.FindControl("ydmpusedcount") as HtmlContainerControl).InnerHtml);
                     //判断此票是否过期，当前版本的做法为判断ticket的起始状态，将来需要对ticketAssign做起始状态的冗余字段，来验证
-                    Ticket ticket= bllTicket.GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value));
+                    Ticket ticket = bllTicket.GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value));
                     if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
                     {
-                        string message="alert('该票的使用期限为"+ticket.BeginDate.ToString("yyyy-MM-dd")+"至"+ticket.EndDate.ToString("yyyy-MM-dd");
+                        string message = "alert('该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
                         message += "请在规定的时间内使用该门票！')";
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", message, true);
                         return;
@@ -325,12 +328,12 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             }
         }
         //导游验票结果
-        if (IsSelecttiem != 0 && guideritems==0)
+        if (IsSelecttiem != 0 && guideritems == 0)
         {
             foreach (RepeaterItem guideritem in rptguiderinfo.Items)
             {
                 CheckBox hick = guideritem.FindControl("selectItem") as CheckBox;
-                if (hick.Checked&&hick.Enabled)
+                if (hick.Checked && hick.Enabled)
                 {
                     TextBox tbAdult = guideritem.FindControl("txtAdultsAmount") as TextBox;
                     TextBox tbChild = guideritem.FindControl("txtChildrenAmount") as TextBox;
@@ -338,7 +341,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     {
                         HiddenField hfrouteid = guideritem.FindControl("hfrouteId") as HiddenField;
                         DJ_Route route = blldjroute.GetById(Guid.Parse(hfrouteid.Value));
-                        bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text),0,0,0);
+                        bllrecord.Save(CurrentScenic, route, DateTime.Now, int.Parse(tbAdult.Text), int.Parse(tbChild.Text), 0, 0, 0);
                         BindPrintLink();
                         guiderSuccess = 1;
                     }
@@ -515,7 +518,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     public void bindTicketInfo(string name, string idcard)
     {
         username.InnerHtml = name;
-        useridcard.InnerHtml = idcard.Substring(0,6)+"********"+idcard.Substring(14);
+        useridcard.InnerHtml = idcard.Substring(0, 6) + "********" + idcard.Substring(14);
         //预定
         CurrentScenic = Master.Scenic;
         ViewState["idcard"] = idcard;
@@ -543,14 +546,14 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             int Index = 0;
-            DJ_TourGroup tourgroup= e.Item.DataItem as DJ_TourGroup;
+            DJ_TourGroup tourgroup = e.Item.DataItem as DJ_TourGroup;
             Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
             laGuideName.Text = tourgroup.Workers.Where(x => x.DJ_Workers.WorkerType == DJ_GroupWorkerType.导游).ToList<DJ_Group_Worker>()[0].DJ_Workers.Name;
             HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
             int flag = 0;
             foreach (DJ_Route route in tourgroup.Routes)
             {
-                if (tourgroup.BeginDate.AddDays(route.DayNo-1).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == Master.Scenic.Id)
+                if (tourgroup.BeginDate.AddDays(route.DayNo - 1).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == Master.Scenic.Id)
                 {
                     if (flag == Index)
                     {
@@ -559,8 +562,8 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                         CheckBox selectItem = e.Item.FindControl("selectItem") as CheckBox;
                         TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
                         TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
-                        DJ_GroupConsumRecord record= bllrecord.GetGroupConsumRecordByRouteId(route.Id);
-                        if ( record!= null)
+                        DJ_GroupConsumRecord record = bllrecord.GetGroupConsumRecordByRouteId(route.Id);
+                        if (record != null)
                         {
                             laIsChecked.Text = "已验证";
                             selectItem.Enabled = false;
@@ -610,7 +613,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         foreach (RepeaterItem rpitem in rptguiderinfo.Items)
         {
             CheckBox hick = rpitem.FindControl("selectItem") as CheckBox;
-            if (hick.Checked&&hick.Enabled)
+            if (hick.Checked && hick.Enabled)
             {
                 IsSelecttiem++;
                 TextBox tbAdult = rpitem.FindControl("txtAdultsAmount") as TextBox;
@@ -656,13 +659,13 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             {
                 if (IsSelecttiem == 0)
                 {
-                    if(HaveYz==1)
+                    if (HaveYz == 1)
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "printTicket('请选择一个已验证的团队信息，是否对已验证的团队进行打印？')", true);
                     else
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请选择一个已验证的团队信息')", true);
                     return false;
                 }
-                else if (guideritems>0)
+                else if (guideritems > 0)
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入完整使用人数')", true);
                     return false;
@@ -719,10 +722,10 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         {
             HiddenField hfrouteId = item.FindControl("hfrouteId") as HiddenField;
             DJ_GroupConsumRecord record = bllrecord.GetGroupConsumRecordByRouteId(Guid.Parse(hfrouteId.Value));
-            if(record!=null)
-                routeids += hfrouteId.Value+",";
+            if (record != null)
+                routeids += hfrouteId.Value + ",";
         }
         BtnPrint.HRef = "/ScenicManager/PrintCer.aspx?routeids=" + routeids;
     }
-
+    #endregion
 }

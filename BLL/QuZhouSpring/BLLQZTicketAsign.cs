@@ -31,8 +31,11 @@ namespace BLL
             return listDT;
         }
 
-
-        private List<QZPartnerTicketAsign> createQzPartnerTa()
+        /// <summary>
+        /// 生成一个所有接入网站的门票分配表
+        /// </summary>
+        /// <returns></returns>
+        public List<QZPartnerTicketAsign> GetAllQzPartnerTa()
         {
             IList < QZSpringPartner > listQZSP= new BLLQZSpringPartner().GetListByName("");
             List<QZPartnerTicketAsign> ListQzPartnerTa = new List<QZPartnerTicketAsign>();
@@ -47,8 +50,30 @@ namespace BLL
             }
             return ListQzPartnerTa;
         }
-
-
+        /// <summary>
+        /// 根据qzTicketAsign生成所有接入网站的门票分配表
+        /// </summary>
+        /// <param name="qzTa">qzTicketAsign</param>
+        /// <returns></returns>
+        public List<QZPartnerTicketAsign> GetAllQzPartnerTa(QZTicketAsign qzTa)
+        {
+            List<QZPartnerTicketAsign> ListQzTa = GetAllQzPartnerTa();
+            foreach (var qzta in ListQzTa)
+            {
+                //此方法在保存后无法显示其list
+                List<QZPartnerTicketAsign> listQzTa2 = new List<QZPartnerTicketAsign>();
+                if (qzTa.PartnerTicketAsign!=null)
+                    listQzTa2=qzTa.PartnerTicketAsign.Where(x => x.Partner.Id == qzta.Partner.Id).ToList();
+                if (listQzTa2.Count() > 0)
+                {
+                    qzta.Id = listQzTa2[0].Id;
+                    qzta.QZTicketAsign = listQzTa2[0].QZTicketAsign;
+                    qzta.AsignedAmount = listQzTa2[0].AsignedAmount;
+                    qzta.SoldAmount = listQzTa2[0].SoldAmount;
+                }
+            }
+            return ListQzTa;
+        }
 
         public void SaveDate(DateTime beginDate, DateTime endDate, List<Ticket> listTicket)
         {
@@ -81,19 +106,20 @@ namespace BLL
                     qz.Date = beginDate.AddDays(i);
                     qz.Ticket = ticket;
                     qz.ProductCode = ticket.ProductCode;
-                    if (qz.PartnerTicketAsign == null || qz.PartnerTicketAsign.Count == 0)
-                        qz.PartnerTicketAsign = createQzPartnerTa();
-                    else
-                    {
-                        foreach (var item in createQzPartnerTa())
-                        {
-                            if (qz.PartnerTicketAsign.Where(x => x.Partner.Id == item.Partner.Id).Count() == 0)
-                            {
-                                item.QZTicketAsign = qz;
-                                new BLLQZPartnerTicketAsign().Save(item);
-                            }
-                        }
-                    }
+                    //不在此处给它绑定好partnerTicketAsign
+                    //if (qz.PartnerTicketAsign == null || qz.PartnerTicketAsign.Count == 0)
+                    //    qz.PartnerTicketAsign = createQzPartnerTa();
+                    //else
+                    //{
+                    //    foreach (var item in createQzPartnerTa())
+                    //    {
+                    //        if (qz.PartnerTicketAsign.Where(x => x.Partner.Id == item.Partner.Id).Count() == 0)
+                    //        {
+                    //            item.QZTicketAsign = qz;
+                    //            new BLLQZPartnerTicketAsign().Save(item);
+                    //        }
+                    //    }
+                    //}
                     dalqzTa.SaveOrUpdate(qz);
                 }
 
@@ -103,6 +129,41 @@ namespace BLL
         public IList<QZTicketAsign> GetQzByDate(DateTime dateTime)
         {
             return dalqzTa.GetQzByDate(dateTime);
+        }
+
+        /// <summary>
+        /// 根据门票列表获取QzTa
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <param name="?"></param>
+        /// <returns></returns>
+        public IList<QZTicketAsign> GetQzByDate(DateTime dateTime,List<Ticket> listTicket)
+        {
+            List<QZTicketAsign> listQzTa= dalqzTa.GetQzByDate(dateTime).ToList();
+            foreach (var ticket in listTicket)
+            {
+                if (listQzTa.Where(x => x.Ticket.Id == ticket.Id).Count() == 0)
+                {
+                    QZTicketAsign qzTa = new QZTicketAsign();
+                    qzTa.Ticket = ticket;
+                    qzTa.Date = dateTime;
+                    Save(qzTa);
+                    listQzTa.Add(qzTa);
+                }
+            }
+            return listQzTa;
+        }
+
+
+        /// <summary>
+        /// 根据时间和门票获取ticketAsign
+        /// </summary>
+        /// <param name="dateTime">时间</param>
+        /// <param name="ticketId">门票id</param>
+        /// <returns>ticketAsign列表</returns>
+        public IList<QZTicketAsign> GetQzByDateAndTicket(DateTime dateTime, int ticketId)
+        {
+            return dalqzTa.GetQzByDateAndTicket(dateTime, ticketId);
         }
     }
 }

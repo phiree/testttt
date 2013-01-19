@@ -7,9 +7,6 @@
     <meta   http-equiv= "cache-control "   content= "no-cache ">   
     <meta   http-equiv= "pragma "   content= "no-cache ">  
     <meta http-equiv="x-ua-compatible" content="ie=8" />
-    <%--<script src="../Scripts/jquery.js" type="text/javascript"></script>
-    <script src="../Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
-    <script src="../Scripts/jqueryplugin/jquery.autoRedirect.js" type="text/javascript"></script>--%>
     <script src="/Scripts/jquery.js" type="text/javascript"></script>
     <script src="../Scripts/jquery.autocomplete.js" type="text/javascript"></script>
     <link href="../theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
@@ -233,11 +230,4 @@
     <div style="clear:both"></div>
     </div>
     
-    <%--<input type="button" onclick="sss();" value="ceshi" />
-    <script type="text/javascript">
-        function sss() {
-            $("[id$='hfautoidcard']").val("1232143243453");
-            $("[id$='btnauto']").click();
-        }
-    </script>--%>
 </asp:Content>

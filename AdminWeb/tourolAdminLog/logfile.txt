@@ -1,33 +1,67 @@
-2013-01-19 17:01:49,949 [5] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.InvalidOperationException: 已有打开的与此 Command 相关联的 DataReader，必须首先将它关闭。
-   在 System.Data.SqlClient.SqlInternalConnectionTds.ValidateConnectionForExecute(SqlCommand command)
-   在 System.Data.SqlClient.SqlConnection.ValidateConnectionForExecute(String method, SqlCommand command)
-   在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
-   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:行号 247
-   在 NHibernate.Impl.MultiQueryImpl.DoList() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\MultiQueryImpl.cs:行号 479
-   在 NHibernate.Impl.MultiQueryImpl.List() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\MultiQueryImpl.cs:行号 376
-   在 NHibernate.Impl.FutureQueryBatch.GetResultsFrom(IMultiQuery multiApproach) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\FutureQueryBatch.cs:行号 24
-   在 NHibernate.Impl.FutureBatch`2.GetResults() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\FutureBatch.cs:行号 73
-   在 NHibernate.Impl.FutureBatch`2.GetCurrentResult[TResult](Int32 currentIndex) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\FutureBatch.cs:行号 79
-   在 NHibernate.Impl.FutureBatch`2.<>c__DisplayClass1`1.<GetFutureValue>b__0() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\FutureBatch.cs:行号 57
-   在 NHibernate.Impl.FutureValue`1.get_Value() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\FutureValue.cs:行号 22
-   在 DAL.DALRole.IsUserInRole(String userName, String roleName) 位置 E:\workspace\testttt\DAL\DALRole.cs:行号 77
-   在 BLL.TourRoleProvider.IsUserInRole(String username, String roleName) 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 78
-   在 System.Web.Security.Roles.IsUserInRole(String username, String roleName)
-   在 Manager_AdminLogin.Login1_LoggedIn(Object sender, EventArgs e) 位置 e:\workspace\testttt\AdminWeb\Manager\Login.aspx.cs:行号 38
-   在 System.Web.UI.WebControls.Login.OnLoggedIn(EventArgs e)
-   在 System.Web.UI.WebControls.Login.AttemptLogin()
-   在 System.Web.UI.WebControls.Login.OnBubbleEvent(Object source, EventArgs e)
-   在 System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
-   在 System.Web.UI.WebControls.Button.OnCommand(CommandEventArgs e)
+2013-01-20 00:07:33,392 [18] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 无法为请求的 Configuration 对象创建配置文件。
+   在 System.Configuration.MgmtConfigurationRecord.SaveAs(String filename, ConfigurationSaveMode saveMode, Boolean forceUpdateAll)
+   在 System.Configuration.Configuration.SaveAsImpl(String filename, ConfigurationSaveMode saveMode, Boolean forceSaveAll)
+   在 System.Configuration.Configuration.Save()
+   在 Manager_QuZhouSpring_DateSettings.btnSave_Click(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateSettings.aspx.cs:行号 41
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
    在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
    在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
    在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
    在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_datesettings_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_zzmv5iv3.12.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-20 00:08:42,844 [23] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 无法打开 configSource 文件“config\app.config”。 (E:\tourl\AdminWeb\web.config line 6)
+   在 System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   在 System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   在 System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   在 System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   在 System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   在 System.Configuration.Configuration.get_AppSettings()
+   在 Manager_QuZhouSpring_DateSettings.btnSave_Click(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateSettings.aspx.cs:行号 39
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_datesettings_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_zzmv5iv3.12.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-20 00:11:17,556 [17] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 无法为请求的 Configuration 对象创建配置文件。
+   在 System.Configuration.MgmtConfigurationRecord.SaveAs(String filename, ConfigurationSaveMode saveMode, Boolean forceUpdateAll)
+   在 System.Configuration.Configuration.SaveAsImpl(String filename, ConfigurationSaveMode saveMode, Boolean forceSaveAll)
+   在 System.Configuration.Configuration.Save()
+   在 Manager_QuZhouSpring_DateSettings.btnSave_Click(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateSettings.aspx.cs:行号 41
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_datesettings_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_zzmv5iv3.12.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-20 00:39:45,768 [16] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 Manager_QuZhouSpring_DateSettings.BindData() 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateSettings.aspx.cs:行号 31
+   在 Manager_QuZhouSpring_DateSettings.Page_Load(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateSettings.aspx.cs:行号 22
+   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
+   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   在 System.Web.UI.Control.OnLoad(EventArgs e)
+   在 System.Web.UI.Control.LoadRecursive()
    在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
    在 System.Web.UI.Page.HandleError(Exception e)
    在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
@@ -35,6 +69,58 @@
    在 System.Web.UI.Page.ProcessRequest()
    在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
    在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.manager_login_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\cc0615e9\8f5fd40a\App_Web_ptjuritj.2.cs:行号 0
+   在 ASP.manager_quzhouspring_datesettings_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_h1oez434.10.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-20 02:37:27,330 [9] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentNullException: 值不能为 null。
+参数名: source
+   在 System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 BLL.BLLQZTicketAsign.GetAllQzPartnerTa(QZTicketAsign qzTa) 位置 E:\tourl\BLL\QuZhouSpring\BLLQZTicketAsign.cs:行号 64
+   在 Manager_QuZhouSpring_DateTicketAsign.rptAsignList_ItemDataBound(Object sender, RepeaterItemEventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 45
+   在 System.Web.UI.WebControls.Repeater.OnItemDataBound(RepeaterItemEventArgs e)
+   在 System.Web.UI.WebControls.Repeater.CreateItem(Int32 itemIndex, ListItemType itemType, Boolean dataBind, Object dataItem)
+   在 System.Web.UI.WebControls.Repeater.CreateControlHierarchy(Boolean useDataSource)
+   在 System.Web.UI.WebControls.Repeater.OnDataBinding(EventArgs e)
+   在 System.Web.UI.WebControls.Repeater.DataBind()
+   在 Manager_QuZhouSpring_DateTicketAsign.bindData() 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 37
+   在 Manager_QuZhouSpring_DateTicketAsign.Page_Load(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 21
+   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
+   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   在 System.Web.UI.Control.OnLoad(EventArgs e)
+   在 System.Web.UI.Control.LoadRecursive()
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_dateticketasign_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_gg5psedw.12.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-20 02:43:40,125 [9] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentNullException: 值不能为 null。
+参数名: source
+   在 System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 BLL.BLLQZTicketAsign.GetAllQzPartnerTa(QZTicketAsign qzTa) 位置 E:\tourl\BLL\QuZhouSpring\BLLQZTicketAsign.cs:行号 64
+   在 Manager_QuZhouSpring_DateTicketAsign.rptAsignList_ItemDataBound(Object sender, RepeaterItemEventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 45
+   在 System.Web.UI.WebControls.Repeater.OnItemDataBound(RepeaterItemEventArgs e)
+   在 System.Web.UI.WebControls.Repeater.CreateItem(Int32 itemIndex, ListItemType itemType, Boolean dataBind, Object dataItem)
+   在 System.Web.UI.WebControls.Repeater.CreateControlHierarchy(Boolean useDataSource)
+   在 System.Web.UI.WebControls.Repeater.OnDataBinding(EventArgs e)
+   在 System.Web.UI.WebControls.Repeater.DataBind()
+   在 Manager_QuZhouSpring_DateTicketAsign.bindData() 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 37
+   在 Manager_QuZhouSpring_DateTicketAsign.Page_Load(Object sender, EventArgs e) 位置 e:\tourl\AdminWeb\Manager\QuZhouSpring\DateTicketAsign.aspx.cs:行号 21
+   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
+   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   在 System.Web.UI.Control.OnLoad(EventArgs e)
+   在 System.Web.UI.Control.LoadRecursive()
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.manager_quzhouspring_dateticketasign_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\eda823e3\322a660c\App_Web_gg5psedw.12.cs:行号 0
    在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

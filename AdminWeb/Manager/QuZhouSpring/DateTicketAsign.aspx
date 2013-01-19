@@ -60,7 +60,7 @@
                                     <tr>
                                         <td>
                                             <%# Eval("Partner.Name")%>
-                                            <asp:HiddenField runat="server" ID="hfid" Value='<%# Eval("Id") %>' />
+                                            <asp:HiddenField runat="server" ID="hfPartnerId" Value='<%# Eval("Partner.Id") %>' />
                                         </td>
                                         <td>
                                             <asp:TextBox runat="server" ID="tbxAsignAmount"  Text='<%# Eval("AsignedAmount") %>'/>
