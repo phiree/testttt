@@ -28,7 +28,7 @@ public partial class UserCenter_MyOrder : basepage
 
 
         order = bllorder.GetOrderByOrderid(orderid);
-        btnRefurb.Visible = order.IsPaid && !order.GetUsedState;
+     //   btnRefurb.Visible = order.IsPaid && !order.GetUsedState;
         if (order.State == 1)
         {
 

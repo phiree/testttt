@@ -22,8 +22,8 @@ namespace Model.Mapping
             HasMany<TicketPrice>(x => x.TicketPrice).Inverse().Cascade.All();
             Map(x => x.IsMain);
             Map(x => x.Amount);
-            Map(x => x.BeginDate);
-            Map(x => x.EndDate);
+            Map(x => x.BeginDate).Nullable();
+            Map(x => x.EndDate).Nullable();
             Map(x => x.ProductCode);
             Map(x => x.Remark);
         }

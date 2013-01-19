@@ -15,19 +15,33 @@ namespace BLL
         BLLTicketAssign bllTicketAssign = new BLLTicketAssign();
         BLLTicket bllTicket = new BLLTicket();
         BLLOrder bllOrder = new BLLOrder();
+        BLLQZPartnerTicketAsign bllQZPartnerTicketAsign = new BLLQZPartnerTicketAsign();
 
-        QZPartnerTicketAsign partnerAsign;
+       
         public string SellTicket(string clientFriendlyId, string idcardno, string ticketCode, int amount, string phone)
         {
-            string returnMsg = "T";
-            Model.QZSpringPartner partner = new QZSpringPartner();//根据friendlyid获取合作网站
-            QZTicketAsign dateAsign = new QZTicketAsign();//todo: 获取 某日期 某个门票 的票数分配情况
-            partnerAsign = dateAsign.PartnerTicketAsign.First(x => x.Partner.FriendlyId == clientFriendlyId);
 
+
+            string returnMsg = "T";
+
+            //身份证号码验证
+            string checkIdCardNoErrMsg;
+            bool idcardnoValid = CommonLibrary.StringHelper.CheckIDCard(idcardno, out checkIdCardNoErrMsg);
+            if (!idcardnoValid)
+            {
+                return "F|" + checkIdCardNoErrMsg;
+            }
+            DateTime nowDay = DateTime.Now.Date;
+        
+            QZPartnerTicketAsign partnerAsign = bllQZPartnerTicketAsign.GetOne(nowDay, clientFriendlyId, ticketCode);//todo: 获取 某日期 某个门票 的票数分配情况
+            if (partnerAsign == null)
+            {
+                return "F|没有查到对应的门票";
+            }
             Guid requestGUID = Guid.NewGuid();
             TourLog.LogInstance.Info(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", clientFriendlyId, idcardno, ticketCode, amount, phone, requestGUID));
             string validErrMsg;
-            bool isValid = ValidateRequst(clientFriendlyId, amount, idcardno, ticketCode, out validErrMsg);
+            bool isValid = ValidateRequst(partnerAsign, amount, idcardno, ticketCode, out validErrMsg);
             if (!isValid)
             {
                 return "F|" + validErrMsg;
@@ -41,11 +55,12 @@ namespace BLL
             }
             //自动创建订单
             Ticket currentTicket = bllTicket.GetByProductCode(ticketCode);
-            Order order = BuildOrderForQZ(member, currentTicket, amount, partner.Name);
+            Order order = BuildOrderForQZ(member, currentTicket, amount, partnerAsign.Partner.Name);
             bllOrder.SaveOrUpdateOrder(order);
 
             //3 该接入商该景区的已售门票+1
             partnerAsign.SoldAmount += amount;
+            bllQZPartnerTicketAsign.SaveOrUpdate(partnerAsign);
             TourLog.LogInstance.Info(returnMsg);
             TourLog.LogInstance.Info(requestGUID + "*********END********");
             return returnMsg;
@@ -59,7 +74,7 @@ namespace BLL
         /// <param name="ticketCode"></param>
         /// <param name="errMsg"></param>
         /// <returns></returns>
-        private bool ValidateRequst(string clientFriendlyId, int amount, string idcardno, string ticketCode, out string errMsg)
+        private bool ValidateRequst(QZPartnerTicketAsign partnerAsign, int amount, string idcardno, string ticketCode, out string errMsg)
         {
 
 
@@ -76,7 +91,9 @@ namespace BLL
 
 
             //是否已经抢到了足够的票数
-            IList<TicketAssign> gotTotalTicketsOfThisType = bllTicketAssign.GetTaByIdCard(idcardno).Where(x => x.OrderDetail.TicketPrice.Ticket.Remark == "衢州新春派送").ToList();
+            //ticket的 productcode 不为空的门票总数--> 
+            //todo: 不太保险的判断
+            IList<TicketAssign> gotTotalTicketsOfThisType = bllTicketAssign.GetTaByIdCard(idcardno).Where(x =>!string.IsNullOrEmpty( x.OrderDetail.TicketPrice.Ticket.ProductCode)).ToList();
             if (gotTotalTicketsOfThisType.Count >= 5)
             {
                 //已经抢了5张这样的门票 
@@ -96,7 +113,7 @@ namespace BLL
             return true;
         }
 
-        public Order BuildOrderForQZ(TourMembership member, Ticket currentTicket, int amount,string parnterName)
+        public Order BuildOrderForQZ(TourMembership member, Ticket currentTicket, int amount, string parnterName)
         {
             #region 开始出票
             //1 为身份证号创建一个用户名
@@ -111,7 +128,7 @@ namespace BLL
             orderdetail.Remark = "衢州新春门票派送活动自动创建订单,请票来源:" + parnterName;
             orderdetail.TicketAssignList.Add(ta);
 
-            TicketPrice ticketPrice = currentTicket.TicketPrice[0];
+            TicketPrice ticketPrice = currentTicket.GetTicketPrice(PriceType.PayOnline);
             orderdetail.TicketPrice = ticketPrice;
 
             Order order = new Order();
@@ -123,7 +140,7 @@ namespace BLL
             order.PriceType = PriceType.PayOnline;
             order.PayTime = DateTime.Now;
             order.TradeNo = "QZFREE";
-            
+
             return order;
 
 

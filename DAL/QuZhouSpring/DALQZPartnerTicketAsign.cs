@@ -14,7 +14,7 @@ namespace DAL
             string sql = "select qz from QZPartnerTicketAsign qz where 1=1 ";
             sql += " and qz.QZTicketAsign.Date='" + dateTime.ToString("yyyy-MM-dd") + "' ";
             sql += " and qz.Partner.FriendlyId='" + PartnerFriendlyId + "' ";
-            sql += " and qz.QZTicketAsign.ProductCode='" + ProductCode + "'";
+            sql += " and qz.QZTicketAsign.Ticket.ProductCode='" + ProductCode + "'";
             return GetOneByQuery(sql);
         }
     }
