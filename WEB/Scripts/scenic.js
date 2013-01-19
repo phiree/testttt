@@ -2,7 +2,9 @@
         function AddToCart(btn) {
             //var qty = $("#txtTicketCount").val();
             cart.AddToCart(GetTicketId(btn), 1);
-            window.location.href = "/order/cart.aspx";
+            //  window.location.href = "/order/cart.aspx";
+            //衢州活动 直接跳转至确认页面
+            window.location.href = "/order/checkout.aspx";
         }
 
        

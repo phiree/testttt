@@ -29,7 +29,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB\", "{61ADBB5F-2F
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "15206"
+		VWDPort = "6599"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -110,7 +110,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DiJieSheWeb", "DiJieSheWeb\
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "15207"
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Codeviews", "Codeviews", "{D35FB1CE-1F50-4D1C-A78D-EEB28EF2982C}"
@@ -143,7 +142,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AdminWeb", "AdminWeb\", "{0
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "55485"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject

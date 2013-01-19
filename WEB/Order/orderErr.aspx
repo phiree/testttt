@@ -2,9 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="fhead" Runat="Server">
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="fbody" Runat="Server">
+
+<asp:Content ID="Content3" ContentPlaceHolderID="cphmain" Runat="Server">
  <div id="paysuccess" style=" width:500px; min-height: 300px; margin: 20px auto;">
         <div class="error" style="font-size: 18px; font-weight: 600; color: #78A240;">
             订单出错!</div>

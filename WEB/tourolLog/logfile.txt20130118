@@ -1,0 +1,350 @@
+2013-01-18 18:12:38,770 [10] ERROR ErrorLogger [(null)] - System.Web.HttpException (0x80004005): 文件“/tourservice/quzhouspring.asmx”不存在。
+   在 System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath)
+   在 System.Web.UI.WebServiceParser.GetCompiledType(String inputFile, HttpContext context)
+   在 System.Web.Services.Protocols.WebServiceHandlerFactory.GetCompiledType(String url, HttpContext context)
+   在 System.Web.Services.Protocols.WebServiceHandlerFactory.GetHandler(HttpContext context, String verb, String url, String filePath)
+   在 System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   在 System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 18:12:54,447 [11] ERROR ErrorLogger [(null)] - System.Web.HttpException (0x80004005): 文件“/tourservice/quzhouspring/TicketService.asmx”不存在。
+   在 System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath)
+   在 System.Web.UI.WebServiceParser.GetCompiledType(String inputFile, HttpContext context)
+   在 System.Web.Services.Protocols.WebServiceHandlerFactory.GetCompiledType(String url, HttpContext context)
+   在 System.Web.Services.Protocols.WebServiceHandlerFactory.GetHandler(HttpContext context, String verb, String url, String filePath)
+   在 System.Web.Script.Services.ScriptHandlerFactory.GetHandler(HttpContext context, String requestType, String url, String pathTranslated)
+   在 System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 18:15:15,582 [20] INFO  ErrorLogger [(null)] - *********Begin********4bdb04d4-31fa-448d-ab08-36b050216c15出票请求:zjlvxxzx_420822198010103916_ticket1_1_
+2013-01-18 18:15:15,609 [20] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 18:15:35,997 [8] INFO  ErrorLogger [(null)] - *********Begin********638f083e-cc83-404a-ba63-6e64fd427f21出票请求:zjlvxxzx_420822198010103916_ticket1_1_
+2013-01-18 18:15:35,997 [8] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 18:16:01,660 [22] INFO  ErrorLogger [(null)] - *********Begin********dd78e82b-7e62-4496-a661-1d52af9a8d06出票请求:zjlvxxzx_420822198010103916_ticket1_1_
+2013-01-18 18:16:01,660 [22] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 18:16:29,407 [24] INFO  ErrorLogger [(null)] - *********Begin********80d55c40-da0a-43b1-bdb3-9dcca22593aa出票请求:zjlvxxzx_420822198010103916_ticket1_1_
+2013-01-18 18:17:05,178 [24] INFO  ErrorLogger [(null)] - *********Begin********1cf7bcef-df7d-4c89-bed9-cc097cc54aa7出票请求:zjlvxxzx_420822198010103916_ticket1_1_
+2013-01-18 18:17:06,362 [24] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 18:17:46,986 [24] INFO  ErrorLogger [(null)] - *********Begin********ea8f65fd-b1e0-4236-9244-0c726a6d5e5a出票请求:zjlvxxzx_420822198010103916_ticket1_1_
+2013-01-18 18:17:47,605 [24] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 18:39:38,827 [5] INFO  ErrorLogger [(null)] - *********Begin********5ced4000-4705-4c5f-8cf1-f900fdd1440e出票请求:zjlvxxzx_420822198010103916_ticket1_1_
+2013-01-18 18:39:38,844 [5] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 18:39:39,554 [5] INFO  ErrorLogger [(null)] - T
+2013-01-18 18:39:39,554 [5] INFO  ErrorLogger [(null)] - 5ced4000-4705-4c5f-8cf1-f900fdd1440e*********END********
+2013-01-18 18:46:04,776 [13] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 BLL.BLLFormatSerialNo.GetSerialNo(String flag, Boolean includeDay) 位置 E:\workspace\testttt\BLL\Default\BLLFormatSerialNo.cs:行号 52
+   在 BLL.BLLFormatSerialNo.GetSerialNo(String flag) 位置 E:\workspace\testttt\BLL\Default\BLLFormatSerialNo.cs:行号 39
+   在 BLL.BLLRefund.ApplyRefund() 位置 E:\workspace\testttt\BLL\Default\BLLRefund.cs:行号 62
+   在 UserCenter_MyOrder.btnRefurb_Click(Object sender, EventArgs e) 位置 e:\workspace\testttt\WEB\UserCenter\OrderDetail.aspx.cs:行号 67
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.usercenter_orderdetail_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\37ce1ae4\c85c6f06\App_Web_5del3iju.14.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 18:46:11,691 [5] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 BLL.BLLFormatSerialNo.GetSerialNo(String flag, Boolean includeDay) 位置 E:\workspace\testttt\BLL\Default\BLLFormatSerialNo.cs:行号 52
+   在 BLL.BLLFormatSerialNo.GetSerialNo(String flag) 位置 E:\workspace\testttt\BLL\Default\BLLFormatSerialNo.cs:行号 39
+   在 BLL.BLLRefund.ApplyRefund() 位置 E:\workspace\testttt\BLL\Default\BLLRefund.cs:行号 62
+   在 UserCenter_MyOrder.btnRefurb_Click(Object sender, EventArgs e) 位置 e:\workspace\testttt\WEB\UserCenter\OrderDetail.aspx.cs:行号 67
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.usercenter_orderdetail_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\37ce1ae4\c85c6f06\App_Web_5del3iju.14.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 18:48:39,058 [8] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\workspace\testttt\WEB\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: 无法打开登录所请求的数据库 "tourol130118"。登录失败。
+用户 'NT AUTHORITY\NETWORK SERVICE' 登录失败。
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 NHibernate.Connection.DriverConnectionProvider.GetConnection() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Connection\DriverConnectionProvider.cs:行号 46
+   在 NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SuppliedConnectionProviderConnectionHelper.cs:行号 25
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 43
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 17
+   在 NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionFactoryImpl.cs:行号 169
+   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1246
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 60
+   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 25
+   在 DAL.DALMembership..ctor() 位置 E:\workspace\testttt\DAL\DALMembership.cs:行号 11
+   在 DAL.DalBase..ctor() 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 13
+   在 DAL.DALRole..ctor()
+   在 BLL.TourRoleProvider..ctor() 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 13
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
+   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
+   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
+   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Security.Roles.Initialize()
+   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 18:48:39,380 [13] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\workspace\testttt\WEB\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: 无法打开登录所请求的数据库 "tourol130118"。登录失败。
+用户 'NT AUTHORITY\NETWORK SERVICE' 登录失败。
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 NHibernate.Connection.DriverConnectionProvider.GetConnection() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Connection\DriverConnectionProvider.cs:行号 46
+   在 NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SuppliedConnectionProviderConnectionHelper.cs:行号 25
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 43
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 17
+   在 NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionFactoryImpl.cs:行号 169
+   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1246
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 60
+   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 25
+   在 DAL.DALMembership..ctor() 位置 E:\workspace\testttt\DAL\DALMembership.cs:行号 11
+   在 DAL.DalBase..ctor() 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 13
+   在 DAL.DALRole..ctor()
+   在 BLL.TourRoleProvider..ctor() 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 13
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
+   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
+   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
+   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Security.Roles.Initialize()
+   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 18:48:41,987 [8] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\workspace\testttt\WEB\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: 无法打开登录所请求的数据库 "tourol130118"。登录失败。
+用户 'NT AUTHORITY\NETWORK SERVICE' 登录失败。
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 NHibernate.Connection.DriverConnectionProvider.GetConnection() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Connection\DriverConnectionProvider.cs:行号 46
+   在 NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SuppliedConnectionProviderConnectionHelper.cs:行号 25
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 43
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 17
+   在 NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionFactoryImpl.cs:行号 169
+   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1246
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 60
+   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 25
+   在 DAL.DALMembership..ctor() 位置 E:\workspace\testttt\DAL\DALMembership.cs:行号 11
+   在 DAL.DalBase..ctor() 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 13
+   在 DAL.DALRole..ctor()
+   在 BLL.TourRoleProvider..ctor() 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 13
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
+   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
+   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
+   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Security.Roles.Initialize()
+   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 18:50:00,598 [12] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\workspace\testttt\WEB\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: 无法打开登录所请求的数据库 "tourol130118"。登录失败。
+用户 'NT AUTHORITY\NETWORK SERVICE' 登录失败。
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 NHibernate.Connection.DriverConnectionProvider.GetConnection() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Connection\DriverConnectionProvider.cs:行号 46
+   在 NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SuppliedConnectionProviderConnectionHelper.cs:行号 25
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 43
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 17
+   在 NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionFactoryImpl.cs:行号 169
+   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1246
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 60
+   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 25
+   在 DAL.DALMembership..ctor() 位置 E:\workspace\testttt\DAL\DALMembership.cs:行号 11
+   在 DAL.DalBase..ctor() 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 13
+   在 DAL.DALRole..ctor()
+   在 BLL.TourRoleProvider..ctor() 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 13
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
+   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
+   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
+   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Security.Roles.Initialize()
+   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 18:50:00,770 [6] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\workspace\testttt\WEB\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> System.Data.SqlClient.SqlException: 无法打开登录所请求的数据库 "tourol130118"。登录失败。
+用户 'NT AUTHORITY\NETWORK SERVICE' 登录失败。
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 NHibernate.Connection.DriverConnectionProvider.GetConnection() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Connection\DriverConnectionProvider.cs:行号 46
+   在 NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SuppliedConnectionProviderConnectionHelper.cs:行号 25
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 43
+   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 17
+   在 NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionFactoryImpl.cs:行号 169
+   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1246
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 60
+   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 25
+   在 DAL.DALMembership..ctor() 位置 E:\workspace\testttt\DAL\DALMembership.cs:行号 11
+   在 DAL.DalBase..ctor() 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 13
+   在 DAL.DALRole..ctor()
+   在 BLL.TourRoleProvider..ctor() 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 13
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
+   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
+   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
+   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Security.Roles.Initialize()
+   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 18:52:03,077 [7] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 MasterPage2.Page_Load(Object sender, EventArgs e) 位置 e:\workspace\testttt\WEB\MasterPage.master.cs:行号 26
+   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
+   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   在 System.Web.UI.Control.OnLoad(EventArgs e)
+   在 System.Web.UI.Control.LoadRecursive()
+   在 System.Web.UI.Control.LoadRecursive()
+   在 System.Web.UI.Control.LoadRecursive()
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\37ce1ae4\c85c6f06\App_Web_f3s0wkeu.0.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-18 19:00:06,385 [7] INFO  ErrorLogger [(null)] - *********Begin********f570e078-94ae-424c-a453-90c9dcde900c出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:00:06,401 [7] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:00:27,461 [15] INFO  ErrorLogger [(null)] - *********Begin********c10075fc-e68a-463f-b3dd-18ee4d2a3b5c出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:00:27,461 [15] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:03:58,899 [34] INFO  ErrorLogger [(null)] - *********Begin********3eaf7c89-2c17-438f-9ca5-2a5e8679e9a0出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:03:58,929 [34] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:03:59,383 [34] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:03:59,383 [34] INFO  ErrorLogger [(null)] - 3eaf7c89-2c17-438f-9ca5-2a5e8679e9a0*********END********
+2013-01-18 19:23:38,266 [39] INFO  ErrorLogger [(null)] - *********Begin********f13b0c8b-d20b-4e08-b2b0-bdcaf59b933a出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:23:38,321 [39] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:23:38,698 [39] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:23:38,698 [39] INFO  ErrorLogger [(null)] - f13b0c8b-d20b-4e08-b2b0-bdcaf59b933a*********END********
+2013-01-18 19:26:36,135 [27] INFO  ErrorLogger [(null)] - *********Begin********b684d781-4461-4d4d-86aa-4f889191169b出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:26:36,135 [27] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:26:36,655 [27] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:26:36,655 [27] INFO  ErrorLogger [(null)] - b684d781-4461-4d4d-86aa-4f889191169b*********END********
+2013-01-18 19:26:38,637 [28] INFO  ErrorLogger [(null)] - *********Begin********4291bbad-c65c-4ee1-9106-487d1d72e862出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:26:38,637 [28] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:26:39,136 [28] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:26:39,136 [28] INFO  ErrorLogger [(null)] - 4291bbad-c65c-4ee1-9106-487d1d72e862*********END********
+2013-01-18 19:26:41,078 [11] INFO  ErrorLogger [(null)] - *********Begin********bfd7544f-95ec-4f2d-a845-c6dfdfa12332出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:26:41,078 [11] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:26:41,221 [11] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:26:41,221 [11] INFO  ErrorLogger [(null)] - bfd7544f-95ec-4f2d-a845-c6dfdfa12332*********END********
+2013-01-18 19:27:59,428 [23] INFO  ErrorLogger [(null)] - *********Begin********7c9cb55d-821c-4b18-a999-b7403fb9f55b出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:27:59,444 [23] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:27:59,763 [23] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:27:59,763 [23] INFO  ErrorLogger [(null)] - 7c9cb55d-821c-4b18-a999-b7403fb9f55b*********END********
+2013-01-18 19:28:05,833 [27] INFO  ErrorLogger [(null)] - *********Begin********e7b0b547-92f3-4b61-be68-c0d859b68ed2出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:28:05,833 [27] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:28:05,939 [27] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:28:05,939 [27] INFO  ErrorLogger [(null)] - e7b0b547-92f3-4b61-be68-c0d859b68ed2*********END********
+2013-01-18 19:28:08,045 [32] INFO  ErrorLogger [(null)] - *********Begin********13023616-7158-4599-a429-d30ec1d3a17b出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:28:08,045 [32] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:28:33,556 [32] INFO  ErrorLogger [(null)] - *********Begin********1447f829-e3a4-41e3-bb56-70dc85334c1a出票请求:zjlyxxzx_420822198010103916_jianglangshan_1_
+2013-01-18 19:28:33,557 [32] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:28:50,646 [28] INFO  ErrorLogger [(null)] - *********Begin********e798f14c-40a1-4064-bc6b-860f53b33d39出票请求:19lou_420822198010103916_jianglangshan_1_
+2013-01-18 19:28:50,646 [28] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:28:50,864 [28] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:28:50,864 [28] INFO  ErrorLogger [(null)] - e798f14c-40a1-4064-bc6b-860f53b33d39*********END********
+2013-01-18 19:29:00,777 [27] INFO  ErrorLogger [(null)] - *********Begin********4b6f5922-5e5c-4ffc-9c96-3c5be30ede34出票请求:19lou_420822198010103916_jianglangshan_1_
+2013-01-18 19:29:00,778 [27] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:29:00,897 [27] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:29:00,897 [27] INFO  ErrorLogger [(null)] - 4b6f5922-5e5c-4ffc-9c96-3c5be30ede34*********END********
+2013-01-18 19:29:03,059 [32] INFO  ErrorLogger [(null)] - *********Begin********eddf2c51-658f-462c-8def-ecfe222fb7f1出票请求:19lou_420822198010103916_jianglangshan_1_
+2013-01-18 19:29:03,059 [32] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:29:03,170 [32] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:29:03,170 [32] INFO  ErrorLogger [(null)] - eddf2c51-658f-462c-8def-ecfe222fb7f1*********END********
+2013-01-18 19:29:08,122 [22] INFO  ErrorLogger [(null)] - *********Begin********784176d3-1037-4624-b3ca-81f3e816f9fd出票请求:19lou_420822198010103916_jianglangshan_1_
+2013-01-18 19:29:08,123 [22] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:29:08,968 [22] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:29:08,968 [22] INFO  ErrorLogger [(null)] - 784176d3-1037-4624-b3ca-81f3e816f9fd*********END********
+2013-01-18 19:29:11,292 [28] INFO  ErrorLogger [(null)] - *********Begin********16abdff9-7fd4-4eb2-8136-df148a3e5be5出票请求:19lou_420822198010103916_jianglangshan_1_
+2013-01-18 19:29:11,292 [28] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:29:51,390 [28] INFO  ErrorLogger [(null)] - *********Begin********01f20fd0-1a1a-4bf2-9df8-e6bcf2d2cbd8出票请求:19lou_420822198010103916_jianglangshan_1_
+2013-01-18 19:29:51,390 [28] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:32:01,311 [11] INFO  ErrorLogger [(null)] - *********Begin********2910f675-6070-41e1-a5b0-d8663b8bc92f出票请求:19lou_420822198010103916_jianglangshan_1_
+2013-01-18 19:32:01,311 [11] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:32:07,779 [11] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:32:07,780 [11] INFO  ErrorLogger [(null)] - 2910f675-6070-41e1-a5b0-d8663b8bc92f*********END********
+2013-01-18 19:32:26,158 [30] INFO  ErrorLogger [(null)] - *********Begin********f50578b0-732d-4f81-b43f-9ec0be7757f9出票请求:19lou_420822198010103916_jianglangshan_1_
+2013-01-18 19:32:26,158 [30] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:37:02,417 [11] INFO  ErrorLogger [(null)] - *********Begin********160d3257-9a4d-4f8a-b380-1c523da9aedf出票请求:19lou_420822198010103916_jianglangshan_1_
+2013-01-18 19:37:02,433 [11] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:38:11,277 [25] INFO  ErrorLogger [(null)] - *********Begin********381134b7-db73-4d5a-b5f9-e01fbbe8766d出票请求:19lou_140303199202142312_jianglangshan_1_
+2013-01-18 19:38:11,277 [25] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:38:11,521 [25] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:38:11,521 [25] INFO  ErrorLogger [(null)] - 381134b7-db73-4d5a-b5f9-e01fbbe8766d*********END********
+2013-01-18 19:38:14,420 [28] INFO  ErrorLogger [(null)] - *********Begin********a00ab4be-83b7-4ad8-b161-1914ce349402出票请求:19lou_140303199202142312_jianglangshan_1_
+2013-01-18 19:38:14,420 [28] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:38:32,481 [32] INFO  ErrorLogger [(null)] - *********Begin********536b4ee1-f545-422a-aff4-0f57a39f71c4出票请求:19lou_140303199202142312_nianbadou_1_
+2013-01-18 19:38:32,481 [32] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:38:56,819 [25] INFO  ErrorLogger [(null)] - *********Begin********a94cba8d-03b7-4700-b8eb-b323990ceddc出票请求:19lou_140303199202142312_nianbadou_1_
+2013-01-18 19:38:56,819 [25] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-18 19:38:57,330 [25] INFO  ErrorLogger [(null)] - T
+2013-01-18 19:38:57,331 [25] INFO  ErrorLogger [(null)] - a94cba8d-03b7-4700-b8eb-b323990ceddc*********END********
+2013-01-18 19:39:00,874 [25] INFO  ErrorLogger [(null)] - *********Begin********51b6fa70-7d7b-4d6a-abd0-514ed7006c49出票请求:19lou_140303199202142312_nianbadou_1_
+2013-01-18 19:39:00,874 [25] INFO  ErrorLogger [(null)] - 开始验证
