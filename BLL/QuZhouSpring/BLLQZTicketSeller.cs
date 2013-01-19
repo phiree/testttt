@@ -59,7 +59,7 @@ namespace BLL
             }
             //自动创建订单
             Ticket currentTicket = bllTicket.GetByProductCode(ticketCode);
-            Order order = BuildOrderForQZ(member, currentTicket, amount, partnerAsign.Partner.Name);
+            Order order = BuildOrderForQZ(member,idcardno, currentTicket, amount, partnerAsign.Partner.Name);
             bllOrder.SaveOrUpdateOrder(order);
 
             //3 该接入商该景区的已售门票+1
@@ -117,13 +117,13 @@ namespace BLL
             return true;
         }
 
-        public Order BuildOrderForQZ(TourMembership member, Ticket currentTicket, int amount, string parnterName)
+        public Order BuildOrderForQZ(TourMembership member,string idcardno, Ticket currentTicket, int amount, string parnterName)
         {
             #region 开始出票
             //1 为身份证号创建一个用户名
 
             TicketAssign ta = new TicketAssign();
-            ta.IdCard = member.IdCard;
+            ta.IdCard = idcardno;
             ta.IsUsed = false;
             ta.Name = member.Name;
 
