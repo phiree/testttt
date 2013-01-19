@@ -61,7 +61,11 @@ public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
             string ticketid= (item.FindControl("hfId") as HiddenField).Value;
             Ticket t = bllTicket.GetTicket(int.Parse(ticketid));
             TextBox tbxProductCode = item.FindControl("tbxProductCode") as TextBox;
+            TextBox txtbeginDate = item.FindControl("txtbeginDate") as TextBox;
+            TextBox txtendDate = item.FindControl("txtendDate") as TextBox;
             t.ProductCode = tbxProductCode.Text;
+            t.BeginDate = DateTime.Parse(txtbeginDate.Text);
+            t.EndDate = DateTime.Parse(txtendDate.Text);
             bllTicket.SaveOrUpdateTicket(t);
         }
         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('保存成功')", true);
