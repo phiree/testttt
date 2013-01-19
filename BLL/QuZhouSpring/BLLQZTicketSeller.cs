@@ -17,13 +17,15 @@ namespace BLL
         BLLOrder bllOrder = new BLLOrder();
         BLLQZPartnerTicketAsign bllQZPartnerTicketAsign = new BLLQZPartnerTicketAsign();
 
-       
         public string SellTicket(string clientFriendlyId, string idcardno, string ticketCode, int amount, string phone)
+        { 
+            return SellTicket(clientFriendlyId,null,idcardno,ticketCode,amount, phone);
+        }
+        public string SellTicket(string clientFriendlyId, TourMembership member, string idcardno, string ticketCode, int amount, string phone)
         {
 
 
             string returnMsg = "T";
-
             //身份证号码验证
             string checkIdCardNoErrMsg;
             bool idcardnoValid = CommonLibrary.StringHelper.CheckIDCard(idcardno, out checkIdCardNoErrMsg);
@@ -31,8 +33,7 @@ namespace BLL
             {
                 return "F|" + checkIdCardNoErrMsg;
             }
-            DateTime nowDay = DateTime.Now.Date;
-        
+            DateTime nowDay = DateTime.Now.Date; 
             QZPartnerTicketAsign partnerAsign = bllQZPartnerTicketAsign.GetOne(nowDay, clientFriendlyId, ticketCode);//todo: 获取 某日期 某个门票 的票数分配情况
             if (partnerAsign == null)
             {
@@ -46,12 +47,15 @@ namespace BLL
             {
                 return "F|" + validErrMsg;
             }
-            TourMembership member = bllMembership.GetMember(idcardno);
-
             if (member == null)
             {
-                //创建用户
-                member = bllMembership.CreateUser2("衢州门票派送参与者", phone, string.Empty, idcardno, idcardno, "123456", string.Empty);
+                 member = bllMembership.GetMember(idcardno);
+
+                if (member == null)
+                {
+                    //创建用户
+                    member = bllMembership.CreateUser2("衢州门票派送参与者", phone, string.Empty, idcardno, idcardno, "123456", string.Empty);
+                }
             }
             //自动创建订单
             Ticket currentTicket = bllTicket.GetByProductCode(ticketCode);
@@ -146,6 +150,9 @@ namespace BLL
 
             #endregion
         }
+
+
+       
 
     }
 }

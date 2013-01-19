@@ -154,12 +154,13 @@
                 </table></FooterTemplate>
         </asp:Repeater>
     </div>
+    <div style="display:none">
     <div class="tihead" style="margin-top:20px;margin-bottom:10px;">
             选择付款方式</div>
     <div id="payinfo">
         <div id="payonline" pricetype="3" class="priceselection">
             <span class="price">
-                <input type="radio" name="price" />
+                <input type="radio" name="price" checked="checked" />
                 网上订购总价:<em id="bpricepreorder">123</em>元</span><span class="pricedesc">通过支付宝支付,享受网上订购优惠价.</span>
             <div class="clear">
             </div>
@@ -185,6 +186,7 @@
             <div class="clear">
             </div>
         </div>
+    </div>
     </div>
     <div id="payaction">
         <span class="btntkok" id="btnCheckout">确认订单</span>

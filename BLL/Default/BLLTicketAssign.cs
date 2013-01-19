@@ -112,5 +112,51 @@ namespace BLL
         {
             return Iticketassign.GetTicketTypeByIdCard(idcard);
         }
+        /// <summary>
+        /// 衢州抢票接口
+        /// <dataset>
+        ///    <datatable>
+        ///     <dr>
+        ///       <dt>ScenicName 景区名称</dt> 
+        ///       <dt>OrderTime 抢票时间</dt> 
+        ///       <dt>IsUsed 是否已使用("true"或者 "false"</dt> 
+        ///        <dt>ValidPeriod 有效期限(2013-02-01~2013-02-29)</dt>
+        ///     </dr>   
+        /// </datatable>
+        /// </dataset>
+        /// </summary>
+        /// <param name="idCardNo"></param>
+        /// <returns></returns>
+        public DataSet GetTicketsHasProductCode(string idCardNo)
+        {
+            DataSet ds = new DataSet();
+            IList<TicketAssign> gotTotalTicketsOfThisType=
+                GetTaByIdCard(idCardNo)
+            .Where(x => !string.IsNullOrEmpty(x.OrderDetail.TicketPrice.Ticket.ProductCode))
+            .ToList();
+            DataTable dt = new DataTable("gotTickets");
+            string colScenicName="ScenicName";
+            string colOrderTime="OrderTime";
+            string colIsUsed="IsUsed";
+            string colValidPeriod="ValidPeriod";
+            dt.Columns.Add(colScenicName);
+            dt.Columns.Add(colOrderTime);
+            dt.Columns.Add(colIsUsed);
+            dt.Columns.Add(colValidPeriod);
+            foreach (TicketAssign ta in gotTotalTicketsOfThisType)
+            {
+
+                DataRow dr = dt.NewRow();
+                dr[colScenicName] = ta.OrderDetail.TicketPrice.Ticket.Scenic.Name;
+                dr[colOrderTime] = ta.OrderDetail.Order.BuyTime;
+                dr[colIsUsed] = ta.IsUsed;
+                dr[colValidPeriod] = ta.OrderDetail.TicketPrice.Ticket.BeginDate.Date 
+                                    + "~" + ta.OrderDetail.TicketPrice.Ticket.EndDate.Date;
+                dt.Rows.Add(dr);
+            
+            }
+            ds.Tables.Add(dt);
+            return ds;
+        }
     }
 }

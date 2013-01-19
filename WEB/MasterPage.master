@@ -138,7 +138,7 @@
                 <FooterTemplate>
                     <tr>
                         <td colspan="2" style="background-color:White !important">
-                            <a class="popok" id="pcbtn" href="/order/cart.aspx">去购物车结算</a>
+                            <a class="popok" id="pcbtn" href="/order/checkout.aspx">去结算</a>
                         </td>
                     </tr>
                     </table></FooterTemplate>

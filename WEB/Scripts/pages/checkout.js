@@ -37,10 +37,10 @@
         $(".qty[tid='" + ticketId + "']").text(qty);
     }
 
-    //ticketsSum
+    //ticketsSum,浮动购物车 总票数计算
     function TicketSum() {
         var totalQty = 0;
-        $(".qty").each(function () {
+        $(".qtyfinal").each(function () {
             var qty = parseInt($(this).text());
             totalQty += qty;
 
@@ -112,6 +112,13 @@
         pricetype = $(this).attr("pricetype");
     });
     $("#btnCheckout").click(function () {
+
+        pricetype = $(".priceselection")
+                    .filter(function () {
+                                            var r = $(this).find("input[name=price]:checked");
+                                            if (r.length == 1) return true;
+                                        })
+                    .attr("pricetype");
         if (pricetype == null) {
             alert("您需要先选择一种支付方式");
             return false;
@@ -129,7 +136,7 @@
         };
 
         //assign data
-        $.get("/order/checkout.ashx?pricetype=" + pricetype + "&a=" + escape(b), function (data) {
+        $.get("/order/checkout.ashx?topic=quzhou&pricetype=" + pricetype + "&a=" + escape(b), function (data) {
 
             document.write(data);
         });

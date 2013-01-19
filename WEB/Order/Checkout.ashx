@@ -14,6 +14,7 @@ public class CheckoutHandler : IHttpHandler
     BLLTicket bllTickets = new BLLTicket();
     PriceType pt = PriceType.PayOnline;
     MembershipUser mu = Membership.GetUser();
+    BLLMembership bllMembership = new BLLMembership();
     public void ProcessRequest(HttpContext context)
     {
 
@@ -21,6 +22,7 @@ public class CheckoutHandler : IHttpHandler
         {
             ErrHandler.Redirect(ErrType.AccessDenied);
         }
+        TourMembership tourMembership = bllMembership.GetUserByUserId((Guid)mu.ProviderUserKey);
         HttpRequest req = context.Request;
         HttpResponse rep = context.Response;
         /*购物车是否为空*/
@@ -46,59 +48,116 @@ public class CheckoutHandler : IHttpHandler
         pt = (PriceType)intpricetype;
         if (pt != PriceType.PreOrder && pt != PriceType.PayOnline)
         {
+            TourLog.LogInstance.Error("不是有效的支付方式:" + pt);
+
             context.Response.Write("<script>window.location.href='/order/orderErr.aspx';</script>");
             return;
         }
-        Model.Order order = docheck();
 
-        if (pt == PriceType.PayOnline)
-        {
-
-            string html = DoPayment(order);
-            context.Response.Write(html);
-        }
-        else if (pt == PriceType.PreOrder)
-        {
-            context.Response.Write("<script>window.location.href='/order/preordersuc.aspx';</script>");
-        }
-
-
-        /*end 支付*/
-        /*
-         清空购物车
-         */
-
-        cookie.Value = "[]";
-        context.Response.Cookies.Add(cookie);
-
-        /*指派游览者*/
+        //如果是衢州抢票 需要调用接口
+        string thisTopic = req["topic"];
         string[] arrTicketAssign = paramTicketAssign.Split('_');
+        if (thisTopic == "quzhou")
+        {
+            BLLQZTicketSeller qzSeller = new BLLQZTicketSeller();
+
+            if (arrTicketAssign.Length != 1)
+            {
+                TourLog.LogInstance.Error("衢州门票派送活动,每个订单只能分配一个身份证号.现在的分配数量:" + arrTicketAssign.Length);
+                context.Response.Write("<script>window.location.href='/order/orderErr.aspx';</script>");
+                return;
+            }
+            string[] taValues = arrTicketAssign[0].Split('-');
+            int ticketId = Convert.ToInt32(taValues[0]);
+                string name = taValues[1];
+                string cardidNo = taValues[2];
+                Ticket t = bllTickets.GetTicket(Convert.ToInt32(ticketId));
+
+             string result=  qzSeller.SellTicket("tourol.cn",tourMembership, cardidNo, t.ProductCode, 1, "");
+             if (result != "T")
+             {
+                 string qzErrmsg = string.Empty;
+                 if (result.Split('|').Length != 2)
+                 {
+                     qzErrmsg = result;
+                 }
+                 else
+                 {
+                     qzErrmsg = result.Split('|')[1];
+                 }
+                 
+                 context.Response.Write("<script>window.location.href='/order/QuZhouorderFail.aspx?msg="+qzErrmsg+"';</script>");
+             }
+             else
+             {
+                 context.Response.Write("<script>window.location.href='/order/QuZhouorderSuc.aspx';</script>");
+             }
+            //正常购票流程
+        }
+        else
+        {
+            Model.Order order = docheck();
+
+            if (pt == PriceType.PayOnline)
+            {
+
+                string html = DoPayment(order);
+                context.Response.Write(html);
+            }
+            else if (pt == PriceType.PreOrder)
+            {
+                context.Response.Write("<script>window.location.href='/order/preordersuc.aspx';</script>");
+            }
+
+
+            /*end 支付*/
+          
+
+            /*指派游览者*/
+
+            foreach (string ta in arrTicketAssign)
+            {
+                string[] taValues = ta.Split('-');
+                int ticketId = Convert.ToInt32(taValues[0]);
+                string name = taValues[1];
+                string cardidNo = taValues[2];
+
+                OrderDetail detail = order.OrderDetail.Single<OrderDetail>(x => x.TicketPrice.Ticket.Id == ticketId);
+                TicketAssign modelTa = new TicketAssign();
+                modelTa.IdCard = cardidNo;
+                modelTa.IsUsed = false;
+                modelTa.Name = name;
+                modelTa.OrderDetail = detail;
+                new BLLTicketAssign().SaveOrUpdate(modelTa);
+              
+               
+
+            }
+            /*
+           清空购物车
+           */
+
+            cookie.Value = "[]";
+            context.Response.Cookies.Add(cookie);
+        }
+        //保存常用联系人
         foreach (string ta in arrTicketAssign)
         {
             string[] taValues = ta.Split('-');
             int ticketId = Convert.ToInt32(taValues[0]);
             string name = taValues[1];
             string cardidNo = taValues[2];
-
-            OrderDetail detail = order.OrderDetail.Single<OrderDetail>(x => x.TicketPrice.Ticket.Id == ticketId);
-            TicketAssign modelTa = new TicketAssign();
-            modelTa.IdCard = cardidNo;
-            modelTa.IsUsed = false;
-            modelTa.Name = name;
-            modelTa.OrderDetail = detail;
-            new BLLTicketAssign().SaveOrUpdate(modelTa);
-            //保存常用联系人
             CommonUser cu = new CommonUser();
             //cu.User=new BLLMembership().GetMemberById((Guid)mu.ProviderUserKey);
             //cu.Name = name;
             //cu.IdCard = cardidNo;
             new BLLCommonUser().Save((Guid)mu.ProviderUserKey, name, cardidNo);
-
         }
 
 
 
     }
+   // private
 
     private Model.Order docheck()
     {

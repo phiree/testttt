@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using BLL;
+using Model;
 using System.Data;
 /// <summary>
 ///WebService 的摘要说明
@@ -16,6 +17,8 @@ public class TicketService : System.Web.Services.WebService
 {
 
     BLL.BLLQZTicketSeller seller = new BLL.BLLQZTicketSeller();
+    BLL.BLLQZPartnerTicketAsign bllQzPartnerTicketAsign = new BLLQZPartnerTicketAsign();
+    BLL.BLLTicketAssign bllTicketAssign = new BLLTicketAssign();
     public TicketService()
     {
 
@@ -32,15 +35,15 @@ public class TicketService : System.Web.Services.WebService
     /// <param name="errMsg">如果返回值为F,则是错误消息,若是T则为空</param>
     /// <returns>"T"(请票成功)或"F"(失败)</returns>
     [WebMethod]
-    public string buyProduct(string PartnerCode , string CardNumber, string ProductCode,int Number)
+    public string buyProduct(string PartnerCode, string CardNumber, string ProductCode, int Number)
     {
 
         string result = seller.SellTicket(PartnerCode, CardNumber, ProductCode, Number, string.Empty);
-      //  seller.SellTicket(clientFriendlyId, idcardno, ticketId);
+        //  seller.SellTicket(clientFriendlyId, idcardno, ticketId);
         return result;
     }
     /// <summary>
-    /// 合作方查询剩某日期的剩余门票数量
+    /// 合作方查询剩某日期某门票的剩余门票数量
     /// </summary>
     /// <param name="PartnerCode">合作方ID</param>
     /// <param name="productCode">门票代码</param>
@@ -50,19 +53,36 @@ public class TicketService : System.Web.Services.WebService
     public int ProductInfo(string PartnerCode, string productCode, DateTime dt)
     {
 
-        int leftAmount = 0;
+        Model.QZPartnerTicketAsign qzPartnerTicketAsign = bllQzPartnerTicketAsign.GetOne(dt.Date, PartnerCode, productCode);
+        if (qzPartnerTicketAsign == null)
+        {
+            return 0;
+        }
+        int leftAmount = qzPartnerTicketAsign.AsignedAmount - qzPartnerTicketAsign.SoldAmount;
+        if (leftAmount < 0) leftAmount = 0;
         return leftAmount;
     }
     /// <summary>
     /// 游客查询自己抢订到的门票
     /// </summary>
     /// <param name="idcardno">用户</param>
-    /// <returns></returns>
+    /// <returns>
+    /// dataset结构:
+    ///   <dataset>
+    ///    <datatable>
+    ///     <dr>
+    ///       <dt>ScenicName 景区名称</dt> 
+    ///       <dt>OrderTime 抢票时间</dt> 
+    ///       <dt>IsUsed 是否已使用("true"或者 "false"</dt> 
+    ///        <dt>ValidPeriod 有效期限(2013-02-01~2013-02-29)</dt>
+    ///     </dr>   
+    /// </datatable>
+    /// </returns>
     [WebMethod]
     public DataSet UserProductInfo(string idcardno)
     {
-        DataSet dt = new DataSet();
 
-        return dt;
+
+        return bllTicketAssign.GetTicketsHasProductCode(idcardno);
     }
 }
