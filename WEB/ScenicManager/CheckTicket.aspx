@@ -8,13 +8,13 @@
     <meta   http-equiv= "pragma "   content= "no-cache ">  
     <meta http-equiv="x-ua-compatible" content="ie=8" />
     <script src="/Scripts/jquery.js" type="text/javascript"></script>
-    <script src="../Scripts/jquery.autocomplete.js" type="text/javascript"></script>
-    <link href="../theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
-    <link href="../Styles/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
-    <script src="../Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
-    <script src="../Scripts/CheckTicket.js" type="text/javascript"></script>
-    <script src="../Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
-    <script src="../Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.autocomplete.js" type="text/javascript"></script>
+    <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
+    <link href="/Styles/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
+    <script src="/Scripts/CheckTicket.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d021" style=" height:0px;">
     </object>
 </asp:Content>
@@ -171,10 +171,12 @@
                     <td style="width: 135px; background-color: #F7F7F7; padding: 0px;" onclick="btnselectname(this)">
                         <span style="display: block; width: 125px">
                             <%# Eval("IdCard").ToString().Substring(0,6) %>********<%# Eval("IdCard").ToString().Substring(14) %></span>
+                        <input id="hfZsIdCard" type="hidden" value='<%# Eval("IdCard") %>' />
                     </td>
                     <td style="width: 40px; padding-left: 0px; padding-right: 0px;">
                         <asp:Literal ID="laType" runat="server"></asp:Literal>
                     </td>
+                    
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

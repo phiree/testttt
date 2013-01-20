@@ -98,7 +98,8 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (TicketAssign item in list)
         {
-            data.Add(Guid.NewGuid().ToString(), item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
+            //这里的key是真实身份证号，val是带*身份证号
+            data.Add(item.Name+"/"+item.IdCard,item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
         }
         DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
         using (MemoryStream ms = new MemoryStream())
@@ -123,7 +124,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         int flag = 0;
         foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic).Where(x => x.Name == name))
         {
-            if (item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14) == idcard)
+            if (item.IdCard == idcard)
             {
                 flag = 1;
                 idcard = item.IdCard;
@@ -133,7 +134,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         {
             foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList())
             {
-                if (work.DJ_Workers.IDCard.Substring(0, 6) + "********" + work.DJ_Workers.IDCard.Substring(14) == idcard)
+                if (work.DJ_Workers.IDCard == idcard)
                 {
                     flag = 1;
                     idcard = work.DJ_Workers.IDCard;
@@ -159,7 +160,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         int flag = 0;
         foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic).Where(x => x.Name == name))
         {
-            if (item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14) == idcard)
+            if (item.IdCard == idcard)
             {
                 flag = 1;
                 idcard = item.IdCard;
@@ -169,7 +170,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         {
             foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList())
             {
-                if (work.DJ_Workers.IDCard.Substring(0, 6) + "********" + work.DJ_Workers.IDCard.Substring(14) == idcard)
+                if (work.DJ_Workers.IDCard == idcard)
                 {
                     flag = 1;
                     idcard = work.DJ_Workers.IDCard;

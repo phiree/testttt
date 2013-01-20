@@ -50,7 +50,7 @@ $(document).ready(function () {
                             return row.Value;
                         },
                         matchContains: true
-                    }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Value); $("[id$='btnbind']").click(); });
+                    }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Key); $("[id$='btnbind']").click(); });
         }
     });
     $("[id$='txtinfo']").InlineTip({ "tip": "录入游客身份证或名字" });
@@ -88,7 +88,7 @@ function querenuse() {
 }
 function btnselectname(obj) {
     $("[id$='hfselectname']").val($.trim($(obj).parent().find("td").eq(0).find("span").html()));
-    $("[id$='hfselectidcard']").val($.trim($(obj).parent().find("td").eq(1).find("span").html().toString()));
+    $("[id$='hfselectidcard']").val($.trim($(obj).parent().find("td").eq(1).find("input").val().toString()));
     $.cookie("idcard", $("[id$='hfselectidcard']").val());
     $("[id$='btnselect']").click();
 }
