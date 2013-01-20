@@ -47,7 +47,7 @@ $(document).ready(function () {
                         return "<table width='200px' cellpadding='0' cellspacing='0'><tr><td align='left' height='10px' style='padding-top:10px;line-height:10px;'>" + row.Value + "</td></tr></table>";
                     },
                         formatMatch: function (row, i, max) {
-                            return row.Value;
+                            return row.Key;
                         },
                         matchContains: true
                     }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Key); $("[id$='btnbind']").click(); });
