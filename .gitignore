@@ -12,4 +12,5 @@ TourTest/App.config
 /DAL/*.scc
 packages
 WEB/tourolLog
+AdminWeb/tourAdminLog
 

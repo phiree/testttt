@@ -23,7 +23,7 @@
                             总票数
                         </td>
                         <td>
-                            分配情况
+                            分配情况(合作商名称--分配票数--已售票数)
                         </td>
                         <td>
                             已售总数
@@ -43,7 +43,7 @@
                         <asp:Repeater runat="server" ID="rptPartnerList">
                             <HeaderTemplate>
                                 <table border="0" cellpadding="0" cellspacing="0">
-                                    <tr>
+                                    <%--<tr>
                                         <td>
                                             合作商名字
                                         </td>
@@ -54,7 +54,7 @@
                                             已售票数
                                         </td>
                                         
-                                    </tr>
+                                    </tr>--%>
                             </HeaderTemplate>
                             <ItemTemplate>
                                     <tr>

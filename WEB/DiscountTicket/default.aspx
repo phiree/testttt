@@ -92,7 +92,7 @@
                         <div style="float: left">
                             <span class="normalpr"><em>原价
                                 <asp:Literal runat="server" ID="liPriceNormal"></asp:Literal>元</em></span> <span
-                                    class="onlinepr">在线价<em><asp:Literal runat="server" ID="liPriceOnline"></asp:Literal></em>元</span>
+                                    class="onlinepr">新春派送价<em><asp:Literal runat="server" ID="liPriceOnline"></asp:Literal></em>元</span>
                         </div>
                         <a runat="server" id="schref3" class="linkorder" >
                         </a>
