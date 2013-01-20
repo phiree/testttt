@@ -35,6 +35,6 @@ public partial class Account_Register : System.Web.UI.Page
         {
             bllProm.AddPromInfo(new Guid(Request.Cookies["promid"].Value), "腾讯");
         }
-        Response.Redirect("/account/regsuccess.aspx");
+        new LoginRedirect();// Response.Redirect("/account/regsuccess.aspx");
     }
 }
