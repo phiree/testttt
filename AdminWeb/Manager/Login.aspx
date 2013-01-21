@@ -52,7 +52,7 @@
                             <td>
                             </td>
                             <td align="left" colspan="2">
-                                <asp:Button ID="LoginButton" runat="server" CommandName="Login" ValidationGroup="Login1"
+                                <asp:Button ID="LoginButton" runat="server" Text="登录" CommandName="Login" ValidationGroup="Login1"
                                     CssClass="btnlogin" />
                             </td>
                         </tr>

@@ -8,6 +8,8 @@ using System.Web.UI.HtmlControls;
 public partial class UC_ScenicSideList : System.Web.UI.UserControl
 {
     public IList<Model.Scenic> ScenicList { get; set; }
+
+    BLL.BLLArea bllArea = new BLL.BLLArea();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (ScenicList != null)

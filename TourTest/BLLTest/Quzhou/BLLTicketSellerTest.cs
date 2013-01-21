@@ -29,7 +29,7 @@ namespace TourTest.BLLTest.Quzhou
             tp.PriceType = PriceType.PreOrder;
             tp.Ticket = currentTicket;
             currentTicket.TicketPrice.Add(tp);
-            Model.Order order = seller.BuildOrderForQZ(member, "",currentTicket, 1, "浙江旅游信息中心网站");
+            Model.Order order = seller.BuildOrderForQZ(member,"yuanfei","",currentTicket, 1, "浙江旅游信息中心网站");
 
             Assert.AreEqual(order.TotalPrice, 1);
         }
