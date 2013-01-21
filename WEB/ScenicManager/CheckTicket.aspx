@@ -28,7 +28,7 @@
     </p>
     <p class="wkintr">
         首次进入该页面，请先下载身份证读卡器程序，安装到本地电脑后，打开IE浏览器，进入该页面后浏览器会提示是否运行该加载项，点击允许，即可使用：
-        <a href="/ScenicManager/setup.exe">身份证读卡器程序下载</a>
+        <a href="/ScenicManager/IDCardSetup.msi">身份证读卡器程序下载</a>
     </p>
     <div id="tpmain">
         <div runat="server" id="tp_nav" class="tp_nav">
