@@ -18,6 +18,7 @@ public class mapscenic : IHttpHandler {
         BLLScenic bllScenic = new BLLScenic();
         BLLArea bllArea=new BLLArea();
         int scid = int.Parse(context.Request.QueryString["scid"]);
+        BLLTicketPrice bllTicketPrice = new BLLTicketPrice();
         Scenic scenic = bllScenic.GetScenicById(scid);
         Model.ScenicMap scenicMap = new Model.ScenicMap();
         scenicMap.id = scenic.Id;
@@ -34,7 +35,7 @@ public class mapscenic : IHttpHandler {
         scenicMap.level = scenic.Level;
         if (scenic.Tickets.Where(x => x.IsMain == true).Count() > 0)
         {
-            scenicMap.price = scenic.Tickets.Where(x => x.IsMain == true).ToList()[0].TicketPrice[0].Price.ToString("0") + "元";
+            scenicMap.price = bllTicketPrice.GetTicketPriceByScenicandtypeid(scenic.Tickets.Where(x => x.IsMain == true).ToList()[0], PriceType.PayOnline).Price.ToString("0") + "元";
         }
         scenicMap.scseoname = scenic.SeoName;
         scenicMap.areaseoname = bllArea.GetAreaByCode(scenic.Area.Code.Substring(0, 4) + "00").SeoName + "_" + scenic.Area.SeoName;
