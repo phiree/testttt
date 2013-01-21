@@ -25,8 +25,8 @@ namespace BLL
                 iscenic = value;
             }
         }
-        IDAL.ITicket iticket;
-        public IDAL.ITicket ITicket
+        DAL.DALTicket iticket;
+        public DAL.DALTicket ITicket
         {
             get
             {
@@ -41,8 +41,8 @@ namespace BLL
                 iticket = value;
             }
         }
-        IDAL.ITicketPrice iticketprice;
-        public IDAL.ITicketPrice ITicketprice
+       DAL.DALTicketPrice iticketprice;
+       public DAL.DALTicketPrice ITicketprice
         {
             get
             {
@@ -57,6 +57,7 @@ namespace BLL
                 iticketprice = value;
             }
         }
+       BLLArea bllArea = new BLLArea();
 
         public IList<Model.Scenic> GetScenic()
         {
@@ -224,6 +225,29 @@ namespace BLL
             NHibernate.IFutureValue<Scenic> fScenic = query.FutureValue<Scenic>();
             if (fScenic == null) return null;
             else return fScenic.Value;
+
+        }
+
+        public IList<Scenic> BuildScenicListFromIds(string[] ids)
+        {
+            string strIds = string.Empty;
+            foreach (string s in ids)
+            {
+                strIds += s + ",";
+            }
+            strIds.TrimEnd(',');
+            return IScenic.BuildScenicListFromIds(strIds);
+
+        }
+        /// <summary>
+        ///构造 景区链接
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public string BuildScenicLink(Scenic s)
+        {
+          return "/Tickets/" + bllArea.GetAreaByCode(s.Area.Code.Substring(0, 4) + "00").SeoName 
+              + "_" + s.Area.SeoName + "/" + s.SeoName + ".html";
 
         }
 

@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettingsManager.cs" />
+    <Compile Include="CookiesHelper.cs" />
     <Compile Include="downloadFile.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="HTMLInfo.cs" />
