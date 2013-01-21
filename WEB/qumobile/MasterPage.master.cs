@@ -23,7 +23,7 @@ public partial class qumobile_MasterPage : MasterPage
     {
         if (Membership.GetUser() != null && bllMember.GetScenicAdmin((Guid)Membership.GetUser().ProviderUserKey)!=null)
         {
-            title.InnerHtml = "旅游在线-" + bllMember.GetScenicAdmin((Guid)Membership.GetUser().ProviderUserKey).Scenic.Name + "景区后台";
+            //title.InnerHtml = "旅游在线-" + bllMember.GetScenicAdmin((Guid)Membership.GetUser().ProviderUserKey).Scenic.Name + "景区后台";
         }
     }
 }

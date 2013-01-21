@@ -14,6 +14,8 @@ using System.Text.RegularExpressions;
 
 public partial class qumobile_CheckTicket : basepage
 {
+    //门票不在有效期内
+    const string InValidPeriodMsgFormat = "验票失败!不在有效期内.该门票有效期为 {0}至{1}.";
     #region 初始化参数
     BLLTicketAssign bllticketassign = new BLLTicketAssign();
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
@@ -69,6 +71,7 @@ public partial class qumobile_CheckTicket : basepage
         ScenicAdmin sa= bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
         hfscid.Value = sa.Scenic.Id.ToString();
         detailinfo.Visible = false;
+       
     }
     #endregion
 
@@ -76,6 +79,7 @@ public partial class qumobile_CheckTicket : basepage
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
+      
         Msg.InnerText = "";
         Scenic CurrentScenic = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic;
         if (hfdata.Value.Split('/').Length < 2)
@@ -286,9 +290,9 @@ public partial class qumobile_CheckTicket : basepage
                     Ticket ticket = bllTicket.GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value));
                     if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
                     {
-                        string message = "alert('该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
-                        message += "请在规定的时间内使用该门票！')";
-                        Msg.InnerText = message;
+                        string message = "该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
+                        message += "请在规定的时间内使用该门票！";
+                        Msg.InnerText = string.Format(InValidPeriodMsgFormat, ticket.BeginDate.ToString("yyyy-MM-dd"), ticket.EndDate.ToString("yyyy-MM-dd"));
                         return;
                     }
 
@@ -376,9 +380,10 @@ public partial class qumobile_CheckTicket : basepage
                         Ticket ticket = bllTicket.GetTicket(int.Parse((repitem.FindControl("hfticketid") as HiddenField).Value));
                         if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
                         {
-                            string message = "alert('该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
-                            message += "请在规定的时间内使用该门票！')";
-                            Msg.InnerText = message;
+                            string message = "该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
+                            message += "请在规定的时间内使用该门票！";
+                            Msg.InnerText = Msg.InnerText = string.Format(InValidPeriodMsgFormat, ticket.BeginDate.ToString("yyyy-MM-dd"), ticket.EndDate.ToString("yyyy-MM-dd"));
+                   
                             return;
                         }
 
@@ -428,6 +433,7 @@ public partial class qumobile_CheckTicket : basepage
         {
             Msg.InnerText = "验票通过";
         }
+       // detailinfo.Visible = false;
         rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayyd.DataBind();
         if (rptpayyd.Items.Count == 0)

@@ -5,35 +5,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>旅游在线-景区后台</title>
-    <script src="/Scripts/jquery.js" type="text/javascript"></script>
-    <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+   <!-- <script src="/Scripts/jquery.js" type="text/javascript"></script>
+    <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>-->
     <asp:ContentPlaceHolder id="cphhead" runat="server">
     </asp:ContentPlaceHolder>
     <script type="text/javascript">
-        $(function () {
-            findDimensions();
-            $("#main").css("width", winWidth);
-            $("#main").css("height", winHeight);
-        });
-        window.onresize = function () {
-            findDimensions();
-            $("#main").css("width", winWidth);
-            $("#main").css("height", winHeight);
-        }
+//        $(function () {
+//            findDimensions();
+//            $("#main").css("width", winWidth);
+//            $("#main").css("height", winHeight);
+//        });
+//        window.onresize = function () {
+//            findDimensions();
+//            $("#main").css("width", winWidth);
+//            $("#main").css("height", winHeight);
+//        }
     </script>
     <style type="text/css">
-        .title
+        body
         {
-            text-align:center;
-            font-size:14px;
-            font-weight:bold;
+        padding:20px 10px 0 10px; margin: 0 auto;
+        background-color:#2196DB;
+            
+            }
+            #main
+            {
+                 padding:10px;
+                 background-color:White;
+                }
+      .title
+        {
+            color:White;
+            margin-bottom:20px;
         }
+        
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div id="main">
-        <p class="title" runat="server" id="title">旅游在线景区后台</p>
+   <div class="title">
+        <h2  runat="server" id="title">旅游在线景区验票</h2> <span >手机版</span></div>
+         <div id="main">
         <asp:ContentPlaceHolder id="cphmain" runat="server">
             
         </asp:ContentPlaceHolder>

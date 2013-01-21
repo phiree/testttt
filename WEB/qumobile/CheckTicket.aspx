@@ -29,20 +29,31 @@
             padding:10px;
             border:1px solid #CDCDCD;
         }
+        #spCheckProgress
+        {
+             display:block;
+            }
     </style>
+    <script language="javascript" type="text/javascript">
+        function ShowCheckProgress() {
+            $("#spCheckProgress").text("正在查询...");
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
     <asp:HiddenField ID="hfscid" runat="server" />
     <div id="checkTicket">
         <p>请输入姓名/身份证号<br />如:张三/330203197804255874</p>
         <asp:TextBox runat="server" ID="txtinfo" CssClass="txtInfo"></asp:TextBox><asp:Button ID="btnSearch" runat="server"
-            Text="查询" OnClick="btnSearch_Click" />
+            Text="查询" OnClick="btnSearch_Click" OnClientClick="ShowCheckProgress()" />
+         <span id="spCheckProgress"></span>
         <p runat="server" id="Msg"></p>
         <div runat="server" id="detailinfo" class="detailinfo">
             <h3 id="username" runat="server">金俊杰
                 </h3>
             <p id="useridcard" runat="server" class="idcard">
                 身份证号码:&nbsp;</p>
+              
             <%--在线支付--%>
             <asp:Repeater ID="rptpayonline" runat="server" 
                 onitemdatabound="rptpayonline_ItemDataBound">
@@ -119,6 +130,7 @@
                 <a runat="server" target="_blank" style="display:none;float:left" id="BtnPrint"></a>
                 <div style="clear:both"></div>
             </div>
+          
         </div>
     </div>
     <asp:HiddenField runat="server" ID="hfdata" />
