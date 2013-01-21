@@ -78,13 +78,17 @@ public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             Literal solidAmount = e.Item.FindControl("solidAmount") as Literal;
+            Literal Amount = e.Item.FindControl("Amount") as Literal;
             DateTime dt= (DateTime)e.Item.DataItem;
             int solidamount = 0;
+            int amount = 0;
             foreach (var item in bllta.GetQzByDate(dt))
 	        {
                 solidamount += item.SoldAmount;
+                amount += item.Amount;
 	        }
             solidAmount.Text = solidamount.ToString();
+            Amount.Text = amount.ToString();
         }
     }
 }
