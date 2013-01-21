@@ -30,7 +30,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         hfscid.Value = Master.Scenic.Id.ToString();
         if (txtinfo.Text != "录入游客身份证或名字" && txtinfo.Text != "")
         {
-            btnbind_Click(null, null);
+           // btnbind_Click(null, null);
         }
         if (!IsPostBack)
         {
@@ -398,7 +398,9 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         }
         else
         {
-            string name = bllticketassign.GetTaByIdCard(idcard)[0].Name;
+
+
+            string name = list[0].Name; // bllticketassign.GetTaByIdCard(idcard)[0].Name;
             bindTicketInfo(name, idcard);
         }
         BindPrintLink();
@@ -418,6 +420,9 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                 hcolgpcount.InnerHtml = ttolcount.ToString();
                 HtmlContainerControl hcolgpusedcount = e.Item.FindControl("olgpusedcount") as HtmlContainerControl;
                 hcolgpusedcount.InnerHtml = uscount.ToString();
+
+                TextBox tbx = e.Item.FindControl("txtolusecount") as TextBox;
+                tbx.Text = ttolcount.ToString();
                 if (ttolcount == 0)
                 {
                     e.Item.Visible = false;

@@ -23,13 +23,7 @@
     <p class="fuctitle">
         景区验票</p>
     <hr />
-    <p class="wkintr">
-        身份证读卡器的驱动下载地址:<a href="http://productbbs.it168.com/thread-67620-1-1.html">下载地址</a>
-    </p>
-    <p class="wkintr">
-        首次进入该页面，请先下载身份证读卡器程序，安装到本地电脑后，打开IE浏览器，进入该页面后浏览器会提示是否运行该加载项，点击允许，即可使用：
-        <a href="/ScenicManager/setup.exe">身份证读卡器程序下载</a>
-    </p>
+
     <div id="tpmain">
         <div runat="server" id="tp_nav" class="tp_nav">
             <div id="txinfo" runat="server" class="centerbig">
@@ -39,10 +33,12 @@
             <%--<asp:Button ID="btnsearch" runat="server" Text="查询全部信息" OnClick="btnsearch_Click" />--%>
         </div>
         <div runat="server" id="detailinfo" class="detailinfo">
+        <div>
             <h3 id="username" runat="server">
                 </h3>
             <p id="useridcard" runat="server" class="idcard">
                 身份证号码:&nbsp;</p>
+                </div>
             <%--在线支付--%>
             <asp:Repeater ID="rptpayonline" runat="server" 
                 onitemdatabound="rptpayonline_ItemDataBound">
@@ -122,8 +118,8 @@
             </div>
             
         </div>
-        <div runat="server" id="ywdiv" class="ywdiv" style="float:left; width:300px;">
-            <span id="ywspan"><span style="display: block; float: left; padding: 0px; margin: 0px;cursor:pointer;" onmouseover="showywrecord()">
+        <div runat="server" visible=false id="ywdiv" class="ywdiv" style="float:left; width:300px;">
+            <span id="ywspan"><span style=" float: left; padding: 0px; margin: 0px;cursor:pointer;" onmouseover="showywrecord()">
                 游玩记录&nbsp;&nbsp;</span><img onmouseover="showywrecord()" height="15px" width="10px" src="../theme/default/image/downicon.png"
                     style="display: block; float: left; margin-top: 3px; cursor: pointer;" />
             </span>
@@ -137,7 +133,7 @@
             <asp:Button ID="btnauto" runat="server" Text="Button" OnClick="btnauto_Click" />
             <asp:HiddenField ID="hfautoidcard" runat="server" />
         </div>
-        <div id="listname" class="yklist" style="display: block;margin-left:320px;padding-top:25px">
+        <div id="listname" class="yklist" style="display: none;margin-left:320px;padding-top:25px">
         <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom: 0px;
             width: 200px; table-layout: fixed">
             <tr style="width: 170px; background-color: #E9E9E9">
@@ -187,8 +183,8 @@
 
         
     </div>
-    <div style="width:300px;float:left;display:block;padding-top:15px;">
-    <span id="yklistt" ><span style="margin-left: 0px; padding-left: 0px; float: left; cursor:pointer" onmouseover="showyklist()">游客列表&nbsp;&nbsp;</span></span></div>
+    <div style="width:300px;float:left;display:none;padding-top:15px;">
+    <span id="yklistt" ><span style="margin-left: 0px; padding-left: 0px; float: left; cursor:pointer">游客列表&nbsp;&nbsp;</span></span></div>
     <div id="listyw" class="ywrecord" style="display: none;float:left;">
         <table cellpadding="0" cellspacing="0" style="margin: 15px auto; margin-bottom: 0px;
             width: 200px; table-layout: fixed">
@@ -231,5 +227,13 @@
     </div>
     <div style="clear:both"></div>
     </div>
-    
+    <div style="padding-bottom:20px">
+        <p class="wkintr">
+        身份证读卡器的驱动下载地址:<a href="http://productbbs.it168.com/thread-67620-1-1.html">下载地址</a>
+    </p>
+    <p class="wkintr">
+        首次进入该页面，请先下载身份证读卡器程序，安装到本地电脑后，打开IE浏览器，进入该页面后浏览器会提示是否运行该加载项，点击允许，即可使用：
+        <a href="/ScenicManager/setup.exe">身份证读卡器程序下载</a>
+    </p>
+    </div>
 </asp:Content>
