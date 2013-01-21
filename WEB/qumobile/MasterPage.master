@@ -33,7 +33,7 @@
 <body>
     <form id="form1" runat="server">
     <div id="main">
-        <p class="title">旅游在线景区后台</p>
+        <p class="title" runat="server" id="title">旅游在线景区后台</p>
         <asp:ContentPlaceHolder id="cphmain" runat="server">
             
         </asp:ContentPlaceHolder>
