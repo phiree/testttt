@@ -20,10 +20,10 @@
             </asp:ContentPlaceHolder>
         </div>
         <div class="disright">
-            <a href="#" style="margin-top:15px">
+           <%-- <a href="#"  style="margin-top:15px" class="sidecolnonghang">
                 <img src="/Img/农行2级.jpg" width="190px" height="140px"
                     alt="农行2级" />
-            </a>
+            </a>--%>
 
             <div class="moddiv">
                 <p>
