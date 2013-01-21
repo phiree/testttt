@@ -35,6 +35,7 @@
                     <tr>
                         <td>日期</td>
                         <td>设置</td>
+                        <td>共分配票数</td>
                         <td>已售出票数</td>
                     </tr>
             </HeaderTemplate>
@@ -42,6 +43,9 @@
                 <tr>
                     <td><%# DateTime.Parse((Container.DataItem).ToString()).ToString("yyyy-MM-dd") %></td>
                     <td><a href='/Manager/QuZhouSpring/DateTicketAsign.aspx?date=<%# DateTime.Parse((Container.DataItem).ToString()).ToString("yyyy-MM-dd") %>'>分配门票</a></td>
+                    <td>
+                        <asp:Literal Text="text" runat="server" ID="Amount"  />
+                    </td>
                     <td>
                         <asp:Literal Text="text" runat="server" ID="solidAmount"  />
                     </td>
