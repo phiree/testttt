@@ -60,7 +60,7 @@ function getCoordinatesNotScId() {
                 clearOverlays();
             }
             else {
-                var latlng = new google.maps.LatLng(30.303563, 120.141175);
+                var latlng = new google.maps.LatLng(28.981, 118.860);
                 var myOptions = {
                     zoom: 8,
                     center: latlng,

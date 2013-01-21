@@ -19,7 +19,15 @@ namespace Model
        //总数
        public virtual int Amount { get; set; }
        //已售总数
-       public virtual int SoldAmount { get; set; }
+
+       public virtual int SoldAmount
+       {
+           get
+           {
+               return GetSolidAmount();
+           }
+       
+       }
        //日期
        public virtual DateTime Date { get; set; }
        /// <summary>
@@ -46,6 +54,16 @@ namespace Model
                asigned += ct.AsignedAmount;
            }
            return Amount == asigned;
+       }
+
+       private int GetSolidAmount()
+       {
+           int solidAmount = 0;
+           foreach (var item in PartnerTicketAsign)
+           {
+               solidAmount += item.SoldAmount;
+           }
+           return solidAmount;
        }
     }
 }

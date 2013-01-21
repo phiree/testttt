@@ -165,5 +165,53 @@ namespace BLL
         {
             return dalqzTa.GetQzByDateAndTicket(dateTime, ticketId);
         }
+
+
+        /// <summary>
+        /// 获取共发放的门票数
+        /// </summary>
+        /// <returns>发放的门票数</returns>
+        public int getAllTicketCount()
+        {
+            IList<QZTicketAsign> listQZTa = GetAll<QZTicketAsign>();
+            int allTicketCount = 0;
+            foreach (var item in listQZTa)
+            {
+                allTicketCount += item.Amount;
+            }
+            return allTicketCount;
+        }
+
+        /// <summary>
+        /// 根据门票Id，获取与它所有相关的网站发送数量
+        /// </summary>
+        /// <param name="ticketId"></param>
+        /// <returns></returns>
+        public List<int> getPartnerStatisticsByTicketId(int ticketId)
+        {
+            List<QZSpringPartner> listSp=new BLLQZSpringPartner().GetAll<QZSpringPartner>().ToList();
+            IList<QZPartnerTicketAsign> listQZPartnerTa;
+            if(ticketId!=0)
+               listQZPartnerTa = GetAll<QZPartnerTicketAsign>().Where(x => x.QZTicketAsign.Ticket.Id == ticketId).ToList();
+            else
+                listQZPartnerTa = GetAll<QZPartnerTicketAsign>().ToList();
+            List<int> listCount = new List<int>();
+            int spAmount = 0;
+            foreach (var sp in listSp)
+            {
+                List<QZPartnerTicketAsign> listQZPta = listQZPartnerTa.Where(x => x.Partner.Id == sp.Id).ToList();
+                int spCount = 0;//这个网站所得到的票数
+                foreach (var qzpTa in listQZPta)
+                {
+                    spCount += qzpTa.AsignedAmount;
+                    spAmount += qzpTa.AsignedAmount;
+                }
+                listCount.Add(spCount);
+            }
+            listCount.Add(spAmount);
+            return listCount;
+        }
+
+
     }
 }
