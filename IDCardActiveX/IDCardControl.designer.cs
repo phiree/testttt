@@ -1,6 +1,6 @@
 ﻿namespace IDCardActiveX
 {
-    partial class UserControl1
+    partial class IDCardControl
     {
         /// <summary>
         /// 必需的设计器变量。

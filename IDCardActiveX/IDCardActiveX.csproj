@@ -77,11 +77,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.cs">
+    <Compile Include="IDCardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl1.designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="IDCardControl.designer.cs">
+      <DependentUpon>IDCardControl.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -89,8 +89,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl1.resx">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <EmbeddedResource Include="IDCardControl.resx">
+      <DependentUpon>IDCardControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

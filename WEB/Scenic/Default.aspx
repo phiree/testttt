@@ -101,7 +101,7 @@
                                 0
                             </td>
                             <td style="text-align: center;">
-                                <input id="btnputcart" type="button" class="btnputcart" value="放入购物车" onclick="AddToCart(this)" />
+                                <input id="btnputcart" type="button" class="btnputcart" value="立即抢票" onclick="AddToCart(this)" />
                             </td>
                         </tr>
                     </ItemTemplate>

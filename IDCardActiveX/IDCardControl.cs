@@ -11,7 +11,7 @@ using System.IO;
 namespace IDCardActiveX
 {
     [Guid("6c78bcd1-ac43-4fb9-8d89-d9f7b717d021")]
-    public partial class UserControl1 : UserControl, IObjectSafe
+    public partial class IDCardControl : UserControl, IObjectSafe
     {
         private static String[] strArray = new string[10]; //存储用户信息
 
@@ -24,7 +24,7 @@ namespace IDCardActiveX
         string SignGov = string.Empty;
         string StartDate = string.Empty;
         string EndDate = string.Empty;
-        public UserControl1()
+        public IDCardControl()
         {
             InitializeComponent();
         }
