@@ -229,7 +229,7 @@
     </div>
     <div style="padding-bottom:20px">
         <p class="wkintr">
-        身份证读卡器的驱动下载地址:<a href="/ScenicManager/身份证读卡器驱动.rar">下载地址</a>
+        身份证读卡器的驱动下载地址:<a href="/ScenicManager/身份证读卡器驱动程序.rar">下载地址</a>
     </p>
     <p class="wkintr">
         首次进入该页面，请先下载身份证读卡器程序，安装到本地电脑后，打开IE浏览器，进入该页面后浏览器会提示是否运行该加载项，点击允许，即可使用：

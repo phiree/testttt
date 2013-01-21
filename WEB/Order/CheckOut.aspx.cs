@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 using Model;
 using BLL;
 public partial class Scenic_CheckOut : AuthPage
 {
 
     BLLTicket bllTicket = new BLLTicket();
+    BLLScenic bllScenic = new BLLScenic();
     BLLOrder bllOrder = new BLLOrder();
     BLLCommonUser bllCu = new BLLCommonUser();
     IList<Ticket> tickets = new List<Ticket>();
@@ -49,7 +51,8 @@ public partial class Scenic_CheckOut : AuthPage
             Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
             liPriceOrder.Text = t.GetPrice(PriceType.PreOrder).ToString("0");
             liPriceOnline.Text = t.GetPrice(PriceType.PayOnline).ToString("0");
-
+            HtmlAnchor hrefScenic = e.Item.FindControl("hrefScenic") as HtmlAnchor;
+            hrefScenic.HRef = bllScenic.BuildScenicLink(t.Scenic);
             System.Web.UI.HtmlControls.HtmlInputText inputQty = e.Item.FindControl("inputQty") as System.Web.UI.HtmlControls.HtmlInputText;
             //inputQty.
         }

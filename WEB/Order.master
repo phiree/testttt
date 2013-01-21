@@ -29,11 +29,11 @@
                 <p>
                     最近浏览</p>
                 <table class="tbvisitedsc" border="0" cellpadding="0" cellspacing="0">
-                    <asp:Repeater ID="rptvisited" runat="server">
+                    <asp:Repeater ID="rptvisited" OnItemDataBound="rptvisited_ItemDataBound" runat="server">
                         <ItemTemplate>
                             <tr>
                         <td>
-                            <img src="/theme/default/image/newversion/jt2.gif" /><a href='<%# ResolveUrl(string.Format("/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
+                            <img src="/theme/default/image/newversion/jt2.gif" /><a id="ahref" runat="server" href='<%# ResolveUrl(string.Format("/Tickets/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
                         </td>
                             </tr>
                         </ItemTemplate>

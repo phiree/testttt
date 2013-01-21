@@ -186,6 +186,13 @@ namespace DAL
             session.SaveOrUpdate(progress);
             session.Flush();
         }
+
+        public IList<Scenic> BuildScenicListFromIds(string ids)
+        {
+            string sqlstr = "select s from Scenic s where s.id in ("+ids+")";;
+            IQuery query = session.CreateQuery(sqlstr);
+            return query.Future<Scenic>().ToList<Scenic>();
+        }
         #region Contract
 
         public void UploadContractImg(ContractImg contractimg)
