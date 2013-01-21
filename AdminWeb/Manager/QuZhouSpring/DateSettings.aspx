@@ -28,18 +28,23 @@
         <div class="detailtitle">
             具体日期的门票分配情况
         </div>
-        <asp:Repeater runat="server" ID="rptDateList">
+        <asp:Repeater runat="server" ID="rptDateList" 
+            onitemdatabound="rptDateList_ItemDataBound">
             <HeaderTemplate>
                 <table>
                     <tr>
                         <td>日期</td>
                         <td>设置</td>
+                        <td>已售出票数</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
                     <td><%# DateTime.Parse((Container.DataItem).ToString()).ToString("yyyy-MM-dd") %></td>
                     <td><a href='/Manager/QuZhouSpring/DateTicketAsign.aspx?date=<%# DateTime.Parse((Container.DataItem).ToString()).ToString("yyyy-MM-dd") %>'>分配门票</a></td>
+                    <td>
+                        <asp:Literal Text="text" runat="server" ID="solidAmount"  />
+                    </td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

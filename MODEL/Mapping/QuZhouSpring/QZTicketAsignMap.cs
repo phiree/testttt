@@ -11,7 +11,7 @@ namespace Model.Mapping
       {
           Id(x => x.Id);
           Map(x => x.ProductCode);
-          Map(x => x.SoldAmount);
+          //Map(x => x.SoldAmount);
           References<Ticket>(x => x.Ticket);
           Map(x => x.Date);
           HasMany<QZPartnerTicketAsign>(x => x.PartnerTicketAsign).Cascade.All();
