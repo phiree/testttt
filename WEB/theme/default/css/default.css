@@ -198,30 +198,34 @@ div:246
     float: right;
     margin-right: 5px;
     margin-top:5px;
-    background:url("/theme/default/image/20130116/linkOrder.jpg");
-    background:url("/theme/default/image/20130116/linkOrder_hover.jpg");
+    background:url("/theme/default/image/20130116/btnQuickBookBg.jpg");
+    background:url("/theme/default/image/20130116/btnQuickBookBg_hover.jpg");
+    color:White !important;
+    text-align:center;
+    line-height:22px;
+    letter-spacing:4px;
+    text-decoration:none;
 }
 .linkorder,.linkorder:link,.linkorder:active,.linkorder:visited
 {
     display:block;
     width:60px;
-    height:22px;
-    background:url("/theme/default/image/20130116/linkOrder.jpg");
+    height:20px;
+    background:url("/theme/default/image/20130116/btnQuickBookBg.jpg");
+    background-repeat:repeat;
+    border:1px solid #E83608;
 }
 .linkorder:hover
 {
     display:block;
     width:60px;
-    height:22px;
-    background:url("/theme/default/image/20130116/linkOrder_hover.jpg");
+    height:20px;
+    background:url("/theme/default/image/20130116/btnQuickBookBg_hover.jpg");
+    background-repeat:repeat;
+    border:1px solid #E83608;
+    text-decoration:none;
 }
-.linkorder:active
-{
-    display:block;
-    width:60px;
-    height:22px;
-    background:url("/theme/default/image/20130116/linkOrder_hover.jpg");
-}
+
 /*
  图片切换
 */

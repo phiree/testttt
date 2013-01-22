@@ -533,10 +533,10 @@ background-color:#fff !important;
 
 .popok,.popok:link,.popok:active,.popok:visited
 {
-    border:1px solid #E3007A;
+    border:1px solid #E8360F;
     font-weight:bold;
     color:White;
-    background:url("/theme/default/image/newversion/popokbg1.png");
+    background:url("/theme/default/image/20130116/btnOKBg.png");
     height:24px !important;
     background-repeat:repeat-x;
     width:90px;
@@ -546,11 +546,11 @@ background-color:#fff !important;
 }
 .popok:hover
 {
-    border:1px solid #E3007A;
+    border:1px solid #E8360F;
     font-weight:bold;
     color:White;
     margin-bottom:10px;
-    background:url("/theme/default/image/newversion/popokbg2.png");
+    background:url("/theme/default/image/20130116/btnOKBg_hover.png");
 }
 .emptypop
 {

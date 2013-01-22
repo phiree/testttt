@@ -99,6 +99,7 @@
                                     class="onlinepr">新春派送价<em><asp:Literal runat="server" ID="liPriceOnline"></asp:Literal></em>元</span>
                         </div>
                         <a runat="server" id="schref3" class="linkorder" >
+                            抢票
                         </a>
                     </div>
                 </div>

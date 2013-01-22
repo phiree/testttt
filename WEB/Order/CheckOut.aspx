@@ -91,15 +91,15 @@
                         </tr>
                         <tr>
                             <td colspan="6" style="text-align:right;color:Black;padding-right:50px;">
-                                订<strong style="font-size: 20px;margin-left:15px;margin-right:15px; vertical-align:text-bottom; font-size:20px; line-height:18px;" id="cticketsSum"></strong>张门票
+                                订<strong style="font-size: 20px;margin-left:15px;margin-right:15px; color:#E8360F; vertical-align:text-bottom; font-size:20px; line-height:18px;" id="cticketsSum"></strong>张门票
                             </td>
                         </tr>
                         <tr>
                             <td colspan="6" style="border-top: 1px solid #CDCDCD">
                                 <div style="color:Black">
                                     <span style="margin-right:50px;">景区现付价合计:<strong
-                                        style="font-size: 20px; margin-left:10px;margin-right:10px;color:#EC6B9E" id="totalonline"></strong>元&nbsp; </span><span>在线支付合计:<strong
-                                            style="font-size: 20px;margin-left:10px;margin-right:10px;color:#E3007A" id="totalpreorder"></strong> </span>元
+                                        style="font-size: 20px; margin-left:10px;margin-right:10px;color:#E8360F" id="totalonline"></strong>元&nbsp; </span><span>在线支付合计:<strong
+                                            style="font-size: 20px;margin-left:10px;margin-right:10px;color:#E8360F" id="totalpreorder"></strong> </span>元
                                 </div>
                             </td>
                         </tr>
