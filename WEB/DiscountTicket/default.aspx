@@ -43,7 +43,7 @@
                 </asp:Repeater>
             </div>
         </div>
-        <div class="themediv">
+        <div class="themediv"  style="display:none">
             <span class="themedivspan" style="color: Black; font-weight: normal">旅游主题:</span>
             <div style="float: left; width: 640px;">
                 <a runat="server" id="hrefTopicAll" style="margin-right: 10px;">全部</a>
@@ -60,6 +60,10 @@
             <a runat="server" id="hlLevelAll">全部</a> <a runat="server" t="level" id="hlLevel5">5A</a>
             <a runat="server" t="level" id="hlLevel4">4A</a> <a runat="server" t="level" id="hlLevel3">
                 3A</a>
+                 <a runat="server" t="level" id="hlLevel2">
+                2A</a>
+                 <a runat="server" t="level" id="hlLevel1">
+                A</a>
         </div>
     </div>
     <div class="breadNav">
