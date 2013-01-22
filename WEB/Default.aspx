@@ -95,8 +95,43 @@
         </div>
     </div>--%>
     <div id="qz">
-        <img src="/theme/default/image/20130116/quzhouBg.png" alt="衢州新春大派送" />
         <a href="/Tickets/quzhou"></a>
+        <div id="hdgz">
+            <ul>
+                <li>1、<span>活动时间:</span>2013年1月25日-2013年2月6日。 </li>
+                <li>2、<span>开抢时间:</span>每天10:00开抢，每日上新，抢完即止。 </li>
+                <li>3、<span>兑换方式:</span>抢票成功的用户刷而带身份证即可进入相应景区；门票不 </li>
+                <li><span style=" visibility:hidden;">3、兑换方式:</span>可转让，刷完作废；团队谢绝使用。 </li>
+                <li>4、<span>免费身份证门票有效期:</span>2013年2月1日－2013年2月28日。 </li>
+                <li>5、<span>特别提醒:</span>一个用户帐号限抢5个景区门票。 </li>
+                <li>6、<span>详询热线:</span>12301或0571-12301。 </li>
+                <li>7、本次活动最终解释权归浙江省旅游信息中心</li>
+            </ul>
+        </div>
+        <div id="qplc">
+            <ul>
+                <li>
+                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第一步</span>选择喜欢景区，点击“立刻抢票”</span>
+                </li>
+                <li>
+                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第二步</span>注册或绑定您的微博帐号登陆</span>
+                </li>
+                <li>
+                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第三步</span>输入身份证号码（用于入景区凭证）和手机</span>
+                </li>
+                 <li>
+                    <span style=" display:block; padding-left:70px;">号（便于接收信息）</span>
+                </li>
+                <li>
+                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第四步</span>点击“确定并分享到微博”</span>
+                </li>
+                <li>
+                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第五步</span>在“个人中心”中查看抢票结果 </span>
+                </li>
+            </ul>
+        </div>
+
+
     </div>
 
    <%-- <div class="adcolum">

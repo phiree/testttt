@@ -176,26 +176,26 @@
 .btntkok
 {
     cursor:pointer;
-    border:1px solid #E3007A;
-    background:url("/theme/default/image/newversion/popokbg1.png");
+    border:1px solid #E83608;
+    background:url("/theme/default/image/20130116/btnOKBg.png");
     background-repeat:repeat-x;
     width:120px;
     height:24px;
     display:block;
     color:White;
     font-weight:bold;
-    line-height:24px;
+    line-height:26px;
     margin:0px auto;
 }
 .btntkok:hover
 {
     cursor:pointer;
-    border:1px solid #E3007A;
-    background:url("/theme/default/image/newversion/popokbg2.png");
+    border:1px solid #E83608;
+    background:url("/theme/default/image/20130116/btnOKBg_hover.png");
     width:120px;
     height:24px;
     display:block;
     color:White;
     font-weight:bold;
-    line-height:24px;
+    line-height:26px;
 }

@@ -636,12 +636,12 @@
 }
 #qz
 {
-    width:950px;
+    width:951px;
     height:643px;
-    border:1px solid #FDE400;
-    background:url("/theme/default/image/newversion/bottombg.png");
+    background:url("/theme/default/image/20130116/quzhouBg.png") no-repeat;
     position:relative;
-    
+    padding-bottom:7px;
+    border-bottom:1px solid #FDE400;
 }
 #qz a
 {
@@ -656,4 +656,39 @@
 #qz a:hover
 {
     background:url("/theme/default/image/20130116/btnQp_hover.png");
+}
+#hdgz
+{
+    position:absolute;
+    top:400px;
+    left:60px;
+    color:#901C03;
+    letter-spacing:1px;
+}
+#hdgz span
+{
+    font-weight:bold;
+}
+#hdgz ul,#qplc ul
+{
+    list-style-type:none;
+}
+#hdgz ul li,#qplc ul li
+{
+    margin-bottom:5px;
+}
+#qplc
+{
+    position:absolute;
+    top:400px;
+    left:560px;
+    color:#901C03;
+}
+#qplc .step
+{
+    height:23px;
+    display:block;
+    background:url("/theme/default/image/20130116/icon_1.png") no-repeat;
+    line-height:23px;
+    padding-left:8px;
 }
