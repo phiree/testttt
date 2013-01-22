@@ -38,7 +38,7 @@
     <div id="header">
         <div id="logo">
             <div class="mainarea" style="padding-left: 15px">
-                浙江省<span>ˇ</span></div>
+              <span>浙江省</span></div>
             <div class="logoleft">
                 <a href="/">
                     <img src="/theme/default/image/20130116/tourol.jpg" alt="中国旅游在线" />
