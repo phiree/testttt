@@ -18,8 +18,8 @@ namespace BLL
         BLLQZPartnerTicketAsign bllQZPartnerTicketAsign = new BLLQZPartnerTicketAsign();
 
         public string SellTicket(string clientFriendlyId, string idcardno, string ticketCode, int amount, string phone)
-        { 
-            return SellTicket(clientFriendlyId,null,string.Empty,idcardno,ticketCode,amount, phone);
+        {
+            return SellTicket(clientFriendlyId, null,"派送活动参与者", idcardno, ticketCode, amount, phone);
         }
         public string SellTicket(string clientFriendlyId, TourMembership member,string assignName, string idcardno, string ticketCode, int amount, string phone)
         {

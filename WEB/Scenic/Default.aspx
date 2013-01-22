@@ -68,14 +68,14 @@
                             门票原价
                         </td>
                         <td>
-                            旅游在线预定价
+                           景区现付价
                         </td>
                         <td>
                             在线支付价
                         </td>
-                        <td>
+                       <%-- <td>
                             旅游卡优惠价
-                        </td>
+                        </td>--%>
                         <td>
                             操作
                         </td>
@@ -94,11 +94,11 @@
                             <td>
                                 <%# Eval("TicketPrice[1].Price", "{0:0}")%>
                             </td>
-                            <td style="color: #EC6B9E; font-weight: bold">
+                           <%-- <td style="color: #EC6B9E; font-weight: bold">
                                 0
-                            </td>
-                            <td>
-                                0
+                            </td>--%>
+                             <td>
+                                <%# Eval("TicketPrice[2].Price", "{0:0}")%>
                             </td>
                             <td style="text-align: center;">
                                 <input id="btnputcart" type="button" class="btnputcart" value="立即抢票" onclick="AddToCart(this)" />
