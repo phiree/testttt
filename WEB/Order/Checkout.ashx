@@ -73,7 +73,7 @@ public class CheckoutHandler : IHttpHandler
                 string cardidNo = taValues[2];
                 Ticket t = bllTickets.GetTicket(Convert.ToInt32(ticketId));
 
-             string result=  qzSeller.SellTicket("tourol.cn",tourMembership,name,cardidNo, t.ProductCode, 1, "");
+             string result=  qzSeller.SellTicket("tourol.cn",tourMembership,name,cardidNo,string.Empty, t.ProductCode, 1);
              if (result != "T")
              {
                  string qzErrmsg = string.Empty;

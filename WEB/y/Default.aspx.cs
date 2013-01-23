@@ -28,7 +28,7 @@ public partial class qumobile_Default : basepage
         else
         {
             Scenic scenic = user.Scenic;
-            Response.Redirect("/qumobile/CheckTicket.aspx");
+            Response.Redirect("/y/CheckTicket.aspx");
         }
     }
 

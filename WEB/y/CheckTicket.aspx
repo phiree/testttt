@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/qumobile/MasterPage.master" AutoEventWireup="true" CodeFile="CheckTicket.aspx.cs" Inherits="qumobile_CheckTicket" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/y/MasterPage.master" AutoEventWireup="true" CodeFile="CheckTicket.aspx.cs" Inherits="qumobile_CheckTicket" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" Runat="Server">
     <meta   http-equiv= "expires "   content= "0 ">   
@@ -55,8 +55,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
     <asp:HiddenField ID="hfscid" runat="server" />
     <div id="checkTicket">
+<<<<<<< HEAD:WEB/y/CheckTicket.aspx
+        <p>请输入姓名/身份证号<br />如:张三/330203197804255874</p>
+        
+        <asp:TextBox runat="server" ID="txtinfo" CssClass="txtInfo"></asp:TextBox><asp:Button ID="btnSearch" runat="server"
+=======
         <p style="margin-top:0px">请输入姓名/身份证号</p>
         <asp:TextBox runat="server" ID="txtinfo" CssClass="txtInfo tbx"></asp:TextBox><asp:Button ID="btnSearch" runat="server" CssClass="btn" style="margin-left:5px"
+>>>>>>> 91af965b75b67c298ccbadaa30346799990e7711:WEB/qumobile/CheckTicket.aspx
             Text="查询" OnClick="btnSearch_Click" OnClientClick="ShowCheckProgress()" />
          <span id="spCheckProgress" style="color:#EA693F;"></span>
         <p runat="server" id="Msg" style="color:#EA693F;"></p>

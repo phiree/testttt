@@ -110,6 +110,7 @@
     <Compile Include="Default\BLLOperationLog.cs" />
     <Compile Include="Default\SerializationModel.cs" />
     <Compile Include="Default\TravelInterface\TravelXmlParser.cs" />
+    <Compile Include="Default\BLLScenicAdminReport.cs" />
     <Compile Include="Dijieshe\BLLDJEnterprise.cs" />
     <Compile Include="Default\ErrType.cs" />
     <Compile Include="Dijieshe\BLLDJConsumRecord.cs" />

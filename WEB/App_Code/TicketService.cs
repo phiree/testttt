@@ -30,15 +30,17 @@ public class TicketService : System.Web.Services.WebService
     /// </summary>
     /// <param name="PartnerCode">合作方ID</param>
     /// <param name="CardNumber">抢票者身份证号码</param>
+    ///  <param name="RealName">抢票者的姓名(如果不填,则传用户昵称</param>
+    /// <param name="Phone">抢票者的电话号码</param>
     /// <param name="ProductCode">门票代码</param>
     /// <param name="Number">购买数量</param>
-    /// <param name="errMsg">如果返回值为F,则是错误消息,若是T则为空</param>
+
     /// <returns>"T"(请票成功)或"F"(失败)</returns>
     [WebMethod]
-    public string buyProduct(string PartnerCode, string CardNumber, string ProductCode, int Number)
+    public string buyProduct(string PartnerCode, string CardNumber, string RealName, string Phone, string ProductCode, int Number)
     {
 
-        string result = seller.SellTicket(PartnerCode, CardNumber, ProductCode, Number, string.Empty);
+        string result = seller.SellTicket(PartnerCode, CardNumber, RealName, Phone, ProductCode, Number);
         //  seller.SellTicket(clientFriendlyId, idcardno, ticketId);
         return result;
     }
@@ -58,7 +60,7 @@ public class TicketService : System.Web.Services.WebService
         {
             TourLog.LogInstance.Error("没有查到相应信息");
             return -1;
-           
+
         }
         int leftAmount = qzPartnerTicketAsign.AsignedAmount - qzPartnerTicketAsign.SoldAmount;
         if (leftAmount < 0) leftAmount = 0;

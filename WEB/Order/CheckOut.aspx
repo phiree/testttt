@@ -12,13 +12,7 @@
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
     <link href="/theme/default/css/cart.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/pages/checkout.js" type="text/javascript"></script>
-    <script language="javascript" type="text/javascript">
-        $(function () {
-
-        });
-     
-
-    </script>
+  
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphstate" runat="Server">
     <div class="cartbread">
