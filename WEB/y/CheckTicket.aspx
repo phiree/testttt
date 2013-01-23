@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/qumobile/MasterPage.master" AutoEventWireup="true" CodeFile="CheckTicket.aspx.cs" Inherits="qumobile_CheckTicket" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/y/MasterPage.master" AutoEventWireup="true" CodeFile="CheckTicket.aspx.cs" Inherits="qumobile_CheckTicket" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" Runat="Server">
     <meta   http-equiv= "expires "   content= "0 ">   
@@ -44,6 +44,7 @@
     <asp:HiddenField ID="hfscid" runat="server" />
     <div id="checkTicket">
         <p>请输入姓名/身份证号<br />如:张三/330203197804255874</p>
+        
         <asp:TextBox runat="server" ID="txtinfo" CssClass="txtInfo"></asp:TextBox><asp:Button ID="btnSearch" runat="server"
             Text="查询" OnClick="btnSearch_Click" OnClientClick="ShowCheckProgress()" />
          <span id="spCheckProgress"></span>

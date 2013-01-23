@@ -8,7 +8,7 @@ namespace BLL
 {
     public class BLLOrder
     {
-        IDAL.IOrder dal = new DAL.DALOrder();
+        DAL.DALOrder dal = new DAL.DALOrder();
         public IList<Model.Order> GetListForUser(Guid memberId)
         {
             return dal.GetListForUser(memberId);

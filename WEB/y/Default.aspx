@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/qumobile/MasterPage.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/y/MasterPage.master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="qumobile_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" runat="Server">

@@ -17,11 +17,11 @@ namespace BLL
         BLLOrder bllOrder = new BLLOrder();
         BLLQZPartnerTicketAsign bllQZPartnerTicketAsign = new BLLQZPartnerTicketAsign();
 
-        public string SellTicket(string clientFriendlyId, string idcardno, string ticketCode, int amount, string phone)
+        public string SellTicket(string clientFriendlyId, string idcardno,string realName,  string phone,string ticketCode, int amount)
         {
-            return SellTicket(clientFriendlyId, null,"派送活动参与者", idcardno, ticketCode, amount, phone);
+            return SellTicket(clientFriendlyId, null, realName, idcardno, phone, ticketCode, amount);
         }
-        public string SellTicket(string clientFriendlyId, TourMembership member,string assignName, string idcardno, string ticketCode, int amount, string phone)
+        public string SellTicket(string clientFriendlyId, TourMembership member, string assignName, string idcardno, string phone, string ticketCode, int amount)
         {
 
 
