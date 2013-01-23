@@ -24,6 +24,7 @@
 }
 .fcolum
 {
+    margin-top:10px;
     display:inline-block;
     width:950px;
     height:313px;
@@ -124,6 +125,7 @@
 }
 .scoloum
 {
+    padding-left:8px;
     display:inline-block;
     width:950px;
     height:320px;
@@ -636,6 +638,7 @@
 }
 #qz
 {
+    margin-top:20px;
     width:951px;
     height:643px;
     background:url("/theme/default/image/20130116/quzhouBg.png") no-repeat;
@@ -655,7 +658,7 @@
 }
 #qz a:hover
 {
-    background:url("/theme/default/image/20130116/btnQp_hover.png");
+    background:url("/theme/default/image/20130116/btnQp_hover.png") top left no-repeat;
 }
 #hdgz
 {
