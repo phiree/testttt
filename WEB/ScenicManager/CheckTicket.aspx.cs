@@ -23,6 +23,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     BLLDJRoute blldjroute = new BLLDJRoute();
     BLLDJConsumRecord bllrecord = new BLLDJConsumRecord();
     BLLTicket bllTicket = new BLLTicket();
+    BLLMembership bllMember = new BLLMembership();
     #endregion
     #region Init初始化
     protected void Page_Load(object sender, EventArgs e)
@@ -246,6 +247,9 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                         TicketAssign ta = list[0];
                         ta.IsUsed = true;
                         ta.UsedTime = DateTime.Now;
+                        //添加验票员信息
+                        ta.ScenicAdmin = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
+                        ta.saName = CurrentUser.UserName;
                         bllticketassign.SaveOrUpdate(ta);
                         //查询订单中所有的detail是否都已付完款
                         List<TicketAssign> listticketassign = bllticketassign.GetTaByIdCard(ViewState["idcard"].ToString()).ToList();
@@ -317,6 +321,9 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                             TicketAssign ta = list[0];
                             ta.IsUsed = true;
                             ta.UsedTime = DateTime.Now;
+                            //添加验票员信息
+                            ta.ScenicAdmin = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
+                            ta.saName = CurrentUser.UserName;
                             bllticketassign.SaveOrUpdate(ta);
                         }
                     }

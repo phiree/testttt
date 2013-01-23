@@ -76,6 +76,6 @@
             景区详情</p>
         <CKEditor:CKEditorControl ID="CkScjj" runat="server"></CKEditor:CKEditorControl>
     </div>
-    <asp:Button ID="BtnSave" runat="server" CssClass="btnsaveimg" Style="margin-left: 20px;
+    <asp:Button ID="BtnSave" runat="server" CssClass="btnsaveimg enable" Style="margin-left: 20px;
         margin-bottom: 20px;" OnClick="BtnSave_Click" />
 </asp:Content>

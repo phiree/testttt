@@ -321,6 +321,9 @@ public partial class qumobile_CheckTicket : basepage
                         TicketAssign ta = list[0];
                         ta.IsUsed = true;
                         ta.UsedTime = DateTime.Now;
+                        //添加验票员信息
+                        ta.ScenicAdmin = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
+                        ta.saName = CurrentUser.UserName;
                         bllticketassign.SaveOrUpdate(ta);
                         //查询订单中所有的detail是否都已付完款
                         List<TicketAssign> listticketassign = bllticketassign.GetTaByIdCard(ViewState["idcard"].ToString()).ToList();
@@ -393,6 +396,9 @@ public partial class qumobile_CheckTicket : basepage
                             TicketAssign ta = list[0];
                             ta.IsUsed = true;
                             ta.UsedTime = DateTime.Now;
+                            //添加验票员信息
+                            ta.ScenicAdmin = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
+                            ta.saName = CurrentUser.UserName;
                             bllticketassign.SaveOrUpdate(ta);
                         }
                     }

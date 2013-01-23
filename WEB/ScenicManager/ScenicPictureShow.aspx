@@ -47,7 +47,8 @@
             </ItemTemplate>
         </asp:Repeater>
         <div class="addscenicimg">
-            <input id="Button1" type="button" class="btnaddscenicimg" onclick="javascript:window.location='/ScenicManager/UpdateScenicImg.aspx'"/>
+            <input id="Button1" type="button" class="btnaddscenicimg enable" />
+            <%--<input id="Button1" type="button" class="btnaddscenicimg enable" onclick="javascript:window.location='/ScenicManager/UpdateScenicImg.aspx'"/>--%>
         </div>
         </div>
     </div>
