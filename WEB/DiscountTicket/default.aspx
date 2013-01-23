@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="leveldiv">
-            <span class="themedivspan" style="color: Black; font-weight: normal">景区级别:</span>
+            <span class="themedivspan" style="color: Black; font-weight: normal">景区等级:</span>
             <a runat="server" id="hlLevelAll">全部</a> <a runat="server" t="level" id="hlLevel5">5A</a>
             <a runat="server" t="level" id="hlLevel4">4A</a> <a runat="server" t="level" id="hlLevel3">
                 3A</a>
