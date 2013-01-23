@@ -85,7 +85,7 @@
         </div>
         
         <div style="margin-left: 60px; margin-top: 20px; margin-bottom: 20px;">
-            <asp:Button ID="BtnUpdateScenicInfo" CssClass="btnsaveimg" runat="server" OnClientClick="return BtnUpdateScenicInfo();"
+            <asp:Button ID="BtnUpdateScenicInfo" CssClass="btnsaveimg enable" runat="server" OnClientClick="return BtnUpdateScenicInfo();"
                 OnClick="btnOK_Click" /></div>
     </div>
     <div id="divbigmap" style="display: none; position:fixed !important">

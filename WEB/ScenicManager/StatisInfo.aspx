@@ -76,7 +76,7 @@
                 </td>
                 <td style="width:87px">
                     <%#(bool)Eval("paidstate") ? "已结" : "未结"%>
-                    <asp:Button ID="Button1" Text="结算" runat="server" Visible='<%# !(bool)Eval("paidstate") %>' 
+                    <asp:Button ID="Button1" Text="结算" CssClass="enable" runat="server" Visible='<%# !(bool)Eval("paidstate") %>' 
                     CommandArgument='<%# Eval("date")+";"+ Eval("orderway")+";"+  Eval("num")+";"+ Eval("totalprice")%>'
                     CommandName="jiesuan" />
                 </td>

@@ -82,5 +82,5 @@
         </div>
         <div style="clear:both;"></div>
         <br />
-        <asp:Button ID="btnsave" runat="server" OnClientClick="saveitem()" OnClick="btnsave_Click" CssClass="btnsaveimg" style="clear:both;margin-left:15px;margin-bottom:20px;" /></div>
+        <asp:Button ID="btnsave" runat="server" OnClientClick="saveitem()" OnClick="btnsave_Click" CssClass="btnsaveimg enable" style="clear:both;margin-left:15px;margin-bottom:20px;" /></div>
 </asp:Content>

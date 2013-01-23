@@ -16,6 +16,13 @@
             //$("#btnscroll").attr("style", "display:block");
             //$("#btnscroll2").attr("style", "display:none");
             $(".nav li a").HighLightLink();
+            //对class为enable的按钮禁用
+            //$(".enable").attr("disabled", "disabled");
+            $(".enable").click(function () {
+                alert("对不起，活动时间内暂时无法使用此功能");
+                return false;
+            });
+
         });
     </script>
     <asp:ContentPlaceHolder ID="smHeader" runat="server">
@@ -55,7 +62,7 @@
                     <li><a href="/scenicmanager/UpdateScenticInfo.aspx">景区资料</a></li>
                     <li><a href="/scenicmanager/ScenictopicInfo.aspx">景区主题</a></li>
                     <li><a href="/scenicmanager/ScenicInfoEdit.aspx">景区信息编辑</a></li>
-                    <li><a href="/scenicmanager/onlinesell/PriceState.aspx">景区门票信息</a></li>
+                    <li style="display:none"><a href="/scenicmanager/onlinesell/PriceState.aspx">景区门票信息</a></li>
                     <li><a href="/scenicmanager/ScenicPictureShow.aspx">景区图片管理</a></li>
                     <li><span>人员管理</span></li>
                     <li><a href="/ScenicManager/WorkerList.aspx">工作人员列表</a></li>
@@ -65,7 +72,7 @@
                     <li><span>账目管理</span></li>
                     <li><a href="/ScenicManager/BillUnPaid.aspx">售票查询</a></li>
                     <li><a href="/ScenicManager/StatisInfo.aspx">账单管理</a></li>
-                    <li><a href="/ScenicManager/GroupTestatistics.aspx">团队信息统计</a></li>
+                    <li style="display:none"><a href="/ScenicManager/GroupTestatistics.aspx">团队信息统计</a></li>
                 </div>
                 <div id="checkBlock" runat="server">
                     <li><span>景区验票</span></li>

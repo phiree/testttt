@@ -49,7 +49,9 @@ $(document).ready(function () {
                         formatMatch: function (row, i, max) {
                             return row.Key;
                         },
-                        matchContains: true
+                        matchContains: true,
+                        max:10,
+                        scrollHeight:900
                     }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Key); $("[id$='btnbind']").click(); });
         }
     });

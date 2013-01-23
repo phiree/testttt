@@ -98,7 +98,7 @@
                     <td>
                     </td>
                     <td>
-                        <asp:Button ID="btnok" runat="server" CssClass="btnsaveimg" OnClick="btnok_Click" />
+                        <asp:Button ID="btnok" runat="server" CssClass="btnsaveimg enable" OnClick="btnok_Click" />
                     </td>
                 </tr>
             </table>
