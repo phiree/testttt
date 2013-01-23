@@ -1,10 +1,21 @@
 ﻿var cart = new Cart();
         function AddToCart(btn) {
-            //var qty = $("#txtTicketCount").val();
-            cart.AddToCart(GetTicketId(btn), 1);
-            //  window.location.href = "/order/cart.aspx";
-            //衢州活动 直接跳转至确认页面
-            window.location.href = "/order/checkout.aspx";
+            var h;
+            var randomParam = new Date().toString();
+            $.get("/Scenic/TimeHandler.ashx?type=" + randomParam, function (timeHour, status) {
+                h = timeHour;
+                if (parseInt(h) < 10) {
+                    alert("今日抢票未开始,请在10点之后进行抢票!");
+                }
+                else {
+                    //var qty = $("#txtTicketCount").val();
+                    cart.AddToCart(GetTicketId(btn), 1);
+                    //  window.location.href = "/order/cart.aspx";
+                    //衢州活动 直接跳转至确认页面
+                    window.location.href = "/order/checkout.aspx";
+                }
+            });
+           
         }
 
        
