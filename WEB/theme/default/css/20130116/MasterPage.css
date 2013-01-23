@@ -5,7 +5,7 @@ body
     /*background: url(../image/headerbg.png) top left repeat-x;*/
     background: url("/theme/default/image/newversion/logobg2.png");
     background-repeat: repeat-x;
-    font-family:微软雅黑;
+    font-family:新宋体, 宋体;
 }
 .Filldiv
 {
@@ -487,28 +487,21 @@ background-color:#fff !important;
     position: absolute;
     z-index: 9999;
     display: block;
-    width: 72px;
+    width: 83px;
     height: 30px;
     border: none;
-    border-right:1px solid #CDCDCD;
+    border-left:1px solid #CDCDCD;
+    cursor:pointer;
     text-align: left;
-    background:url("/theme/default/image/20130116/keywordbg.png");
+    background:url("/theme/default/image/20130116/proseldbg.png") top right no-repeat;
     color:#777777;
+    
     line-height:30px;
 }
 .mainarea span
 {
-    display: block;
-    font-size:28px;
-    width: 13px;
-    height: 16px;
-    position: relative;
-    top: -22px;
-    left: 52px;
-    cursor: pointer;
-    border-left:1px solid #CDCDCD;
-    padding-left:5px;
-    line-height:33px;
+
+   
 }
 
 .poptitle

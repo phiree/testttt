@@ -186,6 +186,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         }
         else
         {
+            phCounty.Visible = false;
             phArea.Visible = false;
         }
         if (!string.IsNullOrEmpty(levelname))
@@ -294,6 +295,17 @@ public partial class DiscountTicket_DiscountTicket : basepage
             hlLevel5.Attributes["class"] = "hlv";
             return;
         }
+        if (levelname.ToLower() == "2a")
+        {
+            hlLevel2.Attributes["class"] = "hlv";
+            return;
+        }
+        if (levelname.ToLower() == "a")
+        {
+            hlLevel1.Attributes["class"] = "hlv";
+            return;
+        }
+
     }
     /// <summary>
     /// 为 "全部"筛选条件 和 A级  构造符合seo的 链接(给链接添加锚点)
@@ -308,6 +320,9 @@ public partial class DiscountTicket_DiscountTicket : basepage
         hlLevel3.HRef = BuildLink(queryLevel, "3a");
         hlLevel4.HRef = BuildLink(queryLevel, "4a");
         hlLevel5.HRef = BuildLink(queryLevel, "5a");
+
+        hlLevel2.HRef = BuildLink(queryLevel, "2a");
+        hlLevel1.HRef = BuildLink(queryLevel, "1a");
 
         BuildHignLightItems();
 

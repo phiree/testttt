@@ -26,7 +26,7 @@
         <div id="maintitle">
             <h2 runat="server" id="maintitlett">
             </h2>
-            <div class="themespan">
+            <div class="themespan" style="display:none">
                 主题标签
                 <asp:Repeater ID="rpttopic" runat="server">
                     <ItemTemplate>
