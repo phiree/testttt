@@ -33,6 +33,18 @@
         {
              display:block;
             }
+        .tbx
+       {
+           -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;
+           
+           height:30px;
+           width:190px;
+           padding-left:10px;
+       }
+       .detailinfo
+       {
+           width: 85%;
+       }
     </style>
     <script language="javascript" type="text/javascript">
         function ShowCheckProgress() {
@@ -43,11 +55,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
     <asp:HiddenField ID="hfscid" runat="server" />
     <div id="checkTicket">
-        <p>请输入姓名/身份证号<br />如:张三/330203197804255874</p>
-        <asp:TextBox runat="server" ID="txtinfo" CssClass="txtInfo"></asp:TextBox><asp:Button ID="btnSearch" runat="server"
+        <p style="margin-top:0px">请输入姓名/身份证号</p>
+        <asp:TextBox runat="server" ID="txtinfo" CssClass="txtInfo tbx"></asp:TextBox><asp:Button ID="btnSearch" runat="server" CssClass="btn" style="margin-left:5px"
             Text="查询" OnClick="btnSearch_Click" OnClientClick="ShowCheckProgress()" />
-         <span id="spCheckProgress"></span>
-        <p runat="server" id="Msg"></p>
+         <span id="spCheckProgress" style="color:#EA693F;"></span>
+        <p runat="server" id="Msg" style="color:#EA693F;"></p>
         <div runat="server" id="detailinfo" class="detailinfo">
             <h3 id="username" runat="server">金俊杰
                 </h3>
@@ -126,7 +138,7 @@
                 </FooterTemplate>
             </asp:Repeater>
             <div class="yptg">
-                <asp:Button ID="Btnckpass" runat="server" OnClick="Btnckpass_Click" Text="验票" style="display:block;float:left" />
+                <asp:Button ID="Btnckpass" runat="server" OnClick="Btnckpass_Click" Text="验票" CssClass="btn" style=" margin-top:10px; display:block;float:left" />
                 <a runat="server" target="_blank" style="display:none;float:left" id="BtnPrint"></a>
                 <div style="clear:both"></div>
             </div>

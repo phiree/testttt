@@ -26,9 +26,8 @@
     <style type="text/css">
         body
         {
-        padding:20px 10px 0 10px; margin: 0 auto;
-        background-color:#2196DB;
-            
+        padding:20px 5px 0 5px; margin: 0 auto;
+            font
             }
             #main
             {
@@ -37,16 +36,42 @@
                 }
       .title
         {
-            color:White;
-            margin-bottom:20px;
+            margin-bottom:10px;
         }
-        
+        .title h3
+        {
+            padding-left:120px;
+            margin-bottom:0px;
+        }
+        .btn
+       {
+           background:url("/theme/default/image/20130116/btnMobileBg.png");
+           width:64px;
+           height:30px;
+           border:none;
+           cursor:pointer;
+           color:White;
+           letter-spacing:5px;
+           font-weight:bold;
+       }
+       .btn:hover
+       {
+           background:url("/theme/default/image/20130116/btnMobileBg_hover.png");
+           width:64px;
+           height:30px;
+           border:none;
+           cursor:pointer;
+           color:White;
+           letter-spacing:5px;
+           font-weight:bold;
+       }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
    <div class="title">
-        <h2  runat="server" id="title">旅游在线景区验票</h2> <span >手机版</span></div>
+         <img src="/theme/default/image/20130116/tourol.jpg" />
+         <h3 >景区验票</h3></div>
          <div id="main">
         <asp:ContentPlaceHolder id="cphmain" runat="server">
             
