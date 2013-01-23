@@ -23,6 +23,14 @@ namespace Model
         public virtual int Amount { get; set; }
         public virtual bool IsUsed { get; set; }
         public virtual DateTime? UsedTime { get; set; }
+        /// <summary>
+        /// 验票员
+        /// </summary>
+        public virtual ScenicAdmin ScenicAdmin { get; set; }
+        /// <summary>
+        /// 验票员真实姓名
+        /// </summary>
+        public virtual string saName { get; set; }
     }
 
     public class checkticketassign
