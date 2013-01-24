@@ -21,7 +21,7 @@ public partial class Layout : System.Web.UI.MasterPage
         IsShow();
         BindVisited();
         BindLikeScenic();
-        bindzbsc();
+        //bindzbsc();
     }
 
     //判断页面是否要显示的模块
