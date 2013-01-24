@@ -31,5 +31,11 @@ namespace TourTest
             IDAL.IOrder dal = new DAL.DALOrder();
             dal.GetPaidstate("201201", 10, "在线支付");
         }
+        [Test]
+        public void GetSoldReportTest()
+        {
+            DAL.DALOrderDetail dalOd = new DAL.DALOrderDetail();
+            dalOd.GetSoldReport();
+        }
     }
 }

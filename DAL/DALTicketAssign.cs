@@ -253,5 +253,13 @@ namespace DAL
             }
             return listticket;
         }
+        public void UpdateIdCardNo(string oldNo, string newNo)
+        {
+            string sql =string.Format( "update TicketAssign as ta  set IdCard='{1}' where IdCard='{0}'"
+                ,oldNo,newNo);
+            IQuery query = session.CreateQuery(sql);
+           int result= query.ExecuteUpdate();
+        }
+
     }
 }

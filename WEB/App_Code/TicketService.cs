@@ -35,7 +35,7 @@ public class TicketService : System.Web.Services.WebService
     /// <param name="ProductCode">门票代码</param>
     /// <param name="Number">购买数量</param>
 
-    /// <returns>"T"(请票成功)或"F"(失败)</returns>
+    /// <returns>"T"(请票成功)或"F|(失败原因)"</returns>
     [WebMethod]
     public string buyProduct(string PartnerCode, string CardNumber, string RealName, string Phone, string ProductCode, int Number)
     {
@@ -88,5 +88,24 @@ public class TicketService : System.Web.Services.WebService
 
 
         return bllTicketAssign.GetTicketsHasProductCode(idcardno);
+    }
+    /// <summary>
+    /// 更新身份证信息
+    /// </summary>
+    /// <param name="oldNo">原有身份证号码</param>
+    /// <param name="newNo">新身份证号码</param>
+    /// <returns>T 或者 F|(详细错误信息)</returns>
+    [WebMethod]
+    public string UpdateIdCardNo(string oldNo, string newNo)
+    {
+        string result = bllTicketAssign.UpdateIdCardNo(oldNo, newNo);
+        if (string.IsNullOrEmpty(result))
+        {
+            return "T";
+        }
+        else
+        {
+            return "F|" + result;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace BLL
 {
     public class BLLOrderDetail
     {
-        IDAL.IOrderDetail IOrderDetail =new DAL.DALOrderDetail();
+        DAL.DALOrderDetail IOrderDetail =new DAL.DALOrderDetail();
 
         public int SaveOrUpdateOrderDetail(OrderDetail orderdetail)
         {

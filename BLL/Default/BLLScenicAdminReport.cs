@@ -11,6 +11,12 @@ namespace BLL
     /// </summary>
     public class BLLScenicAdminReport
     {
-    //  public 
+        
+        //每天人数 /每月人数
+        BLLOrderDetail bllOrderDetail = new BLLOrderDetail();
+        //public Dictionary<DateTime, long> DateDetailList()
+        //{ 
+        // // bllOrderDetail.GetOrderDetailByorderid
+        //}
     }
 }
