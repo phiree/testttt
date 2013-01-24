@@ -44,7 +44,7 @@ namespace DAL
             {
                 where += " and s.Level='" + level + "A'";
             }
-            string order = " order by s.Level desc,s.Area.Code asc, s.Name desc";
+            string order = " order by s.ScenicOrder asc";
 
 
             string fromwhere = " from Scenic s " + where;
