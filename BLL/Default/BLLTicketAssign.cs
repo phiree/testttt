@@ -136,13 +136,16 @@ namespace BLL
             .ToList();
             DataTable dt = new DataTable("gotTickets");
             string colScenicName="ScenicName";
+            string colProductCode = "ProductCode";
             string colOrderTime="OrderTime";
             string colIsUsed="IsUsed";
             string colValidPeriod="ValidPeriod";
             dt.Columns.Add(colScenicName);
+            dt.Columns.Add(colProductCode);
             dt.Columns.Add(colOrderTime);
             dt.Columns.Add(colIsUsed);
             dt.Columns.Add(colValidPeriod);
+
             foreach (TicketAssign ta in gotTotalTicketsOfThisType)
             {
 
@@ -152,11 +155,43 @@ namespace BLL
                 dr[colIsUsed] = ta.IsUsed;
                 dr[colValidPeriod] = ta.OrderDetail.TicketPrice.Ticket.BeginDate.Date 
                                     + "~" + ta.OrderDetail.TicketPrice.Ticket.EndDate.Date;
+                dr[colProductCode] = ta.OrderDetail.TicketPrice.Ticket.ProductCode;
                 dt.Rows.Add(dr);
             
             }
             ds.Tables.Add(dt);
             return ds;
+        }
+
+        /// <summary>
+        /// 批量修改身份证号码信息--衢州送票活动给信息中西提供的接口
+        /// </summary>
+        /// <param name="oldNo"></param>
+        /// <param name="newNo"></param>
+        /// <returns></returns>
+        public string UpdateIdCardNo(string oldNo, string newNo)
+        {
+           
+            //防止sql注入
+            string idcardSimplePartern=@"^\d+[x|X]{0,1}$";
+            if(!System.Text.RegularExpressions.Regex.IsMatch(oldNo,idcardSimplePartern))
+            {
+                return "更新失败.身份证号码不符合规范";
+            }
+            string errMsg;
+            if (!CommonLibrary.StringHelper.CheckIDCard(newNo, out errMsg))
+            {
+                return  errMsg;
+            }
+            string result = string.Empty;
+            try
+            {
+                Iticketassign.UpdateIdCardNo(oldNo, newNo);
+            }
+            catch(Exception ex) {
+                result = ex.Message;
+            }
+            return result;
         }
     }
 }

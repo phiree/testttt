@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Model;
 using NHibernate;
+using NHibernate.Transform;
 
 namespace DAL
 {
@@ -29,6 +30,35 @@ namespace DAL
             return query.Future<OrderDetail>().ToList<OrderDetail>();
         }
 
+        public class SoldReport
+        {
+            public DateTime SoldDate { get; set; }
+            public long SoldAmount { get; set; }
+        }
+        public void GetSoldReport()
+        { 
+           // ICriteria crit=session.create
+
+            string sql = @"select detail.Order.BuyTime as SoldDate,sum(detail.Quantity) as SoldAmount
+  from OrderDetail detail 
+    where
+   
+   
+   detail.TicketPrice.Ticket.Scenic.Id="+437+" group by detail.Order.BuyTime";
+            /* detail.Order.BuyTime  between :beginDate and :endDate and*/
+            DateTime now = DateTime.Now;
+            var query = session.CreateQuery(sql)
+              //  .SetParameter("beginDate", now.AddYears(-1))
+              //  .SetParameter("endDate", now)
+           // .SetParameter("scenicId", 437)
+           ;
+          var result=  query//.SetResultTransformer(Transformers.AliasToBean<SoldReport>())
+                 .Future<object>();
+          foreach (object sr in result)
+          {
+              string aa = "";
+          }
+        }
 
         public void saveorupdate(OrderDetail od)
         {

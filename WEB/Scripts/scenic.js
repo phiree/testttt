@@ -63,7 +63,7 @@ $(function () {
     $("#priceinfo table tr").each(function () {
         if ($(this).attr("class") != "tstr") {
             $(this).mouseover(function () {
-                $(this).find("td").css("background-color", "#FFFCE6");
+                $(this).find("td").css("background-color", "#FFF0E5");
             });
             $(this).mouseout(function () {
                 $(this).find("td").css("background-color", "");

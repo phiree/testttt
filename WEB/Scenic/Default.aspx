@@ -56,8 +56,8 @@
             </div>
         </div>
         <div id="priceinfo">
-            <p class="captitle">
-                门票种类和价格</p>
+            <div class="captitle">
+                门票种类和价格</div>
             <table border="0" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr class="tstr">

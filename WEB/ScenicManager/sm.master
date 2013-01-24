@@ -72,17 +72,14 @@
                  <%--   <li><span>账目管理</span></li>
                     <li><a href="/ScenicManager/BillUnPaid.aspx">售票查询</a></li>
                     <li><a href="/ScenicManager/StatisInfo.aspx">账单管理</a></li>
-<<<<<<< HEAD
+
                     <li><a href="/ScenicManager/GroupTestatistics.aspx">团队信息统计</a></li>--%>
                 </div>
-                  <div id="Div1" runat="server">
+                  <div id="dvReport" runat="server">
                  <li><span>报表</span></li>
                     <li><a href="/ScenicManager/Reports/SellReport.aspx">售票报表</a></li>
                     <li><a href="/ScenicManager/Reports/CheckReport.aspx">验票报表</a></li>
                     <li><a href="/ScenicManager/Reports/VisitorsReport.aspx">游客分析</a></li>
-=======
-                    <li style="display:none"><a href="/ScenicManager/GroupTestatistics.aspx">团队信息统计</a></li>
->>>>>>> 91af965b75b67c298ccbadaa30346799990e7711
                 </div>
                 <div id="checkBlock" runat="server">
                     <li><span>景区验票</span></li>
