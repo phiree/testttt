@@ -158,10 +158,10 @@
                     onmouseout="changebg2(this)">
                     <span class="osczero"><a runat="server" id="ahref" style="color: #807940;" href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
                         <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span> <span class="oscfirst">
-                            <%# Eval("TicketPrice.Ticket.Name")%></span><span class="oscsecond" runat="server"
-                                id="buytype"></span><span class="oscthird" runat="server" id="tp"><%# Eval("TicketPrice.Price","{0:0}")%></span><span
-                                    class="oscfour" runat="server" id="qua"><%# Eval("Quantity")%></span><span class="oscfifth"><span
-                                        id="sumprice" runat="server"></span>元</span><span class="oscsix"><span id="usedstate"
+                            <%# Eval("TicketPrice.Ticket.Name")%></span><span class="oscsecond" runat="server" style="margin-left:5px;margin-right:5px;"
+                                id="buytype"></span><span class="oscthird" style="margin-left:10px;margin-right:10px;"  runat="server" id="tp"><%# Eval("TicketPrice.Price","{0:0}")%></span><span
+                                    class="oscfour" runat="server" style="margin-left:10px;margin-right:10px;" id="qua"><%# Eval("Quantity")%></span><span class="oscfifth"><span
+                                        id="sumprice" runat="server"></span>元</span><span class="oscsix" style="margin-left:10px;margin-right:10px;"><span id="usedstate"
                                             runat="server"></span></span><span class="oscseven"><a id="usedetail" style="cursor: pointer"
                                                 runat="server" onclick='<%# Eval("Id","openusedetail({0})") %>'>使用详情</a></span>
                 </div>
