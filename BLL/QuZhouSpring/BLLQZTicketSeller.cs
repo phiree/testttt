@@ -25,6 +25,12 @@ namespace BLL
         {
 
 
+            int nowHour = DateTime.Now.Hour;
+            if (nowHour < 10)
+            {
+                return "F|亲,十点以后才可以抢票哦~";
+            }
+
             string returnMsg = "T";
             //身份证号码验证
             string checkIdCardNoErrMsg;
@@ -90,7 +96,7 @@ namespace BLL
             CommonLibrary.ValidateHelper.verify_idcard(idcardno);
 
             bool hasEnough = partnerAsign.HasEnoughTickets(amount);
-            if (!hasEnough) { errMsg = "该景区当天的门票已被抢完."; return false; }
+            if (!hasEnough) { errMsg = "当天的门票已被抢完,请明天再来"; return false; }
             //验证这个身份证号码是否已经抢到一定数量的某种类型的门票,无法继续抢订.
 
 

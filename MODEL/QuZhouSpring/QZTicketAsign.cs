@@ -10,6 +10,10 @@ namespace Model
     /// </summary>
    public class QZTicketAsign
     {
+       public QZTicketAsign()
+       {
+           PartnerTicketAsign = new List<QZPartnerTicketAsign>();
+       }
        public virtual Guid Id { get; set; }
        //门票-->景区
        //本次活动的门票代码.
@@ -17,7 +21,18 @@ namespace Model
        //网站对应的门票
        public virtual Ticket Ticket { get; set; }
        //总数
-       public virtual int Amount { get; set; }
+       private int _amount = 0;
+       public virtual int Amount {
+           get {
+               _amount = 0;
+               foreach (QZPartnerTicketAsign ct in PartnerTicketAsign)
+               {
+                   _amount += ct.AsignedAmount;
+               }
+               return _amount;
+           }
+           set { _amount = value; }
+       }
        //已售总数
 
        public virtual int SoldAmount
