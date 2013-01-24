@@ -24,7 +24,6 @@
 }
 .fcolum
 {
-    margin-top:10px;
     display:inline-block;
     width:950px;
     height:313px;
@@ -125,7 +124,6 @@
 }
 .scoloum
 {
-    padding-left:8px;
     display:inline-block;
     width:950px;
     height:320px;
@@ -638,13 +636,13 @@
 }
 #qz
 {
-    margin-top:20px;
-    width:951px;
+    width:947px;
     height:643px;
     background:url("/theme/default/image/20130116/quzhouBg.png") no-repeat;
     position:relative;
     padding-bottom:7px;
     border-bottom:1px solid #FDE400;
+    border-right:1px solid #FDE400;
 }
 #qz a
 {
@@ -658,7 +656,7 @@
 }
 #qz a:hover
 {
-    background:url("/theme/default/image/20130116/btnQp_hover.png") top left no-repeat;
+    background:url("/theme/default/image/20130116/btnQp_hover.png");
 }
 #hdgz
 {

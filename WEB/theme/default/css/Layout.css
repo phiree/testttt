@@ -7,6 +7,30 @@
     margin-top:25px;
     display:inline-block;
 }
+.moddiv_quzhou
+{
+    width:195px;
+    margin-top:25px;
+    display:inline-block;
+    background:url("/theme/default/image/20130116/quzhou_rightAd.png");
+    height:495px;
+}
+.moddiv_quzhou .qpinfo
+{
+    margin-left:15px;
+    margin-top:70px;
+}
+.moddiv_quzhou h3
+{
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size:12px;
+    font-weight:bold;
+}
+.moddiv_quzhou span
+{
+     font-size:12px;
+}
 .moddiv p
 {
     background:url("/theme/default/image/newversion/moddivtitle.gif");

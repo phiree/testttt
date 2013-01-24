@@ -10,7 +10,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphstate" Runat="Server">
     <div class="cartbread" style="margin-left:40px"></div>
-    <img class="stateimg" src="/theme/default/image/newversion/cart_state3.png"/>
+    <div class="stateimg2" ></div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
         <div id="paysuccess" style=" width:97%; min-height: 300px; margin: 15px auto; background:url('/theme/default/image/newversion/paysucbg.gif' ); background-position:top; background-repeat:no-repeat; display:inline-block;">

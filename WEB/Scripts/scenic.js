@@ -1,10 +1,21 @@
 ﻿var cart = new Cart();
         function AddToCart(btn) {
-            //var qty = $("#txtTicketCount").val();
-            cart.AddToCart(GetTicketId(btn), 1);
-            //  window.location.href = "/order/cart.aspx";
-            //衢州活动 直接跳转至确认页面
-            window.location.href = "/order/checkout.aspx";
+            var h;
+            var randomParam = new Date().toString();
+            $.get("/Scenic/TimeHandler.ashx?type=" + randomParam, function (timeHour, status) {
+                h = timeHour;
+                if (parseInt(h) < 10) {
+                    alert("今日抢票未开始,请在10点之后进行抢票!");
+                }
+                else {
+                    //var qty = $("#txtTicketCount").val();
+                    cart.AddToCart(GetTicketId(btn), 1);
+                    //  window.location.href = "/order/cart.aspx";
+                    //衢州活动 直接跳转至确认页面
+                    window.location.href = "/order/checkout.aspx";
+                }
+            });
+           
         }
 
        
@@ -63,7 +74,7 @@ $(function () {
     $("#priceinfo table tr").each(function () {
         if ($(this).attr("class") != "tstr") {
             $(this).mouseover(function () {
-                $(this).find("td").css("background-color", "#FFF0E5");
+                $(this).find("td").css("background-color", "#FFFCE6");
             });
             $(this).mouseout(function () {
                 $(this).find("td").css("background-color", "");
@@ -71,6 +82,7 @@ $(function () {
         }
     });
     showMap();
+    getTicketCount();
 });
 
 var map;
@@ -176,4 +188,26 @@ customOverlay_Large.prototype.draw = function () {
 customOverlay_Large.prototype.onRemove = function () {
     this._div.parentNode.removeChild(this._div);
     this._div = null;
+}
+
+function getTicketCount() {
+
+
+    $.get("/Scenic/TimeHandler.ashx?now=1", function (time, status) {
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/TourolService/quzhouspring/TicketService.asmx/ProductInfo",
+            data: "{PartnerCode:'tourol.cn',productCode:'" + $("[id$='hfProductCode']").val() + "',dt:'" + time + "'}",
+            dataType: "json",
+            success: function (msg) {
+                if (msg.d != "-1") {
+                    $("#qzTicketCount").html("<span class='tc'>余<span class='countSum' style=' font-size:24px; font-weight:bold;'>" + msg.d + "</span>张</span>");
+                }
+                else {
+                    $("#qzTicketCount").html("<span class='noTc' style=' font-size:14px;'>已抢完</span>");
+                }
+            }
+        });
+    });
 }

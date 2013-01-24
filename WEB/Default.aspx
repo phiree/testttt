@@ -94,7 +94,7 @@
                 下一张</div>
         </div>
     </div>--%>
-    <div id="qz">
+    <div id="qz" style="margin-top:10px">
         <a href="/Tickets/quzhou"></a>
         <div id="hdgz">
             <ul>
@@ -148,7 +148,7 @@
                 江郎山风景名胜区
             </span>
             <span class="fcol1_area">衢州</span>
-            <a href="/Tickets/quzhou_jiangshanshi/jianglangshan.html"><img src="/ScenicImg/江郎山风景名胜区.jpg" width="100%" height="160px" alt="江郎山风景名胜区" /></a>
+            <a href="/Tickets/quzhou_jiangshanshi/jianglangshan.html"><img src="/Img/homepage/江郎山风景名胜区.jpg" width="100%" height="160px" alt="江郎山风景名胜区" /></a>
             <p>世界自然遗产、国家级风景名胜区、国家AAAA级旅游区江郎山……</p>
             <hr />
             <div class="fcol1_bottom">
@@ -160,7 +160,7 @@
                 廿八都
             </span>
             <span class="fcol1_area">衢州</span>
-            <a href="/Tickets/quzhou_jiangshanshi/nianbadu.html"><img src="/ScenicImg/廿八都.jpg" width="100%" height="160px" alt="廿八都" /></a>
+            <a href="/Tickets/quzhou_jiangshanshi/nianbadu.html"><img src="/Img/homepage/廿八都.jpg" width="100%" height="160px" alt="廿八都" /></a>
             <p>提起“江南古镇”不由使人想到“户藏烟浦，家具画船”的水乡景色……</p>
             <hr />
             <div class="fcol1_bottom">
@@ -172,7 +172,7 @@
                 清漾
             </span>
             <span class="fcol1_area">衢州</span>
-            <a href="/Tickets/quzhou_jiangshanshi/qingyangcun.html"><img src="/ScenicImg/清漾.jpg" width="100%" height="160px" alt="清漾" /></a>
+            <a href="/Tickets/quzhou_jiangshanshi/qingyangcun.html"><img src="/Img/homepage/清漾.jpg" width="100%" height="160px" alt="清漾" /></a>
             <p>清漾毛氏文化村，距市区约20公里，位于江郎山麓.....</p>
             <hr />
             <div class="fcol1_bottom">
@@ -184,7 +184,7 @@
                 桃花源农家乐
             </span>
             <span class="fcol1_area">衢州</span>
-            <a href="/Tickets/quzhou_changshanxian/taohuayuannongjia.html"><img src="/ScenicImg/桃花源农家乐.jpg" width="100%" height="160px" alt="桃花源农家乐" /></a>
+            <a href="/Tickets/quzhou_changshanxian/taohuayuannongjia.html"><img src="/Img/homepage/桃花源农家乐.jpg" width="100%" height="160px" alt="桃花源农家乐" /></a>
             <p>位于常山第一高峰白菊花尖西坡，山高林密，水清空气好……</p>
             <hr />
             <div class="fcol1_bottom">
@@ -201,7 +201,7 @@
         <div class="sccol1">
             <div class="sccol1row1">
                 <a href="/Tickets/quzhou_changshanxian/sanqushilin.html">
-                    <img alt="三衢石林" src="/ScenicImg/“三衢石林.jpg" width="100%" height="100%" />
+                    <img alt="三衢石林" src="/Img/homepage/“三衢石林.jpg" width="100%" height="100%" />
                     <p>
                     </p>
                     <span>遂昌神龙谷瀑布</span>
@@ -211,7 +211,7 @@
             </div>
             <div class="sccol1row2">
                 <a href="/Tickets/quzhou_kaihuaxian/fengloukeng.html">
-                    <img alt="钱江源枫楼坑景区" src="/ScenicImg/钱江源枫楼坑景区.jpg" width="100%" height="100%" />
+                    <img alt="钱江源枫楼坑景区" src="/Img/homepage/钱江源枫楼坑景区.jpg" width="100%" height="100%" />
                     <p>
                     </p>
                     <span>钱江源枫楼坑景区</span>
@@ -223,14 +223,14 @@
         <div class="sccol2">
             <div class="sccol2row1">
                 <a href="/Tickets/quzhou_longyouxian/longyoushiku.html">
-                    <img alt="龙游石窟" src="/ScenicImg/龙游石窟.jpg" width="100%" height="100%" />
+                    <img alt="龙游石窟" src="/Img/homepage/龙游石窟.jpg" width="100%" height="100%" />
                     <p>
                     </p>
                     <span>龙游石窟</span>
                     <div class="mark" style="width: 50%">
                     </div>
                 </a><a href="/Tickets/quzhou_longyouxian/longyouminjuyuan.html">
-                    <img alt="龙游民居苑" src="/ScenicImg/龙游民居苑.jpg" width="100%" height="100%" />
+                    <img alt="龙游民居苑" src="/Img/homepage/龙游民居苑.jpg" width="100%" height="100%" />
                     <p style="left: 163px;">
                     </p>
                     <span style="left: 163px;">龙游民居苑</span>
@@ -240,7 +240,7 @@
             </div>
             <div class="sccol2row2">
                 <a href="/Tickets/quzhou_quzhou/jiulonghu.html">
-                    <img alt="九龙湖" src="/ScenicImg/九龙湖.jpg" width="100%" height="100%" />
+                    <img alt="九龙湖" src="/Img/homepage/九龙湖.jpg" width="100%" height="100%" />
                     <p>
                     </p>
                     <span>九龙湖</span>
@@ -250,14 +250,14 @@
             </div>
             <div class="sccol2row3">
                 <a href="/Tickets/quzhou_changshanxian/jindingzi.html">
-                    <img alt="金钉子景区" src="/ScenicImg/金钉子景区.jpg" width="100%" height="100%" />
+                    <img alt="金钉子景区" src="/Img/homepage/金钉子景区.jpg" width="100%" height="100%" />
                     <p>
                     </p>
                     <span>金钉子景区</span>
                     <div class="mark" style="width: 50%">
                     </div>
                 </a><a href="/Tickets/quzhou_changshanxian/huanggangshanwanshousi.html">
-                    <img alt="黄冈山万寿寺" src="/ScenicImg/黄冈山万寿寺.jpg" width="100%" height="100%" />
+                    <img alt="黄冈山万寿寺" src="/Img/homepage/黄冈山万寿寺.jpg" width="100%" height="100%" />
                     <p style="left: 163px;">
                     </p>
                     <span style="left: 163px;">黄冈山万寿寺</span>
@@ -269,7 +269,7 @@
         <div class="sccol3">
             <div class="sccol3row1">
                 <a href="/Tickets/quzhou_kaihuaxian/gutianshan.html">
-                    <img alt="古田山国家级自然保护区" src="/ScenicImg/古田山国家级自然保护区.jpg" width="100%" height="100%" />
+                    <img alt="古田山国家级自然保护区" src="/Img/homepage/古田山国家级自然保护区.jpg" width="100%" height="100%" />
                     <p>
                     </p>
                     <span>古田山国家级自然保护区</span>
@@ -279,7 +279,7 @@
             </div>
             <div class="sccol3row2">
                 <a href="/Tickets/quzhou_jiangshanshi/fugaishan.html">
-                    <img alt="浮盖山" src="/ScenicImg/浮盖山.jpg" width="100%" height="100%" />
+                    <img alt="浮盖山" src="/Img/homepage/浮盖山.jpg" width="100%" height="100%" />
                     <p>
                     </p>
                     <span>浮盖山</span>

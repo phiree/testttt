@@ -579,6 +579,7 @@
     margin-left:10px;
     margin-top:15px;
     font-weight:bold;
+    margin-bottom:5px;
 }
 .navsc img
 {
@@ -594,6 +595,7 @@
     width:100%;
    _overflow:hidden;
    margin-left:10px;
+   position:relative;
 }
 .mainscbg
 {
@@ -673,15 +675,14 @@
 #priceinfo table tr td
 {
     margin:0px;
-    height:25px;
 }
 .tstr td
 {
     background-color:#E6E6E6;
     text-align:center;
     font-weight:bold;
-    height:25px;
-    line-height:25px;
+    height:30px;
+    line-height:30px;
 }
 #priceinfo table
 {
@@ -723,7 +724,7 @@
     background-color:White;
     text-align:center;
     font-weight:normal;
-    height:35px;
+    border-bottom:1px solid #B4B4B4;
 }
 .pttr2 td
 {
@@ -947,7 +948,7 @@ changeinfo
 .captitle
 {
     font-weight:bold;
-    margin:25px 0 10px 0;
+    margin-bottom:3px;
 }
 .captitle img
 {
@@ -966,4 +967,32 @@ changeinfo
     padding-left:10px;
     padding-top:15px;
     padding-bottom:15px;
+}
+#qzTicketCount
+{
+    position:absolute;
+    background:url("/theme/default/image/20130116/ticketCountBg.png");
+    width:108px;
+    height:107px;
+    top:0px;
+    left:600px;
+    display:block;
+}
+#qzTicketCount span
+{
+    color:White;
+}
+#qzTicketCount .tc
+{
+    display:block;
+    margin-top:33px;
+    margin-left:35px;
+}
+.noTc
+{
+    font-size:14px;
+     display:block;
+    margin-top:42px;
+    margin-left:32px;
+    font-weight:bold;
 }

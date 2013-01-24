@@ -17,10 +17,16 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
     <asp:HiddenField ID="hfposition" runat="server" />
     <asp:HiddenField ID="hfscname" runat="server" />
+    <asp:HiddenField ID="hfProductCode" runat="server" />
     <p class="navsc">
         您选择的景区门票：浙江省&nbsp;>&nbsp;<a runat="server" id="areaname"></a>&nbsp;<a runat="server"
             id="county"></a>&nbsp;<a runat="server" id="scenicname"></a></p>
     <div id="mainscenic">
+        <%--衢州门票活动剩余票数显示--%>
+        <div id="qzTicketCount">
+            <%--<span class="tc">余<span class="countSum" style=" font-size:24px; font-weight:bold;">50</span>张</span>--%>
+            <%--<span class="noTc" style=" font-size:14px;">已抢完</span>--%>
+        </div>
         <div class="mainscbg">
             <img runat="server" id="ImgMainScenic" class="mainscenicimg" src="" /></div>
         <div id="maintitle">

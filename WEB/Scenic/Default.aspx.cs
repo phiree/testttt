@@ -132,6 +132,9 @@ public partial class Scenic_Default : basepage
 
         //绑定套票
         IList<Ticket> listticket = bllticket.GetTp(scenic.Id);
+        //衢州新春门票，的主门票productCode
+        if (listticket.Count > 0)
+            hfProductCode.Value = listticket[0].ProductCode;
 
         rpttp.DataSource = listticket;
         rpttp.DataBind();

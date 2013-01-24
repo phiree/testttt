@@ -112,26 +112,33 @@
         pricetype = $(this).attr("pricetype");
     });
     $("#btnCheckout").click(function () {
-
+        ResetMsg();
         pricetype = $(".priceselection")
                     .filter(function () {
-                                            var r = $(this).find("input[name=price]:checked");
-                                            if (r.length == 1) return true;
-                                        })
+                        var r = $(this).find("input[name=price]:checked");
+                        if (r.length == 1) return true;
+                    })
                     .attr("pricetype");
         if (pricetype == null) {
             alert("您需要先选择一种支付方式");
             return false;
         }
 
-        var a = veriname();
-        if (a == false) {
-            alert("游览者姓名不能为空");
+        var a = verinameandidcard();
+        if (a == 1) {
+            $(".veriname").html("游览者姓名不能为空");
+            changeMsgHeight();
+            return false;
+        }
+        if (a == 2) {
+            $(".veritext").html("游览者身份证号码不能为空");
+            changeMsgHeight();
             return false;
         }
         var b = buildassign();
         if (b == false) {
-            alert(errmsg);
+            $(".veritext").html(errmsg);
+            changeMsgHeight();
             return false
         };
 
@@ -169,7 +176,7 @@
 
             var name = item.parent().prev().children().val().trim();
             //验证数据有效性(身份证)
-            ap += tid + "-" + name + "-" + idcardno + "-"+sid+"_";
+            ap += tid + "-" + name + "-" + idcardno + "-" + sid + "_";
 
 
 
@@ -181,14 +188,23 @@
     }
 
 
-    function veriname() {
+    function verinameandidcard() {
         var items = $(".assignName");
         for (var i = 0; i < items.length; i++) {
             var item = $(items[i]);
             var name = item.val();
             if (name == "") {
                 item.focus();
-                return false;
+                return 1;
+            }
+        }
+        var items = $(".assignIdcard");
+        for (var i = 0; i < items.length; i++) {
+            var item = $(items[i]);
+            var idcard = item.val();
+            if (idcard == "") {
+                item.focus();
+                return 2;
             }
         }
     }
@@ -207,10 +223,23 @@ function veriidcard() {
                 $($(".assignIdcard")[i]).focus();
                 $($(".veritext")[i]).html(returnmsg);
                 $($(".veritext")[i]).css("display", "");
+                changeMsgHeight();
             }
             else {
                 $($(".veritext")[i]).css("display", "none");
             }
         }
     }
+}
+
+function changeMsgHeight() {
+    $(".veritext").css("height", "18px");
+    $(".veriname").css("height", "18px");
+    $(".veriblock").css("height", "18px");
+}
+function ResetMsg() {
+    $(".veritext").css("height", "0px").html("");
+    $(".veriname").css("height", "0px").html("");
+    $(".veriblock").css("height", "0px").html("");
+
 }
