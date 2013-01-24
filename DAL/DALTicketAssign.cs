@@ -68,7 +68,7 @@ namespace DAL
 
         public List<TicketAssign> GetIdcardandname(string name, string idcard, Scenic scenic)
         {
-            string sql = "select ta.Name,ta.IdCard from TicketAssign ta where ta.Name like '%" + name + "%' and ta.IdCard like '%" + idcard + "%' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + "  group by ta.Name,ta.IdCard";
+            string sql = "select ta.Name,ta.IdCard from TicketAssign ta where ta.Name like '%" + name + "%' and ta.IdCard like '%" + idcard + "%' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=1  group by ta.Name,ta.IdCard";
             IQuery query = session.CreateQuery(sql);
             IList<Object[]> list;
             list = query.List<object[]>();
