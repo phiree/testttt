@@ -114,19 +114,13 @@
                     <span class="step"><span style="color:#FEE979;margin-right:25px;">第一步</span>选择喜欢景区，点击“立刻抢票”</span>
                 </li>
                 <li>
-                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第二步</span>注册或绑定您的微博帐号登陆</span>
+                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第二步</span>注册本站用户</span>
                 </li>
                 <li>
-                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第三步</span>输入身份证号码（用于入景区凭证）和手机</span>
-                </li>
-                 <li>
-                    <span style=" display:block; padding-left:70px;">号（便于接收信息）</span>
+                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第三步</span>输入游览者姓名和身份证号码（用于景区验票）</span>
                 </li>
                 <li>
-                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第四步</span>点击“确定并分享到微博”</span>
-                </li>
-                <li>
-                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第五步</span>在“个人中心”中查看抢票结果 </span>
+                    <span class="step"><span style="color:#FEE979;margin-right:25px;">第四步</span>在“个人中心”中查看抢到的门票 </span>
                 </li>
             </ul>
         </div>
@@ -201,7 +195,7 @@
         <div class="sccol1">
             <div class="sccol1row1">
                 <a href="/Tickets/quzhou_changshanxian/sanqushilin.html">
-                    <img alt="三衢石林" src="/Img/homepage/“三衢石林.jpg" width="100%" height="100%" />
+                    <img alt="三衢石林" src="/Img/homepage/三衢石林.jpg" width="100%" height="100%" />
                     <p>
                     </p>
                     <span>遂昌神龙谷瀑布</span>
@@ -257,7 +251,7 @@
                     <div class="mark" style="width: 50%">
                     </div>
                 </a><a href="/Tickets/quzhou_changshanxian/huanggangshanwanshousi.html">
-                    <img alt="黄冈山万寿寺" src="/Img/homepage/黄冈山万寿寺.jpg" width="100%" height="100%" />
+                    <img alt="黄冈山万寿寺" src="/Img/homepage/黄冈山万寿寺.png" width="100%" height="100%" />
                     <p style="left: 163px;">
                     </p>
                     <span style="left: 163px;">黄冈山万寿寺</span>
