@@ -45,6 +45,25 @@ public class TicketService : System.Web.Services.WebService
         return result;
     }
     /// <summary>
+    /// 媒体请求门票资源
+    /// </summary>
+    /// <param name="PartnerCode">合作方ID</param>
+    /// <param name="CardNumber">抢票者身份证号码</param>
+    ///  <param name="RealName">抢票者的姓名(如果不填,则传用户昵称</param>
+    /// <param name="Phone">抢票者的电话号码</param>
+    /// <param name="ProductCode">门票代码</param>
+    /// <param name="Number">购买数量</param>
+
+    /// <returns>"T"(请票成功)或"F|(失败原因)"</returns>
+    [WebMethod]
+    public string buyProductForMedia(string PartnerCode, string CardNumber, string RealName, string Phone, string ProductCode, int Number)
+    {
+
+        string result = seller.SellTicket(true, PartnerCode,null,RealName, CardNumber, Phone, ProductCode, Number);
+        //  seller.SellTicket(clientFriendlyId, idcardno, ticketId);
+        return result;
+    }
+    /// <summary>
     /// 合作方查询剩某日期某门票的剩余门票数量
     /// </summary>
     /// <param name="PartnerCode">合作方ID</param>

@@ -17,20 +17,45 @@ namespace BLL
         BLLOrder bllOrder = new BLLOrder();
         BLLQZPartnerTicketAsign bllQZPartnerTicketAsign = new BLLQZPartnerTicketAsign();
 
+        /// <summary>
+        /// 信息中心网站抢票
+        /// </summary>
+        /// <param name="clientFriendlyId"></param>
+        /// <param name="idcardno"></param>
+        /// <param name="realName"></param>
+        /// <param name="phone"></param>
+        /// <param name="ticketCode"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         public string SellTicket(string clientFriendlyId, string idcardno,string realName,  string phone,string ticketCode, int amount)
         {
-            return SellTicket(clientFriendlyId, null, realName, idcardno, phone, ticketCode, amount);
+            return SellTicket(false,clientFriendlyId, null, realName, idcardno, phone, ticketCode, amount);
         }
-        public string SellTicket(string clientFriendlyId, TourMembership member, string assignName, string idcardno, string phone, string ticketCode, int amount)
+        /// <summary>
+        /// 重载基方法.
+        /// </summary>
+        /// <param name="ismedia"></param>
+        /// <param name="clientFriendlyId"></param>
+        /// <param name="member"></param>
+        /// <param name="assignName"></param>
+        /// <param name="idcardno"></param>
+        /// <param name="phone"></param>
+        /// <param name="ticketCode"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public string SellTicket(bool ismedia, string clientFriendlyId, TourMembership member, string assignName, string idcardno, string phone, string ticketCode, int amount)
         {
 
 
             int nowHour = DateTime.Now.Hour;
-            if (nowHour < 10)
+            if (!ismedia)
             {
-                return "F|亲,十点以后才可以抢票哦~";
-            }
+                if (nowHour < 10)
+                {
+                    return "F|亲,十点以后才可以抢票哦~";
+                }
 
+            }
             string returnMsg = "T";
             //身份证号码验证
             string checkIdCardNoErrMsg;
@@ -69,7 +94,10 @@ namespace BLL
             bllOrder.SaveOrUpdateOrder(order);
 
             //3 该接入商该景区的已售门票+1
-            partnerAsign.SoldAmount += amount;
+            if (!ismedia)
+            {
+                partnerAsign.SoldAmount += amount;
+            }
             bllQZPartnerTicketAsign.SaveOrUpdate(partnerAsign);
             TourLog.LogInstance.Info(returnMsg);
             TourLog.LogInstance.Info(requestGUID + "*********END********");
