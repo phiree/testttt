@@ -1,0 +1,58 @@
+2013-01-25 00:48:19,497 [26] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\workspace\testttt\AdminWeb\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> NHibernate.InvalidProxyTypeException: The following types may not be used as proxies:
+Model.QZTicketAsign: method get_Amount should be 'public/protected virtual' or 'protected internal virtual'
+Model.QZTicketAsign: method set_Amount should be 'public/protected virtual' or 'protected internal virtual'
+   在 NHibernate.Cfg.Configuration.ValidateEntities() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1040
+   在 NHibernate.Cfg.Configuration.Validate() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 947
+   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1239
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 60
+   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 25
+   在 DAL.DALMembership..ctor() 位置 E:\workspace\testttt\DAL\DALMembership.cs:行号 11
+   在 DAL.DalBase..ctor() 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 13
+   在 DAL.DALRole..ctor()
+   在 BLL.TourRoleProvider..ctor() 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 13
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
+   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
+   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
+   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Security.Roles.Initialize()
+   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-25 00:48:41,337 [18] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\workspace\testttt\AdminWeb\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
+
+ ---> NHibernate.InvalidProxyTypeException: The following types may not be used as proxies:
+Model.QZTicketAsign: method get_Amount should be 'public/protected virtual' or 'protected internal virtual'
+Model.QZTicketAsign: method set_Amount should be 'public/protected virtual' or 'protected internal virtual'
+   在 NHibernate.Cfg.Configuration.ValidateEntities() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1040
+   在 NHibernate.Cfg.Configuration.Validate() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 947
+   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1239
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 60
+   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 25
+   在 DAL.DALMembership..ctor() 位置 E:\workspace\testttt\DAL\DALMembership.cs:行号 11
+   在 DAL.DalBase..ctor() 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 13
+   在 DAL.DALRole..ctor()
+   在 BLL.TourRoleProvider..ctor() 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 13
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
+   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
+   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
+   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Web.Security.Roles.Initialize()
+   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
+   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
