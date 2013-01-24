@@ -65,7 +65,7 @@ $(window).scroll(function () {
     else {
         $(".backtop").fadeOut("fast");
     }
-    if (document.body.scrollHeight - document.documentElement.scrollTop - document.body.scrollTop - winHeight < 135) {
+    if (document.body.scrollHeight - document.documentElement.scrollTop - document.body.scrollTop - winHeight < 347) {
         $(".backtop").css("position", "absolute");
     }
 });
@@ -201,11 +201,11 @@ function getTicketCount() {
             data: "{PartnerCode:'tourol.cn',productCode:'" + $("[id$='hfProductCode']").val() + "',dt:'" + time + "'}",
             dataType: "json",
             success: function (msg) {
-                if (msg.d != "-1") {
-                    $("#qzTicketCount").html("<span class='tc'>余<span class='countSum' style=' font-size:24px; font-weight:bold;'>" + msg.d + "</span>张</span>");
+                if (msg.d == "-1" || msg.d == "0") {
+                    $("#qzTicketCount").html("<span class='noTc' style=' font-size:14px;'>已抢完</span>");
                 }
                 else {
-                    $("#qzTicketCount").html("<span class='noTc' style=' font-size:14px;'>已抢完</span>");
+                    $("#qzTicketCount").html("<span class='tc'>余<span class='countSum' style=' font-size:24px; font-weight:bold;'>" + msg.d + "</span>张</span>");
                 }
             }
         });
