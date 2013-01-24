@@ -7,8 +7,15 @@ public class TimeHandler : IHttpHandler {
     
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
-        string Hour = DateTime.Now.Hour.ToString();
-        context.Response.Write(Hour);
+        if (context.Request.QueryString["now"] != null)
+        {
+            context.Response.Write(DateTime.Now.ToString());
+        }
+        else
+        {
+            string Hour = DateTime.Now.Hour.ToString();
+            context.Response.Write(Hour);
+        }
     }
  
     public bool IsReusable {

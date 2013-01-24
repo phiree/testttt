@@ -123,6 +123,20 @@
     display:block;
     margin-top:10px;
     margin-right:10px;
+    background:url("/theme/default/image/20130116/orderState.png");
+    width:385px;
+    height:20px;
+}
+.stateimg2
+{
+    float:right;
+    display:block;
+    margin-top:10px;
+    margin-right:10px;
+    background:url("/theme/default/image/20130116/orderState.png");
+    background-position:0px 23px;
+    width:385px;
+    height:20px;
 }
 .tkcount
 {

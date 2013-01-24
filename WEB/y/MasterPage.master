@@ -43,6 +43,10 @@
             padding-left:120px;
             margin-bottom:0px;
         }
+        .title img
+        {
+            margin-left:50px;
+        }
         .btn
        {
            background:url("/theme/default/image/20130116/btnMobileBg.png");
@@ -70,7 +74,7 @@
 <body>
     <form id="form1" runat="server">
    <div class="title">
-         <img src="/theme/default/image/20130116/tourol.jpg" />
+         <img src="/theme/default/image/20130116/tourol_mobile.png" />
          <h3 >景区验票</h3></div>
          <div id="main">
         <asp:ContentPlaceHolder id="cphmain" runat="server">

@@ -17,7 +17,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="cphstate" runat="Server">
     <div class="cartbread">
         您选择的门票列表</div>
-    <img class="stateimg" src="/theme/default/image/newversion/cart_state2.png" />
+    <div class="stateimg"></div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
     <div id="itemlist">
@@ -133,9 +133,11 @@
                 <tr>
                     <td style="padding-left: 20px; width: 25%">
                         <%#Eval("Scenic.Name") %>
+                        <span class="veriblock"></span>
                     </td>
                     <td style="width: 35%;">
                         游览者姓名:&nbsp;<input type="text" tid='<%#Eval("Id") %>' class="assignName" style="vertical-align: middle" />
+                        <span class="veriname"></span>
                     </td>
                     <td style="width: 50%;">
                         身份证号:&nbsp;<input type="text" tid='<%#Eval("Id")%>' onblur="veriidcard()" class="assignIdcard"

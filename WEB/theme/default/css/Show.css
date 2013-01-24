@@ -636,12 +636,13 @@
 }
 #qz
 {
-    width:951px;
+    width:947px;
     height:643px;
     background:url("/theme/default/image/20130116/quzhouBg.png") no-repeat;
     position:relative;
     padding-bottom:7px;
     border-bottom:1px solid #FDE400;
+    border-right:1px solid #FDE400;
 }
 #qz a
 {

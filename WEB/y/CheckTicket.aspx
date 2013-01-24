@@ -43,6 +43,8 @@
        }
        .detailinfo
        {
+           margin-top:10px !important;
+           -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;
            width: 85%;
        }
     </style>
@@ -55,14 +57,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
     <asp:HiddenField ID="hfscid" runat="server" />
     <div id="checkTicket">
-<<<<<<< HEAD:WEB/y/CheckTicket.aspx
-        <p>请输入姓名/身份证号<br />如:张三/330203197804255874</p>
-        
-        <asp:TextBox runat="server" ID="txtinfo" CssClass="txtInfo"></asp:TextBox><asp:Button ID="btnSearch" runat="server"
-=======
+
         <p style="margin-top:0px">请输入姓名/身份证号</p>
         <asp:TextBox runat="server" ID="txtinfo" CssClass="txtInfo tbx"></asp:TextBox><asp:Button ID="btnSearch" runat="server" CssClass="btn" style="margin-left:5px"
->>>>>>> 91af965b75b67c298ccbadaa30346799990e7711:WEB/qumobile/CheckTicket.aspx
+
             Text="查询" OnClick="btnSearch_Click" OnClientClick="ShowCheckProgress()" />
          <span id="spCheckProgress" style="color:#EA693F;"></span>
         <p runat="server" id="Msg" style="color:#EA693F;"></p>
