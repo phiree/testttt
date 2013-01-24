@@ -359,10 +359,12 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         if (guiderSuccess == 1)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "printTicket('验票通过,是否需要打印凭证？')", true);
+            Btnckpass.Visible = false;
         }
         if (IsSuccess == 1)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
+            Btnckpass.Visible = false;
         }
         rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayyd.DataBind();

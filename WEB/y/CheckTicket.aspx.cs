@@ -434,10 +434,12 @@ public partial class qumobile_CheckTicket : basepage
         if (guiderSuccess == 1)
         {
             Msg.InnerText = "验票通过";
+            Btnckpass.Visible = false;
         }
         if (IsSuccess == 1)
         {
             Msg.InnerText = "验票通过";
+            Btnckpass.Visible = false;
         }
        // detailinfo.Visible = false;
         rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
