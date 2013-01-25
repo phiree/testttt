@@ -179,6 +179,7 @@ background-color:#fff !important;
     padding-bottom: 20px;
     min-height: 100px;
     display: none; /*filter: alpha(opacity=80);     opacity: 0.7;*/
+    _overflow:hidden;
 }
 .popbg
 {
@@ -357,7 +358,14 @@ background-color:#fff !important;
     margin: 0px auto;
     width: 955px;
     padding-left: 5px;
+    _overflow:hidden;
+    _color:white !important;
+    
 }
+.navlistnb a
+{
+    _color:white !important;
+} 
 .uertool
 {
     width: 340px;
@@ -447,11 +455,12 @@ background-color:#fff !important;
 }
 .chartdiv
 {
-    display: block;
+    display: inline-block;
     float: left;
     width: 280px;
     height: 30px;
     margin-left: 410px;
+    _margin-left:335px;
 }
 .chartdiv img
 {
@@ -477,11 +486,13 @@ background-color:#fff !important;
 {
     background-color: #93D126;
     font-weight: 600;
+    _color:white !important;
 }
 .navhight:hover
 {
     background-color: #51A42F;
     font-weight: 600;
+    _color:white !important;
 }
 .mainarea
 {

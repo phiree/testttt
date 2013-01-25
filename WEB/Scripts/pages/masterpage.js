@@ -48,6 +48,9 @@ $(function () {
         var pleft = $(".chartdiv").position().left;
         var ptop = $(".chartdiv").position().top;
         $("#popcart").css({ left: pleft + 410 + "px", top: ptop + 30 + "px", display: "block" });
+        if ($.browser.msie && (jQuery.browser.version == "6.0") && !$.support.style) {
+            $("#popcart").css({ left: pleft + 335 + "px", top: ptop + 30 + "px", display: "block" });
+        }
         //购物车背景高度
         var pcheight = $("#pcbody").height();
         if (navigator.appName == "Microsoft Internet Explorer") {
