@@ -6,7 +6,7 @@ using Model;
 
 namespace BLL
 {
-    public class BLLOrder
+    public class BLLOrder:BLLBase<Order>
     {
         DAL.DALOrder dal = new DAL.DALOrder();
         public IList<Model.Order> GetListForUser(Guid memberId)

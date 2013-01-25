@@ -7,7 +7,7 @@ using System.Data;
 
 namespace BLL
 {
-    public class BLLTicketAssign
+    public class BLLTicketAssign:BLLBase<TicketAssign>
     {
         DAL.DALTicketAssign Iticketassign = new DAL.DALTicketAssign();
 
