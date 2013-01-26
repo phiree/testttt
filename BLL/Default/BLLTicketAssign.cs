@@ -193,5 +193,36 @@ namespace BLL
             }
             return result;
         }
+
+        /// <summary>
+        /// 获取身份证号码列表
+        /// </summary>
+        /// <param name="areaCodeHead">行政区划代码(省:开头两位,市:开头四位,具体区县:全部六位</param>
+        /// <param name="entId">具体的一个景区</param>
+        /// <param name="dateBegin">订单开始日期</param>
+        /// <param name="dateEnd">订单结束日期</param>
+        /// <param name="dateEnd">是否已经游玩过</param>
+        /// <returns></returns>
+        public IList<IdCardInfo> GetIdcardList(string areaCodeHead, int? entId, 
+            DateTime? dateBegin, DateTime? dateEnd,bool? isUsed)
+        {
+            IList<IdCardInfo> idcardInfoList = new List<IdCardInfo>();
+            IList<string> idcardList = new List<string>();
+
+            IList<TicketAssign> taList = Iticketassign.GetList(areaCodeHead, entId, dateBegin, dateEnd, isUsed);
+            idcardList = taList.Select(x=>x.IdCard).ToList();
+            string errMsg;
+            foreach (string idcard in idcardList)
+            {
+                string parseErrmsg;
+                IdCardInfo info = new IdCardInfo(idcard).Parse(out parseErrmsg);
+                if (info != null)
+                {
+                    idcardInfoList.Add(info);
+                }
+            }
+
+            return idcardInfoList;
+        }
     }
 }

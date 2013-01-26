@@ -8,7 +8,7 @@ using System.Data;
  
 namespace DAL
 {
-    public class DALTicketAssign:DalBase,IDAL.ITicketAssign
+    public class DALTicketAssign:DalBase<TicketAssign>
     {
         public void SaveOrUpdate(TicketAssign ticketassign)
         {
@@ -260,6 +260,37 @@ namespace DAL
                 ,oldNo,newNo);
             IQuery query = session.CreateQuery(sql);
            int result= query.ExecuteUpdate();
+        }
+
+        public IList<TicketAssign> GetList(string areaCodeHead, int? entId, DateTime? dateBegin, DateTime? dateEnd, bool? isUsed)
+        {
+            string select = "select ta from TicketAssign ta ";
+            string where = " where 1=1 ";
+            //使用linq是否可以解决单元测试的数据库交互问题?
+            if (entId.HasValue)
+            {
+
+                where += " and  ta.Scenic.Id=" + entId.Value;
+            }
+            if (!string.IsNullOrEmpty(areaCodeHead))
+            {
+                where += " and ta.Scenic.Area.Code like '" + areaCodeHead + "%'";
+            }
+            if (dateBegin.HasValue)
+            {
+                where += " and ta.OrderDetail.Order.BuyTime>=" + dateBegin.Value;
+            }
+            if (dateEnd.HasValue)
+            {
+                where += " and ta.OrderDetail.Order.BuyTime<=" + dateEnd.Value;
+            }
+            if (isUsed.HasValue)
+            {
+                where += " and ta.IsUsed=" + isUsed.Value;
+            }
+
+            return GetList(select + where);
+            
         }
 
     }
