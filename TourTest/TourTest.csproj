@@ -138,6 +138,7 @@
     <Compile Include="BLLTest\OrderTest.cs" />
     <Compile Include="BLLTest\Quzhou\BLLQZTicketAsignTest.cs" />
     <Compile Include="BLLTest\Quzhou\BLLTicketSellerTest.cs" />
+    <Compile Include="BLLTest\Quzhou\DeleteMethod.cs" />
     <Compile Include="BLLTest\SerializationModelTest.cs" />
     <Compile Include="BLLTest\TicketTest.cs" />
     <Compile Include="BLLTest\TicketXmlParserTest.cs" />
