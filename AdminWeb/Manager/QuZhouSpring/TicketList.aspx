@@ -39,10 +39,10 @@
                     <td>
                         <asp:TextBox ID="tbxProductCode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:TextBox></td>
                     <td>
-                        <asp:TextBox ID="txtbeginDate" runat="server" CssClass="time" Text='<%# DateTime.Parse(Eval("BeginDate").ToString()).ToString("yyyy-MM-dd") %>'></asp:TextBox></td>
+                        <asp:TextBox ID="txtbeginDate" runat="server" CssClass="time" Text='<%#Eval("BeginDate")%>'></asp:TextBox></td>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtendDate" runat="server" CssClass="time" Text='<%# DateTime.Parse(Eval("EndDate").ToString()).ToString("yyyy-MM-dd") %>'></asp:TextBox></td>
+                        <asp:TextBox ID="txtendDate" runat="server" CssClass="time" Text='<%# Eval("EndDate")%>'></asp:TextBox></td>
                     </td>
                 </tr>
             </ItemTemplate>

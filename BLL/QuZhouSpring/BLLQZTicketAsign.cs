@@ -85,6 +85,11 @@ namespace BLL
                 //分配每天的门票
                 foreach (var ticket in listTicket)
                 {
+                    if (ticket == null)
+                    {
+                        TourLog.LogInstance.Error("AppSettings的ticketid有空值");
+                        continue;
+                    }
                     QZTicketAsign qz;
                     //如果时间调整.
                     if (listQzTa.Where(x => x.Date == beginDate.AddDays(i)).Count() == 0)

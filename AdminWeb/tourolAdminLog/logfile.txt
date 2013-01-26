@@ -1,101 +1,276 @@
-2013-01-25 00:48:19,497 [26] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\workspace\testttt\AdminWeb\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
-
- ---> NHibernate.InvalidProxyTypeException: The following types may not be used as proxies:
-Model.QZTicketAsign: method get_Amount should be 'public/protected virtual' or 'protected internal virtual'
-Model.QZTicketAsign: method set_Amount should be 'public/protected virtual' or 'protected internal virtual'
-   在 NHibernate.Cfg.Configuration.ValidateEntities() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1040
-   在 NHibernate.Cfg.Configuration.Validate() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 947
-   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1239
-   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
-   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 60
-   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 25
-   在 DAL.DALMembership..ctor() 位置 E:\workspace\testttt\DAL\DALMembership.cs:行号 11
-   在 DAL.DalBase..ctor() 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 13
-   在 DAL.DALRole..ctor()
-   在 BLL.TourRoleProvider..ctor() 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 13
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
-   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
-   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
-   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
-   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
-   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 System.Web.Security.Roles.Initialize()
-   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
-   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-25 00:48:41,337 [18] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\workspace\testttt\AdminWeb\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
-
- ---> NHibernate.InvalidProxyTypeException: The following types may not be used as proxies:
-Model.QZTicketAsign: method get_Amount should be 'public/protected virtual' or 'protected internal virtual'
-Model.QZTicketAsign: method set_Amount should be 'public/protected virtual' or 'protected internal virtual'
-   在 NHibernate.Cfg.Configuration.ValidateEntities() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1040
-   在 NHibernate.Cfg.Configuration.Validate() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 947
-   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1239
-   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
-   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 60
-   在 DAL.HybridSessionBuilder.GetSession() 位置 E:\workspace\testttt\DAL\HybridSessionBuilder.cs:行号 25
-   在 DAL.DALMembership..ctor() 位置 E:\workspace\testttt\DAL\DALMembership.cs:行号 11
-   在 DAL.DalBase..ctor() 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 13
-   在 DAL.DALRole..ctor()
-   在 BLL.TourRoleProvider..ctor() 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 13
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
-   在 System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache)
-   在 System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipVisibilityChecks, Boolean skipCheckThis, Boolean fillCache)
-   在 System.Activator.CreateInstance(Type type, Boolean nonPublic)
-   在 System.Web.HttpRuntime.CreatePublicInstance(Type type)
-   在 System.Web.Configuration.ProvidersHelper.InstantiateProvider(ProviderSettings providerSettings, Type providerType)
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 System.Web.Security.Roles.Initialize()
-   在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
-   在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-25 01:18:00,566 [26] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> NHibernate.Exceptions.GenericADOException: could not execute query
-[ select userrole0_.RoleName as col_0_0_ from [UserRole] userrole0_ where userrole0_.MemberName='admin' ]
-[SQL: select userrole0_.RoleName as col_0_0_ from [UserRole] userrole0_ where userrole0_.MemberName='admin'] ---> System.InvalidOperationException: 无效操作。连接被关闭。
-   在 System.Data.SqlClient.SqlConnection.GetOpenConnection()
-   在 System.Data.SqlClient.SqlConnection.get_HasLocalTransactionFromAPI()
-   在 System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
-   在 NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\AdoNet\AbstractBatcher.cs:行号 247
-   在 NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 1349
-   在 NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 411
-   在 NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 243
-   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 1694
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 1703
-   在 NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 1601
-   在 NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Loader\Loader.cs:行号 1591
-   在 NHibernate.Hql.Ast.ANTLR.Loader.QueryLoader.List(ISessionImplementor session, QueryParameters queryParameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Loader\QueryLoader.cs:行号 300
-   在 NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.List(ISessionImplementor session, QueryParameters queryParameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\QueryTranslatorImpl.cs:行号 108
-   在 NHibernate.Engine.Query.HQLQueryPlan.PerformList(QueryParameters queryParameters, ISessionImplementor session, IList results) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Query\HQLQueryPlan.cs:行号 78
-   在 NHibernate.Impl.SessionImpl.List(String query, QueryParameters queryParameters, IList results) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:行号 612
-   在 NHibernate.Impl.SessionImpl.List[T](String query, QueryParameters parameters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:行号 591
-   在 NHibernate.Impl.QueryImpl.List[T]() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\QueryImpl.cs:行号 91
-   在 DAL.DALRole.GetRolesForUser(String userName) 位置 E:\workspace\testttt\DAL\DALRole.cs:行号 88
-   在 BLL.TourRoleProvider.GetRolesForUser(String username) 位置 E:\workspace\testttt\BLL\Default\TourRoleProvider.cs:行号 68
-   在 System.Web.Security.RolePrincipal.IsInRole(String role)
-   在 System.Web.Security.Roles.IsUserInRole(String username, String roleName)
-   在 Manager_manager.OnInit(EventArgs e) 位置 e:\workspace\testttt\AdminWeb\Manager\manager.master.cs:行号 27
-   在 System.Web.UI.Control.InitRecursive(Control namingContainer)
-   在 System.Web.UI.Control.InitRecursive(Control namingContainer)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.manager_scenicmappoint_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\cc0615e9\8f5fd40a\App_Web_a40k1j0i.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-01-26 22:23:48,874 [27] INFO  ErrorLogger [(null)] - *********Begin********4fb7adbc-77f5-4662-9ad5-7dcec5e2f64d出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_420984199103240054_34142E7C-86AA-4D64-9C39-7467E2070B6B_1_15157033802
+2013-01-26 22:23:48,878 [27] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:49,037 [27] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:49,038 [27] INFO  ErrorLogger [(null)] - 4fb7adbc-77f5-4662-9ad5-7dcec5e2f64d*********END********
+2013-01-26 22:23:50,282 [31] INFO  ErrorLogger [(null)] - *********Begin********f4e88232-61cd-4701-a2cf-0446c6c7419c出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_440104195601080022_0019ce2e-74ad-4346-a816-0b70c43adc58_1_18606505275
+2013-01-26 22:23:50,282 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:50,449 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:50,449 [31] INFO  ErrorLogger [(null)] - f4e88232-61cd-4701-a2cf-0446c6c7419c*********END********
+2013-01-26 22:23:51,249 [39] INFO  ErrorLogger [(null)] - *********Begin********4763ba44-0169-43e7-b5de-c2df6456194e出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_63010219830125121X_03c52bd2-8f25-4f3e-99aa-210ad6ac1cf8_1_13588847901
+2013-01-26 22:23:51,249 [39] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:51,571 [39] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:51,571 [39] INFO  ErrorLogger [(null)] - 4763ba44-0169-43e7-b5de-c2df6456194e*********END********
+2013-01-26 22:23:52,218 [31] INFO  ErrorLogger [(null)] - *********Begin********57d5a619-26cb-4321-8f69-d0575c212e64出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_440102198201105228_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13802538992
+2013-01-26 22:23:52,218 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:52,374 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:52,374 [31] INFO  ErrorLogger [(null)] - 57d5a619-26cb-4321-8f69-d0575c212e64*********END********
+2013-01-26 22:23:53,024 [31] INFO  ErrorLogger [(null)] - *********Begin********8cde49ab-bafd-4ac5-8ff8-4d5ebebdfbd5出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_422130198004140335_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13675840527
+2013-01-26 22:23:53,024 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:53,214 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:53,214 [31] INFO  ErrorLogger [(null)] - 8cde49ab-bafd-4ac5-8ff8-4d5ebebdfbd5*********END********
+2013-01-26 22:23:53,789 [26] INFO  ErrorLogger [(null)] - *********Begin********b3e83230-5905-4628-ad0d-063ea45a1142出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_420984199103240054_6a56e70d-e85b-4cb2-939c-5c414e845294_1_15157033802
+2013-01-26 22:23:53,789 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:53,970 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:53,970 [26] INFO  ErrorLogger [(null)] - b3e83230-5905-4628-ad0d-063ea45a1142*********END********
+2013-01-26 22:23:54,669 [31] INFO  ErrorLogger [(null)] - *********Begin********1359a298-953b-4cbc-92f4-d72a36786aef出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_420984199103240054_ABA2D309-C302-4471-A2DC-F4163EF8B954_1_15157033802
+2013-01-26 22:23:54,669 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:54,883 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:54,883 [31] INFO  ErrorLogger [(null)] - 1359a298-953b-4cbc-92f4-d72a36786aef*********END********
+2013-01-26 22:23:55,535 [29] INFO  ErrorLogger [(null)] - *********Begin********e6dbe004-e973-4d13-a882-5738bafe9a7f出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_420984199103240054_0019ce2e-74ad-4346-a816-0b70c43adc58_1_15157033802
+2013-01-26 22:23:55,535 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:55,788 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:55,788 [29] INFO  ErrorLogger [(null)] - e6dbe004-e973-4d13-a882-5738bafe9a7f*********END********
+2013-01-26 22:23:56,375 [31] INFO  ErrorLogger [(null)] - *********Begin********ce63afdd-5c1c-4d32-876a-6d7d0a0e6c86出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_420984199103240054_3F294078-13F9-4E70-A1F9-AE0626371A2E_1_15157033802
+2013-01-26 22:23:56,375 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:56,701 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:56,701 [31] INFO  ErrorLogger [(null)] - ce63afdd-5c1c-4d32-876a-6d7d0a0e6c86*********END********
+2013-01-26 22:23:57,307 [29] INFO  ErrorLogger [(null)] - *********Begin********6edd753f-016e-41c7-873b-47dde3cf4010出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_342502199009308011_0019ce2e-74ad-4346-a816-0b70c43adc58_1_15858130116
+2013-01-26 22:23:57,307 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:57,477 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:57,477 [29] INFO  ErrorLogger [(null)] - 6edd753f-016e-41c7-873b-47dde3cf4010*********END********
+2013-01-26 22:23:58,092 [31] INFO  ErrorLogger [(null)] - *********Begin********b9fe459b-cb54-4cf4-be9e-b2a6c72f7bb9出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_342502199009308011_6a56e70d-e85b-4cb2-939c-5c414e845294_1_15858130116
+2013-01-26 22:23:58,092 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:58,275 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:58,275 [31] INFO  ErrorLogger [(null)] - b9fe459b-cb54-4cf4-be9e-b2a6c72f7bb9*********END********
+2013-01-26 22:23:58,896 [29] INFO  ErrorLogger [(null)] - *********Begin********1e3a0519-e27c-4082-a86d-d16d7f0e3ef6出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_342502199009308011_34142E7C-86AA-4D64-9C39-7467E2070B6B_1_15858130116
+2013-01-26 22:23:58,896 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:59,132 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:59,132 [29] INFO  ErrorLogger [(null)] - 1e3a0519-e27c-4082-a86d-d16d7f0e3ef6*********END********
+2013-01-26 22:23:59,642 [31] INFO  ErrorLogger [(null)] - *********Begin********399d05f8-95db-4b49-a04c-a5598e8f3291出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_342502199009308011_3F294078-13F9-4E70-A1F9-AE0626371A2E_1_15858130116
+2013-01-26 22:23:59,643 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:23:59,893 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:23:59,893 [31] INFO  ErrorLogger [(null)] - 399d05f8-95db-4b49-a04c-a5598e8f3291*********END********
+2013-01-26 22:24:00,501 [26] INFO  ErrorLogger [(null)] - *********Begin********5730bda0-55b6-4814-a9d1-524696b379c7出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_342502199009308011_ABA2D309-C302-4471-A2DC-F4163EF8B954_1_15858130116
+2013-01-26 22:24:00,501 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:00,775 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:00,775 [26] INFO  ErrorLogger [(null)] - 5730bda0-55b6-4814-a9d1-524696b379c7*********END********
+2013-01-26 22:24:01,279 [29] INFO  ErrorLogger [(null)] - *********Begin********72d6580d-d772-4a85-b75e-e4444822ec4a出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_339005198910164526_03c52bd2-8f25-4f3e-99aa-210ad6ac1cf8_1_13646710315
+2013-01-26 22:24:01,279 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:01,449 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:01,449 [29] INFO  ErrorLogger [(null)] - 72d6580d-d772-4a85-b75e-e4444822ec4a*********END********
+2013-01-26 22:24:02,057 [26] INFO  ErrorLogger [(null)] - *********Begin********3c91c777-22b7-4403-8fa4-ef0640fc39ec出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_339005198611036620_03c52bd2-8f25-4f3e-99aa-210ad6ac1cf8_1_13575706594
+2013-01-26 22:24:02,057 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:02,215 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:02,215 [26] INFO  ErrorLogger [(null)] - 3c91c777-22b7-4403-8fa4-ef0640fc39ec*********END********
+2013-01-26 22:24:03,749 [26] INFO  ErrorLogger [(null)] - *********Begin********916576d3-e3c5-44b2-932a-8b7364b11a37出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_339005198610137147_6E1B076E-8629-4CD1-9D4E-85B9B5290845_1_13516807259
+2013-01-26 22:24:03,749 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:03,915 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:03,915 [26] INFO  ErrorLogger [(null)] - 916576d3-e3c5-44b2-932a-8b7364b11a37*********END********
+2013-01-26 22:24:07,693 [39] INFO  ErrorLogger [(null)] - *********Begin********44ae32f4-04a9-4ba8-8aef-b7b01b74b3fa出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_310113198712195720_6E1B076E-8629-4CD1-9D4E-85B9B5290845_1_13472466994
+2013-01-26 22:24:07,693 [39] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:07,855 [39] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:07,856 [39] INFO  ErrorLogger [(null)] - 44ae32f4-04a9-4ba8-8aef-b7b01b74b3fa*********END********
+2013-01-26 22:24:09,151 [26] INFO  ErrorLogger [(null)] - *********Begin********df34547e-7be8-472e-8c24-f64dc1319fed出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_339005198610137147_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13516807259
+2013-01-26 22:24:09,151 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:09,333 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:09,333 [26] INFO  ErrorLogger [(null)] - df34547e-7be8-472e-8c24-f64dc1319fed*********END********
+2013-01-26 22:24:10,074 [31] INFO  ErrorLogger [(null)] - *********Begin********c3895e15-4f6f-4a3b-87fa-17b9095ec4ce出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_339005198610137147_34142E7C-86AA-4D64-9C39-7467E2070B6B_1_13516807259
+2013-01-26 22:24:10,074 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:10,289 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:10,289 [31] INFO  ErrorLogger [(null)] - c3895e15-4f6f-4a3b-87fa-17b9095ec4ce*********END********
+2013-01-26 22:24:10,959 [31] INFO  ErrorLogger [(null)] - *********Begin********e5941dd7-f76f-4bad-af36-38a2a0b776fa出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_339005198604108315_34142E7C-86AA-4D64-9C39-7467E2070B6B_1_13795383306
+2013-01-26 22:24:10,959 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:11,122 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:11,122 [31] INFO  ErrorLogger [(null)] - e5941dd7-f76f-4bad-af36-38a2a0b776fa*********END********
+2013-01-26 22:24:12,714 [26] INFO  ErrorLogger [(null)] - *********Begin********7ab9fbb5-05ae-4817-933b-00925a216662出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_339005198604108315_6a56e70d-e85b-4cb2-939c-5c414e845294_1_13795383306
+2013-01-26 22:24:12,714 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:12,889 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:12,890 [26] INFO  ErrorLogger [(null)] - 7ab9fbb5-05ae-4817-933b-00925a216662*********END********
+2013-01-26 22:24:14,225 [26] INFO  ErrorLogger [(null)] - *********Begin********8478aef5-1c3c-487e-92a2-5a9ac4226af0出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330881198409284163_B163AF1C-330F-4EEA-99CC-AB10EEC09F52_1_18657001019
+2013-01-26 22:24:14,225 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:14,498 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:14,498 [26] INFO  ErrorLogger [(null)] - 8478aef5-1c3c-487e-92a2-5a9ac4226af0*********END********
+2013-01-26 22:24:15,759 [39] INFO  ErrorLogger [(null)] - *********Begin********b19a4e5c-c1b0-45cd-90d9-4925f4de08ca出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_339005198604108315_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13795383306
+2013-01-26 22:24:15,759 [39] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:15,965 [39] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:15,965 [39] INFO  ErrorLogger [(null)] - b19a4e5c-c1b0-45cd-90d9-4925f4de08ca*********END********
+2013-01-26 22:24:17,092 [31] INFO  ErrorLogger [(null)] - *********Begin********567deae9-a1c3-4dc6-bbf9-e557ae8b6446出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_339005198604108315_6E1B076E-8629-4CD1-9D4E-85B9B5290845_1_13795383306
+2013-01-26 22:24:17,092 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:17,359 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:17,360 [31] INFO  ErrorLogger [(null)] - 567deae9-a1c3-4dc6-bbf9-e557ae8b6446*********END********
+2013-01-26 22:24:18,774 [36] INFO  ErrorLogger [(null)] - *********Begin********547af160-ca36-481c-8aad-cd60ff036f23出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_331004199210311629_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13957656062
+2013-01-26 22:24:18,774 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:18,938 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:18,939 [36] INFO  ErrorLogger [(null)] - 547af160-ca36-481c-8aad-cd60ff036f23*********END********
+2013-01-26 22:24:20,020 [26] INFO  ErrorLogger [(null)] - *********Begin********d3d3226a-e29b-4e5f-8db6-162bafe79060出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330881199309084126_B163AF1C-330F-4EEA-99CC-AB10EEC09F52_1_18205706051
+2013-01-26 22:24:20,020 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:20,215 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:20,215 [26] INFO  ErrorLogger [(null)] - d3d3226a-e29b-4e5f-8db6-162bafe79060*********END********
+2013-01-26 22:24:21,274 [31] INFO  ErrorLogger [(null)] - *********Begin********1269957e-6bbd-46d7-9985-bb740af1343d出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330881199309084126_0019ce2e-74ad-4346-a816-0b70c43adc58_1_18205706051
+2013-01-26 22:24:21,274 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:21,490 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:21,490 [31] INFO  ErrorLogger [(null)] - 1269957e-6bbd-46d7-9985-bb740af1343d*********END********
+2013-01-26 22:24:22,719 [26] INFO  ErrorLogger [(null)] - *********Begin********bfc32c1c-e5e8-4870-809d-50a3a79242bb出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330881198409284163_0019ce2e-74ad-4346-a816-0b70c43adc58_1_18657001019
+2013-01-26 22:24:22,719 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:22,988 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:22,988 [26] INFO  ErrorLogger [(null)] - bfc32c1c-e5e8-4870-809d-50a3a79242bb*********END********
+2013-01-26 22:24:29,356 [31] INFO  ErrorLogger [(null)] - *********Begin********42bbf19a-5192-4e57-907c-9af0d023a912出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330823196302284128_0019ce2e-74ad-4346-a816-0b70c43adc58_1_18657001019
+2013-01-26 22:24:29,356 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:29,577 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:29,577 [31] INFO  ErrorLogger [(null)] - 42bbf19a-5192-4e57-907c-9af0d023a912*********END********
+2013-01-26 22:24:31,165 [39] INFO  ErrorLogger [(null)] - *********Begin********4845a851-d00e-48ad-a37e-8953b81d46b9出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330823196302284128_B163AF1C-330F-4EEA-99CC-AB10EEC09F52_1_18657001019
+2013-01-26 22:24:31,165 [39] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:31,377 [39] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:31,377 [39] INFO  ErrorLogger [(null)] - 4845a851-d00e-48ad-a37e-8953b81d46b9*********END********
+2013-01-26 22:24:33,227 [26] INFO  ErrorLogger [(null)] - *********Begin********80be664f-3a4a-468e-ba49-d949af65a229出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330823195306174116_B163AF1C-330F-4EEA-99CC-AB10EEC09F52_1_18657001019
+2013-01-26 22:24:33,227 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:33,453 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:33,453 [26] INFO  ErrorLogger [(null)] - 80be664f-3a4a-468e-ba49-d949af65a229*********END********
+2013-01-26 22:24:35,510 [39] INFO  ErrorLogger [(null)] - *********Begin********5e2bf4ab-43b5-4e28-9f2b-5cc121a6de50出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330823195306174116_0019ce2e-74ad-4346-a816-0b70c43adc58_1_18657001019
+2013-01-26 22:24:35,510 [39] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:35,708 [39] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:35,708 [39] INFO  ErrorLogger [(null)] - 5e2bf4ab-43b5-4e28-9f2b-5cc121a6de50*********END********
+2013-01-26 22:24:37,353 [29] INFO  ErrorLogger [(null)] - *********Begin********bdfeece6-d869-45ac-9288-5efb279594d7出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198807046017_0019ce2e-74ad-4346-a816-0b70c43adc58_1_18657001050
+2013-01-26 22:24:37,353 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:37,524 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:37,524 [29] INFO  ErrorLogger [(null)] - bdfeece6-d869-45ac-9288-5efb279594d7*********END********
+2013-01-26 22:24:39,139 [36] INFO  ErrorLogger [(null)] - *********Begin********cc279f66-06fc-4e40-a715-a1cc5c5d09ea出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198807046017_6a56e70d-e85b-4cb2-939c-5c414e845294_1_18657001050
+2013-01-26 22:24:39,139 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:39,316 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:39,316 [36] INFO  ErrorLogger [(null)] - cc279f66-06fc-4e40-a715-a1cc5c5d09ea*********END********
+2013-01-26 22:24:40,823 [36] INFO  ErrorLogger [(null)] - *********Begin********4c17e79d-c4ec-4728-9f96-4d62d2ff6e3d出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198807046017_34142E7C-86AA-4D64-9C39-7467E2070B6B_1_18657001050
+2013-01-26 22:24:40,823 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:41,026 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:41,026 [36] INFO  ErrorLogger [(null)] - 4c17e79d-c4ec-4728-9f96-4d62d2ff6e3d*********END********
+2013-01-26 22:24:42,248 [29] INFO  ErrorLogger [(null)] - *********Begin********9154486d-2c7c-4233-b414-a041ae1e3a65出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198807046017_ABA2D309-C302-4471-A2DC-F4163EF8B954_1_18657001050
+2013-01-26 22:24:42,248 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:42,538 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:42,538 [29] INFO  ErrorLogger [(null)] - 9154486d-2c7c-4233-b414-a041ae1e3a65*********END********
+2013-01-26 22:24:44,767 [36] INFO  ErrorLogger [(null)] - *********Begin********66158dea-35c7-47f0-90b1-3a8ea2b06b7e出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198807046017_3F294078-13F9-4E70-A1F9-AE0626371A2E_1_18657001050
+2013-01-26 22:24:44,767 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:45,071 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:45,071 [36] INFO  ErrorLogger [(null)] - 66158dea-35c7-47f0-90b1-3a8ea2b06b7e*********END********
+2013-01-26 22:24:47,272 [39] INFO  ErrorLogger [(null)] - *********Begin********e1e277fd-b04f-4f09-bba5-4f269e1ba203出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198510190712_B163AF1C-330F-4EEA-99CC-AB10EEC09F52_1_13706701809
+2013-01-26 22:24:47,272 [39] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:47,537 [39] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:47,537 [39] INFO  ErrorLogger [(null)] - e1e277fd-b04f-4f09-bba5-4f269e1ba203*********END********
+2013-01-26 22:24:49,584 [36] INFO  ErrorLogger [(null)] - *********Begin********6c336c20-3ce5-4e80-9bf8-815f655c3936出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198510190712_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13706701809
+2013-01-26 22:24:49,584 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:49,878 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:49,878 [36] INFO  ErrorLogger [(null)] - 6c336c20-3ce5-4e80-9bf8-815f655c3936*********END********
+2013-01-26 22:24:51,607 [39] INFO  ErrorLogger [(null)] - *********Begin********1b0176a3-99e6-4054-af13-6bc39ea3e913出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198108303619_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13564336309
+2013-01-26 22:24:51,607 [39] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:51,798 [39] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:51,798 [39] INFO  ErrorLogger [(null)] - 1b0176a3-99e6-4054-af13-6bc39ea3e913*********END********
+2013-01-26 22:24:53,612 [26] INFO  ErrorLogger [(null)] - *********Begin********451f2d72-da14-4312-bf43-113754258151出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198108303619_313E1987-7602-47FC-AAFF-D0326DF08473_1_13564336309
+2013-01-26 22:24:53,612 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:53,817 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:53,818 [26] INFO  ErrorLogger [(null)] - 451f2d72-da14-4312-bf43-113754258151*********END********
+2013-01-26 22:24:55,415 [29] INFO  ErrorLogger [(null)] - *********Begin********166bb47b-aa0d-4244-a418-2ff5c24a8d86出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198108303619_6E1B076E-8629-4CD1-9D4E-85B9B5290845_1_13564336309
+2013-01-26 22:24:55,415 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:55,635 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:55,635 [29] INFO  ErrorLogger [(null)] - 166bb47b-aa0d-4244-a418-2ff5c24a8d86*********END********
+2013-01-26 22:24:57,804 [31] INFO  ErrorLogger [(null)] - *********Begin********709cc1ce-bbb4-42a1-8252-c0dd06026f2b出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198108303619_B163AF1C-330F-4EEA-99CC-AB10EEC09F52_1_13564336309
+2013-01-26 22:24:57,804 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:24:58,052 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:24:58,052 [31] INFO  ErrorLogger [(null)] - 709cc1ce-bbb4-42a1-8252-c0dd06026f2b*********END********
+2013-01-26 22:25:00,077 [26] INFO  ErrorLogger [(null)] - *********Begin********7bbfcad1-a38a-4c3d-b760-a9187fb58d21出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821198108303619_6a56e70d-e85b-4cb2-939c-5c414e845294_1_13564336309
+2013-01-26 22:25:00,077 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:00,363 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:00,363 [26] INFO  ErrorLogger [(null)] - 7bbfcad1-a38a-4c3d-b760-a9187fb58d21*********END********
+2013-01-26 22:25:02,292 [36] INFO  ErrorLogger [(null)] - *********Begin********3cf734d4-4083-40df-b44b-10589e0d4200出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821195812260719_B163AF1C-330F-4EEA-99CC-AB10EEC09F52_1_13757042024
+2013-01-26 22:25:02,292 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:02,474 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:02,474 [36] INFO  ErrorLogger [(null)] - 3cf734d4-4083-40df-b44b-10589e0d4200*********END********
+2013-01-26 22:25:04,746 [36] INFO  ErrorLogger [(null)] - *********Begin********1866d873-6eff-4385-bc04-8df7dd079e02出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821195812260719_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13757042024
+2013-01-26 22:25:04,746 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:04,928 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:04,928 [36] INFO  ErrorLogger [(null)] - 1866d873-6eff-4385-bc04-8df7dd079e02*********END********
+2013-01-26 22:25:07,122 [31] INFO  ErrorLogger [(null)] - *********Begin********6189782e-2dcb-4759-ab29-09c48023ced4出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821195604200762_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13989890901
+2013-01-26 22:25:07,122 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:07,287 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:07,287 [31] INFO  ErrorLogger [(null)] - 6189782e-2dcb-4759-ab29-09c48023ced4*********END********
+2013-01-26 22:25:09,426 [29] INFO  ErrorLogger [(null)] - *********Begin********de73d6ea-aba5-4a0c-8578-51dca9c685ce出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330681197907017476_B163AF1C-330F-4EEA-99CC-AB10EEC09F52_1_13777489844
+2013-01-26 22:25:09,426 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:09,583 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:09,583 [29] INFO  ErrorLogger [(null)] - de73d6ea-aba5-4a0c-8578-51dca9c685ce*********END********
+2013-01-26 22:25:12,195 [29] INFO  ErrorLogger [(null)] - *********Begin********945e4bb9-c8c3-4ed3-bd79-1c9bce493de4出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802198110125023_34142E7C-86AA-4D64-9C39-7467E2070B6B_1_13375703539
+2013-01-26 22:25:12,196 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:12,359 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:12,359 [29] INFO  ErrorLogger [(null)] - 945e4bb9-c8c3-4ed3-bd79-1c9bce493de4*********END********
+2013-01-26 22:25:14,886 [26] INFO  ErrorLogger [(null)] - *********Begin********a4bb4269-99a1-4fd4-b1e5-8a488a4e4d79出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802198110125023_6a56e70d-e85b-4cb2-939c-5c414e845294_1_13375703539
+2013-01-26 22:25:14,886 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:15,069 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:15,069 [26] INFO  ErrorLogger [(null)] - a4bb4269-99a1-4fd4-b1e5-8a488a4e4d79*********END********
+2013-01-26 22:25:16,132 [26] INFO  ErrorLogger [(null)] - *********Begin********88404c00-5fc8-40b8-8396-86aa85b0bf7e出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330821195604200762_B163AF1C-330F-4EEA-99CC-AB10EEC09F52_1_13989890901
+2013-01-26 22:25:16,132 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:16,338 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:16,338 [26] INFO  ErrorLogger [(null)] - 88404c00-5fc8-40b8-8396-86aa85b0bf7e*********END********
+2013-01-26 22:25:17,708 [29] INFO  ErrorLogger [(null)] - *********Begin********e7333aed-ffa5-400a-99a1-9b5cdaf413b8出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802199009114041_0019ce2e-74ad-4346-a816-0b70c43adc58_1_15067021629
+2013-01-26 22:25:17,708 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:17,866 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:17,866 [29] INFO  ErrorLogger [(null)] - e7333aed-ffa5-400a-99a1-9b5cdaf413b8*********END********
+2013-01-26 22:25:19,024 [36] INFO  ErrorLogger [(null)] - *********Begin********a2442a24-57da-4c31-960b-cb09eaeed24a出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802197701234446_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13819001205
+2013-01-26 22:25:19,024 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:19,184 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:19,184 [36] INFO  ErrorLogger [(null)] - a2442a24-57da-4c31-960b-cb09eaeed24a*********END********
+2013-01-26 22:25:20,489 [36] INFO  ErrorLogger [(null)] - *********Begin********e73655b9-3ce0-40c3-94a9-dfd50f7c2b79出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330681197907017476_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13777489844
+2013-01-26 22:25:20,489 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:20,658 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:20,658 [36] INFO  ErrorLogger [(null)] - e73655b9-3ce0-40c3-94a9-dfd50f7c2b79*********END********
+2013-01-26 22:25:22,199 [29] INFO  ErrorLogger [(null)] - *********Begin********316efacf-9a59-4290-a91d-394820f20508出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802198110125023_3F294078-13F9-4E70-A1F9-AE0626371A2E_1_13375703539
+2013-01-26 22:25:22,199 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:22,424 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:22,424 [29] INFO  ErrorLogger [(null)] - 316efacf-9a59-4290-a91d-394820f20508*********END********
+2013-01-26 22:25:24,158 [30] INFO  ErrorLogger [(null)] - *********Begin********d107b3c0-f64f-42b0-af94-41518bd814bf出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802199009114041_3F294078-13F9-4E70-A1F9-AE0626371A2E_1_15067021629
+2013-01-26 22:25:24,159 [30] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:24,357 [30] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:24,357 [30] INFO  ErrorLogger [(null)] - d107b3c0-f64f-42b0-af94-41518bd814bf*********END********
+2013-01-26 22:25:25,682 [36] INFO  ErrorLogger [(null)] - *********Begin********1e84af0a-1c40-45a0-82d6-ea8fdf1d7a21出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802199009114041_ABA2D309-C302-4471-A2DC-F4163EF8B954_1_15067021629
+2013-01-26 22:25:25,682 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:25,893 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:25,893 [36] INFO  ErrorLogger [(null)] - 1e84af0a-1c40-45a0-82d6-ea8fdf1d7a21*********END********
+2013-01-26 22:25:27,002 [30] INFO  ErrorLogger [(null)] - *********Begin********0164b5ff-04e9-4725-ae6c-aef85c56ebd3出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802199009114041_6a56e70d-e85b-4cb2-939c-5c414e845294_1_15067021629
+2013-01-26 22:25:27,002 [30] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:27,277 [30] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:27,277 [30] INFO  ErrorLogger [(null)] - 0164b5ff-04e9-4725-ae6c-aef85c56ebd3*********END********
+2013-01-26 22:25:28,343 [31] INFO  ErrorLogger [(null)] - *********Begin********88b6ccb1-cc4d-456f-8b11-d75c6b0bb713出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802199009114041_34142E7C-86AA-4D64-9C39-7467E2070B6B_1_15067021629
+2013-01-26 22:25:28,343 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:28,634 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:28,634 [31] INFO  ErrorLogger [(null)] - 88b6ccb1-cc4d-456f-8b11-d75c6b0bb713*********END********
+2013-01-26 22:25:29,895 [26] INFO  ErrorLogger [(null)] - *********Begin********d106c8f9-9c51-4a8e-ada9-606140a907df出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802199008255037_0019ce2e-74ad-4346-a816-0b70c43adc58_1_18967039996
+2013-01-26 22:25:29,895 [26] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:30,068 [26] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:30,068 [26] INFO  ErrorLogger [(null)] - d106c8f9-9c51-4a8e-ada9-606140a907df*********END********
+2013-01-26 22:25:31,305 [30] INFO  ErrorLogger [(null)] - *********Begin********f90975a7-256d-4d2e-8888-ca351d63a830出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802198110125023_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13375703539
+2013-01-26 22:25:31,305 [30] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:31,585 [30] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:31,585 [30] INFO  ErrorLogger [(null)] - f90975a7-256d-4d2e-8888-ca351d63a830*********END********
+2013-01-26 22:25:32,694 [29] INFO  ErrorLogger [(null)] - *********Begin********b98eadb1-43b5-4946-b262-cdbac79034f7出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330802198110125023_ABA2D309-C302-4471-A2DC-F4163EF8B954_1_13375703539
+2013-01-26 22:25:32,694 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:32,961 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:32,962 [29] INFO  ErrorLogger [(null)] - b98eadb1-43b5-4946-b262-cdbac79034f7*********END********
+2013-01-26 22:25:34,673 [36] INFO  ErrorLogger [(null)] - *********Begin********43e3089b-df3d-42fd-97b6-0d0fd854b6b7出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330327198412181338_E313B686-8B5B-4AD3-9954-F33E06953D81_1_15825602030
+2013-01-26 22:25:34,673 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:34,832 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:34,832 [36] INFO  ErrorLogger [(null)] - 43e3089b-df3d-42fd-97b6-0d0fd854b6b7*********END********
+2013-01-26 22:25:36,896 [30] INFO  ErrorLogger [(null)] - *********Begin********757434ae-cf5d-43a2-ae70-0cd0bccef562出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330103200510140730_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13989890902
+2013-01-26 22:25:36,896 [30] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:37,059 [30] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:37,059 [30] INFO  ErrorLogger [(null)] - 757434ae-cf5d-43a2-ae70-0cd0bccef562*********END********
+2013-01-26 22:25:38,514 [31] INFO  ErrorLogger [(null)] - *********Begin********09a1c8f8-8171-420a-8ac7-2e517faa710b出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330103200510140730_B163AF1C-330F-4EEA-99CC-AB10EEC09F52_1_13989890902
+2013-01-26 22:25:38,515 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:38,699 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:38,699 [31] INFO  ErrorLogger [(null)] - 09a1c8f8-8171-420a-8ac7-2e517faa710b*********END********
+2013-01-26 22:25:40,205 [29] INFO  ErrorLogger [(null)] - *********Begin********a25ea3b0-ab1c-4565-af97-70bf6b937871出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_310113198712195720_0019ce2e-74ad-4346-a816-0b70c43adc58_1_13472466994
+2013-01-26 22:25:40,205 [29] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:40,384 [29] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:40,384 [29] INFO  ErrorLogger [(null)] - a25ea3b0-ab1c-4565-af97-70bf6b937871*********END********
+2013-01-26 22:25:41,806 [31] INFO  ErrorLogger [(null)] - *********Begin********54ad1856-07d7-47d7-9a48-84779789c685出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_310113198712195720_34142E7C-86AA-4D64-9C39-7467E2070B6B_1_13472466994
+2013-01-26 22:25:41,807 [31] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:42,052 [31] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:42,052 [31] INFO  ErrorLogger [(null)] - 54ad1856-07d7-47d7-9a48-84779789c685*********END********
+2013-01-26 22:25:43,582 [36] INFO  ErrorLogger [(null)] - *********Begin********1d41a69c-1bcc-444f-8490-f5ebcceef192出票请求:9c815efa-402a-40ce-860b-c0fa37f707eb_330105198911142000_6a56e70d-e85b-4cb2-939c-5c414e845294_1_15958132805
+2013-01-26 22:25:43,582 [36] INFO  ErrorLogger [(null)] - 开始验证
+2013-01-26 22:25:43,775 [36] INFO  ErrorLogger [(null)] - T
+2013-01-26 22:25:43,775 [36] INFO  ErrorLogger [(null)] - 1d41a69c-1bcc-444f-8490-f5ebcceef192*********END********

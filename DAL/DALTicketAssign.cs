@@ -218,10 +218,11 @@ namespace DAL
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "'";
             IQuery query = session.CreateQuery(sql);
+            //session.Flush();
             return query.Future<TicketAssign>().ToList<TicketAssign>();
         }
 
-
+      
         public IList<TicketAssign> GetTaByIdcardandscenic(string idcard, Scenic scenic)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + "";
