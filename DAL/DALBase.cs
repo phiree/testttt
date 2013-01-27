@@ -50,13 +50,12 @@ namespace DAL
         }
         public void SaveOrUpdate(T o)
         {
-            using (var x=session.Transaction)
-            {
-                x.Begin();
+           
+              
                 session.SaveOrUpdate(o);
                 session.Flush();
-                x.Commit();
-            }
+              
+          
             
         }
         public T GetOne(object id)

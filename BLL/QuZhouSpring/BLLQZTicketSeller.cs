@@ -131,7 +131,8 @@ namespace BLL
             //是否已经抢到了足够的票数
             //ticket的 productcode 不为空的门票总数--> 
             //todo: 不太保险的判断
-            IList<TicketAssign> gotTotalTicketsOfThisType = bllTicketAssign.GetTaByIdCard(idcardno).Where(x =>!string.IsNullOrEmpty( x.OrderDetail.TicketPrice.Ticket.ProductCode)).ToList();
+            var listTa = bllTicketAssign.GetTaByIdCard(idcardno);
+            IList<TicketAssign> gotTotalTicketsOfThisType = listTa.Where(x => !string.IsNullOrEmpty(x.OrderDetail.TicketPrice.Ticket.ProductCode)).ToList();
             if (gotTotalTicketsOfThisType.Count >= 5)
             {
                 //已经抢了5张这样的门票 

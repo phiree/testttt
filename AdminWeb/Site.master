@@ -50,6 +50,8 @@
                             功能菜单
                         </div>
                         <ul class="nav">
+                         <li><span>报表</span></li>
+                         <li><a href="/Reports/">景区报表</a></li>
                             <li><span>地接社</span></li>
                             <li><a href="/Dijieshe/ManageDptList.aspx">旅游管理部门列表</a></li>
                             <li><a href="/Dijieshe/ManageDptEdit.aspx">增加旅游管理部门</a></li>
