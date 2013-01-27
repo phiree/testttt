@@ -224,5 +224,10 @@ namespace BLL
 
             return idcardInfoList;
         }
+
+        public IList<TicketAssign> GetListByNameIdCardLike(string term, string scid)
+        {
+            return Iticketassign.GetListByNameIdCardLike(term, scid);
+        }
     }
 }

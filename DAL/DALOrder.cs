@@ -189,8 +189,8 @@ namespace DAL
 
         public IList<OrderDetail> GetTotalTickets(DateTime datetime, int ticketid)
         {
-            string sql = "select od from OrderDetail od where od.Order.BuyTime >" + datetime + " and od.Order.BuyTime<" + datetime.AddDays(1)
-                + " and od.TicketPrice.Ticket.Id=" + ticketid;
+            string sql = "select od from OrderDetail od where od.Order.BuyTime >'" + datetime + "' and od.Order.BuyTime<'" + datetime.AddDays(1)
+                + "' and od.TicketPrice.Ticket.Id=" + ticketid;
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.OrderDetail>().ToList();
         }

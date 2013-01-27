@@ -68,7 +68,7 @@ namespace DAL
 
         public List<TicketAssign> GetIdcardandname(string name, string idcard, Scenic scenic)
         {
-            string sql = "select ta.Name,ta.IdCard from TicketAssign ta where ta.Name like '%" + name + "%' and ta.IdCard like '%" + idcard + "%' and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=0  group by ta.Name,ta.IdCard";
+            string sql = "select ta.Name,ta.IdCard from TicketAssign ta where (ta.Name like '%" + name + "%' or ta.IdCard like '%" + idcard + "%') and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=0  group by ta.Name,ta.IdCard";
             IQuery query = session.CreateQuery(sql);
             IList<Object[]> list;
             list = query.List<object[]>();
@@ -95,7 +95,7 @@ namespace DAL
                     listticketassign.Add(ta);
                 }
             }
-            return listticketassign;
+            return listticketassign.Take(10).ToList();
         }
 
 
@@ -291,6 +291,15 @@ namespace DAL
 
             return GetList(select + where);
             
+        }
+        public IList<TicketAssign> GetListByNameIdCardLike(string term, string scid)
+        {
+            string sql ="select ta from TicketAssign ta where ta.IdCard  like '%" 
+                     + term + "%' or ta.Name like '%" + term + "%' and "
+                     +" ta.OrderDetail.TicketPrice.Ticket.Scenic.Id="+scid;
+            IQuery query = session.CreateQuery(sql);
+
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
         }
 
     }
