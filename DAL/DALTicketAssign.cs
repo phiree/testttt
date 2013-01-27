@@ -217,9 +217,9 @@ namespace DAL
         public IList<TicketAssign> GetTaByIdCard(string idcard)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "'";
-            IQuery query = session.CreateQuery(sql);
+            IQuery query = session.CreateQuery(sql).SetCacheable(false);
             //session.Flush();
-            return query.Future<TicketAssign>().ToList<TicketAssign>();
+            return query.List<TicketAssign>();
         }
 
       
