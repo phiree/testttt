@@ -31,7 +31,7 @@ public class CheckTicketHandler : IHttpHandler {
     private  Dictionary<string,string> GetList(string term,string scid)
     {
         Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
-        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname(term,term, s);
+        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname(term,term, s,false);
         //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
         IList<DJ_Workers> listdjGW = new BLLDJTourGroup().GetTourGroupByTeId(s.Id);
         foreach (DJ_Workers gw in listdjGW)

@@ -44,8 +44,8 @@ $(document).ready(function () {
                              response($.map(data, function (item) {
                                  var d = '123';
                                  return {
-                                     label: item.Key,
-                                     value: item.Value
+                                     label: item.Value,
+                                     value: item.Key
                                  }
                              }));
 
@@ -54,7 +54,7 @@ $(document).ready(function () {
             }
             ,
             select: function (event, ui) {
-                $("[id$='hfdata']").val(ui.item.label); $("[id$='btnSearch']").click();
+                $("[id$='hfdata']").val(ui.item.value); $("[id$='btnSearch']").click();
             },
             minLength: 3
 

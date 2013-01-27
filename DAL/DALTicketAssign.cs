@@ -66,7 +66,7 @@ namespace DAL
         }
 
 
-        public List<TicketAssign> GetIdcardandname(string name, string idcard, Scenic scenic)
+        public List<TicketAssign> GetIdcardandname(string name, string idcard, Scenic scenic,bool IsAll)
         {
             string sql = "select ta.Name,ta.IdCard from TicketAssign ta where (ta.Name like '%" + name + "%' or ta.IdCard like '%" + idcard + "%') and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=0  group by ta.Name,ta.IdCard";
             IQuery query = session.CreateQuery(sql);
@@ -95,7 +95,10 @@ namespace DAL
                     listticketassign.Add(ta);
                 }
             }
-            return listticketassign.Take(10).ToList();
+            if(!IsAll)
+                return listticketassign.Take(10).ToList();
+            else
+                return listticketassign.ToList();
         }
 
 
