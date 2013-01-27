@@ -54,7 +54,7 @@ $(document).ready(function () {
             }
             ,
             select: function (event, ui) {
-                $("[id$='hfdata']").val(ui.item.label); $("[id$='btnbind']").click();
+                $("[id$='hfdata']").val(ui.item.label); $("[id$='btnSearch']").click();
             },
             minLength: 3
 
