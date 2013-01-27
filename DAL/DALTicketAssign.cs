@@ -220,7 +220,7 @@ namespace DAL
         public IList<TicketAssign> GetTaByIdCard(string idcard)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "'";
-            IQuery query = session.CreateQuery(sql).SetCacheable(false);
+            IQuery query = session.CreateQuery(sql).SetCacheMode(CacheMode.Refresh);
             //session.Flush();
             return query.List<TicketAssign>();
         }
