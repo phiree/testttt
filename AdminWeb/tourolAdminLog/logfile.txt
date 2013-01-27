@@ -1,12 +1,5 @@
-2013-01-27 00:00:31,605 [21] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
+2013-01-27 13:12:19,258 [8] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 e:\workspace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 19
    在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
    在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
    在 System.Web.UI.Control.OnLoad(EventArgs e)
@@ -18,18 +11,52 @@
    在 System.Web.UI.Page.ProcessRequest()
    在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
    在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
+   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\cc0615e9\8f5fd40a\App_Web_5ijm5tob.0.cs:行号 0
    在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-27 00:00:32,787 [5] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
+2013-01-27 13:37:09,882 [42] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> NHibernate.QueryException: could not resolve property: TicketPrice of: Model.TicketAssign [select ta from TicketAssign ta  where 1=1  and ta.TicketPrice.Ticket.Scenic.Area.Code like '33%']
+   在 NHibernate.Persister.Entity.AbstractPropertyMapping.ToType(String propertyName) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Entity\AbstractPropertyMapping.cs:行号 40
+   在 NHibernate.Persister.Entity.AbstractEntityPersister.ToType(String propertyName) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Persister\Entity\AbstractEntityPersister.cs:行号 1751
+   在 NHibernate.Hql.Ast.ANTLR.Tree.FromElementType.GetPropertyType(String propertyName, String propertyPath) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Tree\FromElementType.cs:行号 338
+   在 NHibernate.Hql.Ast.ANTLR.Tree.DotNode.GetDataType() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Tree\DotNode.cs:行号 268
+   在 NHibernate.Hql.Ast.ANTLR.Tree.DotNode.PrepareLhs() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Tree\DotNode.cs:行号 624
+   在 NHibernate.Hql.Ast.ANTLR.Tree.DotNode.Resolve(Boolean generateJoin, Boolean implicitJoin, String classAlias, IASTNode parent) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Tree\DotNode.cs:行号 243
+   在 NHibernate.Hql.Ast.ANTLR.Tree.DotNode.ResolveFirstChild() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Tree\DotNode.cs:行号 161
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.LookupProperty(IASTNode dot, Boolean root, Boolean inSelect) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\HqlSqlWalker.cs:行号 813
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExprDot(Boolean root) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8613
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExpr(Boolean root) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8460
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExprLhs() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8871
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExprDot(Boolean root) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8562
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExpr(Boolean root) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8460
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExprLhs() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8871
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExprDot(Boolean root) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8562
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExpr(Boolean root) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8460
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExprLhs() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8871
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExprDot(Boolean root) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8562
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.addrExpr(Boolean root) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 8460
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.expr() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 6470
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.exprOrSubquery() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 6122
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.comparisonExpr() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 5409
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.logicalExpr() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 4824
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.logicalExpr() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 4738
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.whereClause() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 4548
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.unionedQuery() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 1693
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.query() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 1510
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.selectStatement() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 536
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlWalker.statement() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\Generated\HqlSqlWalker.cs:行号 435
+   在 NHibernate.Hql.Ast.ANTLR.HqlSqlTranslator.Translate() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\QueryTranslatorImpl.cs:行号 590
+   在 NHibernate.Hql.Ast.ANTLR.QueryTranslatorImpl.DoCompile(IDictionary`2 replacements, Boolean shallow, String collectionRole) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\QueryTranslatorImpl.cs:行号 387
+   在 NHibernate.Hql.Ast.ANTLR.ASTQueryTranslatorFactory.CreateQueryTranslators(IASTNode ast, String queryIdentifier, String collectionRole, Boolean shallow, IDictionary`2 filters, ISessionFactoryImplementor factory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\ASTQueryTranslatorFactory.cs:行号 43
+   在 NHibernate.Hql.Ast.ANTLR.ASTQueryTranslatorFactory.CreateQueryTranslators(String queryString, String collectionRole, Boolean shallow, IDictionary`2 filters, ISessionFactoryImplementor factory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Hql\Ast\ANTLR\ASTQueryTranslatorFactory.cs:行号 21
+   在 NHibernate.Engine.Query.QueryPlanCache.GetHQLQueryPlan(String queryString, Boolean shallow, IDictionary`2 enabledFilters) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Query\QueryPlanCache.cs:行号 61
+   在 NHibernate.Impl.AbstractSessionImpl.GetHQLQueryPlan(String query, Boolean shallow) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\AbstractSessionImpl.cs:行号 304
+   在 NHibernate.Impl.AbstractSessionImpl.CreateQuery(String queryString) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\AbstractSessionImpl.cs:行号 283
+   在 DAL.DalBase`1.GetList(String query, Int32 pageIndex, Int32 pageSize, Int32& totalRecords) 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 94
+   在 DAL.DalBase`1.GetList(String where) 位置 E:\workspace\testttt\DAL\DalBase.cs:行号 89
+   在 DAL.DALTicketAssign.GetList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 E:\workspace\testttt\DAL\DALTicketAssign.cs:行号 292
+   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 E:\workspace\testttt\BLL\Default\BLLTicketAssign.cs:行号 212
+   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed, enumGroupByType groupByType, Int32 groupByValue) 位置 E:\workspace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 46
+   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 e:\workspace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 26
    在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
    在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
    在 System.Web.UI.Control.OnLoad(EventArgs e)
@@ -41,22 +68,57 @@
    在 System.Web.UI.Page.ProcessRequest()
    在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
    在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
+   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\cc0615e9\8f5fd40a\App_Web_ito0lugq.0.cs:行号 0
    在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-27 00:00:33,490 [19] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
+2013-01-27 13:49:52,198 [52] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.InvalidOperationException: 序列不包含任何匹配元素
+   在 System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 Reports_Default.chart1_custom(Object sender, EventArgs e) 位置 e:\workspace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 52
+   在 System.Web.UI.DataVisualization.Charting.Chart.OnCustomize(EventArgs e)
+   在 System.Web.UI.DataVisualization.Charting.ChartPicture.Paint(Graphics graph, Boolean paintTopLevelElementOnly)
+   在 System.Web.UI.DataVisualization.Charting.ChartImage.GetImage(Single resolution)
+   在 System.Web.UI.DataVisualization.Charting.Chart.SaveImage(Stream imageStream)
+   在 System.Web.UI.DataVisualization.Charting.Chart.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.Control.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.Control.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.HtmlControls.HtmlForm.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.HtmlControls.HtmlContainerControl.Render(HtmlTextWriter writer)
+   在 System.Web.UI.HtmlControls.HtmlForm.Render(HtmlTextWriter output)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.HtmlControls.HtmlForm.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.Control.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.Control.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.Page.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
    在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
    在 System.Web.UI.Page.HandleError(Exception e)
    在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
@@ -64,22 +126,57 @@
    在 System.Web.UI.Page.ProcessRequest()
    在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
    在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
+   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\cc0615e9\8f5fd40a\App_Web_tdm4r1wd.0.cs:行号 0
    在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-27 00:00:36,590 [21] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
+2013-01-27 13:51:55,481 [52] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.InvalidOperationException: 序列不包含任何匹配元素
+   在 System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 Reports_Default.chart1_custom(Object sender, EventArgs e) 位置 e:\workspace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 53
+   在 System.Web.UI.DataVisualization.Charting.Chart.OnCustomize(EventArgs e)
+   在 System.Web.UI.DataVisualization.Charting.ChartPicture.Paint(Graphics graph, Boolean paintTopLevelElementOnly)
+   在 System.Web.UI.DataVisualization.Charting.ChartImage.GetImage(Single resolution)
+   在 System.Web.UI.DataVisualization.Charting.Chart.SaveImage(Stream imageStream)
+   在 System.Web.UI.DataVisualization.Charting.Chart.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.Control.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.Control.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.HtmlControls.HtmlForm.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.HtmlControls.HtmlContainerControl.Render(HtmlTextWriter writer)
+   在 System.Web.UI.HtmlControls.HtmlForm.Render(HtmlTextWriter output)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.HtmlControls.HtmlForm.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.Control.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.Control.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   在 System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   在 System.Web.UI.Page.Render(HtmlTextWriter writer)
+   在 System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   在 System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
    在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
    在 System.Web.UI.Page.HandleError(Exception e)
    在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
@@ -87,259 +184,6 @@
    在 System.Web.UI.Page.ProcessRequest()
    在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
    在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-27 00:00:38,014 [5] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-27 00:00:51,253 [24] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-27 00:00:55,720 [5] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-26 12:03:23,101 [13] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-26 12:03:24,618 [15] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-26 12:03:25,492 [13] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-26 12:03:26,172 [15] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-26 12:03:26,787 [10] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-26 12:03:27,126 [5] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-26 12:03:27,352 [15] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
-   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-01-26 12:03:27,560 [5] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.ArgumentException: 已添加了具有相同键的项。
-   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
-   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
-   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
-   在 BLL.IdCardInfo.InitDict() 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 144
-   在 BLL.IdCardInfo..ctor(String idcardno) 位置 D:\WorkSpace\testttt\BLL\IdCardInfo.cs:行号 26
-   在 BLL.BLLTicketAssign.GetIdcardList(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\Default\BLLTicketAssign.cs:行号 218
-   在 BLL.BLLIdcardReport.GetListForScenic(String areaCodeHead, Nullable`1 entId, Nullable`1 dateBegin, Nullable`1 dateEnd, Nullable`1 isUsed) 位置 D:\WorkSpace\testttt\BLL\TourolReport\IdcardNoReport.cs:行号 40
-   在 Reports_Default.Page_Load(Object sender, EventArgs e) 位置 d:\WorkSpace\testttt\AdminWeb\Reports\Default.aspx.cs:行号 18
-   在 System.Web.Util.CalliHelper.EventArgFunctionCaller(IntPtr fp, Object o, Object t, EventArgs e)
-   在 System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   在 System.Web.UI.Control.OnLoad(EventArgs e)
-   在 System.Web.UI.Control.LoadRecursive()
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.HandleError(Exception e)
-   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-   在 System.Web.UI.Page.ProcessRequest()
-   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
-   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
-   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\bba8b8da\1cee17a2\App_Web_uihsiop0.0.cs:行号 0
+   在 ASP.reports_default_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\cc0615e9\8f5fd40a\App_Web_hs0u3gy3.0.cs:行号 0
    在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

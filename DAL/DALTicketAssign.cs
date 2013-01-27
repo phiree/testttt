@@ -270,11 +270,11 @@ namespace DAL
             if (entId.HasValue)
             {
 
-                where += " and  ta.Scenic.Id=" + entId.Value;
+                where += " and  ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + entId.Value;
             }
             if (!string.IsNullOrEmpty(areaCodeHead))
             {
-                where += " and ta.Scenic.Area.Code like '" + areaCodeHead + "%'";
+                where += " and ta.OrderDetail.TicketPrice.Ticket.Scenic.Area.Code like '" + areaCodeHead + "%'";
             }
             if (dateBegin.HasValue)
             {

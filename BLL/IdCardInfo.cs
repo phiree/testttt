@@ -18,7 +18,10 @@ namespace BLL
         public int ProvinceCode { get; set; }
         public int CityCode { get; set; }
         public string City { get; set; }
-        public DateTime BirthDay { get; set; }
+        public int CountryCode { get; set; }
+        //区县
+        public string Country { get; set; }
+        public int Age { get; set; }
         public enumSex Sex { get; set; }
         public IdCardInfo(string idcardno)
         {
@@ -52,8 +55,9 @@ namespace BLL
             //地址
             // 1-2位省、自治区、直辖市代码；  
             int provinceCode = Convert.ToInt32(Id.Remove(2));
-            int cityCode = Convert.ToInt32(Id.Remove(6));
+            int cityCode = Convert.ToInt32(Id.Remove(4)+"00");
 
+            int countryCode = Convert.ToInt32(Id.Remove(6));
             if (!ProvinceDict.ContainsKey(provinceCode))
             {
                 errMsg = "身份证号码省份不正确";
@@ -68,7 +72,16 @@ namespace BLL
                 //城市
                 return null;
             }
+            if (!CityDict.ContainsKey(countryCode))
+            {
+                errMsg = "身份证号码城市代码不正确";
+                //城市
+                return null;
+            }
+
             this.CityCode = cityCode;
+            this.CountryCode = countryCode;
+
             string birth = Id.Substring(6, 8).Insert(6, "-").Insert(4, "-");
             DateTime birthday;
             if (DateTime.TryParse(birth, out birthday) == false)
@@ -76,7 +89,7 @@ namespace BLL
                 errMsg = "身份证号码生日不正确";
                 return null;
             }
-            this.BirthDay = birthday;
+            this.Age = DateTime.Now.Year - birthday.Year+1;
             //性别
             int sexCode = Convert.ToInt32(Id.Substring(16, 1)) % 2;
             this.Sex = sexCode == 0 ? enumSex.男 : enumSex.女;
@@ -109,8 +122,8 @@ namespace BLL
                 return null;//数字验证
             }
             int provinceCode = Convert.ToInt32(Id.Remove(2));
-            int cityCode = Convert.ToInt32(Id.Remove(6));
-
+            int cityCode = Convert.ToInt32(Id.Remove(4)+"00");
+            int countryCode = Convert.ToInt32(Id.Remove(6));
             if (!ProvinceDict.ContainsKey(provinceCode))
             {
                 errMsg = "身份证号码省份不正确";
@@ -125,8 +138,15 @@ namespace BLL
                 //城市
                 return null;
             }
-            this.CityCode = cityCode;
+            if (!CityDict.ContainsKey(countryCode))
+            {
 
+                errMsg = "身份证号码区县代码不正确";
+                //城市
+                return null;
+            }
+            this.CityCode = cityCode;
+            this.CountryCode = countryCode;
             string birth = Id.Substring(6, 6).Insert(4, "-").Insert(2, "-");
             DateTime birtyday;
             if (DateTime.TryParse(birth, out birtyday) == false)
@@ -134,7 +154,7 @@ namespace BLL
                 errMsg = "身份证号码生日不正确";
                 return null;//生日验证
             }
-            this.BirthDay = birtyday;
+            this.Age =DateTime.Now.Year- birtyday.Year+1;
             return this;//符合15位身份证标准
         }
 
