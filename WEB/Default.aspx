@@ -136,7 +136,7 @@
             <img src="/Img/jiangshanlianpiao_home.jpg" alt="套票江郎山" />
         </a>
     </div>--%>
-     <div class="fcolum">
+       <div class="fcolum">
         <div class="fcolum1">
             <span class="fcol1_scname">
                 江郎山风景名胜区
@@ -175,11 +175,11 @@
         </div>
         <div class="fcolum1">
             <span class="fcol1_scname">
-                桃花源农家乐
+                龙游石窟
             </span>
             <span class="fcol1_area">衢州</span>
-            <a href="/Tickets/quzhou_changshanxian/taohuayuannongjia.html"><img src="/Img/homepage/桃花源农家乐.jpg" width="100%" height="160px" alt="桃花源农家乐" /></a>
-            <p>位于常山第一高峰白菊花尖西坡，山高林密，水清空气好……</p>
+            <a href="/Tickets/quzhou_longyouxian/longyoushiku.html"><img src="/Img/homepage/龙游石窟.jpg" width="100%" height="160px" alt="龙游石窟" /></a>
+            <p>古代最高水平的地下人工建筑群之一</p>
             <hr />
             <div class="fcol1_bottom">
                 <span class="yj">原价&nbsp;&nbsp;50元</span><span class="xcmp">春节门票大派送</span><a href="/Tickets/quzhou_changshanxian/taohuayuannongjia.html" class="btna"></a>
@@ -194,11 +194,12 @@
     <div class="scoloum">
         <div class="sccol1">
             <div class="sccol1row1">
-                <a href="/Tickets/quzhou_changshanxian/sanqushilin.html">
-                    <img alt="三衢石林" src="/Img/homepage/三衢石林.jpg" width="100%" height="100%" />
+                <a href="/Tickets/quzhou_kaihuaxian/geyimeishubolanyuan.html">
+                    <img alt="开化根雕博览园" src="/ScenicImg/small/1e02db61-256b-4671-bfc5-a01c6ebdd422_s.jpg" width="100%" height="100%" />
                     <p>
+
                     </p>
-                    <span>遂昌神龙谷瀑布</span>
+                   <span>开化根雕博览园</span>
                     <div class="mark">
                     </div>
                 </a>
@@ -243,18 +244,18 @@
                 </a>
             </div>
             <div class="sccol2row3">
-                <a href="/Tickets/quzhou_changshanxian/jindingzi.html">
-                    <img alt="金钉子景区" src="/Img/homepage/金钉子景区.jpg" width="100%" height="100%" />
+                <a href="/Tickets/quzhou_changshanxian/qzwlsz.html">
+                    <img alt="卧龙山庄" src="/ScenicImg/small/b26611fa-f534-4118-a183-7b29b9cfeb31_s.jpg" width="100%" height="100%" />
                     <p>
                     </p>
-                    <span>金钉子景区</span>
+                    <span>卧龙山庄</span>
                     <div class="mark" style="width: 50%">
                     </div>
-                </a><a href="/Tickets/quzhou_changshanxian/huanggangshanwanshousi.html">
-                    <img alt="黄冈山万寿寺" src="/Img/homepage/黄冈山万寿寺.png" width="100%" height="100%" />
+                </a><a href="/Tickets/quzhou_jiangshanshi/xianxiaguan.html">
+                    <img alt="戴笠故居（含仙霞关）" src="/ScenicImg/small/6a5be321-4198-41b4-bbbf-1bd0beb7c015_s.jpg" width="100%" height="100%" />
                     <p style="left: 163px;">
                     </p>
-                    <span style="left: 163px;">黄冈山万寿寺</span>
+                    <span style="left: 163px;">戴笠故居（含仙霞关）</span>
                     <div class="mark" style="width: 50%; left: 163px;">
                     </div>
                 </a>
@@ -296,7 +297,6 @@
             </div>
         </div>
     </div>
-
 
     <%--<div id="quzhouticket">
         <a href="/Tickets/quzhou" style=" display:block; width:100%;height:100%; position:absolute; z-index:9990">

@@ -224,7 +224,13 @@ namespace DAL
             //session.Flush();
             return query.List<TicketAssign>();
         }
-
+        public IList<TicketAssign> GetMultiTaByIdCard(string idcard,string ticketId)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "'";
+            IQuery query = session.CreateQuery(sql).SetCacheable(false);
+            //session.Flush();
+            return query.List<TicketAssign>();
+        }
       
         public IList<TicketAssign> GetTaByIdcardandscenic(string idcard, Scenic scenic)
         {
