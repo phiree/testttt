@@ -9,6 +9,8 @@ public partial class QZOrder_Fail : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        string errMsg = Request["msg"];
+        errMsg = Server.UrlDecode(errMsg);
+        lblMsg.Text = errMsg;
     }
 }

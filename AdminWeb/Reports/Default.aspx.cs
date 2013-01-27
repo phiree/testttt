@@ -36,14 +36,32 @@ public partial class Reports_Default : System.Web.UI.Page
         se.XValueType = ChartValueType.String;
 
         Chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;       // se.LabelFormat = "hh:mm:ss";
-       
-        
+
+      // se.Label = "#PERCENT{P2}";
+        //se["PieLabelStyle"] = "Outside";
+
+        // Chart1.Legends.Add("Legend1");
+
+        // Chart1.Legends[0].Enabled = true;
+
+        // Chart1.Legends[0].Docking = Docking.Bottom;
+
+        // Chart1.Legends[0].Alignment = System.Drawing.StringAlignment.Center;
+
+        //se.LegendText = "#PERCENT{P2}";
+
+
         //一个point 表示该series在某点的数据
         se.IsValueShownAsLabel = true;
         se.Points.DataBindXY(pointValues.Keys,pointValues.Values );
       
         Chart1.Series.Clear();
         Chart1.Series.Add(se);
+     //  Chart1.Series[0]["CollectedThresholdUsePercent"] = "true";
+        /*
+                Chart1.Series[0].Label = "#PERCENT{P2}";
+                Chart1.Series[0]["PieLabelStyle"] = "Outside";*/
+
     }
     protected void chart1_custom(object sender, EventArgs e)
     {

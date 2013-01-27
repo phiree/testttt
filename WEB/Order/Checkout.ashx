@@ -85,8 +85,9 @@ public class CheckoutHandler : IHttpHandler
                  {
                      qzErrmsg = result.Split('|')[1];
                  }
-                 
-                 context.Response.Write("<script>window.location.href='/order/QuZhouorderFail.aspx?msg="+qzErrmsg+"';</script>");
+
+                 qzErrmsg = context.Server.UrlEncode(qzErrmsg);
+                 context.Response.Write("<script>window.location.href='/order/QuZhouorderFail.aspx?msg="+ qzErrmsg+"';</script>");
              }
              else
              {

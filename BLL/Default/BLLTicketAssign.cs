@@ -224,5 +224,10 @@ namespace BLL
 
             return idcardInfoList;
         }
+
+        public IList<TicketAssign> GetMultiIdcardList(string idcardNo, string ticketId)
+        { 
+            
+        }
     }
 }

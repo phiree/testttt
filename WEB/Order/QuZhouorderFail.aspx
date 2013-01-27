@@ -17,7 +17,8 @@
         <div style="font-size: 18px; font-weight: 600; color: #EB7286; margin:50px 0px 30px 130px;">
            抢票失败!</div>
         <div  style="margin:20px 0px 0px 130px;">
-            <%=Request["msg"] %>
+        <asp:Literal runat="server" ID="lblMsg"></asp:Literal>
+          
         </div>
 
         </div>
