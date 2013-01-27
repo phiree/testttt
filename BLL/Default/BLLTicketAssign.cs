@@ -50,9 +50,9 @@ namespace BLL
         {
             return Iticketassign.GetTicketAssignBynameandidcard(name, idcard, scenic);
         }
-        public List<TicketAssign> GetIdcardandname(string name, string idcard, Scenic scenic)
+        public List<TicketAssign> GetIdcardandname(string name, string idcard, Scenic scenic,bool IsAll)
         {
-            return Iticketassign.GetIdcardandname(name, idcard, scenic);
+            return Iticketassign.GetIdcardandname(name, idcard, scenic,IsAll);
         }
         public void GetTicketInfoByIdCard(string idcard, Ticket ticket, out int ydcount, out int usedcount,int type)
         {
@@ -225,9 +225,9 @@ namespace BLL
             return idcardInfoList;
         }
 
-        public IList<TicketAssign> GetMultiIdcardList(string idcardNo, string ticketId)
-        { 
-            
+        public IList<TicketAssign> GetListByNameIdCardLike(string term, string scid)
+        {
+            return Iticketassign.GetListByNameIdCardLike(term, scid);
         }
     }
 }

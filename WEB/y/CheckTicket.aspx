@@ -6,7 +6,9 @@
     <meta   http-equiv= "pragma "   content= "no-cache ">  
     <meta http-equiv="x-ua-compatible" content="ie=8" />
     <script src="/Scripts/jquery.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery.autocomplete.js" type="text/javascript"></script>
+    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+        rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
     <link href="/Styles/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
     <script src="/Scripts/quCheckTicket.js" type="text/javascript"></script>

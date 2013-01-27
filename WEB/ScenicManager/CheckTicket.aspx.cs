@@ -48,7 +48,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         //绑定预定信息
 
         //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
-        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic);
+        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic,true);
         List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetGuiderWorkerByTE(CurrentScenic).ToList();
         foreach (DJ_Group_Worker gw in listdjGW)
         {
@@ -82,7 +82,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     public static string GetAllHints(string scid)
     {
         Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
-        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s);
+        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s,true);
         //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
         List<DJ_Workers> listdjGW = new BLLDJTourGroup().GetTourGroupByTeId(s.Id).ToList();
         foreach (DJ_Workers gw in listdjGW)
@@ -123,7 +123,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         string name = hfdata.Value.Split('/')[0];
         string idcard = hfdata.Value.Split('/')[1];
         int flag = 0;
-        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic).Where(x => x.Name == name))
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic,true).Where(x => x.Name == name))
         {
             if (item.IdCard == idcard)
             {
@@ -159,7 +159,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         string name = hfselectname.Value;
         string idcard = hfselectidcard.Value;
         int flag = 0;
-        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic).Where(x => x.Name == name))
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic,true).Where(x => x.Name == name))
         {
             if (item.IdCard == idcard)
             {

@@ -159,6 +159,11 @@ namespace BLL
             return listQzTa;
         }
 
+        public int GetTotalTickets(DateTime datetime,int ticketid)
+        {
+            var orderdetails=new DAL.DALOrder().GetTotalTickets(datetime,ticketid);
+            return orderdetails.Count;
+        }
 
         /// <summary>
         /// 根据时间和门票获取ticketAsign

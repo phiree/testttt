@@ -38,7 +38,7 @@ public partial class qumobile_CheckTicket : basepage
     public static string GetAllHints(string scid)
     {
         Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
-        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s);
+        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s,true);
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (TicketAssign item in list)
         {
@@ -90,7 +90,7 @@ public partial class qumobile_CheckTicket : basepage
         string name = hfdata.Value.Split('/')[0];
         string idcard = hfdata.Value.Split('/')[1];
         int flag = 0;
-        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic).Where(x => x.Name == name))
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic,true).Where(x => x.Name == name))
         {
             if (item.IdCard == idcard)
             {
