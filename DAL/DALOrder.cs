@@ -173,7 +173,6 @@ namespace DAL
             return query.FutureValue<Model.MonthOrder>().Value;
         }
 
-
         public void AddMonthBill(string date, Model.Scenic scenic, string orderway, int num, decimal price, bool state)
         {
             MonthOrder mo = new MonthOrder()
@@ -186,6 +185,14 @@ namespace DAL
                 paidstate = state
             };
             session.SaveOrUpdate(mo);
+        }
+
+        public IList<OrderDetail> GetTotalTickets(DateTime datetime, int ticketid)
+        {
+            string sql = "select od from OrderDetail od where od.Order.BuyTime >" + datetime + " and od.Order.BuyTime<" + datetime.AddDays(1)
+                + " and od.TicketPrice.Ticket.Id=" + ticketid;
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<Model.OrderDetail>().ToList();
         }
     }
 }

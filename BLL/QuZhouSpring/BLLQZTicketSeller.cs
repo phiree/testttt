@@ -90,6 +90,10 @@ namespace BLL
             }
             //自动创建订单
             Ticket currentTicket = bllTicket.GetByProductCode(ticketCode);
+            if (ismedia)
+            {
+                partnerAsign.Partner.Name = "媒体";
+            }
             Order order = BuildOrderForQZ(member,assignName, idcardno, currentTicket, amount, partnerAsign.Partner.Name);
             bllOrder.SaveOrUpdateOrder(order);
 

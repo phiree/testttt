@@ -1,12 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="ScenicManager_Reports_Default" %>
-
-<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
-    Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true" CodeFile="AgeReport.aspx.cs" Inherits="ScenicManager_Reports_AgeReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
-    <asp:Chart ID="Chart1" Width="699" Height="900" OnCustomize="chart1_custom" 
+
+ <asp:Chart ID="Chart1" Width="699" Height="900"
         runat="server" Palette="SeaGreen" BackGradientStyle="LeftRight" 
         BorderlineDashStyle="Dot">
         <Series></Series>
