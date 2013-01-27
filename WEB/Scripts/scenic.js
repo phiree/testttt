@@ -81,8 +81,10 @@ $(function () {
             });
         }
     });
-    showMap();
     getTicketCount();
+    //$.get("/Scenic/TimeHandler.ashx", function (timeHour, status) {
+       // showMap();
+   // });
 });
 
 var map;
@@ -203,6 +205,11 @@ function getTicketCount() {
             success: function (msg) {
                 if (msg.d == "-1" || msg.d == "0") {
                     $("#qzTicketCount").html("<span class='noTc' style=' font-size:14px;'>已抢完</span>");
+                    $(".btnputcart").attr("onclick", "");
+                    $(".btnputcart").click(function () {
+                        alert("今天的门票已抢完，请您明天10点之后来抢票！");
+                        return false;
+                    });
                 }
                 else {
                     $("#qzTicketCount").html("<span class='tc'>余<span class='countSum' style=' font-size:24px; font-weight:bold;'>" + msg.d + "</span>张</span>");
