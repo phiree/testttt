@@ -85,7 +85,7 @@ $(document).ready(function () {
     //        }
     //    });
 
-    $("[id$='txtinfo']").InlineTip({ "tip": "录入游客身份证或名字" });
+    $("[id$='txtinfo']").InlineTip({ "tip": "录入身份证号码(至少3位)" });
     //    $("body").click(function () {
     //        $("#listname").attr("style", "display:none");
     //        var list = $("#yklistt");
