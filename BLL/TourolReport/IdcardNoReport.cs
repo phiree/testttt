@@ -15,15 +15,22 @@ namespace BLL
     ///      人员年龄
     ///   
     /// </summary>
-   
+
+    public enum enumGroupByType
+    {
+        ProvinceCode,
+        CityCode,
+        CountryCode,
+        Age
+    }
     public class BLLIdcardReport
     {
-       
+
         BLLTicketAssign bllTa = new BLLTicketAssign();
 
         public BLLIdcardReport()
         {
-            
+
         }
         /// <summary>
         /// 景区相关报表--区别于 旅行社报表
@@ -34,25 +41,42 @@ namespace BLL
         /// <param name="dateEnd"></param>
         /// <param name="isUsed"></param>
         /// <returns></returns>
-        public    Dictionary<string,int> GetListForScenic(string areaCodeHead, int? entId, 
-            DateTime? dateBegin, DateTime? dateEnd,bool? isUsed)
+        public Dictionary<string, int> GetListForScenic(string areaCodeHead, int? entId,
+            DateTime? dateBegin, DateTime? dateEnd, bool? isUsed, enumGroupByType groupByType, int groupByValue)
         {
             IList<IdCardInfo> idcardList = bllTa.GetIdcardList(areaCodeHead, entId, dateBegin, dateEnd, isUsed);
 
+
             Dictionary<string, int> chartSery = new Dictionary<string, int>();
-           //省份
-            var provinceReport=from idcardInfo in idcardList
-                               group  idcardInfo.ProvinceCode by idcardInfo.ProvinceCode into g
-             select new{ProvinceCode=g.Key,Amount=g};
 
-         
-            chartSery = idcardList.GroupBy(x => x.ProvinceCode).ToDictionary(g =>IdCardInfo.ProvinceDict[g.Key], g => g.ToList().Count);
+            switch (groupByType)
+            {
+                case enumGroupByType.Age:
+                    chartSery = idcardList.GroupBy(x => x.Age).OrderBy(x=>x.Key) .ToDictionary(g => g.Key.ToString(), g => g.ToList().Count);
+                    break;
+                case enumGroupByType.CityCode:
+                    chartSery = idcardList.Where(x => x.ProvinceCode == groupByValue)
+                      
+                        .GroupBy(x => x.CityCode).OrderBy(x=>x.ToList().Count).ToDictionary(g => IdCardInfo.CityDict[g.Key], g => g.ToList().Count)
+                        
+                       ;
+                    break;
+                case enumGroupByType.ProvinceCode:
+                    chartSery = idcardList.GroupBy(x => x.ProvinceCode).OrderBy(x => x.ToList().Count).ToDictionary(g => IdCardInfo.ProvinceDict[g.Key], g => g.ToList().Count);
 
-           // bllTa.GetAll<TicketAssign>();
+                    break;
+                case enumGroupByType.CountryCode:
+                    chartSery = idcardList.Where(x => x.CityCode == groupByValue).GroupBy(x => x.CountryCode)
+                        .OrderBy(x => x.ToList().Count).ToDictionary(g => IdCardInfo.CityDict[g.Key], g => g.ToList().Count);
+
+                    break;
+            }
+
+            // bllTa.GetAll<TicketAssign>();
 
 
             return chartSery;
         }
-       
+
     }
 }
