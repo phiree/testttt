@@ -48,15 +48,20 @@ public partial class Manager_QuZhouSpring_DateTicketAssignMedia : System.Web.UI.
     }
     protected void rptPartnerList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        string ticketid = "0";
-        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
-        {
-            ticketid = ((Label)e.Item.FindControl("lblticketid")).Text??"0";
-        }
+        var rpt = (Repeater)sender;
+        var ptlist=(List<QZPartnerTicketAsign>)rpt.DataSource;
         if (e.Item.ItemType == ListItemType.Footer)
         {
-            var lblMedia=(Label)e.Item.FindControl("lblMedia");
-            lblMedia.Text = bllqz.GetTotalTickets(DateTime.Parse(Request.QueryString["date"]), int.Parse(ticketid)).ToString();
+            var lblMedia = (Label)e.Item.FindControl("lblMedia");
+            if (ptlist[0].QZTicketAsign == null)
+            {
+                lblMedia.Text = "0";
+            }
+            else
+            {
+                lblMedia.Text = (int.Parse(bllqz.GetTotalTickets(DateTime.Parse(Request.QueryString["date"]), ptlist[0].QZTicketAsign.Ticket.Id).ToString())-
+                    ptlist[0].SoldAmount - ptlist[1].SoldAmount).ToString();
+            }
         }
     }
     protected void rptAsignList_ItemCommand(object source, RepeaterCommandEventArgs e)
