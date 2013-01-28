@@ -3,8 +3,9 @@
 
 <%@ Register TagPrefix="self" Namespace="TourControls" Assembly="TourControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true">
-    </script>  <script src="/Scripts/contentReader.js" type="text/javascript"></script>
+    <%--<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true">
+    </script>--%> 
+     <script src="/Scripts/contentReader.js" type="text/javascript"></script>
     <link href="/theme/default/css/TCCSS.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
@@ -12,7 +13,7 @@
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/scenic.js" type="text/javascript"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&amp;services=true"> </script>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
     <asp:HiddenField ID="hfposition" runat="server" />

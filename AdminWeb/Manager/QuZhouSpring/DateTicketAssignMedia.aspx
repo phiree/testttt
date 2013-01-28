@@ -48,7 +48,7 @@
                                     <tr>
                                         <td>
                                             <%# Eval("Partner.Name")%>
-                                            <asp:Label ID="lblticketid" Text='<%# Eval("QZTicketAsign.Ticket.Id") %>' runat="server" />
+                                            <asp:HiddenField ID="lblticketid" Value='<%# Eval("QZTicketAsign.Ticket.Id") %>' runat="server" />
                                             <asp:HiddenField runat="server" ID="hfPartnerId" Value='<%# Eval("Partner.Id") %>' />
                                         </td>
                                         <td>

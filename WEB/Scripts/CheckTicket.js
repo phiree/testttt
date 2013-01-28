@@ -1,4 +1,7 @@
-﻿function changesumprice(obj) {
+﻿/// <reference path="jquery-1.4.1-vsdoc.js" />
+
+
+function changesumprice(obj) {
     $(obj).val($(obj).val().replace(/[^0-9]/g, ''));
     var usecount = $(obj).val();
     var yddj = $($(obj).parent().find(".num")[2]).html().substring(0, $($(obj).parent().find(".num")[2]).html().length - 1);
@@ -34,34 +37,61 @@ function changeolcount(obj) {
 
 var v = 1;
 $(document).ready(function () {
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: "CheckTicket.aspx/GetAllHints",
-        data: "{scid:'" + $("[id$='hfscid']").val() + "'}",
-        dataType: "json",
-        success: function (msg) {
-            var datas = eval('(' + msg.d + ')');
-            $("[id$='txtinfo']").autocomplete(
-                    datas, { formatItem: function (row, i, max) {
-                        return "<table width='200px' cellpadding='0' cellspacing='0'><tr><td align='left' height='10px' style='padding-top:10px;line-height:10px;'>" + row.Value + "</td></tr></table>";
-                    },
-                        formatMatch: function (row, i, max) {
-                            return row.Key;
-                        },
-                        matchContains: true,
-                        max:10,
-                        scrollHeight:900
-                    }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Key); $("[id$='btnbind']").click(); });
-        }
-    });
-    $("[id$='txtinfo']").InlineTip({ "tip": "录入游客身份证或名字" });
-//    $("body").click(function () {
-//        $("#listname").attr("style", "display:none");
-//        var list = $("#yklistt");
-//        $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
-//        $("#listyw").attr("style", "display:none");
-//    });
+
+    $("[id$='txtinfo']").autocomplete(
+        {
+            source:
+            function (request, response) {
+                $.get("/ScenicManager/CheckTicketHandler.ashx?term=" + request.term + "&sid=" + $("[id$='hfscid']").val(),
+                         function (data) {
+                             response($.map(data, function (item) {
+                                 var d = '123';
+                                 return {
+                                     label: item.Value,
+                                    value: item.Key
+                                 }
+                             }));
+
+                         }
+                     );
+            }
+            ,
+            select: function (event, ui) {
+                $("[id$='hfdata']").val(ui.item.value); $("[id$='btnbind']").click();
+            },
+            minLength: 3
+
+        });
+
+    //    $.ajax({
+    //        type: "POST",
+    //        contentType: "application/json",
+    //        url: "CheckTicket.aspx/GetAllHints",
+    //        data: "{scid:'" + $("[id$='hfscid']").val() + "'}",
+    //        dataType: "json",
+    //        success: function (msg) {
+    //            var datas = eval('(' + msg.d + ')');
+    //            $("[id$='txtinfo']").autocomplete(
+    //                    datas, { formatItem: function (row, i, max) {
+    //                        return "<table width='200px' cellpadding='0' cellspacing='0'><tr><td align='left' height='10px' style='padding-top:10px;line-height:10px;'>" + row.Value + "</td></tr></table>";
+    //                    },
+    //                        formatMatch: function (row, i, max) {
+    //                            return row.Key;
+    //                        },
+    //                        matchContains: true,
+    //                        max: 10,
+    //                        scrollHeight: 900
+    //                    }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Key); $("[id$='btnbind']").click(); });
+    //        }
+    //    });
+
+    $("[id$='txtinfo']").InlineTip({ "tip": "录入身份证号码(至少3位)" });
+    //    $("body").click(function () {
+    //        $("#listname").attr("style", "display:none");
+    //        var list = $("#yklistt");
+    //        $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
+    //        $("#listyw").attr("style", "display:none");
+    //    });
     if ($.cookie("idcard") == null)
         $.cookie("idcard", "");
     timedCount();
@@ -104,9 +134,10 @@ function showywrecord() {
 
 var t;
 function timedCount() {
-  
+    if ($.browser.msie) {
         show();
-    t = setTimeout("timedCount()", 1000);
+        t = setTimeout("timedCount()", 1000);
+    } 
 }
 function show() {
     var a = document.getElementById('aaa');

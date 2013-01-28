@@ -29,9 +29,8 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td><%# Eval("Scenic.Name") %>_<%# Eval("Name") %></td>
+                    <td><a href=""><%# Eval("Scenic.Name") %>_<%# Eval("Name") %></a></td>
                     <asp:Literal  runat="server" id="partnerCountList" />
-                    
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

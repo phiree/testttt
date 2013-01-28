@@ -40,26 +40,15 @@
                     </td>
                     <td><%# Eval("Amount")%></td>
                     <td>
-                        <asp:Repeater runat="server" ID="rptPartnerList">
+                        <asp:Repeater runat="server" ID="rptPartnerList" OnItemDataBound="rptPartnerList_ItemDataBound">
                             <HeaderTemplate>
                                 <table border="0" cellpadding="0" cellspacing="0">
-                                    <%--<tr>
-                                        <td>
-                                            合作商名字
-                                        </td>
-                                        <td>
-                                            分配票数
-                                        </td>
-                                        <td>
-                                            已售票数
-                                        </td>
-                                        
-                                    </tr>--%>
                             </HeaderTemplate>
                             <ItemTemplate>
                                     <tr>
                                         <td>
                                             <%# Eval("Partner.Name")%>
+                                            <asp:HiddenField ID="lblticketid" Value='<%# Eval("QZTicketAsign.Ticket.Id") %>' runat="server" />
                                             <asp:HiddenField runat="server" ID="hfPartnerId" Value='<%# Eval("Partner.Id") %>' />
                                         </td>
                                         <td>
@@ -71,6 +60,18 @@
                                     </tr>
                             </ItemTemplate>
                             <FooterTemplate>
+                                    <tr>
+                                        <td>
+                                            媒体(不计算在售票总数内)
+                                            <asp:HiddenField runat="server" ID="HiddenField1" Value='<%# Eval("Partner.Id") %>' />
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                        <%--<asp:HiddenField runat="server" ID="hfProductId" Value='<%# Eval("QZTicketAsign.ProductCode") %>' />--%>
+                                            <asp:Label ID="lblMedia" Text="0" runat="server" />
+                                            <%--<%# Eval("SoldAmount")%>--%>
+                                        </td>
+                                    </tr>
                                 </table>
                             </FooterTemplate>
                         </asp:Repeater>

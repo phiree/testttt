@@ -156,5 +156,14 @@ namespace BLL
             }
             return molist;
         }
+
+        /// <summary>
+        /// 获取每天的销售数据总和
+        /// </summary>
+        /// <returns></returns>
+        public IList<object[]> GetDaysOrderTotal()
+        {
+            return dal.GetDaysOrderTotal();
+        }
     }
 }

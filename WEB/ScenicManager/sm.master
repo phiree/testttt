@@ -77,8 +77,8 @@
                 </div>
                   <div id="dvReport" runat="server">
                  <li><span>报表</span></li>
-                    <li><a href="/ScenicManager/Reports/">游客地理位置分析</a></li>
-                    <li><a href="/ScenicManager/Reports/AgeReport.aspx">游客年龄阶层分析</a></li>
+                    <li><a href="/ScenicManager/Reports/">游客来源地分析</a></li>
+                    <li><a href="/ScenicManager/Reports/AgeReport.aspx">游客年龄段分析</a></li>
                
                 </div>
                 <div id="checkBlock" runat="server">

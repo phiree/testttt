@@ -10,6 +10,7 @@ namespace BLL
     public class BLLQZTicketAsign:BLLBase<QZTicketAsign>
     {
         DALQZTicketAsign dalqzTa = new DALQZTicketAsign();
+        DAL.DALOrder dalorder = new DALOrder();
         public void Asign(DateTime date, Ticket t, Dictionary<Guid, int> partnersAsign, int asignedAmount)
         {
             QZTicketAsign ta = new QZTicketAsign();
@@ -161,7 +162,7 @@ namespace BLL
 
         public int GetTotalTickets(DateTime datetime,int ticketid)
         {
-            var orderdetails=new DAL.DALOrder().GetTotalTickets(datetime,ticketid);
+            var orderdetails=dalorder.GetTotalTickets(datetime,ticketid);
             return orderdetails.Count;
         }
 

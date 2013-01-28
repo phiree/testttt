@@ -34,25 +34,51 @@ function changeolcount(obj) {
 
 var v = 1;
 $(document).ready(function () {
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: "CheckTicket.aspx/GetAllHints",
-        data: "{scid:'" + $("[id$='hfscid']").val() + "'}",
-        dataType: "json",
-        success: function (msg) {
-            var datas = eval('(' + msg.d + ')');
-            $("[id$='txtinfo']").autocomplete(
-                    datas, { formatItem: function (row, i, max) {
-                        return "<table width='200px' cellpadding='0' cellspacing='0'><tr><td align='left' height='10px' style='padding-top:10px;line-height:10px;'>" + row.Value + "</td></tr></table>";
-                    },
-                        formatMatch: function (row, i, max) {
-                            return row.Key;
-                        },
-                        matchContains: true
-                    }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Key); $("[id$='btnSearch']").click(); });
-        }
-    });
+
+    $("[id$='txtinfo']").autocomplete(
+        {
+            source:
+            function (request, response) {
+                $.get("/ScenicManager/CheckTicketHandler.ashx?term=" + request.term + "&sid=" + $("[id$='hfscid']").val(),
+                         function (data) {
+                             response($.map(data, function (item) {
+                                 var d = '123';
+                                 return {
+                                     label: item.Value,
+                                     value: item.Key
+                                 }
+                             }));
+
+                         }
+                     );
+            }
+            ,
+            select: function (event, ui) {
+                $("[id$='hfdata']").val(ui.item.value); $("[id$='btnSearch']").click();
+            },
+            minLength: 3
+
+        });
+//$(document).ready(function () {
+//    $.ajax({
+//        type: "POST",
+//        contentType: "application/json",
+//        url: "CheckTicket.aspx/GetAllHints",
+//        data: "{scid:'" + $("[id$='hfscid']").val() + "'}",
+//        dataType: "json",
+//        success: function (msg) {
+//            var datas = eval('(' + msg.d + ')');
+//            $("[id$='txtinfo']").autocomplete(
+//                    datas, { formatItem: function (row, i, max) {
+//                        return "<table width='200px' cellpadding='0' cellspacing='0'><tr><td align='left' height='10px' style='padding-top:10px;line-height:10px;'>" + row.Value + "</td></tr></table>";
+//                    },
+//                        formatMatch: function (row, i, max) {
+//                            return row.Key;
+//                        },
+//                        matchContains: true
+//                    }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Key); $("[id$='btnSearch']").click(); });
+//        }
+//    });
     $("[id$='txtinfo']").InlineTip({ "tip": "录入游客身份证或名字" });
     //    $("body").click(function () {
     //        $("#listname").attr("style", "display:none");

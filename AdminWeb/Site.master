@@ -72,12 +72,14 @@
                             <li><a href="/Manager/ScenicTopicSetting3.aspx">景区主题SEO</a></li>
                             <li><a href="/Manager/ScenicimgInit.aspx">EXCEL导入</a></li>
                             <li><a href="/Manager/ScenicMapPoint.aspx">景区坐标初始化</a></li>
+                            <li><a href="/manager/quzhouspring/CancelTa.aspx">取消验票</a></li>
                             <li><a href="/Manager/ImportMipangTicket.aspx">
                                 米胖门票导入</a></li>
                                 <li><a href="/manager/quzhouspring/ClientList.aspx">衢州春节门票(网站列表)</a></li>
                                 <li><a href="/manager/quzhouspring/TicketList.aspx">衢州春节门票(门票列表)</a></li>
                                 <li><a href="/manager/quzhouspring/DateSettings.aspx">衢州春节门票(门票分配)</a></li>
-                                <li><a href="/manager/quzhouspring/TicketStatistics.aspx">衢州春节门票(门票统计)</a></li>
+                                <li><a href="/manager/quzhouspring/TicketStatistics.aspx">衢州春节门票(门票分配统计)</a></li>
+                                <li><a href="/manager/quzhouspring/TicketStatistics2.aspx">衢州春节门票(门票销售统计)</a></li>
                         </ul>
                       
                       
