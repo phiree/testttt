@@ -79,7 +79,7 @@ public partial class qumobile_CheckTicket : basepage
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-      
+        Btnckpass.Visible = true;
         Msg.InnerText = "";
         Scenic CurrentScenic = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic;
         if (hfdata.Value.Split('/').Length < 2)
