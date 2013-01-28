@@ -56,7 +56,7 @@
       <HintPath>..\lib\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="FizzWare.NBuilder, Version=3.0.1.0, Culture=neutral, PublicKeyToken=5651b03e12e42c12, processorArchitecture=MSIL">
-      <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
+      <HintPath>..\lib\FizzWare.NBuilder.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\lib\FluentNHibernate.dll</HintPath>
