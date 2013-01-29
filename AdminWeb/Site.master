@@ -50,8 +50,15 @@
                             功能菜单
                         </div>
                         <ul class="nav">
-                         <li><span>报表</span></li>
-                         <li><a href="/Reports/">景区报表</a></li>
+                            <li><span>衢州门票派送活动</span></li>
+                            <li><a href="/manager/quzhouspring/ClientList.aspx">合作网站列表</a></li>
+                            <li><a href="/manager/quzhouspring/TicketList.aspx">门票列表</a></li>
+                            <li><a href="/manager/quzhouspring/DateSettings.aspx">门票分配</a></li>
+                            <li><a href="/manager/quzhouspring/TicketStatistics.aspx">门票分配总计</a></li>
+                            <li><a href="/manager/quzhouspring/TicketStatistics2.aspx">门票派送统计</a></li>
+                            <li><a href="/manager/quzhouspring/AgentExcellist.aspx">台州门票导入</a></li>
+                            <li><span>报表</span></li>
+                            <li><a href="/Reports/">景区报表</a></li>
                             <li><span>地接社</span></li>
                             <li><a href="/Dijieshe/ManageDptList.aspx">旅游管理部门列表</a></li>
                             <li><a href="/Dijieshe/ManageDptEdit.aspx">增加旅游管理部门</a></li>
@@ -73,20 +80,8 @@
                             <li><a href="/Manager/ScenicimgInit.aspx">EXCEL导入</a></li>
                             <li><a href="/Manager/ScenicMapPoint.aspx">景区坐标初始化</a></li>
                             <li><a href="/manager/quzhouspring/CancelTa.aspx">取消验票</a></li>
-                            <li><a href="/Manager/ImportMipangTicket.aspx">
-                                米胖门票导入</a></li>
-                                <li><span>衢州门票派送活动</span></li>
-                                <li><a href="/manager/quzhouspring/ClientList.aspx">衢州春节门票(网站列表)</a></li>
-                                <li><a href="/manager/quzhouspring/TicketList.aspx">衢州春节门票(门票列表)</a></li>
-                                <li><a href="/manager/quzhouspring/DateSettings.aspx">衢州春节门票(门票分配)</a></li>
-                                <li><a href="/manager/quzhouspring/TicketStatistics.aspx">衢州春节门票(门票分配统计)</a></li>
-                                <li><a href="/manager/quzhouspring/TicketStatistics2.aspx">衢州春节门票(门票销售统计)</a></li>
-                         <li><a href="/manager/quzhouspring/AgentExcellist.aspx">台州门票导入</a></li>
-               
+                            <li><a href="/Manager/ImportMipangTicket.aspx">米胖门票导入</a></li>
                         </ul>
-                      
-                      
-                       
                     </div>
                     <div class="pageMid_right">
                         <asp:ContentPlaceHolder ID="main" runat="server">
@@ -95,6 +90,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div>
+    <script src="http://s21.cnzz.com/stat.php?id=4994924&web_id=4994924" language="JavaScript"></script>
+
     </div>
     </form>
 </body>

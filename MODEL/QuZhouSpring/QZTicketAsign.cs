@@ -16,7 +16,7 @@ namespace Model
        }
        public virtual Guid Id { get; set; }
        //门票-->景区
-      //已停用,直接从 ticket获取
+      //冗余字段,直接从 ticket获取
        public virtual string ProductCode { get; set; }
        //网站对应的门票
        public virtual Ticket Ticket { get; set; }

@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
+    
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
