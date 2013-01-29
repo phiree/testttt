@@ -1,26 +1,34 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager/manager.master" AutoEventWireup="true" CodeFile="TicketStatistics2.aspx.cs" Inherits="Manager_QuZhouSpring_TicketStatistics2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager/manager.master" AutoEventWireup="true"
+    CodeFile="TicketStatistics2.aspx.cs" Inherits="Manager_QuZhouSpring_TicketStatistics2" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <asp:Repeater runat="server" ID="rptdate">
-    <HeaderTemplate>
-        <table>
-            
-    </HeaderTemplate>
+        <HeaderTemplate>
+            <table>
+            <tr>
+                <td>
+                    日期
+                </td>
+                <td>
+                    销售总量
+                </td>
+            </tr>
+        </HeaderTemplate>
         <ItemTemplate>
-        <tr>
-            <td>
-                <%# ((object[])Container.DataItem)[0].ToString() %>
-            </td>
-            <td>
-                <%# ((object[])Container.DataItem)[1].ToString() %>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <a href='/manager/quzhouspring/TicketStatistics3.aspx?date=<%# ((object[])Container.DataItem)[0].ToString() %>'>
+                        <%# ((object[])Container.DataItem)[0].ToString() %></a>
+                </td>
+                <td>
+                    <%# ((object[])Container.DataItem)[1].ToString() %>
+                </td>
+            </tr>
         </ItemTemplate>
         <FooterTemplate>
-        </table>
+            </table>
         </FooterTemplate>
     </asp:Repeater>
 </asp:Content>
-
