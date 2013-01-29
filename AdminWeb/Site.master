@@ -78,7 +78,8 @@
                                 <li><a href="/manager/quzhouspring/ClientList.aspx">衢州春节门票(网站列表)</a></li>
                                 <li><a href="/manager/quzhouspring/TicketList.aspx">衢州春节门票(门票列表)</a></li>
                                 <li><a href="/manager/quzhouspring/DateSettings.aspx">衢州春节门票(门票分配)</a></li>
-                                <li><a href="/manager/quzhouspring/TicketStatistics.aspx">衢州春节门票(门票统计)</a></li>
+                                <li><a href="/manager/quzhouspring/TicketStatistics.aspx">衢州春节门票(门票分配统计)</a></li>
+                                <li><a href="/manager/quzhouspring/TicketStatistics2.aspx">衢州春节门票(门票销售统计)</a></li>
                         </ul>
                       
                       

@@ -194,5 +194,15 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.OrderDetail>().ToList();
         }
+
+        public IList<object[]> GetDaysOrderTotal()
+        {
+            string sql = "select od.BuyTime,COUNT(*) "+
+"from TicketAssign ta, OrderDetail detail,[Order] od ,DJ_TourEnterprise dj,TicketPrice tp,Ticket t "+
+"where ta.OrderDetail_id =detail.Id and detail.Order_id=od.Id "+
+"and detail.TicketPrice_id=tp.Id and tp.Ticket_id=t.Id and t.Scenic_id=dj.Id group by od.BuyTime";
+            IQuery query = session.CreateSQLQuery(sql);
+            return query.List<object[]>();
+        }
     }
 }

@@ -46,6 +46,24 @@ public partial class Manager_QuZhouSpring_DateTicketAsign : System.Web.UI.Page
             rptPartnerList.DataBind();
         }
     }
+    protected void rptPartnerList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        var rpt = (Repeater)sender;
+        var ptlist = (List<QZPartnerTicketAsign>)rpt.DataSource;
+        if (e.Item.ItemType == ListItemType.Footer)
+        {
+            var lblMedia = (Label)e.Item.FindControl("lblMedia");
+            if (ptlist[0].QZTicketAsign == null)
+            {
+                lblMedia.Text = "0";
+            }
+            else
+            {
+                lblMedia.Text =Math.Abs((int.Parse(bllqz.GetTotalTickets(DateTime.Parse(Request.QueryString["date"]), ptlist[0].QZTicketAsign.Ticket.Id).ToString()) -
+                    ptlist[0].SoldAmount - ptlist[1].SoldAmount)).ToString();
+            }
+        }
+    }
     protected void rptAsignList_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         if (e.CommandName == "save")
