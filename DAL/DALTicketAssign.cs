@@ -224,6 +224,7 @@ namespace DAL
             //session.Flush();
             return query.List<TicketAssign>();
         }
+      
         public IList<TicketAssign> GetMultiTaByIdCard(string idcard,string ticketId)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "'";
@@ -238,12 +239,14 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<TicketAssign>().ToList<TicketAssign>();
         }
-        public IList<TicketAssign> GetTaByIdcardandTicketCode(string idcard, string ticketCode)
+        public int GetTaByIdcardandTicketCode(string idcard, string ticketCode)
         {
-            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.ProductCode='" + ticketCode+ "'";
+            string sql = "select count(ta) from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.ProductCode='" + ticketCode+ "'";
             IQuery query = session.CreateQuery(sql);
-
-            return query.Future<TicketAssign>().ToList<TicketAssign>();
+            var result = query.UniqueResult();
+            int val;
+            int.TryParse(result.ToString(), out val);
+            return val;
         }
 
         public IList<Ticket> GetTicketTypeByIdCard(string idcard)
