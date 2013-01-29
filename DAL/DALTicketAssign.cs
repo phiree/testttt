@@ -70,6 +70,11 @@ namespace DAL
         {
             string sql = "select ta.Name,ta.IdCard from TicketAssign ta where (ta.Name like '%" + name + "%' or ta.IdCard like '%" + idcard + "%') and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=0  group by ta.Name,ta.IdCard";
             IQuery query = session.CreateQuery(sql);
+            if (!IsAll)
+            {
+                query.SetFirstResult(0);
+                query.SetMaxResults(10);
+            }
             IList<Object[]> list;
             list = query.List<object[]>();
             List<TicketAssign> listticketassign = new List<TicketAssign>();
@@ -220,15 +225,26 @@ namespace DAL
         public IList<TicketAssign> GetTaByIdCard(string idcard)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "'";
+            IQuery query = session.CreateQuery(sql).SetCacheRegion(Guid.NewGuid().ToString()).SetCacheMode(CacheMode.Refresh);
+            //session.Flush();
+            return query.List<TicketAssign>();
+        }
+
+        public IList<TicketAssign> GetTaByIdCardHasProductCode(string idcard)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard 
+                + "'"
+                +" and ta.OrderDetail.TicketPrice.Ticket.ProductCode is not null";
             IQuery query = session.CreateQuery(sql).SetCacheMode(CacheMode.Refresh);
             //session.Flush();
             return query.List<TicketAssign>();
         }
+
         public IList<TicketAssign> GetMultiTaByIdCard(string idcard,string ticketId)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "'";
-            IQuery query = session.CreateQuery(sql).SetCacheable(false);
-            //session.Flush();
+            IQuery query = session.CreateQuery(sql).SetCacheMode(CacheMode.Refresh);
+            session.Flush();
             return query.List<TicketAssign>();
         }
       
