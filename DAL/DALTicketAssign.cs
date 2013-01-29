@@ -220,15 +220,26 @@ namespace DAL
         public IList<TicketAssign> GetTaByIdCard(string idcard)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "'";
+            IQuery query = session.CreateQuery(sql).SetCacheRegion(Guid.NewGuid().ToString()).SetCacheMode(CacheMode.Refresh);
+            //session.Flush();
+            return query.List<TicketAssign>();
+        }
+
+        public IList<TicketAssign> GetTaByIdCardHasProductCode(string idcard)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard 
+                + "'"
+                +" and ta.OrderDetail.TicketPrice.Ticket.ProductCode is not null";
             IQuery query = session.CreateQuery(sql).SetCacheMode(CacheMode.Refresh);
             //session.Flush();
             return query.List<TicketAssign>();
         }
+
         public IList<TicketAssign> GetMultiTaByIdCard(string idcard,string ticketId)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "'";
-            IQuery query = session.CreateQuery(sql).SetCacheable(false);
-            //session.Flush();
+            IQuery query = session.CreateQuery(sql).SetCacheMode(CacheMode.Refresh);
+            session.Flush();
             return query.List<TicketAssign>();
         }
       

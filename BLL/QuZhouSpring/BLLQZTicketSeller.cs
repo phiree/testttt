@@ -135,19 +135,21 @@ namespace BLL
             //是否已经抢到了足够的票数
             //ticket的 productcode 不为空的门票总数--> 
             //todo: 不太保险的判断
-            var listTa = bllTicketAssign.GetTaByIdCard(idcardno);
-            IList<TicketAssign> gotTotalTicketsOfThisType = listTa.Where(x => !string.IsNullOrEmpty(x.OrderDetail.TicketPrice.Ticket.ProductCode)).ToList();
-            if (gotTotalTicketsOfThisType.Count >= 5)
+           
+            //IList<TicketAssign> gotTotalTicketsOfThisType = listTa.Where(x => !string.IsNullOrEmpty(x.OrderDetail.TicketPrice.Ticket.ProductCode)).ToList();
+            IList<TicketAssign> getAssignTicketForId = bllTicketAssign.GetTaByIdcardandTicketCode(idcardno, ticketCode);
+            if (getAssignTicketForId.Count >0)
             {
                 //已经抢了5张这样的门票 
-                errMsg = "该身份证号码已经抢到足够票数,不能继续抢票";
+                errMsg = "该身份证号码已经抢到这个景区的门票,不能继续抢票";
                 return false;
             }
-            else
+            else 
             {
-                if (gotTotalTicketsOfThisType.Where(x => x.OrderDetail.TicketPrice.Ticket.ProductCode == ticketCode).ToList().Count > 0)
+                IList<TicketAssign> gotTotalTicketsOfThisType = bllTicketAssign.GetTaByIdCardHasProductCode(idcardno);
+                if (gotTotalTicketsOfThisType.Count>=5|| gotTotalTicketsOfThisType.Where(x => x.OrderDetail.TicketPrice.Ticket.ProductCode == ticketCode).ToList().Count > 0)
                 {
-                    errMsg = "该身份证号码已经抢到这个景区的门票,不能继续抢票";
+                    errMsg = "该身份证号码已经抢到足够票数,不能继续抢票"; 
                     return false;
                 }//该身份证已经抢到了这个门票
 
