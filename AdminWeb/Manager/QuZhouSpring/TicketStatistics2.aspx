@@ -12,7 +12,7 @@
                     日期
                 </td>
                 <td>
-                    销售总量
+                    派送总量
                 </td>
             </tr>
         </HeaderTemplate>

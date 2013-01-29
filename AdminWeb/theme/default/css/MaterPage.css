@@ -85,15 +85,7 @@
     font-size:14px;
     font-weight:bold;
 }
-a:link,a:visited, a:active
-{
-    text-decoration:none;
-    color:Black;
-}
-a:hover
-{
-    text-decoration:underline;
-}
+
 #pageMid
 {
     width:100%;
@@ -165,6 +157,7 @@ a:hover
     min-height:268px;
     _height:268px;
 }
+
 .highLightLink a,.highLightLink a:link,.highLightLink a:active,.highLightLink a:hover,.highLightLink a:visited
 {
     display:block;
