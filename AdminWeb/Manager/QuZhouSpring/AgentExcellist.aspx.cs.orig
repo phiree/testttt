@@ -55,6 +55,7 @@ public partial class Manager_QuZhouSpring_AgentExcellist : System.Web.UI.Page
         {
 
             Label lblName = e.Item.FindControl("lblName") as Label;
+<<<<<<< HEAD
             Label lblIdCardNo = e.Item.FindControl("lblIdCardNo") as Label;
             Label lblProductCode = e.Item.FindControl("lblProductCode") as Label;
             Label lblPhone = e.Item.FindControl("lblPhone") as Label;
@@ -68,6 +69,24 @@ public partial class Manager_QuZhouSpring_AgentExcellist : System.Web.UI.Page
             Button btn = e.Item.FindControl("btn") as Button;
             btn.Text = result;
             //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('"+result+"');", true);
+=======
+          Label lblIdCardNo = e.Item.FindControl("lblIdCardNo") as Label;
+          Label lblProductCode = e.Item.FindControl("lblProductCode") as Label;
+          Label lblPhone = e.Item.FindControl("lblPhone") as Label;
+          /*
+bool ismedia, string clientFriendlyId, TourMembership member, string assignName, string idcardno, string phone, string ticketCode, int amount)
+      {
+           */
+          string result=  bllqzseller.SellTicket(true,zhejiangTourPartnerId
+            ,null,
+            lblName.Text.Trim(), lblIdCardNo.Text.Trim(), lblPhone.Text.Trim(), lblProductCode.Text.Trim(), 1);
+        Button btn = e.Item.FindControl("btn") as Button;
+        btn.Text = result;
+            BLL.TourLog.LogInstance.Info(string.Format("{0},Card:{1},Ticket:{2}",result,lblIdCardNo.Text,lblProductCode.Text));
+        //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('"+result+"');", true);
+            
+
+>>>>>>> 453edd5f1ee10fddcce52f442dc59c294abfb1bd
         }
     }
     private void getTicketslist()

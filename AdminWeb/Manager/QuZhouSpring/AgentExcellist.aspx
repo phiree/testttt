@@ -7,6 +7,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:Button Text="按一下" runat="server" onclick="btnInput_Click" /><br />
+    <asp:Label ID="lblresult" Text="text" runat="server" />
+    <hr />
     <asp:Repeater runat="server" ID="rptTaList" OnItemCommand="rptTaList_ItemCommand">
     <HeaderTemplate>
     <table>
