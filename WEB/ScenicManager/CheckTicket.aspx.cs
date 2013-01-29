@@ -73,42 +73,42 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     }
 
 
-    /// <summary>
-    /// 为前台autocomplete插件做的ajax方法
-    /// </summary>
-    /// <param name="scid">景区id</param>
-    /// <returns></returns>
-    [WebMethod]
-    public static string GetAllHints(string scid)
-    {
-        Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
-        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s,true);
-        //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
-        List<DJ_Workers> listdjGW = new BLLDJTourGroup().GetTourGroupByTeId(s.Id).ToList();
-        foreach (DJ_Workers gw in listdjGW)
-        {
-            //排除以后的人员信息
-            if (list.Where(x => x.IdCard == gw.IDCard).Count() == 0)
-            {
-                TicketAssign ta = new TicketAssign();
-                ta.Name = gw.Name;
-                ta.IdCard = gw.IDCard;
-                list.Add(ta);
-            }
-        }
-        Dictionary<string, string> data = new Dictionary<string, string>();
-        foreach (TicketAssign item in list)
-        {
-            //这里的key是真实身份证号，val是带*身份证号
-            data.Add(item.Name+"/"+item.IdCard,item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
-        }
-        DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
-        using (MemoryStream ms = new MemoryStream())
-        {
-            serializer.WriteObject(ms, data);
-            return System.Text.Encoding.UTF8.GetString(ms.ToArray());
-        }
-    }
+    ///// <summary>
+    ///// 为前台autocomplete插件做的ajax方法
+    ///// </summary>
+    ///// <param name="scid">景区id</param>
+    ///// <returns></returns>
+    //[WebMethod]
+    //public static string GetAllHints(string scid)
+    //{
+    //    Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
+    //    List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s,true);
+    //    //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
+    //    List<DJ_Workers> listdjGW = new BLLDJTourGroup().GetTourGroupByTeId(s.Id).ToList();
+    //    foreach (DJ_Workers gw in listdjGW)
+    //    {
+    //        //排除以后的人员信息
+    //        if (list.Where(x => x.IdCard == gw.IDCard).Count() == 0)
+    //        {
+    //            TicketAssign ta = new TicketAssign();
+    //            ta.Name = gw.Name;
+    //            ta.IdCard = gw.IDCard;
+    //            list.Add(ta);
+    //        }
+    //    }
+    //    Dictionary<string, string> data = new Dictionary<string, string>();
+    //    foreach (TicketAssign item in list)
+    //    {
+    //        //这里的key是真实身份证号，val是带*身份证号
+    //        data.Add(item.Name+"/"+item.IdCard,item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
+    //    }
+    //    DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
+    //    using (MemoryStream ms = new MemoryStream())
+    //    {
+    //        serializer.WriteObject(ms, data);
+    //        return System.Text.Encoding.UTF8.GetString(ms.ToArray());
+    //    }
+    //}
     #endregion
 
     #region event
@@ -124,7 +124,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         string name = hfdata.Value.Split('/')[0];
         string idcard = hfdata.Value.Split('/')[1];
         int flag = 0;
-        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic,true).Where(x => x.Name == name))
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname(name, idcard, CurrentScenic,false).Where(x => x.Name == name))
         {
             if (item.IdCard == idcard)
             {
@@ -161,7 +161,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         string name = hfselectname.Value;
         string idcard = hfselectidcard.Value;
         int flag = 0;
-        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic,true).Where(x => x.Name == name))
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname(name, idcard, CurrentScenic,false).Where(x => x.Name == name))
         {
             if (item.IdCard == idcard)
             {
