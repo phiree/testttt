@@ -4,7 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
-    <asp:Repeater runat="server" ID="rptStatic">
+    <asp:Repeater runat="server" ID="rptStatic"
+        onitemdatabound="rptStatic_ItemDataBound">
         <HeaderTemplate>
             <table>
                 <tr>
@@ -29,11 +30,20 @@
                     <%# ((object[])Container.DataItem)[1].ToString() %>
                 </td>
                 <td>
-                    <%# ((object[])Container.DataItem)[3].ToString() %>
+                    <asp:Label ID="lblnum" text='<%# ((object[])Container.DataItem)[3].ToString() %>' runat="server" />
                 </td>
             </tr>
         </ItemTemplate>
         <FooterTemplate>
+            <tr>
+                <td>
+                    总计
+                </td>
+                <td></td>
+                <td>
+                    <asp:Label ID="lbltotal" Text="总计数量" runat="server" />
+                </td>
+            </tr>
             </table></FooterTemplate>
     </asp:Repeater>
 </asp:Content>
