@@ -4,8 +4,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+<<<<<<< HEAD
     <title></title> master
 </head>
+=======
+    <title></title>
+</head>quzhou
+>>>>>>> origin/quzhou
 <body>
     <form id="form1" runat="server">
     <div>
