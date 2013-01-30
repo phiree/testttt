@@ -69,6 +69,7 @@ bool ismedia, string clientFriendlyId, TourMembership member, string assignName,
             lblName.Text.Trim(), lblIdCardNo.Text.Trim(), lblPhone.Text.Trim(), lblProductCode.Text.Trim(), 1);
         Button btn = e.Item.FindControl("btn") as Button;
         btn.Text = result;
+            BLL.TourLog.LogInstance.Info(string.Format("{0},Card:{1},Ticket:{2}",result,lblIdCardNo.Text,lblProductCode.Text));
         //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "", "alert('"+result+"');", true);
             
 
