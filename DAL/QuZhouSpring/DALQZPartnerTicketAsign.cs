@@ -7,7 +7,7 @@ using Model;
 
 namespace DAL
 {
-    public class DALQZPartnerTicketAsign:DalBase<QZPartnerTicketAsign>
+    public class DALQZPartnerTicketAsign : DalBase<QZPartnerTicketAsign>
     {
         public QZPartnerTicketAsign GetOne(DateTime dateTime, string PartnerFriendlyId, string ProductCode)
         {
@@ -16,6 +16,35 @@ namespace DAL
             sql += " and qz.Partner.FriendlyId='" + PartnerFriendlyId + "' ";
             sql += " and qz.QZTicketAsign.Ticket.ProductCode='" + ProductCode + "'";
             return GetOneByQuery(sql);
+        }
+        //合作商 某个景区 总分配数量,总派发数量
+        public int[] GetTotalAssignAndSold(string partnerId, string ticketCode)
+        {
+           // List<int> result = new List<int>();
+            string sql = @"select SUM(a.AsignedAmount)as totalAssigned, SUM(a.SoldAmount) as totalSold 
+                            from QZPartnerTicketAsign a, QZTicketAsign b ,QZSpringPartner c
+                            where a.QZTicketAsign_id=b.id     and a.Partner_id=c.Id 
+                            and c.FriendlyId='" + partnerId + "' and b.ProductCode='"
+                                               +ticketCode+"' group by a.Partner_id,b.ProductCode";
+
+            var result1 = session.CreateSQLQuery(sql).UniqueResult<object[]>();
+            if (result1 == null || result1.Length !=2)
+            {
+                return new int[]{-1,-1};
+                //result.Add(-1);
+                //result.Add(-1);
+            }
+
+            else 
+            {
+                int totalAssign =Convert.ToInt32( result1[0]);
+                int totalSold = Convert.ToInt32(result1[1]);
+                //result.Add(totalAssign);
+                //result.Add(totalSold);
+                int[] a = {totalAssign,totalSold };
+                return a;
+            }
+           
         }
     }
 }

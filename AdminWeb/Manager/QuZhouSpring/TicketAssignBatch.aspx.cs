@@ -150,10 +150,13 @@ group by dj.Name,s.ScenicOrder,dj.id ,t.ProductCode order by s.ScenicOrder";
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
+          
             assignedAmount = 0;
             HiddenField hiFid = e.Item.FindControl("hiFid") as HiddenField;
             string friendlyId = hiFid.Value;
             Label lblPartnerPercent = e.Item.FindControl("lblPartnerPercent") as Label;
+            if (!DictPartnerPercent.ContainsKey(friendlyId))
+            { return; }
             lblPartnerPercent.Text = DictPartnerPercent[friendlyId].ToString();
             assignedAmount = Math.Ceiling((double)(Convert.ToDecimal(lblPartnerPercent.Text) * (decimal)partAmountForScenic / (decimal)100));
             Repeater rptDate = e.Item.FindControl("rptDate") as Repeater;

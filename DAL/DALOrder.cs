@@ -25,8 +25,8 @@ namespace DAL
             {
                 if (orderID != 0)
                 {
-                    sql = " select od from OrderDetail od where od.Order.Id=:orderID and od.Order.BuyTime>=convert(datetime,'" 
-                        + dbegin + "') and od.Order.BuyTime<=convert(datetime,'" + dend+"')";
+                    sql = " select od from OrderDetail od where od.Order.Id=:orderID and od.Order.BuyTime>=convert(datetime,'"
+                        + dbegin + "') and od.Order.BuyTime<=convert(datetime,'" + dend + "')";
                     query = session.CreateQuery(sql);
                     query.SetParameter("orderID", orderID);
                 }
@@ -68,7 +68,7 @@ namespace DAL
                 if (orderID != 0)
                 {
                     sql = " select od from OrderDetail od where od.Order.Id=:orderID and od.Order.IsPaid=:isPaid  and od.Order.BuyTime>=convert(datetime,'"
-                        + dbegin + "') and od.Order.BuyTime<=convert(datetime,'" + dend+"')";
+                        + dbegin + "') and od.Order.BuyTime<=convert(datetime,'" + dend + "')";
                     query = session.CreateQuery(sql);
                     query.SetParameter("orderID", orderID);
                     query.SetParameter("isPaid", isPaid);
@@ -144,7 +144,7 @@ namespace DAL
         {
             string sql = "select od from OrderDetail od where od.TicketPrice.Ticket.Scenic.Id=" + scenicid
                 + " and od.Order.PayTime>=convert(datetime,'" + dateBegin
-                + "') and od.Order.PayTime<=convert(datetime,'" + dateEnd+"')";
+                + "') and od.Order.PayTime<=convert(datetime,'" + dateEnd + "')";
             IQuery query = session.CreateQuery(sql);
             IList<OrderDetail> temp = query.Future<Model.OrderDetail>().ToList();
             return temp;
@@ -156,7 +156,7 @@ namespace DAL
                 + " and od.Order.PayTime>" + dateBegin
                 + " and od.Order.PayTime<" + dateEnd
             + " and od.Order.IsPaid=1";
-            
+
 
             string sql = "select od from OrderDetail od " + where;
             IQuery query = session.CreateQuery(sql);
@@ -197,12 +197,67 @@ namespace DAL
 
         public IList<object[]> GetDaysOrderTotal()
         {
-            string sql = "select od.BuyTime,COUNT(*) "+
-"from TicketAssign ta, OrderDetail detail,[Order] od ,DJ_TourEnterprise dj,TicketPrice tp,Ticket t "+
-"where ta.OrderDetail_id =detail.Id and detail.Order_id=od.Id "+
-"and detail.TicketPrice_id=tp.Id and tp.Ticket_id=t.Id and t.Scenic_id=dj.Id group by od.BuyTime";
-            IQuery query = session.CreateSQLQuery(sql);
+            string timeUnit = "100";
+            string sql = "select CONVERT(VARCHAR(" + timeUnit + "), od.BuyTime, 102) timeUnit,count(*) count " +
+"from TicketAssign ta, OrderDetail detail,[Order] od ,DJ_TourEnterprise dj,TicketPrice tp,Ticket t " +
+"where ta.OrderDetail_id =detail.Id and detail.Order_id=od.Id " +
+"and detail.TicketPrice_id=tp.Id and tp.Ticket_id=t.Id and t.Scenic_id=dj.Id group by CONVERT(VARCHAR(" + timeUnit + "), od.BuyTime, 102)";
+            var query = session.CreateSQLQuery(sql)
+                .AddScalar("timeUnit", NHibernateUtil.String)
+                .AddScalar("count", NHibernateUtil.Int32);
             return query.List<object[]>();
+        }
+
+        public IList<object[]> GetDateOrderTotal(string datetime)
+        { 
+            string timeUnit = "100";
+            string sql = "select CONVERT(VARCHAR(" + timeUnit + "), od.BuyTime, 102) timeUnit,dj.Name djname,s.ScenicOrder so,COUNT(*) count " +
+    "from TicketAssign ta, OrderDetail detail,[Order] od ,DJ_TourEnterprise dj,TicketPrice tp,Ticket t,Scenic s " +
+    "where ta.OrderDetail_id =detail.Id and detail.Order_id=od.Id "+
+    "and detail.TicketPrice_id=tp.Id and tp.Ticket_id=t.Id and t.Scenic_id=dj.Id and s.DJ_TourEnterprise_id=dj.Id " +
+    "group by dj.Name,s.ScenicOrder , CONVERT(VARCHAR(" + timeUnit + "), od.BuyTime, 102) " +
+    "order by s.ScenicOrder ";
+            var query = session.CreateSQLQuery(sql)
+                .AddScalar("timeUnit", NHibernateUtil.String)
+                .AddScalar("djname", NHibernateUtil.String)
+                .AddScalar("so", NHibernateUtil.Int32)
+                .AddScalar("count", NHibernateUtil.Int32);
+            var result1=query.List<object[]>();
+            IList<object[]> result2 = new List<object[]>();
+            foreach (var item in result1)
+            {
+                if (item[0].ToString() == datetime)
+                {
+                    result2.Add(item);
+                }
+            }
+            return result2;
+        }
+
+        public IList<object[]> GetDaysScenicOrderTotal(string scenicname)
+        {
+            string timeUnit = "100";
+            string sql = "select CONVERT(VARCHAR(" + timeUnit + "), od.BuyTime, 102) timeUnit,dj.Name djname,s.ScenicOrder so,COUNT(*) count " +
+    "from TicketAssign ta, OrderDetail detail,[Order] od ,DJ_TourEnterprise dj,TicketPrice tp,Ticket t,Scenic s " +
+    "where ta.OrderDetail_id =detail.Id and detail.Order_id=od.Id " +
+    "and detail.TicketPrice_id=tp.Id and tp.Ticket_id=t.Id and t.Scenic_id=dj.Id and s.DJ_TourEnterprise_id=dj.Id " +
+    "group by dj.Name,s.ScenicOrder , CONVERT(VARCHAR(" + timeUnit + "), od.BuyTime, 102) " +
+    "order by s.ScenicOrder ";
+            var query = session.CreateSQLQuery(sql)
+                .AddScalar("timeUnit", NHibernateUtil.String)
+                .AddScalar("djname", NHibernateUtil.String)
+                .AddScalar("so", NHibernateUtil.Int32)
+                .AddScalar("count", NHibernateUtil.Int32);
+            var result1 = query.List<object[]>();
+            IList<object[]> result2 = new List<object[]>();
+            foreach (var item in result1)
+            {
+                if (item[1].ToString() == scenicname)
+                {
+                    result2.Add(item);
+                }
+            }
+            return result2;
         }
     }
 }
