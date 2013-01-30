@@ -17,7 +17,7 @@ public partial class Manager_QuZhouSpring_TicketAssignBatch : System.Web.UI.Page
     //合作伙伴比例(总数为100
     Dictionary<string, int> DictPartnerPercent = new Dictionary<string, int>();
     //开始几天的倍数
-    int[] peishuForStartDates = { 3, 2 };
+    int[] peishuForStartDates = { 1, 1 };
     DALQZSpringPartner dalPartner = new DALQZSpringPartner();
     int partsAmount;
     protected void Page_Load(object sender, EventArgs e)
@@ -29,8 +29,8 @@ public partial class Manager_QuZhouSpring_TicketAssignBatch : System.Web.UI.Page
         {
             extraPart += (i - 1);
         }
-        partsAmount = Convert.ToInt32(DictAssign.Count + extraPart);
-        if (!IsPostBack)
+        partsAmount = Convert.ToInt32(dateList.Count + extraPart);
+        if (true)//!IsPostBack)
         {
             BindScenic();
 
@@ -45,23 +45,26 @@ public partial class Manager_QuZhouSpring_TicketAssignBatch : System.Web.UI.Page
     }
     private void InitDateList()
     {
-        for (int i = 0; i < 9; i++)
+        DateTime enddate=new DateTime(2013,2,6);
+        DateTime today = new DateTime(2013, 1, 30);
+        int lastDay=(int)(enddate-today).TotalDays;
+        for (int i = 0; i < lastDay ; i++)
         {
             dateList.Add(DateTime.Now.Date.AddDays(i));
         }
     }
     private void InitPartnerPercentDict()
     {
+        DictPartnerPercent.Clear();
         string tourolId = "tourol.cn";
         string xxzdid = "9c815efa-402a-40ce-860b-c0fa37f707eb";
-        if (!DictPartnerPercent.ContainsKey(tourolId))
-        {
+     
             DictPartnerPercent.Add(tourolId, 33);
-        }
-        if (!DictPartnerPercent.ContainsKey(xxzdid))
-        {
+   
             DictPartnerPercent.Add(xxzdid, 67);
-        }
+            DictPartnerPercent.Add("meiti", 0);
+            DictPartnerPercent.Add("taizhou", 0);
+       
     }
 
     private void InitSoldAmountDict()
@@ -82,7 +85,7 @@ public partial class Manager_QuZhouSpring_TicketAssignBatch : System.Web.UI.Page
 
         string 卧龙山庄 = "c86157c5-5116-48a7-ac48-b455fb905bc9";
         string 九坛沟景区 = "87a34131-bcff-4cf9-bba5-82e53a4fa9b9";
-        DictAssign.Add(江郎山风景名胜区, 4820);
+        DictAssign.Add(江郎山风景名胜区, 4720);
         DictAssign.Add(开化根雕博览园, 10690);
         DictAssign.Add(廿八都, 10690);
         DictAssign.Add(龙游石窟, 10690);

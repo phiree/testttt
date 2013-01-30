@@ -46,5 +46,15 @@ namespace DAL
             }
            
         }
+
+        public IList<QZPartnerTicketAsign> GetAllTicketAssignForPartner(string partnerCode, DateTime dateTime)
+        {
+            string sql = "select qz from QZPartnerTicketAsign qz where 1=1 ";
+            sql += " and qz.QZTicketAsign.Date='" + dateTime.ToString("yyyy-MM-dd") + "' ";
+            sql += " and qz.Partner.FriendlyId='" + partnerCode + "' ";
+            ;
+
+            return GetList(sql);
+        }
     }
 }

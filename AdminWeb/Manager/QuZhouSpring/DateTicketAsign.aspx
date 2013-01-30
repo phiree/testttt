@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
     <div class="detail_titlebg">
-        <asp:Literal Text="" ID="laDate" runat="server" />
+      <h2>媒体和台州的数量已经在1月29日设置好,其他日期只需要将它们的数量设置为1</h2>  <asp:Literal Text="" ID="laDate" runat="server" />
     </div>
     <div class="detaillist">
         <div class="detailtitle">

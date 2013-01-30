@@ -18,8 +18,7 @@ public class CheckTicketHandler : IHttpHandler {
         string sid = context.Request["sid"];
         
         List<string> test=new List<string>();
-        test.Add("12345");
-        test.Add("34567");
+       
         Dictionary<string, string> dic = GetList(term, sid);
         string jsonNames = CommonLibrary.JosnHelper.GetJson<Dictionary<string,string>>(dic);
 
@@ -30,6 +29,7 @@ public class CheckTicketHandler : IHttpHandler {
 
     private  Dictionary<string,string> GetList(string term,string scid)
     {
+        BLL.TourLog.LogInstance.Info("1");
         Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
         List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname(term,term, s,false);
         //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
@@ -44,7 +44,7 @@ public class CheckTicketHandler : IHttpHandler {
                 ta.IdCard = gw.IDCard;
                 list.Add(ta);
             }
-        }
+        } BLL.TourLog.LogInstance.Info("1");
         Dictionary<string, string> data = new Dictionary<string, string>();
         foreach (TicketAssign item in list)
         {

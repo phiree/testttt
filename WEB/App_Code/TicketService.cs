@@ -127,4 +127,16 @@ public class TicketService : System.Web.Services.WebService
             return "F|" + result;
         }
     }
+
+    /// <summary>
+    /// 获取所有门票的剩余票量
+    /// </summary>
+    /// <param name="partnerCode"></param>
+    /// <param name="date"></param>
+    /// <returns></returns>
+    [WebMethod]
+    public DataSet ProductInfoAll(string partnerCode,DateTime date)
+    {
+        return bllQzPartnerTicketAsign.ProductInfoAll(partnerCode, date);
+    }
 }

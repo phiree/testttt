@@ -49,7 +49,7 @@ function btnselect(obj) {
         $("#changeinfo").html("<div id='scdetailplate'>" + t + "</div>" + "<p id='plap'>" + "交通指南" + "</p>" + "<div id='plate1'>" + f + "</div>");
     }
     flag = 1;
-    showMap();
+   // showMap();
 }
 
 $(window).scroll(function () {
@@ -127,8 +127,8 @@ function gotocenter() {
         map.setZoom(map.getZoom());
     }                   
 }
-
-/*创建google自定义覆盖物*/
+/*
+//创建google自定义覆盖物
 function customOverlay_Large(map, options) {
     //初始化参数
     this._latlng = options.latlng; //设置图标位置
@@ -191,7 +191,7 @@ customOverlay_Large.prototype.onRemove = function () {
     this._div.parentNode.removeChild(this._div);
     this._div = null;
 }
-
+*/
 function getTicketCount() {
 
 
