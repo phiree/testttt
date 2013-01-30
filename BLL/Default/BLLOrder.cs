@@ -165,5 +165,21 @@ namespace BLL
         {
             return dal.GetDaysOrderTotal();
         }
+        /// <summary>
+        /// 获取某天所有景区销售
+        /// </summary>
+        /// <returns></returns>
+        public IList<object[]> GetDateOrderTotal(string datetime)
+        {
+            return dal.GetDateOrderTotal(datetime);
+        }
+        /// <summary>
+        /// 获取所有天某景区销售
+        /// </summary>
+        /// <returns></returns>
+        public IList<object[]> GetDaysScenicOrderTotal(string scenicname)
+        {
+            return dal.GetDaysScenicOrderTotal(scenicname);
+        }
     }
 }

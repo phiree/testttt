@@ -70,6 +70,11 @@ namespace DAL
         {
             string sql = "select ta.Name,ta.IdCard from TicketAssign ta where (ta.Name like '%" + name + "%' or ta.IdCard like '%" + idcard + "%') and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=0  group by ta.Name,ta.IdCard";
             IQuery query = session.CreateQuery(sql);
+            if (!IsAll)
+            {
+                query.SetFirstResult(0);
+                query.SetMaxResults(10);
+            }
             IList<Object[]> list;
             list = query.List<object[]>();
             List<TicketAssign> listticketassign = new List<TicketAssign>();

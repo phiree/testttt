@@ -29,29 +29,29 @@ public partial class qumobile_CheckTicket : basepage
     #endregion
 
     #region Init
-    /// <summary>
-    /// 为前台autocomplete插件做的ajax方法
-    /// </summary>
-    /// <param name="scid">景区id</param>
-    /// <returns></returns>
-    [WebMethod]
-    public static string GetAllHints(string scid)
-    {
-        Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
-        List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s,true);
-        Dictionary<string, string> data = new Dictionary<string, string>();
-        foreach (TicketAssign item in list)
-        {
-            //这里的key是真实身份证号，val是带*身份证号
-            data.Add(item.Name + "/" + item.IdCard, item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
-        }
-        DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
-        using (MemoryStream ms = new MemoryStream())
-        {
-            serializer.WriteObject(ms, data);
-            return System.Text.Encoding.UTF8.GetString(ms.ToArray());
-        }
-    }
+    ///// <summary>
+    ///// 为前台autocomplete插件做的ajax方法
+    ///// </summary>
+    ///// <param name="scid">景区id</param>
+    ///// <returns></returns>
+    //[WebMethod]
+    //public static string GetAllHints(string scid)
+    //{
+    //    Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
+    //    List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s,true);
+    //    Dictionary<string, string> data = new Dictionary<string, string>();
+    //    foreach (TicketAssign item in list)
+    //    {
+    //        //这里的key是真实身份证号，val是带*身份证号
+    //        data.Add(item.Name + "/" + item.IdCard, item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
+    //    }
+    //    DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
+    //    using (MemoryStream ms = new MemoryStream())
+    //    {
+    //        serializer.WriteObject(ms, data);
+    //        return System.Text.Encoding.UTF8.GetString(ms.ToArray());
+    //    }
+    //}
 
     
 
@@ -90,7 +90,7 @@ public partial class qumobile_CheckTicket : basepage
         string name = hfdata.Value.Split('/')[0];
         string idcard = hfdata.Value.Split('/')[1];
         int flag = 0;
-        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic,true).Where(x => x.Name == name))
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname(name, idcard, CurrentScenic,false).Where(x => x.Name == name))
         {
             if (item.IdCard == idcard)
             {

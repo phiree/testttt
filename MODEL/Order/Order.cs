@@ -119,7 +119,12 @@ namespace Model
             }
         }
 
-
+        public virtual string Datepart {
+            get
+            {
+                return BuyTime.Date.ToString();
+            }
+        }
     }
 
     public class MonthOrder
