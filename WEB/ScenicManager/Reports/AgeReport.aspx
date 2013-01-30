@@ -10,6 +10,7 @@
         <Series></Series>
         <ChartAreas>
             <asp:ChartArea BorderDashStyle="Dot" Name="ChartArea1" BorderColor="#FF9900" BackGradientStyle="TopBottom">
+            <AxisY Title="比例" ></AxisY>
             </asp:ChartArea>
         </ChartAreas>
     </asp:Chart>

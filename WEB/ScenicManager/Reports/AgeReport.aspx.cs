@@ -24,16 +24,22 @@ public partial class ScenicManager_Reports_AgeReport : bpScenicManager
     {
 
         Series se = new Series(seryName);
-        se.ChartType = SeriesChartType.Column;
+        se.ChartType = SeriesChartType.Bar;
+        se["CollectedToolTip"] = "Other";
+        se["CollectedThreshold"] = "1";
+        se.AxisLabel = "$PERCENT";
         se.MarkerStep =1;
         // se.ChartType = SeriesChartType.Column;
-        se.XValueType = ChartValueType.String;
+        se.XValueType = ChartValueType.String; se["PieLabelStyle"] = "Outside";
+       se.Label = "#PERCENT{P2}";
+   
 
         Chart1.ChartAreas["ChartArea1"].AxisX.Interval = 10;       // se.LabelFormat = "hh:mm:ss";
 
 
         //一个point 表示该series在某点的数据
-        se.IsValueShownAsLabel = true;
+      //  se.IsValueShownAsLabel = true;
+        
         se.Points.DataBindXY(pointValues.Keys, pointValues.Values);
 
         Chart1.Series.Clear();
