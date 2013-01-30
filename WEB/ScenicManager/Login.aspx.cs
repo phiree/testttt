@@ -11,6 +11,7 @@ using Model;
 public partial class AdminDefault :basepage
 {
     BLLScenic bllscenic = new BLLScenic();
+    BLLMembership bllMembership = new BLLMembership();
     TourMembershipProvider tourmembership = new TourMembershipProvider();
    protected void Page_Load(object sender, EventArgs e)
     {
@@ -46,6 +47,10 @@ public partial class AdminDefault :basepage
 
     protected void Login1_LoggedIn(object sender, EventArgs e)
     {
+        TourMembership tourMembership = bllMembership.GetMember(Login1.UserName);
+        tourMembership.loginCount += 1;
+        tourMembership.lastLogin = DateTime.Now;
+        bllMembership.Update(tourMembership);
         ValidPermission();
     }
 

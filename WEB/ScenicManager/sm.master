@@ -83,6 +83,7 @@
                 </div>
                 <div id="checkBlock" runat="server">
                     <li><span>景区验票</span></li>
+                    <li runat="server" id="cancelTa"><a href="/ScenicManager/canelTa.aspx">取消验票</a></li>
                     <li><a href="/ScenicManager/CheckTicket.aspx">景区验票</a></li>
                 </div>
             </ul>

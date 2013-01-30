@@ -7,6 +7,10 @@ namespace Model
 {
     public class TourMembership
     {
+        public TourMembership()
+        {
+            RegistDate = DateTime.Now;
+        }
         public virtual Guid Id { get; set; }
         public virtual string Name { get; set; }
         public virtual string Password { get; set; }
@@ -18,6 +22,12 @@ namespace Model
         public virtual string IdCard { get; set; }
         public virtual string Email { get; set; }
         public virtual PermissionType PermissionType { get; set; }
+        //注册时间
+        public virtual DateTime RegistDate { get; set; }
+        //登录次数
+        public virtual int loginCount { get; set; }
+        //最后一次登录时间
+        public virtual DateTime lastLogin { get; set; }
     }
     public enum Opentype
     {

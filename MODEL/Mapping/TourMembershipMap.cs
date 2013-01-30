@@ -21,6 +21,9 @@ namespace Model.Mapping
             Map(x => x.IdCard);
             Map(x => x.Email);
             Map(x => x.PermissionType).CustomType<int>();
+            Map(x => x.RegistDate);
+            Map(x => x.loginCount);
+            Map(x => x.lastLogin);
         }
     }
 }
