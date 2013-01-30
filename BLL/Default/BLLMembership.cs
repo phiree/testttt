@@ -38,7 +38,10 @@ namespace BLL
                 IdCard = idcard,
                 Name = loginname,
                 Password = encryptedPwd,
-                Email = email
+                Email = email,
+                RegistDate=DateTime.Now,
+                loginCount=1,
+                lastLogin=DateTime.Now
             };
             CreateUpdateMember(user);
             return user;

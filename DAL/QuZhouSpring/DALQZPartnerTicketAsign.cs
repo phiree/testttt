@@ -21,14 +21,14 @@ namespace DAL
         public int[] GetTotalAssignAndSold(string partnerId, string ticketCode)
         {
            // List<int> result = new List<int>();
-            string sql = @"select SUM(a.AsignedAmount)as totalAssigned, SUM(a.SoldAmount) as totalSold, a.Partner_id,b.ProductCode
-                            from QZPartnerTicketAsign a, QZTicketAsign b
-                            where a.QZTicketAsign_id=b.id 
-                            and 
-                            group by a.Partner_id,b.ProductCode";
+            string sql = @"select SUM(a.AsignedAmount)as totalAssigned, SUM(a.SoldAmount) as totalSold 
+                            from QZPartnerTicketAsign a, QZTicketAsign b ,QZSpringPartner c
+                            where a.QZTicketAsign_id=b.id     and a.Partner_id=c.Id 
+                            and c.FriendlyId='" + partnerId + "' and b.ProductCode='"
+                                               +ticketCode+"' group by a.Partner_id,b.ProductCode";
 
             var result1 = session.CreateSQLQuery(sql).UniqueResult<object[]>();
-            if (result1 != null || result1.Length !=2)
+            if (result1 == null || result1.Length !=2)
             {
                 return new int[]{-1,-1};
                 //result.Add(-1);
@@ -38,7 +38,7 @@ namespace DAL
             else 
             {
                 int totalAssign =Convert.ToInt32( result1[0]);
-                int totalSold = Convert.ToInt32(result1[0]);
+                int totalSold = Convert.ToInt32(result1[1]);
                 //result.Add(totalAssign);
                 //result.Add(totalSold);
                 int[] a = {totalAssign,totalSold };

@@ -56,41 +56,49 @@ public partial class ScenicManager_sm : System.Web.UI.MasterPage
                     this.adminBlock.Style.Add("display", "block");
                     this.checkBlock.Style.Add("display", "none");
                     this.accountBlock.Style.Add("display", "none");
+                    cancelTa.Visible = false;
                     break;
                 case 2:
                     this.adminBlock.Style.Add("display", "none");
                     this.checkBlock.Style.Add("display", "block");
                     this.accountBlock.Style.Add("display", "none");
+                    cancelTa.Visible = false;
                     break;
                 case 4:
                     this.adminBlock.Style.Add("display", "none");
                     this.checkBlock.Style.Add("display", "none");
                     this.accountBlock.Style.Add("display", "block");
+                    cancelTa.Visible = false;
                     break;
                 case 3:
                     this.adminBlock.Style.Add("display", "block");
                     this.checkBlock.Style.Add("display", "block");
                     this.accountBlock.Style.Add("display", "none");
+                    cancelTa.Visible = false;
                     break;
                 case 5:
                     this.adminBlock.Style.Add("display", "block");
                     this.checkBlock.Style.Add("display", "none");
                     this.accountBlock.Style.Add("display", "block");
+                    cancelTa.Visible = false;
                     break;
                 case 6:
                     this.adminBlock.Style.Add("display", "none");
                     this.checkBlock.Style.Add("display", "block");
                     this.accountBlock.Style.Add("display", "block");
+                    cancelTa.Visible = false;
                     break;
                 case 7:
                     this.adminBlock.Style.Add("display", "block");
                     this.checkBlock.Style.Add("display", "block");
                     this.accountBlock.Style.Add("display", "block");
+                    cancelTa.Visible = true;
                     break;
                 default:
                     this.adminBlock.Style.Add("display", "none");
                     this.checkBlock.Style.Add("display", "none");
                     this.accountBlock.Style.Add("display", "none");
+                    cancelTa.Visible = false;
                     break;
             }
         }
