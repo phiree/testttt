@@ -87,14 +87,17 @@ public partial class Manager_QuZhouSpring_AgentExcellist : System.Web.UI.Page
 
         for (var i = 0; i < dt.Rows.Count; i++)
         {
-            sb.AppendLine("<br/>" + dt.Rows[i][0].ToString()+"    "+ dt.Rows[i][1].ToString() +"    "+ dt.Rows[i][2].ToString()+"    ");
             string result = bllqzseller.SellTicket(true, zhejiangTourPartnerId, null,
                                       dt.Rows[i][1].ToString().Replace("\n", "").Trim(),//姓名
                                       dt.Rows[i][2].ToString().Replace("\n", "").Trim(),//身份证号码
                                       dt.Rows[i][3].ToString().Replace("\n", "").Trim(),//手机号码
                                       dt.Rows[i][4].ToString().Replace("\n", "").Trim(),//ticketcode
                                       1);
-            sb.AppendLine(result);
+            if (result != "T")
+            {
+                sb.AppendLine("<br/>" + dt.Rows[i][0].ToString() + "    " + dt.Rows[i][1].ToString() + "    " + dt.Rows[i][2].ToString() + "    " + dt.Rows[i][3].ToString() + "    ");
+                sb.AppendLine(result);
+            }
         }
         lblresult.Text = sb.ToString();
     }
