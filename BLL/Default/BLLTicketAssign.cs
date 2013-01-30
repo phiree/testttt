@@ -103,6 +103,10 @@ namespace BLL
         {
             return Iticketassign.GetTaByIdCardHasProductCode(idcard);
         }
+        public IList<object[]> GetTaByIdCardHasProductCodeBySql(string idcard)
+        {
+            return Iticketassign.GetTaByIdCardHasProductCodeBySql(idcard);
+        }
         public IList<TicketAssign> GetTaByIdcardandscenic(string idcard, Scenic scenic)
         {
             return Iticketassign.GetTaByIdcardandscenic(idcard, scenic);

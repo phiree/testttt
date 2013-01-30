@@ -45,67 +45,68 @@ namespace BLL
         /// <returns></returns>
         public string SellTicket(bool ismedia, string clientFriendlyId, TourMembership member, string assignName, string idcardno, string phone, string ticketCode, int amount)
         {
-
-
-            int nowHour = DateTime.Now.Hour;
-            if (!ismedia)
+            lock (this)
             {
-                if (nowHour < 10)
+                int nowHour = DateTime.Now.Hour;
+                if (!ismedia)
                 {
-                    return "F|亲,十点以后才可以抢票哦~";
+                    if (nowHour < 10)
+                    {
+                        return "F|亲,十点以后才可以抢票哦~";
+                    }
+
                 }
-
-            }
-            string returnMsg = "T";
-            //身份证号码验证
-            string checkIdCardNoErrMsg;
-            bool idcardnoValid = CommonLibrary.StringHelper.CheckIDCard(idcardno, out checkIdCardNoErrMsg);
-            if (!idcardnoValid)
-            {
-                return "F|" + checkIdCardNoErrMsg;
-            }
-            DateTime nowDay = DateTime.Now.Date; 
-            QZPartnerTicketAsign partnerAsign = bllQZPartnerTicketAsign.GetOne(nowDay, clientFriendlyId, ticketCode);//todo: 获取 某日期 某个门票 的票数分配情况
-            if (partnerAsign == null)
-            {
-                return "F|没有查到对应的门票";
-            }
-            Guid requestGUID = Guid.NewGuid();
-            TourLog.LogInstance.Info(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", clientFriendlyId, idcardno, ticketCode, amount, phone, requestGUID));
-            string validErrMsg;
-            bool isValid = ValidateRequst(partnerAsign, amount, idcardno, ticketCode, out validErrMsg);
-            if (!isValid)
-            {
-                return "F|" + validErrMsg;
-            }
-            if (member == null)
-            {
-                 member = bllMembership.GetMember(idcardno);
-
+                string returnMsg = "T";
+                //身份证号码验证
+                string checkIdCardNoErrMsg;
+                bool idcardnoValid = CommonLibrary.StringHelper.CheckIDCard(idcardno, out checkIdCardNoErrMsg);
+                if (!idcardnoValid)
+                {
+                    return "F|" + checkIdCardNoErrMsg;
+                }
+                DateTime nowDay = DateTime.Now.Date;
+                QZPartnerTicketAsign partnerAsign = bllQZPartnerTicketAsign.GetOne(nowDay, clientFriendlyId, ticketCode);//todo: 获取 某日期 某个门票 的票数分配情况
+                if (partnerAsign == null)
+                {
+                    return "F|没有查到对应的门票";
+                }
+                Guid requestGUID = Guid.NewGuid();
+                TourLog.LogInstance.Info(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", clientFriendlyId, idcardno, ticketCode, amount, phone, requestGUID));
+                string validErrMsg;
+                bool isValid = ValidateRequst(partnerAsign, amount, idcardno, ticketCode, out validErrMsg);
+                if (!isValid)
+                {
+                    return "F|" + validErrMsg;
+                }
                 if (member == null)
                 {
-                    //创建用户
-                    member = bllMembership.CreateUser2("衢州门票派送参与者", phone, string.Empty, idcardno, idcardno, "123456", string.Empty);
-                }
-            }
-            //自动创建订单
-            Ticket currentTicket = bllTicket.GetByProductCode(ticketCode);
-            if (ismedia)
-            {
-                partnerAsign.Partner.Name = "媒体";
-            }
-            Order order = BuildOrderForQZ(member,assignName, idcardno, currentTicket, amount, partnerAsign.Partner.Name);
-            bllOrder.SaveOrUpdateOrder(order);
+                    member = bllMembership.GetMember(idcardno);
 
-            //3 该接入商该景区的已售门票+1
-            if (!ismedia)
-            {
-                partnerAsign.SoldAmount += amount;
+                    if (member == null)
+                    {
+                        //创建用户
+                        member = bllMembership.CreateUser2("衢州门票派送参与者", phone, string.Empty, idcardno, idcardno, "123456", string.Empty);
+                    }
+                }
+                //自动创建订单
+                Ticket currentTicket = bllTicket.GetByProductCode(ticketCode);
+                if (ismedia)
+                {
+                    partnerAsign.Partner.Name = "媒体";
+                }
+                Order order = BuildOrderForQZ(member, assignName, idcardno, currentTicket, amount, partnerAsign.Partner.Name);
+                bllOrder.SaveOrUpdateOrder(order);
+
+                //3 该接入商该景区的已售门票+1
+                if (!ismedia)
+                {
+                    partnerAsign.SoldAmount += amount;
+                }
+                bllQZPartnerTicketAsign.SaveOrUpdate(partnerAsign);
+                TourLog.LogInstance.Info(returnMsg);
+                TourLog.LogInstance.Info(requestGUID + "*********END********");
+                return returnMsg;
             }
-            bllQZPartnerTicketAsign.SaveOrUpdate(partnerAsign);
-            TourLog.LogInstance.Info(returnMsg);
-            TourLog.LogInstance.Info(requestGUID + "*********END********");
-            return returnMsg;
         }
         /// <summary>
         /// 该出票请求是否能够通过.
@@ -146,13 +147,25 @@ namespace BLL
             }
             else 
             {
-                IList<TicketAssign> gotTotalTicketsOfThisType = bllTicketAssign.GetTaByIdCardHasProductCode(idcardno);
-                if (gotTotalTicketsOfThisType.Count>=5|| gotTotalTicketsOfThisType.Where(x => x.OrderDetail.TicketPrice.Ticket.ProductCode == ticketCode).ToList().Count > 0)
+                IList<object[]> gotTotalTicketsOfThisType = bllTicketAssign.GetTaByIdCardHasProductCodeBySql(idcardno);
+                if (gotTotalTicketsOfThisType.Count>=5)
                 {
                     errMsg = "该身份证号码已经抢到足够票数,不能继续抢票"; 
                     return false;
-                }//该身份证已经抢到了这个门票
-
+                }
+                int i = 0;
+                foreach (var item in gotTotalTicketsOfThisType)
+                {
+                    if (item[0].ToString() == ticketCode)
+                    {
+                        i++;
+                    }
+                }
+                if (i > 0)
+                {
+                    errMsg = "该身份证号码已经抢到足够票数,不能继续抢票";
+                    return false;
+                }
             }
 
             return true;
