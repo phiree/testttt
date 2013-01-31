@@ -56,7 +56,7 @@
                     </asp:LoginView>
                     <asp:LoginStatus LoginText="登录" LogoutText="退出" LogoutPageUrl="/account/logout.aspx"
                         LogoutAction="Redirect" runat="server" ID="loginstatus" />
-                    |<a href="">帮助</a>
+                    |<a href="/About">帮助</a>
                 </div>
                 <div class="searchdiv">
                     <asp:TextBox runat="server" ClientIDMode="Static" ID="tbxKeywords">

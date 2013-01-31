@@ -26,24 +26,61 @@ public partial class ScenicManager_Reports_Default : bpScenicManager
         if (!Page.IsPostBack)
         {
             Dictionary<string, int> provinceData = bllIdcardReport.GetListForScenic("",CurrentScenic.Id, null, null, null, groupType, Convert.ToInt32(geCode));
-            BindChart("游客地理分布图", provinceData);
+            BindChart("游客地理分布图",BuildChartData(  provinceData));
         }
+    }
+
+    private Dictionary<string, int> BuildChartData(Dictionary<string, int> originalData)
+    {
+        Dictionary<string, int> modifiedPieData = new Dictionary<string, int>();
+        decimal totalAmount = 0;
+        string keyOfOther="其他";
+        foreach (KeyValuePair<string, int> pair in originalData)
+        {
+            totalAmount += pair.Value;
+        }
+        foreach (KeyValuePair<string, int> pair in originalData)
+        {
+            decimal percentOfThis = pair.Value / totalAmount;
+            if (percentOfThis < 0.01m)
+            {
+                if (modifiedPieData.ContainsKey(keyOfOther))
+                {
+                    modifiedPieData[keyOfOther] += pair.Value;
+                }
+                else
+                {
+                    modifiedPieData.Add(keyOfOther, pair.Value);
+                }
+            }
+            else
+            {
+                modifiedPieData.Add(pair.Key, pair.Value);
+             }
+        }
+        return modifiedPieData;
+
     }
     private void BindChart(string seryName, Dictionary<string, int> pointValues)
     {
 
         Series se = new Series(seryName);
-        se.ChartType = SeriesChartType.Bar;
+        se.ChartType = SeriesChartType.Pie;
         // se.ChartType = SeriesChartType.Column;
         se.XValueType = ChartValueType.String;
-
-        Chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;       // se.LabelFormat = "hh:mm:ss";
-
-
+         
+        Chart1.ChartAreas["ChartArea1"].AxisX.Interval = 100;       // se.LabelFormat = "hh:mm:ss";
+        se["PieLabelStyle"] = "Outside";
+        se.Label = "#PERCENT";
+        se.LegendText = "#VALX";
+        se["CollectedToolTip"] = "Other";
+        se["CollectedThreshold"] = "1";
+        Chart1.Legends[0].DockedToChartArea = "ChartArea1";
         //一个point 表示该series在某点的数据
         se.IsValueShownAsLabel = true;
         se.Points.DataBindXY(pointValues.Keys, pointValues.Values);
-
+       
+        Chart1.ChartAreas[0].AxisX.LineWidth = 0;
         Chart1.Series.Clear();
         Chart1.Series.Add(se);
     }
