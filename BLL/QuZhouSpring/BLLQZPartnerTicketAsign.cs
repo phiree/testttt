@@ -52,7 +52,7 @@ namespace BLL
         public DataSet ProductInfoAll(string partnerCode, DateTime date)
         {
             IList<Model.QZPartnerTicketAsign> assigns = dalqzPartnerTa.GetAllTicketAssignForPartner(partnerCode, date)
-                .OrderByDescending(x=>x.QZTicketAsign.Amount-x.SoldAmount).ToList();
+                .OrderByDescending(x=>x.AsignedAmount-x.SoldAmount).ToList();
 
              DataSet ds = new DataSet();
          
@@ -70,7 +70,7 @@ namespace BLL
                 dr[colScenicName] = ta.QZTicketAsign.Ticket.Scenic.Name;
               ;
                 dr[colProductCode] = ta.QZTicketAsign.Ticket.ProductCode;
-                dr[colLastAmount]=ta.QZTicketAsign.Amount-ta.SoldAmount;
+                dr[colLastAmount]=ta.AsignedAmount-ta.SoldAmount;
                 dt.Rows.Add(dr);
             }
             

@@ -133,7 +133,17 @@ public class TicketService : System.Web.Services.WebService
     /// </summary>
     /// <param name="partnerCode"></param>
     /// <param name="date"></param>
-    /// <returns></returns>
+    /// <returns>
+    /// <dataset>
+    ///     <datatable>
+    ///     <tr>
+    ///         <td>ScenicName(景区名称)</td>
+    ///         <td>ProductCode(门票代码)</td>
+    ///         <td>LastAmount(剩余数量)</td>
+    ///     </tr>    
+    /// </datatable>
+    /// </dataset>
+    /// </returns>
     [WebMethod]
     public DataSet ProductInfoAll(string partnerCode,DateTime date)
     {
