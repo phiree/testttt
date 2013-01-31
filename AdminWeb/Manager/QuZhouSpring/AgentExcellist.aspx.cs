@@ -49,7 +49,7 @@ public partial class Manager_QuZhouSpring_AgentExcellist : System.Web.UI.Page
     }
 
     //const string zhejiangTourPartnerId = "9c815efa-402a-40ce-860b-c0fa37f707eb";
-    const string zhejiangTourPartnerId = "taizhou";
+    const string zhejiangTourPartnerId = "szl";
     protected void rptTaList_ItemCommand(object sender, RepeaterCommandEventArgs e)
     {
         if (e.CommandName == "add")
