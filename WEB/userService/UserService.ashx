@@ -1,4 +1,4 @@
-﻿<%@ WebHandler Language="C#" Class="User" %>
+﻿<%@ WebHandler Language="C#" Class="UserService" %>
 
 using System;
 using System.Web;

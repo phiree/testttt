@@ -11,18 +11,24 @@ namespace Model
     public class ActivityTicketAssign
     {
         public virtual Guid Id { get; set; }
-        public ActivityPartner Partner { get; set; }
+        public virtual ActivityPartner Partner { get; set; }
         /// <summary>
         /// 总票数分配
         /// </summary>
-        public int DateAmount { get; set; }
+        public virtual int AssignedAmount { get; set; }
+        /// <summary>
+        /// 销售总数
+        /// </summary>
+        public virtual int SoldAmount { get; set; }
         /// <summary>
         /// 分配时间
         /// </summary>
-        public DateTime DateAssign { get; set; }
+        public virtual DateTime DateAssign { get; set; }
         /// <summary>
         /// 门票
         /// </summary>
-        public Ticket TicketInActivity { get; set; }
+        public virtual Ticket Ticket { get; set; }
+
+
     }
 }
