@@ -70,6 +70,7 @@
     <Compile Include="EnumHelper.cs" />
     <Compile Include="HTMLInfo.cs" />
     <Compile Include="HttpContextHelper.cs" />
+    <Compile Include="HttpPostHelp.cs" />
     <Compile Include="IdcardDict.cs" />
     <Compile Include="JosnHelper.cs" />
     <Compile Include="ListHelper.cs" />

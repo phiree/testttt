@@ -130,8 +130,9 @@ public partial class Scenic_Default : basepage
         rpttopic.DataSource = blltopic.GetStByscid(scenic.Id);
         rpttopic.DataBind();
 
-        //绑定套票
+        //绑定普通票
         IList<Ticket> listticket = bllticket.GetTp(scenic.Id);
+
         //衢州新春门票，的主门票productCode
         if (listticket.Count > 0)
             hfProductCode.Value = listticket[0].ProductCode;
@@ -221,7 +222,7 @@ public partial class Scenic_Default : basepage
             else
                 bindimglist += list[i].Position+"," +list[i].Name+ ":";
         }
-        bindimglist.Substring(0, bindimglist.Length - 1);
+       // bindimglist.Substring(0, bindimglist.Length - 1);
         imgcount=list.Count-1;
         introordertk.Visible = false;
     }

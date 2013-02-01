@@ -30,6 +30,11 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
     }
     protected void Login1_LoggedIn(object sender, EventArgs e)
     {
+        TourMembership tourMembership = bllMember.GetMember(Login1.UserName);
+        tourMembership.loginCount += 1;
+        tourMembership.lastLogin = DateTime.Now;
+        bllMember.Update(tourMembership);
+        BLL.BLLMembership bllMembership = new BLLMembership();
         MembershipUser member = (tourmembership.GetUser(Login1.UserName, true));
         if (member == null)
         {
@@ -41,5 +46,7 @@ public partial class Manager_AdminLogin : System.Web.UI.Page
         }
         else
             ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('用户名或密码错误');", true);
+
+        
     }
 }
