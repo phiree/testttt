@@ -13,6 +13,7 @@ namespace Model.Mapping
             Id(x => x.Id);
             References<Scenic>(x => x.Scenic);
             References<Ticket>(x => x.Ticket);
+            Map(x => x.IsUsed);
         }
     }
 }

@@ -14,7 +14,6 @@ using System.Text.RegularExpressions;
 
 public partial class ScenicManager_CheckTicket : bpScenicManager
 {
-    123
     #region 公共的参数
     BLLTicketAssign bllticketassign = new BLLTicketAssign();
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
