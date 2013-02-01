@@ -17,8 +17,9 @@
     <script src="/Scripts/CheckTicket.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d021" style=" height:0px;">
-    </object>
+    <OBJECT classid="clsid:10946843-7507-44FE-ACE8-2B3483D179B7"
+	  id="CVR_IDCard" name="CVR_IDCard" width="0" height="0" >
+</OBJECT>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <asp:HiddenField ID="hfscid" runat="server" />
@@ -231,11 +232,10 @@
     </div>
     <div style="padding-bottom:20px">
         <p class="wkintr">
-        身份证读卡器的驱动下载地址:<a href="/ScenicManager/身份证读卡器驱动程序.rar">下载地址</a>
+        身份证读卡器程序下载地址:<a href="/ScenicManager/CVR100U.rar">下载地址</a>
     </p>
     <p class="wkintr">
         首次进入该页面，请先下载身份证读卡器程序，安装到本地电脑后，打开IE浏览器，进入该页面后浏览器会提示是否运行该加载项，点击允许，即可使用：
-        <a href="/ScenicManager/IDCardSetup.msi">身份证读卡器程序下载</a>
     </p>
     </div>
 </asp:Content>

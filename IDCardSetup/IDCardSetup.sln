@@ -5,6 +5,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "IDCardSetup", "IDCardSetup.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDCardActiveX", "..\IDCardActiveX\IDCardActiveX.csproj", "{FAFA4775-E3BE-4925-ADE8-9F64A0B2EAC1}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "IDCardSetup2", "..\..\IDCardSetup2\IDCardSetup2.vdproj", "{91CBE2B9-B2E2-4C8E-B23A-E483BDD71763}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,9 @@ Global
 		{FAFA4775-E3BE-4925-ADE8-9F64A0B2EAC1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FAFA4775-E3BE-4925-ADE8-9F64A0B2EAC1}.tr|Any CPU.ActiveCfg = tr|Any CPU
 		{FAFA4775-E3BE-4925-ADE8-9F64A0B2EAC1}.tr|Any CPU.Build.0 = tr|Any CPU
+		{91CBE2B9-B2E2-4C8E-B23A-E483BDD71763}.Debug|Any CPU.ActiveCfg = Debug
+		{91CBE2B9-B2E2-4C8E-B23A-E483BDD71763}.Release|Any CPU.ActiveCfg = Release
+		{91CBE2B9-B2E2-4C8E-B23A-E483BDD71763}.tr|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

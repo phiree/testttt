@@ -140,14 +140,12 @@ function timedCount() {
     } 
 }
 function show() {
-    var a = document.getElementById('aaa');
-    a.OnTimer();
-    var strinfo = a.GetUserInfo();
-    var arrys = strinfo.split(',');
-    if (arrys.length > 8) {
-        if ($.cookie("idcard") != arrys[5]) {
-            $("[id$='txtinfo']").val(arrys[5]);
-            $.cookie("idcard", arrys[5]);
+    var CVR_IDCard = document.getElementById('CVR_IDCard');
+    var strReadResult = CVR_IDCard.ReadCard();
+    if (strReadResult=="0") {
+        if ($.cookie("idcard") != CVR_IDCard.CardNo) {
+            $("[id$='txtinfo']").val(CVR_IDCard.CardNo);
+            $.cookie("idcard", CVR_IDCard.CardNo);
             autobtn();
         }
         else {

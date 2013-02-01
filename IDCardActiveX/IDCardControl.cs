@@ -31,13 +31,17 @@ namespace IDCardActiveX
 
         #region dll 入口申明
 
-        [DllImport("termb.dll")]
+        //[DllImport("termb.dll")]
+        [DllImport("termb.dll", EntryPoint = "CVR_InitComm", CharSet = CharSet.Auto, SetLastError = false)]
         private static extern int InitComm(int port); //打开端口
-        [DllImport("termb.dll")]
+        [DllImport("termb.dll", EntryPoint = "CVR_CloseComm", CharSet = CharSet.Auto, SetLastError = false)]
+        //[DllImport("termb.dll")]
         private static extern int CloseComm(); //关闭端口
-        [DllImport("termb.dll")]
+        //[DllImport("termb.dll")]
+        [DllImport("termb.dll", EntryPoint = "CVR_Authenticate", CharSet = CharSet.Auto, SetLastError = false)]
         private static extern int Authenticate(); //卡认证
-        [DllImport("termb.dll")]
+        //[DllImport("termb.dll")]
+        [DllImport("termb.dll", EntryPoint = "CVR_Read_Content", CharSet = CharSet.Auto, SetLastError = false)]
         private static extern int Read_Content(int active); //读取卡
         [DllImport("termb.dll")]
         private static extern int Read_Content_Path(string cPath, int active); //读取卡
@@ -85,7 +89,7 @@ namespace IDCardActiveX
                 return;
             }
             //读卡
-            if (Read_Content_Path("D:\\", 1) != 1)
+            if (Read_Content(4) != 1)
             {
                 //MessageBox.Show("读卡失败!");
                 return;
