@@ -7,11 +7,11 @@ namespace Model
 {
    public  class ActivityPartner
     {
-       public Guid Id { get; set; }
-       public string Name { get; set; }
-       public string PartnerCode { get; set; }
-       public bool Enabled { get; set; }
-       public bool OnlyControlTotalAmount { get; set; }
-       public int AssignedAmount { get; set; }
+       public virtual Guid Id { get; set; }
+       public virtual string Name { get; set; }
+       public virtual string PartnerCode { get; set; }
+       public virtual bool Enabled { get; set; }
+       public virtual bool OnlyControlTotalAmount { get; set; }
+       public virtual int AssignedAmount { get; set; }
     }
 }

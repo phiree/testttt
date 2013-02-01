@@ -95,6 +95,7 @@
     <Compile Include="Mapping\TopicMap.cs" />
     <Compile Include="Mapping\OperationLogMap.cs" />
     <Compile Include="Dijieshe\DJ_Recommand.cs" />
+    <Compile Include="Mapping\TourActivity\ActivityPartnerMap.cs" />
     <Compile Include="QuZhouSpring\QZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\QZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\QZStatistics.cs" />
@@ -170,6 +171,8 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
     <Compile Include="Dijieshe\IProductSubServer.cs" />
+    <Compile Include="Mapping\TourActivity\ActivityTicketAssignMap.cs" />
+    <Compile Include="Mapping\TourActivity\TourActivityMap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
