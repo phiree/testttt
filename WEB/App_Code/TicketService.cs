@@ -98,6 +98,7 @@ public class TicketService : System.Web.Services.WebService
     ///       <dt>OrderTime 抢票时间</dt> 
     ///       <dt>IsUsed 是否已使用("true"或者 "false"</dt> 
     ///        <dt>ValidPeriod 有效期限(2013-02-01~2013-02-29)</dt>
+    ///         <dt>CheckDate(验票时间)</dt>
     ///     </dr>   
     /// </datatable>
     /// </returns>

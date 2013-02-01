@@ -148,11 +148,13 @@ namespace BLL
             string colOrderTime="OrderTime";
             string colIsUsed="IsUsed";
             string colValidPeriod="ValidPeriod";
+            string colCheckDate = "CheckDate";
             dt.Columns.Add(colScenicName);
             dt.Columns.Add(colProductCode);
             dt.Columns.Add(colOrderTime);
             dt.Columns.Add(colIsUsed);
             dt.Columns.Add(colValidPeriod);
+            dt.Columns.Add(colCheckDate);
 
             foreach (TicketAssign ta in gotTotalTicketsOfThisType)
             {
@@ -164,6 +166,7 @@ namespace BLL
                 dr[colValidPeriod] = ta.OrderDetail.TicketPrice.Ticket.BeginDate.Date 
                                     + "~" + ta.OrderDetail.TicketPrice.Ticket.EndDate.Date;
                 dr[colProductCode] = ta.OrderDetail.TicketPrice.Ticket.ProductCode;
+                dr[colCheckDate] = ta.UsedTime;
                 dt.Rows.Add(dr);
             
             }

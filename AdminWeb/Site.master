@@ -57,6 +57,15 @@
                             <li><a href="/manager/quzhouspring/TicketStatistics.aspx">门票分配总计</a></li>
                             <li><a href="/manager/quzhouspring/TicketStatistics2.aspx">门票派送统计</a></li>
                             <li><a href="/manager/quzhouspring/AgentExcellist.aspx">台州门票导入</a></li>
+                           
+                             <li><span>遂昌门票派送活动</span></li>
+                            <li><a href="/manager/SuiCang/ClientList.aspx">合作网站列表</a></li>
+                            <li><a href="/manager/SuiCang/TicketList.aspx">门票列表</a></li>
+                            <li><a href="/manager/SuiCang/DateSettings.aspx">门票分配</a></li>
+                            <li><a href="/manager/SuiCang/TicketStatistics.aspx">门票分配总计</a></li>
+                            <li><a href="/manager/SuiCang/TicketStatistics2.aspx">门票派送统计</a></li>
+                            <li><a href="/manager/SuiCang/AgentExcellist.aspx">台州门票导入</a></li>
+                         
                             <li><span>报表</span></li>
                             <li><a href="/Reports/">景区报表</a></li>
                             <li><span>地接社</span></li>

@@ -73,7 +73,7 @@ namespace DAL
             if (!IsAll)
             {
                 query.SetFirstResult(0);
-                query.SetMaxResults(10);
+                query.SetMaxResults(100);
             }
             IList<Object[]> list;
             list = query.List<object[]>();

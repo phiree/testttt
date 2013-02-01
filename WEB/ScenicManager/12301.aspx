@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm.master" AutoEventWireup="true"
-    CodeFile="CheckTicket.aspx.cs" Inherits="ScenicManager_CheckTicket" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ScenicManager/sm12301.master" AutoEventWireup="true"
+    CodeFile="12301.aspx.cs" Inherits="ScenicManager_CheckTicket" %>
 
-<%@ MasterType VirtualPath="~/ScenicManager/sm.master" %>
+<%@ MasterType VirtualPath="~/ScenicManager/sm12301.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
     <meta   http-equiv= "expires "   content= "0 ">   
     <meta   http-equiv= "cache-control "   content= "no-cache ">   
@@ -20,19 +20,17 @@
     <object id="aaa" classid="clsid:6c78bcd1-ac43-4fb9-8d89-d9f7b717d021" style=" height:0px;">
     </object>
     <script>
-      
-            $(function () {
+        $(function () {
+            $("<%=Btnckpass.ClientID %>").attr("disabled", "disabled");
+
+            $("<%=Btnckpass.ClientID %>").on(function () {
+                $("<%=Btnckpass.ClientID %>").attr("disabled", "");
+
+            });
+            $("<%=Btnckpass.ClientID %>").off(function () {
                 $("<%=Btnckpass.ClientID %>").attr("disabled", "disabled");
 
-                $("<%=Btnckpass.ClientID %>").on(function () {
-                    $("<%=Btnckpass.ClientID %>").attr("disabled", "");
-
-                });
-                $("<%=Btnckpass.ClientID %>").off(function () {
-                    $("<%=Btnckpass.ClientID %>").attr("disabled", "disabled");
-
-                });
-           
+            });
         });
     </script>
 </asp:Content>
@@ -130,7 +128,7 @@
                 </FooterTemplate>
             </asp:Repeater>
             <div class="yptg">
-                <asp:Button ID="Btnckpass" runat="server" CssClass="btnckpass" OnClick="Btnckpass_Click" style="display:block;float:left" />
+                <asp:Button Visible="false" Enabled="false" ID="Btnckpass" runat="server" CssClass="btnckpass" OnClick="Btnckpass_Click" style="display:block;float:left" />
                 <a runat="server" target="_blank" class="btnckprint" style="display:none;float:left" id="BtnPrint"></a>
                 <div style="clear:both"></div>
             </div>
