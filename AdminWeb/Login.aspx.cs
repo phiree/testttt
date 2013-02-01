@@ -9,7 +9,7 @@ using System.Web.Security;
 using BLL;
 public partial class Login2 : Page
 {
-
+    BLL.BLLMembership bllMembership = new BLLMembership();
     protected void Page_Load(object sender, EventArgs e)
     {
         
@@ -18,6 +18,7 @@ public partial class Login2 : Page
     BLLMembership bllMember = new BLLMembership();
     protected void democlick(object o, EventArgs e)
     {
+
         CommonLibrary.Notification.Show(this, "登录提示", "登录成功","");
         //ClientScript.RegisterClientScriptBlock(Page.GetType(), "pop",
         //                "$(function(){PopMsg('Iam here!',null,'/',true);});",true
@@ -51,6 +52,14 @@ public partial class Login2 : Page
         {
 
         }
+    }
+
+    protected void lg_LoggedIn(object sender, EventArgs e)
+    {
+        TourMembership tourMembership = bllMembership.GetMember(lg.UserName);
+        tourMembership.loginCount += 1;
+        tourMembership.lastLogin = DateTime.Now;
+        bllMembership.Update(tourMembership);
     }
   
 }

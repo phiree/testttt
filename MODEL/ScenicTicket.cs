@@ -10,5 +10,6 @@ namespace Model
         public virtual Guid Id {get;set;}
         public virtual Scenic Scenic {get;set;}
         public virtual Ticket Ticket {get;set;}
+
     }
 }
