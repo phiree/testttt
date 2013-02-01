@@ -79,6 +79,7 @@
                  <li><span>报表</span></li>
                     <li><a href="/ScenicManager/Reports/">游客来源地分析</a></li>
                     <li><a href="/ScenicManager/Reports/AgeReport.aspx">游客年龄段分析</a></li>
+                    <li><a href="/ScenicManager/checkTicketStatis.aspx">验票账单</a></li>
                
                 </div>
                 <div id="checkBlock" runat="server">
