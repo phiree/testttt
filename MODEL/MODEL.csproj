@@ -98,7 +98,9 @@
     <Compile Include="QuZhouSpring\QZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\QZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\QZStatistics.cs" />
-    <Compile Include="QuZhouSpring\QZTicketAsign.cs" />
+    <Compile Include="QuZhouSpring\QZTicketAsign.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ScenicMap.cs" />
     <Compile Include="Mapping\CommonUserMap.cs" />
     <Compile Include="Mapping\ContractImgMap.cs" />
@@ -143,6 +145,10 @@
     <Compile Include="Mapping\VoteMap.cs" />
     <Compile Include="TicketsType.cs" />
     <Compile Include="Topic.cs" />
+    <Compile Include="TourActivity\ActivityTicketAssign.cs" />
+    <Compile Include="TourActivity\IActivityRule.cs" />
+    <Compile Include="TourActivity\ActivityPartner.cs" />
+    <Compile Include="TourActivity\TourActivity.cs" />
     <Compile Include="TourMembership.cs" />
     <Compile Include="PreferentialCode.cs" />
     <Compile Include="PromotionStatic.cs" />

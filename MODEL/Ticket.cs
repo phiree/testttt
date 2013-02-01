@@ -57,6 +57,10 @@ namespace Model
         /// </summary>
         public virtual string ProductCode { get; set; }
         /// <summary>
+        /// 门票参加的活动
+        /// </summary>
+        public virtual TourActivity TourActivity { get; set; }
+        /// <summary>
         /// 获得某个类型的票价
         /// </summary>
         /// <param name="type"></param>
