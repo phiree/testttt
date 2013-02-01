@@ -11,8 +11,18 @@ namespace Model
     public class TourActivity : IActivityRule
     {
 
+        public TourActivity()
+        {
+            EndHour = 24;
+            Partners = new List<ActivityPartner>();
+            Tickets = new List<Ticket>();
+            ActivityTicketAssign = new List<ActivityTicketAssign>();
+        }
         public virtual Guid Id { get; set; }
         public virtual string Name { get; set; }
+        public virtual string ActivityCode { get; set; }
+        public virtual int BeginHour { get; set; }
+        public virtual int EndHour { get; set; }
         public virtual DateTime BeginDate { get; set; }
         public virtual DateTime EndDate { get; set; }
         /// <summary>
@@ -26,7 +36,7 @@ namespace Model
         //合作分票者
         public virtual IList<ActivityPartner> Partners { get; set; }
         //参与活动的门票
-        public virtual List<Ticket> Ticket { get; set; }
+        public virtual List<Ticket> Tickets { get; set; }
         //门票分配情况
         public virtual IList<ActivityTicketAssign> ActivityTicketAssign { get; set; }
         /// <summary>
@@ -70,7 +80,11 @@ namespace Model
 
         public virtual bool CheckBuyTime()
         {
-            return DateTime.Now >= BeginDate && DateTime.Now <= EndDate;
+            return DateTime.Now >= BeginDate && DateTime.Now < EndDate;
+        }
+        public virtual bool CheckBuyHour()
+        {
+            return DateTime.Now.Hour >= BeginHour && DateTime.Now.Hour < EndHour;
         }
 
         public virtual bool CheckUserAreas(string userArea)
