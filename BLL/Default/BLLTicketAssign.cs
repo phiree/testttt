@@ -237,5 +237,10 @@ namespace BLL
         {
             return Iticketassign.GetListByNameIdCardLike(term, scid);
         }
+
+        public IList<TicketAssign> GetListByTimeAndScenic(DateTime? beginDate, DateTime? endDate, Scenic s)
+        {
+            return Iticketassign.GetListByTimeAndScenic(beginDate, endDate, s);
+        }
     }
 }
