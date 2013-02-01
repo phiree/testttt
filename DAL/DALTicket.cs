@@ -136,5 +136,11 @@ namespace DAL
             session.Delete(t);
             session.Flush();
         }
+
+        public IList<Model.Ticket> GetListByMultitTicketCode(IList<string> ticketCodes)
+        {
+           return  session.QueryOver<Model.Ticket>()
+                .Where(x => ticketCodes.Contains(x.ProductCode)).List();
+        }
     }
 }

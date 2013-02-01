@@ -28,6 +28,7 @@ namespace Model
         /// 门票
         /// </summary>
         public virtual Ticket Ticket { get; set; }
+        public virtual TourActivity TourActivity { get; set; }
 
 
     }

@@ -12,6 +12,6 @@ namespace Model
        public virtual string PartnerCode { get; set; }
        public virtual bool Enabled { get; set; }
        public virtual bool OnlyControlTotalAmount { get; set; }
-       public virtual int AssignedAmount { get; set; }
+       public virtual TourActivity TourActivity { get; set; }
     }
 }

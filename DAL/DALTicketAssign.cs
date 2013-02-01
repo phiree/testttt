@@ -352,5 +352,26 @@ namespace DAL
             IQuery query = session.CreateQuery(sql);
             return query.Future<TicketAssign>().ToList<TicketAssign>();
         }
+
+        public IList<TicketAssign> GetListByIdcard_Ticket_Activity(string activitycode, string idcard, string ticketCode)
+        {
+            IQueryOver<TicketAssign,TicketAssign> iqueryover = session.QueryOver<TicketAssign>();
+            if (!string.IsNullOrEmpty(ticketCode))
+            {
+               iqueryover= iqueryover.Where(x => x.TicketCode == ticketCode);
+            }
+            if (!string.IsNullOrEmpty(idcard))
+            {
+              iqueryover=  iqueryover.Where(x => x.IdCard == idcard);
+            }
+            if (!string.IsNullOrEmpty(activitycode))
+            {
+                iqueryover = iqueryover.Where(x => x.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode == activitycode);
+            }
+            return iqueryover.List();
+
+        }
+
+        
     }
 }

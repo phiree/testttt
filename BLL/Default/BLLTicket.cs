@@ -283,6 +283,11 @@ namespace BLL
             return Iticket.GetByProductCode(productCode);
         }
 
+        public IList<Ticket> GetListByMultitTicketCode(IList<string> ticketCodes)
+        { 
+          return Iticket.GetListByMultitTicketCode(ticketCodes);
+        }
+
     }
 
     public class CartItem

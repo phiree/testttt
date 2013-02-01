@@ -238,9 +238,31 @@ namespace BLL
             return Iticketassign.GetListByNameIdCardLike(term, scid);
         }
 
+        
         public IList<TicketAssign> GetListByTimeAndScenic(DateTime? beginDate, DateTime? endDate, Scenic s)
         {
             return Iticketassign.GetListByTimeAndScenic(beginDate, endDate, s);
         }
+
+        //用户某活动中抢到的某门票的总票数
+        public IList<TicketAssign> GetListByActivity_Idcard_Ticket(string activitycode, string idcard, string ticketCode)
+        {
+            return Iticketassign.GetListByIdcard_Ticket_Activity(activitycode, idcard, ticketCode);
+        }
+        
+        public int GetAmountIdcardActivityTicket(string activitycode, string idcard, string ticketCode)
+        {
+            return GetListByActivity_Idcard_Ticket(activitycode, idcard, ticketCode).Count;
+        }
+       
+        public IList<TicketAssign> GetListByActivity_Idcard(string activitycode, string idcard)
+        {
+            return Iticketassign.GetListByIdcard_Ticket_Activity(activitycode, idcard,string.Empty);
+        }
+        //用户某活动中抢到的总票数
+        public int GetAmountActivityIdcard(string activitycode, string idcard)
+        {
+            return GetListByActivity_Idcard(activitycode, idcard).Count;
+        } 
     }
 }

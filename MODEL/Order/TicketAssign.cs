@@ -34,7 +34,7 @@ namespace Model
         /// <summary>
         /// 门票编码,冗余字段
         /// </summary>
-        public virtual string ticketCode { get; set; }
+        public virtual string TicketCode { get; set; }
     }
 
     public class checkticketassign

@@ -22,8 +22,6 @@ namespace BLL
                 dalBase = value;
             }
         }
-      
-      
         public T GetOne(object id)
         {
             return DalBase.GetOne(id);
@@ -53,7 +51,7 @@ namespace BLL
             return DalBase.GetList(where, pageIndex, pageSize, out totalRecord);
         }
     }
-
+    //to be used for bll factory
     public enum BLLName
     {
         BLLQZSpringPartner

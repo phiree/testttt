@@ -181,5 +181,21 @@ namespace BLL
         {
             return dal.GetDaysScenicOrderTotal(scenicname);
         }
+        /// <summary>
+        /// 自动创建多个订单.
+        /// </summary>
+        /// <param name="activityName"></param>
+        /// <param name="partnerCode"></param>
+        /// <param name="memberId"></param>
+        /// <param name="ticketList"></param>
+        /// <param name="idcardno"></param>
+        /// <param name="assignName"></param>
+        /// <param name="amount"></param>
+        /// <param name="errMsg"></param>
+        public void CreateMultiOrder(string activityName, string partnerCode, Guid memberId, IList<Ticket> ticketList, string idcardno, string assignName, int amount, out string errMsg)
+        {
+            
+            dal.CreateMultiOrder(activityName, partnerCode, memberId, ticketList, idcardno, assignName, amount, out errMsg);
+        }
     }
 }

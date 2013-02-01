@@ -48,9 +48,7 @@ namespace Model
         public virtual string AreasBlackList { get; set; }
         public virtual string AreasWhiteList { get; set; }
 
-
-
-
+        #region Irule implention
         public virtual bool HasEnoughAmount(int ticketId, string partnerCode, DateTime date, int requestAmount)
         {
          ActivityTicketAssign assign=   ActivityTicketAssign.Where(x => x.DateAssign == date 
@@ -64,19 +62,15 @@ namespace Model
 
         public virtual bool CheckIdCardAmountPerTicket(IList<TicketAssign> ticketAssigns, string idcard, string ticketCode, int amount)
         {
-            int taCount = ticketAssigns.Where(x => x.IdCard == idcard && x.ticketCode == ticketCode).Count();
+            int taCount = ticketAssigns.Where(x => x.IdCard == idcard && x.TicketCode == ticketCode).Count();
             return taCount + amount <= AmountPerIdcardTicket;
         }
-
-
 
         public virtual bool CheckIdCardAmountPerActivity(IList<TicketAssign> ticketAssigns, string idcard, int amount)
         {
             int taCount = ticketAssigns.Where(x => x.IdCard == idcard).Count();
             return taCount + amount <= AmountPerIdcardInActivity;
         }
-
-
 
         public virtual bool CheckBuyTime()
         {
@@ -98,7 +92,54 @@ namespace Model
                 return AreasWhiteList.Contains(userArea);
             }
         }
+        #endregion
 
+        #region Helper Method
+        /// <summary>
+        /// 某合作伙伴某天的门票情况
+        /// </summary>
+        /// <param name="partnerCode"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public IList<ActivityTicketAssign> GetActivityAssignForPartnerDate(string partnerCode, DateTime date)
+        {
+            return ActivityTicketAssign.Where(x => x.DateAssign == date && x.Partner.PartnerCode == partnerCode).ToList();
+        }
+        /// <summary>
+        /// 某门票某天的情况
+        /// </summary>
+        /// <param name="ticketCode"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public IList<ActivityTicketAssign> GetActivityAssignForTicketDate(string ticketCode, DateTime date)
+        {
+            return ActivityTicketAssign.Where(x => x.DateAssign == date && x.Ticket.ProductCode==ticketCode).ToList();
+        }
+        /// <summary>
+        /// 某合作商 某天 某门票的情况
+        /// </summary>
+        /// <param name="partnerCode"></param>
+        /// <param name="ticketCode"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public IList<ActivityTicketAssign> GetActivityAssignForPartnerTicketDate(string partnerCode,string ticketCode, DateTime date)
+        {
+            return ActivityTicketAssign.Where(x => x.DateAssign == date && x.Ticket.ProductCode == ticketCode&&x.Partner.PartnerCode==partnerCode).ToList();
+        }
+        public IList<ActivityTicketAssign> GetActivityAssignAssignForPartner(string partnerCode, string ticketCode)
+        {
+            return ActivityTicketAssign.Where(x => x.Ticket.ProductCode == ticketCode && x.Partner.PartnerCode == partnerCode).ToList();
+     
+        }
+        public int  GetPartnerAmountAssigned(string partnerCode, string ticketCode)
+        {
+            return GetActivityAssignAssignForPartner(partnerCode, ticketCode).Sum(x => x.AssignedAmount);
+        }
+        public int GetPartnerAmountSold(string partnerCode, string ticketCode)
+        {
+            return GetActivityAssignAssignForPartner(partnerCode, ticketCode).Sum(x => x.SoldAmount);
+        }
+        #endregion
 
     }
 }

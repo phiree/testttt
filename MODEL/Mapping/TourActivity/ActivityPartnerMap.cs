@@ -11,10 +11,11 @@ namespace Model.Mapping
         public ActivityPartnerMap()
         {
             Id(x => x.Id);
-            Map(x => x.AssignedAmount);
+        
             Map(x => x.Name);
             Map(x => x.OnlyControlTotalAmount);
             Map(x => x.PartnerCode);
+            References<TourActivity>(x => x.TourActivity);
           
         }
     }

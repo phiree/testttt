@@ -125,6 +125,10 @@ namespace Model
                 return BuyTime.Date.ToString();
             }
         }
+        /// <summary>
+        /// 订单来源:当前用途:记录活动合作伙伴的ProductCode
+        /// </summary>
+        public virtual string From { get; set; }
     }
 
     public class MonthOrder
