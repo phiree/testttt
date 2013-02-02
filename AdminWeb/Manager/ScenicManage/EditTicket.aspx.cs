@@ -15,7 +15,7 @@ public partial class Manager_ScenicManage_AddTicket : System.Web.UI.Page
     BLLScenic bllScenic = new BLLScenic();
     BLLTicket bllTicket = new BLLTicket();
     public Scenic Scenic;
-    TicketBase CurrentTicket;
+    Ticket CurrentTicket;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -34,7 +34,7 @@ public partial class Manager_ScenicManage_AddTicket : System.Web.UI.Page
 
         if (isNew)
         {
-            CurrentTicket = new Ticket();
+            CurrentTicket = new TicketNormal();
         }
         else
         {

@@ -23,7 +23,7 @@ public partial class ScenicManager_OnlineSell_TicketApply : bpScenicManager
 
     private void BindPrice()
     {
-        IList<Model.TicketBase> tickets = bllticket.GetTicketByscId(CurrentScenic.Id);
+        IList<Model.Ticket> tickets = bllticket.GetTicketByscId(CurrentScenic.Id);
         rptprice.DataSource = tickets;
         rptprice.DataBind();
     }

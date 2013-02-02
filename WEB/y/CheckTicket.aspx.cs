@@ -287,7 +287,7 @@ public partial class qumobile_CheckTicket : basepage
                     int ttcount = Convert.ToInt32((yditem.FindControl("ydmpcount") as HtmlContainerControl).InnerHtml);
                     int usedydcount = Convert.ToInt32((yditem.FindControl("ydmpusedcount") as HtmlContainerControl).InnerHtml);
                     //判断此票是否过期，当前版本的做法为判断ticket的起始状态，将来需要对ticketAssign做起始状态的冗余字段，来验证
-                    TicketBase ticket = bllTicket.GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value));
+                    Ticket ticket = bllTicket.GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value));
                     if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
                     {
                         string message = "该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
@@ -380,7 +380,7 @@ public partial class qumobile_CheckTicket : basepage
                     else
                     {
                         //判断此票是否过期，当前版本的做法为判断ticket的起始状态，将来需要对ticketAssign做起始状态的冗余字段，来验证
-                        TicketBase ticket = bllTicket.GetTicket(int.Parse((repitem.FindControl("hfticketid") as HiddenField).Value));
+                        Ticket ticket = bllTicket.GetTicket(int.Parse((repitem.FindControl("hfticketid") as HiddenField).Value));
                         if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
                         {
                             string message = "该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
@@ -465,7 +465,7 @@ public partial class qumobile_CheckTicket : basepage
     }
     #endregion
     #region 判断是否是这个景区的票
-    public bool IsCurrentScenicTicket(TicketBase t)
+    public bool IsCurrentScenicTicket(Ticket t)
     {
         t = new BLLTicket().GetTicket(t.Id);
         if (t.Scenic.Id == bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic.Id)
@@ -475,7 +475,7 @@ public partial class qumobile_CheckTicket : basepage
     }
     #endregion
     #region 判断是否是这个景区的套票
-    public bool IsCurrentScenicTp(TicketBase t)
+    public bool IsCurrentScenicTp(Ticket t)
     {
         t = new BLLTicket().GetTicket(t.Id);
         BLLScenicTicket bllscenicticket = new BLLScenicTicket();

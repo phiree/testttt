@@ -10,7 +10,7 @@ public partial class Manager_ScenicManage_TicketManage_TicketEdit2 : System.Web.
 {
 
     private int ticketId;
-    private TicketBase CurrentTicket;
+    private Ticket CurrentTicket;
     private bool IsNew = true;
     BLLTicket bllTicket = new BLLTicket();
     BLLDJEnterprise bllEnterprise = new BLLDJEnterprise();
@@ -43,6 +43,7 @@ public partial class Manager_ScenicManage_TicketManage_TicketEdit2 : System.Web.
 
     private void LoadForm()
     {
+        rblTicketType.SelectedIndex = CurrentTicket.GetType() == typeof(Ticket) ? 0 : 1;
         tbxBeginDate.Text = CurrentTicket.BeginDate.ToShortDateString();
         tbxEndDate.Text = CurrentTicket.EndDate.ToShortDateString();
         tbxName.Text = CurrentTicket.Name;
@@ -64,7 +65,7 @@ public partial class Manager_ScenicManage_TicketManage_TicketEdit2 : System.Web.
         }
         if (CurrentTicket is Ticket)
         {
-            Ticket t = (Ticket)CurrentTicket;
+            TicketNormal t = (TicketNormal)CurrentTicket;
             if (t.UnionTicket != null)
             {
                 hlUnionTicket.Text = t.UnionTicket.Name;
@@ -73,7 +74,7 @@ public partial class Manager_ScenicManage_TicketManage_TicketEdit2 : System.Web.
         }
     }
 
-    private void UpdateForm(TicketBase ticket)
+    private void UpdateForm(Ticket ticket)
     {
         ticket.IsMain = cbxIsMain.Checked;
         ticket.BeginDate = Convert.ToDateTime(tbxBeginDate.Text);
@@ -91,7 +92,7 @@ public partial class Manager_ScenicManage_TicketManage_TicketEdit2 : System.Web.
         {
             if (rblTicketType.SelectedIndex == 0)
             {
-                CurrentTicket = new Ticket();
+                CurrentTicket = new TicketNormal();
             }
             else
             {

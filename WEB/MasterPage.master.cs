@@ -40,7 +40,7 @@ public partial class MasterPage2 : System.Web.UI.MasterPage
 
     protected void BindCart()
     {
-        IList<TicketBase> ts = new BLLTicket().GetTicketsFromCart();
+        IList<Ticket> ts = new BLLTicket().GetTicketsFromCart();
       if (ts.Count == 0)
       {
           rptPopCart.Visible = false;

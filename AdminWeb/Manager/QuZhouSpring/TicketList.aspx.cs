@@ -22,7 +22,7 @@ public partial class Manager_QuZhouSpring_TicketList : System.Web.UI.Page
     private void BindData()
     {
         string[] ticketId = ConfigurationManager.AppSettings["ticketId"].Split(',');
-        List<TicketBase> listTicket = new List<TicketBase>();
+        List<Ticket> listTicket = new List<Ticket>();
         for (int i = 0; i < ticketId.Length; i++)
         {
             listTicket.Add(bllTicket.GetTicket(int.Parse(ticketId[i])));
@@ -36,7 +36,7 @@ public partial class Manager_QuZhouSpring_TicketList : System.Web.UI.Page
         foreach (RepeaterItem item in rptTicketList.Items)
         {
             string ticketid = (item.FindControl("hfId") as HiddenField).Value;
-            TicketBase t = bllTicket.GetTicket(int.Parse(ticketid));
+            Ticket t = bllTicket.GetTicket(int.Parse(ticketid));
             TextBox tbxProductCode = item.FindControl("tbxProductCode") as TextBox;
             TextBox txtbeginDate = item.FindControl("txtbeginDate") as TextBox;
             TextBox txtendDate = item.FindControl("txtendDate") as TextBox;

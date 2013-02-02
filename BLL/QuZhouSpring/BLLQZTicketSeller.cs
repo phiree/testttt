@@ -90,7 +90,7 @@ namespace BLL
                 }
             }
             //自动创建订单
-            TicketBase currentTicket =  bllTicket.GetByProductCode(ticketCode);
+            Ticket currentTicket =  bllTicket.GetByProductCode(ticketCode);
             string partnername = partnerAsign.Partner.Name;
             //将媒体设置成合作者,
             //if (ismedia)
@@ -201,7 +201,7 @@ namespace BLL
             return true;
         }
 
-        public Order BuildOrderForQZ(TourMembership member, string assignName, string idcardno, TicketBase currentTicket, int amount, string parnterName)
+        public Order BuildOrderForQZ(TourMembership member, string assignName, string idcardno, Ticket currentTicket, int amount, string parnterName)
         {
             #region 开始出票
             //1 为身份证号创建一个用户名

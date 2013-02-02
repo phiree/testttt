@@ -260,7 +260,7 @@ namespace DAL
             return result2;
         }
       
-        public void CreateMultiOrder(string activityName, string partnerCode, Guid memberId, IList<TicketBase> ticketList, string idcardno, string assignName, int amount, out string errMsg)
+        public void CreateMultiOrder(string activityName, string partnerCode, Guid memberId, IList<Ticket> ticketList, string idcardno, string assignName, int amount, out string errMsg)
         {
 
 

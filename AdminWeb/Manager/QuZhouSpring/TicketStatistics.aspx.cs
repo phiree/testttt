@@ -70,10 +70,10 @@ public partial class Manager_QuZhouSpring_TicketStatistics : System.Web.UI.Page
         }
     }
 
-    private List<TicketBase> GetAllTicket()
+    private List<Ticket> GetAllTicket()
     {
         string[] ticketId = ConfigurationManager.AppSettings["ticketId"].Split(',');
-        List<TicketBase> listTicket = new List<TicketBase>();
+        List<Ticket> listTicket = new List<Ticket>();
         for (int i = 0; i < ticketId.Length; i++)
         {
             listTicket.Add(bllTicket.GetTicket(int.Parse(ticketId[i])));

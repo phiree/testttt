@@ -28,7 +28,7 @@ namespace TourTest.TDD.order
                 detail.Quantity =5;
               
 
-                TicketBase t = new BLLTicket().GetTicket(1);
+                Ticket t = new BLLTicket().GetTicket(1);
                 TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == PriceType.PayOnline);
             
                 detail.TicketPrice = tp;

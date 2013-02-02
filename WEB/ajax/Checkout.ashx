@@ -23,7 +23,7 @@ public class Checkout : IHttpHandler {
         Order order = new Order();
         OrderDetail od = new OrderDetail();
         TicketPrice tp = new TicketPrice();
-        tp.Ticket = new Ticket();
+        tp.Ticket = new TicketNormal();
         tp.Price = 12;
         tp.PriceType = PriceType.Normal;
         

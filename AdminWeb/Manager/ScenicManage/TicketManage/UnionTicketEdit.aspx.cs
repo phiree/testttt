@@ -14,7 +14,7 @@ public partial class Manager_ScenicManage_TicketManage_UnionTicketEdit : System.
     /// <param name="sender"></param>
     /// <param name="e"></param>
     int ticketId;
-    public TicketBase CurrentTicket;
+    public Ticket CurrentTicket;
     BLLTicket bllTicket = new BLLTicket();
     BLLScenicTicket bllScenicTicket = new BLLScenicTicket();
     BLLScenic bllScenic = new BLLScenic();

@@ -76,7 +76,7 @@ namespace BLL
             return ListQzTa;
         }
 
-        public void SaveDate(DateTime beginDate, DateTime endDate, List<TicketBase> listTicket)
+        public void SaveDate(DateTime beginDate, DateTime endDate, List<Ticket> listTicket)
         {
             //门票分配(日期,景点,合作网站 数量.
             IList<QZTicketAsign> listQzTa = dalqzTa.GetAllList().OrderBy(x => x.Date).ToList();
@@ -143,7 +143,7 @@ namespace BLL
         /// <param name="dateTime"></param>
         /// <param name="?"></param>
         /// <returns></returns>
-        public IList<QZTicketAsign> GetQzByDate(DateTime dateTime, List<TicketBase> listTicket)
+        public IList<QZTicketAsign> GetQzByDate(DateTime dateTime, List<Ticket> listTicket)
         {
             List<QZTicketAsign> listQzTa= dalqzTa.GetQzByDate(dateTime).ToList();
             foreach (var ticket in listTicket)

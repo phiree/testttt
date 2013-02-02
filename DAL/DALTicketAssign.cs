@@ -118,7 +118,7 @@ namespace DAL
         }
 
 
-        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, TicketBase ticket, int type)
+        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, Ticket ticket, int type)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.IsUsed=false and ta.OrderDetail.TicketPrice.PriceType=" + type + "";
             IQuery query = session.CreateQuery(sql);
@@ -126,7 +126,7 @@ namespace DAL
         }
 
 
-        public TicketAssign GetLasetRecordByidcard(string idcard, TicketBase ticket, int type)
+        public TicketAssign GetLasetRecordByidcard(string idcard, Ticket ticket, int type)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.OrderDetail.TicketPrice.PriceType=" + type + " order by ta.Id desc";
             IQuery query = session.CreateQuery(sql);
@@ -171,7 +171,7 @@ namespace DAL
                 TicketPrice tp = new TicketPrice();
                 tp.PriceType = (PriceType)int.Parse(item[3].ToString());
                 tp.Price = decimal.Parse(item[4].ToString());
-                Ticket t = new Ticket();
+                Ticket t = new TicketNormal();
                 Scenic s = new Scenic();
                 s.Name = item[2].ToString();
                 t.Scenic = s;
@@ -281,7 +281,7 @@ namespace DAL
             List<Ticket> listticket = new List<Ticket>();
             foreach (object[] item in list)
             {
-                Ticket t = new Ticket();
+                Ticket t = new TicketNormal();
                 t.Id = int.Parse(item[0].ToString());
                 t.Name = item[1].ToString();
                 listticket.Add(t);
