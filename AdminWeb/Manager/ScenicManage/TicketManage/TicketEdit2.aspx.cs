@@ -43,7 +43,10 @@ public partial class Manager_ScenicManage_TicketManage_TicketEdit2 : System.Web.
 
     private void LoadForm()
     {
-        rblTicketType.SelectedIndex = CurrentTicket.GetType() == typeof(Ticket) ? 0 : 1;
+        bool isUnionTicket = CurrentTicket.GetType() == typeof(UnionTicket);
+        rblTicketType.SelectedIndex = isUnionTicket ? 0 : 1;
+        tblNormal.Visible = !isUnionTicket;
+        tblUnion.Visible = isUnionTicket;
         tbxBeginDate.Text = CurrentTicket.BeginDate.ToShortDateString();
         tbxEndDate.Text = CurrentTicket.EndDate.ToShortDateString();
         tbxName.Text = CurrentTicket.Name;

@@ -129,7 +129,7 @@
     <Compile Include="ScenicTicket.cs" />
     <Compile Include="SeoDescription.cs" />
     <Compile Include="TicketNormal.cs" />
-    <Compile Include="Ticke.cs" />
+    <Compile Include="Ticket.cs" />
     <Compile Include="TicketCount.cs" />
     <Compile Include="TicketPrice.cs" />
     <Compile Include="Area.cs" />

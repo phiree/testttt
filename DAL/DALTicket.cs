@@ -103,7 +103,7 @@ namespace DAL
         }
         public Model.Ticket Get(int ticketId)
         {
-            Model.Ticket t = session.Get<Model.Ticket>(ticketId);
+           var t = session.Get<Model.Ticket>(ticketId);
             return t;
         }
         public Model.Ticket GetByScenicSeo(string scenicSeoName)
