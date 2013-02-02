@@ -21,12 +21,11 @@ namespace Model
         /// 米胖的门票
         /// </summary>
         public virtual string MipangId { get; set; }
-        //只需要显示一个价格时使用的门票
-        public virtual bool IsMain { get; set; }
+    
         //属于那张套票
         public virtual UnionTicket UnionTicket { get; set; }
         //属于哪个景区
-        public virtual Scenic Scenic { get; set; }
+    
        /// <summary>
         /// 获得某个类型的票价
         /// </summary>

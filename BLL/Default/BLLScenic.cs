@@ -190,7 +190,7 @@ namespace BLL
             IScenic.SaveCheckProgress(scp);
             if (module == ScenicModule.SellOnLine)
             {
-                IList<Ticket> tickets = ITicket.GetTicketByscId(scenic.Id);
+                IList<TicketBase> tickets = ITicket.GetTicketByscId(scenic.Id);
                 foreach (var item in tickets)
                 {
                     item.Lock = false;

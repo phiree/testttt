@@ -27,7 +27,7 @@ public partial class ScenticManager_OnlineSell_OnlinePrice : bpScenicManager
     //加载 显示 其价格.
     private void LoadPrice()
     {
-        IList<Model.Ticket> tickets = bllTicket.GetTicketByscId(CurrentScenic.Id);
+        IList<Model.TicketBase> tickets = bllTicket.GetTicketByscId(CurrentScenic.Id);
         rptPrice.DataSource = tickets;
         rptPrice.DataBind();
     }

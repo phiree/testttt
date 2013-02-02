@@ -26,13 +26,13 @@ namespace BLL
             }
             set { iticket = value; }
         }
-
+        /*未找到对该方法的引用.
         /// <summary>
         /// 如果不存在该景区门票 则自动创建
         /// </summary>
         public Model.Ticket EnsureTicket(int scid)
         {
-            IList<Model.Ticket> tickets = Iticket.GetTicketByscId(scid);
+            IList<Model.TicketBase> tickets = Iticket.GetTicketByscId(scid);
             Model.Ticket ticket = null;
             if (tickets.Count == 0)
             {
@@ -45,7 +45,7 @@ namespace BLL
                 ticket = tickets[0];
             }
             return ticket;
-        }
+        }*/
         /// <summary>
         /// 首页展示的是 门票 而不是景区.
         /// </summary>
@@ -60,7 +60,7 @@ namespace BLL
             return Iticket.GetTicketByAreaIdAndLevel(area, level, topic, pageIndex - 1, pageSize, out totalRecord);
         }
 
-        public IList<Model.Ticket> GetTicketByscId(int scid)
+        public IList<Model.TicketBase> GetTicketByscId(int scid)
         {
             //EnsureTicket(scid);  删除，与下文重复
 
@@ -119,7 +119,7 @@ namespace BLL
             }
             SaveOrUpdateTicket(ticket);
         }
-        public void SaveOrUpdateTicket(Model.Ticket ticket)
+        public void SaveOrUpdateTicket(Model.TicketBase ticket)
         {
             //foreach (TicketPrice tp in ticket.TicketPrice)
             //{

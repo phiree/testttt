@@ -12,6 +12,7 @@ namespace Model.Mapping
         public UnionTicketMap()
         {
             HasMany<TicketBase>(x => x.TicketList);
+            //fenzhiqiehuan
         }
     }
 }

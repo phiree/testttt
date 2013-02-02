@@ -9,9 +9,9 @@ namespace BLL
 {
     public class BLLTicketPrice
     {
-        IDAL.ITicketPrice iticketprice;
+        DALTicketPrice iticketprice;
 
-        public IDAL.ITicketPrice Iticketprice
+        public DALTicketPrice Iticketprice
         {
             get
             {
@@ -59,12 +59,12 @@ namespace BLL
         /// <param name="ticket"></param>
         /// <param name="priceType"></param>
         /// <returns></returns>
-        public Model.TicketPrice GetTicketPriceByScenicandtypeid(Model.Ticket ticket, Model.PriceType priceType)
+        public Model.TicketPrice GetTicketPriceByScenicandtypeid(Model.TicketBase ticket, Model.PriceType priceType)
         {
             return GetTicketPriceByScenicandtypeid(ticket, (int)priceType);
         }
 
-        public Model.TicketPrice GetTicketPriceByScenicandtypeid(Model.Ticket t, int type)
+        public Model.TicketPrice GetTicketPriceByScenicandtypeid(Model.TicketBase t, int type)
         {
             return Iticketprice.GetTicketPriceByScenicandtypeid(t, type);
         }
