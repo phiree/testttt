@@ -20,48 +20,34 @@ public class ActivityService : System.Web.Services.WebService {
         //InitializeComponent(); 
     }
 
-    BLL.BLLQZTicketSeller seller = new BLL.BLLQZTicketSeller();
-    BLL.BLLQZPartnerTicketAsign bllQzPartnerTicketAsign = new BLLQZPartnerTicketAsign();
+   BLL.BLLActivityServiceImpl bllActivityService = new BLLActivityServiceImpl();
+    //BLL.BLLQZTicketSeller seller = new BLL.BLLQZTicketSeller();
+    //BLL.BLLQZPartnerTicketAsign bllQzPartnerTicketAsign = new BLLQZPartnerTicketAsign();
     BLL.BLLTicketAssign bllTicketAssign = new BLLTicketAssign();
   
     /// <summary>
     /// 合作方请求门票资源
     /// </summary>
+    /// <param name="activityCode">活动代码</param>
+    /// <param name="needCheckTime">是否检查抢票时间(比如 每天上午10点)</param>
     /// <param name="PartnerCode">合作方ID</param>
     /// <param name="CardNumber">抢票者身份证号码</param>
     ///  <param name="RealName">抢票者的姓名(如果不填,则传用户昵称</param>
     /// <param name="Phone">抢票者的电话号码</param>
-    /// <param name="ProductCode">门票代码</param>
+    /// <param name="ProductCodeList">门票代码列表(一次抢订多张门票的情况)</param>
     /// <param name="Number">购买数量</param>
 
     /// <returns>"T"(请票成功)或"F|(失败原因)"</returns>
     [WebMethod]
-    public string buyProduct(string PartnerCode, string CardNumber, string RealName, string Phone, string ProductCode, int Number)
+    public string buyProduct(string activityCode,bool needCheckTime, string PartnerCode, string CardNumber, string RealName, string Phone, IList<string> ProductCodeList, int Number)
     {
 
-        string result = seller.SellTicket(PartnerCode, CardNumber, RealName, Phone, ProductCode, Number);
+        string result = string.Empty;// bllActivityService.buyProduct(activityCode, needCheckTime, null, PartnerCode, CardNumber, RealName, Phone, ProductCodeList, Number);
         //  seller.SellTicket(clientFriendlyId, idcardno, ticketId);
         return result;
     }
-    /// <summary>
-    /// 媒体请求门票资源
-    /// </summary>
-    /// <param name="PartnerCode">合作方ID</param>
-    /// <param name="CardNumber">抢票者身份证号码</param>
-    ///  <param name="RealName">抢票者的姓名(如果不填,则传用户昵称</param>
-    /// <param name="Phone">抢票者的电话号码</param>
-    /// <param name="ProductCode">门票代码</param>
-    /// <param name="Number">购买数量</param>
+  
 
-    /// <returns>"T"(请票成功)或"F|(失败原因)"</returns>
-    [WebMethod]
-    public string buyProductForMedia(string PartnerCode, string CardNumber, string RealName, string Phone, string ProductCode, int Number)
-    {
-
-        string result = seller.SellTicket(true, PartnerCode,null,RealName, CardNumber, Phone, ProductCode, Number);
-        //  seller.SellTicket(clientFriendlyId, idcardno, ticketId);
-        return result;
-    }
     /// <summary>
     /// 合作方查询剩某日期某门票的剩余门票数量
     /// </summary>
@@ -69,21 +55,7 @@ public class ActivityService : System.Web.Services.WebService {
     /// <param name="productCode">门票代码</param>
     /// <param name="dt">日期</param>
     /// <returns>剩余数量</returns>
-    [WebMethod]
-    public int ProductInfo(string PartnerCode, string productCode, DateTime dt)
-    {
-
-        Model.QZPartnerTicketAsign qzPartnerTicketAsign = bllQzPartnerTicketAsign.GetOne(dt.Date, PartnerCode, productCode);
-        if (qzPartnerTicketAsign == null)
-        {
-            TourLog.LogInstance.Error("没有查到相应信息");
-            return -1;
-
-        }
-        int leftAmount = qzPartnerTicketAsign.AsignedAmount - qzPartnerTicketAsign.SoldAmount;
-        if (leftAmount < 0) leftAmount = 0;
-        return leftAmount;
-    }
+    
     /// <summary>
     /// 游客查询自己抢订到的门票
     /// </summary>
@@ -116,15 +88,7 @@ public class ActivityService : System.Web.Services.WebService {
     [WebMethod]
     public string UpdateIdCardNo(string oldNo, string newNo)
     {
-        string result = bllTicketAssign.UpdateIdCardNo(oldNo, newNo);
-        if (string.IsNullOrEmpty(result))
-        {
-            return "T";
-        }
-        else
-        {
-            return "F|" + result;
-        }
+        return string.Empty;
     }
 
     /// <summary>
@@ -134,9 +98,9 @@ public class ActivityService : System.Web.Services.WebService {
     /// <param name="date"></param>
     /// <returns></returns>
     [WebMethod]
-    public DataSet ProductInfoAll(string partnerCode,DateTime date)
+    public DataSet ProductInfoAll(string activityCode,string partnerCode,DateTime date)
     {
-        return bllQzPartnerTicketAsign.ProductInfoAll(partnerCode, date);
+        return bllActivityService.ProductLeftAmountAll(activityCode, partnerCode, date);
     }
     
 }

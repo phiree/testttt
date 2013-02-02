@@ -9,84 +9,51 @@ namespace Model
     /// 景区的门票定义
     /// 有多个价格:门市价 预订价 优惠价 
     /// </summary>
-    public class Ticket
+    public class Ticket:TicketBase
     {
         public Ticket()
         {
             TicketPrice = new List<TicketPrice>();
-            BeginDate = new DateTime(2013,1,1);
+            BeginDate = new DateTime(2013, 1, 1);
             EndDate = DateTime.MaxValue;
         }
-        public virtual int Id { get; set; }
         /// <summary>
         /// 米胖的门票
         /// </summary>
         public virtual string MipangId { get; set; }
-        public virtual string Name { get; set; }
-        //public virtual TicketsType TicketsType { get; set; }
-        public virtual Scenic Scenic { get; set; }
-        public virtual bool Lock { get; set; }
+        //只需要显示一个价格时使用的门票
         public virtual bool IsMain { get; set; }
-        /// <summary>
-        /// 序号,用来控制门票的排序
-        /// </summary>
-        public virtual int OrderNumber { get; set; }
-        public virtual IList<TicketPrice> TicketPrice { get; set; }
-
-        
-        /// <summary>
-        /// 起始有效期
-        /// </summary>
-        
-        public virtual DateTime BeginDate { get; set; }
-        /// <summary>
-        /// 截止有效期
-        /// </summary>
-        public virtual DateTime EndDate { get; set; }
-        /// <summary>
-        /// 备注
-        /// </summary>
-        public virtual string  Remark { get; set; }
-
-        /// <summary>
-        /// 总数量，默认不限制
-        /// </summary>
-        public virtual int Amount { get; set; }
-        /// <summary>
-        /// 门票编码
-        /// </summary>
-        public virtual string ProductCode { get; set; }
-        /// <summary>
-        /// 门票参加的活动
-        /// </summary>
-        public virtual TourActivity TourActivity { get; set; }
-        /// <summary>
+        //属于那张套票
+        public virtual UnionTicket UnionTicket { get; set; }
+        //属于哪个景区
+        public virtual Scenic Scenic { get; set; }
+       /// <summary>
         /// 获得某个类型的票价
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public virtual decimal GetPrice(PriceType type)
+        public  override decimal GetPrice(PriceType type)
         {
-            var tp = TicketPrice.Where<TicketPrice>(x => x.PriceType == type).FirstOrDefault();
-            if (tp == null) return 0 ;
+            var tp = GetTicketPrice(type);
+            if (tp == null) return 0;
             return tp.Price;
         }
+        /// <summary>
+        /// 获取这个票价
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public virtual TicketPrice GetTicketPrice(PriceType type)
         {
-             var tp = TicketPrice.Where<TicketPrice>(x => x.PriceType == type).FirstOrDefault();
-               if (tp == null) return null;
-               else return tp;
+            var tp = TicketPrice.Where<TicketPrice>(x => x.PriceType == type).FirstOrDefault();
+            if (tp == null) return null;
+            else return tp;
         }
-        /// <summary>
-        /// 本门票对应的景区,联票需要重写此方法
-        /// </summary>
-        /// <returns></returns>
-        public virtual IList<Scenic> GetScenics()
+        public override bool IsBelongTo(Scenic s)
         {
-            IList<Scenic> ss = new List<Scenic>();
-            ss.Add(Scenic);
-            return ss;
+            return s.Id == Scenic.Id;
         }
+      
 
     }
 }
