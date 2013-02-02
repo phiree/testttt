@@ -1,8 +1,8 @@
 ﻿
 //验证身份证号方法
-var test=function checkIdcard2(idcard) {
+var test = function checkIdcard2(idcard) {
     var Errors = new Array(
-"验证通过!",
+"验证通过",
 "身份证号码位数不对!",
 "身份证号码出生日期超出范围或含有非法字符!",
 "身份证号码校验错误!",
@@ -16,8 +16,7 @@ var test=function checkIdcard2(idcard) {
     idcard_array = idcard.split("");
     //地区检验
     if (area[parseInt(idcard.substr(0, 2))] == null) {
-        alert(Errors[4]);
-        return false;
+        return Errors[4];
     }
     //身份号码位数及格式检验
     switch (idcard.length) {
@@ -27,10 +26,9 @@ var test=function checkIdcard2(idcard) {
             } else {
                 ereg = /^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}$/; //测试出生日期的合法性
             }
-            if (ereg.test(idcard)) return true;
+            if (ereg.test(idcard)) return Error[0];
             else {
-                alert(Errors[2]);
-                return false;
+                return Errors[2];
             }
             break;
         case 18:
@@ -59,22 +57,20 @@ var test=function checkIdcard2(idcard) {
                 M = "F";
                 JYM = "10X98765432";
                 M = JYM.substr(Y, 1); //判断校验位
-                if (M == idcard_array[17]) return true; //检测ID的校验位
+                if (M == idcard_array[17]) return Errors[0]; //检测ID的校验位
                 else {
-                    alert(Errors[3]);
-                    return false;
+                    return Errors[3];
                 }
             }
             else {
-                alert(Errors[2]);
-                return false;
+                return Errors[2];
             }
             break;
         default:
-            alert(Errors[1]);
-            return false;
+            return Errors[1];
             break;
     }
+    return Errors[0];
 }
 
 

@@ -9,7 +9,7 @@
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
-            var msg = test("110101199701017154");
+            var msg = test("110101199701017153");
             alert(msg);
         });
     </script>

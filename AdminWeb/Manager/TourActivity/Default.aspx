@@ -42,5 +42,6 @@
             </table>
         </FooterTemplate>
     </asp:Repeater>
+    <asp:Button ID="btnAdd" runat="server" Text="新增" onclick="btnAdd_Click" />
 </asp:Content>
 

@@ -23,4 +23,8 @@ public partial class Manager_TourActivity_Default : System.Web.UI.Page
         rptActive.DataSource= bllTourActivity.GetAll<TourActivity>();
         rptActive.DataBind();
     }
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/Manager/TourActivity/activityDetail.aspx");
+    }
 }
