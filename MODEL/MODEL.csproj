@@ -97,6 +97,7 @@
     <Compile Include="Dijieshe\DJ_Recommand.cs" />
     <Compile Include="Mapping\TourActivity\ActivityPartnerMap.cs" />
     <Compile Include="Mapping\TickeBasetMap.cs" />
+    <Compile Include="Mapping\UnionTicketMap.cs" />
     <Compile Include="QuZhouSpring\QZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\QZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\QZStatistics.cs" />

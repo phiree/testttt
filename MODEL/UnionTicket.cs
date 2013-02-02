@@ -8,11 +8,11 @@ namespace Model
     public class UnionTicket:TicketBase
     {
 
-       public virtual IList<Ticket> TicketList { get; set; }
+       public virtual IList<TicketBase> TicketList { get; set; }
         public override decimal GetPrice(PriceType priceType)
         {
             decimal price = 0m;
-            foreach (Ticket t in TicketList)
+            foreach (TicketBase t in TicketList)
             {
                 decimal ticketPrice = t.GetPrice(priceType);
                 price += ticketPrice;
@@ -21,12 +21,13 @@ namespace Model
         }
         public override bool IsBelongTo(Scenic s)
         {
-            foreach (Ticket t in TicketList)
+            foreach (TicketBase t in TicketList)
             {
                 if (t.IsBelongTo(s)) return true;
             }
             return false;
         }
+       
 
 
 

@@ -20,7 +20,7 @@ namespace BLL
         BLLActivityTicketAssign bllActivityTicketAssign = new BLLActivityTicketAssign();
 
         /// <summary>
-        /// 伙伴请求多张门票
+        /// 合作伙伴请求门票
         /// </summary>
         /// <param name="activityCode">活动代码</param>
         /// <param name="needValidatePerDay">是否每天验证</param>
@@ -36,10 +36,11 @@ namespace BLL
             , string PartnerCode, string CardNumber, string RealName, string Phone, string ticketCode, int Number)
         {
 
-            List<string> ticketCodes = new List<string>();
-            
+
+
+          
             Guid requestGUID = Guid.NewGuid();
-            TourLog.LogInstance.Debug(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", PartnerCode, CardNumber, ticketCodes, Number, Phone, requestGUID));
+            TourLog.LogInstance.Debug(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", PartnerCode, CardNumber, ticketCode, Number, Phone, requestGUID));
             string returnMsg = "T";
 
             TourActivity activity = bllActivity.GetOneByActivityCode(activityCode);//get from activitycode
@@ -73,29 +74,16 @@ namespace BLL
             }
 
             DateTime nowDay = DateTime.Now.Date;
-            //获取当天合作商某景区的门票分配情况
-            if (ticketCodes.Count == 0)
-            {
-                returnMsg = "F|门票代码有误";
-                goto LblReturn;
-            }
-
-            ///每张门票的剩余数量和分配情况都做检验
-            IList<Ticket> ticketList = bllTicket.GetListByMultitTicketCode(ticketCodes);
-            //某几张门票 某日 某合作商的分配列表,count应该等于 门票数量
-            IList<ActivityTicketAssign> ticketAssigns = activity.ActivityTicketAssign.Where(x =>
-                    x.Partner.PartnerCode == PartnerCode
-                    && ticketCodes.Contains(x.Ticket.ProductCode)
-                    && x.DateAssign == DateTime.Today).ToList();
-
-            //多张门票一起送,只判断其中一张的数量分配(请保证 统一套票下的各个门票数量相等)不太保险的要求.
-            string firstProduct = ticketCodes[0];
+               ActivityTicketAssign ticketAssign = activity.ActivityTicketAssign.Where(x =>
+                         x.Partner.PartnerCode == PartnerCode
+                         && x.Ticket.ProductCode == ticketCode
+                         && x.DateAssign == DateTime.Today).Single();
             ///数量规则验证
             //1 是否还有门票
             //如果合作商采用总数验证 ,则不需要验证每天的数量
             if (currentPartner.OnlyControlTotalAmount)
             {
-                if (activity.GetPartnerAmountAssigned(PartnerCode, firstProduct) + Number > activity.GetPartnerAmountSold(PartnerCode, firstProduct))
+                if (activity.GetPartnerAmountAssigned(PartnerCode, ticketCode) + Number > activity.GetPartnerAmountSold(PartnerCode, ticketCode))
                 {
                     returnMsg = "F|门票已售完";
                     goto LblReturn;
@@ -104,30 +92,31 @@ namespace BLL
             else //每天票数验证.
             {
 
+                //获取当天合作商某景区的门票分配情况
 
-                if (ticketCodes.Count != ticketAssigns.Count)
-                {
-                    TourLog.LogInstance.Error(string.Format("分配有误:合作伙伴{0}门票{1}在{2}有多次分配"));
-                }
+
+             
+
+                TourLog.LogInstance.Error(string.Format("分配有误:合作伙伴{0}门票{1}在{2}有多次分配"));
+
                 //每张门票 的数量检测
-                if (ticketAssigns.Count == 0)
+                if (ticketAssign == null)
                 {
                     returnMsg = "F|没有查到对应的门票";
                     goto LblReturn;
                 }
-                foreach (ActivityTicketAssign currentTicketAssign in ticketAssigns)
-                {
-                    if (currentTicketAssign.SoldAmount + Number > currentTicketAssign.AssignedAmount)
-                    {
-                        returnMsg = "F|今天的门票已售完,欢迎明天再来";
 
-                        goto LblReturn;
-                    }
+                if (ticketAssign.SoldAmount + Number > ticketAssign.AssignedAmount)
+                {
+                    returnMsg = "F|今天的门票已售完,欢迎明天再来";
+
+                    goto LblReturn;
                 }
+
             }
             ///////////////////用户购买数量规则
             //2 该用户是否已经抢到了该景区足够数量的门票
-            int idcardGotTicketAmount = bllTa.GetAmountIdcardActivityTicket(activityCode, CardNumber, firstProduct);
+            int idcardGotTicketAmount = bllTa.GetAmountIdcardActivityTicket(activityCode, CardNumber, ticketCode);
             if (idcardGotTicketAmount + Number > activity.AmountPerIdcardTicket)
             {
                 returnMsg = "F|已获得该景区足够票数";
@@ -152,14 +141,15 @@ namespace BLL
                     member = bllMembership.CreateUser2("衢州门票派送参与者", Phone, string.Empty, CardNumber, CardNumber, "123456", string.Empty);
                 }
             }
-            ////自动创建订单(三张一起创建,要使用session的事务)
+            ////自动创建订单(如果是联票, 则要为联票门票创建三个订单
 
             string createOrderErrMsg;
             if (string.IsNullOrEmpty(RealName))
             {
                 RealName = activity.Name + "参与者";
             }
-            bllOrder.CreateMultiOrder(activity.Name, PartnerCode, member.Id, ticketList, CardNumber, RealName, Number, out createOrderErrMsg);
+            TicketBase ticket = bllTicket.GetByProductCode(ticketCode);
+            bllOrder.CreateOrder(activity.Name, PartnerCode, member.Id, ticket, CardNumber, RealName, Number, out createOrderErrMsg);
             if (!string.IsNullOrEmpty(createOrderErrMsg))
             {
                 returnMsg = "F|创建订单失败,请联系客服";
@@ -167,11 +157,10 @@ namespace BLL
             }
 
             ////3 该接入商该景区的已售门票+1
-            foreach (var assign in ticketAssigns)
-            {
-                assign.SoldAmount += Number;
-                bllActivityTicketAssign.SaveOrUpdate(assign);
-            }
+          
+                ticketAssign.SoldAmount += Number;
+                bllActivityTicketAssign.SaveOrUpdate(ticketAssign);
+           
         LblReturn:
             TourLog.LogInstance.Info(returnMsg);
             TourLog.LogInstance.Info(requestGUID + "*********END********" + requestGUID);
@@ -226,7 +215,7 @@ namespace BLL
             ds.Tables.Add(dt);
 
             return ds;
-          
+
         }
 
 

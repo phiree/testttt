@@ -29,5 +29,17 @@ namespace Model
         public virtual TourActivity TourActivity { get; set; }
         public abstract bool IsBelongTo(Scenic s);
         public abstract decimal GetPrice(PriceType priceType);
+        /// <summary>
+        /// 获取这个票价
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public virtual TicketPrice GetTicketPrice(PriceType type)
+        {
+            var tp = TicketPrice.Where<TicketPrice>(x => x.PriceType == type).FirstOrDefault();
+            if (tp == null) return null;
+            else return tp;
+        }
+        
     }
 }
