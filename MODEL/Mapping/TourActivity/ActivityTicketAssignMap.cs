@@ -15,7 +15,7 @@ namespace Model.Mapping
             Map(x => x.DateAssign);
             References<ActivityPartner> (x => x.Partner);
             Map(x => x.SoldAmount);
-            References<Ticket>(x => x.Ticket);
+            References<TicketBase>(x => x.Ticket);
             References<TourActivity>(x => x.TourActivity);
             
           

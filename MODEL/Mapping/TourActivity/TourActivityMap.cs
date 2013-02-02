@@ -11,12 +11,12 @@ namespace Model.Mapping
         public TourActivityMap()
         {
             Id(x => x.Id);
-          HasMany<ActivityTicketAssign>(x=>x.ActivityTicketAssign);
+          HasMany<ActivityTicketAssign>(x=>x.ActivityTicketAssign).Cascade.All();
           Map(x => x.ActivityCode).Unique();
           Map(x => x.BeginHour);
           Map(x => x.EndHour);
-            HasMany<ActivityPartner>(x=>x.Partners);
-            HasMany<Ticket>(x => x.Tickets);
+          HasMany<ActivityPartner>(x => x.Partners).Cascade.All();
+          HasMany<TicketBase>(x => x.Tickets).Cascade.All();
             Map(x => x.Name);
             Map(x => x.BeginDate);
             Map(x => x.EndDate);
