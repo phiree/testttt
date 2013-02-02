@@ -107,7 +107,10 @@ public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
             {
                 Count += bllTa.GetListByTimeAndScenic(dt, dt.AddDays(1), ticket.Scenic).Count;
             }
-            laCheckedAmount.Text = Count.ToString() + "(" + (Count * 100.0 / solidamount).ToString("f2")+"%)";
+            if (solidamount != 0)
+                laCheckedAmount.Text = Count.ToString() + "(" + (Count * 100.0 / solidamount).ToString("f2") + "%)";
+            else
+                laCheckedAmount.Text = Count.ToString();
             total3 += Count;
 
         }
@@ -118,7 +121,10 @@ public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
             Literal laTotal3 = e.Item.FindControl("laTotal3") as Literal;
             laTotal.Text = total1.ToString();
             laTotal2.Text = total2.ToString();
-            laTotal3.Text = total3.ToString() + "(" + (total3 * 100.0 / total2).ToString("f2") + "%)";
+            if(total2!=0)
+                laTotal3.Text = total3.ToString() + "(" + (total3 * 100.0 / total2).ToString("f2") + "%)";
+            else
+                laTotal3.Text = total3.ToString();
         }
     }
 }
