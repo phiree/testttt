@@ -336,5 +336,24 @@ namespace DAL
             return query.Future<TicketAssign>().ToList<TicketAssign>();
         }
 
+        public IList<TicketAssign> GetListByTimeAndScenic(DateTime? beginDate, DateTime? endDate, Scenic s)
+        {
+            string sql = "select ta from TicketAssign ta where 1=1";
+            if (beginDate != null)
+            {
+                sql += " and ta.UsedTime>= '" + beginDate + "'";
+            }
+            if (endDate != null)
+            {
+                sql += " and ta.UsedTime<='" + endDate + "'";
+            }
+            sql += " and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + s.Id + "";
+            sql += " and ta.IsUsed=1";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
+        }
+
+
+
     }
 }
