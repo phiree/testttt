@@ -34,7 +34,7 @@
                     <%# Eval("BeginDate","{0:yyyy-MM-dd}")%>- <%# Eval("EndDate", "{0:yyyy-MM-dd}")%>
                 </td>
                 <td>
-                    <a href="">编辑详情</a>
+                    <a href='/manager/touractivity/activitydetail.aspx?actId=<%# Eval("Id") %>'>编辑详情</a>
                 </td>
             </tr>
         </ItemTemplate>

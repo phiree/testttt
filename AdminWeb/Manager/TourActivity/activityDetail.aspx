@@ -98,7 +98,7 @@
                 合作分票者列表
             </td>
             <td>
-                <a href="">合作分票者列表</a>
+                <a href='/manager/touractivity/partnerList.aspx?actId=<%= Request.QueryString["actId"]  %>'>合作分票者列表</a>
             </td>
         </tr>
         <tr>
@@ -114,7 +114,7 @@
                 门票分票情况
             </td>
             <td>
-                <a href="">门票分票情况</a>
+                <a href='/manager/touractivity/ticketAssign.aspx?actId=<%= Request.QueryString["actId"]  %>'>门票分票情况</a>
             </td>
         </tr>
         <tr>

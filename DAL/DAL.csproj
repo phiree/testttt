@@ -139,6 +139,7 @@
     <Compile Include="QuZhouSpring\DALQZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\DALQZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\DALQZTicketAsign.cs" />
+    <Compile Include="TourActivity\DALActivityPartner.cs" />
     <Compile Include="TourActivity\DALTourActivity.cs" />
     <Compile Include="TourActivity\DALActivityTicketAssign.cs" />
   </ItemGroup>

@@ -142,6 +142,7 @@
     <Compile Include="Default\BLLRefund.cs" />
     <Compile Include="Default\BLLScenicTicket.cs" />
     <Compile Include="TourActivityBLL\ActivityServiceImpl.cs" />
+    <Compile Include="TourActivityBLL\BLLActivityPartner.cs" />
     <Compile Include="TourActivityBLL\BLLActivityTicketAssign.cs" />
     <Compile Include="TourActivityBLL\BLLTourActivity.cs" />
     <Compile Include="TourolReport\IdcardNoReport.cs" />

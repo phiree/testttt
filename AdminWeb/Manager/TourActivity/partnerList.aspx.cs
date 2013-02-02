@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using BLL;
 using Model;
+using BLL;
 
-public partial class Manager_TourActivity_Default : System.Web.UI.Page
+public partial class Manager_TourActivity_partnerList : System.Web.UI.Page
 {
-    BLLTourActivity bllTourActivity = new BLLTourActivity();
+    BLLActivityPartner bllAp = new BLLActivityPartner();
+    BLLTourActivity bllTa = new BLLTourActivity();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -18,13 +19,16 @@ public partial class Manager_TourActivity_Default : System.Web.UI.Page
         }
     }
 
+
     private void bindData()
     {
-        rptActive.DataSource= bllTourActivity.GetAll<TourActivity>();
-        rptActive.DataBind();
+        Guid actId=Guid.Parse(Request.QueryString["actId"]);
+        rptPartner.DataSource = bllTa.GetOne(actId);
+        rptPartner.DataBind();
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        Response.Redirect("/Manager/TourActivity/activityDetail.aspx");
+        Response.Redirect("/manager/touractivity/partnerEdit.aspx");
+
     }
 }
