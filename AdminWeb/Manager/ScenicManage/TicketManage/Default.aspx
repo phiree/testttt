@@ -28,7 +28,7 @@
                 <%#Eval("Name")%>
                 </td>
                 <td>
-                    <asp:Repeater runat="server" ID="rptTicket">
+                    <asp:Repeater runat="server" ID="rptTicket" OnItemCommand="rptTicket_ItemCommand" >
                         <HeaderTemplate>
                             <table>
                                 <tr>
@@ -57,6 +57,9 @@
                                 <td>
                                 </td>
                                 <td>
+                                <%#Eval("Enabled") %>
+                                <asp:Button runat="server"  CommandArgument=<%#Eval("Id") %> CommandName="disable"  Text="禁用"/>
+                                  <asp:Button ID="Button1" runat="server"  CommandArgument=<%#Eval("Id") %> CommandName="enable"  Text="启用"/>
                                 </td>
                             </tr>
                         </ItemTemplate>

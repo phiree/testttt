@@ -2,9 +2,6 @@
     CodeFile="TicketEdit2.aspx.cs" Inherits="Manager_ScenicManage_TicketManage_TicketEdit2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
-    <link href="/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet"
-        type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <table>
@@ -74,9 +71,14 @@
                 价格列表
             </td>
             <td>
-                <a href="">价格管理</a>
-                <asp:Repeater runat="server" ID="rptTicketPrice">
-                </asp:Repeater>
+                <ul>
+                    <li>原价:<asp:TextBox runat="server" ID="tbxPriceNormal"></asp:TextBox>
+                    </li>
+                    <li>在线支付价:<asp:TextBox runat="server" ID="tbxPricePayOnline"></asp:TextBox>
+                    </li>
+                    <li>景区现付价:<asp:TextBox runat="server" ID="tbxPricePreOrder"></asp:TextBox>
+                    </li>
+                </ul>
             </td>
         </tr>
         <tr>
@@ -100,34 +102,31 @@
                 参与的活动
             </td>
             <td>
-                
                 <asp:HyperLink ID="hlActivity" runat="server"></asp:HyperLink>
             </td>
         </tr>
-      
-       
     </table>
     <!--联票属性-->
     <table runat="server" id="tblUnion">
-     <tr>
+        <tr>
             <td>
                 包含的门票
             </td>
             <td>
-            <a href="">管理门票</a>
+                <a href="UnionTicketEdit.aspx?ticketid=<%=ticketId %>">管理门票</a>
                 <asp:Repeater runat="server" ID="rptTicket">
                 </asp:Repeater>
             </td>
         </tr>
     </table>
-     <table runat="server" id="tblNormal">
-     <tr>
+    <table runat="server" id="tblNormal">
+        <tr>
             <td>
                 所属联票
             </td>
             <td>
-          <!--联票名称-->
-              <asp:HyperLink runat="server" ID="hlUnionTicket"></asp:HyperLink> 
+                <!--联票名称-->
+                <asp:HyperLink runat="server" ID="hlUnionTicket"></asp:HyperLink>
             </td>
         </tr>
     </table>

@@ -196,9 +196,9 @@ namespace BLL
         {
             List<Ticket> ticketList = new List<Ticket>();
 
-            if (ticket is UnionTicket)
+            if (ticket is TicketUnion)
             {
-                foreach (Ticket t in ((UnionTicket)ticket).TicketList)
+                foreach (Ticket t in ((TicketUnion)ticket).TicketList)
                 {
                     ticketList.Add(t);
                 }

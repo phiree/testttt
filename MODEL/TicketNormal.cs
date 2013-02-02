@@ -22,9 +22,8 @@ namespace Model
         /// </summary>
         public virtual string MipangId { get; set; }
     
-        //属于那张套票
-        public virtual UnionTicket UnionTicket { get; set; }
-        //属于哪个景区
+       
+ 
     
        /// <summary>
         /// 获得某个类型的票价

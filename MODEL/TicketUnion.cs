@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Model
 {
-    public class UnionTicket:Ticket
+    public class TicketUnion:Ticket
     {
 
        public virtual IList<Ticket> TicketList { get; set; }

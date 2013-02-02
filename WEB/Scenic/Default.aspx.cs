@@ -137,7 +137,7 @@ public partial class Scenic_Default : basepage
         if (listticket.Count > 0)
             hfProductCode.Value = listticket[0].ProductCode;
 
-        rpttp.DataSource = listticket;
+        rpttp.DataSource = listticket.Where(x=>x.Enabled).ToList();
         rpttp.DataBind();
         //编辑
         EditRole();
