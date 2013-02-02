@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Manager/manager.master" AutoEventWireup="true"
-    CodeFile="Default.aspx.cs" Inherits="Manager_ScenicManage_UnionTicket_Default" %>
+    CodeFile="Default.aspx.cs" Inherits="Manager_ScenicManage_TicketManage_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Manager_ScenicManage_UnionTicket_UnionTicketEdit2 : System.Web.UI.Page
+public partial class Manager_ScenicManage_TicketManage_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
