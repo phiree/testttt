@@ -23,12 +23,12 @@ public partial class Manager_TourActivity_partnerList : System.Web.UI.Page
     private void bindData()
     {
         Guid actId=Guid.Parse(Request.QueryString["actId"]);
-        rptPartner.DataSource = bllTa.GetOne(actId);
+        rptPartner.DataSource = bllTa.GetOne(actId).Partners;
         rptPartner.DataBind();
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        Response.Redirect("/manager/touractivity/partnerEdit.aspx");
+        Response.Redirect("/manager/touractivity/partnerEdit.aspx?actId=" + Request.QueryString["actId"]);
 
     }
 }

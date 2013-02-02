@@ -106,7 +106,7 @@
                 参与活动门票列表
             </td>
             <td>
-                <a href="">参与活动门票列表</a>
+                <a href='/manager/touractivity/ticketlist.aspx?actId=<%= Request.QueryString["actId"]  %>'>参与活动门票列表</a>
             </td>
         </tr>
         <tr>

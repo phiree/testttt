@@ -40,7 +40,7 @@
                     <%# (bool)Eval("OnlyControlTotalAmount") ? "是" : "否"%>
                 </td>
                 <td>
-                    <a href=''>编辑</a>
+                    <a href='/manager/touractivity/partnerEdit.aspx?paId=<%# Eval("Id") %>&actId=<%= Request.QueryString["actId"] %>'>编辑</a>
                 </td>
             </tr>
         </ItemTemplate>
