@@ -57,6 +57,7 @@
                             <li><a href="/manager/quzhouspring/TicketStatistics.aspx">门票分配总计</a></li>
                             <li><a href="/manager/quzhouspring/TicketStatistics2.aspx">门票派送统计</a></li>
                             <li><a href="/manager/quzhouspring/AgentExcellist.aspx">台州门票导入</a></li>
+                            <li><a href="/manager/DateStatist.aspx">验票统计</a></li>
                             <li><span>报表</span></li>
                             <li><a href="/Reports/">景区报表</a></li>
                             <li><span>地接社</span></li>
