@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using BLL;
 using Model;
-namespace BLL.TourActivityBLL
+using System.Data;
+namespace BLL
 {
     /// <summary>
     /// 为接口服务
     /// </summary>
-    public class ActivityServiceImpl
+    public class BLLActivityServiceImpl
     {
         BLLMembership bllMembership = new BLLMembership();
         BLLTicketAssign bllTa = new BLLTicketAssign();
@@ -17,23 +18,9 @@ namespace BLL.TourActivityBLL
         BLLTicket bllTicket = new BLLTicket();
         BLLTourActivity bllActivity = new BLLTourActivity();
         BLLActivityTicketAssign bllActivityTicketAssign = new BLLActivityTicketAssign();
-        /// <summary>
-        /// 用户请求一张门票
-        /// </summary>
-        /// <param name="PartnerCode"></param>
-        /// <param name="CardNumber"></param>
-        /// <param name="RealName"></param>
-        /// <param name="Phone"></param>
-        /// <param name="ProductCode"></param>
-        /// <param name="Number"></param>
-        /// <returns></returns>
-        public string buyProduct(string PartnerCode, string CardNumber, string RealName, string Phone, string ProductCode, int Number)
-        {
-            return "T";
-        }
 
         /// <summary>
-        /// 同事请求多张门票
+        /// 伙伴请求多张门票
         /// </summary>
         /// <param name="activityCode">活动代码</param>
         /// <param name="needValidatePerDay">是否每天验证</param>
@@ -46,12 +33,15 @@ namespace BLL.TourActivityBLL
         /// <param name="Number"></param>
         /// <returns></returns>
         public string buyProduct(string activityCode, bool needCheckTime, TourMembership member
-            , string PartnerCode, string CardNumber, string RealName, string Phone, IList<string> ticketCodes, int Number)
+            , string PartnerCode, string CardNumber, string RealName, string Phone, string ticketCode, int Number)
         {
+
+            List<string> ticketCodes = new List<string>();
+            
             Guid requestGUID = Guid.NewGuid();
             TourLog.LogInstance.Debug(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", PartnerCode, CardNumber, ticketCodes, Number, Phone, requestGUID));
             string returnMsg = "T";
-         
+
             TourActivity activity = bllActivity.GetOneByActivityCode(activityCode);//get from activitycode
             //todo
             ActivityPartner currentPartner = new ActivityPartner();//get from partnercode and actrivityCode
@@ -92,7 +82,7 @@ namespace BLL.TourActivityBLL
 
             ///每张门票的剩余数量和分配情况都做检验
             IList<Ticket> ticketList = bllTicket.GetListByMultitTicketCode(ticketCodes);
-                //某几张门票 某日 某合作商的分配列表,count应该等于 门票数量
+            //某几张门票 某日 某合作商的分配列表,count应该等于 门票数量
             IList<ActivityTicketAssign> ticketAssigns = activity.ActivityTicketAssign.Where(x =>
                     x.Partner.PartnerCode == PartnerCode
                     && ticketCodes.Contains(x.Ticket.ProductCode)
@@ -113,8 +103,8 @@ namespace BLL.TourActivityBLL
             }
             else //每天票数验证.
             {
-            
-              
+
+
                 if (ticketCodes.Count != ticketAssigns.Count)
                 {
                     TourLog.LogInstance.Error(string.Format("分配有误:合作伙伴{0}门票{1}在{2}有多次分配"));
@@ -130,7 +120,7 @@ namespace BLL.TourActivityBLL
                     if (currentTicketAssign.SoldAmount + Number > currentTicketAssign.AssignedAmount)
                     {
                         returnMsg = "F|今天的门票已售完,欢迎明天再来";
-                        
+
                         goto LblReturn;
                     }
                 }
@@ -189,84 +179,55 @@ namespace BLL.TourActivityBLL
 
         }
 
-        //private bool IdAmountCheck(bool isMediaOrTaiZhou, QZPartnerTicketAsign partnerAsign, int amount, string idcardno, string ticketCode, out string errMsg)
-        //{
+
+        public int ProductLeftAmount(string activityCode, string PartnerCode, string productCode, DateTime dt)
+        {
+            ActivityTicketAssign ticketAssign = bllActivityTicketAssign.GetOneByQuery(activityCode, PartnerCode, productCode, dt);
+            return ticketAssign.AssignedAmount - ticketAssign.SoldAmount;
+        }
+
+        /// <summary>
+        /// 获取所有门票的剩余票量
+        /// </summary>
+        /// <param name="activityCode"></param>
+        /// <param name="PartnerCode"></param>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public DataSet ProductLeftAmountAll(string activityCode, string PartnerCode, DateTime date)
+        {
+            IList<ActivityTicketAssign> assigns = bllActivityTicketAssign.GetList(activityCode, PartnerCode, date);
 
 
+            DataSet ds = new DataSet();
 
-        //    //验证这个分发商还有没有足够的门票
+            DataTable dt = new DataTable("ticketamounts");
+            string colScenicName = "ScenicName";
+            string colProductCode = "ProductCode";
+            string colLastAmount = "LastAmount";
+            string colAssignedAmount = "AssignedAmount";
+            string colSoldAmount = "SoldAmount";
+            dt.Columns.Add(colScenicName);
+            dt.Columns.Add(colProductCode);
+            dt.Columns.Add(colLastAmount);
+            dt.Columns.Add(colAssignedAmount);
+            dt.Columns.Add(colSoldAmount);
+            foreach (ActivityTicketAssign ta in assigns)
+            {
 
-        //    CommonLibrary.ValidateHelper.verify_idcard(idcardno);
+                DataRow dr = dt.NewRow();
+                dr[colScenicName] = ta.Ticket.Scenic.Name;
+                dr[colProductCode] = ta.Ticket.ProductCode;
+                dr[colLastAmount] = ta.AssignedAmount - ta.SoldAmount;
+                dr[colAssignedAmount] = ta.AssignedAmount;
+                dr[colSoldAmount] = ta.SoldAmount;
+                dt.Rows.Add(dr);
+            }
 
-        //    bool hasEnough = true;
-        //    //台州和媒体: 判断是否超出总量
-        //    if (isMediaOrTaiZhou)
-        //    {
-        //        int[] totalAssignedAndSold = dalPTA.GetTotalAssignAndSold(partnerAsign.Partner.FriendlyId, ticketCode);
-        //        int totalAssigned = totalAssignedAndSold[0];
-        //        int totalSold = totalAssignedAndSold[1];
-        //        if (totalAssigned == -1)
-        //        {
-        //            errMsg = string.Format("没有分配门票信息.partner:{0},ticketcode:{1}", partnerAsign.Partner.Name, ticketCode);
-        //            return false;
-        //        }
-        //        else
-        //        {
-        //            if (totalSold + amount > totalAssigned)
-        //            {
-        //                errMsg = string.Format("门票已经全部派送.partner:{0},ticketcode:{1}", partnerAsign.Partner.Name, ticketCode);
-        //                return false;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        hasEnough = partnerAsign.HasEnoughTickets(amount);
-        //        if (!hasEnough) { errMsg = "当天门票已被抢完,请明天再来"; return false; }
-        //    }
+            ds.Tables.Add(dt);
 
-
-
-        //    //验证这个身份证号码是否已经抢到一定数量的某种类型的门票,无法继续抢订.
-
-
-        //    //是否已经抢到了足够的票数
-        //    //ticket的 productcode 不为空的门票总数--> 
-        //    //todo: 不太保险的判断
-
-        //    //IList<TicketAssign> gotTotalTicketsOfThisType = listTa.Where(x => !string.IsNullOrEmpty(x.OrderDetail.TicketPrice.Ticket.ProductCode)).ToList();
-        //    IList<TicketAssign> getAssignTicketForId = bllTicketAssign.GetTaByIdcardandTicketCode(idcardno, ticketCode);
-        //    if (getAssignTicketForId.Count > 0)
-        //    {
-
-        //        errMsg = "该身份证号码已经抢到这个景区的门票,不能继续抢票";
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        IList<object[]> gotTotalTicketsOfThisType = bllTicketAssign.GetTaByIdCardHasProductCodeBySql(idcardno);
-        //        if (gotTotalTicketsOfThisType.Count >= 5)
-        //        {
-        //            errMsg = "该身份证号码已经抢到足够票数,不能继续抢票";
-        //            return false;
-        //        }
-        //        int i = 0;
-        //        foreach (var item in gotTotalTicketsOfThisType)
-        //        {
-        //            if (item[0].ToString() == ticketCode)
-        //            {
-        //                i++;
-        //            }
-        //        }
-        //        if (i > 0)
-        //        {
-        //            errMsg = "该身份证号码已经抢到足够票数,不能继续抢票";
-        //            return false;
-        //        }
-        //    }
-
-        //    return true;
-        //}
+            return ds;
+          
+        }
 
 
     }

@@ -26,6 +26,8 @@ namespace BLL
         {
             return DalBase.GetOne(id);
         }
+       
+    
         public void Delete(T t)
         {
             DalBase.Delete(t);
@@ -42,11 +44,11 @@ namespace BLL
         {
             return DalBase.GetAll<T>();
         }
-        public IList<T> GetList(string where)
+        protected IList<T> GetList(string where)
         {
             return DalBase.GetList(where);
         }
-        public IList<T> GetList(string where, int pageIndex, int pageSize, out int totalRecord)
+        protected IList<T> GetList(string where, int pageIndex, int pageSize, out int totalRecord)
         {
             return DalBase.GetList(where, pageIndex, pageSize, out totalRecord);
         }

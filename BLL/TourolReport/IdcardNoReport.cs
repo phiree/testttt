@@ -35,10 +35,10 @@ namespace BLL
         /// <summary>
         /// 景区相关报表--区别于 旅行社报表
         /// </summary>
-        /// <param name="areaCodeHead"></param>
-        /// <param name="entId"></param>
-        /// <param name="dateBegin"></param>
-        /// <param name="dateEnd"></param>
+        /// <param name="areaCodeHead">区域编码(如浙江传"33"杭州市传"3301"</param>
+        /// <param name="entId">景区ID</param>
+        /// <param name="dateBegin">开始时间</param>
+        /// <param name="dateEnd">结束时间</param>
         /// <param name="isUsed"></param>
         /// <returns></returns>
         public Dictionary<string, int> GetListForScenic(string areaCodeHead, int? entId,

@@ -171,6 +171,44 @@ namespace BLL
             return ds;
         }
 
+
+        public DataSet GetTicketsHasProductCode(string activityCode, string idCardNo)
+        {
+            DataSet ds = new DataSet();
+            IList<TicketAssign> gotTotalTicketsOfThisType =
+                GetTaByIdCard(idCardNo)
+            .Where(x => !string.IsNullOrEmpty(x.OrderDetail.TicketPrice.Ticket.ProductCode))
+            .ToList();
+            DataTable dt = new DataTable("gotTickets");
+            string colScenicName = "ScenicName";
+            string colProductCode = "ProductCode";
+            string colOrderTime = "OrderTime";
+            string colIsUsed = "IsUsed";
+            string colValidPeriod = "ValidPeriod";
+            dt.Columns.Add(colScenicName);
+            dt.Columns.Add(colProductCode);
+            dt.Columns.Add(colOrderTime);
+            dt.Columns.Add(colIsUsed);
+            dt.Columns.Add(colValidPeriod);
+
+            foreach (TicketAssign ta in gotTotalTicketsOfThisType)
+            {
+
+                DataRow dr = dt.NewRow();
+                dr[colScenicName] = ta.OrderDetail.TicketPrice.Ticket.Scenic.Name;
+                dr[colOrderTime] = ta.OrderDetail.Order.BuyTime;
+                dr[colIsUsed] = ta.IsUsed;
+                dr[colValidPeriod] = ta.OrderDetail.TicketPrice.Ticket.BeginDate.Date
+                                    + "~" + ta.OrderDetail.TicketPrice.Ticket.EndDate.Date;
+                dr[colProductCode] = ta.OrderDetail.TicketPrice.Ticket.ProductCode;
+                dt.Rows.Add(dr);
+
+            }
+            ds.Tables.Add(dt);
+            return ds;
+        }
+
+
         /// <summary>
         /// 批量修改身份证号码信息--衢州送票活动给信息中西提供的接口
         /// </summary>
@@ -247,7 +285,7 @@ namespace BLL
         //用户某活动中抢到的某门票的总票数
         public IList<TicketAssign> GetListByActivity_Idcard_Ticket(string activitycode, string idcard, string ticketCode)
         {
-            return Iticketassign.GetListByIdcard_Ticket_Activity(activitycode, idcard, ticketCode);
+            return Iticketassign.GetList(activitycode, idcard, ticketCode);
         }
         
         public int GetAmountIdcardActivityTicket(string activitycode, string idcard, string ticketCode)
@@ -257,12 +295,16 @@ namespace BLL
        
         public IList<TicketAssign> GetListByActivity_Idcard(string activitycode, string idcard)
         {
-            return Iticketassign.GetListByIdcard_Ticket_Activity(activitycode, idcard,string.Empty);
+            return Iticketassign.GetList(activitycode, idcard,string.Empty);
         }
         //用户某活动中抢到的总票数
         public int GetAmountActivityIdcard(string activitycode, string idcard)
         {
             return GetListByActivity_Idcard(activitycode, idcard).Count;
-        } 
+        }
+        public IList<TicketAssign> GetList(string activityCode,string idcard)
+        {
+            return Iticketassign.GetList(activityCode, idcard, string.Empty);
+        }
     }
 }

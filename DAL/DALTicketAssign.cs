@@ -353,7 +353,7 @@ namespace DAL
             return query.Future<TicketAssign>().ToList<TicketAssign>();
         }
 
-        public IList<TicketAssign> GetListByIdcard_Ticket_Activity(string activitycode, string idcard, string ticketCode)
+        public IList<TicketAssign> GetList(string activitycode, string idcard, string ticketCode)
         {
             IQueryOver<TicketAssign,TicketAssign> iqueryover = session.QueryOver<TicketAssign>();
             if (!string.IsNullOrEmpty(ticketCode))
@@ -372,6 +372,6 @@ namespace DAL
 
         }
 
-        
+      
     }
 }
