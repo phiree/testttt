@@ -4,19 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Services;
-using Model;
-using BLL;
-using System.Runtime.Serialization.Json;
-using System.IO;
 using System.Web.UI.HtmlControls;
+using BLL;
+using Model;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Web.Services;
 using System.Text.RegularExpressions;
 
-public partial class qumobile_CheckTicket : basepage
+public partial class ScenicManager_CheckTicket : bpScenicManager
 {
-    //门票不在有效期内
-    const string InValidPeriodMsgFormat = "验票失败!不在有效期内.该门票有效期为 {0}至{1}.";
-    #region 初始化参数
+    #region 公共的参数
     BLLTicketAssign bllticketassign = new BLLTicketAssign();
     BLLTicketPrice bllticketprice = new BLLTicketPrice();
     BLLOrderDetail bllorderdetail = new BLLOrderDetail();
@@ -27,8 +25,54 @@ public partial class qumobile_CheckTicket : basepage
     BLLTicket bllTicket = new BLLTicket();
     BLLMembership bllMember = new BLLMembership();
     #endregion
+    #region Init初始化
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        hfscid.Value = Master.Scenic.Id.ToString();
+        if (txtinfo.Text != "录入游客身份证或名字" && txtinfo.Text != "")
+        {
+           // btnbind_Click(null, null);
+        }
+        if (!IsPostBack)
+        {
+            Init();
 
-    #region Init
+        }
+    }
+    /// <summary>
+    /// 初始化相关信息
+    /// </summary>
+    private void Init()
+    {
+        CurrentScenic = Master.Scenic;
+        //绑定预定信息
+
+        //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
+        /*  List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", CurrentScenic,true);
+          List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetGuiderWorkerByTE(CurrentScenic).ToList();
+          foreach (DJ_Group_Worker gw in listdjGW)
+          {
+              //排除以后的人员信息
+              if (list.Where(x => x.IdCard == gw.DJ_Workers.IDCard).Count() == 0)
+              {
+                  TicketAssign ta = new TicketAssign();
+                  ta.Name = gw.DJ_Workers.Name;
+                  ta.IdCard = gw.DJ_Workers.IDCard;
+                  list.Add(ta);
+              }
+          }
+          rptpeopleinfo.DataSource = list;
+          rptpeopleinfo.DataBind();*/
+        Request.Cookies.Add(new HttpCookie("idcard"));
+        Response.Cookies.Add(new HttpCookie("idcard"));
+        Request.Cookies["idcard"].Value = "";
+        Response.Cookies["idcard"].Value = "";
+        detailinfo.Visible = false;
+        ywdiv.Style.Add("visiblity", "hidden");
+        rptguiderinfo.Visible = false;
+    }
+
+
     ///// <summary>
     ///// 为前台autocomplete插件做的ajax方法
     ///// </summary>
@@ -39,11 +83,24 @@ public partial class qumobile_CheckTicket : basepage
     //{
     //    Scenic s = new BLLScenic().GetScenicById(int.Parse(scid));
     //    List<TicketAssign> list = new BLLTicketAssign().GetIdcardandname("", "", s,true);
+    //    //再这里要加上当天会来此景点的导游信息,并把它包装成为TicketAssign
+    //    List<DJ_Workers> listdjGW = new BLLDJTourGroup().GetTourGroupByTeId(s.Id).ToList();
+    //    foreach (DJ_Workers gw in listdjGW)
+    //    {
+    //        //排除以后的人员信息
+    //        if (list.Where(x => x.IdCard == gw.IDCard).Count() == 0)
+    //        {
+    //            TicketAssign ta = new TicketAssign();
+    //            ta.Name = gw.Name;
+    //            ta.IdCard = gw.IDCard;
+    //            list.Add(ta);
+    //        }
+    //    }
     //    Dictionary<string, string> data = new Dictionary<string, string>();
     //    foreach (TicketAssign item in list)
     //    {
     //        //这里的key是真实身份证号，val是带*身份证号
-    //        data.Add(item.Name + "/" + item.IdCard, item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
+    //        data.Add(item.Name+"/"+item.IdCard,item.Name + "/" + item.IdCard.Substring(0, 6) + "********" + item.IdCard.Substring(14));
     //    }
     //    DataContractJsonSerializer serializer = new DataContractJsonSerializer(data.GetType());
     //    using (MemoryStream ms = new MemoryStream())
@@ -52,43 +109,57 @@ public partial class qumobile_CheckTicket : basepage
     //        return System.Text.Encoding.UTF8.GetString(ms.ToArray());
     //    }
     //}
-
-    
-
-
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        if (!IsPostBack)
-        {
-            InitData();
-        }
-    }
-
-    private void InitData()
-    {
-        Msg.InnerText = "";
-        ScenicAdmin sa= bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
-        hfscid.Value = sa.Scenic.Id.ToString();
-        detailinfo.Visible = false;
-       
-    }
     #endregion
 
     #region event
-
-    protected void btnSearch_Click(object sender, EventArgs e)
+    protected void btnbind_Click(object sender, EventArgs e)
     {
-        Btnckpass.Visible = true;
-        Msg.InnerText = "";
-        Scenic CurrentScenic = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic;
+      
+        CurrentScenic = Master.Scenic;
         if (hfdata.Value.Split('/').Length < 2)
         {
-            Msg.InnerText = "无此身份证购票信息";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
             return;
         }
         string name = hfdata.Value.Split('/')[0];
         string idcard = hfdata.Value.Split('/')[1];
+        int flag = 0;
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname(name,idcard, CurrentScenic,true).Where(x => x.Name == name))
+        {
+            if (item.IdCard == idcard)
+            {
+                flag = 1;
+                idcard = item.IdCard;
+            }
+        }
+        if (flag == 0)
+        {
+            foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList())
+            {
+                if (work.DJ_Workers.IDCard == idcard)
+                {
+                    flag = 1;
+                    idcard = work.DJ_Workers.IDCard;
+                }
+            }
+        }
+        if (flag == 0)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
+            return;
+        }
+        if (Request.Cookies["idcard"] != null)
+            Request.Cookies["idcard"].Value = idcard;
+        if (Response.Cookies["idcard"] != null)
+            Response.Cookies["idcard"].Value = idcard;
+        bindTicketInfo(name, idcard);
+       // Btnckpass.Visible = true;
+        BindPrintLink();
+    }
+    protected void btnselect_Click(object sender, EventArgs e)
+    {
+        string name = hfselectname.Value;
+        string idcard = hfselectidcard.Value;
         int flag = 0;
         foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname(name, idcard, CurrentScenic,true).Where(x => x.Name == name))
         {
@@ -100,7 +171,7 @@ public partial class qumobile_CheckTicket : basepage
         }
         if (flag == 0)
         {
-            foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(CurrentScenic).ToList())
+            foreach (DJ_Group_Worker work in new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList())
             {
                 if (work.DJ_Workers.IDCard == idcard)
                 {
@@ -111,162 +182,19 @@ public partial class qumobile_CheckTicket : basepage
         }
         if (flag == 0)
         {
-            Msg.InnerText = "无此身份证购票信息";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
             return;
         }
-        if (Request.Cookies["idcard"] != null)
-            Request.Cookies["idcard"].Value = idcard;
-        if (Response.Cookies["idcard"] != null)
-            Response.Cookies["idcard"].Value = idcard;
         bindTicketInfo(name, idcard);
+        BindPrintLink();
     }
-
-
-
-    #endregion
-    #region 绑定票价信息
-    public void bindTicketInfo(string name, string idcard)
-    {
-        username.InnerHtml = name;
-        useridcard.InnerHtml = idcard.Substring(0, 6) + "********" + idcard.Substring(14);
-        //预定
-        Scenic CurrentScenic = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic; ;
-        ViewState["idcard"] = idcard;
-        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-        rptpayyd.DataBind();
-        if (rptpayyd.Items.Count == 0)
-            rptpayyd.Visible = false;
-        else
-            rptpayyd.Visible = true;
-        //在线购买
-        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard);
-        rptpayonline.DataBind();
-        if (rptpayonline.Items.Count == 0)
-            rptpayonline.Visible = false;
-        else
-            rptpayonline.Visible = true;
-        ShowResult();
-    }
-    #endregion
-    public void ShowResult()
-    {
-        detailinfo.Visible = true;
-    }
-
-    protected void rptpayonline_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-        {
-            Model.Ticket t = e.Item.DataItem as Model.Ticket;
-            if (IsCurrentScenicTicket(t) || IsCurrentScenicTp(t))
-            {
-                int ttolcount = 0;
-                int uscount = 0;
-                t.Scenic = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic;
-                bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 3);
-                HtmlContainerControl hcolgpcount = e.Item.FindControl("olgpcount") as HtmlContainerControl;
-                hcolgpcount.InnerHtml = ttolcount.ToString();
-                HtmlContainerControl hcolgpusedcount = e.Item.FindControl("olgpusedcount") as HtmlContainerControl;
-                hcolgpusedcount.InnerHtml = uscount.ToString();
-
-                TextBox tbx = e.Item.FindControl("txtolusecount") as TextBox;
-                tbx.Text = ttolcount.ToString();
-                if (ttolcount == 0)
-                {
-                    e.Item.Visible = false;
-                }
-            }
-            else
-            {
-                e.Item.Visible = false;
-            }
-        }
-    }
-
-    protected void rptpayyd_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-        {
-            Model.Ticket t = e.Item.DataItem as Model.Ticket;
-            if (IsCurrentScenicTicket(t) || IsCurrentScenicTp(t))
-            {
-                int ttolcount = 0;
-                int uscount = 0;
-                t.Scenic = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic;
-                bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 2);
-                HtmlContainerControl hcydmpcount = e.Item.FindControl("ydmpcount") as HtmlContainerControl;
-                hcydmpcount.InnerHtml = ttolcount.ToString();
-                HtmlContainerControl hcydmpusedcount = e.Item.FindControl("ydmpusedcount") as HtmlContainerControl;
-                hcydmpusedcount.InnerHtml = uscount.ToString();
-                HtmlContainerControl hcyddj = e.Item.FindControl("yddj") as HtmlContainerControl;
-                hcyddj.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(t, PriceType.PreOrder).Price.ToString("0") + "元";
-                if (ttolcount == 0)
-                {
-                    e.Item.Visible = false;
-                }
-            }
-            else
-            {
-                e.Item.Visible = false;
-            }
-        }
-    }
-
-    protected void rptguiderinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
-        {
-            int Index = 0;
-            DJ_TourGroup tourgroup = e.Item.DataItem as DJ_TourGroup;
-            Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
-            laGuideName.Text = tourgroup.Workers.Where(x => x.DJ_Workers.WorkerType == DJ_GroupWorkerType.导游).ToList<DJ_Group_Worker>()[0].DJ_Workers.Name;
-            HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
-            int flag = 0;
-            foreach (DJ_Route route in tourgroup.Routes)
-            {
-                if (tourgroup.BeginDate.AddDays(route.DayNo - 1).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic.Id)
-                {
-                    if (flag == Index)
-                    {
-                        hfroute.Value = route.Id.ToString();
-                        Literal laIsChecked = e.Item.FindControl("laIsChecked") as Literal;
-                        CheckBox selectItem = e.Item.FindControl("selectItem") as CheckBox;
-                        TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
-                        TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
-                        DJ_GroupConsumRecord record = bllrecord.GetGroupConsumRecordByRouteId(route.Id);
-                        if (record != null)
-                        {
-                            laIsChecked.Text = "已验证";
-                            selectItem.Enabled = false;
-                            selectItem.Checked = true;
-                            tbAdult.Enabled = false;
-                            tbChild.Enabled = false;
-                            tbAdult.Text = record.AdultsAmount.ToString();
-                            tbChild.Text = record.ChildrenAmount.ToString();
-                        }
-                        else
-                        {
-                            laIsChecked.Text = "未验证";
-                        }
-                        Index++;
-                    }
-                    else
-                    {
-                        flag++;
-                    }
-                }
-            }
-        }
-    }
-
     protected void Btnckpass_Click(object sender, EventArgs e)
     {
-        Scenic CurrentScenic = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic;
         int IsSuccess = 0;//是否验票成功
         int guiderSuccess = 0;//导游是否验票成功
-        if (txtinfo.Text != "录入游客身份证或名字")
+        if (txtinfo.Text != "录入身份证号码(至少3位)")
         {
-            Msg.InnerText = "无此身份证购票信息";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息')", true);
         }
         int yditems, olrptitems, guideritems, IsSelecttiem;
         if (!IsCanChecked(out yditems, out olrptitems, out guideritems, out IsSelecttiem))
@@ -290,9 +218,9 @@ public partial class qumobile_CheckTicket : basepage
                     Ticket ticket = bllTicket.GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value));
                     if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
                     {
-                        string message = "该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
-                        message += "请在规定的时间内使用该门票！";
-                        Msg.InnerText = string.Format(InValidPeriodMsgFormat, ticket.BeginDate.ToString("yyyy-MM-dd"), ticket.EndDate.ToString("yyyy-MM-dd"));
+                        string message = "alert('该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
+                        message += "请在规定的时间内使用该门票！')";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", message, true);
                         return;
                     }
 
@@ -373,7 +301,7 @@ public partial class qumobile_CheckTicket : basepage
                     int usedcount = Convert.ToInt32((repitem.FindControl("olgpusedcount") as HtmlContainerControl).InnerHtml);
                     if (gpcount - usedcount < oluse)
                     {
-                        Msg.InnerText = "超出购买张数，请检查购票数量";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('超出购买张数，请检查购票数量')", true);
                         flag = 1;
                         break;
                     }
@@ -383,10 +311,9 @@ public partial class qumobile_CheckTicket : basepage
                         Ticket ticket = bllTicket.GetTicket(int.Parse((repitem.FindControl("hfticketid") as HiddenField).Value));
                         if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
                         {
-                            string message = "该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
-                            message += "请在规定的时间内使用该门票！";
-                            Msg.InnerText = Msg.InnerText = string.Format(InValidPeriodMsgFormat, ticket.BeginDate.ToString("yyyy-MM-dd"), ticket.EndDate.ToString("yyyy-MM-dd"));
-                   
+                            string message = "alert('该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
+                            message += "请在规定的时间内使用该门票！')";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", message, true);
                             return;
                         }
 
@@ -433,15 +360,16 @@ public partial class qumobile_CheckTicket : basepage
         }
         if (guiderSuccess == 1)
         {
-            Msg.InnerText = "验票通过";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "printTicket('验票通过,是否需要打印凭证？')", true);
             Btnckpass.Visible = false;
         }
         if (IsSuccess == 1)
         {
-            Msg.InnerText = "验票通过";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('验票通过')", true);
             Btnckpass.Visible = false;
         }
-       // detailinfo.Visible = false;
+        //todo: 绑定游客列表
+     
         rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
         rptpayyd.DataBind();
         if (rptpayyd.Items.Count == 0)
@@ -453,6 +381,102 @@ public partial class qumobile_CheckTicket : basepage
         rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTe(ViewState["idcard"].ToString(), CurrentScenic);
         rptguiderinfo.DataBind();
     }
+
+    //绑定游玩记录
+    private void bindywrecord()
+    {
+        rptywrecord.DataSource = bllticketassign.GetYwCount(ViewState["idcard"].ToString());
+        rptywrecord.DataBind();
+    }
+    protected void rptywrecord_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.FindControl("ywtime") != null)
+        {
+            string ywtime = (e.Item.FindControl("ywtime") as HtmlContainerControl).InnerHtml;
+            (e.Item.FindControl("ywtime") as HtmlContainerControl).InnerHtml = bllticketassign.GetUsedCount(ViewState["idcard"].ToString(), DateTime.Parse(ywtime)).ToString();
+        }
+    }
+    protected void btnauto_Click(object sender, EventArgs e)
+    {
+        CurrentScenic = Master.Scenic;
+        string idcard = hfautoidcard.Value;
+        IList<TicketAssign> list = bllticketassign.GetTaByIdcardandscenic(idcard, CurrentScenic);
+        if (list.Count == 0)
+        {
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('无此身份证购票信息');", true);
+            tp_nav.Attributes.Add("style", "");
+            detailinfo.Visible = false;
+            ywdiv.Style.Add("visiblity", "hidden");
+            return;
+        }
+        else
+        {
+
+
+            string name = list[0].Name; // bllticketassign.GetTaByIdCard(idcard)[0].Name;
+            bindTicketInfo(name, idcard);
+        }
+        BindPrintLink();
+    }
+    protected void rptpayonline_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            Model.Ticket t = e.Item.DataItem as Model.Ticket;
+            if (IsCurrentScenicTicket(t) || IsCurrentScenicTp(t))
+            {
+                int ttolcount = 0;
+                int uscount = 0;
+                t.Scenic = Master.Scenic;
+                bllticketassign.GetOlTicketInfoByIdcard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 3);
+                HtmlContainerControl hcolgpcount = e.Item.FindControl("olgpcount") as HtmlContainerControl;
+                hcolgpcount.InnerHtml = ttolcount.ToString();
+                HtmlContainerControl hcolgpusedcount = e.Item.FindControl("olgpusedcount") as HtmlContainerControl;
+                hcolgpusedcount.InnerHtml = uscount.ToString();
+
+                TextBox tbx = e.Item.FindControl("txtolusecount") as TextBox;
+                tbx.Text = ttolcount.ToString();
+                if (ttolcount == 0)
+                {
+                    e.Item.Visible = false;
+                }
+            }
+            else
+            {
+                e.Item.Visible = false;
+            }
+        }
+    }
+    protected void rptpayyd_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            Model.Ticket t = e.Item.DataItem as Model.Ticket;
+            if (IsCurrentScenicTicket(t) || IsCurrentScenicTp(t))
+            {
+                int ttolcount = 0;
+                int uscount = 0;
+                t.Scenic = Master.Scenic;
+                bllticketassign.GetTicketInfoByIdCard(ViewState["idcard"].ToString(), t, out ttolcount, out uscount, 2);
+                HtmlContainerControl hcydmpcount = e.Item.FindControl("ydmpcount") as HtmlContainerControl;
+                hcydmpcount.InnerHtml = ttolcount.ToString();
+                HtmlContainerControl hcydmpusedcount = e.Item.FindControl("ydmpusedcount") as HtmlContainerControl;
+                hcydmpusedcount.InnerHtml = uscount.ToString();
+                HtmlContainerControl hcyddj = e.Item.FindControl("yddj") as HtmlContainerControl;
+                hcyddj.InnerHtml = bllticketprice.GetTicketPriceByScenicandtypeid(t, PriceType.PreOrder).Price.ToString("0") + "元";
+                if (ttolcount == 0)
+                {
+                    e.Item.Visible = false;
+                }
+            }
+            else
+            {
+                e.Item.Visible = false;
+            }
+        }
+    }
+
+
 
     #region 判断是否是套票
     public bool IsTp(Ticket t)
@@ -468,7 +492,7 @@ public partial class qumobile_CheckTicket : basepage
     public bool IsCurrentScenicTicket(Ticket t)
     {
         t = new BLLTicket().GetTicket(t.Id);
-        if (t.Scenic.Id == bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic.Id)
+        if (t.Scenic.Id == Master.Scenic.Id)
             return true;
         else
             return false;
@@ -482,7 +506,7 @@ public partial class qumobile_CheckTicket : basepage
         List<Scenic> list = bllscenicticket.GetScenicByTicket(t.Id).ToList();
         foreach (Scenic item in list)
         {
-            if (item.Id == bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic.Id)
+            if (item.Id == Master.Scenic.Id)
             {
                 return true;
             }
@@ -490,6 +514,99 @@ public partial class qumobile_CheckTicket : basepage
         return false;
     }
     #endregion
+    #region 显示验票结果
+    public void ShowResult()
+    {
+        tp_nav.Attributes.Add("style", "margin-top:20px;");
+        ywdiv.Style.Add("visiblity", "visible");
+        detailinfo.Visible = true;
+        if (rptguiderinfo.Items.Count > 0)
+        {
+            rptguiderinfo.Visible = true;
+            //设置第一个checkbox为选中状态
+            (rptguiderinfo.Items[0].FindControl("selectItem") as CheckBox).Checked = true;
+        }
+        else
+        {
+            rptguiderinfo.Visible = false;
+        }
+        bindywrecord();
+    }
+    #endregion
+    #region 绑定票价信息
+    public void bindTicketInfo(string name, string idcard)
+    {
+        username.InnerHtml = name;
+        useridcard.InnerHtml = idcard.Substring(0, 6) + "********" + idcard.Substring(14);
+        //预定
+        CurrentScenic = Master.Scenic;
+        ViewState["idcard"] = idcard;
+      
+        rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+        rptpayyd.DataBind();
+        if (rptpayyd.Items.Count == 0)
+            rptpayyd.Visible = false;
+        else
+            rptpayyd.Visible = true;
+        //在线购买
+        rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(idcard);
+        rptpayonline.DataBind();
+        if (rptpayonline.Items.Count == 0)
+            rptpayonline.Visible = false;
+        else
+            rptpayonline.Visible = true;
+        //导游信息
+        rptguiderinfo.DataSource = blldjtourgroup.GetTgByIdcardAndTe(idcard, CurrentScenic);
+        rptguiderinfo.DataBind();
+        ShowResult();
+    }
+    #endregion
+    protected void rptguiderinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            int Index = 0;
+            DJ_TourGroup tourgroup = e.Item.DataItem as DJ_TourGroup;
+            Literal laGuideName = e.Item.FindControl("laGuideName") as Literal;
+            laGuideName.Text = tourgroup.Workers.Where(x => x.DJ_Workers.WorkerType == DJ_GroupWorkerType.导游).ToList<DJ_Group_Worker>()[0].DJ_Workers.Name;
+            HiddenField hfroute = e.Item.FindControl("hfrouteId") as HiddenField;
+            int flag = 0;
+            foreach (DJ_Route route in tourgroup.Routes)
+            {
+                if (tourgroup.BeginDate.AddDays(route.DayNo - 1).ToShortDateString() == DateTime.Now.ToShortDateString() && route.Enterprise.Id == Master.Scenic.Id)
+                {
+                    if (flag == Index)
+                    {
+                        hfroute.Value = route.Id.ToString();
+                        Literal laIsChecked = e.Item.FindControl("laIsChecked") as Literal;
+                        CheckBox selectItem = e.Item.FindControl("selectItem") as CheckBox;
+                        TextBox tbAdult = e.Item.FindControl("txtAdultsAmount") as TextBox;
+                        TextBox tbChild = e.Item.FindControl("txtChildrenAmount") as TextBox;
+                        DJ_GroupConsumRecord record = bllrecord.GetGroupConsumRecordByRouteId(route.Id);
+                        if (record != null)
+                        {
+                            laIsChecked.Text = "已验证";
+                            selectItem.Enabled = false;
+                            selectItem.Checked = true;
+                            tbAdult.Enabled = false;
+                            tbChild.Enabled = false;
+                            tbAdult.Text = record.AdultsAmount.ToString();
+                            tbChild.Text = record.ChildrenAmount.ToString();
+                        }
+                        else
+                        {
+                            laIsChecked.Text = "未验证";
+                        }
+                        Index++;
+                    }
+                    else
+                    {
+                        flag++;
+                    }
+                }
+            }
+        }
+    }
 
     #region 验票通过前的审核内容
     private bool IsCanChecked(out int yditems, out int olrptitems, out int guideritems, out int IsSelecttiem)
@@ -533,7 +650,7 @@ public partial class qumobile_CheckTicket : basepage
                 HaveYz = 1;
             }
         }
-        Scenic CurrentScenic = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey).Scenic;
+        CurrentScenic = Master.Scenic;
 
         //未输入票数
         if (!rptguiderinfo.Visible)//没有导游信息时显示的提示信息
@@ -542,16 +659,16 @@ public partial class qumobile_CheckTicket : basepage
             {
                 if (rptpayyd.Visible == true || rptpayonline.Visible == true)
                 {
-                    Msg.InnerText = "请输入使用张数";
-                    rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                    rptpayyd.DataBind();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
+                    //rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                    //rptpayyd.DataBind();
                     if (rptpayyd.Items.Count == 0)
                         rptpayyd.Visible = false;
                     else
                         rptpayyd.Visible = true;
 
-                    rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                    rptpayonline.DataBind();
+                    //rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                    //rptpayonline.DataBind();
                     return false;
                 }
             }
@@ -563,14 +680,14 @@ public partial class qumobile_CheckTicket : basepage
                 if (IsSelecttiem == 0)
                 {
                     if (HaveYz == 1)
-                        Msg.InnerText="请选择一个已验证的团队信息";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "printTicket('请选择一个已验证的团队信息，是否对已验证的团队进行打印？')", true);
                     else
-                        Msg.InnerText = "请选择一个已验证的团队信息";
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请选择一个已验证的团队信息')", true);
                     return false;
                 }
                 else if (guideritems > 0)
                 {
-                    Msg.InnerText = "请输入完整使用人数";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入完整使用人数')", true);
                     return false;
                 }
             }
@@ -582,16 +699,16 @@ public partial class qumobile_CheckTicket : basepage
                     {
                         if (rptpayyd.Visible == true || rptpayonline.Visible == true)
                         {
-                            Msg.InnerText = "请输入使用张数";
-                            rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                            rptpayyd.DataBind();
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('请输入使用张数')", true);
+                            //rptpayyd.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                            //rptpayyd.DataBind();
                             if (rptpayyd.Items.Count == 0)
                                 rptpayyd.Visible = false;
                             else
                                 rptpayyd.Visible = true;
 
-                            rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
-                            rptpayonline.DataBind();
+                            //rptpayonline.DataSource = bllticketassign.GetTicketTypeByIdCard(ViewState["idcard"].ToString());
+                            //rptpayonline.DataBind();
                             return false;
                         }
                     }
@@ -601,6 +718,23 @@ public partial class qumobile_CheckTicket : basepage
         return true;
     }
     #endregion
+    protected void rptpeopleinfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            TicketAssign ta = e.Item.DataItem as TicketAssign;
+            Literal laType = e.Item.FindControl("laType") as Literal;
+            List<DJ_Group_Worker> listdjGW = new BLLDJTourGroup().GetGuiderWorkerByTE(Master.Scenic).ToList();
+            if (listdjGW.Where(x => x.DJ_Workers.IDCard == ta.IdCard).Count() > 0)
+            {
+                laType.Text = "导游";
+            }
+            else
+            {
+                laType.Text = "个人";
+            }
+        }
+    }
     private void BindPrintLink()
     {
         string routeids = "";
@@ -613,4 +747,5 @@ public partial class qumobile_CheckTicket : basepage
         }
         BtnPrint.HRef = "/ScenicManager/PrintCer.aspx?routeids=" + routeids;
     }
+    #endregion
 }
