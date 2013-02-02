@@ -11,7 +11,7 @@ namespace Model
     public class TicketPrice
     {
         public virtual int Id { get; set; }
-        public virtual TicketBase Ticket { get; set; }
+        public virtual Ticket Ticket { get; set; }
 
         public virtual PriceType PriceType { get; set; }
         public virtual decimal Price { get; set; }

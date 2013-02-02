@@ -15,7 +15,7 @@ namespace Model
         {
             EndHour = 24;
             Partners = new List<ActivityPartner>();
-            Tickets = new List<TicketBase>();
+            Tickets = new List<Ticket>();
             ActivityTicketAssign = new List<ActivityTicketAssign>();
         }
         public virtual Guid Id { get; set; }
@@ -36,7 +36,7 @@ namespace Model
         //合作分票者
         public virtual IList<ActivityPartner> Partners { get; set; }
         //参与活动的门票
-        public virtual IList<TicketBase> Tickets { get; set; }
+        public virtual IList<Ticket> Tickets { get; set; }
         //门票分配情况
         public virtual IList<ActivityTicketAssign> ActivityTicketAssign { get; set; }
         /// <summary>

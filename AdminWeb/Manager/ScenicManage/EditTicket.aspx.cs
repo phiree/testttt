@@ -34,7 +34,7 @@ public partial class Manager_ScenicManage_AddTicket : System.Web.UI.Page
 
         if (isNew)
         {
-            CurrentTicket = new Ticket();
+            CurrentTicket = new TicketNormal();
         }
         else
         {

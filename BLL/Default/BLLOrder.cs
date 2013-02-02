@@ -192,13 +192,13 @@ namespace BLL
         /// <param name="assignName"></param>
         /// <param name="amount"></param>
         /// <param name="errMsg"></param>
-        public void CreateOrder(string activityName, string partnerCode, Guid memberId, TicketBase ticket, string idcardno, string assignName, int amount, out string errMsg)
+        public void CreateOrder(string activityName, string partnerCode, Guid memberId, Ticket ticket, string idcardno, string assignName, int amount, out string errMsg)
         {
-            List<TicketBase> ticketList = new List<TicketBase>();
+            List<Ticket> ticketList = new List<Ticket>();
 
             if (ticket is UnionTicket)
             {
-                foreach (TicketBase t in ((UnionTicket)ticket).TicketList)
+                foreach (Ticket t in ((UnionTicket)ticket).TicketList)
                 {
                     ticketList.Add(t);
                 }

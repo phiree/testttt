@@ -148,7 +148,7 @@ namespace BLL
             {
                 RealName = activity.Name + "参与者";
             }
-            TicketBase ticket = bllTicket.GetByProductCode(ticketCode);
+            Ticket ticket = bllTicket.GetByProductCode(ticketCode);
             bllOrder.CreateOrder(activity.Name, PartnerCode, member.Id, ticket, CardNumber, RealName, Number, out createOrderErrMsg);
             if (!string.IsNullOrEmpty(createOrderErrMsg))
             {

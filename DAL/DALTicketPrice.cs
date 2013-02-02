@@ -26,7 +26,7 @@ namespace DAL
             }
         }
 
-        public Model.TicketPrice GetTicketPriceByScenicandtypeid(Model.TicketBase t, int typeid)
+        public Model.TicketPrice GetTicketPriceByScenicandtypeid(Model.Ticket t, int typeid)
         {
             string sql = "select tp from TicketPrice tp where tp.Ticket.Id=" + t.Id + " and tp.PriceType=" + (int)typeid + "";
             IQuery query = session.CreateQuery(sql);

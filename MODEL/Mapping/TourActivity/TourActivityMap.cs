@@ -16,7 +16,7 @@ namespace Model.Mapping
           Map(x => x.BeginHour);
           Map(x => x.EndHour);
           HasMany<ActivityPartner>(x => x.Partners).Cascade.All();
-          HasMany<TicketBase>(x => x.Tickets).Cascade.All();
+          HasMany<Ticket>(x => x.Tickets).Cascade.All();
             Map(x => x.Name);
             Map(x => x.BeginDate);
             Map(x => x.EndDate);

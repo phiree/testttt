@@ -30,7 +30,7 @@ public partial class Scenic_Cart : System.Web.UI.Page
 
     private void BindTickets()
     {
-       IList<Ticket> ts=bllTicket.GetTicketsFromCart();
+        IList<Ticket> ts = bllTicket.GetTicketsFromCart();
         if (ts.Count == 0)
         {
             pnlEmptyCart.Visible = true;

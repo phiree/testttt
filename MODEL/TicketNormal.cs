@@ -9,9 +9,9 @@ namespace Model
     /// 景区的门票定义
     /// 有多个价格:门市价 预订价 优惠价 
     /// </summary>
-    public class Ticket:TicketBase
+    public class TicketNormal:Ticket
     {
-        public Ticket()
+        public TicketNormal()
         {
             TicketPrice = new List<TicketPrice>();
             BeginDate = new DateTime(2013, 1, 1);

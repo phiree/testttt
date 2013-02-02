@@ -18,9 +18,9 @@ namespace DAL
         }
 
 
-        public IList<Model.TicketBase> GetTicketByscId(int scid)
+        public IList<Model.Ticket> GetTicketByscId(int scid)
         {
-            var ticketList = session.QueryOver<Model.TicketBase>().Where(x => x.Scenic.Id == scid && x.IsMain == true).List();
+            var ticketList = session.QueryOver<Model.Ticket>().Where(x => x.Scenic.Id == scid && x.IsMain == true).List();
             //string sql = "select t from Ticket t where t.Scenic.Id="+scid+"";
             //IQuery query = session.CreateQuery(sql);
             return ticketList;
@@ -84,7 +84,7 @@ namespace DAL
             totalRecord =(int) qryTotal.FutureValue<long>().Value;
             return ticketList;
         }
-        public void SaveOrUpdateTicket(Model.TicketBase ticket)
+        public void SaveOrUpdateTicket(Model.Ticket ticket)
         {
             using (var t=session.BeginTransaction())
             {
@@ -94,7 +94,7 @@ namespace DAL
             }
         }
 
-        public void SaveOrUpdateTicket(IList<Model.TicketBase> tickets)
+        public void SaveOrUpdateTicket(IList<Model.Ticket> tickets)
         {
             foreach (var item in tickets)
             {
@@ -122,9 +122,9 @@ namespace DAL
             return query.Future<Model.Ticket>().OrderByDescending(x=>x.OrderNumber).ToList();
         }
 
-        public Model.TicketBase GetByProductCode(string productCode)
+        public Model.Ticket GetByProductCode(string productCode)
         {
-            return session.QueryOver<Model.TicketBase>().Where(x => x.ProductCode == productCode).SingleOrDefault();
+            return session.QueryOver<Model.Ticket>().Where(x => x.ProductCode == productCode).SingleOrDefault();
         }
 
 

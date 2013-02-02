@@ -219,6 +219,18 @@ namespace DAL
             return GetList(string.Empty,false, areacode, type, rewardType);
         }
 
+        public IList<Model.DJ_TourEnterprise> GetListByNameLike(string nameLike)
+        {
+            var entlist = session.QueryOver<Model.DJ_TourEnterprise>().Where(x => x.Name.Contains(nameLike)).List();
+            var unionTicketList=session.QueryOver<Model.UnionTicket>().Where(x=>x.TicketList.Where(y=>y.Scenic.Name.Contains(nameLike)).Count()>0).List();
+            foreach (Model.UnionTicket ticket  in unionTicketList)
+            {
+                entlist.Add(ticket.Scenic);
+            }
+            return entlist;
+            
+        }
+
         //精确名称查找
         public IList<Model.DJ_TourEnterprise> GetList(string name,  string areacode, Model.EnterpriseType? type, Model.RewardType? rewardType
 

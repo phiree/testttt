@@ -96,7 +96,7 @@
     <Compile Include="Mapping\OperationLogMap.cs" />
     <Compile Include="Dijieshe\DJ_Recommand.cs" />
     <Compile Include="Mapping\TourActivity\ActivityPartnerMap.cs" />
-    <Compile Include="Mapping\TickeBasetMap.cs" />
+    <Compile Include="Mapping\TicketMap.cs" />
     <Compile Include="Mapping\UnionTicketMap.cs" />
     <Compile Include="QuZhouSpring\QZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\QZSpringPartner.cs" />
@@ -128,8 +128,8 @@
     <Compile Include="Role.cs" />
     <Compile Include="ScenicTicket.cs" />
     <Compile Include="SeoDescription.cs" />
-    <Compile Include="Ticket.cs" />
-    <Compile Include="TicketBase.cs" />
+    <Compile Include="TicketNormal.cs" />
+    <Compile Include="Ticke.cs" />
     <Compile Include="TicketCount.cs" />
     <Compile Include="TicketPrice.cs" />
     <Compile Include="Area.cs" />
@@ -144,7 +144,7 @@
     <Compile Include="Mapping\PreferentialCodeMap.cs" />
     <Compile Include="Mapping\PromotionStaticMap.cs" />
     <Compile Include="Mapping\ScenicMap.cs" />
-    <Compile Include="Mapping\TicketMap.cs" />
+    <Compile Include="Mapping\TicketNormalMap.cs" />
     <Compile Include="Mapping\UseRecordMap.cs" />
     <Compile Include="Mapping\VoteMap.cs" />
     <Compile Include="TicketsType.cs" />

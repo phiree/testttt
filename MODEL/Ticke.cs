@@ -6,7 +6,7 @@ using System.Text;
 namespace Model
 {
     ///门票的基类, 统一 单一门票 和 套票
-    public abstract class TicketBase
+    public abstract class Ticket
     {
         
 

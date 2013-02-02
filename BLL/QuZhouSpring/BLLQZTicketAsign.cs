@@ -143,7 +143,7 @@ namespace BLL
         /// <param name="dateTime"></param>
         /// <param name="?"></param>
         /// <returns></returns>
-        public IList<QZTicketAsign> GetQzByDate(DateTime dateTime,List<Ticket> listTicket)
+        public IList<QZTicketAsign> GetQzByDate(DateTime dateTime, List<Ticket> listTicket)
         {
             List<QZTicketAsign> listQzTa= dalqzTa.GetQzByDate(dateTime).ToList();
             foreach (var ticket in listTicket)

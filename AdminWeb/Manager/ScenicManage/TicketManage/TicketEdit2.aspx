@@ -2,6 +2,9 @@
     CodeFile="TicketEdit2.aspx.cs" Inherits="Manager_ScenicManage_TicketManage_TicketEdit2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
+    <link href="/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet"
+        type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <table>
@@ -129,6 +132,6 @@
         </tr>
     </table>
     <div>
-        <asp:Button runat="server" ID="btnSave" Text="保存" />
+        <asp:Button runat="server" ID="btnSave" Text="保存" OnClick="btnSave_Click" />
     </div>
 </asp:Content>

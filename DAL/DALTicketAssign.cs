@@ -171,7 +171,7 @@ namespace DAL
                 TicketPrice tp = new TicketPrice();
                 tp.PriceType = (PriceType)int.Parse(item[3].ToString());
                 tp.Price = decimal.Parse(item[4].ToString());
-                Ticket t = new Ticket();
+                Ticket t = new TicketNormal();
                 Scenic s = new Scenic();
                 s.Name = item[2].ToString();
                 t.Scenic = s;
@@ -281,7 +281,7 @@ namespace DAL
             List<Ticket> listticket = new List<Ticket>();
             foreach (object[] item in list)
             {
-                Ticket t = new Ticket();
+                Ticket t = new TicketNormal();
                 t.Id = int.Parse(item[0].ToString());
                 t.Name = item[1].ToString();
                 listticket.Add(t);
