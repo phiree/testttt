@@ -21,8 +21,6 @@ public class ActivityService : System.Web.Services.WebService {
     }
 
    BLL.BLLActivityServiceImpl bllActivityService = new BLLActivityServiceImpl();
-    //BLL.BLLQZTicketSeller seller = new BLL.BLLQZTicketSeller();
-    //BLL.BLLQZPartnerTicketAsign bllQzPartnerTicketAsign = new BLLQZPartnerTicketAsign();
     BLL.BLLTicketAssign bllTicketAssign = new BLLTicketAssign();
   
     /// <summary>
@@ -39,10 +37,10 @@ public class ActivityService : System.Web.Services.WebService {
 
     /// <returns>"T"(请票成功)或"F|(失败原因)"</returns>
     [WebMethod]
-    public string buyProduct(string activityCode,bool needCheckTime, string PartnerCode, string CardNumber, string RealName, string Phone, IList<string> ProductCodeList, int Number)
+    public string buyProduct(string activityCode,bool needCheckTime, string PartnerCode, string CardNumber, string RealName, string Phone, string ticketCode, int Number)
     {
 
-        string result = string.Empty;// bllActivityService.buyProduct(activityCode, needCheckTime, null, PartnerCode, CardNumber, RealName, Phone, ProductCodeList, Number);
+        string result = bllActivityService.buyProduct(activityCode, needCheckTime, null, PartnerCode, CardNumber, RealName, Phone, ticketCode, Number);
         //  seller.SellTicket(clientFriendlyId, idcardno, ticketId);
         return result;
     }

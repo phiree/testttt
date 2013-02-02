@@ -38,17 +38,7 @@ namespace Model
             if (tp == null) return 0;
             return tp.Price;
         }
-        /// <summary>
-        /// 获取这个票价
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public virtual TicketPrice GetTicketPrice(PriceType type)
-        {
-            var tp = TicketPrice.Where<TicketPrice>(x => x.PriceType == type).FirstOrDefault();
-            if (tp == null) return null;
-            else return tp;
-        }
+       
         public override bool IsBelongTo(Scenic s)
         {
             return s.Id == Scenic.Id;

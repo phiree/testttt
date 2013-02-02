@@ -192,8 +192,21 @@ namespace BLL
         /// <param name="assignName"></param>
         /// <param name="amount"></param>
         /// <param name="errMsg"></param>
-        public void CreateMultiOrder(string activityName, string partnerCode, Guid memberId, IList<Ticket> ticketList, string idcardno, string assignName, int amount, out string errMsg)
+        public void CreateOrder(string activityName, string partnerCode, Guid memberId, TicketBase ticket, string idcardno, string assignName, int amount, out string errMsg)
         {
+            List<TicketBase> ticketList = new List<TicketBase>();
+
+            if (ticket is UnionTicket)
+            {
+                foreach (TicketBase t in ((UnionTicket)ticket).TicketList)
+                {
+                    ticketList.Add(t);
+                }
+            }
+            else
+            {
+                ticketList.Add(ticket);
+            }
             
             dal.CreateMultiOrder(activityName, partnerCode, memberId, ticketList, idcardno, assignName, amount, out errMsg);
         }

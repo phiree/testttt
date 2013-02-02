@@ -278,10 +278,11 @@ namespace BLL
             errMsg = sbErr.ToString();
         }
 
-        public Ticket GetByProductCode(string productCode)
+        public TicketBase GetByProductCode(string productCode)
         {
             return Iticket.GetByProductCode(productCode);
         }
+        
 
         public IList<Ticket> GetListByMultitTicketCode(IList<string> ticketCodes)
         { 

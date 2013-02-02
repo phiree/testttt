@@ -121,13 +121,9 @@ namespace DAL
             return query.Future<Model.Ticket>().OrderByDescending(x=>x.OrderNumber).ToList();
         }
 
-        public Model.Ticket GetByProductCode(string productCode)
+        public Model.TicketBase GetByProductCode(string productCode)
         {
-            string sql = "select t from Ticket t where t.ProductCode='"+ productCode+"'";
-            IQuery query = session.CreateQuery(sql);
-            IFutureValue<Model.Ticket> t = query.FutureValue<Model.Ticket>();
-            if (t == null) return null;
-            return t.Value;
+            return session.QueryOver<Model.TicketBase>().Where(x => x.ProductCode == productCode).SingleOrDefault();
         }
 
 
