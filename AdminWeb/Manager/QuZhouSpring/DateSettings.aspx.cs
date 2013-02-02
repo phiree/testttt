@@ -15,6 +15,7 @@ public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
 {
     BLLQZTicketAsign bllta = new BLLQZTicketAsign();
     BLLTicket bllTicket = new BLLTicket();
+    BLLTicketAssign bllTa = new BLLTicketAssign();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -73,6 +74,8 @@ public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
     {
 
     }
+
+    int total1 = 0, total2 = 0, total3 = 0;
     protected void rptDateList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -88,7 +91,33 @@ public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
                 amount += item.Amount;
 	        }
             solidAmount.Text = solidamount.ToString();
+            total2 += solidamount;
             Amount.Text = amount.ToString();
+            total1 += amount;
+            Literal laCheckedAmount = e.Item.FindControl("laCheckedAmount") as Literal;
+            string ticketList = ConfigurationManager.AppSettings["ticketId"];
+            List<Ticket> listTicket = new List<Ticket>();
+            foreach (var ticketId in ticketList.Split(','))
+            {
+                Ticket t=bllTicket.GetTicket(int.Parse(ticketId.ToString()));
+                listTicket.Add(t);
+            }
+            int Count=0;
+            foreach (var ticket in listTicket)
+            {
+                Count += bllTa.GetListByTimeAndScenic(dt, dt.AddDays(1), ticket.Scenic).Count;
+            }
+            laCheckedAmount.Text = Count.ToString();
+            total3 += Count;
+        }
+        if (e.Item.ItemType == ListItemType.Footer)
+        {
+            Literal laTotal = e.Item.FindControl("laTotal") as Literal;
+            Literal laTotal2 = e.Item.FindControl("laTotal2") as Literal;
+            Literal laTotal3 = e.Item.FindControl("laTotal3") as Literal;
+            laTotal.Text = total1.ToString();
+            laTotal2.Text = total2.ToString();
+            laTotal3.Text = total3.ToString();
         }
     }
 }

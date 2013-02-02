@@ -37,6 +37,7 @@
                         <td>设置</td>
                         <td>共分配票数</td>
                         <td>已售出票数</td>
+                        <td>已验票数</td>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
@@ -49,9 +50,27 @@
                     <td>
                         <asp:Literal Text="text" runat="server" ID="solidAmount"  />
                     </td>
+                    <td>
+                        <asp:Literal ID="laCheckedAmount" runat="server"></asp:Literal>
+                    </td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
+                <tr>
+                    <td>
+                        总计
+                    </td>
+                    <td></td>
+                    <td>
+                        <asp:Literal ID="laTotal" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laTotal2" runat="server"></asp:Literal>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laTotal3" runat="server"></asp:Literal>
+                    </td>
+                </tr>
                 </table>
             </FooterTemplate>
         </asp:Repeater>

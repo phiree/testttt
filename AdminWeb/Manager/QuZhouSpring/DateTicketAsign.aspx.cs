@@ -42,6 +42,8 @@ public partial class Manager_QuZhouSpring_DateTicketAsign : System.Web.UI.Page
         {
             QZTicketAsign qzTa= e.Item.DataItem as QZTicketAsign;
             Repeater rptPartnerList= e.Item.FindControl("rptPartnerList") as Repeater;
+            Literal laCheckedTicket = e.Item.FindControl("laCheckedTicket") as Literal;
+            laCheckedTicket.Text = new BLLTicketAssign().GetListByTimeAndScenic(DateTime.Parse(Request.QueryString["date"]), DateTime.Parse(Request.QueryString["date"]).AddDays(1), qzTa.Ticket.Scenic).Count.ToString();
             rptPartnerList.DataSource = bllqz.GetAllQzPartnerTa(qzTa);
             rptPartnerList.DataBind();
         }

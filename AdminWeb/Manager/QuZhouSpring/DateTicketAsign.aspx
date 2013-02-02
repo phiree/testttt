@@ -29,6 +29,9 @@
                             已售总数
                         </td>
                         <td>
+                            已验总数
+                        </td>
+                        <td>
                             操作
                         </td>
                     </tr>
@@ -78,6 +81,9 @@
                     </td>
                     <td>
                         <%# Eval("SoldAmount")%>
+                    </td>
+                    <td>
+                        <asp:Literal ID="laCheckedTicket" runat="server"></asp:Literal>
                     </td>
                     <td>
                         <asp:Button ID="btnSave" runat="server" Text="保存" CommandName="save" CommandArgument='<%# Eval("Id") %>' />
