@@ -50,6 +50,9 @@
                             功能菜单
                         </div>
                         <ul class="nav">
+                            <li><span>活动专题</span></li>
+                            <li><a href="/manager/touractivity/Default.aspx">活动列表</a></li>
+                            
                             <li><span>衢州门票派送活动</span></li>
                             <li><a href="/manager/quzhouspring/ClientList.aspx">合作网站列表</a></li>
                             <li><a href="/manager/quzhouspring/TicketList.aspx">门票列表</a></li>

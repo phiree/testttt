@@ -135,5 +135,15 @@ namespace TourTest.Common
             helper = new UrlParamHelper(url);
             Assert.AreEqual("/hangzhou/4a", helper.BuildLink2("level", level));
         }
+
+        [Test]
+        public void CheckIDCard()
+        {
+            //2013年出生
+            string idcard = "110101201301013517";
+            string msg;
+            bool IsSuccess =CommonLibrary.StringHelper.CheckIDCard(idcard, out msg);
+            Assert.AreEqual(true, IsSuccess);
+        }
     }
 }
