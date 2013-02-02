@@ -14,7 +14,7 @@ namespace Model.Mapping
 
             
             Map(x => x.MipangId);
-            Map(x => x.IsMain);
+        
             References<UnionTicket>(x => x.UnionTicket);
             References<Scenic>(x => x.Scenic);
 

@@ -58,7 +58,7 @@ public partial class Scenic_CheckOut : AuthPage
             liPriceOrder.Text = t.GetPrice(PriceType.PreOrder).ToString("0");
             liPriceOnline.Text = t.GetPrice(PriceType.PayOnline).ToString("0");
             HtmlAnchor hrefScenic = e.Item.FindControl("hrefScenic") as HtmlAnchor;
-            hrefScenic.HRef = bllScenic.BuildScenicLink(t.Scenic);
+            hrefScenic.HRef = bllScenic.BuildScenicLink((Scenic) t.Scenic);
             System.Web.UI.HtmlControls.HtmlInputText inputQty = e.Item.FindControl("inputQty") as System.Web.UI.HtmlControls.HtmlInputText;
             //inputQty.
         }

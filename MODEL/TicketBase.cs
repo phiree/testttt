@@ -10,10 +10,14 @@ namespace Model
     {
 
         public virtual int Id { get; set; }
+        /// <summary>
+        /// 该门票的拥有者
+        /// </summary>
+        public virtual DJ_TourEnterprise Scenic { get; set; }
         public virtual string Name { get; set; }
         public virtual string ProductCode { get; set; }
         public virtual IList<TicketPrice> TicketPrice { get; set; }
-    
+        public virtual bool IsMain { get; set; }
         public virtual bool Lock { get; set; }
         public virtual DateTime BeginDate { get; set; }
         public virtual decimal OrderNumber { get; set; }

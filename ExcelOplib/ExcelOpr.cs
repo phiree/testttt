@@ -92,7 +92,7 @@ namespace ExcelOplib
                     //组装tickets
                     var newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
                     var tickets = bllticket.GetTicketByscId(s.Id);
-                    Model.Ticket t;
+                    Model.TicketBase t;
                     foreach (var te in newtlist)
                     {
                         var tmp = tickets.Where(x => x.Name == te.ticketname);
@@ -148,7 +148,7 @@ namespace ExcelOplib
                     s.Desec = item.scenicintro;
                     //组装tickets
                     List<Entity.TicketEntity> newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
-                    List<Model.Ticket> tickets = new List<Model.Ticket>();
+                    List<Model.TicketBase> tickets = new List<Model.TicketBase>();
                     Model.Ticket t;
                     foreach (var te in newtlist)
                     {

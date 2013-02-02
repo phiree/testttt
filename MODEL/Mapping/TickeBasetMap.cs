@@ -15,7 +15,8 @@ namespace Model.Mapping
             Map(x => x.Name);
             Map(x => x.ProductCode);
             HasMany<TicketPrice>(x => x.TicketPrice).Inverse().Cascade.All();
-
+            References<DJ_TourEnterprise>(x => x.Scenic);
+            Map(x => x.IsMain);
             Map(x => x.Lock);
             Map(x => x.BeginDate);
             Map(x => x.EndDate);
