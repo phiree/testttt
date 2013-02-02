@@ -101,7 +101,7 @@ namespace Model
         /// <param name="partnerCode"></param>
         /// <param name="date"></param>
         /// <returns></returns>
-        public IList<ActivityTicketAssign> GetActivityAssignForPartnerDate(string partnerCode, DateTime date)
+        public virtual IList<ActivityTicketAssign> GetActivityAssignForPartnerDate(string partnerCode, DateTime date)
         {
             return ActivityTicketAssign.Where(x => x.DateAssign == date && x.Partner.PartnerCode == partnerCode).ToList();
         }
@@ -111,7 +111,7 @@ namespace Model
         /// <param name="ticketCode"></param>
         /// <param name="date"></param>
         /// <returns></returns>
-        public IList<ActivityTicketAssign> GetActivityAssignForTicketDate(string ticketCode, DateTime date)
+        public virtual IList<ActivityTicketAssign> GetActivityAssignForTicketDate(string ticketCode, DateTime date)
         {
             return ActivityTicketAssign.Where(x => x.DateAssign == date && x.Ticket.ProductCode==ticketCode).ToList();
         }
@@ -122,20 +122,20 @@ namespace Model
         /// <param name="ticketCode"></param>
         /// <param name="date"></param>
         /// <returns></returns>
-        public IList<ActivityTicketAssign> GetActivityAssignForPartnerTicketDate(string partnerCode,string ticketCode, DateTime date)
+        public virtual IList<ActivityTicketAssign> GetActivityAssignForPartnerTicketDate(string partnerCode, string ticketCode, DateTime date)
         {
             return ActivityTicketAssign.Where(x => x.DateAssign == date && x.Ticket.ProductCode == ticketCode&&x.Partner.PartnerCode==partnerCode).ToList();
         }
-        public IList<ActivityTicketAssign> GetActivityAssignAssignForPartner(string partnerCode, string ticketCode)
+        public virtual IList<ActivityTicketAssign> GetActivityAssignAssignForPartner(string partnerCode, string ticketCode)
         {
             return ActivityTicketAssign.Where(x => x.Ticket.ProductCode == ticketCode && x.Partner.PartnerCode == partnerCode).ToList();
      
         }
-        public int  GetPartnerAmountAssigned(string partnerCode, string ticketCode)
+        public virtual int GetPartnerAmountAssigned(string partnerCode, string ticketCode)
         {
             return GetActivityAssignAssignForPartner(partnerCode, ticketCode).Sum(x => x.AssignedAmount);
         }
-        public int GetPartnerAmountSold(string partnerCode, string ticketCode)
+        public virtual int GetPartnerAmountSold(string partnerCode, string ticketCode)
         {
             return GetActivityAssignAssignForPartner(partnerCode, ticketCode).Sum(x => x.SoldAmount);
         }

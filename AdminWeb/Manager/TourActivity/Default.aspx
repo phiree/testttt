@@ -4,18 +4,44 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
 活动管理
-<table>
-<tr>
-<td>活动名称</td><td><asp:TextBox runat="server" ID="tbxActivityName"></asp:TextBox></td>
-</tr>
-<tr>
-<td>开始日期(门票销售的起止时间)</td><td><asp:TextBox runat="server" ID="TextBox1"></asp:TextBox></td>
-
-</tr>
-<tr>
-<td>开始日期(门票销售的起止时间)</td><td><asp:TextBox runat="server" ID="TextBox2"></asp:TextBox></td>
-
-</tr>
-</table>
+    <asp:Repeater ID="rptActive" runat="server">
+        <HeaderTemplate>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        活动名称
+                    </td>
+                    <td>
+                        活动编号
+                    </td>
+                    <td>
+                        起止时间
+                    </td>
+                    <td>
+                        详情
+                    </td>
+                </tr>
+        </HeaderTemplate>
+        <ItemTemplate>
+            <tr>
+                <td>
+                    <%# Eval("Name") %>
+                </td>
+                <td>
+                    <%# Eval("ActivityCode") %>
+                </td>
+                <td>
+                    <%# Eval("BeginDate","{0:yyyy-MM-dd}")%>- <%# Eval("EndDate", "{0:yyyy-MM-dd}")%>
+                </td>
+                <td>
+                    <a href="">编辑详情</a>
+                </td>
+            </tr>
+        </ItemTemplate>
+        <FooterTemplate>
+            </table>
+        </FooterTemplate>
+    </asp:Repeater>
+    <asp:Button ID="btnAdd" runat="server" Text="新增" onclick="btnAdd_Click" />
 </asp:Content>
 
