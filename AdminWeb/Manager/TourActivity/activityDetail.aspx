@@ -119,7 +119,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <asp:Button ID="btnUpdate" runat="server" Text="修改" />
+                <asp:Button ID="btnUpdate" runat="server" Text="修改" OnClick="btnUpdate_Click" />
             </td>
         </tr>
     </table>
