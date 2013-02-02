@@ -71,7 +71,7 @@ public class CheckoutHandler : IHttpHandler
             int ticketId = Convert.ToInt32(taValues[0]);
                 string name = taValues[1];
                 string cardidNo = taValues[2];
-                Ticket t = bllTickets.GetTicket(Convert.ToInt32(ticketId));
+                TicketBase t = bllTickets.GetTicket(Convert.ToInt32(ticketId));
 
              string result=  qzSeller.SellTicket(false,"tourol.cn",tourMembership,name,cardidNo,string.Empty, t.ProductCode, 1);
              if (result != "T")
@@ -203,7 +203,7 @@ public class CheckoutHandler : IHttpHandler
             OrderDetail od = new OrderDetail();
             od.Quantity = item.Qty;
 
-            Ticket t = bllTickets.GetTicket(item.TicketId);
+            TicketBase t = bllTickets.GetTicket(item.TicketId);
             TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
             //TicketAssign ta = new TicketAssign();
 

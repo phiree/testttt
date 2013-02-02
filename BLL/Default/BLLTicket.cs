@@ -82,7 +82,7 @@ namespace BLL
             //}
             //return tickets;
         }
-        public Ticket GetTicket(int ticketId)
+        public TicketBase GetTicket(int ticketId)
         {
             return Iticket.Get(ticketId);
         }
@@ -95,7 +95,7 @@ namespace BLL
         BLLTicketPrice bllTp = new BLLTicketPrice();
         public void SaveOrUpdateTicket(string ticketname, string yuan, string xf, string zx, string ticketid, string scid)
         {
-            Model.Ticket ticket;
+            Model.TicketBase ticket;
             if (!string.IsNullOrEmpty(ticketid))
             {
                 ticket = GetTicket(int.Parse(ticketid));
@@ -146,13 +146,13 @@ namespace BLL
         /// 购物车内的门票
         /// </summary>
         /// <returns></returns>
-        public IList<Ticket> GetTicketsFromCart()
+        public IList<TicketBase> GetTicketsFromCart()
         {
-            List<Ticket> Tickets = new List<Ticket>();
+            List<TicketBase> Tickets = new List<TicketBase>();
             foreach (CartItem item in GetCartFromCookies())
             {
                 OrderDetail od = new OrderDetail();
-                Ticket ti = GetTicket(item.TicketId);
+                TicketBase ti = GetTicket(item.TicketId);
                 Tickets.Add(ti);
             }
 
@@ -191,7 +191,7 @@ namespace BLL
         }
         public void Delete(int ticketId)
         {
-            Ticket t = GetTicket(ticketId);
+            TicketBase t = GetTicket(ticketId);
             Iticket.Delete(t);
         }
         /// <summary>

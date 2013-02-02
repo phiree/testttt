@@ -19,7 +19,7 @@ namespace Model
       //冗余字段,直接从 ticket获取
        public virtual string ProductCode { get; set; }
        //网站对应的门票
-       public virtual Ticket Ticket { get; set; }
+       public virtual TicketBase Ticket { get; set; }
        //总数
        private int _amount = 0;
        public virtual int Amount {

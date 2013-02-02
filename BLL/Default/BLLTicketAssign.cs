@@ -15,10 +15,7 @@ namespace BLL
         /// 保存更新
         /// </summary>
         /// <param name="ticketassign"></param>
-        public void SaveOrUpdate(TicketAssign ticketassign)
-        {
-            Iticketassign.SaveOrUpdate(ticketassign);
-        }
+      
 
         /// <summary>
         /// 
@@ -58,11 +55,11 @@ namespace BLL
         {
             Iticketassign.GetTicketInfoByIdCard(idcard, ticket,out ydcount,out usedcount,type);
         }
-        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, Ticket ticket,int type)
+        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, TicketBase ticket, int type)
         {
             return Iticketassign.GetNotUsedTicketAssign(idcard, ticket,type);
         }
-        public TicketAssign GetLasetRecordByidcard(string idcard, Ticket ticket,int type)
+        public TicketAssign GetLasetRecordByidcard(string idcard, TicketBase ticket, int type)
         {
             return Iticketassign.GetLasetRecordByidcard(idcard, ticket,type);
         }

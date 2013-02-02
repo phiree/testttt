@@ -484,5 +484,15 @@ namespace BLL
             return BuildJsonEnterprise(nameLike, strEntType, true);
 
         }
+
+        /// <summary>
+        /// 根据名称搜索 门票所有者.
+        /// </summary>
+        /// <param name="nameLike"></param>
+        /// <returns></returns>
+        public IList<DJ_TourEnterprise> GetListByNameLike(string nameLike)
+        {
+            return dalEnt.GetListByNameLike(nameLike);
+        }
     }
 }

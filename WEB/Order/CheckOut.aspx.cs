@@ -14,7 +14,7 @@ public partial class Scenic_CheckOut : AuthPage
     BLLScenic bllScenic = new BLLScenic();
     BLLOrder bllOrder = new BLLOrder();
     BLLCommonUser bllCu = new BLLCommonUser();
-    IList<Ticket> tickets = new List<Ticket>();
+    IList<TicketBase> tickets = new List<TicketBase>();
 
     protected void Page_Load(object sender, EventArgs e)
     {

@@ -118,7 +118,7 @@ namespace DAL
         }
 
 
-        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, Ticket ticket, int type)
+        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, TicketBase ticket, int type)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.IsUsed=false and ta.OrderDetail.TicketPrice.PriceType=" + type + "";
             IQuery query = session.CreateQuery(sql);
@@ -126,7 +126,7 @@ namespace DAL
         }
 
 
-        public TicketAssign GetLasetRecordByidcard(string idcard, Ticket ticket, int type)
+        public TicketAssign GetLasetRecordByidcard(string idcard, TicketBase ticket, int type)
         {
             string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticket.Id + " and ta.OrderDetail.TicketPrice.PriceType=" + type + " order by ta.Id desc";
             IQuery query = session.CreateQuery(sql);

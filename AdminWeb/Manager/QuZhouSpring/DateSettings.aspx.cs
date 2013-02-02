@@ -56,7 +56,7 @@ public partial class Manager_QuZhouSpring_DateSettings : System.Web.UI.Page
         xmldoc.Save(config);
 
         string[] ticketId = ConfigurationManager.AppSettings["ticketId"].Split(',');
-        List<Ticket> listTicket = new List<Ticket>();
+        List<TicketBase> listTicket = new List<TicketBase>();
         for (int i = 0; i < ticketId.Length; i++)
         {
             listTicket.Add(bllTicket.GetTicket(int.Parse(ticketId[i])));

@@ -28,7 +28,7 @@ public partial class Manager_QuZhouSpring_DateTicketAssignMedia : System.Web.UI.
         List<QZTicketAsign> listTa = bllqz.GetQzByDate(DateTime.Parse(Request.QueryString["date"])).ToList();
         //如果此时在config中添加了新的门票，则需添加对应的qzta
         string[] ticketId = ConfigurationManager.AppSettings["ticketId"].Split(',');
-        List<Ticket> listTicket = new List<Ticket>();
+        List<TicketBase> listTicket = new List<TicketBase>();
         for (int i = 0; i < ticketId.Length; i++)
         {
             listTicket.Add(bllTicket.GetTicket(int.Parse(ticketId[i])));

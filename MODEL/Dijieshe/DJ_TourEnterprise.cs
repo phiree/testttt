@@ -12,8 +12,10 @@ namespace Model
     {
         public DJ_TourEnterprise()
         {
+            Tickets = new List<TicketBase>();
             lastUpdateTime = DateTime.Now;
         }
+        public virtual IList<TicketBase> Tickets { get; set; }
         public virtual int Id { get; set; }
         /// <summary>
         /// 所属区域

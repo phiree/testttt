@@ -73,7 +73,7 @@ public partial class Manager_ScenicManage_TicketManage_TicketEdit2 : System.Web.
         }
     }
 
-    private void UpdateFor(TicketBase ticket)
+    private void UpdateForm(TicketBase ticket)
     {
         ticket.IsMain = cbxIsMain.Checked;
         ticket.BeginDate = Convert.ToDateTime(tbxBeginDate.Text);
@@ -86,7 +86,29 @@ public partial class Manager_ScenicManage_TicketManage_TicketEdit2 : System.Web.
         ticket.Scenic = bllEnterprise.GetEntByName(tbxOwner.Text);
     }
     private void Save()
-    { 
-        
+    {
+        if (IsNew)
+        {
+            if (rblTicketType.SelectedIndex == 0)
+            {
+                CurrentTicket = new Ticket();
+            }
+            else
+            {
+                CurrentTicket = new UnionTicket();
+            }
+        }
+        UpdateForm(CurrentTicket);
+        bllTicket.SaveOrUpdateTicket(CurrentTicket);
+        string returlUrl = string.Empty;
+        if (IsNew)
+        {
+            returlUrl = "TicketEdit2.aspx?id=" + CurrentTicket.Id;
+        }
+        CommonLibrary.Notification.Show(this, "", "保存成功", returlUrl);
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        Save();
     }
 }

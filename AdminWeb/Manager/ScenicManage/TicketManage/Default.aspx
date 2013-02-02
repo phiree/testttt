@@ -5,34 +5,64 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <div>
-        套票列表</div>
-    <asp:Repeater runat="server" ID="rptUnioTickets">
+        门票列表</div>
+    <div>
+        景区名称或者门票名称:<asp:TextBox runat="server" ID="tbxKeyWords"></asp:TextBox><asp:Button
+            runat="server" ID="btnSearch" OnClick="btnSearch_Click" Text="搜索" />
+    </div>
+    <asp:Repeater runat="server" ID="rptOwnerList">
         <HeaderTemplate>
             <table>
                 <tr>
                     <td>
-                        名称
+                        门票所有者
                     </td>
                     <td>
-                        景区列表
-                    </td>
-                    <td>
-                        价格
-                    </td>
-                    <td>
-                        操作
+                        门票列表
                     </td>
                 </tr>
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
                 <td>
+                <%#Eval("Name")%>
                 </td>
                 <td>
-                </td>
-                <td>
-                </td>
-                <td>
+                    <asp:Repeater runat="server" ID="rptTicket">
+                        <HeaderTemplate>
+                            <table>
+                                <tr>
+                                    <td>
+                                        名称
+                                    </td>
+                                    <td>
+                                        类型
+                                    </td>
+                                    <td>
+                                        价格
+                                    </td>
+                                    <td>
+                                        操作
+                                    </td>
+                                </tr>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <tr>
+                                <td>
+                           <a href='TicketEdit2.aspx?id=<%#Eval("Id") %>'><%#Eval("Name") %></a>     
+                                </td>
+                                <td>
+                                <%# Container.DataItem.GetType()%>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </table></FooterTemplate>
+                    </asp:Repeater>
                 </td>
             </tr>
         </ItemTemplate>

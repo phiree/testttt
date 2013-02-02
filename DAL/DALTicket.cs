@@ -101,9 +101,9 @@ namespace DAL
                 SaveOrUpdateTicket(item);
             }
         }
-        public Model.Ticket Get(int ticketId)
+        public Model.TicketBase Get(int ticketId)
         {
-            Model.Ticket t = session.Get<Model.Ticket>(ticketId);
+            Model.TicketBase t = session.Get<Model.Ticket>(ticketId);
             return t;
         }
         public Model.Ticket GetByScenicSeo(string scenicSeoName)

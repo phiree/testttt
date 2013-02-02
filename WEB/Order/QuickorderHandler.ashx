@@ -113,7 +113,7 @@ public class QuickorderHandler : IHttpHandler
             Model.OrderDetail od = new Model.OrderDetail();
             od.Quantity = item.Qty;
 
-            Model.Ticket t = bllTickets.GetTicket(item.TicketId);
+            Model.TicketBase t = bllTickets.GetTicket(item.TicketId);
             Model.TicketPrice tp = t.TicketPrice.SingleOrDefault<Model.TicketPrice>(x => x.PriceType == pt);
 
             od.TicketPrice = tp;
