@@ -152,7 +152,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TourActivityBLL\ActivityServiceImpl.cs" />
+    <Compile Include="TourActivityBLL\BLLActivityPartner.cs" />
+    <Compile Include="TourActivityBLL\BLLActivityTicketAssign.cs" />
+    <Compile Include="TourActivityBLL\BLLTourActivity.cs" />
     <Compile Include="TourolReport\IdcardNoReport.cs" />
+    <Compile Include="UserService\BLLUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj">

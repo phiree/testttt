@@ -22,37 +22,19 @@
         "Entry"
         {
         "MsmKey" = "8:_04BF9C3EA8C4EE18E218EDEE29574669"
-        "OwnerKey" = "8:_08D6CEAFCF864A04B4E3B8324A1F729C"
+        "OwnerKey" = "8:_28C252457B8E46ECA901D78F5AD2031B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_08D6CEAFCF864A04B4E3B8324A1F729C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_40A1ECDD44AD425DA6753143BE30B4C3"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_47BE313F25544416941327CD00A0AE0F"
+        "MsmKey" = "8:_28C252457B8E46ECA901D78F5AD2031B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_7FB380849C8DA2D231652A6EA69C8EFC"
-        "OwnerKey" = "8:_08D6CEAFCF864A04B4E3B8324A1F729C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B285920C92C547198FBA6DB7A328450A"
-        "OwnerKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_28C252457B8E46ECA901D78F5AD2031B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,7 +46,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_08D6CEAFCF864A04B4E3B8324A1F729C"
+        "OwnerKey" = "8:_28C252457B8E46ECA901D78F5AD2031B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -192,46 +174,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_40A1ECDD44AD425DA6753143BE30B4C3"
-            {
-            "SourcePath" = "8:..\\IDCardActiveX\\bin\\Debug\\termb.dll"
-            "TargetName" = "8:termb.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_432790D351FA42DFA011CD89E1A206E0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_47BE313F25544416941327CD00A0AE0F"
-            {
-            "SourcePath" = "8:..\\IDCardActiveX\\bin\\Debug\\sdtapi.dll"
-            "TargetName" = "8:sdtapi.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_432790D351FA42DFA011CD89E1A206E0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7FB380849C8DA2D231652A6EA69C8EFC"
             {
             "AssemblyRegister" = "3:1"
@@ -261,26 +203,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B285920C92C547198FBA6DB7A328450A"
-            {
-            "SourcePath" = "8:..\\IDCardActiveX\\bin\\Debug\\IDCard.dll"
-            "TargetName" = "8:IDCard.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_432790D351FA42DFA011CD89E1A206E0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -859,7 +781,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_08D6CEAFCF864A04B4E3B8324A1F729C"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_28C252457B8E46ECA901D78F5AD2031B"
             {
             "SourcePath" = "8:..\\IDCardActiveX\\obj\\Debug\\IDCardActiveX.dll"
             "TargetName" = "8:"

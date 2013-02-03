@@ -19,12 +19,13 @@
     <asp:HiddenField ID="hfposition" runat="server" />
     <asp:HiddenField ID="hfscname" runat="server" />
     <asp:HiddenField ID="hfProductCode" runat="server" />
+    <asp:HiddenField ID="hfSyCount" runat="server" />
     <p class="navsc">
         您选择的景区门票：浙江省&nbsp;>&nbsp;<a runat="server" id="areaname"></a>&nbsp;<a runat="server"
             id="county"></a>&nbsp;<a runat="server" id="scenicname"></a></p>
     <div id="mainscenic">
         <%--衢州门票活动剩余票数显示--%>
-        <div id="qzTicketCount">
+        <div runat="server" id="qzTicketCount" class="qzTicketCount">
             <%--<span class="tc">余<span class="countSum" style=" font-size:24px; font-weight:bold;">50</span>张</span>--%>
             <%--<span class="noTc" style=" font-size:14px;">已抢完</span>--%>
         </div>
@@ -46,7 +47,7 @@
                 <span>景区级别:</span><%=sclevel%>
             </div>
             <div class="scaddr">
-                地址：<%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
+                <span>地址：</span><%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
             </div>
             <div class="scdesc">
                 <%=scshortdesc %><a href="#plate2">景区简介</a>
@@ -88,7 +89,7 @@
                         </td>
                     </tr>
                 </tbody>
-                <asp:Repeater ID="rpttp" runat="server">
+                <asp:Repeater ID="rpttp" runat="server" onitemdatabound="rpttp_ItemDataBound">
                     <ItemTemplate>
                         <tr class="pttr" onmouseover="" onmouseout="">
                             <td style="text-align: left; padding-left: 60px;">
@@ -108,7 +109,8 @@
                                 <%# Eval("TicketPrice[2].Price", "{0:0}")%>
                             </td>
                             <td style="text-align: center;">
-                                <input id="btnputcart" type="button" class="btnputcart" value="立即抢票" onclick="AddToCart(this)" />
+                            <!--活动规则判断-->
+                                <input runat="server" id="btnputcart" type="button" class="btnputcart" value="立即抢票" onclick='AddToCart(this,<%# Eval("Id") %>)' />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -119,9 +121,16 @@
         <div runat="server" id="introordertk" class="introordertk">
             <p class="captitle">
                 订票说明</p>
-            <%--<div class="otinfo" runat="server" id="dp_info">--%>
-            <self:ContentReader runat="server" HasBorder="true" ID="sc_dp" scFuncType="订票说明"
+            <asp:Repeater ID="rptBookNote" runat="server" OnItemDataBound="rptBookNote_ItemDataBound">
+                <ItemTemplate>
+                     <self:ContentReader runat="server" HasBorder="true" ID="sc_dp" scFuncType="订票说明" scname='<%# Eval("Scenic.Name") %>'
                 type="景区" CssClass="otinfo" />
+                </ItemTemplate>
+            </asp:Repeater>
+
+
+            <%--<div class="otinfo" runat="server" id="dp_info">--%>
+           
             <%--</div>--%>
         </div>
         <div id="allinfo">
@@ -133,8 +142,13 @@
             </div>
             <div id="changeinfo">
                 <div id="scdetailplate">
-                    <self:ContentReader runat="server" ID="plate2" HasBorder="true" scFuncType="景区详情"
-                        type="景区" />
+                    <asp:Repeater runat="server" ID="rptscInfo" OnItemDataBound="rptscInfo_ItemDataBound">
+                        <ItemTemplate>
+                            <self:ContentReader runat="server" ID="plate2" HasBorder="true" scFuncType="景区详情" scname='<%# Eval("Scenic.Name") %>'
+                            type="景区" />
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    
                 </div>
                 <p id="plap">
                     交通指南</p>
@@ -143,7 +157,12 @@
                         color: #53C46C">恢复坐标中心</a>
                     <div id="containtermap">
                     </div>
-                    <self:ContentReader runat="server" ID="sc_jtzn" scFuncType="交通指南" type="景区" CssClass="rdinfo" />
+                    <asp:Repeater runat="server" ID="rptJt" OnItemDataBound="rptJt_ItemDataBound">
+                        <ItemTemplate>
+                            <self:ContentReader runat="server" ID="sc_jtzn" scFuncType="交通指南" type="景区" CssClass="rdinfo" scname='<%# Eval("Scenic.Name") %>' />
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    
                 </div>
             </div>
         </div>

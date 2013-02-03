@@ -209,11 +209,11 @@ namespace DAL
         }
 
         public IList<object[]> GetDateOrderTotal(string datetime)
-        { 
+        {
             string timeUnit = "100";
             string sql = "select CONVERT(VARCHAR(" + timeUnit + "), od.BuyTime, 102) timeUnit,dj.Name djname,s.ScenicOrder so,COUNT(*) count " +
     "from TicketAssign ta, OrderDetail detail,[Order] od ,DJ_TourEnterprise dj,TicketPrice tp,Ticket t,Scenic s " +
-    "where ta.OrderDetail_id =detail.Id and detail.Order_id=od.Id "+
+    "where ta.OrderDetail_id =detail.Id and detail.Order_id=od.Id " +
     "and detail.TicketPrice_id=tp.Id and tp.Ticket_id=t.Id and t.Scenic_id=dj.Id and s.DJ_TourEnterprise_id=dj.Id " +
     "group by dj.Name,s.ScenicOrder , CONVERT(VARCHAR(" + timeUnit + "), od.BuyTime, 102) " +
     "order by s.ScenicOrder ";
@@ -222,7 +222,7 @@ namespace DAL
                 .AddScalar("djname", NHibernateUtil.String)
                 .AddScalar("so", NHibernateUtil.Int32)
                 .AddScalar("count", NHibernateUtil.Int32);
-            var result1=query.List<object[]>();
+            var result1 = query.List<object[]>();
             IList<object[]> result2 = new List<object[]>();
             foreach (var item in result1)
             {
@@ -259,5 +259,73 @@ namespace DAL
             }
             return result2;
         }
+
+        /// <summary>
+        /// todo 所有订单都是一套 身份证号码和用户名. 数量也一样. 以后要做调整.
+        /// </summary>
+        /// <param name="orderFrom"></param>
+        /// <param name="memberId"></param>
+        /// <param name="ticketList"></param>
+        /// <param name="idcardno"></param>
+        /// <param name="assignName"></param>
+        /// <param name="amount"></param>
+        /// <param name="errMsg"></param>
+        public Order CreateOrder(string orderFrom, Guid memberId, IList<Ticket> ticketList, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+        {
+
+
+            errMsg = string.Empty;
+            try
+            {
+                using (var t = session.BeginTransaction())
+                {
+                    t.Begin();
+                    IList<OrderDetail> details = new List<OrderDetail>();
+                    foreach (Ticket ticket in ticketList)
+                    {
+                        TicketAssign ta = new TicketAssign();
+                        ta.IdCard = idcardno;
+                        ta.IsUsed = false;
+                        ta.Name = assignName;
+                        string ticketCode=string.Empty;
+                        if(ticket.TicketUnion!=null)
+                        {
+                            ticketCode = ticket.TicketUnion.ProductCode;
+                        }
+                        ta.TicketCode = ticketCode;
+                        OrderDetail orderdetail = new OrderDetail();
+                        orderdetail.Quantity = amount;
+                        //  orderdetail.Remark = string.Format("订单来源:{1}", partnerCode);
+                        orderdetail.TicketAssignList.Add(ta);
+
+                        TicketPrice ticketPrice = ticket.GetTicketPrice(priceType);
+                        orderdetail.TicketPrice = ticketPrice;
+                        details.Add(orderdetail);
+
+
+                    }
+                    Order order = new Order();
+                    order.OrderFrom = orderFrom;
+                    order.BuyTime = DateTime.Now;
+                    // order.IsPaid = true;
+                    order.MemberId = memberId;
+                    order.OrderDetail = details;
+                    order.PriceType = priceType;
+
+                    SaveOrUpdateOrder(order);
+                    t.Commit();
+
+                    return order;
+                }
+            }
+            catch (Exception ex)
+            {
+                errMsg = ex.Message;
+            }
+            return null;
+        }
+
+
+
     }
 }

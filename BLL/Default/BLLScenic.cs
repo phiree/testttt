@@ -244,7 +244,7 @@ namespace BLL
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public string BuildScenicLink(Scenic s)
+        public string BuildScenicLink(DJ_TourEnterprise s)
         {
           return "/Tickets/" + bllArea.GetAreaByCode(s.Area.Code.Substring(0, 4) + "00").SeoName 
               + "_" + s.Area.SeoName + "/" + s.SeoName + ".html";

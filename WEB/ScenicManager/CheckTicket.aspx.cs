@@ -223,25 +223,31 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", message, true);
                         return;
                     }
-
+                    //原来是想让它预定大于已预定的数量时的操作，现在取消此功能
+                    //if (wtusecount > ttcount - usedydcount)
+                    //{
+                    //    int jxydcount = wtusecount - ttcount + usedydcount;
+                    //    TicketAssign ta = bllticketassign.GetLasetRecordByidcard(ViewState["idcard"].ToString(), ticket, 2);
+                    //    OrderDetail od = ta.OrderDetail;
+                    //    od.Quantity = od.Quantity + jxydcount;
+                    //    od.Remark = "在景区预定" + jxydcount + "张门票";
+                    //    bllorderdetail.saveorupdate(od);
+                    //    for (int i = 0; i < jxydcount; i++)
+                    //    {
+                    //        TicketAssign ticketassign = new TicketAssign();
+                    //        ticketassign.IdCard = ViewState["idcard"].ToString();
+                    //        ticketassign.IsUsed = false;
+                    //        ticketassign.Name = ta.Name;
+                    //        ticketassign.OrderDetail = od;
+                    //        ticketassign.UsedTime = DateTime.Now;
+                    //        bllticketassign.SaveOrUpdate(ticketassign);
+                    //    }
+                    //}
+                    //现在改为无法订购
                     if (wtusecount > ttcount - usedydcount)
                     {
-                        int jxydcount = wtusecount - ttcount + usedydcount;
-                        TicketAssign ta = bllticketassign.GetLasetRecordByidcard(ViewState["idcard"].ToString(), ticket, 2);
-                        OrderDetail od = ta.OrderDetail;
-                        od.Quantity = od.Quantity + jxydcount;
-                        od.Remark = "在景区预定" + jxydcount + "张门票";
-                        bllorderdetail.saveorupdate(od);
-                        for (int i = 0; i < jxydcount; i++)
-                        {
-                            TicketAssign ticketassign = new TicketAssign();
-                            ticketassign.IdCard = ViewState["idcard"].ToString();
-                            ticketassign.IsUsed = false;
-                            ticketassign.Name = ta.Name;
-                            ticketassign.OrderDetail = od;
-                            ticketassign.UsedTime = DateTime.Now;
-                            bllticketassign.SaveOrUpdate(ticketassign);
-                        }
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('超出预定张数，请检查预定数量')", true);
+                        return;
                     }
                     for (int i = 0; i < wtusecount; i++)
                     {

@@ -14,6 +14,8 @@
         var qty = parseInt(cart.GetQty(tid));
         var priceorder = parseFloat($(that).find(".priceorder").text().trim());
         var priceonline = parseFloat($(that).find(".priceonline").text().trim());
+        if ( isNaN(priceorder)) priceorder = 0;
+        if (isNaN(priceonline)) priceonline = 0;
         totalOnlinePrice += qty * priceonline;
         totalPreorderPrice += qty * priceorder;
         $(that).find(".qtyfinal").text(qty);
@@ -143,7 +145,7 @@
         };
 
         //assign data
-        $.get("/order/checkout.ashx?topic=quzhou&pricetype=" + pricetype + "&a=" + escape(b), function (data) {
+        $.get("/order/checkout.ashx?&pricetype=" + pricetype + "&a=" + escape(b), function (data) {
 
             document.write(data);
         });

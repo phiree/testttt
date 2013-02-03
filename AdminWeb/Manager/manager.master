@@ -3,7 +3,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="/theme/default/css/public.css" rel="stylesheet" type="text/css" />
-    
+    <script src="/Scripts/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
+    <link href="/Content/themes/base/minified/jquery-ui.min.css" rel="stylesheet"
+        type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>

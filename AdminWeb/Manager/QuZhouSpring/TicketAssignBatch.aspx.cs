@@ -22,6 +22,10 @@ public partial class Manager_QuZhouSpring_TicketAssignBatch : System.Web.UI.Page
     int partsAmount;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            tbxDate.Text = DateTime.Today.ToString();
+        }
         InitData();
         //总共划分的份数
         int extraPart = 0;
@@ -35,6 +39,7 @@ public partial class Manager_QuZhouSpring_TicketAssignBatch : System.Web.UI.Page
             BindScenic();
 
         }
+        
     }
     #region Init
     private void InitData()
@@ -46,8 +51,8 @@ public partial class Manager_QuZhouSpring_TicketAssignBatch : System.Web.UI.Page
     private void InitDateList()
     {
         DateTime enddate=new DateTime(2013,2,6);
-        DateTime today = new DateTime(2013, 1, 30);
-        int lastDay=(int)(enddate-today).TotalDays;
+        DateTime beginDate = Convert.ToDateTime(tbxDate.Text);
+        int lastDay=(int)(enddate-beginDate).TotalDays;
         for (int i = 0; i < lastDay ; i++)
         {
             dateList.Add(DateTime.Now.Date.AddDays(i));

@@ -11,7 +11,9 @@ function changesumprice(obj) {
         var ydcount = parseInt($($(obj).parent().find(".num")[0]).html());
         var ydusedcount = parseInt($($(obj).parent().find(".num")[1]).html());
         if (parseInt(usecount) > (ydcount - ydusedcount)) {
-            $(obj).parent().next().html("原预定&nbsp;<span style='font-weight:bold'>" + tn + "</span>&nbsp;门票&nbsp;<span class='num'>" + (ydcount - ydusedcount) + "</span>&nbsp;张&nbsp;&nbsp;" + "额外添加预定&nbsp;<span class='num'>" + (usecount - ydcount + ydusedcount) + "</span>&nbsp;张");
+            //原先需要显示超出数的购买情况，现在去掉
+            //$(obj).parent().next().html("原预定&nbsp;<span style='font-weight:bold'>" + tn + "</span>&nbsp;门票&nbsp;<span class='num'>" + (ydcount - ydusedcount) + "</span>&nbsp;张&nbsp;&nbsp;" + "额外添加预定&nbsp;<span class='num'>" + (usecount - ydcount + ydusedcount) + "</span>&nbsp;张");
+            $(obj).parent().next().html("");
         }
         else {
             $(obj).parent().next().html("");
@@ -140,14 +142,12 @@ function timedCount() {
     } 
 }
 function show() {
-    var a = document.getElementById('aaa');
-    a.OnTimer();
-    var strinfo = a.GetUserInfo();
-    var arrys = strinfo.split(',');
-    if (arrys.length > 8) {
-        if ($.cookie("idcard") != arrys[5]) {
-            $("[id$='txtinfo']").val(arrys[5]);
-            $.cookie("idcard", arrys[5]);
+    var CVR_IDCard = document.getElementById('CVR_IDCard');
+    var strReadResult = CVR_IDCard.ReadCard();
+    if (strReadResult=="0") {
+        if ($.cookie("idcard") != CVR_IDCard.CardNo) {
+            $("[id$='txtinfo']").val(CVR_IDCard.CardNo);
+            $.cookie("idcard", CVR_IDCard.CardNo);
             autobtn();
         }
         else {

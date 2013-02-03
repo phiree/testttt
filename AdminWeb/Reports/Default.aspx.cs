@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.DataVisualization.Charting;
+using CommonLibrary;
 /// <summary>
 /// 根据身份证信息生成的报表
 /// </summary>
@@ -68,9 +69,9 @@ public partial class Reports_Default : System.Web.UI.Page
         foreach (CustomLabel lbl in Chart1.ChartAreas[0].AxisX.CustomLabels)
         {
             string pcode = string.Empty;
-            if (BLL.IdCardInfo.ProvinceDict.ContainsValue(lbl.Text))
+            if (IdCardInfo.ProvinceDict.ContainsValue(lbl.Text))
             {
-                KeyValuePair<int, string> p = BLL.IdCardInfo.ProvinceDict.Single(x => x.Value == lbl.Text);
+                KeyValuePair<int, string> p = IdCardInfo.ProvinceDict.Single(x => x.Value == lbl.Text);
                 if (p.Key != null)
                 {
                     pcode = p.Key.ToString();

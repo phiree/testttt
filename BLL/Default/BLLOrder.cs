@@ -9,6 +9,8 @@ namespace BLL
     public class BLLOrder:BLLBase<Order>
     {
         DAL.DALOrder dal = new DAL.DALOrder();
+        BLLTicketAssign bllTicketAssign = new BLLTicketAssign();
+        BLLActivityTicketAssign bllActivityTa = new BLLActivityTicketAssign();
         public IList<Model.Order> GetListForUser(Guid memberId)
         {
             return dal.GetListForUser(memberId);
@@ -180,6 +182,71 @@ namespace BLL
         public IList<object[]> GetDaysScenicOrderTotal(string scenicname)
         {
             return dal.GetDaysScenicOrderTotal(scenicname);
+        }
+        /// <summary>
+        /// 自动创建多个订单.
+        /// </summary>
+        /// <param name="activityName"></param>
+        /// <param name="partnerCode"></param>
+        /// <param name="memberId"></param>
+        /// <param name="ticketList"></param>
+        /// <param name="idcardno"></param>
+        /// <param name="assignName"></param>
+        /// <param name="amount"></param>
+        /// <param name="errMsg"></param>
+        public Order CreateOrder( string partnerCode, Guid memberId, IList<Ticket> ticketlist, string idcardno, string assignName, int amount,PriceType priceType, out string errMsg)
+        {
+            
+            
+            List<Ticket> ChildTicketList = new List<Ticket>();
+         
+            foreach (Ticket t in ticketlist)
+            {
+
+                TourActivity activity = t.TourActivity;
+                if (activity != null)
+                {
+                    bool result = bllTicketAssign.CheckIdCardAmount(activity.ActivityCode, idcardno, t.ProductCode, amount, out errMsg);
+                    if (!result)
+                    {
+                        return null;
+                    }
+                  IList<TicketAssign> taList=  bllTicketAssign.GetTaByIdcardandTicketCode(idcardno, t.ProductCode);
+
+                  bool checkResult = activity.IntergrationCheck(taList, idcardno, t.ProductCode, amount,partnerCode, out errMsg);
+                  if (!checkResult) return null;
+                      //在这里把solidAmout更新
+                  else
+                  {
+                     ActivityTicketAssign ata= activity.GetActivityAssignForPartnerTicketDate(partnerCode, t.ProductCode, DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")))[0];
+                     ata.SoldAmount += amount;
+                     bllActivityTa.SaveOrUpdate(ata);
+                  }
+                }
+                Ticket actualT = t.As<Ticket>();
+                if (actualT is TicketUnion)
+                {
+                    foreach (Ticket ct in ((TicketUnion)actualT).TicketList)
+                    {
+                        ChildTicketList.Add(ct);
+                    }
+                }
+                else
+                {
+                    ChildTicketList.Add(t);
+                }
+            }
+
+            return dal.CreateOrder(partnerCode, memberId, ChildTicketList, idcardno, assignName, amount, priceType, out errMsg);
+        }
+        public Order CreateOrder(string partnerCode, Guid memberId, Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+        {
+
+            List<Ticket> ticketList = new List<Ticket>();
+
+            ticketList.Add(ticket);
+
+            return CreateOrder(partnerCode, memberId, ticketList, idcardno, assignName, amount, priceType, out errMsg);
         }
     }
 }

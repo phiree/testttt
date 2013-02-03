@@ -17,9 +17,10 @@ namespace Model
         public virtual int AsignedAmount { get; set; }
         //售出总数
         public virtual int SoldAmount { get; set; }
+        //时间
+        public virtual DateTime AssignedDate { get; set; }
 
         public virtual QZTicketAsign QZTicketAsign { get; set; }
-
          public virtual bool HasEnoughTickets(int requestAmount)
        {
            return AsignedAmount >= SoldAmount + requestAmount;

@@ -50,22 +50,22 @@ namespace DAL
         }
         public void SaveOrUpdate(T o)
         {
-           
-              
-                session.SaveOrUpdate(o);
-                session.Flush();
-              
-          
-            
+
+
+            session.SaveOrUpdate(o);
+            session.Flush();
+
+
+
         }
         public T GetOne(object id)
         {
             return session.Get<T>(id);
         }
-        public T GetOneByQuery(string where)
+        protected T GetOneByQuery(string where)
         {
             IList<T> listT = GetList(where);
-            
+
             if (listT.Count == 1)
             {
                 return listT[0];
@@ -74,11 +74,16 @@ namespace DAL
             {
                 return default(T);
             }
-            else {
-                throw new Exception("有"+listT.Count+"个值返回.应该只能返回一个值.");
+            else
+            {
+                throw new Exception("有" + listT.Count + "个值返回.应该只能返回一个值.");
             }
         }
-        public IList<T> GetAll<T>() where T:class 
+        protected T GetOneByQuery(IQueryOver<T, T> queryOver)
+        {
+            return queryOver.SingleOrDefault();
+        }
+        public IList<T> GetAll<T>() where T : class
         {
             return session.QueryOver<T>().List();
         }
@@ -88,17 +93,20 @@ namespace DAL
             int totalRecords;
             return GetList(where, 0, 99999, out totalRecords);
         }
+        protected IList<T> GetList(IQueryOver<T, T> queryOver)
+        {
+            return queryOver.List();
+        }
 
         public IList<T> GetList(string query, int pageIndex, int pageSize, out int totalRecords)
         {
             IQuery qry = session.CreateQuery(query);
-
-          var  itemList = qry.Future<T>().ToList();
-          totalRecords = itemList.Count;
-          var returnList = itemList.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-
-          return returnList;
+            var itemList = qry.Future<T>().ToList();
+            totalRecords = itemList.Count;
+            var returnList = itemList.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return returnList;
         }
+
 
     }
 }

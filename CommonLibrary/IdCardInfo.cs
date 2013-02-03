@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BLL
+namespace CommonLibrary
 {
     public enum enumSex
     {
@@ -92,7 +92,7 @@ namespace BLL
             this.Age = DateTime.Now.Year - birthday.Year+1;
             //性别
             int sexCode = Convert.ToInt32(Id.Substring(16, 1)) % 2;
-            this.Sex = sexCode == 0 ? enumSex.男 : enumSex.女;
+            this.Sex = sexCode == 0 ? enumSex.女 : enumSex.男;
             //---校验码验证
             string[] arrVarifyCode = ("1,0,x,9,8,7,6,5,4,3,2").Split(',');
             string[] Wi = ("7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2").Split(',');
@@ -777,6 +777,7 @@ namespace BLL
             CityDict.Add(211481, "兴城市");
             CityDict.Add(220000, " 吉林 ");
             CityDict.Add(220100, "长春");
+            CityDict.Add(220101, "长春市辖区");
             CityDict.Add(220102, "南关区");
             CityDict.Add(220103, "宽城区");
             CityDict.Add(220104, "朝阳区");

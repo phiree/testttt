@@ -40,7 +40,7 @@ public partial class MasterPage2 : System.Web.UI.MasterPage
 
     protected void BindCart()
     {
-      IList<Ticket> ts=  new BLLTicket().GetTicketsFromCart();
+        IList<Ticket> ts = new BLLTicket().GetTicketsFromCart();
       if (ts.Count == 0)
       {
           rptPopCart.Visible = false;
@@ -76,6 +76,6 @@ public partial class MasterPage2 : System.Web.UI.MasterPage
 
     protected void btnScLogin_Click(object sender, EventArgs e)
     {
-        Response.Redirect("/ScenicManager/Login.aspx");
+        Response.Redirect("/ScenicManager/");
     }
 }

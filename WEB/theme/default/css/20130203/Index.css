@@ -1,0 +1,141 @@
+﻿.show_1
+{
+    background:url("/theme/default/image/20130203/top01-1.gif");
+    width:946px;
+    height:99px;
+    display:block;
+}
+.btnIndex
+{
+    background:url("/theme/default/image/20130203/btnIndex.gif");
+    background-repeat:no-repeat;  
+    background-position:-97px -31px;
+    width:275px;
+    height:37px;
+    cursor:pointer;
+    border:none;
+}
+.btnIndex:hover
+{
+    background:url("/theme/default/image/20130203/btnIndex.gif");
+    background-repeat:no-repeat;  
+    background-position:-97px -78px;
+    width:275px;
+    height:37px;
+    cursor:pointer;
+    border:none;
+}
+.btnShow_1
+{
+    margin:45px 0px 0px 130px;
+}
+.btnShow_2
+{
+    margin:45px 0px 0px 230px;
+}
+.show_2
+{
+    width:946px;
+    height:329px;
+    background:url("/theme/default/image/20130203/showSuiChang.gif");
+    display:block;
+}
+.show_3
+{
+    width:946px;
+    height:330px;
+    background:url("/theme/default/image/20130203/showQuzhou.gif");
+    display:block;
+}
+.show_4
+{
+    width:951px;
+    height:157px;
+    background:url("/theme/default/image/20130203/showEwm.gif");
+    display:block;
+}
+
+.suichang_top
+{
+    background:url("/theme/default/image/20130203/suichangShow.gif");
+    width:950px;
+    height:330px;
+    display:block;
+}
+#suichangMain
+{
+    width:950px;
+}
+#suichangMain .left
+{
+    float:left;
+    display:block;
+    width:625px;
+    height:1283px;
+    background:url("/theme/default/image/20130203/left_suiChang.gif") no-repeat;
+}
+.btnqp
+{
+    display:block;
+    border:none;
+    width:84px;
+    height:31px;
+    background:url("/theme/default/image/20130203/btn1.jpg");
+    cursor:pointer;
+}
+.btnqp:hover
+{
+    display:block;
+    border:none;
+    width:84px;
+    height:31px;
+    background:url("/theme/default/image/20130203/btn1_hover.jpg");
+    cursor:pointer;
+}
+.right
+{
+    float:left;
+    display:inline-block;
+    width:325px;
+    
+}
+.hdgz
+{
+    background:url("/theme/default/image/20130203/right_gz.gif") no-repeat;
+    width:325px;
+    display:inline-block;
+    height:700px;
+    font-family:微软雅黑;
+    font-weight:bold;
+    font-size:12px;
+}
+.step
+{
+    margin:6px 0px 0px 15px;
+}
+.hotel
+{
+    background:url("/theme/default/image/20130203/suichang_hotel.gif") no-repeat;
+    width:318px;
+    height:583px;
+    display:inline-block;
+}
+.btnHotel
+{
+    background:url("/theme/default/image/20130203/btn2.jpg") no-repeat;
+    width:39px;
+    height:20px;
+    cursor:pointer;
+    border:none;
+    display:block;
+    
+}
+.btnHotel:hover
+{
+    background:url("/theme/default/image/20130203/btn2_hover.jpg") no-repeat;
+    width:39px;
+    height:20px;
+    cursor:pointer;
+    border:none;
+    display:block;
+}

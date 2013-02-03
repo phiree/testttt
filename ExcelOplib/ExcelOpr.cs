@@ -114,7 +114,7 @@ namespace ExcelOplib
                         }
                         else//不存在该票
                         {
-                            t = new Model.Ticket { Name = te.ticketname, Scenic = s, IsMain = true };
+                            t = new Model.TicketNormal { Name = te.ticketname, Scenic = s, IsMain = true };
                             t.TicketPrice = new List<Model.TicketPrice>() { 
                             new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
                             new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
@@ -152,7 +152,7 @@ namespace ExcelOplib
                     Model.Ticket t;
                     foreach (var te in newtlist)
                     {
-                        t = new Model.Ticket();
+                        t = new Model.TicketNormal();
                         t.Name = te.ticketname;
                         t.Scenic = s;
                         t.IsMain = true;

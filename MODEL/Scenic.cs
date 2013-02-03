@@ -9,7 +9,7 @@ namespace Model
     {
         public Scenic()
         {
-            Tickets = new List<Ticket>();
+         
         }
        
      
@@ -31,8 +31,7 @@ namespace Model
         public virtual string Desec { get; set; }
         public virtual string Position { get; set; }
         public virtual string BookNote { get; set; }
-        public virtual IList<Ticket> Tickets { get; set; }
-       
+      
         public virtual IList<ScenicCheckProgress> CheckProgress { get; set; }
         public virtual bool IsHide { get; set; }
         /// <summary>

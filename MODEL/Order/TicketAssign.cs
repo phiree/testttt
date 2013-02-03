@@ -31,6 +31,10 @@ namespace Model
         /// 验票员真实姓名
         /// </summary>
         public virtual string saName { get; set; }
+        /// <summary>
+        /// 门票编码,冗余字段
+        /// </summary>
+        public virtual string TicketCode { get; set; }
     }
 
     public class checkticketassign

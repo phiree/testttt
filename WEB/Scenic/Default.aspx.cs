@@ -8,6 +8,9 @@ using System.Web.UI.HtmlControls;
 using BLL;
 using Model;
 using System.Web.Security;
+using System.Web.UI.HtmlControls;
+using TourControls;
+using System.Configuration;
 
 public partial class Scenic_Default : basepage
 {
@@ -73,6 +76,7 @@ public partial class Scenic_Default : basepage
     {
 
         maintitlett.InnerHtml = scenic.Name;
+        
         hfposition.Value = scenic.Position;
         scbindname = scenic.Name;
         hfscname.Value = scenic.Name;
@@ -111,6 +115,33 @@ public partial class Scenic_Default : basepage
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/mainimg/" + listsi[0].Name;
+        //判断是否是联票，如果是的话则使用新的样式'
+        if (scenic.Tickets != null && scenic.Tickets.Count>0)
+        {
+            var t =  scenic.Tickets[0].As<Ticket>();
+            if ( t is TicketUnion)
+            {
+                rptBookNote.DataSource = ((TicketUnion)t).TicketList;
+                rptBookNote.DataBind();
+                rptscInfo.DataSource = ((TicketUnion)t).TicketList;
+                rptscInfo.DataBind();
+                rptJt.DataSource = ((TicketUnion)t).TicketList;
+                rptJt.DataBind();
+            }
+            else
+            {
+                List<Ticket> listTicket = new List<Ticket>();
+                listTicket.Add(t);
+                rptBookNote.DataSource = listTicket;
+                rptBookNote.DataBind();
+                rptscInfo.DataSource = listTicket;
+                rptscInfo.DataBind();
+                rptJt.DataSource = listTicket;
+                rptJt.DataBind();
+            }
+        }
+
+
 
 
         IList<Scenic> list = bllscenic.GetScenic();
@@ -130,22 +161,41 @@ public partial class Scenic_Default : basepage
         rpttopic.DataSource = blltopic.GetStByscid(scenic.Id);
         rpttopic.DataBind();
 
-        //绑定套票
+        //绑定普通票
         IList<Ticket> listticket = bllticket.GetTp(scenic.Id);
+
         //衢州新春门票，的主门票productCode
         if (listticket.Count > 0)
-            hfProductCode.Value = listticket[0].ProductCode;
+        {
+            maintitlett.InnerHtml = listticket[0].DisplayNameOfOwner;
+            IList<Ticket> listTicket = listticket.Where(x => x.IsMain).Where(x => x.TourActivity != null).ToList();
+            if (listTicket.Count() > 0)
+            {
+                hfProductCode.Value = listTicket[0].ProductCode;
+                IList<ActivityTicketAssign> listAta = listTicket[0].TourActivity.GetActivityAssignForPartnerTicketDate(ConfigurationManager.AppSettings["PartnerCode"], listTicket[0].ProductCode, DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")));
+                if (listAta.Count > 0)
+                {
+                    hfSyCount.Value = (listAta[0].AssignedAmount - listAta[0].SoldAmount).ToString();
+                }
+            }
+            else
+                qzTicketCount.Visible = false;
+        }
+            
 
-        rpttp.DataSource = listticket;
+        rpttp.DataSource = listticket.Where(x=>x.Enabled).ToList();
         rpttp.DataBind();
         //编辑
         EditRole();
-        sc_dp.scname = scenic.Name;
-        sc_dp.BaseData = booknote;
-        plate2.scname = scenic.Name;
-        plate2.BaseData = scenic.ScenicDetail;
-        sc_jtzn.scname = scenic.Name;
-        sc_jtzn.BaseData = scenic.Trafficintro;
+        //sc_dp.scname = scenic.Name;
+        //sc_dp.BaseData = booknote;
+
+
+
+        //plate2.scname = scenic.Name;
+        //plate2.BaseData = scenic.ScenicDetail;
+        //sc_jtzn.scname = scenic.Name;
+        //sc_jtzn.BaseData = scenic.Trafficintro;
     }
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区
     Dictionary<ScenicImg, double> scdiction = new Dictionary<ScenicImg, double>();
@@ -190,9 +240,23 @@ public partial class Scenic_Default : basepage
     {
         if (CurrentUser != null && Roles.IsUserInRole(CurrentUser.UserName, "SiteAdmin"))
         {
-            sc_dp.CanEdit = true;
-            plate2.CanEdit = true;
-            sc_jtzn.CanEdit = true;
+            //sc_dp.CanEdit = true;
+            foreach (RepeaterItem item in rptBookNote.Items)
+            {
+                ContentReader sc_dp = item.FindControl("sc_dp") as ContentReader;
+                sc_dp.CanEdit = true;
+            }
+            foreach (RepeaterItem item in rptscInfo.Items)
+            {
+                ContentReader plate2 = item.FindControl("plate2") as ContentReader;
+                plate2.CanEdit = true;
+            }
+            foreach (RepeaterItem item in rptJt.Items)
+            {
+                ContentReader sc_jtzn = item.FindControl("sc_jtzn") as ContentReader;
+                sc_jtzn.CanEdit = true;
+            }
+            
         }
     }
     #endregion
@@ -221,8 +285,55 @@ public partial class Scenic_Default : basepage
             else
                 bindimglist += list[i].Position+"," +list[i].Name+ ":";
         }
-        bindimglist.Substring(0, bindimglist.Length - 1);
+       // bindimglist.Substring(0, bindimglist.Length - 1);
         imgcount=list.Count-1;
         introordertk.Visible = false;
+    }
+    protected void rpttp_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+            HtmlInputButton btnputcart = e.Item.FindControl("btnputcart") as HtmlInputButton;
+            btnputcart.Attributes["onclick"] = "AddToCart(this," + t.Id + ")";
+            if (t.TourActivity == null)
+            {
+                btnputcart.Attributes.Add("isActivity", "false");
+            }
+            else
+            {
+                btnputcart.Attributes.Add("isActivity", "true");
+            }
+        }
+    }
+
+    protected void rptBookNote_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+            ContentReader cr = e.Item.FindControl("sc_dp") as ContentReader;
+            cr.BaseData = bllscenic.GetScenicById(t.Scenic.Id).BookNote;
+        }
+    }
+
+    protected void rptscInfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+            ContentReader cr = e.Item.FindControl("plate2") as ContentReader;
+            cr.BaseData = bllscenic.GetScenicById(t.Scenic.Id).ScenicDetail;
+        }
+    }
+
+    protected void rptJt_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType  == ListItemType.Item)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+            ContentReader cr = e.Item.FindControl("sc_jtzn") as ContentReader;
+            cr.BaseData = bllscenic.GetScenicById(t.Scenic.Id).Trafficintro;
+        }
     }
 }

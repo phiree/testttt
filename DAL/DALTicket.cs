@@ -7,7 +7,7 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALTicket:DalBase,ITicket
+    public class DALTicket:DalBase
     {
 
         public IList<Model.Ticket> GetTicketByAreaId(int areaid)
@@ -20,9 +20,10 @@ namespace DAL
 
         public IList<Model.Ticket> GetTicketByscId(int scid)
         {
-            string sql = "select t from Ticket t where t.Scenic.Id="+scid+"";
-            IQuery query = session.CreateQuery(sql);
-            return query.Future<Model.Ticket>().OrderByDescending(x=>x.IsMain).ToList<Model.Ticket>();
+            var ticketList = session.QueryOver<Model.Ticket>().Where(x => x.Scenic.Id == scid && x.IsMain == true).List();
+            //string sql = "select t from Ticket t where t.Scenic.Id="+scid+"";
+            //IQuery query = session.CreateQuery(sql);
+            return ticketList;
         }
 
 
@@ -102,7 +103,7 @@ namespace DAL
         }
         public Model.Ticket Get(int ticketId)
         {
-            Model.Ticket t = session.Get<Model.Ticket>(ticketId);
+           var t = session.Get<Model.Ticket>(ticketId);
             return t;
         }
         public Model.Ticket GetByScenicSeo(string scenicSeoName)
@@ -123,11 +124,10 @@ namespace DAL
 
         public Model.Ticket GetByProductCode(string productCode)
         {
-            string sql = "select t from Ticket t where t.ProductCode='"+ productCode+"'";
-            IQuery query = session.CreateQuery(sql);
-            IFutureValue<Model.Ticket> t = query.FutureValue<Model.Ticket>();
-            if (t == null) return null;
-            return t.Value;
+            var strQuery = "select t from Ticket t where t.ProductCode ='" + productCode + "'";
+            IQuery qry = session.CreateQuery(strQuery);
+            Model.Ticket t = qry.FutureValue<Model.Ticket>().Value;
+            return t;
         }
 
 
@@ -135,6 +135,12 @@ namespace DAL
         {
             session.Delete(t);
             session.Flush();
+        }
+
+        public IList<Model.Ticket> GetListByMultitTicketCode(IList<string> ticketCodes)
+        {
+           return  session.QueryOver<Model.Ticket>()
+                .Where(x => ticketCodes.Contains(x.ProductCode)).List();
         }
     }
 }

@@ -968,7 +968,7 @@ changeinfo
     padding-top:15px;
     padding-bottom:15px;
 }
-#qzTicketCount
+.qzTicketCount
 {
     position:absolute;
     background:url("/theme/default/image/20130116/ticketCountBg.png");
@@ -978,11 +978,11 @@ changeinfo
     left:600px;
     display:block;
 }
-#qzTicketCount span
+.qzTicketCount span
 {
     color:White;
 }
-#qzTicketCount .tc
+.qzTicketCount .tc
 {
     display:block;
     margin-top:33px;

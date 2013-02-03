@@ -44,7 +44,12 @@ namespace Model
                 totalPrice = 0;
                 foreach (OrderDetail od in OrderDetail)
                 {
-                    totalPrice += od.Quantity * (od.TicketPrice.Price);
+                  
+                    if (od.TicketPrice!= null)
+                    {
+
+                        totalPrice += od.Quantity * (od.TicketPrice.Price);
+                    }
                 }
                 return totalPrice;
             }
@@ -125,6 +130,10 @@ namespace Model
                 return BuyTime.Date.ToString();
             }
         }
+        /// <summary>
+        /// 订单来源:当前用途:记录活动合作伙伴的ProductCode
+        /// </summary>
+        public virtual string OrderFrom { get; set; }
     }
 
     public class MonthOrder

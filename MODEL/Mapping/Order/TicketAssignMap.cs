@@ -15,10 +15,12 @@ namespace Model.Mapping.Order
             Map(x => x.Name);
             Map(x => x.IsUsed);
             Map(x => x.UsedTime);
+            Map(x => x.TicketCode);
             References<Scenic>(x => x.Scenic);
             References<OrderDetail>(x => x.OrderDetail);
             References<ScenicAdmin>(x => x.ScenicAdmin);
             Map(x => x.saName);
+            
         }
     }
 }

@@ -20,6 +20,8 @@ namespace Model
         /// 景区--门票类型--门票价格
         /// </summary>
         public virtual TicketPrice TicketPrice { get; set; }
+        //价格冗余
+        public virtual decimal Price { get; set; }
         public virtual Order Order { get; set; }
         public virtual string Remark { get; set; }
        

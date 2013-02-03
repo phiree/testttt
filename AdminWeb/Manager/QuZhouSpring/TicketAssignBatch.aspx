@@ -8,8 +8,8 @@
         <legend>分配规则</legend>
         将剩余门票分配给  <%=DateTime.Now.Date %> 到活动结束 (2月6号) 之间的日期,
         比例可以修改数组:peishuForStartDates
-        <div><asp:Button runat="server" ID="btnCal" OnClick="btnSave_Click" Text="保存" /></div>
-        
+        <div> 开始日期:<asp:TextBox runat="server" ID="tbxDate">开始日期</asp:TextBox><asp:Button runat="server" ID="btnCal" OnClick="btnSave_Click" Text="重新加载" /></div>
+     
         <asp:Repeater runat="server" ID="rptAssign">
             <HeaderTemplate>
                 <table>

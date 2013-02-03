@@ -6,7 +6,7 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALTicketPrice:DalBase,IDAL.ITicketPrice
+    public class DALTicketPrice:DalBase
     {
 
         public IList<Model.TicketPrice> GetTicketPriceByScenicId(int scenicid)

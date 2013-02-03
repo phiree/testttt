@@ -90,7 +90,7 @@ namespace BLL
                 }
             }
             //自动创建订单
-            Ticket currentTicket = bllTicket.GetByProductCode(ticketCode);
+            Ticket currentTicket =  bllTicket.GetByProductCode(ticketCode);
             string partnername = partnerAsign.Partner.Name;
             //将媒体设置成合作者,
             //if (ismedia)
