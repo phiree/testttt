@@ -116,7 +116,7 @@ public partial class Scenic_Default : basepage
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/mainimg/" + listsi[0].Name;
         //判断是否是联票，如果是的话则使用新的样式'
-        if (scenic.Tickets != null && scenic.Tickets.Count>0)
+        if (scenic.Tickets != null || scenic.Tickets.Count>0)
         {
             Ticket t = scenic.Tickets.Where(x => x.IsMain).ToList()[0];
             if (t is TicketUnion)
