@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Model;
+using CommonLibrary;
 namespace BLL
 {
     //根据身份证号码提取的信息

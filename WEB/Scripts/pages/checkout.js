@@ -143,7 +143,7 @@
         };
 
         //assign data
-        $.get("/order/checkout.ashx?topic=quzhou&pricetype=" + pricetype + "&a=" + escape(b), function (data) {
+        $.get("/order/checkout.ashx?&pricetype=" + pricetype + "&a=" + escape(b), function (data) {
 
             document.write(data);
         });

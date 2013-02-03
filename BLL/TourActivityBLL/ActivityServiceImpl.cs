@@ -49,19 +49,20 @@ namespace BLL
             ///1 验证每天抢票的开始时间
             //  amount = 1;
             int nowHour = DateTime.Now.Hour;
+            string checkErrMsg;
             if (needCheckTime)
             {
-                if (!activity.CheckBuyTime())
+                if (!activity.CheckBuyTime(out checkErrMsg))
                 {
-                    returnMsg = string.Format("F|抢票时间是{0}点到{1}点.", activity.BeginHour, activity.EndHour);
+                    returnMsg = string.Format("F|{0}", checkErrMsg);
                     goto LblReturn;
                 }
             }
             ///验证活动时间
-            string timeFormat = "yyyy年MM月dd日";
-            if (!activity.CheckBuyTime())
+        
+            if (!activity.CheckBuyTime(out checkErrMsg))
             {
-                returnMsg = string.Format("F|活动时间是{0}到{1}", activity.BeginDate.ToString(timeFormat), activity.EndDate.ToString(timeFormat));
+                returnMsg = string.Format("F|{0}", checkErrMsg);
                 goto LblReturn;
             }
             ///身份证号码格式验证

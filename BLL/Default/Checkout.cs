@@ -28,8 +28,6 @@ namespace BLL
             order.BuyTime = DateTime.Now;
             order.IsPaid = false;
             order.MemberId = BuerId;
-    
-
             order.OrderDetail = Details;
 
             BLLOrder bllOrder = new BLLOrder();

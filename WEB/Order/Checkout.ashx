@@ -14,7 +14,12 @@ public class CheckoutHandler : IHttpHandler
     BLLTicket bllTickets = new BLLTicket();
     PriceType pt = PriceType.PayOnline;
     MembershipUser mu = Membership.GetUser();
+    BLLTicketAssign bllTa = new BLLTicketAssign();
     BLLMembership bllMembership = new BLLMembership();
+  
+    string paramTicketAssign;
+    string orderErrMsg;
+    bool OrderSuccess = false;
     public void ProcessRequest(HttpContext context)
     {
 
@@ -37,7 +42,7 @@ public class CheckoutHandler : IHttpHandler
 
 
         string paramPriceType = req["pricetype"];
-        string paramTicketAssign = req["a"].TrimEnd('_');
+         paramTicketAssign = req["a"].TrimEnd('_');
         /*支付*/
         int intpricetype;
 
@@ -55,8 +60,18 @@ public class CheckoutHandler : IHttpHandler
         }
 
         //如果是衢州抢票 需要调用接口
-        string thisTopic = req["topic"];
+
+     
+        
+       // bllActivityImpl.buyProduct(
+        
+      
+        
+        
         string[] arrTicketAssign = paramTicketAssign.Split('_');
+        
+        
+        string thisTopic = req["topic"];
         if (thisTopic == "quzhou")
         {
             BLLQZTicketSeller qzSeller = new BLLQZTicketSeller();
@@ -99,6 +114,13 @@ public class CheckoutHandler : IHttpHandler
         {
             Model.Order order = docheck();
 
+
+            if (!OrderSuccess)
+            {
+                
+                context.Response.Write("<script>window.location.href='/order/QuZhouorderFail.aspx?msg=" + context.Server.UrlEncode(orderErrMsg) + "';</script>");
+            }
+            
             if (pt == PriceType.PayOnline)
             {
 
@@ -114,26 +136,9 @@ public class CheckoutHandler : IHttpHandler
             /*end 支付*/
           
 
-            /*指派游览者*/
+         
 
-            foreach (string ta in arrTicketAssign)
-            {
-                string[] taValues = ta.Split('-');
-                int ticketId = Convert.ToInt32(taValues[0]);
-                string name = taValues[1];
-                string cardidNo = taValues[2];
-
-                OrderDetail detail = order.OrderDetail.Single<OrderDetail>(x => x.TicketPrice.Ticket.Id == ticketId);
-                TicketAssign modelTa = new TicketAssign();
-                modelTa.IdCard = cardidNo;
-                modelTa.IsUsed = false;
-                modelTa.Name = name;
-                modelTa.OrderDetail = detail;
-                new BLLTicketAssign().SaveOrUpdate(modelTa);
-              
-               
-
-            }
+          
           
         }
         /*
@@ -179,6 +184,7 @@ public class CheckoutHandler : IHttpHandler
         checkout.Details = GetDetails();
         Model.Order order = checkout.MakeOrder();
 
+        OrderSuccess = true;
         return order;
     }
     private string DoPayment(Model.Order order)
@@ -190,7 +196,7 @@ public class CheckoutHandler : IHttpHandler
         return payment.Pay();
     }
 
-    private List<OrderDetail> GetDetails()
+    private  List<OrderDetail> GetDetails()
     {
 
         IList<CartItem> cart = bllTickets.GetCartFromCookies();
@@ -198,14 +204,44 @@ public class CheckoutHandler : IHttpHandler
 
         List<OrderDetail> details = new List<OrderDetail>();
 
+        string errMsg;
         foreach (CartItem item in cart)
         {
             OrderDetail od = new OrderDetail();
             od.Quantity = item.Qty;
 
             Ticket t = bllTickets.GetTicket(item.TicketId);
+          
+
             TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
-            //TicketAssign ta = new TicketAssign();
+
+            string[] arrTicketAssign = paramTicketAssign.Split('_');
+            foreach (string ta in arrTicketAssign)
+            {
+                string[] taValues = ta.Split('-');
+                int ticketId = Convert.ToInt32(taValues[0]);
+                string name = taValues[1];
+                string cardidNo = taValues[2];
+                //活动规则检查
+                TourActivity touractivity = t.TourActivity;
+                if (touractivity != null)
+                {
+                   
+                    IList<TicketAssign> talist = bllTa.GetTaByIdcardandTicketCode(cardidNo, t.ProductCode);
+                    bool checkResult = touractivity.IntergrationCheck(talist, cardidNo, t.ProductCode, 1, out orderErrMsg);
+                    if (!checkResult)
+                    {
+                     
+                        return null;
+                    }
+                }
+                TicketAssign modelTa = new TicketAssign();
+                modelTa.IdCard = cardidNo;
+                modelTa.IsUsed = false;
+                modelTa.Name = name;
+                modelTa.OrderDetail = od;
+               // new BLLTicketAssign().SaveOrUpdate(modelTa);
+            }
 
             od.TicketPrice = tp;
             details.Add(od);

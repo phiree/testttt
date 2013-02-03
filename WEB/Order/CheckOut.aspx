@@ -150,7 +150,7 @@
                 </table></FooterTemplate>
         </asp:Repeater>
     </div>
-    <div style="display:none">
+    <div runat="server" id="divPaymentChoose">
     <div class="tihead" style="margin-top:20px;margin-bottom:10px;">
             选择付款方式</div>
     <div id="payinfo">

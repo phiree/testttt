@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Model;
 using System.Data;
-
+using CommonLibrary;
 namespace BLL
 {
     public class BLLTicketAssign:BLLBase<TicketAssign>
