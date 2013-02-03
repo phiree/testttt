@@ -265,7 +265,7 @@ namespace DAL
         }
         public IList<TicketAssign> GetTaByIdcardandTicketCode(string idcard, string ticketCode)
         {
-            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.ProductCode='" + ticketCode + "'";
+            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.TicketCode='" + ticketCode + "'";
             IQuery query = session.CreateQuery(sql);
 
             return query.Future<TicketAssign>().ToList<TicketAssign>();

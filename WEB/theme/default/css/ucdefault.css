@@ -320,16 +320,16 @@
 .ofirst
 {
     margin-left:10px;
-    width:80px;
+    width:60px;
 }
 .osecond
 {
     margin-left:15px;
-    width:250px;
+    width:360px;
 }
 .odname
 {
-    width:250px;
+    width:350px;
     margin-right:10px;
     display:inline-block;
     text-align:left !important;
@@ -343,7 +343,7 @@
 .odname span
 {
     display:block;
-    width:100px !important;
+    width:200px !important;
     float:left;
     text-align:left !important;
 }

@@ -287,7 +287,12 @@ namespace DAL
                         ta.IdCard = idcardno;
                         ta.IsUsed = false;
                         ta.Name = assignName;
-                        ta.TicketCode = ticket.ProductCode;
+                        string ticketCode=string.Empty;
+                        if(ticket.TicketUnion!=null)
+                        {
+                            ticketCode = ticket.TicketUnion.ProductCode;
+                        }
+                        ta.TicketCode = ticketCode;
                         OrderDetail orderdetail = new OrderDetail();
                         orderdetail.Quantity = amount;
                         //  orderdetail.Remark = string.Format("订单来源:{1}", partnerCode);

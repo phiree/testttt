@@ -79,6 +79,7 @@ namespace Model
         {
             errMsg = string.Empty;
             int taCount = ticketAssigns.Where(x => x.IdCard == idcard && x.TicketCode == ticketCode).Count();
+           
             bool result = taCount + amount <= AmountPerIdcardTicket;
             if (!result)
             {

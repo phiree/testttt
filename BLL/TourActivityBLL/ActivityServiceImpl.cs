@@ -178,6 +178,7 @@ namespace BLL
         /// <returns></returns>
         public DataSet ProductLeftAmountAll(string activityCode, string PartnerCode, DateTime date)
         {
+         
             IList<ActivityTicketAssign> assigns = bllActivityTicketAssign.GetList(activityCode, PartnerCode, date);
 
 

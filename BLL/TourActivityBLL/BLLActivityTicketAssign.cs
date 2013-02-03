@@ -28,7 +28,7 @@ namespace BLL
 
         public ActivityTicketAssign GetOneByQuery(string activityCode, string partnerCode, string ticketCode, DateTime date)
         {
-
+            date = date.Date;
             return DALActivityTicketAssign.GetOneByQuery(activityCode, partnerCode, ticketCode, date);
         }
         /// <summary>
@@ -40,6 +40,7 @@ namespace BLL
         /// <returns></returns>
         public IList<ActivityTicketAssign> GetList(string activityCode, string partnerCode, DateTime date)
         {
+            date = date.Date;
             IList<ActivityTicketAssign> assignList = DALActivityTicketAssign.GetList(activityCode, partnerCode, date);
             return assignList;
         }
