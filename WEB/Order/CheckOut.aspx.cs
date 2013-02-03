@@ -15,6 +15,7 @@ public partial class Scenic_CheckOut : AuthPage
     BLLOrder bllOrder = new BLLOrder();
     BLLCommonUser bllCu = new BLLCommonUser();
     IList<Ticket> tickets = new List<Ticket>();
+    BLLTicketAssign bllTicketAssign = new BLLTicketAssign();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -53,12 +54,28 @@ public partial class Scenic_CheckOut : AuthPage
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             Ticket t = e.Item.DataItem as Ticket;
+            //参加活动的门票
+            if (t.TourActivity != null)
+            {
+                string errmsg;
+                if (!t.TourActivity.CheckBuyTime(out errmsg))
+                {
+                    CommonLibrary.Notification.Show(this,"规则检验",errmsg,"/");
+                    return;
+                }
+                if (!t.TourActivity.CheckBuyHour(out errmsg))
+                {
+                    CommonLibrary.Notification.Show(this, "规则检验", errmsg, "/");
+                    return;
+                }
+            }
+
             Literal liPriceOrder = e.Item.FindControl("liPriceOrder") as Literal;
             Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
             liPriceOrder.Text = t.GetPrice(PriceType.PreOrder).ToString("0");
             liPriceOnline.Text = t.GetPrice(PriceType.PayOnline).ToString("0");
             HtmlAnchor hrefScenic = e.Item.FindControl("hrefScenic") as HtmlAnchor;
-            hrefScenic.HRef = bllScenic.BuildScenicLink((Scenic) t.Scenic);
+            hrefScenic.HRef = bllScenic.BuildScenicLink( t.Scenic);
             System.Web.UI.HtmlControls.HtmlInputText inputQty = e.Item.FindControl("inputQty") as System.Web.UI.HtmlControls.HtmlInputText;
             //inputQty.
         }

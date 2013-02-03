@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.DataVisualization.Charting;
+using CommonLibrary;
 public partial class ScenicManager_Reports_Default : bpScenicManager
 {
     BLL.BLLIdcardReport bllIdcardReport = new BLL.BLLIdcardReport();
@@ -55,9 +56,9 @@ public partial class ScenicManager_Reports_Default : bpScenicManager
             {
                 string pcode = string.Empty;
                 //当前生成省份链接
-                if (BLL.IdCardInfo.ProvinceDict.ContainsValue(lbl.Text))
+                if (IdCardInfo.ProvinceDict.ContainsValue(lbl.Text))
                 {
-                    KeyValuePair<int, string> p = BLL.IdCardInfo.ProvinceDict.Single(x => x.Value == lbl.Text);
+                    KeyValuePair<int, string> p = IdCardInfo.ProvinceDict.Single(x => x.Value == lbl.Text);
                     if (p.Key != null)
                     {
                         pcode = p.Key.ToString();
@@ -69,9 +70,9 @@ public partial class ScenicManager_Reports_Default : bpScenicManager
             if (groupType == BLL.enumGroupByType.CityCode)
             {
                 string pcode = string.Empty;
-                if (BLL.IdCardInfo.CityDict.ContainsValue(lbl.Text))
+                if (IdCardInfo.CityDict.ContainsValue(lbl.Text))
                 {
-                    KeyValuePair<int, string> p = BLL.IdCardInfo.CityDict.Single(x => x.Value == lbl.Text);
+                    KeyValuePair<int, string> p = IdCardInfo.CityDict.Single(x => x.Value == lbl.Text);
                     if (p.Key != null)
                     {
                         pcode = p.Key.ToString();

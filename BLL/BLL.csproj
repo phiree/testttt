@@ -125,7 +125,6 @@
     <Compile Include="Dijieshe\BLLTourGroupMember.cs" />
     <Compile Include="Dijieshe\BLLWorker.cs" />
     <Compile Include="Dijieshe\JsonObjects.cs" />
-    <Compile Include="IdCardInfo.cs" />
     <Compile Include="QuZhouSpring\BLLQZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\BLLQZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\BLLQZTicketAsign.cs" />
