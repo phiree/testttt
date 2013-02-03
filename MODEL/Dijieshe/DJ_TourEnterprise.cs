@@ -15,6 +15,18 @@ namespace Model
             Tickets = new List<Ticket>();
             lastUpdateTime = DateTime.Now;
         }
+        public virtual string DisplayName {
+            get {
+                foreach (Ticket t in Tickets)
+                {
+                    if (t.As<Ticket>() is  TicketUnion)
+                    {
+                        return t.Name;
+                    }
+                }
+                return Name;
+            }
+        }
         public virtual IList<Ticket> Tickets { get; set; }
         public virtual int Id { get; set; }
         /// <summary>
