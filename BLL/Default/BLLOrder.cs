@@ -202,9 +202,15 @@ namespace BLL
          
             foreach (Ticket t in ticketlist)
             {
+
                 TourActivity activity = t.TourActivity;
                 if (activity != null)
                 {
+                    bool result = bllTicketAssign.CheckIdCardAmount(activity.ActivityCode, idcardno, t.ProductCode, amount, out errMsg);
+                    if (!result)
+                    {
+                        return null;
+                    }
                   IList<TicketAssign> taList=  bllTicketAssign.GetTaByIdcardandTicketCode(idcardno, t.ProductCode);
 
                   bool checkResult = activity.IntergrationCheck(taList, idcardno, t.ProductCode, amount,partnerCode, out errMsg);
@@ -217,10 +223,10 @@ namespace BLL
                      bllActivityTa.SaveOrUpdate(ata);
                   }
                 }
-
-                if (t is TicketUnion)
+                Ticket actualT = t.As<Ticket>();
+                if (actualT is TicketUnion)
                 {
-                    foreach (Ticket ct in ((TicketUnion)t).TicketList)
+                    foreach (Ticket ct in ((TicketUnion)actualT).TicketList)
                     {
                         ChildTicketList.Add(ct);
                     }

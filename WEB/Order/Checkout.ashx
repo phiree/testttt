@@ -80,6 +80,26 @@ public class CheckoutHandler : IHttpHandler
             idcardno = taValues[2];
         }
         ///为活动做了简化处理: 订单内 每个订单详情的数量, 分配的身份证号码和 姓名都是一样的
+        
+        #region  //用户已买门票数量的判断
+        //foreach (Ticket t in TicketList)
+        //{ 
+        //    if(t.TourActivity!=null)
+        //    {
+        //     bool checkResult=   bllTa.CheckIdCardAmountPerTicket(t.TourActivity.ActivityCode, idcardno, t.ProductCode, amount, out orderErrMsg);
+        //     if (checkResult == false)
+        //     {
+        //         context.Response.Write("<script>window.location.href='/order/QuZhouorderFail.aspx?msg=" + context.Server.UrlEncode(orderErrMsg) + "';</script>");
+        //         return;
+        //     }
+        //    }
+         
+        //}
+        
+        
+        #endregion
+
+
         Model.Order order = bllOrder.CreateOrder(System.Configuration.ConfigurationManager.AppSettings["partnerCode"], tourMembership.Id, TicketList, idcardno, assignName, amount, pt, out orderErrMsg);
           //  Model.Order order = docheck();
 

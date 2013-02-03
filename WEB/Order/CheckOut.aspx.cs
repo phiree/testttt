@@ -20,11 +20,11 @@ public partial class Scenic_CheckOut : AuthPage
     protected void Page_Load(object sender, EventArgs e)
     {
         //为抢票设定时间
-        if(DateTime.Now.Hour<10)
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('今日抢票未开始,请在10点之后进行抢票!');window.location='/'", true);
-            return;
-        }
+        //if(DateTime.Now.Hour<10)
+        //{
+        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('今日抢票未开始,请在10点之后进行抢票!');window.location='/'", true);
+        //    return;
+        //}
 
         tickets = bllTicket.GetTicketsFromCart();
         if (tickets.Count == 0)
