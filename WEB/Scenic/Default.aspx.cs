@@ -76,6 +76,7 @@ public partial class Scenic_Default : basepage
     {
 
         maintitlett.InnerHtml = scenic.Name;
+        
         hfposition.Value = scenic.Position;
         scbindname = scenic.Name;
         hfscname.Value = scenic.Name;
@@ -166,6 +167,7 @@ public partial class Scenic_Default : basepage
         //衢州新春门票，的主门票productCode
         if (listticket.Count > 0)
         {
+            maintitlett.InnerHtml = listticket[0].DisplayNameOfOwner;
             IList<Ticket> listTicket = listticket.Where(x => x.IsMain).Where(x => x.TourActivity != null).ToList();
             if (listTicket.Count() > 0)
             {
