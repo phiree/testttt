@@ -120,9 +120,16 @@
         <div runat="server" id="introordertk" class="introordertk">
             <p class="captitle">
                 订票说明</p>
-            <%--<div class="otinfo" runat="server" id="dp_info">--%>
-            <self:ContentReader runat="server" HasBorder="true" ID="sc_dp" scFuncType="订票说明"
+            <asp:Repeater ID="rptBookNote" runat="server" OnItemDataBound="rptBookNote_ItemDataBound">
+                <ItemTemplate>
+                     <self:ContentReader runat="server" HasBorder="true" ID="sc_dp" scFuncType="订票说明" scname='<%# Eval("Scenic.Name") %>'
                 type="景区" CssClass="otinfo" />
+                </ItemTemplate>
+            </asp:Repeater>
+
+
+            <%--<div class="otinfo" runat="server" id="dp_info">--%>
+           
             <%--</div>--%>
         </div>
         <div id="allinfo">
@@ -134,8 +141,13 @@
             </div>
             <div id="changeinfo">
                 <div id="scdetailplate">
-                    <self:ContentReader runat="server" ID="plate2" HasBorder="true" scFuncType="景区详情"
-                        type="景区" />
+                    <asp:Repeater runat="server" ID="rptscInfo" OnItemDataBound="rptscInfo_ItemDataBound">
+                        <ItemTemplate>
+                            <self:ContentReader runat="server" ID="plate2" HasBorder="true" scFuncType="景区详情" scname='<%# Eval("Scenic.Name") %>'
+                            type="景区" />
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    
                 </div>
                 <p id="plap">
                     交通指南</p>
@@ -144,7 +156,12 @@
                         color: #53C46C">恢复坐标中心</a>
                     <div id="containtermap">
                     </div>
-                    <self:ContentReader runat="server" ID="sc_jtzn" scFuncType="交通指南" type="景区" CssClass="rdinfo" />
+                    <asp:Repeater runat="server" ID="rptJt" OnItemDataBound="rptJt_ItemDataBound">
+                        <ItemTemplate>
+                            <self:ContentReader runat="server" ID="sc_jtzn" scFuncType="交通指南" type="景区" CssClass="rdinfo" scname='<%# Eval("Scenic.Name") %>' />
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    
                 </div>
             </div>
         </div>
