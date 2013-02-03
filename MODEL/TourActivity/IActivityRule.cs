@@ -9,7 +9,7 @@ namespace Model
     public interface IActivityRule
     {
         //1 某天 某门票 某合作商  是否有足够票数
-        bool HasEnoughAmount(int ticketId, string partnerCode, DateTime date, int requestAmount, out string errMsg);
+        bool CheckEnoughAmount(string ticketCode, string partnerCode, DateTime date, int requestAmount, out string errMsg);
         /// <summary>
         /// 某身份证号码已经购买了某门票足够的数量
         ///<param name="amount">本次请求的数量</param>

@@ -9,9 +9,19 @@
         <asp:Button ID="btnSuiChange" runat="server" Text="" CssClass="btnShow_2 btnIndex" />
     </div>
     <a href="">
-        <div class="show_2">
+        <span class="show_2">
         
-        </div>
+        </span>
+    </a>
+    <a>
+        <span class="show_3">
+            
+        </span>
+    </a>
+    <a>
+        <span class="show_4">
+            
+        </span>
     </a>
 </asp:Content>
 

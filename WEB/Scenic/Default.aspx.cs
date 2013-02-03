@@ -10,6 +10,7 @@ using Model;
 using System.Web.Security;
 using System.Web.UI.HtmlControls;
 using TourControls;
+using System.Configuration;
 
 public partial class Scenic_Default : basepage
 {
@@ -164,7 +165,21 @@ public partial class Scenic_Default : basepage
 
         //衢州新春门票，的主门票productCode
         if (listticket.Count > 0)
-            hfProductCode.Value = listticket[0].ProductCode;
+        {
+            IList<Ticket> listTicket = listticket.Where(x => x.IsMain).Where(x => x.TourActivity != null).ToList();
+            if (listTicket.Count() > 0)
+            {
+                hfProductCode.Value = listTicket[0].ProductCode;
+                IList<ActivityTicketAssign> listAta = listTicket[0].TourActivity.GetActivityAssignForPartnerTicketDate(ConfigurationManager.AppSettings["PartnerCode"], listTicket[0].ProductCode, DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")));
+                if (listAta.Count > 0)
+                {
+                    hfSyCount.Value = (listAta[0].AssignedAmount - listAta[0].SoldAmount).ToString();
+                }
+            }
+            else
+                qzTicketCount.Visible = false;
+        }
+            
 
         rpttp.DataSource = listticket.Where(x=>x.Enabled).ToList();
         rpttp.DataBind();

@@ -43,18 +43,19 @@ namespace Model
         /// 限制购买者的地理位置
         /// true 表示 用 excludeareas
         /// </summary>
+        public virtual bool NeedCheckArea { get; set; }
         public virtual bool AreasUseBlack { get; set; }
         //逗号隔开  3301,3302,330
         public virtual string AreasBlackList { get; set; }
         public virtual string AreasWhiteList { get; set; }
 
         #region Irule implention
-        public virtual bool HasEnoughAmount(int ticketId, string partnerCode, DateTime date, int requestAmount, out string errMsg)
+        public virtual bool CheckEnoughAmount(string ticketCode, string partnerCode, DateTime date, int requestAmount, out string errMsg)
         {
             errMsg = string.Empty;
             ActivityTicketAssign assign = ActivityTicketAssign.Where(x => x.DateAssign == date
                                            && x.Partner.PartnerCode == partnerCode
-                                           && x.Ticket.Id == ticketId).Single();
+                                           && x.Ticket.ProductCode == ticketCode).Single();
             int assigned = assign.AssignedAmount;
             int sold = assign.SoldAmount;
             bool result = sold + requestAmount > assigned;
@@ -70,7 +71,7 @@ namespace Model
                 }
             }
 
-            return result;
+            return !result;
 
         }
 
@@ -125,11 +126,12 @@ namespace Model
             if(DateTime.Now.Hour < BeginHour)
             {
               errMsg=string.Format( "活动将在{0}点开始,感谢您的耐心等待并欢迎您继续等待",BeginHour);
+              result = false;
             }
             else if (DateTime.Now.Hour >= EndHour)
             {
                 errMsg = string.Format("今天的活动已于{0}点结束,感谢您的参与.欢迎您明天{1}点再来", EndHour,BeginHour);
-      
+                result = false;
             }
             return result;
         }
@@ -137,10 +139,10 @@ namespace Model
         public virtual bool CheckUserAreas(string cardid, out string errMsg)
         {
 
-            CommonLibrary.IdCardInfo idcard = new CommonLibrary.IdCardInfo(cardid);
-            string province = idcard.Province;
-            string city = idcard.City;
-            string country = idcard.Country;
+            //CommonLibrary.IdCardInfo idcard = new CommonLibrary.IdCardInfo(cardid).Parse(out errMsg);
+            string province = cardid.Substring(0, 2);
+            string city = cardid.Substring(2,2);
+            string country = cardid.Substring(4, 2);
             
             errMsg = "抱歉,您的身份证号码所属地不在本次活动范围之内,不能购票.";
             if (AreasUseBlack)
@@ -157,7 +159,7 @@ namespace Model
 
         #region 总规则检查
 
-        public virtual bool IntergrationCheck(IList<TicketAssign> talist,string idcardNo,string ticketCode,int buyAmount, out string errMsg)
+        public virtual bool IntergrationCheck(IList<TicketAssign> talist,string idcardNo,string ticketCode,int buyAmount,string partnerCode, out string errMsg)
         {
             bool result = true;
            
@@ -170,7 +172,7 @@ namespace Model
             {
                 return false;
             }
-            if (!this.CheckUserAreas(idcardNo, out errMsg))
+            if ( NeedCheckArea&& !this.CheckUserAreas(idcardNo, out errMsg))
             {
                 return false;
             }
@@ -182,7 +184,10 @@ namespace Model
             {
                 return false;
             }
-         
+            if(!this.CheckEnoughAmount(ticketCode,partnerCode,DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")),buyAmount,out errMsg))
+            {
+                return false;
+            }
             return result;
         }
 

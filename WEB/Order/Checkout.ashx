@@ -80,17 +80,17 @@ public class CheckoutHandler : IHttpHandler
             idcardno = taValues[2];
         }
         ///为活动做了简化处理: 订单内 每个订单详情的数量, 分配的身份证号码和 姓名都是一样的
-         Model.Order order= bllOrder.CreateOrder("旅游在线", tourMembership.Id, TicketList, idcardno, assignName, amount, pt,out orderErrMsg);
+        Model.Order order = bllOrder.CreateOrder(System.Configuration.ConfigurationManager.AppSettings["partnerCode"], tourMembership.Id, TicketList, idcardno, assignName, amount, pt, out orderErrMsg);
           //  Model.Order order = docheck();
 
          if (!string.IsNullOrEmpty(orderErrMsg))
             {
                 context.Response.Write("<script>window.location.href='/order/QuZhouorderFail.aspx?msg=" + context.Server.UrlEncode(orderErrMsg) + "';</script>");
+                return;
             }
-
+         
             if (pt == PriceType.PayOnline)
             {
-
                 string html = DoPayment(order);
                 context.Response.Write(html);
             }

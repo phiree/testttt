@@ -26,6 +26,7 @@ namespace Model.Mapping
             Map(x => x.AreasUseBlack);
             Map(x => x.AreasWhiteList);
             Map(x => x.AreasBlackList);
+            Map(x => x.NeedCheckArea);
             
         }
     }

@@ -34,7 +34,8 @@ public partial class Manager_TourActivity_activityDetail : System.Web.UI.Page
             txtEndDate.Text = ta.EndDate.ToString("yyyy-MM-dd");
             txtEndHour.Text = ta.EndHour.ToString();
             txtName.Text = ta.Name;
-            ckIsBuy.Checked = ta.AreasUseBlack;
+            ckUseBlackList.Checked = ta.AreasUseBlack;
+            cbxNeedCheckArea.Checked = ta.NeedCheckArea;
         }
     }
 
@@ -54,13 +55,14 @@ public partial class Manager_TourActivity_activityDetail : System.Web.UI.Page
         ta.AmountPerIdcardInActivity = int.Parse(txtAmountPerIdcardInActivity.Text);
         ta.AmountPerIdcardTicket = int.Parse(txtAmountPerIdcardTicket.Text);
         ta.AreasBlackList = txtBlack.Text;
-        ta.AreasUseBlack = ckIsBuy.Checked;
+        ta.AreasUseBlack = ckUseBlackList.Checked;
         ta.AreasWhiteList = txtWhite.Text;
         ta.BeginDate = DateTime.Parse(txtBeginDate.Text);
         ta.BeginHour = int.Parse(txtBeginHour.Text);
         ta.EndDate = DateTime.Parse(txtEndDate.Text);
         ta.EndHour = int.Parse(txtEndHour.Text);
         ta.Name = txtName.Text;
+        ta.NeedCheckArea = cbxNeedCheckArea.Checked;
         bllTourActivity.SaveOrUpdate(ta);
         ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('更新成功');window.location='/manager/touractivity/default.aspx'", true);
     }

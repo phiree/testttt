@@ -74,7 +74,15 @@
                 是否限制购买者的地理位置
             </td>
             <td>
-                <asp:CheckBox ID="ckIsBuy" runat="server" />
+                <asp:CheckBox ID="cbxNeedCheckArea" runat="server" />
+            </td>
+        </tr>
+          <tr>
+            <td>
+                是否使用黑名单策略（在黑名单内地理位置不能购买）
+            </td>
+            <td>
+                <asp:CheckBox ID="ckUseBlackList" runat="server" />
             </td>
         </tr>
         <tr>
