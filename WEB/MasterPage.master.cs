@@ -76,6 +76,6 @@ public partial class MasterPage2 : System.Web.UI.MasterPage
 
     protected void btnScLogin_Click(object sender, EventArgs e)
     {
-        Response.Redirect("/ScenicManager/Login.aspx");
+        Response.Redirect("/ScenicManager/");
     }
 }
