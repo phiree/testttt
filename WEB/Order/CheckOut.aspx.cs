@@ -31,6 +31,17 @@ public partial class Scenic_CheckOut : AuthPage
         {
             Server.Transfer("/order/cart.aspx");
         }
+
+        //如果只有一张票,而且价格等于0,则隐藏付款方式
+        if (tickets.Count == 1)
+        {
+            Ticket t = tickets[0];
+            if (t.GetPrice(PriceType.PreOrder )== 0 && t.GetPrice(PriceType.PayOnline) == 0)
+            {
+                divPaymentChoose.Style.Add( HtmlTextWriterStyle.Display,"none");
+            }
+        }
+
         BindTickets();
         BindContacts();
         BindAssign();

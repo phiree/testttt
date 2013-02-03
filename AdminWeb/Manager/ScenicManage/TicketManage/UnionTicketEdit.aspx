@@ -16,10 +16,10 @@
        <asp:Button runat="server" ID="btnSavePrice" Text="保存价格" OnClick="btnSavePrice_Click" />
         </div>
         <h3>
-            该门票已经绑定的景区</h3>
+            该门票已经绑定的门票</h3>
    
     <div>
-        <asp:Repeater runat="server" ID="rptScenics" OnItemCommand="rptScenics_ItemCommand">
+        <asp:Repeater runat="server" ID="rptTickets" OnItemCommand="rptScenics_ItemCommand">
             <ItemTemplate>
                 <li><span>
                     <%#Eval("Name") %></span><asp:Button runat="server" ID="btnDelete" CommandArgument='<%#Eval("id") %>'
