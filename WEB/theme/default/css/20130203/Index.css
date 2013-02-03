@@ -1,0 +1,42 @@
+﻿.show_1
+{
+    background:url("/theme/default/image/20130203/top01-1.gif");
+    width:946px;
+    height:99px;
+    display:block;
+}
+.btnIndex
+{
+    background:url("/theme/default/image/20130203/btnIndex.gif");
+    background-repeat:no-repeat;  
+    background-position:-97px -31px;
+    width:275px;
+    height:37px;
+    cursor:pointer;
+    border:none;
+}
+.btnIndex:hover
+{
+    background:url("/theme/default/image/20130203/btnIndex.gif");
+    background-repeat:no-repeat;  
+    background-position:-97px -78px;
+    width:275px;
+    height:37px;
+    cursor:pointer;
+    border:none;
+}
+.btnShow_1
+{
+    margin:45px 0px 0px 130px;
+}
+.btnShow_2
+{
+    margin:45px 0px 0px 230px;
+}
+.show_2
+{
+    width:946px;
+    height:329px;
+    background:url("/theme/default/image/20130203/showSuiChang.gif");
+    display:block;
+}

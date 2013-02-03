@@ -14,7 +14,7 @@ namespace Model.Mapping
 
 
             Map(x => x.MipangId);
-            References<DJ_TourEnterprise>(x => x.Scenic);
+         
 
         }
     }
