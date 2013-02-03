@@ -5,24 +5,19 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class _Default : basepage
+public partial class Index : System.Web.UI.Page
 {
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        CanEdit();
+
+    }
+    protected void btnQuZhou_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/qzspring");
     }
 
-    private void CanEdit()
+    protected void btnSuiChange_Click(object sender, EventArgs e)
     {
-        //if (CurrentUser != null && CurrentUser.UserName == "admin")
-        //{
-        //    @default.CanEdit=true;
-        //}
-        //else
-        //{
-        //    @default.CanEdit = false;
-        //}
+        Response.Redirect("/SuiChangSpring/SuiChangSpring.aspx");
     }
- 
 }

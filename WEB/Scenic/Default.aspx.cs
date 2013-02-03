@@ -76,6 +76,7 @@ public partial class Scenic_Default : basepage
     {
 
         maintitlett.InnerHtml = scenic.Name;
+        
         hfposition.Value = scenic.Position;
         scbindname = scenic.Name;
         hfscname.Value = scenic.Name;
