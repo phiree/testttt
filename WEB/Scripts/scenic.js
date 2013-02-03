@@ -1,41 +1,40 @@
 ﻿var cart = new Cart();
-        function AddToCart(btn,id) {
-            var h;
-            var randomParam = new Date().toString();
-            $.get("/Scenic/TimeHandler.ashx?id="+id+"&type=" + randomParam, function (timeHour, status) {
-                h = timeHour;
-                if (false){//parseInt(h) < 10) {
-                    alert("今日抢票未开始,请在10点之后进行抢票!");
-                }
-                else {
-                    //var qty = $("#txtTicketCount").val();
-                     cart.AddToCart(GetTicketId(btn), 1);
-                    //  window.location.href = "/order/cart.aspx";
-                    //衢州活动 直接跳转至确认页面
-                    window.location.href = "/order/checkout.aspx";
-                }
-            });
-           
+function AddToCart(btn, id) {
+    var h;
+    var randomParam = new Date().toString();
+    $.get("/Scenic/CheckHandler.ashx?id=" + id + "&type=" + randomParam, function (data, status) {
+        if (data != "true") {
+            alert("今日抢票未开始,请在" + data + "点之后进行抢票!");
         }
+        else {
+            //var qty = $("#txtTicketCount").val();
+            cart.AddToCart(GetTicketId(btn), 1);
+            //  window.location.href = "/order/cart.aspx";
+            //衢州活动 直接跳转至确认页面
+            window.location.href = "/order/checkout.aspx";
+        }
+    });
 
-       
-      
+}
 
-        function GetTicketId(btn) {
-            var ticketId = 0;
-            ticketId = $($(btn).parent().siblings()[0]).children("input").val()
-            
-            return ticketId;
-        }
 
-        function ShowPriceIntro() {
-            $("#priceintrodiv").css("display", "block");
-            var mubiao = $(".priceintro");
-            $("#priceintrodiv").css({ left: mubiao.position().left + "px", top: mubiao.position().top - 10 + "px" });
-        }
-        function ClosePriceIntro() {
-            $("#priceintrodiv").css("display", "none");
-        }
+
+
+function GetTicketId(btn) {
+    var ticketId = 0;
+    ticketId = $($(btn).parent().siblings()[0]).children("input").val()
+
+    return ticketId;
+}
+
+function ShowPriceIntro() {
+    $("#priceintrodiv").css("display", "block");
+    var mubiao = $(".priceintro");
+    $("#priceintrodiv").css({ left: mubiao.position().left + "px", top: mubiao.position().top - 10 + "px" });
+}
+function ClosePriceIntro() {
+    $("#priceintrodiv").css("display", "none");
+}
 function btnselect(obj) {
     var that = obj;
     $(".selectinfospan span").attr("class", "");
@@ -49,7 +48,7 @@ function btnselect(obj) {
         $("#changeinfo").html("<div id='scdetailplate'>" + t + "</div>" + "<p id='plap'>" + "交通指南" + "</p>" + "<div id='plate1'>" + f + "</div>");
     }
     flag = 1;
-   // showMap();
+    // showMap();
 }
 
 $(window).scroll(function () {
@@ -83,8 +82,8 @@ $(function () {
     });
     getTicketCount();
     //$.get("/Scenic/TimeHandler.ashx", function (timeHour, status) {
-       // showMap();
-   // });
+    // showMap();
+    // });
 });
 
 var map;
@@ -98,7 +97,7 @@ function showMap() {
     var myOptions = {
         zoom: 8,
         center: latlng,
-        scrollwheel:false,
+        scrollwheel: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(document.getElementById("containtermap"), myOptions);
@@ -125,77 +124,77 @@ function gotocenter() {
     else {
         map.setCenter(latlng);
         map.setZoom(map.getZoom());
-    }                   
+    }
 }
 /*
 //创建google自定义覆盖物
 function customOverlay_Large(map, options) {
-    //初始化参数
-    this._latlng = options.latlng; //设置图标位置
-    this._text = options.text;
-    this._id = options.id;
-    this._map = map;
-    this._div = null;
-    this.setMap(map);
+//初始化参数
+this._latlng = options.latlng; //设置图标位置
+this._text = options.text;
+this._id = options.id;
+this._map = map;
+this._div = null;
+this.setMap(map);
 }
 customOverlay_Large.prototype = new google.maps.OverlayView();
 //初始化图标
 customOverlay_Large.prototype.onAdd = function () {
-    var that = this;
-    var div = document.createElement("div"); //创建存放文字的div
-    div.style.position = "absolute";
-    div.style.zIndex = '1';
-    div.className = "divicon";
-    div.style.MozUserSelect = "none";
-    div.style.fontSize = "12px";
-    var span = document.createElement("span"); //创建序号span
-    //div.appendChild(span);
-    span.style.height = "15px";
-    div.style.cursor = "pointer";
-    span.style.display = "inline-block";
-    span.style.color = "Black";
-    span.style.margin = "0px 5px 2px 3px";
-    span.appendChild(document.createTextNode(this._id));
-    var spanscenic = document.createElement("span"); //创建文字标题
-    div.appendChild(spanscenic);
-    spanscenic.height = "15px";
-    spanscenic.style.position = "relative";
-    spanscenic.style.top = "-2px \0";
-    spanscenic.style.display = "inline-block";
-    spanscenic.style.lineHeight = "15px";
-    spanscenic.style.color = "White";
-    spanscenic.appendChild(document.createTextNode(this._text));
-    var arrow = document.createElement("div"); //三角形图标
-    arrow.style.background = "url('/Img/yuansu/largeicon2.gif') no-repeat";
-    arrow.style.position = "absolute";
-    arrow.style.width = "15px";
-    arrow.style.height = "14px";
-    arrow.style.top = "19px";
-    arrow.style.left = "10px";
-    arrow.style.overflow = "hidden";
-    div.appendChild(arrow);
-    this._div = div;
-    var panes = this.getPanes();
-    panes.overlayLayer.appendChild(div);
+var that = this;
+var div = document.createElement("div"); //创建存放文字的div
+div.style.position = "absolute";
+div.style.zIndex = '1';
+div.className = "divicon";
+div.style.MozUserSelect = "none";
+div.style.fontSize = "12px";
+var span = document.createElement("span"); //创建序号span
+//div.appendChild(span);
+span.style.height = "15px";
+div.style.cursor = "pointer";
+span.style.display = "inline-block";
+span.style.color = "Black";
+span.style.margin = "0px 5px 2px 3px";
+span.appendChild(document.createTextNode(this._id));
+var spanscenic = document.createElement("span"); //创建文字标题
+div.appendChild(spanscenic);
+spanscenic.height = "15px";
+spanscenic.style.position = "relative";
+spanscenic.style.top = "-2px \0";
+spanscenic.style.display = "inline-block";
+spanscenic.style.lineHeight = "15px";
+spanscenic.style.color = "White";
+spanscenic.appendChild(document.createTextNode(this._text));
+var arrow = document.createElement("div"); //三角形图标
+arrow.style.background = "url('/Img/yuansu/largeicon2.gif') no-repeat";
+arrow.style.position = "absolute";
+arrow.style.width = "15px";
+arrow.style.height = "14px";
+arrow.style.top = "19px";
+arrow.style.left = "10px";
+arrow.style.overflow = "hidden";
+div.appendChild(arrow);
+this._div = div;
+var panes = this.getPanes();
+panes.overlayLayer.appendChild(div);
 }
 //绘制图标，主要用于控制图标的位置
 customOverlay_Large.prototype.draw = function () {
-    var overlayProjection = this.getProjection();
-    var position = overlayProjection.fromLatLngToDivPixel(this._latlng); //将地图坐标转换成屏幕坐标
-    var div = this._div;
-    div.style.left = position.x - 5 + 'px';
-    div.style.top = position.y - 5 + 'px';
+var overlayProjection = this.getProjection();
+var position = overlayProjection.fromLatLngToDivPixel(this._latlng); //将地图坐标转换成屏幕坐标
+var div = this._div;
+div.style.left = position.x - 5 + 'px';
+div.style.top = position.y - 5 + 'px';
 }
 //增加一个删除图标属性
 customOverlay_Large.prototype.onRemove = function () {
-    this._div.parentNode.removeChild(this._div);
-    this._div = null;
+this._div.parentNode.removeChild(this._div);
+this._div = null;
 }
 */
 function getTicketCount() {
 
 
-    $.get("/Scenic/TimeHandler.ashx?now=1", function (time, status) {
+    $.get("/Scenic/CheckHandler.ashx?date=1", function (time, status) {
         $.ajax({
             type: "POST",
             contentType: "application/json",
@@ -205,10 +204,14 @@ function getTicketCount() {
             success: function (msg) {
                 if (msg.d == "-1" || msg.d == "0") {
                     $("#qzTicketCount").html("<span class='noTc' style=' font-size:14px;'>已抢完</span>");
-                   // $(".btnputcart").attr("onclick", "");
-                    $(".btnputcart").click(function () {
-                    //    alert("今天的门票已抢完，请您明天10点之后来抢票！");
-                      //  return false;
+                    $(".btnputcart").each(function () {
+                        if ($(this).attr("isActivity") == "true") {
+                            $(this).attr("onclick", "");
+                            $(this).click(function () {
+                                alert("今天的门票已抢完，请您明天来抢票！");
+                                return false;
+                            });
+                        }
                     });
                 }
                 else {

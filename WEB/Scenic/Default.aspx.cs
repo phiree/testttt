@@ -8,6 +8,7 @@ using System.Web.UI.HtmlControls;
 using BLL;
 using Model;
 using System.Web.Security;
+using System.Web.UI.HtmlControls;
 
 public partial class Scenic_Default : basepage
 {
@@ -111,6 +112,17 @@ public partial class Scenic_Default : basepage
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/mainimg/" + listsi[0].Name;
+        //判断是否是联票，如果是的话则使用新的样式'
+        if (scenic.Tickets != null)
+        {
+            Ticket t = scenic.Tickets.Where(x => x.IsMain).ToList()[0];
+            if (t is TicketUnion)
+            {
+
+            }
+        }
+
+
 
 
         IList<Scenic> list = bllscenic.GetScenic();
@@ -225,5 +237,22 @@ public partial class Scenic_Default : basepage
        // bindimglist.Substring(0, bindimglist.Length - 1);
         imgcount=list.Count-1;
         introordertk.Visible = false;
+    }
+    protected void rpttp_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+            HtmlInputButton btnputcart = e.Item.FindControl("btnputcart") as HtmlInputButton;
+            btnputcart.Attributes["onclick"] = "AddToCart(this," + t.Id + ")";
+            if (t.TourActivity == null)
+            {
+                btnputcart.Attributes.Add("isActivity", "false");
+            }
+            else
+            {
+                btnputcart.Attributes.Add("isActivity", "true");
+            }
+        }
     }
 }

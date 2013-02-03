@@ -46,7 +46,7 @@
                 <span>景区级别:</span><%=sclevel%>
             </div>
             <div class="scaddr">
-                地址：<%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
+                <span>地址：</span><%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
             </div>
             <div class="scdesc">
                 <%=scshortdesc %><a href="#plate2">景区简介</a>
@@ -88,7 +88,7 @@
                         </td>
                     </tr>
                 </tbody>
-                <asp:Repeater ID="rpttp" runat="server">
+                <asp:Repeater ID="rpttp" runat="server" onitemdatabound="rpttp_ItemDataBound">
                     <ItemTemplate>
                         <tr class="pttr" onmouseover="" onmouseout="">
                             <td style="text-align: left; padding-left: 60px;">
@@ -109,7 +109,7 @@
                             </td>
                             <td style="text-align: center;">
                             <!--活动规则判断-->
-                                <input id="btnputcart" type="button" class="btnputcart" value="立即抢票" onclick='AddToCart(this,<%#Eval("Id") %>)' />
+                                <input runat="server" id="btnputcart" type="button" class="btnputcart" value="立即抢票" onclick='AddToCart(this,<%# Eval("Id") %>)' />
                             </td>
                         </tr>
                     </ItemTemplate>
