@@ -22,7 +22,7 @@ public partial class Manager_TourActivity_activityDetail : System.Web.UI.Page
     {
         if (Request.QueryString["actId"] != null)
         {
-            string actId = Request.QueryString["actId"];
+            Guid actId = Guid.Parse(Request.QueryString["actId"]);
             TourActivity ta= bllTourActivity.GetOne(actId);
             txtAmountPerIdcardInActivity.Text = ta.AmountPerIdcardInActivity.ToString();
             txtAmountPerIdcardTicket.Text = ta.AmountPerIdcardTicket.ToString();
@@ -43,7 +43,7 @@ public partial class Manager_TourActivity_activityDetail : System.Web.UI.Page
         TourActivity ta;
         if (Request.QueryString["actId"] != null)
         {
-            string actId = Request.QueryString["actId"];
+            Guid actId = Guid.Parse(Request.QueryString["actId"]);
             ta = bllTourActivity.GetOne(actId);
         }
         else
@@ -62,5 +62,6 @@ public partial class Manager_TourActivity_activityDetail : System.Web.UI.Page
         ta.EndHour = int.Parse(txtEndHour.Text);
         ta.Name = txtName.Text;
         bllTourActivity.SaveOrUpdate(ta);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('更新成功');window.location='/manager/touractivity/default.aspx'", true);
     }
 }

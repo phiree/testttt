@@ -12,7 +12,7 @@ public partial class Manager_TourActivity_Default : System.Web.UI.Page
     BLLTourActivity bllTourActivity = new BLLTourActivity();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack)
+        if (!IsPostBack)
         {
             bindData();
         }
