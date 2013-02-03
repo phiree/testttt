@@ -4,7 +4,7 @@ function AddToCart(btn, id) {
     var randomParam = new Date().toString();
     $.get("/Scenic/CheckHandler.ashx?id=" + id + "&type=" + randomParam, function (data, status) {
         if (data != "true") {
-            alert("今日抢票未开始,请在" + data + "点之后进行抢票!");
+            alert(data);
         }
         else {
             //var qty = $("#txtTicketCount").val();

@@ -15,6 +15,7 @@ public class TimeHandler : IHttpHandler {
         }
         else
         {
+            string msg;
             int ticketId = Convert.ToInt32(context.Request["id"]);
             BLLTicket bllTicket = new BLLTicket();
             Ticket t = bllTicket.GetTicket(ticketId);
@@ -22,14 +23,14 @@ public class TimeHandler : IHttpHandler {
             {
                 context.Response.Write("true");
             }
-            else if (DateTime.Now.Hour >= t.TourActivity.BeginHour)
+            else if (! t.TourActivity.CheckBuyHour(out msg))
             {
-                context.Response.Write("true");
+                context.Response.Write(msg);
 
             }
             else
             {
-                context.Response.Write(t.TourActivity.BeginHour);
+                context.Response.Write("true");
             }
         }
     }
