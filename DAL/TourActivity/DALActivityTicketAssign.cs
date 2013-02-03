@@ -18,22 +18,35 @@ namespace DAL
         /// <returns></returns>
         public ActivityTicketAssign GetOneByQuery(string activityCode, string partnerCode, string ticketCode, DateTime date)
         {
-            var queryover = session.QueryOver<ActivityTicketAssign>().Where(x => x.DateAssign == date
-                && x.TourActivity.ActivityCode==activityCode
-                &&x.Ticket.ProductCode==ticketCode
-                &&x.Partner.PartnerCode==partnerCode
+            string sql = string.Format(@"select ata 
+                            from ActivityTicketAssign ata 
+                            where ata.DateAssign='{0}'
+                                and ata.TourActivity.ActivityCode='{1}'
+                                and ata.Ticket.ProductCode='{2}'
+                                and ata.Partner.PartnerCode='{3}'"
+                , date,activityCode,ticketCode,partnerCode
                 );
-            return GetOneByQuery(queryover);
+            //var queryover = session.QueryOver<ActivityTicketAssign>(()=>activityalias).JoinAlias(()=>activityalias,()=>TourActivityAlias)
+            //    .Where(x => x.DateAssign == date)
+            //    .Where(x => x.TourActivity.ActivityCode == activityCode)
+            //    .Where(x => x.Ticket.ProductCode == ticketCode)
+            //    .Where(x => x.Partner.PartnerCode == partnerCode);
+             
+            return GetOneByQuery(sql);
         }
 
         public IList<ActivityTicketAssign> GetList(string activityCode, string partnerCode, DateTime date)
         {
-            var queryover = session.QueryOver<ActivityTicketAssign>().Where(x => x.DateAssign == date
-               && x.TourActivity.ActivityCode == activityCode
+            string sql = string.Format(@"select ata from ActivityTicketAssign ata 
+                        where ata.DateAssign='{0}'
+                        and ata.TourActivity.ActivityCode='{1}'
+                        and ata.Partner.PartnerCode='{2}'", date, activityCode, partnerCode);
+            //var queryover = session.QueryOver<ActivityTicketAssign>().Where(x => x.DateAssign == date
+            //   && x.TourActivity.ActivityCode == activityCode
           
-               && x.Partner.PartnerCode == partnerCode
-               );
-            return GetList(queryover);
+            //   && x.Partner.PartnerCode == partnerCode
+            //   );
+            return GetList(sql);
         }
         
     }
