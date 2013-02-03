@@ -72,21 +72,6 @@
                     </asp:Repeater>
                 </table>
             </div>
-            <%--<div class="moddiv">
-                <p>热销排行</p>
-                <table class="tbvisitedsc" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td>
-                        <div class="paihang">1</div><a href="#" style="margin-top:0px;">仙都漂流</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="paihang">2</div><a href="#" style="margin-top:0px;">缙云仙都黄龙景区</a>
-                    </td>
-                </tr>
-            </table>
-            </div>--%>
             <div class="moddiv">
                 <p>
                     最近浏览</p>

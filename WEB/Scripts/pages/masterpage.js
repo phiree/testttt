@@ -140,7 +140,7 @@ function navshow() {
     var thishref = window.location.href;
     $(".navlistnb a").attr("class", "");
     if (/^.*map.*$/.test(thishref)) {
-        $(".navlistnb a:eq(3)").attr("class", "navhight");
+        $(".navlistnb a:eq(4)").attr("class", "navhight");
     } else if (/www.tourol.cn\/($|[D|d]efault.aspx)/.test(thishref)) {
         $(".navlistnb a:eq(0)").attr("class", "navhight");
     } else {

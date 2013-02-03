@@ -71,6 +71,9 @@
                 <a class="navhight" href="/">首页</a><div class="navsper">
                 </div>
                 <a href="/Tickets/">景区门票</a>
+                <div class="navsper">
+                </div>
+                <a href="/Hotel/">酒店</a>
                <%-- <div class="navsper">
                 </div>
                 <a href="#">旅游明信片</a>--%>

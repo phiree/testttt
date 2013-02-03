@@ -256,7 +256,7 @@ namespace DAL
         {
             string sql = "select s from Scenic s where s.SeoName='" + sseoname + "' and s.Area.SeoName='" + aseoname + "'";
             IQuery query = session.CreateQuery(sql);
-            return query.FutureValue<Scenic>().Value;
+            return query.UniqueResult<Scenic>();
         }
     }
 }

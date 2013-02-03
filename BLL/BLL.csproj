@@ -66,6 +66,8 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
@@ -105,6 +107,7 @@
     <Compile Include="Default\BLLTopic.cs" />
     <Compile Include="Default\BLLVote.cs" />
     <Compile Include="Default\Checkout.cs" />
+    <Compile Include="HotelSDKBLL\BLLGeo.cs" />
     <Compile Include="Default\MipangTicket\TicketMover.cs" />
     <Compile Include="Default\MipangTicket\TicketXmlParser.cs" />
     <Compile Include="Default\BLLOperationLog.cs" />
@@ -125,6 +128,9 @@
     <Compile Include="Dijieshe\BLLTourGroupMember.cs" />
     <Compile Include="Dijieshe\BLLWorker.cs" />
     <Compile Include="Dijieshe\JsonObjects.cs" />
+    <Compile Include="HotelSDKBLL\BLLHotelList.cs" />
+    <Compile Include="HotelSDKBLL\BLLHotelOrder.cs" />
+    <Compile Include="HotelSDKBLL\BLLHotelRoom.cs" />
     <Compile Include="IdCardInfo.cs" />
     <Compile Include="QuZhouSpring\BLLQZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\BLLQZSpringPartner.cs" />
@@ -141,6 +147,11 @@
     <Compile Include="Default\BLLFormatSerialNo.cs" />
     <Compile Include="Default\BLLRefund.cs" />
     <Compile Include="Default\BLLScenicTicket.cs" />
+    <Compile Include="Service References\NorthBoundAPIService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="TourolReport\IdcardNoReport.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,7 +172,82 @@
       <Name>MODEL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.CancelHotelOrderByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetCardNoByCardnoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetHotelBaseInfoListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetHotelInventoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetHotelListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetHotelOrderDetailByOrderIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetHotelOrderListByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetHotelOrderListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetHotelProductVouchForAPIResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetHotelRoomPriceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetInstantConfirmResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetRecentHotelOrdersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.GetRelatedReserveResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.SevenDaysMemberInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.SubmitHotelOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\BLL.NorthBoundAPIService.UpdateHotelOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\NorthBoundAPIService\NorthBoundAPIService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\NorthBoundAPIService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\NorthBoundAPIService\NorthBoundAPIService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\NorthBoundAPIService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\NorthBoundAPIService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\NorthBoundAPIService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
