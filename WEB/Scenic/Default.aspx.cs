@@ -9,6 +9,7 @@ using BLL;
 using Model;
 using System.Web.Security;
 using System.Web.UI.HtmlControls;
+using TourControls;
 
 public partial class Scenic_Default : basepage
 {
@@ -118,7 +119,23 @@ public partial class Scenic_Default : basepage
             Ticket t = scenic.Tickets.Where(x => x.IsMain).ToList()[0];
             if (t is TicketUnion)
             {
-
+                rptBookNote.DataSource = ((TicketUnion)t).TicketList;
+                rptBookNote.DataBind();
+                rptscInfo.DataSource = ((TicketUnion)t).TicketList;
+                rptscInfo.DataBind();
+                rptJt.DataSource = ((TicketUnion)t).TicketList;
+                rptJt.DataBind();
+            }
+            else
+            {
+                List<Ticket> listTicket = new List<Ticket>();
+                listTicket.Add(t);
+                rptBookNote.DataSource = listTicket;
+                rptBookNote.DataBind();
+                rptscInfo.DataSource = listTicket;
+                rptscInfo.DataBind();
+                rptJt.DataSource = listTicket;
+                rptJt.DataBind();
             }
         }
 
@@ -153,12 +170,15 @@ public partial class Scenic_Default : basepage
         rpttp.DataBind();
         //编辑
         EditRole();
-        sc_dp.scname = scenic.Name;
-        sc_dp.BaseData = booknote;
-        plate2.scname = scenic.Name;
-        plate2.BaseData = scenic.ScenicDetail;
-        sc_jtzn.scname = scenic.Name;
-        sc_jtzn.BaseData = scenic.Trafficintro;
+        //sc_dp.scname = scenic.Name;
+        //sc_dp.BaseData = booknote;
+
+
+
+        //plate2.scname = scenic.Name;
+        //plate2.BaseData = scenic.ScenicDetail;
+        //sc_jtzn.scname = scenic.Name;
+        //sc_jtzn.BaseData = scenic.Trafficintro;
     }
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区
     Dictionary<ScenicImg, double> scdiction = new Dictionary<ScenicImg, double>();
@@ -203,9 +223,23 @@ public partial class Scenic_Default : basepage
     {
         if (CurrentUser != null && Roles.IsUserInRole(CurrentUser.UserName, "SiteAdmin"))
         {
-            sc_dp.CanEdit = true;
-            plate2.CanEdit = true;
-            sc_jtzn.CanEdit = true;
+            //sc_dp.CanEdit = true;
+            foreach (RepeaterItem item in rptBookNote.Items)
+            {
+                ContentReader sc_dp = item.FindControl("sc_dp") as ContentReader;
+                sc_dp.CanEdit = true;
+            }
+            foreach (RepeaterItem item in rptscInfo.Items)
+            {
+                ContentReader plate2 = item.FindControl("plate2") as ContentReader;
+                plate2.CanEdit = true;
+            }
+            foreach (RepeaterItem item in rptJt.Items)
+            {
+                ContentReader sc_jtzn = item.FindControl("sc_jtzn") as ContentReader;
+                sc_jtzn.CanEdit = true;
+            }
+            
         }
     }
     #endregion
@@ -253,6 +287,36 @@ public partial class Scenic_Default : basepage
             {
                 btnputcart.Attributes.Add("isActivity", "true");
             }
+        }
+    }
+
+    protected void rptBookNote_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+            ContentReader cr = e.Item.FindControl("sc_dp") as ContentReader;
+            cr.BaseData = bllscenic.GetScenicById(t.Scenic.Id).BookNote;
+        }
+    }
+
+    protected void rptscInfo_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+            ContentReader cr = e.Item.FindControl("plate2") as ContentReader;
+            cr.BaseData = bllscenic.GetScenicById(t.Scenic.Id).ScenicDetail;
+        }
+    }
+
+    protected void rptJt_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType  == ListItemType.Item)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+            ContentReader cr = e.Item.FindControl("sc_jtzn") as ContentReader;
+            cr.BaseData = bllscenic.GetScenicById(t.Scenic.Id).Trafficintro;
         }
     }
 }
