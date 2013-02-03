@@ -44,8 +44,8 @@ public partial class Manager_ScenicManage_TicketManage_UnionTicketEdit : System.
     }
     private void BindTickets()
     {
-        rptScenics.DataSource = CurrentTicket.TicketList;
-        rptScenics.DataBind();
+        rptTickets.DataSource = CurrentTicket.TicketList;
+        rptTickets.DataBind();
     }
     protected void btnSearch_Click(object sender, EventArgs e)
     {
@@ -59,7 +59,10 @@ public partial class Manager_ScenicManage_TicketManage_UnionTicketEdit : System.
         if (e.CommandName == "deletescenic")
         { 
           //删除对应关系
-            int scenicId = Convert.ToInt32(e.CommandArgument);
+            int ticketid = Convert.ToInt32(e.CommandArgument);
+            Ticket childT = bllTicket.GetTicket(ticketid);
+            CurrentTicket.TicketList.Remove(childT);
+            bllTicket.SaveOrUpdateTicket(CurrentTicket);
          //   bllScenicTicket.Delete(scenicId, ticketId);
             BindTickets();
         }

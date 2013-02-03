@@ -44,7 +44,12 @@ namespace Model
                 totalPrice = 0;
                 foreach (OrderDetail od in OrderDetail)
                 {
-                    totalPrice += od.Quantity * (od.TicketPrice.Price);
+                  
+                    if (od.TicketPrice!= null)
+                    {
+
+                        totalPrice += od.Quantity * (od.TicketPrice.Price);
+                    }
                 }
                 return totalPrice;
             }

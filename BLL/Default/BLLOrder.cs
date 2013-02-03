@@ -192,23 +192,36 @@ namespace BLL
         /// <param name="assignName"></param>
         /// <param name="amount"></param>
         /// <param name="errMsg"></param>
-        public void CreateOrder(string activityName, string partnerCode, Guid memberId, Ticket ticket, string idcardno, string assignName, int amount, out string errMsg)
+        public Order CreateOrder( string orderFrom, Guid memberId, IList<Ticket> ticketlist, string idcardno, string assignName, int amount,PriceType priceType, out string errMsg)
         {
-            List<Ticket> ticketList = new List<Ticket>();
+            
+            List<Ticket> ChildTicketList = new List<Ticket>();
 
-            if (ticket is TicketUnion)
+            foreach (Ticket t in ticketlist)
             {
-                foreach (Ticket t in ((TicketUnion)ticket).TicketList)
+                if (t is TicketUnion)
                 {
-                    ticketList.Add(t);
+                    foreach (Ticket ct in ((TicketUnion)t).TicketList)
+                    {
+                        ChildTicketList.Add(ct);
+                    }
+                }
+                else
+                {
+                    ChildTicketList.Add(t);
                 }
             }
-            else
-            {
-                ticketList.Add(ticket);
-            }
-            
-            dal.CreateMultiOrder(activityName, partnerCode, memberId, ticketList, idcardno, assignName, amount, out errMsg);
+
+          return  dal.CreateOrder(orderFrom, memberId, ChildTicketList, idcardno, assignName, amount,priceType, out errMsg);
+        }
+        public Order CreateOrder(string orderFrom, Guid memberId, Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+        {
+
+            List<Ticket> ticketList = new List<Ticket>();
+
+            ticketList.Add(ticket);
+
+          return  CreateOrder(orderFrom, memberId, ticketList, idcardno, assignName, amount, priceType, out errMsg);
         }
     }
 }

@@ -150,7 +150,8 @@ namespace BLL
                 RealName = activity.Name + "参与者";
             }
             Ticket ticket = bllTicket.GetByProductCode(ticketCode);
-            bllOrder.CreateOrder(activity.Name, PartnerCode, member.Id, ticket, CardNumber, RealName, Number, out createOrderErrMsg);
+            
+            bllOrder.CreateOrder(PartnerCode, member.Id, ticket, CardNumber, RealName, Number,PriceType.PreOrder, out createOrderErrMsg);
             if (!string.IsNullOrEmpty(createOrderErrMsg))
             {
                 returnMsg = "F|创建订单失败,请联系客服";

@@ -11,7 +11,7 @@ namespace Model.Mapping
     {
         public TicketUnionMap()
         {
-            HasMany<Ticket>(x => x.TicketList);
+            HasMany<Ticket>(x => x.TicketList).Cascade.All();
             //fenzhiqiehuan
         }
     }

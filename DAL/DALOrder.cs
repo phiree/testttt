@@ -259,8 +259,18 @@ namespace DAL
             }
             return result2;
         }
-      
-        public void CreateMultiOrder(string activityName, string partnerCode, Guid memberId, IList<Ticket> ticketList, string idcardno, string assignName, int amount, out string errMsg)
+
+        /// <summary>
+        /// todo 所有订单都是一套 身份证号码和用户名. 数量也一样. 以后要做调整.
+        /// </summary>
+        /// <param name="orderFrom"></param>
+        /// <param name="memberId"></param>
+        /// <param name="ticketList"></param>
+        /// <param name="idcardno"></param>
+        /// <param name="assignName"></param>
+        /// <param name="amount"></param>
+        /// <param name="errMsg"></param>
+        public Order CreateOrder(string orderFrom, Guid memberId, IList<Ticket> ticketList, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
         {
 
 
@@ -270,6 +280,7 @@ namespace DAL
                 using (var t = session.BeginTransaction())
                 {
                     t.Begin();
+                    IList<OrderDetail> details = new List<OrderDetail>();
                     foreach (Ticket ticket in ticketList)
                     {
                         TicketAssign ta = new TicketAssign();
@@ -279,29 +290,37 @@ namespace DAL
 
                         OrderDetail orderdetail = new OrderDetail();
                         orderdetail.Quantity = amount;
-                        orderdetail.Remark = string.Format("{0}自动创建,来源:{1}", partnerCode);
+                        //  orderdetail.Remark = string.Format("订单来源:{1}", partnerCode);
                         orderdetail.TicketAssignList.Add(ta);
 
-                        TicketPrice ticketPrice = ticket.GetTicketPrice(PriceType.PreOrder);
+                        TicketPrice ticketPrice = ticket.GetTicketPrice(priceType);
                         orderdetail.TicketPrice = ticketPrice;
+                        details.Add(orderdetail);
 
-                        Order order = new Order();
-                        order.BuyTime = DateTime.Now;
-                        order.IsPaid = true;
-                        order.MemberId = memberId;
-                        order.OrderDetail.Add(orderdetail);
-                        order.PriceType = PriceType.PreOrder;
-
-                        SaveOrUpdateOrder(order);
 
                     }
+                    Order order = new Order();
+                    order.OrderFrom = orderFrom;
+                    order.BuyTime = DateTime.Now;
+                    // order.IsPaid = true;
+                    order.MemberId = memberId;
+                    order.OrderDetail = details;
+                    order.PriceType = priceType;
+
+                    SaveOrUpdateOrder(order);
                     t.Commit();
+
+                    return order;
                 }
             }
             catch (Exception ex)
             {
                 errMsg = ex.Message;
             }
+            return null;
         }
+
+
+
     }
 }
