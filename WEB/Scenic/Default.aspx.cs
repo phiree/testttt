@@ -8,6 +8,7 @@ using System.Web.UI.HtmlControls;
 using BLL;
 using Model;
 using System.Web.Security;
+using System.Web.UI.HtmlControls;
 
 public partial class Scenic_Default : basepage
 {
@@ -236,5 +237,22 @@ public partial class Scenic_Default : basepage
        // bindimglist.Substring(0, bindimglist.Length - 1);
         imgcount=list.Count-1;
         introordertk.Visible = false;
+    }
+    protected void rpttp_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Ticket t = e.Item.DataItem as Ticket;
+            HtmlInputButton btnputcart = e.Item.FindControl("btnputcart") as HtmlInputButton;
+            btnputcart.Attributes["onclick"] = "AddToCart(this," + t.Id + ")";
+            if (t.TourActivity == null)
+            {
+                btnputcart.Attributes.Add("isActivity", "false");
+            }
+            else
+            {
+                btnputcart.Attributes.Add("isActivity", "true");
+            }
+        }
     }
 }

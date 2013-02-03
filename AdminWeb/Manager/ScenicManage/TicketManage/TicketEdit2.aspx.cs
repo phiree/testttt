@@ -96,7 +96,7 @@ public partial class Manager_ScenicManage_TicketManage_TicketEdit2 : System.Web.
 
         //价格 以后把价格类型改成字典表
           IList<TicketPrice> tpList=ticket.TicketPrice;
-          if (tpList.Count==0)
+          if (tpList==null||tpList.Count==0)
           {
               tpList = new List<TicketPrice>();
               TicketPrice tp1 = new TicketPrice();
