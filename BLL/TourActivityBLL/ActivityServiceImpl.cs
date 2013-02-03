@@ -108,18 +108,19 @@ namespace BLL
             }
             ///////////////////用户购买数量规则
             //2 该用户是否已经抢到了该景区足够数量的门票
-            int idcardGotTicketAmount = bllTa.GetAmountIdcardActivityTicket(activityCode, CardNumber, ticketCode);
-            if (idcardGotTicketAmount + Number > activity.AmountPerIdcardTicket)
-            {
-                returnMsg = "F|已获得该景区足够票数";
-                goto LblReturn;
-            }
-            int idcardGotAmount = bllTa.GetAmountActivityIdcard(activityCode, CardNumber);
-            if (idcardGotAmount + Number > activity.AmountPerIdcardInActivity)
-            {
-                returnMsg = "F|已获得足够票数";
-                goto LblReturn;
-            }
+            //已经在订单里处理
+            //int idcardGotTicketAmount = bllTa.GetAmountIdcardActivityTicket(activityCode, CardNumber, ticketCode);
+            //if (idcardGotTicketAmount + Number > activity.AmountPerIdcardTicket)
+            //{
+            //    returnMsg = "F|已获得该景区足够票数";
+            //    goto LblReturn;
+            //}
+            //int idcardGotAmount = bllTa.GetAmountActivityIdcard(activityCode, CardNumber);
+            //if (idcardGotAmount + Number > activity.AmountPerIdcardInActivity)
+            //{
+            //    returnMsg = "F|已获得足够票数";
+            //    goto LblReturn;
+            //}
 
             ///开始生成订单,订单详情,门票分配
             //创建用户
@@ -142,6 +143,8 @@ namespace BLL
             }
             Ticket ticket = bllTicket.GetByProductCode(ticketCode);
             
+            
+
             bllOrder.CreateOrder(PartnerCode, member.Id, ticket, CardNumber, RealName, Number,PriceType.PreOrder, out createOrderErrMsg);
             if (!string.IsNullOrEmpty(createOrderErrMsg))
             {

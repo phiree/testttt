@@ -9,6 +9,8 @@ namespace BLL
 {
     public class BLLTicketAssign:BLLBase<TicketAssign>
     {
+        BLLTourActivity bllTourActivity = new BLLTourActivity();
+        BLLTicket bllTicket = new BLLTicket();
         DAL.DALTicketAssign Iticketassign = new DAL.DALTicketAssign();
 
         /// <summary>
@@ -247,6 +249,79 @@ namespace BLL
         public IList<TicketAssign> GetListByActivity_Idcard_Ticket(string activitycode, string idcard, string ticketCode)
         {
             return Iticketassign.GetList(activitycode, idcard, ticketCode);
+        }
+        //用户某活动中抢到的某门票的总票数
+        
+        private  bool CheckIdCardAmountPerTicket(string activityCode, string idcard, string ticketCode, int amount, out string errMsg)
+        {
+
+       
+            IList<TicketAssign> ticketAssigns = GetListByActivity_Idcard_Ticket(activityCode, idcard, ticketCode);
+            errMsg = string.Empty;
+            int taCount = ticketAssigns.Where(x => x.IdCard == idcard && x.TicketCode == ticketCode).Count();
+            //是否是套票,如果是,则用户的购票总量 等于 分配总量 除以 套票子票数量
+            Ticket t = bllTicket.GetByProductCode(ticketCode);
+            if (t is TicketUnion)
+            { 
+              taCount=Convert.ToInt32( Math.Ceiling( (decimal) (taCount/((TicketUnion)t).TicketList.Count)).ToString());
+            }
+            TourActivity activity = bllTourActivity.GetOneByActivityCode(activityCode);
+
+
+            bool result = taCount + amount <= activity.AmountPerIdcardTicket;
+            if (!result)
+            {
+                errMsg = string.Format("号码为{0}的身份证已经购买了这个景区的{1}张门票,不能继续购买", "****" + idcard.Remove(0, 12), taCount);
+            }
+            return result;
+        }
+
+ 
+
+        private  bool CheckIdCardAmountPerActivity(string activityCode, string idcard, int amount, out string errMsg)
+        {
+
+            IList<TicketAssign> ticketAssigns = GetListByActivity_Idcard(activityCode, idcard);
+            errMsg = string.Empty;
+            var distinctTicketCode = ticketAssigns.Select(x => x.TicketCode).Distinct();
+            int totalTicketAmount = 0;
+            foreach (string eachTicket in distinctTicketCode)
+            {
+                Ticket t = bllTicket.GetByProductCode(eachTicket);
+                if (t is TicketUnion)
+                {
+                    int thisAmount = ticketAssigns.Where(x => x.TicketCode == t.ProductCode).Count();
+                    totalTicketAmount += thisAmount / ((TicketUnion)t).TicketList.Count;
+                }
+                else
+                {
+                    totalTicketAmount += 1;
+                }
+            }
+            TourActivity activity = bllTourActivity.GetOneByActivityCode(activityCode);
+
+            int taCount = ticketAssigns.Where(x => x.IdCard == idcard).Count();
+            bool result = taCount + amount <= activity.AmountPerIdcardInActivity;
+            if (!result)
+            {
+                errMsg = string.Format("号码为{0}的身份证已经购买了{1}张门票,不能继续购买", "****" + idcard.Remove(0, 12), taCount);
+
+            }
+            return result;
+        }
+
+
+        public bool CheckIdCardAmount(string activityCode, string idcard, string ticketCode, int amount, out string errMsg)
+        {
+            if (!CheckIdCardAmountPerTicket(activityCode, idcard, ticketCode, amount, out errMsg))
+            {
+                return false;
+            }
+            if (!CheckIdCardAmountPerActivity(activityCode, idcard, amount, out errMsg))
+            {
+                return false;
+            }
+            return true;
         }
         
         public int GetAmountIdcardActivityTicket(string activitycode, string idcard, string ticketCode)

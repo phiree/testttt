@@ -53,6 +53,9 @@ namespace Model
             if (tp == null) return null;
             else return tp;
         }
-        
+        public virtual T As<T>() where T : Ticket
+        {
+            return this as T;
+        }
     }
 }

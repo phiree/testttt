@@ -13,13 +13,14 @@ namespace Model
         /// <summary>
         /// 某身份证号码已经购买了某门票足够的数量
         ///<param name="amount">本次请求的数量</param>
-         bool CheckIdCardAmountPerTicket(IList<TicketAssign> ticketAssigns, string idcard, string ticketCode, int amount, out string errMsg);
+        ///套票的数量不能根据这个来判断了
+       //  bool CheckIdCardAmountPerTicket(IList<TicketAssign> ticketAssigns, string idcard, string ticketCode, int amount, out string errMsg);
         /// <summary>
         /// 身份证号是否已购买了足够的门票总数
         /// </summary>
         /// <param name="idcard"></param>
         /// <returns></returns>
-        bool CheckIdCardAmountPerActivity(IList<TicketAssign> ticketAssigns, string idcard, int amount,out string errMsg);
+        //bool CheckIdCardAmountPerActivity(IList<TicketAssign> ticketAssigns, string idcard, int amount,out string errMsg);
 
         /// <summary>
         /// 是否是在规定的时间范围内买票

@@ -124,7 +124,10 @@ namespace DAL
 
         public Model.Ticket GetByProductCode(string productCode)
         {
-            return session.QueryOver<Model.Ticket>().Where(x => x.ProductCode == productCode).SingleOrDefault();
+            var strQuery = "select t from Ticket t where t.ProductCode ='" + productCode + "'";
+            IQuery qry = session.CreateQuery(strQuery);
+            Model.Ticket t = qry.FutureValue<Model.Ticket>().Value;
+            return t;
         }
 
 

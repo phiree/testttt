@@ -75,32 +75,7 @@ namespace Model
 
         }
 
-        public virtual bool CheckIdCardAmountPerTicket(IList<TicketAssign> ticketAssigns, string idcard, string ticketCode, int amount,out string errMsg)
-        {
-            errMsg = string.Empty;
-            int taCount = ticketAssigns.Where(x => x.IdCard == idcard && x.TicketCode == ticketCode).Count();
-           
-            bool result = taCount + amount <= AmountPerIdcardTicket;
-            if (!result)
-            {
-                errMsg = string.Format("号码为{0}的身份证已经购买了这个景区的{1}张门票,不能继续购买", "****" + idcard.Remove(0, 12), taCount);
-            }
-            return result;
-        }
-
-        public virtual bool CheckIdCardAmountPerActivity(IList<TicketAssign> ticketAssigns, string idcard, int amount,out string errMsg)
-        {
-            errMsg = string.Empty;
-     
-            int taCount = ticketAssigns.Where(x => x.IdCard == idcard).Count();
-            bool result = taCount + amount <= AmountPerIdcardInActivity;
-            if (!result)
-            {
-                errMsg = string.Format("号码为{0}的身份证已经购买了{1}张门票,不能继续购买", "****" + idcard.Remove(0, 12), taCount);
-       
-            }
-            return result;
-        }
+      
 
         public virtual bool CheckBuyTime(out string errMsg)
         {
@@ -177,14 +152,14 @@ namespace Model
             {
                 return false;
             }
-            if (!this.CheckIdCardAmountPerTicket(talist, idcardNo,ticketCode, buyAmount, out errMsg))
-            {
-                return false;
-            }
-            if (!this.CheckIdCardAmountPerActivity(talist,idcardNo,buyAmount, out errMsg))
-            {
-                return false;
-            }
+            //if (!this.CheckIdCardAmountPerTicket(talist, idcardNo,ticketCode, buyAmount, out errMsg))
+            //{
+            //    return false;
+            //}
+            //if (!this.CheckIdCardAmountPerActivity(talist,idcardNo,buyAmount, out errMsg))
+            //{
+            //    return false;
+            //}
             if(!this.CheckEnoughAmount(ticketCode,partnerCode,DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")),buyAmount,out errMsg))
             {
                 return false;
