@@ -7,9 +7,9 @@ using FluentNHibernate.Mapping;
 
 namespace Model.Mapping
 {
-    public class UnionTicketMap : SubclassMap<UnionTicket>
+    public class TicketUnionMap : SubclassMap<TicketUnion>
     {
-        public UnionTicketMap()
+        public TicketUnionMap()
         {
             HasMany<Ticket>(x => x.TicketList);
             //fenzhiqiehuan

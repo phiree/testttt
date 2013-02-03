@@ -14,12 +14,14 @@ namespace Model.Mapping
             Id(x => x.Id);
             Map(x => x.Name);
             Map(x => x.ProductCode);
+            Map(x => x.Enabled);
             HasMany<TicketPrice>(x => x.TicketPrice).Inverse().Cascade.All();
             References<DJ_TourEnterprise>(x => x.Scenic);
             Map(x => x.IsMain);
             Map(x => x.Lock);
             Map(x => x.BeginDate);
             Map(x => x.EndDate);
+            References<TicketUnion>(x => x.TicketUnion);
             //References<TicketsType>(x => x.TicketsType);
             // References<TicketPrice>(x => x.TicketPrice);
             Map(x => x.Remark);

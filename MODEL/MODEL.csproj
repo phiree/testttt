@@ -97,7 +97,7 @@
     <Compile Include="Dijieshe\DJ_Recommand.cs" />
     <Compile Include="Mapping\TourActivity\ActivityPartnerMap.cs" />
     <Compile Include="Mapping\TicketMap.cs" />
-    <Compile Include="Mapping\UnionTicketMap.cs" />
+    <Compile Include="Mapping\TicketUnionMap.cs" />
     <Compile Include="QuZhouSpring\QZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\QZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\QZStatistics.cs" />
@@ -159,7 +159,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenic.cs" />
     <Compile Include="TransSatatis.cs" />
-    <Compile Include="UnionTicket.cs" />
+    <Compile Include="TicketUnion.cs" />
     <Compile Include="UseRecord.cs" />
     <Compile Include="MemberRole.cs" />
     <Compile Include="UserRole.cs" />

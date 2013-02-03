@@ -12,26 +12,58 @@ public partial class Manager_ScenicManage_TicketManage_Default : System.Web.UI.P
 
     BLLTicket bllTicket = new BLLTicket();
     BLLDJEnterprise bllEnt = new BLLDJEnterprise();
+    string sessionName = "ownerlist";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            BindList(
-                 bllEnt.GetDjs8all().Where(x=>x.Tickets.Count>0).ToList()
+           BindList(
+                
                 );
         }
 
     }
-    private void BindList(IList<DJ_TourEnterprise> ownerList)
+  
+    private void BindList()
     {
-        rptOwnerList.DataSource = ownerList;
+        rptOwnerList.DataSource = bllEnt.GetDjs8all().Where(x => x.Tickets.Count > 0 && x.Name.Contains(tbxKeyWords.Text));
         rptOwnerList.ItemDataBound += new RepeaterItemEventHandler(rptOwnerList_ItemDataBound);
         rptOwnerList.DataBind();
     }
+    protected void rptTicket_ItemCommand(object sender, RepeaterCommandEventArgs e)
+    {
+        Ticket t = bllTicket.GetTicket(Convert.ToInt32(e.CommandArgument));
+        if (e.CommandName.ToLower() == "disable")
+        {
+        
+          t.Enabled = false;
+        }
+        if (e.CommandName.ToLower() == "enable")
+        {
+          
+            t.Enabled = true;
+        }
+        bllTicket.SaveOrUpdateTicket(t);
+        
+        BindList();
+
+    }
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        var ownerList = bllEnt.GetListByNameLike(tbxKeyWords.Text.Trim());
-        BindList(ownerList);
+        
+        BindList();
+    }
+    private void SaveListToSession(IList<DJ_TourEnterprise> ownerList)
+    {
+      
+        if (Session[sessionName] == null)
+        {
+            Session.Add(sessionName, ownerList);
+        }
+        else
+        {
+            Session[sessionName] = ownerList;
+        }
     }
 
     void rptOwnerList_ItemDataBound(object sender, RepeaterItemEventArgs e)

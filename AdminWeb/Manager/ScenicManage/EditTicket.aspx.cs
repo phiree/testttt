@@ -130,7 +130,7 @@ public partial class Manager_ScenicManage_AddTicket : System.Web.UI.Page
         bllTicket.SaveOrUpdateTicket(CurrentTicket);
         if (isNew)
         {
-            Response.Redirect("addticket.aspx?scenicid=" + scenicId + "&ticketid=" + CurrentTicket.Id);
+            Response.Redirect("Edidticket.aspx?scenicid=" + scenicId + "&ticketid=" + CurrentTicket.Id);
 
         }
         else

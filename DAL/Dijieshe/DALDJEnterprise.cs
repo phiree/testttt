@@ -222,8 +222,8 @@ namespace DAL
         public IList<Model.DJ_TourEnterprise> GetListByNameLike(string nameLike)
         {
             var entlist = session.QueryOver<Model.DJ_TourEnterprise>().Where(x => x.Name.Contains(nameLike)).List();
-            var unionTicketList=session.QueryOver<Model.UnionTicket>().Where(x=>x.TicketList.Where(y=>y.Scenic.Name.Contains(nameLike)).Count()>0).List();
-            foreach (Model.UnionTicket ticket  in unionTicketList)
+            var unionTicketList=session.QueryOver<Model.TicketUnion>().Where(x=>x.TicketList.Where(y=>y.Scenic.Name.Contains(nameLike)).Count()>0).List();
+            foreach (Model.TicketUnion ticket  in unionTicketList)
             {
                 entlist.Add(ticket.Scenic);
             }

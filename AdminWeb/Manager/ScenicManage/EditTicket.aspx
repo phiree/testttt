@@ -56,7 +56,7 @@
                 <td>
                 <asp:Button runat="server" CommandName="delete" CommandArgument=<%#Eval("id") %> Text="删除" />
                 <a href='EditTicket.aspx?scenicid=<%=Scenic.Id %>&ticketId=<%#Eval("Id") %>'>编辑</a>
-                 <a href='/Manager/ScenicManage/UnionTicket/UnionTicketEdit.aspx?ticketid=<%#Eval("Id")%>'>联票管理</a>
+                 <a href='/Manager/ScenicManage/TicketManage/UnionTicketEdit.aspx?ticketid=<%#Eval("Id")%>'>联票管理</a>
                 </td>
             </tr>
         </ItemTemplate>

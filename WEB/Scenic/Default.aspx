@@ -108,7 +108,8 @@
                                 <%# Eval("TicketPrice[2].Price", "{0:0}")%>
                             </td>
                             <td style="text-align: center;">
-                                <input id="btnputcart" type="button" class="btnputcart" value="立即抢票" onclick="AddToCart(this)" />
+                            <!--活动规则判断-->
+                                <input id="btnputcart" type="button" class="btnputcart" value="立即抢票" onclick='AddToCart(this,<%#Eval("Id") %>)' />
                             </td>
                         </tr>
                     </ItemTemplate>

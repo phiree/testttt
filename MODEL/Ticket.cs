@@ -30,11 +30,16 @@ namespace Model
         /// 备注
         /// </summary>
         public virtual string Remark { get; set; }
-     
+        /// <summary>
+        /// 是否启用(页面显示,后台判断)
+        /// </summary>
+        public virtual bool Enabled { get; set; }
         //价格列表(每种价格的每种列表)
         public virtual IList<TicketPrice> TicketPrice { get; set; }
         //参与的活动
         public virtual TourActivity TourActivity { get; set; }
+        //属于那张套票
+        public virtual TicketUnion TicketUnion { get; set; }
         public abstract bool IsBelongTo(Scenic s);
         public abstract decimal GetPrice(PriceType priceType);
         /// <summary>

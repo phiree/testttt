@@ -12,11 +12,9 @@ namespace Model.Mapping
         public TicketNormalMap()
         {
 
-            
+
             Map(x => x.MipangId);
-        
-            References<UnionTicket>(x => x.UnionTicket);
-            References<Scenic>(x => x.Scenic);
+            References<DJ_TourEnterprise>(x => x.Scenic);
 
         }
     }
