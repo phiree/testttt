@@ -46,7 +46,7 @@
                 <span>景区级别:</span><%=sclevel%>
             </div>
             <div class="scaddr">
-                地址：<%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
+                <span>地址：</span><%=scaddress%>&nbsp;&nbsp;&nbsp;<a href="#plate1">查看地图</a>
             </div>
             <div class="scdesc">
                 <%=scshortdesc %><a href="#plate2">景区简介</a>

@@ -111,6 +111,17 @@ public partial class Scenic_Default : basepage
         IList<ScenicImg> listsi = bllscenicimg.GetSiByType(scenic, 1);
         if (listsi.Count > 0)
             ImgMainScenic.Src = "/ScenicImg/mainimg/" + listsi[0].Name;
+        //判断是否是联票，如果是的话则使用新的样式'
+        if (scenic.Tickets != null)
+        {
+            Ticket t = scenic.Tickets.Where(x => x.IsMain).ToList()[0];
+            if (t is TicketUnion)
+            {
+
+            }
+        }
+
+
 
 
         IList<Scenic> list = bllscenic.GetScenic();
