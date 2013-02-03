@@ -62,7 +62,7 @@
                     <div class="ydbuy" runat="server" id="idcardyuding">
                 预定&nbsp;<span id="ticketname" style="font-weight:bold"><%# Eval("Name") %></span>&nbsp;门票&nbsp;<span id="ydmpcount" class="num" runat="server"></span>&nbsp;张&nbsp;&nbsp;已使用了&nbsp;<span
                     class="num" id="ydmpusedcount" runat="server"></span>&nbsp;张&nbsp;&nbsp;现用
-                <asp:TextBox ID="txtUseCount" runat="server" Width="60px" CssClass="bottom" onkeyup="changesumprice(this)"></asp:TextBox>&nbsp;张&nbsp;&nbsp;预订单价为&nbsp;<span
+                <asp:TextBox ID="txtUseCount" runat="server" Width="60px" CssClass="bottom" Text="1" onkeyup="changesumprice(this)"></asp:TextBox>&nbsp;张&nbsp;&nbsp;预订单价为&nbsp;<span
                     id="yddj" runat="server" class="num"></span>
                 <img src="/theme/default/image/moneyicon.png" width="15px" height="20px" style="position: relative;
                     top: 4px;">需要支付&nbsp;<span id="sumprice" class="num">0元</span>

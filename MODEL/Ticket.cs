@@ -11,6 +11,21 @@ namespace Model
         
 
         public virtual int Id { get; set; }
+      
+        public virtual string DisplayNameOfOwner
+        {
+            get {
+                if (As<Ticket>() is TicketUnion)
+                {
+                    return Name;
+                }
+                else
+                {
+                    return Scenic.Name;
+                }
+            }
+           
+        }
         /// <summary>
         /// 该门票的拥有者
         /// </summary>
