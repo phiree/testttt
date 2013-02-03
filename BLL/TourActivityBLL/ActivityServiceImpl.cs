@@ -35,10 +35,6 @@ namespace BLL
         public string buyProduct(string activityCode, bool needCheckTime, TourMembership member
             , string PartnerCode, string CardNumber, string RealName, string Phone, string ticketCode, int Number)
         {
-
-
-
-          
             Guid requestGUID = Guid.NewGuid();
             TourLog.LogInstance.Debug(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", PartnerCode, CardNumber, ticketCode, Number, Phone, requestGUID));
             string returnMsg = "T";
@@ -92,13 +88,8 @@ namespace BLL
             }
             else //每天票数验证.
             {
-
                 //获取当天合作商某景区的门票分配情况
-
-
-             
-
-                TourLog.LogInstance.Error(string.Format("分配有误:合作伙伴{0}门票{1}在{2}有多次分配"));
+                TourLog.LogInstance.Error(string.Format("分配有误:合作伙伴{0}门票{1}在{2}有多次分配",PartnerCode,ticketCode,DateTime.Today));
 
                 //每张门票 的数量检测
                 if (ticketAssign == null)
@@ -174,6 +165,7 @@ namespace BLL
         public int ProductLeftAmount(string activityCode, string PartnerCode, string productCode, DateTime dt)
         {
             ActivityTicketAssign ticketAssign = bllActivityTicketAssign.GetOneByQuery(activityCode, PartnerCode, productCode, dt);
+            if (ticketAssign == null) return -1;
             return ticketAssign.AssignedAmount - ticketAssign.SoldAmount;
         }
 
@@ -220,6 +212,25 @@ namespace BLL
 
         }
 
+        public string UpdateIdCardNo(string activityCode, string oldNo, string newNo)
+        {
+            string result = bllTa.UpdateIdCardNo(activityCode, oldNo, newNo);
+            if (string.IsNullOrEmpty(result))
+            {
+                return "T";
+            }
+            else
+            {
+                return "F|" + result;
+            }
+        }
+        public DataSet GetTicketsInActivity(string activityCode, string idcardno)
+        {
+
+            return bllTa.GetTicketsInActivity(activityCode, idcardno);
+        }
+
+        
 
     }
 }

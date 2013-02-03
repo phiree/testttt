@@ -288,10 +288,12 @@ namespace DAL
             }
             return listticket;
         }
-        public void UpdateIdCardNo(string oldNo, string newNo)
+        public void UpdateIdCardNo(string activityCode, string oldNo, string newNo)
         {
-            string sql = string.Format("update TicketAssign as ta  set IdCard='{1}' where IdCard='{0}'"
-                , oldNo, newNo);
+            
+            string sql = string.Format(@"update top(1) TicketAssign as ta  set IdCard='{1}' where IdCard='{0}' 
+                                          and ta.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode='{2}'"
+                , oldNo, newNo,activityCode);
             IQuery query = session.CreateQuery(sql);
             int result = query.ExecuteUpdate();
         }
@@ -355,20 +357,22 @@ namespace DAL
 
         public IList<TicketAssign> GetList(string activitycode, string idcard, string ticketCode)
         {
-            IQueryOver<TicketAssign,TicketAssign> iqueryover = session.QueryOver<TicketAssign>();
-            if (!string.IsNullOrEmpty(ticketCode))
+            string sql = "select ta from TicketAssign ta where 1=1";
+            if (!string.IsNullOrEmpty(activitycode))
             {
-               iqueryover= iqueryover.Where(x => x.TicketCode == ticketCode);
+                sql += " and ta.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode = '" + activitycode + "'";
             }
             if (!string.IsNullOrEmpty(idcard))
             {
-              iqueryover=  iqueryover.Where(x => x.IdCard == idcard);
+                sql += " and ta.IdCard ='" + idcard + "'";
             }
-            if (!string.IsNullOrEmpty(activitycode))
+            if (!string.IsNullOrEmpty(ticketCode))
             {
-                iqueryover = iqueryover.Where(x => x.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode == activitycode);
+                sql += " and ta.TicketCode ='" + ticketCode + "'";
             }
-            return iqueryover.List();
+          
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
 
         }
 

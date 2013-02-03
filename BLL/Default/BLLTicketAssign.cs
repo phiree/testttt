@@ -132,12 +132,11 @@ namespace BLL
         /// </summary>
         /// <param name="idCardNo"></param>
         /// <returns></returns>
-        public DataSet GetTicketsHasProductCode(string idCardNo)
+        public DataSet GetTicketsInActivity(string activityCode, string idCardNo)
         {
             DataSet ds = new DataSet();
             IList<TicketAssign> gotTotalTicketsOfThisType=
-                GetTaByIdCard(idCardNo)
-            .Where(x => !string.IsNullOrEmpty(x.OrderDetail.TicketPrice.Ticket.ProductCode))
+                GetListByActivity_Idcard(activityCode, idCardNo)
             .ToList();
             DataTable dt = new DataTable("gotTickets");
             string colScenicName="ScenicName";
@@ -145,12 +144,13 @@ namespace BLL
             string colOrderTime="OrderTime";
             string colIsUsed="IsUsed";
             string colValidPeriod="ValidPeriod";
+            string colUsedTime = "UsedTime";
             dt.Columns.Add(colScenicName);
             dt.Columns.Add(colProductCode);
             dt.Columns.Add(colOrderTime);
             dt.Columns.Add(colIsUsed);
             dt.Columns.Add(colValidPeriod);
-
+            dt.Columns.Add(colUsedTime);
             foreach (TicketAssign ta in gotTotalTicketsOfThisType)
             {
 
@@ -161,45 +161,9 @@ namespace BLL
                 dr[colValidPeriod] = ta.OrderDetail.TicketPrice.Ticket.BeginDate.Date 
                                     + "~" + ta.OrderDetail.TicketPrice.Ticket.EndDate.Date;
                 dr[colProductCode] = ta.OrderDetail.TicketPrice.Ticket.ProductCode;
+                dr[colUsedTime] = ta.UsedTime;
                 dt.Rows.Add(dr);
             
-            }
-            ds.Tables.Add(dt);
-            return ds;
-        }
-
-
-        public DataSet GetTicketsHasProductCode(string activityCode, string idCardNo)
-        {
-            DataSet ds = new DataSet();
-            IList<TicketAssign> gotTotalTicketsOfThisType =
-                GetTaByIdCard(idCardNo)
-            .Where(x => !string.IsNullOrEmpty(x.OrderDetail.TicketPrice.Ticket.ProductCode))
-            .ToList();
-            DataTable dt = new DataTable("gotTickets");
-            string colScenicName = "ScenicName";
-            string colProductCode = "ProductCode";
-            string colOrderTime = "OrderTime";
-            string colIsUsed = "IsUsed";
-            string colValidPeriod = "ValidPeriod";
-            dt.Columns.Add(colScenicName);
-            dt.Columns.Add(colProductCode);
-            dt.Columns.Add(colOrderTime);
-            dt.Columns.Add(colIsUsed);
-            dt.Columns.Add(colValidPeriod);
-
-            foreach (TicketAssign ta in gotTotalTicketsOfThisType)
-            {
-
-                DataRow dr = dt.NewRow();
-                dr[colScenicName] = ta.OrderDetail.TicketPrice.Ticket.Scenic.Name;
-                dr[colOrderTime] = ta.OrderDetail.Order.BuyTime;
-                dr[colIsUsed] = ta.IsUsed;
-                dr[colValidPeriod] = ta.OrderDetail.TicketPrice.Ticket.BeginDate.Date
-                                    + "~" + ta.OrderDetail.TicketPrice.Ticket.EndDate.Date;
-                dr[colProductCode] = ta.OrderDetail.TicketPrice.Ticket.ProductCode;
-                dt.Rows.Add(dr);
-
             }
             ds.Tables.Add(dt);
             return ds;
@@ -212,7 +176,7 @@ namespace BLL
         /// <param name="oldNo"></param>
         /// <param name="newNo"></param>
         /// <returns></returns>
-        public string UpdateIdCardNo(string oldNo, string newNo)
+        public string UpdateIdCardNo(string activityCode, string oldNo, string newNo)
         {
            
             //防止sql注入
@@ -229,7 +193,7 @@ namespace BLL
             string result = string.Empty;
             try
             {
-                Iticketassign.UpdateIdCardNo(oldNo, newNo);
+                Iticketassign.UpdateIdCardNo( activityCode, oldNo, newNo);
             }
             catch(Exception ex) {
                 result = ex.Message;
