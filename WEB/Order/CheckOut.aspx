@@ -58,7 +58,7 @@
                         <td>
                             <input type="hidden" class="hdId" value='<%#Eval("Id") %>' />
                             <a runat=server id="hrefScenic" href='<%# "/Tickets/"+Eval("Scenic.Area.SeoName")+"/"+Eval("Scenic.SeoName")+".html"%>'>
-                                <%#Eval("Scenic.Name") %></a>
+                                <%#Eval("DisplayNameOfOwner") %></a>
                         </td>
                         <td>
                             <%# Eval("Name") %>
@@ -136,7 +136,7 @@
             <ItemTemplate>
                 <tr>
                     <td style="padding-left: 20px; width: 25%">
-                        <%#Eval("Scenic.Name") %>
+                        <%#Eval("DisplayNameOfOwner")%>
                         <span class="veriblock"></span>
                     </td>
                     <td style="width: 35%;">
