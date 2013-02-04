@@ -8,7 +8,7 @@ using NHibernate.Transform;
 
 namespace DAL
 {
-    public class DALOrderDetail:DalBase,IDAL.IOrderDetail
+    public class DALOrderDetail:DalBase<OrderDetail>
     {
         public int SaveOrUpdateOrderDetail(OrderDetail orderdetail)
         {
@@ -68,6 +68,19 @@ namespace DAL
                 session.SaveOrUpdate(od);
                 x.Commit();
             }
+        }
+
+        public IList<OrderDetail> GetOrderDetailForIdcardInActivity(string activityCode, string idcardNo)
+        {
+            var queryover = session.QueryOver<OrderDetail>()
+                .Where(x=>x.TicketPrice.Ticket.TourActivity!=null && x.TicketPrice.Ticket.TourActivity.ActivityCode==activityCode)
+                .Where(x => x.TicketAssignList.ToLookup(y => y.IdCard == idcardNo).Count > 0);
+            string sql =string.Format( @"select detail from OrderDetail detail
+                        inner join detail.TicketAssignList  assign
+                       with assign.IdCard='{0}'
+                        where detail.TicketPrice.Ticket.TourActivity.ActivityCode={1}
+                            ",idcardNo,activityCode);
+            return session.CreateQuery(sql).Future<OrderDetail>().ToList();
         }
     }
 }

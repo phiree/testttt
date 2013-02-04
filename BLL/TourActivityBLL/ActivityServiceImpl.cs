@@ -16,6 +16,7 @@ namespace BLL
         BLLTicketAssign bllTa = new BLLTicketAssign();
         BLLOrder bllOrder = new BLLOrder();
         BLLTicket bllTicket = new BLLTicket();
+        BLLActivityPartner bllPartner = new BLLActivityPartner();
         BLLTourActivity bllActivity = new BLLTourActivity();
         BLLActivityTicketAssign bllActivityTicketAssign = new BLLActivityTicketAssign();
 
@@ -32,35 +33,26 @@ namespace BLL
         /// <param name="ticketCodes"></param>
         /// <param name="Number"></param>
         /// <returns></returns>
-        public string buyProduct(string activityCode, bool needCheckTime, TourMembership member
+        public string buyProduct(string activityCode, TourMembership member
             , string PartnerCode, string CardNumber, string RealName, string Phone, string ticketCode, int Number)
         {
             Guid requestGUID = Guid.NewGuid();
-            TourLog.LogInstance.Debug(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", PartnerCode, CardNumber, ticketCode, Number, Phone, requestGUID));
+            TourLog.LogInstance.Debug(string.Format("*********Begin********{5}出票请求:{6}_{0}_{1}_{2}_{3}_{4}", PartnerCode, CardNumber, ticketCode, Number, Phone, requestGUID,activityCode));
             string returnMsg = "T";
 
             TourActivity activity = bllActivity.GetOneByActivityCode(activityCode);//get from activitycode
             //todo
-            ActivityPartner currentPartner = new ActivityPartner();//get from partnercode and actrivityCode
-            ///1 验证每天抢票的开始时间
-            //  amount = 1;
+            ActivityPartner currentPartner = activity.Partners.Where(x => x.PartnerCode == PartnerCode).First() ;//get from partnercode and actrivityCode
+          
+            // 下单前的验证 与用户无关
             int nowHour = DateTime.Now.Hour;
             string checkErrMsg;
-            if (needCheckTime)
-            {
-                if (!activity.CheckBuyTime(out checkErrMsg))
+            
+                if (!activity.CheckBeforeOrder(currentPartner,ticketCode,Number, out checkErrMsg))
                 {
                     returnMsg = string.Format("F|{0}", checkErrMsg);
                     goto LblReturn;
                 }
-            }
-            ///验证活动时间
-        
-            if (!activity.CheckBuyTime(out checkErrMsg))
-            {
-                returnMsg = string.Format("F|{0}", checkErrMsg);
-                goto LblReturn;
-            }
             ///身份证号码格式验证
             string checkIdCardNoErrMsg;
             bool idcardnoValid = CommonLibrary.StringHelper.CheckIDCard(CardNumber, out checkIdCardNoErrMsg);
@@ -71,10 +63,21 @@ namespace BLL
             }
 
             DateTime nowDay = DateTime.Now.Date;
-               ActivityTicketAssign ticketAssign = activity.ActivityTicketAssign.Where(x =>
+            IList<ActivityTicketAssign> ticketAssignList=
+                  
+                  activity.ActivityTicketAssign.Where(x =>
                          x.Partner.PartnerCode == PartnerCode
                          && x.Ticket.ProductCode == ticketCode
-                         && x.DateAssign == DateTime.Today).Single();
+                         && x.DateAssign == DateTime.Today).OrderByDescending(x=>x.DateAssign).ToList();
+
+              ActivityTicketAssign ticketAssign=  bllActivityTicketAssign.GetOneByQuery(activityCode, PartnerCode, ticketCode, DateTime.Now.Date);
+              if (ticketAssign==null)
+              {
+                  returnMsg = "F|门票尚未分配";
+                  goto LblReturn;
+              }
+             
+           
             ///数量规则验证
             //1 是否还有门票
             //如果合作商采用总数验证 ,则不需要验证每天的数量
@@ -89,8 +92,7 @@ namespace BLL
             else //每天票数验证.
             {
                 //获取当天合作商某景区的门票分配情况
-                TourLog.LogInstance.Error(string.Format("分配有误:合作伙伴{0}门票{1}在{2}有多次分配",PartnerCode,ticketCode,DateTime.Today));
-
+             
                 //每张门票 的数量检测
                 if (ticketAssign == null)
                 {
@@ -145,10 +147,10 @@ namespace BLL
             
             
 
-            bllOrder.CreateOrder(PartnerCode, member.Id, ticket, CardNumber, RealName, Number,PriceType.PreOrder, out createOrderErrMsg);
+            bllOrder.CreateOrder(PartnerCode, member, ticket, CardNumber, RealName, Number,PriceType.PreOrder, out createOrderErrMsg);
             if (!string.IsNullOrEmpty(createOrderErrMsg))
             {
-                returnMsg = "F|创建订单失败,请联系客服";
+                returnMsg = "F|"+createOrderErrMsg;
                 goto LblReturn;
             }
 

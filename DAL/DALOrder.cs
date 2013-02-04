@@ -260,71 +260,8 @@ namespace DAL
             return result2;
         }
 
-        /// <summary>
-        /// todo 所有订单都是一套 身份证号码和用户名. 数量也一样. 以后要做调整.
-        /// </summary>
-        /// <param name="orderFrom"></param>
-        /// <param name="memberId"></param>
-        /// <param name="ticketList"></param>
-        /// <param name="idcardno"></param>
-        /// <param name="assignName"></param>
-        /// <param name="amount"></param>
-        /// <param name="errMsg"></param>
-        public Order CreateOrder(string orderFrom, Guid memberId, IList<Ticket> ticketList, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
-        {
-
-
-            errMsg = string.Empty;
-            try
-            {
-                using (var t = session.BeginTransaction())
-                {
-                    t.Begin();
-                    IList<OrderDetail> details = new List<OrderDetail>();
-                    foreach (Ticket ticket in ticketList)
-                    {
-                        TicketAssign ta = new TicketAssign();
-                        ta.IdCard = idcardno;
-                        ta.IsUsed = false;
-                        ta.Name = assignName;
-                        string ticketCode=string.Empty;
-                        if(ticket.TicketUnion!=null)
-                        {
-                            ticketCode = ticket.TicketUnion.ProductCode;
-                        }
-                        ta.TicketCode = ticketCode;
-                        OrderDetail orderdetail = new OrderDetail();
-                        orderdetail.Quantity = amount;
-                        //  orderdetail.Remark = string.Format("订单来源:{1}", partnerCode);
-                        orderdetail.TicketAssignList.Add(ta);
-
-                        TicketPrice ticketPrice = ticket.GetTicketPrice(priceType);
-                        orderdetail.TicketPrice = ticketPrice;
-                        details.Add(orderdetail);
-
-
-                    }
-                    Order order = new Order();
-                    order.OrderFrom = orderFrom;
-                    order.BuyTime = DateTime.Now;
-                    // order.IsPaid = true;
-                    order.MemberId = memberId;
-                    order.OrderDetail = details;
-                    order.PriceType = priceType;
-
-                    SaveOrUpdateOrder(order);
-                    t.Commit();
-
-                    return order;
-                }
-            }
-            catch (Exception ex)
-            {
-                errMsg = ex.Message;
-            }
-            return null;
-        }
-
+       
+       
 
 
     }

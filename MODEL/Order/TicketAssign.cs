@@ -8,15 +8,25 @@ namespace Model
     //每张门票分配一个身份证IDp        
     public class TicketAssign
     {
+        public TicketAssign()
+        { }
+        public TicketAssign(string name,string idcard,OrderDetail detail,int amount)
+            :this()
+        {
+            this.Name = name;
+            this.OrderDetail = detail;
+            this.Amount = amount;
+            this.TicketCode = detail.TicketPrice.Ticket.ProductCode;
+        }
         public virtual Guid Id { get; set; }
         //用户姓名
         public virtual string Name { get; set; }
         public virtual string IdCard { get; set; }
         public virtual OrderDetail OrderDetail { get; set; }
         /// <summary>
-        /// 该门票分配的景区,在分配身份证号码时,通过ticket的 GetScenics方法获取该门票对应的景区
+        /// 门票编码,冗余字段
         /// </summary>
-        public virtual Scenic Scenic { get; set; }
+        public virtual string TicketCode { get; set; }
         /// <summary>
         /// 分配的数量
         /// </summary>
@@ -31,16 +41,8 @@ namespace Model
         /// 验票员真实姓名
         /// </summary>
         public virtual string saName { get; set; }
-        /// <summary>
-        /// 门票编码,冗余字段
-        /// </summary>
-        public virtual string TicketCode { get; set; }
+        
     }
 
-    public class checkticketassign
-    {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public DateTime BuyTime { get; set; }
-    }
+   
 }

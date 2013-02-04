@@ -15,7 +15,7 @@ namespace BLL
 
         public int TotalTickets { get; set; }
         public decimal TotalPrice { get; set; }
-        public Guid BuerId { get; set; }
+        public TourMembership member { get; set; }
         public PriceType PriceType { get; set; }
         public List<OrderDetail> Details { get; set; }
         
@@ -27,7 +27,7 @@ namespace BLL
            
             order.BuyTime = DateTime.Now;
             order.IsPaid = false;
-            order.MemberId = BuerId;
+            order.TourMembership = member;
             order.OrderDetail = Details;
 
             BLLOrder bllOrder = new BLLOrder();

@@ -100,7 +100,7 @@ public class CheckoutHandler : IHttpHandler
         #endregion
 
 
-        Model.Order order = bllOrder.CreateOrder(System.Configuration.ConfigurationManager.AppSettings["partnerCode"], tourMembership.Id, TicketList, idcardno, assignName, amount, pt, out orderErrMsg);
+        Model.Order order = bllOrder.CreateOrder(SiteConfig.PartnerCodeOfTourOL, tourMembership, TicketList, idcardno, assignName, amount, pt, out orderErrMsg);
           //  Model.Order order = docheck();
 
          if (!string.IsNullOrEmpty(orderErrMsg))

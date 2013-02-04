@@ -34,7 +34,7 @@ public partial class Manager_TourActivity_activityDetail : System.Web.UI.Page
             txtEndDate.Text = ta.EndDate.ToString("yyyy-MM-dd");
             txtEndHour.Text = ta.EndHour.ToString();
             txtName.Text = ta.Name;
-            ckUseBlackList.Checked = ta.AreasUseBlack;
+            ckUseBlackList.Checked = ta.AreasUseBlackList;
             cbxNeedCheckArea.Checked = ta.NeedCheckArea;
         }
     }
@@ -55,7 +55,7 @@ public partial class Manager_TourActivity_activityDetail : System.Web.UI.Page
         ta.AmountPerIdcardInActivity = int.Parse(txtAmountPerIdcardInActivity.Text);
         ta.AmountPerIdcardTicket = int.Parse(txtAmountPerIdcardTicket.Text);
         ta.AreasBlackList = txtBlack.Text;
-        ta.AreasUseBlack = ckUseBlackList.Checked;
+        ta.AreasUseBlackList = ckUseBlackList.Checked;
         ta.AreasWhiteList = txtWhite.Text;
         ta.BeginDate = DateTime.Parse(txtBeginDate.Text);
         ta.BeginHour = int.Parse(txtBeginHour.Text);

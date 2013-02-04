@@ -16,6 +16,7 @@ namespace Model.Mapping
             Map(x => x.OnlyControlTotalAmount);
             Map(x => x.Enabled);
             Map(x => x.PartnerCode);
+            Map(x => x.NeedCheckTime);
             References<TourActivity>(x => x.TourActivity);
           
         }

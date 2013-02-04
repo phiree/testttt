@@ -164,7 +164,7 @@
     <Compile Include="CommonLibraryTest\JsonTest.cs" />
     <Compile Include="DALTest\TestDALBase.cs" />
     <Compile Include="DALTest\VoteTest.cs" />
-    <Compile Include="TourActivity\TourActivityTest.cs" />
+    <Compile Include="TourActivityTest\TourActivityTest.cs" />
     <Compile Include="webtest\pageobjects\default.cs" />
   </ItemGroup>
   <ItemGroup>

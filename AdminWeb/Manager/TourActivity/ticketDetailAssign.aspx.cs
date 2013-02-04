@@ -60,7 +60,7 @@ public partial class Manager_TourActivity_ticketDetailAssign : System.Web.UI.Pag
                 ActivityPartner ap = bllAp.GetOne(Guid.Parse(hfPaId.Value));
                 if (txtAmount.Text == "")
                     txtAmount.Text = "0";
-                ActivityTicketAssign Ata = ta.GetActivityAssignForPartnerTicketDate(ap.PartnerCode, t.ProductCode, dt)[0];
+                ActivityTicketAssign Ata = ta.GetActivityAssignForPartnerTicketDate(ap.PartnerCode, t.ProductCode, dt);
                 Ata.AssignedAmount = int.Parse(txtAmount.Text);
                 bllAta.SaveOrUpdate(Ata);
             }

@@ -16,6 +16,7 @@ namespace Model.Mapping
             References<Model.Order>(x => x.Order);
             Map(x => x.Remark);
             HasMany<TicketAssign>(x => x.TicketAssignList).Cascade.All();
+            HasMany<OrderDetail>(x => x.ChildTicketDetail).Cascade.All();
         }
     }
 }

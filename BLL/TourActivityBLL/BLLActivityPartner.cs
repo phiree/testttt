@@ -8,6 +8,10 @@ namespace BLL
 {
     public class BLLActivityPartner:BLLBase<ActivityPartner>
     {
-
+        
+        public ActivityPartner GetByPartnerCode(string partnerCode)
+        {
+            return GetByPartnerCode(partnerCode);
+        }
     }
 }

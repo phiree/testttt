@@ -222,7 +222,7 @@ namespace BLL
             Order order = new Order();
             order.BuyTime = DateTime.Now;
             order.IsPaid = true;
-            order.MemberId = member.Id;
+            order.TourMembership = member;
             order.OrderDetail.Add(orderdetail);
             order.PayTime = DateTime.Now;
             order.PriceType = PriceType.PayOnline;

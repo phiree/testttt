@@ -96,7 +96,7 @@
                         <ItemTemplate>
                             <tr>
                         <td>
-                            <img src="/theme/default/image/newversion/jt2.gif" /><a runat="server" id="ahref" href='<%# ResolveUrl(string.Format("/Tickets/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("Name") %></a>
+                            <img src="/theme/default/image/newversion/jt2.gif" /><a runat="server" id="ahref" href='<%# ResolveUrl(string.Format("/Tickets/{0}/{1}.html", Eval("Area.SeoName"),Eval("SeoName"))) %>'><%# Eval("DisplayName") %></a>
                         </td>
                     </tr>
                         </ItemTemplate>

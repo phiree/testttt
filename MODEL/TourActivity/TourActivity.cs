@@ -8,7 +8,7 @@ namespace Model
     /// <summary>
     /// 活动类
     /// </summary>
-    public class TourActivity : IActivityRule
+    public class TourActivity //: IActivityRule
     {
 
         public TourActivity()
@@ -44,42 +44,118 @@ namespace Model
         /// true 表示 用 excludeareas
         /// </summary>
         public virtual bool NeedCheckArea { get; set; }
-        public virtual bool AreasUseBlack { get; set; }
+        public virtual bool AreasUseBlackList { get; set; }
         //逗号隔开  3301,3302,330
         public virtual string AreasBlackList { get; set; }
         public virtual string AreasWhiteList { get; set; }
 
         #region Irule implention
-        public virtual bool CheckEnoughAmount(string ticketCode, string partnerCode, DateTime date, int requestAmount, out string errMsg)
+
+
+        public virtual bool CheckBeforeOrder(ActivityPartner partner, string ticketCode, int requiredAmount, out string summaryErrMsg)
+        {
+            
+               bool result = true;
+            summaryErrMsg = string.Empty;
+            string errMsg = string.Empty;
+            //时间检查 
+            if (!CheckBuyHour(partner, out errMsg))
+            {
+                summaryErrMsg += errMsg + ",";
+                result = false;
+            }
+            //日期检查
+            if (!CheckBuyTime(out errMsg))
+            {
+                summaryErrMsg += errMsg + ",";
+                result = false;
+            }
+            if (!this.CheckAmountPartnerTicketDate(ticketCode, partner, DateTime.Now.Date, requiredAmount, out errMsg))
+            {
+                summaryErrMsg += errMsg + ",";
+                result = false;
+            }
+
+           
+            return result;
+          
+
+        }
+        public virtual bool CheckProcessOrder(IList<OrderDetail> detailOfIdcard,string ticketCode
+            ,int requiredAmount,string idcardNo,out string summaryErrMsg)
+        {
+            bool result=true;
+            string errMsg=string.Empty;
+            summaryErrMsg = string.Empty;
+             if (NeedCheckArea && !this.CheckUserAreas(idcardNo, out errMsg))
+            {
+                summaryErrMsg += errMsg + ",";
+                result = false;
+            }
+           
+            if (!this.CheckAmountIdcard(detailOfIdcard, idcardNo, ticketCode, requiredAmount, out errMsg))
+            {
+                summaryErrMsg += errMsg + ",";
+                result = false;
+            }
+            return result;
+            
+
+        }
+
+        /// <summary>
+        /// 景区是否有足够的门票
+        /// </summary>
+        /// <param name="ticketCode"></param>
+        /// <param name="partnerCode"></param>
+        /// <param name="date"></param>
+        /// <param name="requestAmount"></param>
+        /// <param name="errMsg"></param>
+        /// <returns></returns>
+        private  bool CheckAmountPartnerTicketDate(string ticketCode, ActivityPartner partner, DateTime date, int requestAmount, out string errMsg)
         {
             errMsg = string.Empty;
-            ActivityTicketAssign assign = ActivityTicketAssign.Where(x => x.DateAssign == date
-                                           && x.Partner.PartnerCode == partnerCode
-                                           && x.Ticket.ProductCode == ticketCode).Single();
-            int assigned = assign.AssignedAmount;
-            int sold = assign.SoldAmount;
-            bool result = sold + requestAmount > assigned;
-            if (result)
+
+            int assigned = 0, sold = 0;
+            //如果景区只需要控制总数
+            if (partner.OnlyControlTotalAmount)
+            {
+                assigned = ActivityTicketAssign.Where(x => x.Partner.PartnerCode == partner.PartnerCode).Sum(x => x.AssignedAmount);
+                sold = ActivityTicketAssign.Where(x => x.Partner.PartnerCode == partner.PartnerCode).Sum(x => x.SoldAmount);
+            }
+            else
+            {
+                ActivityTicketAssign assign = ActivityTicketAssign.Where(x => x.DateAssign == date
+                                               && x.Partner.PartnerCode == partner.PartnerCode
+                                               && x.Ticket.ProductCode == ticketCode).Single();
+                assigned = assign.AssignedAmount;
+                sold = assign.SoldAmount;
+
+            }
+            bool hasEnough = sold + requestAmount <= assigned;
+            if (!hasEnough)
             {
                 if (DateTime.Now.AddDays(1).Date <= EndDate)
                 {
                     errMsg = "当天门票已售完,欢迎明天" + BeginHour + "点再来!";
                 }
-                else 
+                else
                 {
                     errMsg = "活动门票已全部售完, 您可以继续购买.";
                 }
             }
 
-            return !result;
+            return hasEnough;
 
         }
 
-      
 
-        public virtual bool CheckBuyTime(out string errMsg)
+        //购买日期是否在活动范围之内
+        private  bool CheckBuyTime(out string errMsg)
         {
+
             errMsg = string.Empty;
+
             DateTime now = DateTime.Now;
             bool result = true;
             if (DateTime.Now < BeginDate)
@@ -95,33 +171,34 @@ namespace Model
                 }
             return result;
         }
-        public virtual bool CheckBuyHour(out string errMsg)
+        private  bool CheckBuyHour(ActivityPartner partner, out string errMsg)
         {
             bool result = true;
             errMsg = string.Empty;
-            if(DateTime.Now.Hour < BeginHour)
+            if (!partner.NeedCheckTime) { return true; }
+            if (DateTime.Now.Hour < BeginHour)
             {
-              errMsg=string.Format( "活动将在{0}点开始,感谢您的耐心等待并欢迎您继续等待",BeginHour);
-              result = false;
+                errMsg = string.Format("活动将在{0}点开始", BeginHour);
+                result = false;
             }
             else if (DateTime.Now.Hour >= EndHour)
             {
-                errMsg = string.Format("今天的活动已于{0}点结束,感谢您的参与.欢迎您明天{1}点再来", EndHour,BeginHour);
+                errMsg = string.Format("今天的活动已于{0}点结束,感谢您的参与.欢迎您明天{1}点再来", EndHour, BeginHour);
                 result = false;
             }
             return result;
         }
 
-        public virtual bool CheckUserAreas(string cardid, out string errMsg)
+        //用户地理位置是否符合活动规则
+        private  bool CheckUserAreas(string cardid, out string errMsg)
         {
 
             //CommonLibrary.IdCardInfo idcard = new CommonLibrary.IdCardInfo(cardid).Parse(out errMsg);
             string province = cardid.Substring(0, 2);
-            string city = cardid.Substring(2,2);
+            string city = cardid.Substring(2, 2);
             string country = cardid.Substring(4, 2);
-            
             errMsg = "抱歉,您的身份证号码所属地不在本次活动范围之内,不能购票.";
-            if (AreasUseBlack)
+            if (AreasUseBlackList)
             {
 
                 return !(AreasBlackList.Contains(province) || AreasBlackList.Contains(city) || AreasBlackList.Contains(country));
@@ -131,47 +208,29 @@ namespace Model
                 return AreasBlackList.Contains(province) || AreasBlackList.Contains(city) || AreasBlackList.Contains(country);
             }
         }
-        #endregion
 
-        #region 总规则检查
-
-        public virtual bool IntergrationCheck(IList<TicketAssign> talist,string idcardNo,string ticketCode,int buyAmount,string partnerCode, out string errMsg)
+        //身份证购得数检测
+        private  bool CheckAmountIdcard(IList<OrderDetail> detailOfIdcard
+            , string idcardNo, string ticketCode, int requiredAmount, out string errMsg)
         {
+            errMsg = string.Empty;
+            int amountOfIdcardOfTicket = (int)detailOfIdcard.Where(x => x.TicketPrice.Ticket.ProductCode == ticketCode)
+                            .Sum(x => x.Quantity);
+            int amountOfIdcardAll = (int)detailOfIdcard.Sum(x => x.Quantity);
+            if (amountOfIdcardOfTicket + requiredAmount > this.AmountPerIdcardTicket)
+            {
+                errMsg = "不能继续购买";
+            }
             bool result = true;
-           
-
-            if (!CheckBuyHour(out errMsg))
-            {
-                return false;
-            }
-            if (!CheckBuyTime(out errMsg))
-            {
-                return false;
-            }
-            if ( NeedCheckArea&& !this.CheckUserAreas(idcardNo, out errMsg))
-            {
-                return false;
-            }
-            //if (!this.CheckIdCardAmountPerTicket(talist, idcardNo,ticketCode, buyAmount, out errMsg))
-            //{
-            //    return false;
-            //}
-            //if (!this.CheckIdCardAmountPerActivity(talist,idcardNo,buyAmount, out errMsg))
-            //{
-            //    return false;
-            //}
-            if(!this.CheckEnoughAmount(ticketCode,partnerCode,DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")),buyAmount,out errMsg))
-            {
-                return false;
-            }
             return result;
         }
+     
 
         #endregion
 
         #region Helper Method
         /// <summary>
-        /// 某合作伙伴某天的门票情况
+        /// 某合作伙伴某天所有门票的情况
         /// </summary>
         /// <param name="partnerCode"></param>
         /// <param name="date"></param>
@@ -191,29 +250,40 @@ namespace Model
             return ActivityTicketAssign.Where(x => x.DateAssign == date && x.Ticket.ProductCode == ticketCode).ToList();
         }
         /// <summary>
-        /// 某合作商 某天 某门票的情况
+        /// 某合作商 某天 某门票的情况 应该只存在一个对象 如果有多个
         /// </summary>
         /// <param name="partnerCode"></param>
         /// <param name="ticketCode"></param>
         /// <param name="date"></param>
         /// <returns></returns>
-        public virtual IList<ActivityTicketAssign> GetActivityAssignForPartnerTicketDate(string partnerCode, string ticketCode, DateTime date)
+        public virtual ActivityTicketAssign GetActivityAssignForPartnerTicketDate(string partnerCode, string ticketCode, DateTime date)
         {
-            return ActivityTicketAssign.Where(x => x.DateAssign == date && x.Ticket.ProductCode == ticketCode && x.Partner.PartnerCode == partnerCode).ToList();
+            IList<ActivityTicketAssign> assign = ActivityTicketAssign.Where(x => x.DateAssign == date && x.Ticket.ProductCode == ticketCode && x.Partner.PartnerCode == partnerCode).ToList();
+            if (assign.Count == 0) { return null; }
+            else if (assign.Count == 1) { return assign[0]; }
+            else
+            {
+                throw new Exception(string.Format("合作商{0}在{1}给门票{2}有多种分配."));
+            }
         }
+
+        //合作商某门票所有日期的分配,销售情况
         public virtual IList<ActivityTicketAssign> GetActivityAssignAssignForPartner(string partnerCode, string ticketCode)
         {
             return ActivityTicketAssign.Where(x => x.Ticket.ProductCode == ticketCode && x.Partner.PartnerCode == partnerCode).ToList();
 
         }
+        //某合作商某门票的分配总额
         public virtual int GetPartnerAmountAssigned(string partnerCode, string ticketCode)
         {
             return GetActivityAssignAssignForPartner(partnerCode, ticketCode).Sum(x => x.AssignedAmount);
         }
+        //某合作商某门票的销售总额
         public virtual int GetPartnerAmountSold(string partnerCode, string ticketCode)
         {
             return GetActivityAssignAssignForPartner(partnerCode, ticketCode).Sum(x => x.SoldAmount);
         }
+        //某门票所有日期的验票总额
         #endregion
 
     }

@@ -20,7 +20,7 @@ namespace TourTest.TDD.order
         public void TestGetOrder()
         {
             Checkout checkout = new Checkout();
-            checkout.BuerId =new Guid("2D3455F8-C7B5-4949-814A-A02A00DE271E");
+       //     checkout.BuerId =new Guid("2D3455F8-C7B5-4949-814A-A02A00DE271E");
             checkout.PriceType = PriceType.PayOnline;
             List<OrderDetail> details = new List<OrderDetail>();
             

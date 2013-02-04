@@ -251,37 +251,59 @@ namespace BLL
             return Iticketassign.GetList(activitycode, idcard, ticketCode);
         }
         //用户某活动中抢到的某门票的总票数
-        
-        private  bool CheckIdCardAmountPerTicket(string activityCode, string idcard, string ticketCode, int amount, out string errMsg)
+
+        private bool CheckIdCardAmountPerTicket(TourActivity activity, string idcard, string ticketCode, int amount, out string errMsg)
         {
 
-       
-            IList<TicketAssign> ticketAssigns = GetListByActivity_Idcard_Ticket(activityCode, idcard, ticketCode);
+            IList<TicketAssign> ticketAssigns = GetListByActivity_Idcard_Ticket(activity.ActivityCode,  idcard, ticketCode);
             errMsg = string.Empty;
             int taCount = ticketAssigns.Where(x => x.IdCard == idcard && x.TicketCode == ticketCode).Count();
+            int realAmount=0;
             //是否是套票,如果是,则用户的购票总量 等于 分配总量 除以 套票子票数量
             Ticket t = bllTicket.GetByProductCode(ticketCode);
-            if (t is TicketUnion)
-            { 
-              taCount=Convert.ToInt32( Math.Ceiling( (decimal) (taCount/((TicketUnion)t).TicketList.Count)).ToString());
+            if ( t.As<Ticket>()  is TicketUnion)
+            {
+                int childTicketAmount = ((TicketUnion)t).TicketList.Count;
+                if (taCount % childTicketAmount != 0)
+                {
+
+                    TourLog.LogInstance.Debug(string.Format("用户{0}套票数据异常:配票总数{1} 不是 门票{2}的子票数{3}的整数倍",
+                        idcard, taCount, ticketCode, childTicketAmount
+                        ));
+                    realAmount = Convert.ToInt32(Math.Ceiling((decimal)(taCount / childTicketAmount)).ToString());
+
+                }
+                else
+                {
+                    realAmount = taCount / childTicketAmount;
+                }
             }
-            TourActivity activity = bllTourActivity.GetOneByActivityCode(activityCode);
-
-
-            bool result = taCount + amount <= activity.AmountPerIdcardTicket;
+            bool result = realAmount + amount <= activity.AmountPerIdcardTicket;
             if (!result)
             {
-                errMsg = string.Format("号码为{0}的身份证已经购买了这个景区的{1}张门票,不能继续购买", "****" + idcard.Remove(0, 12), taCount);
+                errMsg = string.Format("号码为{0}的身份证已经购买了这个景区的{1}张门票,不能继续购买", "****" + idcard.Remove(0, 12), realAmount);
             }
             return result;
         }
 
- 
 
-        private  bool CheckIdCardAmountPerActivity(string activityCode, string idcard, int amount, out string errMsg)
+        private int GetRealAmountOfUnionTicket(int taAmount,int childAmount) {
+
+            int realAmount = 0;
+            if (taAmount % childAmount != 0)
+            {
+                realAmount = Convert.ToInt32(Math.Ceiling((decimal)(taAmount / childAmount)).ToString());
+            }
+            else
+            {
+                realAmount = taAmount / childAmount;
+            }
+            return realAmount;
+        }
+        private  bool CheckIdCardAmountPerActivity( TourActivity activity, string idcard, int amount, out string errMsg)
         {
 
-            IList<TicketAssign> ticketAssigns = GetListByActivity_Idcard(activityCode, idcard);
+            IList<TicketAssign> ticketAssigns = GetListByActivity_Idcard(activity.ActivityCode, idcard);
             errMsg = string.Empty;
             var distinctTicketCode = ticketAssigns.Select(x => x.TicketCode).Distinct();
             int totalTicketAmount = 0;
@@ -298,7 +320,7 @@ namespace BLL
                     totalTicketAmount += 1;
                 }
             }
-            TourActivity activity = bllTourActivity.GetOneByActivityCode(activityCode);
+         
 
             int taCount = ticketAssigns.Where(x => x.IdCard == idcard).Count();
             bool result = taCount + amount <= activity.AmountPerIdcardInActivity;
@@ -311,13 +333,13 @@ namespace BLL
         }
 
 
-        public bool CheckIdCardAmount(string activityCode, string idcard, string ticketCode, int amount, out string errMsg)
+        public bool CheckIdCardAmount(TourActivity activity, string idcard, string ticketCode, int amount, out string errMsg)
         {
-            if (!CheckIdCardAmountPerTicket(activityCode, idcard, ticketCode, amount, out errMsg))
+            if (!CheckIdCardAmountPerTicket(activity, idcard, ticketCode, amount, out errMsg))
             {
                 return false;
             }
-            if (!CheckIdCardAmountPerActivity(activityCode, idcard, amount, out errMsg))
+            if (!CheckIdCardAmountPerActivity(activity, idcard, amount, out errMsg))
             {
                 return false;
             }

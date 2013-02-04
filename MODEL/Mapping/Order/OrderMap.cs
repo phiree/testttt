@@ -11,7 +11,7 @@ namespace Model.Mapping
         public OrderMap()
         {
             Id(x => x.Id).GeneratedBy.Custom<OrderIdGenerator>();
-            Map(x => x.MemberId);
+            References<TourMembership>(x => x.TourMembership);
             Map(x => x.TotalNum);
             Map(x => x.TotalPrice);
             Map(x => x.IsPaid);

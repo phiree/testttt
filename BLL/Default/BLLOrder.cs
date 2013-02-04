@@ -6,11 +6,12 @@ using Model;
 
 namespace BLL
 {
-    public class BLLOrder:BLLBase<Order>
+    public class BLLOrder : BLLBase<Order>
     {
         DAL.DALOrder dal = new DAL.DALOrder();
         BLLTicketAssign bllTicketAssign = new BLLTicketAssign();
         BLLActivityTicketAssign bllActivityTa = new BLLActivityTicketAssign();
+        BLLActivityPartner bllPartner = new BLLActivityPartner();
         public IList<Model.Order> GetListForUser(Guid memberId)
         {
             return dal.GetListForUser(memberId);
@@ -73,16 +74,16 @@ namespace BLL
             #region 日期封装
             string datebegin = dateBegin.Substring(0, 4) + "-" + dateBegin.Substring(5, 2) + "-01";
             string dateend = string.Empty;
-            if (dateEnd.Substring(5, 2) == "01"||dateEnd.Substring(5, 2) == "03"||dateEnd.Substring(5, 2) == "05"||dateEnd.Substring(5, 2) == "07"||
-                dateEnd.Substring(5, 2) == "08"||dateEnd.Substring(5, 2) == "10"||dateEnd.Substring(5, 2) == "12")
+            if (dateEnd.Substring(5, 2) == "01" || dateEnd.Substring(5, 2) == "03" || dateEnd.Substring(5, 2) == "05" || dateEnd.Substring(5, 2) == "07" ||
+                dateEnd.Substring(5, 2) == "08" || dateEnd.Substring(5, 2) == "10" || dateEnd.Substring(5, 2) == "12")
             {
                 dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-31";
             }
-            if (dateEnd.Substring(5, 2) == "04" || dateEnd.Substring(5, 2) == "06" || dateEnd.Substring(5, 2) == "09" || dateEnd.Substring(5, 2) == "11" )
+            if (dateEnd.Substring(5, 2) == "04" || dateEnd.Substring(5, 2) == "06" || dateEnd.Substring(5, 2) == "09" || dateEnd.Substring(5, 2) == "11")
             {
                 dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-30";
             }
-            if (dateEnd.Substring(5, 2) == "02" && int.Parse(dateEnd.Substring(0, 4))%4==0)
+            if (dateEnd.Substring(5, 2) == "02" && int.Parse(dateEnd.Substring(0, 4)) % 4 == 0)
             {
                 dateend = dateEnd.Substring(0, 4) + "-" + dateEnd.Substring(5, 2) + "-29";
             }
@@ -93,8 +94,8 @@ namespace BLL
             #endregion
             IList<OrderDetail> odlist = dal.GetMonthOrder(scenicid, datebegin, dateend, paidstate);
             IList<MonthOrder> molist = new List<MonthOrder>();
-            int idatebegin = int.Parse(dateBegin.Substring(0,4)+dateBegin.Substring(5,2));
-            int idateend = int.Parse(dateEnd.Substring(0,4)+dateEnd.Substring(5,2));
+            int idatebegin = int.Parse(dateBegin.Substring(0, 4) + dateBegin.Substring(5, 2));
+            int idateend = int.Parse(dateEnd.Substring(0, 4) + dateEnd.Substring(5, 2));
             int totalnum = 0;
             decimal totalprice = 0;
             for (int i = idatebegin; i <= idateend; i++)
@@ -111,7 +112,7 @@ namespace BLL
                 totalnum = temp_online.Sum(x => x.Quantity);
                 totalprice = temp_online.Sum(x => x.Order.TotalPrice);
                 MonthOrder motemp = dal.GetPaidstate(i.ToString("D6"), scenicid, "在线支付");
-                if (paidstate == null || (motemp == null && paidstate == false) || (motemp != null && paidstate==true))
+                if (paidstate == null || (motemp == null && paidstate == false) || (motemp != null && paidstate == true))
                 {
                     molist.Add(new MonthOrder()
                     {
@@ -150,7 +151,7 @@ namespace BLL
         {
             IList<OrderDetail> odlist = dal.GetMonthOrder(scenicid, dateBegin, dateEnd);
             IList<MonthOrder> molist = new List<MonthOrder>();
-             int idatebegin = int.Parse(dateBegin);
+            int idatebegin = int.Parse(dateBegin);
             int idateend = int.Parse(dateEnd);
             for (int i = idatebegin; i <= idateend && i % 100 < 13; i++)
             {
@@ -184,7 +185,7 @@ namespace BLL
             return dal.GetDaysScenicOrderTotal(scenicname);
         }
         /// <summary>
-        /// 自动创建多个订单.
+        /// 创建订单
         /// </summary>
         /// <param name="activityName"></param>
         /// <param name="partnerCode"></param>
@@ -194,59 +195,72 @@ namespace BLL
         /// <param name="assignName"></param>
         /// <param name="amount"></param>
         /// <param name="errMsg"></param>
-        public Order CreateOrder( string partnerCode, Guid memberId, IList<Ticket> ticketlist, string idcardno, string assignName, int amount,PriceType priceType, out string errMsg)
+        public Order CreateOrder(string partnerCode, TourMembership member, IList<Ticket> ticketlist, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
         {
-            
-            
+            #region 验证订单是否符合规则 需要移至 活动类处理,且应该放到该类之外处理
+            ///对购物车内多张门票创建订单
+            errMsg = string.Empty;
             List<Ticket> ChildTicketList = new List<Ticket>();
-         
+
             foreach (Ticket t in ticketlist)
             {
-
                 TourActivity activity = t.TourActivity;
+                //对参加活动的门票做特殊验证
                 if (activity != null)
                 {
-                    bool result = bllTicketAssign.CheckIdCardAmount(activity.ActivityCode, idcardno, t.ProductCode, amount, out errMsg);
+                    //为每张门票验证规则
+                    //该身份证号码已经购买的数量
+                    ActivityPartner partner = bllPartner.GetByPartnerCode(partnerCode);
+                    IList<OrderDetail> detailOfIdcard = bllOrderDetail.GetOrderDetailForIdcard(activity.ActivityCode, idcardno);
+                    bool result = activity.CheckProcessOrder(detailOfIdcard, t.ProductCode, amount,idcardno, out errMsg);
+
                     if (!result)
                     {
                         return null;
                     }
-                  IList<TicketAssign> taList=  bllTicketAssign.GetTaByIdcardandTicketCode(idcardno, t.ProductCode);
-
-                  bool checkResult = activity.IntergrationCheck(taList, idcardno, t.ProductCode, amount,partnerCode, out errMsg);
-                  if (!checkResult) return null;
-                      //在这里把solidAmout更新
-                  else
-                  {
-                     ActivityTicketAssign ata= activity.GetActivityAssignForPartnerTicketDate(partnerCode, t.ProductCode, DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")))[0];
-                     ata.SoldAmount += amount;
-                     bllActivityTa.SaveOrUpdate(ata);
-                  }
-                }
-                Ticket actualT = t.As<Ticket>();
-                if (actualT is TicketUnion)
-                {
-                    foreach (Ticket ct in ((TicketUnion)actualT).TicketList)
-                    {
-                        ChildTicketList.Add(ct);
-                    }
-                }
-                else
-                {
-                    ChildTicketList.Add(t);
                 }
             }
+            #endregion
 
-            return dal.CreateOrder(partnerCode, memberId, ChildTicketList, idcardno, assignName, amount, priceType, out errMsg);
+            #region 创建订单
+            IList<OrderDetail> details = new List<OrderDetail>();
+            foreach (Ticket t in ticketlist)
+            {
+                details.Add(bllOrderDetail.CreateDetail(t, priceType, assignName, idcardno, amount, ""));
+            }
+
+            Order order = new Order(member, partnerCode);
+            order.OrderDetail = details;
+            Save(order);
+            #endregion
+
+            #region 更新已售总数
+
+            foreach (Ticket t in ticketlist)
+            {
+                TourActivity activity = t.TourActivity;
+                if (activity != null)
+                {
+                    ActivityTicketAssign ata = activity
+                                .GetActivityAssignForPartnerTicketDate(partnerCode, t.ProductCode, DateTime.Now.Date);
+                    ata.SoldAmount += amount;
+                    bllActivityTa.SaveOrUpdate(ata);
+                }
+            }
+            #endregion
+            return order;
+
         }
-        public Order CreateOrder(string partnerCode, Guid memberId, Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+
+        BLLOrderDetail bllOrderDetail = new BLLOrderDetail();
+        public Order CreateOrder(string partnerCode, TourMembership member, Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
         {
 
             List<Ticket> ticketList = new List<Ticket>();
 
             ticketList.Add(ticket);
 
-            return CreateOrder(partnerCode, memberId, ticketList, idcardno, assignName, amount, priceType, out errMsg);
+            return CreateOrder(partnerCode, member, ticketList, idcardno, assignName, amount, priceType, out errMsg);
         }
     }
 }

@@ -44,7 +44,7 @@ public partial class Manager_TourActivity_ticketAssign : System.Web.UI.Page
             {
                 foreach (var pa in ta.Partners)
                 {
-                    if (ta.GetActivityAssignForPartnerTicketDate(pa.PartnerCode, ticket.ProductCode, dt) == null || ta.GetActivityAssignForPartnerTicketDate(pa.PartnerCode, ticket.ProductCode, dt).Count == 0)
+                    if (ta.GetActivityAssignForPartnerTicketDate(pa.PartnerCode, ticket.ProductCode, dt)==null)
                     {
                         ActivityTicketAssign ata = new ActivityTicketAssign();
                         ata.DateAssign = dt;

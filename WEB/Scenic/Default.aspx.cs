@@ -172,18 +172,24 @@ public partial class Scenic_Default : basepage
             if (listTicket.Count() > 0)
             {
                 hfProductCode.Value = listTicket[0].ProductCode;
-                IList<ActivityTicketAssign> listAta = listTicket[0].TourActivity.GetActivityAssignForPartnerTicketDate(ConfigurationManager.AppSettings["PartnerCode"], listTicket[0].ProductCode, DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")));
-                if (listAta.Count > 0)
-                {
-                    hfSyCount.Value = (listAta[0].AssignedAmount - listAta[0].SoldAmount).ToString();
-                }
+               var ticketAsign = listTicket[0].TourActivity
+                    .GetActivityAssignForPartnerTicketDate(SiteConfig.PartnerCodeOfTourOL, listTicket[0].ProductCode, DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")));
+
+               hfSyCount.Value = (ticketAsign.AssignedAmount - ticketAsign.SoldAmount).ToString();
             }
             else
+            {
                 qzTicketCount.Visible = false;
+            }
         }
-            
+        else
+        {
+            qzTicketCount.Visible = false;
+        }
 
-        rpttp.DataSource = listticket.Where(x=>x.Enabled).ToList();
+
+
+            rpttp.DataSource = listticket.Where(x => x.Enabled).ToList();
         rpttp.DataBind();
         //编辑
         EditRole();

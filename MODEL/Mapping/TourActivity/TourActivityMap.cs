@@ -23,7 +23,7 @@ namespace Model.Mapping
             Map(x => x.AmountPerIdcardTicket);
             Map(x => x.AmountPerIdcardInActivity);
 
-            Map(x => x.AreasUseBlack);
+            Map(x => x.AreasUseBlackList);
             Map(x => x.AreasWhiteList);
             Map(x => x.AreasBlackList);
             Map(x => x.NeedCheckArea);

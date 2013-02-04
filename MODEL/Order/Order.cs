@@ -7,16 +7,25 @@ namespace Model
 {
     public class Order
     {
+        public Order()
+        {
+            OrderDetail = new List<OrderDetail>();
+        }
+        public Order(TourMembership member,string orderFrom)
+            : this()
+        {
+           this.TourMembership = member;
+           this.BuyTime = DateTime.Now;
+           this.OrderFrom = orderFrom;
+            
+        }
         public virtual int Id { get; set; }
-        public virtual Guid MemberId { get; set; }
+        public virtual TourMembership TourMembership { get; set; }
         /// <summary>
         /// 门票总数
         /// </summary>
         private int totalNum = 0;
-        public Order()
-        {
-            OrderDetail = new List<OrderDetail>();
-         }
+      
         public virtual int TotalNum
         {
             get

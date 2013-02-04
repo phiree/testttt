@@ -37,7 +37,7 @@ public class TicketService : System.Web.Services.WebService
     [WebMethod]
     public string buyProduct(string PartnerCode, string CardNumber, string RealName, string Phone, string ProductCode, int Number)
     {
-        string result = bllActivityService.buyProduct(activityCode, true, null, PartnerCode,
+        string result = bllActivityService.buyProduct(activityCode, null, PartnerCode,
             CardNumber, RealName, Phone, ProductCode, Number);
 
       //  string result = seller.SellTicket(PartnerCode, CardNumber, RealName, Phone, ProductCode, Number);
@@ -59,8 +59,7 @@ public class TicketService : System.Web.Services.WebService
     public string buyProductForMedia(string PartnerCode, string CardNumber, string RealName, string Phone, string ProductCode, int Number)
     {
 
-        string result = bllActivityService.buyProduct(activityCode, false, null, PartnerCode,
-            CardNumber, RealName, Phone, ProductCode, Number);
+        string result = bllActivityService.buyProduct(activityCode,null,PartnerCode,CardNumber,RealName,Phone,ProductCode,Number);
             //seller.SellTicket(true, PartnerCode,null,RealName, CardNumber, Phone, ProductCode, Number);
         //  seller.SellTicket(clientFriendlyId, idcardno, ticketId);
         return result;
