@@ -50,6 +50,9 @@
                 <asp:Button ID="btndelete"
                     runat="server" CssClass="btndeletecu" onclick="btndelete_Click" Text="删除"  />
             </div>
+            <p style="margin-left:35px">
+                希望您能多多邀请您的亲朋好友加入Tourol.cn,我们将带来更多更优惠的打折门票。
+            </p>
         </div>
     </div>
 </asp:Content>

@@ -9,10 +9,11 @@
     </div>
     <div id="suichangMain">
         <div class="left">
-            <asp:Button ID="btnTicket1" runat="server" Text="" CssClass="btnqp" style="margin:260px 0px 0px 505px" />
-            <asp:Button ID="Button1" runat="server" Text="" CssClass="btnqp" style="margin:290px 0px 0px 505px" />
-            <asp:Button ID="Button2" runat="server" Text="" CssClass="btnqp" style="margin:290px 0px 0px 505px" />
-            <asp:Button ID="Button3" runat="server" Text="" CssClass="btnqp" style="margin:300px 0px 0px 505px" />
+            <a href="/Tickets/lishui_suichangxian/Tpdlbpszf.html" class="btnqp" style="margin:260px 0px 0px 505px"></a>
+            <a href="/Tickets/lishui_suichangxian/Tpdlbpszs.html" class="btnqp" style="margin:290px 0px 0px 505px" ></a>
+            <a href="/Tickets/lishui_suichangxian/Tpdlbpszt.html" class="btnqp" style="margin:290px 0px 0px 505px" ></a>
+            <a href="/Tickets/lishui_suichangxian/Tpdlbpszr.html" class="btnqp" style="margin:295px 0px 0px 505px" ></a>
+
         </div>
         <div class="right">
             <div class="hdgz">
@@ -38,7 +39,7 @@
                   <p class="step">自动分享到新浪微博</p>
                   <p class="step" style="margin-top:20px">本次活动最终解释权归浙江省旅游信息中心</p>
             </div>
-            <div class="hotel">
+            <div class="hotel" style="display:none">
                 <asp:Button ID="btnHoTel" runat="server" Text="" CssClass="btnHotel" style="margin:80px 000px 0px 230px" />
                 <asp:Button ID="btnHoTel2" runat="server" Text="" CssClass="btnHotel" style="margin:70px 000px 0px 230px" />
                 <asp:Button ID="btnHoTel3" runat="server" Text="" CssClass="btnHotel" style="margin:47px 000px 0px 230px" />
