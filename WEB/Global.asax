@@ -2,8 +2,7 @@
 <%@ Import Namespace="log4net" %>
 <%@ Import Namespace="log4net.Config" %>
 <script RunAt="server">
-    private static readonly ILog log = LogManager.GetLogger("ErrorLogger");
-    void Application_Start(object sender, EventArgs e)
+   void Application_Start(object sender, EventArgs e)
     {
 
         var logpath = System.Configuration.ConfigurationManager.AppSettings["LogConfigPath"] ?? @"\config\log4net.config";
@@ -23,7 +22,8 @@
     void Application_Error(object sender, EventArgs e)
     {
         Exception ex = Server.GetLastError();
-       log.Error(ex);
+       BLL.TourLog.ErrorLog.Error(ex);
+      
         //BLL.TourLog.LogError(ex);
 
         ////  Server.Transfer("/err.aspx?err=0");

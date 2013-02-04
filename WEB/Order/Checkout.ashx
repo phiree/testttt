@@ -54,7 +54,7 @@ public class CheckoutHandler : IHttpHandler
         pt = (PriceType)intpricetype;
         if (pt != PriceType.PreOrder && pt != PriceType.PayOnline)
         {
-            TourLog.LogInstance.Error("不是有效的支付方式:" + pt);
+            TourLog.ErrorLog.Error("不是有效的支付方式:" + pt);
 
             context.Response.Write("<script>window.location.href='/order/orderErr.aspx';</script>");
             return;

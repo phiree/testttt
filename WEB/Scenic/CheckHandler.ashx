@@ -19,7 +19,7 @@ public class TimeHandler : IHttpHandler {
             int ticketId = Convert.ToInt32(context.Request["id"]);
             BLLTicket bllTicket = new BLLTicket();
             Ticket t = bllTicket.GetTicket(ticketId);
-            ActivityPartner partner = new BLLActivityPartner().GetByPartnerCode(SiteConfig.PartnerCodeOfTourOL);
+            ActivityPartner partner = new BLLActivityPartner().GetByPartnerCode(t.TourActivity.ActivityCode, SiteConfig.PartnerCodeOfTourOL);
             if (t.TourActivity == null)
             {
                 context.Response.Write("true");

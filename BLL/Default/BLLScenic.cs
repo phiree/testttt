@@ -184,7 +184,7 @@ namespace BLL
             ScenicCheckProgress scp = GetStatus(scenic.Id, module);
             if (scp.CheckStatus != CheckStatus.Applied)
             {
-                ErrHandler.Redirect(ErrType.UnknownError);
+                ErrHandler.Redirect(ErrType.UnknownError,"187行");
             }
             scp.CheckStatus = cs;
             IScenic.SaveCheckProgress(scp);

@@ -45,7 +45,7 @@ public partial class Scenic_Default : basepage
             s = new BLLScenic().GetScenicBySeoName(paramSname);
             if (s == null)
             {
-                ErrHandler.Redirect(ErrType.UnknownError);
+                ErrHandler.Redirect(ErrType.UnknownError,"从seoname获取景区失败");
             }
             bind(s);
             if (IsPackageScenic(s))
@@ -56,7 +56,7 @@ public partial class Scenic_Default : basepage
         }
         else
         {
-            ErrHandler.Redirect(ErrType.ParamIllegal);
+            ErrHandler.Redirect(ErrType.ParamIllegal,"传入参数是空");
         }
         var ticket = s.Tickets.FirstOrDefault(x => x.IsMain == true);
         decimal onlineprice = ticket == null ? 0 : ticket.GetPrice(PriceType.PayOnline);
@@ -98,8 +98,20 @@ public partial class Scenic_Default : basepage
         {
             county.Visible = false;
         }
+        //导航链接 隐藏套票的所属单位
+        string owerName = scenic.Name;
+        IList<Ticket> tickets = s.Tickets;
+        foreach (Ticket t in tickets)
+        {
+            if (t.As<Ticket>() is TicketUnion)
+            {
+                owerName = t.DisplayNameOfOwner;
+                break;
+            }
+           
+        }
         scenicname.HRef = "/Tickets/" +parentarea.SeoName +"_"+ scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
-        scenicname.InnerHtml = scenic.Name;
+        scenicname.InnerHtml = owerName;
         scaddress = scenic.Address;
         booknote = scenic.BookNote;
         sclevel = scenic.Level;
@@ -186,7 +198,7 @@ public partial class Scenic_Default : basepage
             {
                 hfProductCode.Value = listTicket[0].ProductCode;
                var ticketAsign = listTicket[0].TourActivity
-                    .GetActivityAssignForPartnerTicketDate(SiteConfig.PartnerCodeOfTourOL, listTicket[0].ProductCode, DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")));
+                    .GetActivityAssignForPartnerTicketDate(SiteConfig.PartnerCodeOfTourOL, listTicket[0].ProductCode,DateTime.Now.Date);
 
                hfSyCount.Value = (ticketAsign.AssignedAmount - ticketAsign.SoldAmount).ToString();
             }
@@ -315,14 +327,14 @@ public partial class Scenic_Default : basepage
             Ticket t = e.Item.DataItem as Ticket;
             HtmlInputButton btnputcart = e.Item.FindControl("btnputcart") as HtmlInputButton;
             btnputcart.Attributes["onclick"] = "AddToCart(this," + t.Id + ")";
-            if (t.TourActivity == null)
-            {
-                btnputcart.Attributes.Add("isActivity", "false");
-            }
-            else
-            {
-                btnputcart.Attributes.Add("isActivity", "true");
-            }
+            //if (t.TourActivity == null)
+            //{
+            //    btnputcart.Attributes.Add("isActivity", "false");
+            //}
+            //else
+            //{
+            //    btnputcart.Attributes.Add("isActivity", "true");
+            //}
         }
     }
 

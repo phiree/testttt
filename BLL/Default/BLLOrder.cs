@@ -210,7 +210,7 @@ namespace BLL
                 {
                     //为每张门票验证规则
                     //该身份证号码已经购买的数量
-                    ActivityPartner partner = bllPartner.GetByPartnerCode(partnerCode);
+                    ActivityPartner partner = bllPartner.GetByPartnerCode(activity.ActivityCode, partnerCode);
                     IList<OrderDetail> detailOfIdcard = bllOrderDetail.GetOrderDetailForIdcard(activity.ActivityCode, idcardno);
                     bool result = activity.CheckProcessOrder(detailOfIdcard, t.ProductCode, amount,idcardno, out errMsg);
 
@@ -223,14 +223,17 @@ namespace BLL
             #endregion
 
             #region 创建订单
+             Order order = new Order(member, partnerCode);
             IList<OrderDetail> details = new List<OrderDetail>();
             foreach (Ticket t in ticketlist)
             {
-                details.Add(bllOrderDetail.CreateDetail(t, priceType, assignName, idcardno, amount, ""));
-            }
-
-            Order order = new Order(member, partnerCode);
-            order.OrderDetail = details;
+                
+                details= bllOrderDetail.CreateDetail(t, priceType, assignName, idcardno, amount, "");
+                foreach (OrderDetail d in details)
+                {
+                    d.Order = order;
+                }
+            }            order.OrderDetail = details;
             Save(order);
             #endregion
 

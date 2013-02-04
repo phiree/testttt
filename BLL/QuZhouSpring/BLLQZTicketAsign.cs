@@ -88,7 +88,7 @@ namespace BLL
                 {
                     if (ticket == null)
                     {
-                        TourLog.LogInstance.Error("AppSettings的ticketid有空值");
+                        TourLog.ErrorLog.Error("AppSettings的ticketid有空值");
                         continue;
                     }
                     QZTicketAsign qz;

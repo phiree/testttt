@@ -21,7 +21,7 @@ namespace BLL
                 { order = new BLLOrder().GetOrderByOrderid(orderId); }
                 if (order == null)
                 {
-                    ErrHandler.Redirect(ErrType.ObjectIsNull);
+                    ErrHandler.Redirect(ErrType.ObjectIsNull,"获取订单数据失败,orderid:"+orderId);
                 }
                 return order;
             
@@ -33,7 +33,7 @@ namespace BLL
             {
                 if (! int.TryParse(value, out orderId))
                 {
-                    ErrHandler.Redirect(ErrType.ParamIllegal);
+                    ErrHandler.Redirect(ErrType.ParamIllegal,"orderid 不是数字");
                 }
             }
         }

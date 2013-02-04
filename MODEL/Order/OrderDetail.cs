@@ -20,7 +20,7 @@ namespace Model
         public OrderDetail()
         {
             TicketAssignList = new List<TicketAssign>();
-            ChildTicketDetail = new List<OrderDetail>();
+          //  ChildTicketDetail = new List<OrderDetail>();
         }
         public virtual int Id { get; set; }
         public virtual int Quantity { get; set; }
@@ -40,7 +40,7 @@ namespace Model
          return TicketPrice.Ticket.As<Ticket>() is TicketUnion;
         } }
         //为联票的子票创建的详情
-        public IList<OrderDetail> ChildTicketDetail { get; set; }
+        public virtual OrderDetail OrderDetailForUnionTicket { get; set; }
 
       
     }

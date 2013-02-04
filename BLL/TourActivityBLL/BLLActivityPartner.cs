@@ -8,10 +8,22 @@ namespace BLL
 {
     public class BLLActivityPartner:BLLBase<ActivityPartner>
     {
-        
-        public ActivityPartner GetByPartnerCode(string partnerCode)
+        DAL.DALActivityPartner dalAp;
+        DAL.DALActivityPartner DalAP
         {
-            return GetByPartnerCode(partnerCode);
+            get {
+                if (dalAp == null)
+               dalAp= new DAL.DALActivityPartner();
+                return dalAp;
+            }
+            set {
+                dalAp = value;
+            }
+
+        }
+        public ActivityPartner GetByPartnerCode(string activityCode,string partnerCode)
+        {
+            return DalAP.GetByPartnerCode(activityCode, partnerCode);
         }
     }
 }

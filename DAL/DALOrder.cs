@@ -11,7 +11,7 @@ namespace DAL
     {
         public IList<Model.Order> GetListForUser(Guid memberId)
         {
-            string sql = "select o from Order o where o.MemberId=:memberId ";
+            string sql = "select o from Order o where o.TourMembership.Id=:memberId ";
             IQuery query = session.CreateQuery(sql)
                 .SetParameter("memberId", memberId);
             return query.Future<Model.Order>().OrderByDescending(x => x.BuyTime).ToList();

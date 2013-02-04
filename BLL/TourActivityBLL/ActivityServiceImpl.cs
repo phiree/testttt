@@ -37,7 +37,7 @@ namespace BLL
             , string PartnerCode, string CardNumber, string RealName, string Phone, string ticketCode, int Number)
         {
             Guid requestGUID = Guid.NewGuid();
-            TourLog.LogInstance.Debug(string.Format("*********Begin********{5}出票请求:{6}_{0}_{1}_{2}_{3}_{4}", PartnerCode, CardNumber, ticketCode, Number, Phone, requestGUID,activityCode));
+            TourLog.ErrorLog.Debug(string.Format("*********Begin********{5}出票请求:{6}_{0}_{1}_{2}_{3}_{4}", PartnerCode, CardNumber, ticketCode, Number, Phone, requestGUID,activityCode));
             string returnMsg = "T";
 
             TourActivity activity = bllActivity.GetOneByActivityCode(activityCode);//get from activitycode
@@ -160,8 +160,8 @@ namespace BLL
                 bllActivityTicketAssign.SaveOrUpdate(ticketAssign);
            
         LblReturn:
-            TourLog.LogInstance.Info(returnMsg);
-            TourLog.LogInstance.Info(requestGUID + "*********END********" + requestGUID);
+            TourLog.ErrorLog.Info(returnMsg);
+            TourLog.ErrorLog.Info(requestGUID + "*********END********" + requestGUID);
             return returnMsg;
 
         }

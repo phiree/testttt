@@ -71,7 +71,7 @@ namespace BLL
                 return "F|没有查到对应的门票";
             }
             Guid requestGUID = Guid.NewGuid();
-            TourLog.LogInstance.Info(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", clientFriendlyId, idcardno, ticketCode, amount, phone, requestGUID));
+            TourLog.ErrorLog.Info(string.Format("*********Begin********{5}出票请求:{0}_{1}_{2}_{3}_{4}", clientFriendlyId, idcardno, ticketCode, amount, phone, requestGUID));
             string validErrMsg;
             ///规则验证
             bool isValid = ValidateRequst(ismedia, partnerAsign, amount, idcardno, ticketCode, out validErrMsg);
@@ -106,8 +106,8 @@ namespace BLL
             partnerAsign.SoldAmount += amount;
             // }
             bllQZPartnerTicketAsign.SaveOrUpdate(partnerAsign);
-            TourLog.LogInstance.Info(returnMsg);
-            TourLog.LogInstance.Info(requestGUID + "*********END********");
+            TourLog.ErrorLog.Info(returnMsg);
+            TourLog.ErrorLog.Info(requestGUID + "*********END********");
             return returnMsg;
 
         }
@@ -124,7 +124,7 @@ namespace BLL
         {
 
 
-            TourLog.LogInstance.Info("开始验证");
+            TourLog.ErrorLog.Info("开始验证");
 
             errMsg = string.Empty;
             //验证这个分发商还有没有足够的门票

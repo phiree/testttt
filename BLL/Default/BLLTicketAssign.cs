@@ -267,7 +267,7 @@ namespace BLL
                 if (taCount % childTicketAmount != 0)
                 {
 
-                    TourLog.LogInstance.Debug(string.Format("用户{0}套票数据异常:配票总数{1} 不是 门票{2}的子票数{3}的整数倍",
+                    TourLog.ErrorLog.Debug(string.Format("用户{0}套票数据异常:配票总数{1} 不是 门票{2}的子票数{3}的整数倍",
                         idcard, taCount, ticketCode, childTicketAmount
                         ));
                     realAmount = Convert.ToInt32(Math.Ceiling((decimal)(taCount / childTicketAmount)).ToString());

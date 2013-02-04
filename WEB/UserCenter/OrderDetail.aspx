@@ -157,7 +157,7 @@
                 <div runat="server" id="itemod" class="oscdpdetail" style="display: block;" onmouseover="changebg(this)"
                     onmouseout="changebg2(this)">
                     <span class="osczero"><a runat="server" id="ahref" style="color: #807940;" href='<%# "/Tickets/"+Eval("TicketPrice.Ticket.Scenic.Area.SeoName")+"/"+Eval("TicketPrice.Ticket.Scenic.SeoName")+".html"%>'>
-                        <%# Eval("TicketPrice.Ticket.Scenic.Name")%></a></span> <span class="oscfirst">
+                        <%# Eval("TicketPrice.Ticket.DisplayNameOfOwner")%></a></span> <span class="oscfirst">
                             <%# Eval("TicketPrice.Ticket.Name")%></span><span class="oscsecond" runat="server" style="margin-left:5px;margin-right:5px;"
                                 id="buytype"></span><span class="oscthird" style="margin-left:10px;margin-right:10px;"  runat="server" id="tp"><%# Eval("TicketPrice.Price","{0:0}")%></span><span
                                     class="oscfour" runat="server" style="margin-left:10px;margin-right:10px;" id="qua"><%# Eval("Quantity")%></span><span class="oscfifth"><span

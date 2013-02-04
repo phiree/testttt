@@ -73,16 +73,17 @@ public partial class UserCenter_MyOrder : basepage
 
         Order order = bllorder.GetOrderByOrderid(orderid);
         //hyReturnToList.NavigateUrl = "/UserCenter/Order.aspx";
-        rptOrderDetail.DataSource = order.OrderDetail;// bllorderdetail.GetOrderDetailByorderid(orderid);
+        rptOrderDetail.DataSource = order.OrderDetail.Where(x =>!( x.TicketPrice.Ticket.As<Ticket>() is TicketUnion));// bllorderdetail.GetOrderDetailByorderid(orderid);
         rptOrderDetail.DataBind();
-        rptbind.DataSource = order.OrderDetail;
+        rptbind.DataSource = order.OrderDetail.Where(x => !(x.TicketPrice.Ticket.As<Ticket>() is TicketUnion));
         rptbind.DataBind();
-        rptOrderDetail2.DataSource = order.OrderDetail;
+        rptOrderDetail2.DataSource = order.OrderDetail.Where(x => !(x.TicketPrice.Ticket.As<Ticket>() is TicketUnion));
         rptOrderDetail2.DataBind();
-        rptOrderDetail3.DataSource = order.OrderDetail;
+        rptOrderDetail3.DataSource = order.OrderDetail.Where(x => !(x.TicketPrice.Ticket.As<Ticket>() is TicketUnion));
         rptOrderDetail3.DataBind();
         List<OrderDetail> list = new List<OrderDetail>();
-        IList<OrderDetail> ilist = bllorderdetail.GetOrderDetailByorderid(orderid);
+        IList<OrderDetail> ilist = bllorderdetail.GetOrderDetailByorderid(orderid).Where(x=>
+            x.TicketPrice.Ticket.As<Ticket>() is TicketNormal).ToList();
         foreach (OrderDetail item in ilist)
         {
             int count = bllticketassign.GetIsUsedCountByAsodid(item.Id).Count;

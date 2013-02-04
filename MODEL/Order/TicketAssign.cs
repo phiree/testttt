@@ -16,6 +16,7 @@ namespace Model
             this.Name = name;
             this.OrderDetail = detail;
             this.Amount = amount;
+            this.IdCard = idcard;
             this.TicketCode = detail.TicketPrice.Ticket.ProductCode;
         }
         public virtual Guid Id { get; set; }
