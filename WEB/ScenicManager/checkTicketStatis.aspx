@@ -21,10 +21,10 @@
         验票日期&nbsp;<asp:TextBox ID="txtbegin" runat="server" CssClass="txtdate" />&nbsp;至&nbsp;<asp:TextBox ID="txtend" runat="server" CssClass="txtdate" />
         <asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" />
     </div>
-    <div id="wlmain">
+    <div id="wlmain" style=" height:500px; overflow:scroll">
         <asp:Repeater ID="rptCheckTicketStatis" runat="server">
             <HeaderTemplate>
-                <table class="wltable" cellpadding="0" cellspacing="0">
+                <table class="wltable" cellpadding="0" cellspacing="0" >
                     <tr style="background-color: #E9E9E9">
                         <td>
                             序号
