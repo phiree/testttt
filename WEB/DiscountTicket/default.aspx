@@ -106,6 +106,7 @@
             </ItemTemplate>
             <FooterTemplate>
                 <asp:Label runat="server" CssClass="success noresult" Visible="false" ID="lblNoResult">没有相应的景区</asp:Label>
+                <p runat="server" id="sp" visible="false" style="margin:10px 0px 0px 20px">想了解更多旅游咨询、优惠打折门票活动，请关注Tourol.cn</p>
             </FooterTemplate>
         </asp:Repeater>
         <div id="pager" class="span-19 last" style="margin-left: 30px; margin-bottom: 40px;">
