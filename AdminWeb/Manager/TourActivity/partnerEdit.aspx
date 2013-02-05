@@ -38,6 +38,15 @@
             </td>
             
         </tr>
+         <tr>
+            <td>
+                是否限制购票时间
+            </td>
+            <td>
+                <asp:CheckBox ID="cbxNeedCheckTime" Checked="true" runat="server" />
+            </td>
+            
+        </tr>
         <tr>
             <td>
                 <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" />

@@ -19,19 +19,23 @@ public class TimeHandler : IHttpHandler {
             int ticketId = Convert.ToInt32(context.Request["id"]);
             BLLTicket bllTicket = new BLLTicket();
             Ticket t = bllTicket.GetTicket(ticketId);
-            ActivityPartner partner = new BLLActivityPartner().GetByPartnerCode(t.TourActivity.ActivityCode, SiteConfig.PartnerCodeOfTourOL);
             if (t.TourActivity == null)
             {
                 context.Response.Write("true");
             }
-            else if (! t.TourActivity.CheckBeforeOrder(partner,t.ProductCode,1,out msg))
-            {
-                context.Response.Write(msg);
-
-            }
             else
             {
-                context.Response.Write("true");
+                ActivityPartner partner = new BLLActivityPartner().GetByPartnerCode(t.TourActivity.ActivityCode, SiteConfig.PartnerCodeOfTourOL);
+
+                if (!t.TourActivity.CheckBeforeOrder(partner, t.ProductCode, 1, out msg))
+                {
+                    context.Response.Write(msg);
+
+                }
+                else
+                {
+                    context.Response.Write("true");
+                }
             }
         }
     }

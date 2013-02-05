@@ -31,6 +31,7 @@ public partial class Manager_TourActivity_partnerEdit : System.Web.UI.Page
         {
             ap = new ActivityPartner();
         }
+        ap.NeedCheckTime = cbxNeedCheckTime.Checked;
         ap.Name = txtName.Text;
         ap.PartnerCode = txtPartnerCode.Text;
         ap.OnlyControlTotalAmount = ckOnlyControlTotalAmount.Checked;
@@ -50,6 +51,7 @@ public partial class Manager_TourActivity_partnerEdit : System.Web.UI.Page
             txtName.Text = ap.Name;
             txtPartnerCode.Text = ap.PartnerCode;
             ckEnabled.Checked = ap.Enabled;
+            cbxNeedCheckTime.Checked = ap.NeedCheckTime;
             ckOnlyControlTotalAmount.Checked = ap.OnlyControlTotalAmount;
         }
     }

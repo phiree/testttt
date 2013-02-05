@@ -31,7 +31,7 @@ namespace Model
             get
             {
                 totalNum = 0;
-                foreach (OrderDetail od in OrderDetail)
+                foreach (OrderDetail od in OrderDetail.Where(x=>!(x.TicketPrice.Ticket.As<Ticket>() is TicketUnion)))
                 {
                     totalNum += od.Quantity;
                 }

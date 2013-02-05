@@ -171,7 +171,9 @@ namespace BLL
         {
             ActivityTicketAssign ticketAssign = bllActivityTicketAssign.GetOneByQuery(activityCode, PartnerCode, productCode, dt);
             if (ticketAssign == null) return -1;
-            return ticketAssign.AssignedAmount - ticketAssign.SoldAmount;
+            int left = ticketAssign.AssignedAmount - ticketAssign.SoldAmount;
+            left = left < 0 ? 0 : left;
+            return left;
         }
 
         /// <summary>

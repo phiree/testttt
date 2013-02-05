@@ -20,7 +20,7 @@
                 <img src="/Img/农行2级.jpg" width="190px" height="140px"
                     alt="农行2级" />
             </a>--%>
-            <div class="moddiv_quzhou">
+            <div class="moddiv_quzhou" style="display:none">
                 <div class="qpinfo">
                     <h3>活动时间：</h3>
                     <span>2013年1月25日-2013年2月6日</span>

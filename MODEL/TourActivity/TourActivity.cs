@@ -213,15 +213,17 @@ namespace Model
         private  bool CheckAmountIdcard(IList<OrderDetail> detailOfIdcard
             , string idcardNo, string ticketCode, int requiredAmount, out string errMsg)
         {
+            bool result = true;
             errMsg = string.Empty;
             int amountOfIdcardOfTicket = (int)detailOfIdcard.Where(x => x.TicketPrice.Ticket.ProductCode == ticketCode)
                             .Sum(x => x.Quantity);
             int amountOfIdcardAll = (int)detailOfIdcard.Sum(x => x.Quantity);
             if (amountOfIdcardOfTicket + requiredAmount > this.AmountPerIdcardTicket)
             {
+                result = false;
                 errMsg = "不能继续购买";
             }
-            bool result = true;
+           
             return result;
         }
      

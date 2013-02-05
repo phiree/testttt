@@ -126,7 +126,7 @@ namespace DAL
         {
             var strQuery = "select t from Ticket t where t.ProductCode ='" + productCode + "'";
             IQuery qry = session.CreateQuery(strQuery);
-            Model.Ticket t = qry.FutureValue<Model.Ticket>().Value;
+            Model.Ticket t =(Model.Ticket)session.GetSessionImplementation().PersistenceContext.Unproxy( qry.FutureValue<Model.Ticket>().Value);
             return t;
         }
 
