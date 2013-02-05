@@ -81,33 +81,33 @@ namespace BLL
             ///数量规则验证
             //1 是否还有门票
             //如果合作商采用总数验证 ,则不需要验证每天的数量
-            if (currentPartner.OnlyControlTotalAmount)
-            {
-                if (activity.GetPartnerAmountAssigned(PartnerCode, ticketCode) + Number > activity.GetPartnerAmountSold(PartnerCode, ticketCode))
-                {
-                    returnMsg = "F|门票已售完";
-                    goto LblReturn;
-                }
-            }
-            else //每天票数验证.
-            {
-                //获取当天合作商某景区的门票分配情况
+            //if (currentPartner.OnlyControlTotalAmount)
+            //{
+            //    if (activity.GetPartnerAmountAssigned(PartnerCode, ticketCode) + Number > activity.GetPartnerAmountSold(PartnerCode, ticketCode))
+            //    {
+            //        returnMsg = "F|门票已售完";
+            //        goto LblReturn;
+            //    }
+            //}
+            //else //每天票数验证.
+            //{
+            //    //获取当天合作商某景区的门票分配情况
              
-                //每张门票 的数量检测
-                if (ticketAssign == null)
-                {
-                    returnMsg = "F|没有查到对应的门票";
-                    goto LblReturn;
-                }
+            //    //每张门票 的数量检测
+            //    if (ticketAssign == null)
+            //    {
+            //        returnMsg = "F|没有查到对应的门票";
+            //        goto LblReturn;
+            //    }
 
-                if (ticketAssign.SoldAmount + Number > ticketAssign.AssignedAmount)
-                {
-                    returnMsg = "F|今天的门票已售完,欢迎明天再来";
+            //    if (ticketAssign.SoldAmount + Number > ticketAssign.AssignedAmount)
+            //    {
+            //        returnMsg = "F|今天的门票已售完,欢迎明天再来";
 
-                    goto LblReturn;
-                }
+            //        goto LblReturn;
+            //    }
 
-            }
+            //}
             ///////////////////用户购买数量规则
             //2 该用户是否已经抢到了该景区足够数量的门票
             //已经在订单里处理

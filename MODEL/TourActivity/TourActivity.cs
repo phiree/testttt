@@ -120,16 +120,38 @@ namespace Model
             //如果景区只需要控制总数
             if (partner.OnlyControlTotalAmount)
             {
-                assigned = ActivityTicketAssign.Where(x => x.Partner.PartnerCode == partner.PartnerCode).Sum(x => x.AssignedAmount);
-                sold = ActivityTicketAssign.Where(x => x.Partner.PartnerCode == partner.PartnerCode).Sum(x => x.SoldAmount);
+                assigned = ActivityTicketAssign.Where(x => x.Partner.PartnerCode.ToLower() == partner.PartnerCode.ToLower()).Sum(x => x.AssignedAmount);
+                sold = ActivityTicketAssign.Where(x => x.Partner.PartnerCode.ToLower() == partner.PartnerCode.ToLower()).Sum(x => x.SoldAmount);
             }
             else
             {
-                ActivityTicketAssign assign = ActivityTicketAssign.Where(x => x.DateAssign == date
-                                               && x.Partner.PartnerCode == partner.PartnerCode
-                                               && x.Ticket.ProductCode == ticketCode).Single();
-                assigned = assign.AssignedAmount;
-                sold = assign.SoldAmount;
+                ActivityTicketAssign thisAss = null;
+                IList<ActivityTicketAssign> assigns = ActivityTicketAssign.Where(x => x.DateAssign == date && x.Partner.PartnerCode.ToLower() == partner.PartnerCode.ToLower()
+                                               && x.Ticket.ProductCode.ToLower() == ticketCode.ToLower()).ToList();
+                //foreach (ActivityTicketAssign ass in ActivityTicketAssign)
+                //{
+                //    DateTime dt2 =DateTime.Parse( DateTime.Today.ToString("yyyy-MM-dd"));
+                //    if (ass.DateAssign == DateTime.Now.Date && ass.Partner.PartnerCode.ToLower() == partner.PartnerCode.ToLower() && ass.Ticket.ProductCode.ToLower() == ticketCode)
+                //    {
+                //        thisAss = ass;
+                //        break;
+                //    }
+                //}
+
+
+                if (assigns.Count== 0)
+                {
+                    throw new Exception(string.Format( "尚未分票:合作商{0},门票{1},时间{2}",partner.PartnerCode,ticketCode,date));
+                }
+                if (assigns.Count > 1)
+                {
+                    throw new Exception(string.Format("多次分票:合作商{0},门票{1},时间{2}", partner.PartnerCode, ticketCode, date));
+        
+                }
+
+
+                assigned = assigns[0].AssignedAmount;
+                sold = assigns[0].SoldAmount;
 
             }
             bool hasEnough = sold + requestAmount <= assigned;
@@ -221,7 +243,7 @@ namespace Model
             if (amountOfIdcardOfTicket + requiredAmount > this.AmountPerIdcardTicket)
             {
                 result = false;
-                errMsg = "不能继续购买";
+                errMsg = "您的身份证号码已购买过本次活动的派送门票,欢迎下次参与.";
             }
            
             return result;
