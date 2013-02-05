@@ -125,7 +125,7 @@ namespace Model
             }
             else
             {
-                ActivityTicketAssign thisAss = null;
+               
                 IList<ActivityTicketAssign> assigns = ActivityTicketAssign.Where(x => x.DateAssign == date && x.Partner.PartnerCode.ToLower() == partner.PartnerCode.ToLower()
                                                && x.Ticket.ProductCode.ToLower() == ticketCode.ToLower()).ToList();
                 //foreach (ActivityTicketAssign ass in ActivityTicketAssign)

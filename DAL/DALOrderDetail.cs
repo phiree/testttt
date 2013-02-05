@@ -77,10 +77,11 @@ namespace DAL
                        with assign.IdCard='{0}'
                         where detail.TicketPrice.Ticket.TourActivity.ActivityCode='{1}'
                             ",idcardNo,activityCode);
-            return session.CreateQuery(sql).Future<OrderDetail>().ToList();
-            var queryover = session.QueryOver<OrderDetail>()
-      .Where(x => x.TicketPrice.Ticket.TourActivity != null && x.TicketPrice.Ticket.TourActivity.ActivityCode == activityCode)
-      .Where(x => x.TicketAssignList.ToLookup(y => y.IdCard == idcardNo).Count > 0);
+          var iquery = session.CreateQuery(sql).SetCacheMode(CacheMode.Ignore);
+          return iquery.List<OrderDetail>();
+      //      var queryover = session.QueryOver<OrderDetail>()
+      //.Where(x => x.TicketPrice.Ticket.TourActivity != null && x.TicketPrice.Ticket.TourActivity.ActivityCode == activityCode)
+      //.Where(x => x.TicketAssignList.ToLookup(y => y.IdCard == idcardNo).Count > 0);
     
         }
     }
