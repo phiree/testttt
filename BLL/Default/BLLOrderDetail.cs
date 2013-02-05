@@ -6,7 +6,7 @@ using Model;
 
 namespace BLL
 {
-    public class BLLOrderDetail:BLLBase<OrderDetail>
+    public class BLLOrderDetail : BLLBase<OrderDetail>
     {
         DAL.DALOrderDetail IOrderDetail = new DAL.DALOrderDetail();
 
@@ -31,15 +31,15 @@ namespace BLL
 
         // 为一张门票创建订单详情,为套票递归
 
-    public IList<OrderDetail> CreateDetail(Ticket t, PriceType priceType, string name, string idcardno, int amount, string remark)
+        public IList<OrderDetail> CreateDetail(Ticket t, PriceType priceType, string name, string idcardno, int amount, string remark)
         {
             IList<OrderDetail> details = new List<OrderDetail>();
 
             //1为此门票创建订单,如果是套票 则需要创建子detail
             OrderDetail detail = new OrderDetail(amount, t.GetTicketPrice(priceType), remark);
-            detail.TicketAssignList.Add(new TicketAssign(name, idcardno, detail,amount));
+            detail.TicketAssignList.Add(new TicketAssign(name, idcardno, detail, amount));
             details.Add(detail);
-           if (t.As<Ticket>() is TicketUnion)
+            if (t.As<Ticket>() is TicketUnion)
             {
                 foreach (Ticket childt in ((TicketUnion)t).TicketList)
                 {
@@ -50,23 +50,23 @@ namespace BLL
             return details;
 
         }
-        public void CreateChildDetail(IList<OrderDetail>details,OrderDetail parentDetail, Ticket t, PriceType priceType, string name, string idcardno, int amount, string remark)
+        public void CreateChildDetail(IList<OrderDetail> details, OrderDetail parentDetail, Ticket t, PriceType priceType, string name, string idcardno, int amount, string remark)
         {
 
             //1为此门票创建订单,如果是套票 则需要创建子detail
             OrderDetail detail = new OrderDetail(amount, t.GetTicketPrice(priceType), remark);
             detail.TicketAssignList.Add(new TicketAssign(name, idcardno, detail, amount));
             detail.OrderDetailForUnionTicket = parentDetail;
-          details.Add(detail);
+            details.Add(detail);
             if (t.As<Ticket>() is TicketUnion)
             {
                 foreach (Ticket childt in ((TicketUnion)t).TicketList)
                 {
-                    CreateChildDetail(details,detail, childt, priceType, name, idcardno, amount, remark);   
+                    CreateChildDetail(details, detail, childt, priceType, name, idcardno, amount, remark);
                 }
 
             }
-          
+
 
         }
         /*递归生成 orderdetail的方法
@@ -109,13 +109,18 @@ namespace BLL
         }
         */
         public IList<OrderDetail> GetOrderDetailForIdcard(string activityCode, string idcardNo)
-        { 
-          return   IOrderDetail.GetOrderDetailForIdcardInActivity( activityCode, idcardNo);
+        {
+            return IOrderDetail.GetOrderDetailForIdcardInActivity(activityCode, idcardNo);
         }
 
         public IList<OrderDetail> GetUsedOrderDetailForIdcardInActivity(string activityCode)
         {
             return IOrderDetail.GetUsedOrderDetailForIdcardInActivity(activityCode);
         }
+        public IList<TicketAssign> GetTaForIdCardInActivity(string activityCode, DateTime dt)
+        {
+            return IOrderDetail.GetTaForIdCardInActivity(activityCode, dt);
+        }
     }
-}
+    }
+

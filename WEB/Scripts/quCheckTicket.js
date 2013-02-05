@@ -8,7 +8,8 @@
         var ydcount = parseInt($($(obj).parent().find(".num")[0]).html());
         var ydusedcount = parseInt($($(obj).parent().find(".num")[1]).html());
         if (parseInt(usecount) > (ydcount - ydusedcount)) {
-            $(obj).parent().next().html("原预定&nbsp;<span style='font-weight:bold'>" + tn + "</span>&nbsp;门票&nbsp;<span class='num'>" + (ydcount - ydusedcount) + "</span>&nbsp;张&nbsp;&nbsp;" + "额外添加预定&nbsp;<span class='num'>" + (usecount - ydcount + ydusedcount) + "</span>&nbsp;张");
+            //$(obj).parent().next().html("原预定&nbsp;<span style='font-weight:bold'>" + tn + "</span>&nbsp;门票&nbsp;<span class='num'>" + (ydcount - ydusedcount) + "</span>&nbsp;张&nbsp;&nbsp;" + "额外添加预定&nbsp;<span class='num'>" + (usecount - ydcount + ydusedcount) + "</span>&nbsp;张");
+            $(obj).parent().next().html("");
         }
         else {
             $(obj).parent().next().html("");
