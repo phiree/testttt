@@ -20,6 +20,9 @@
                     <td>
                         详情
                     </td>
+                    <td>
+                        活动统计
+                    </td>
                 </tr>
         </HeaderTemplate>
         <ItemTemplate>
@@ -35,6 +38,9 @@
                 </td>
                 <td>
                     <a href='/manager/touractivity/activitydetail.aspx?actId=<%# Eval("Id") %>'>编辑详情</a>
+                </td>
+                <td>
+                     <a href='/manager/touractivity/ActivityStatistic.aspx?actId=<%# Eval("Id") %>'>活动统计</a>
                 </td>
             </tr>
         </ItemTemplate>

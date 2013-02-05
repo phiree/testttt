@@ -253,6 +253,19 @@ namespace Model
         #endregion
 
         #region Helper Method
+
+
+
+
+        /// <summary>
+        /// 某天所有门票的情况
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public virtual IList<ActivityTicketAssign> GetActivityAssignForPartnerDate(DateTime date)
+        {
+            return ActivityTicketAssign.Where(x => x.DateAssign == date).ToList();
+        }
         /// <summary>
         /// 某合作伙伴某天所有门票的情况
         /// </summary>

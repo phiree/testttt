@@ -114,7 +114,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     #region event
     protected void btnbind_Click(object sender, EventArgs e)
     {
-      
+        Session["checkType"] = "手工";
         CurrentScenic = Master.Scenic;
         if (hfdata.Value.Split('/').Length < 2)
         {
@@ -158,6 +158,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     }
     protected void btnselect_Click(object sender, EventArgs e)
     {
+        Session["checkType"] = "手工";
         string name = hfselectname.Value;
         string idcard = hfselectidcard.Value;
         int flag = 0;
@@ -258,6 +259,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                         //添加验票员信息
                         ta.ScenicAdmin = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
                         ta.saName = CurrentUser.UserName;
+                        ta.checkType = Session["checkType"].ToString();
                         bllticketassign.SaveOrUpdate(ta);
                         //查询订单中所有的detail是否都已付完款
                         List<TicketAssign> listticketassign = bllticketassign.GetTaByIdCard(ViewState["idcard"].ToString()).ToList();
@@ -329,6 +331,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                             TicketAssign ta = list[0];
                             ta.IsUsed = true;
                             ta.UsedTime = DateTime.Now;
+                            ta.checkType = Session["checkType"].ToString();
                             //添加验票员信息
                             ta.ScenicAdmin = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
                             ta.saName = CurrentUser.UserName;
@@ -404,6 +407,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
     }
     protected void btnauto_Click(object sender, EventArgs e)
     {
+        Session["checkType"] = "身份证读卡器";
         CurrentScenic = Master.Scenic;
         string idcard = hfautoidcard.Value;
         IList<TicketAssign> list = bllticketassign.GetTaByIdcardandscenic(idcard, CurrentScenic);

@@ -42,6 +42,10 @@ namespace Model
         /// 验票员真实姓名
         /// </summary>
         public virtual string saName { get; set; }
+        /// <summary>
+        /// 验票方式
+        /// </summary>
+        public virtual string checkType { get; set; }
         
     }
 

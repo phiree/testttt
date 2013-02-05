@@ -112,5 +112,10 @@ namespace BLL
         { 
           return   IOrderDetail.GetOrderDetailForIdcardInActivity( activityCode, idcardNo);
         }
+
+        public IList<OrderDetail> GetUsedOrderDetailForIdcardInActivity(string activityCode)
+        {
+            return IOrderDetail.GetUsedOrderDetailForIdcardInActivity(activityCode);
+        }
     }
 }
