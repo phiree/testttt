@@ -9,10 +9,10 @@
     </div>
     <div id="suichangMain">
         <div class="left">
-            <a href="/Tickets/lishui_suichangxian/Tpdlbpszf.html" class="btnqp" style="margin:260px 0px 0px 505px"></a>
-            <a href="/Tickets/lishui_suichangxian/Tpdlbpszs.html" class="btnqp" style="margin:290px 0px 0px 505px" ></a>
-            <a href="/Tickets/lishui_suichangxian/Tpdlbpszt.html" class="btnqp" style="margin:290px 0px 0px 505px" ></a>
-            <a href="/Tickets/lishui_suichangxian/Tpdlbpszr.html" class="btnqp" style="margin:295px 0px 0px 505px" ></a>
+            <a href="/Tickets/lishui_suichangxian/suicanglibaoone.html" class="btnqp" style="margin:260px 0px 0px 505px"></a>
+            <a href="/Tickets/lishui_suichangxian/suicanglibaotwo.html" class="btnqp" style="margin:290px 0px 0px 505px" ></a>
+            <a href="/Tickets/lishui_suichangxian/taopiaosuichangthree.html" class="btnqp" style="margin:290px 0px 0px 505px" ></a>
+            <a href="/Tickets/lishui_suichangxian/suichangtangmuyuan.html" class="btnqp" style="margin:295px 0px 0px 505px" ></a>
 
         </div>
         <div class="right">
@@ -25,7 +25,7 @@
                 <p class="step">第五步：在"个人中心/我的抢票"中查看抢票</p>
                 <p class="step" style="margin-left:62px">结果</p>
                 <p class="step" style="margin-top:20px"><span style=" color:#E9360E">活动时间：</span>2013年2月2日-2013年2月24日</p>
-                 <p class="step"><span style=" color:#E9360E">开抢时间：</span>每天10:00开抢，每日数量有限,</p>
+                 <p class="step"><span style=" color:#E9360E">开抢时间：</span>每天下午3:00开抢，每日数量有限,</p>
                  <p class="step"><span style=" color:#E9360E; visibility:hidden">开抢时间：</span>抢完即止</p>
                   <p class="step"><span style=" color:#E9360E;">兑换方式：</span>抢票成功的用户刷二代身份证即可</p>
                   <p class="step"><span style=" color:#E9360E; visibility:hidden">开抢时间：</span>进入相应景区;门票不可转让,仅</p>
