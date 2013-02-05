@@ -7,31 +7,109 @@ namespace HotelModel.HotelDB
 {
     public class nbapisdk_Hotel
     {
+        /// <summary>
+        /// 酒店id
+        /// </summary>
         public string hotelId { get; set; }
+        /// <summary>
+        /// 酒店名称
+        /// </summary>
         public string hotelName { get; set; }
+        /// <summary>
+        /// 酒店地址
+        /// </summary>
         public string address { get; set; }
+        /// <summary>
+        /// 酒店挂牌星级：当为0时，对外显示可用Category的值
+        /// </summary>
         public int star { get; set; }
+        /// <summary>
+        /// 酒店所在地邮编
+        /// </summary>
         public string zipCode { get; set; }
+        /// <summary>
+        /// 酒店星级：-1，0均表示经济型酒店，此处为酒店推荐星级，而非酒店挂牌星级
+        /// </summary>
         public int category { get; set; }
+        /// <summary>
+        /// 酒店类别，目前只有H
+        /// </summary>
         public string typology { get; set; }
+        /// <summary>
+        /// 房间种类数量
+        /// </summary>
         public int roomNumer { get; set; }
+        /// <summary>
+        /// 酒店特殊信息提示：请把次信息展示给用户，以便 用户预定
+        /// </summary>
         public string availPolicy { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string descNote { get; set; }
+        /// <summary>
+        /// 用户评分，暂时不用
+        /// </summary>
         public int usersRating { get; set; }
+        /// <summary>
+        /// 艺龙评分，暂时不用
+        /// </summary>
         public int elongRanking { get; set; }
+        /// <summary>
+        /// 纬度
+        /// </summary>
         public string latitude { get; set; }
+        /// <summary>
+        /// 经度
+        /// </summary>
         public string longitude { get; set; }
+        /// <summary>
+        /// 国家
+        /// </summary>
         public string country { get; set; }
+        /// <summary>
+        /// 酒店区域：暂时不用，空置
+        /// </summary>
         public string region { get; set; }
+        /// <summary>
+        /// 酒店所在省份：ID表示，省份名称和Ggeo中的province对应
+        /// </summary>
         public string province { get; set; }
+        /// <summary>
+        /// 酒店所在城市：ID表示，城市 名称和geo中cityid相对应
+        /// </summary>
         public string city { get; set; }
+        /// <summary>
+        /// 商业区：ID表示，商业区名称和geo中的commerciallocation相对应
+        /// </summary>
         public string businessZone { get; set; }
+        /// <summary>
+        /// 行政区：ID表示，城市名称和geo中的distinct相对应
+        /// </summary>
         public string distict { get; set; }
+        /// <summary>
+        /// 品牌
+        /// </summary>
         public string brandId { get; set; }
+        /// <summary>
+        /// 电话
+        /// </summary>
         public string phone { get; set; }
+        /// <summary>
+        /// 传真
+        /// </summary>
         public string fax { get; set; }
+        /// <summary>
+        /// 开店时间
+        /// </summary>
         public string openingDate { get; set; }
+        /// <summary>
+        /// 不用字段
+        /// </summary>
         public string activationDate { get; set; }
+        /// <summary>
+        /// 不用字段
+        /// </summary>
         public string removationDate { get; set; }
         public string addTime { get; set; }
         public string modifyTime { get; set; }

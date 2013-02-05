@@ -163,13 +163,13 @@ namespace DAL
             string imageurl = "";
             try
             {
-                string sql = "SELECT top 1 url_3 FROM nbapisdk_Image where hotelId=:hotelId and imgType=5";
+                string sql = "SELECT top 1 url_1 FROM nbapisdk_Image where hotelId=:hotelId and imgType=5";
                 var query = session.CreateSQLQuery(sql)
                     .SetParameter("hotelId", HotelId);
                 imageurl = query.UniqueResult<string>();
                 if (string.IsNullOrEmpty(imageurl))
                 {
-                    var sql2 = "SELECT url_3 FROM nbapisdk_Image where hotelId=:hotelId";
+                    var sql2 = "SELECT url_1 FROM nbapisdk_Image where hotelId=:hotelId";
                     var query2 = session.CreateSQLQuery(sql2)
                         .SetParameter("hotelId", HotelId);
                     var images = query2.List<string>();

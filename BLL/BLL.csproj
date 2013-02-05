@@ -131,7 +131,6 @@
     <Compile Include="HotelSDKBLL\BLLHotelList.cs" />
     <Compile Include="HotelSDKBLL\BLLHotelOrder.cs" />
     <Compile Include="HotelSDKBLL\BLLHotelRoom.cs" />
-    <Compile Include="IdCardInfo.cs" />
     <Compile Include="QuZhouSpring\BLLQZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\BLLQZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\BLLQZTicketAsign.cs" />
