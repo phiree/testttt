@@ -62,20 +62,20 @@ namespace BLL
                 goto LblReturn;
             }
 
-            DateTime nowDay = DateTime.Now.Date;
-            IList<ActivityTicketAssign> ticketAssignList=
+            //DateTime nowDay = DateTime.Now.Date;
+            //IList<ActivityTicketAssign> ticketAssignList=
                   
-                  activity.ActivityTicketAssign.Where(x =>
-                         x.Partner.PartnerCode == PartnerCode
-                         && x.Ticket.ProductCode == ticketCode
-                         && x.DateAssign == DateTime.Today).OrderByDescending(x=>x.DateAssign).ToList();
+            //      activity.ActivityTicketAssign.Where(x =>
+            //             x.Partner.PartnerCode == PartnerCode
+            //             && x.Ticket.ProductCode == ticketCode
+            //             && x.DateAssign == DateTime.Today).OrderByDescending(x=>x.DateAssign).ToList();
 
-              ActivityTicketAssign ticketAssign=  bllActivityTicketAssign.GetOneByQuery(activityCode, PartnerCode, ticketCode, DateTime.Now.Date);
-              if (ticketAssign==null)
-              {
-                  returnMsg = "F|门票尚未分配";
-                  goto LblReturn;
-              }
+            //  ActivityTicketAssign ticketAssign=  bllActivityTicketAssign.GetOneByQuery(activityCode, PartnerCode, ticketCode, DateTime.Now.Date);
+            //  if (ticketAssign==null)
+            //  {
+            //      returnMsg = "F|门票尚未分配";
+            //      goto LblReturn;
+            //  }
              
            
             ///数量规则验证
@@ -156,8 +156,8 @@ namespace BLL
 
             ////3 该接入商该景区的已售门票+1
           
-                ticketAssign.SoldAmount += Number;
-                bllActivityTicketAssign.SaveOrUpdate(ticketAssign);
+                //ticketAssign.SoldAmount += Number;
+                //bllActivityTicketAssign.SaveOrUpdate(ticketAssign);
            
         LblReturn:
             TourLog.ErrorLog.Info(returnMsg);
