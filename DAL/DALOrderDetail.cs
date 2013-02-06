@@ -79,7 +79,7 @@ namespace DAL
                             ",idcardNo,activityCode);
           var iquery = session.CreateQuery(sql).SetCacheMode(CacheMode.Ignore);
           return iquery.List<OrderDetail>();
-      //      var queryover = session.QueryOver<OrderDetail>()
+      //  var queryover = session.QueryOver<OrderDetail>()
       //.Where(x => x.TicketPrice.Ticket.TourActivity != null && x.TicketPrice.Ticket.TourActivity.ActivityCode == activityCode)
       //.Where(x => x.TicketAssignList.ToLookup(y => y.IdCard == idcardNo).Count > 0);
     

@@ -195,8 +195,12 @@ namespace BLL
         /// <param name="assignName"></param>
         /// <param name="amount"></param>
         /// <param name="errMsg"></param>
-        public Order CreateOrder(string partnerCode, TourMembership member, IList<Ticket> ticketlist, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+        public Order CreateOrder(bool needValidate, string partnerCode, TourMembership member, IList<Ticket> ticketlist, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
         {
+
+            errMsg = string.Empty;
+            if (needValidate)
+            { 
             #region 验证订单是否符合规则 需要移至 活动类处理,且应该放到该类之外处理
             ///对购物车内多张门票创建订单
             errMsg = string.Empty;
@@ -212,6 +216,7 @@ namespace BLL
                     //该身份证号码已经购买的数量
                     ActivityPartner partner = bllPartner.GetByPartnerCode(activity.ActivityCode, partnerCode);
                     IList<OrderDetail> detailOfIdcard = bllOrderDetail.GetOrderDetailForIdcard(activity.ActivityCode, idcardno);
+                   
                     bool result = activity.CheckProcessOrder(detailOfIdcard, t.ProductCode, amount,idcardno, out errMsg);
 
                     if (!result)
@@ -221,7 +226,7 @@ namespace BLL
                 }
             }
             #endregion
-
+            }
             #region 创建订单
              Order order = new Order(member, partnerCode);
             IList<OrderDetail> details = new List<OrderDetail>();
@@ -231,6 +236,7 @@ namespace BLL
                 details= bllOrderDetail.CreateDetail(t, priceType, assignName, idcardno, amount, "");
                 foreach (OrderDetail d in details)
                 {
+                    
                     d.Order = order;
                 }
             }            order.OrderDetail = details;
@@ -251,19 +257,27 @@ namespace BLL
                 }
             }
             #endregion
+
             return order;
 
         }
 
         BLLOrderDetail bllOrderDetail = new BLLOrderDetail();
-        public Order CreateOrder(string partnerCode, TourMembership member, Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+        public Order CreateOrder(string partnerCode, TourMembership member, Ticket ticket
+            , string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+        {
+
+            return CreateOrder(true, partnerCode, member, ticket, idcardno, assignName, amount, priceType, out errMsg);
+        }
+        public Order CreateOrder(bool needValidation,string partnerCode, TourMembership member
+            , Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
         {
 
             List<Ticket> ticketList = new List<Ticket>();
 
             ticketList.Add(ticket);
 
-            return CreateOrder(partnerCode, member, ticketList, idcardno, assignName, amount, priceType, out errMsg);
+            return CreateOrder(needValidation, partnerCode, member, ticketList, idcardno, assignName, amount, priceType, out errMsg);
         }
     }
 }

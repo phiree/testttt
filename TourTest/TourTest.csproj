@@ -142,6 +142,7 @@
     <Compile Include="BLLTest\DJS\RouteTest.cs" />
     <Compile Include="CommonLibraryTest\AppSettingsManagerTest.cs" />
     <Compile Include="CommonLibraryTest\ContentReader.cs" />
+    <Compile Include="CommonLibraryTest\IOHelperTest.cs" />
     <Compile Include="CommonLibraryTest\testStringHelper.cs" />
     <Compile Include="CommonLibraryTest\UrlParamHelperTest.cs" />
     <Compile Include="CommonLibraryTest\JsonHelperTest.cs" />
