@@ -20,6 +20,7 @@
             <a href="Default.aspx" style="color:White;">个人中心</a></div>
         <ul>
             <li class="ptlink"><span>▶</span><a href="/usercenter/Order.aspx">我的订单</a></li>
+            <li class="ptlink"><span>▶</span><a href="/usercenter/HotelOrder.aspx">酒店订单</a></li>
             <li class="ptlink"><span>▶</span><a href="/usercenter/MyVisited.aspx">游玩记录</a></li>
             <li class="ptlink"><span>▶</span><a href="/usercenter/AccountInfo.aspx">个人信息</a></li>
             <li class="ptlink"><span>▶</span><a href="/usercenter/MyPassword.aspx">修改密码</a></li>

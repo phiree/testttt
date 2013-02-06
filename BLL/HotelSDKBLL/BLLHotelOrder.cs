@@ -137,5 +137,10 @@ namespace BLL
         {
             return dal.GetOrderdetail(orderid);
         }
+
+        public IList<nbapisdk_HotelOrder> GetOrderList(string memid)
+        {
+            return dal.GetOrderList(memid);
+        }
     }
 }

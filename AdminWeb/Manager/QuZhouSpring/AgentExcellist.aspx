@@ -7,32 +7,41 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:Button Text="按一下" runat="server" onclick="btnInput_Click" /><br />
+    <asp:Button Text="按一下" runat="server" OnClick="btnInput_Click" /><br />
     <asp:Label ID="lblresult" Text="text" runat="server" />
     <hr />
     <asp:Repeater runat="server" ID="rptTaList" OnItemCommand="rptTaList_ItemCommand">
-    <HeaderTemplate>
-    <table>
-    </HeaderTemplate>
+        <HeaderTemplate>
+            <table>
+        </HeaderTemplate>
         <ItemTemplate>
-        <tr>
-        <td>
-            <td>  <asp:Button runat="server" ID="btn" CommandName="add" Text="分配门票" /></td>
-            <td>  <%#DataBinder.Eval(Container, "DataItem.景区名称")%></td>
-            <td>  <asp:Label runat="server" ID="lblName" Text='<%#DataBinder.Eval(Container, "DataItem.姓名")%>' /></td>
-            <td>  <asp:Label runat="server" ID="lblIdCardNo" Text='<%#DataBinder.Eval(Container, "DataItem.身份证号码")%>'/></td>
-            <td>  <asp:Label runat="server" ID="lblProductCode" Text='<%#DataBinder.Eval(Container, "DataItem.ticketcode")%>'/></td>
-            <td>  <asp:Label runat="server" ID="lblPhone" Text='<%#DataBinder.Eval(Container, "DataItem.手机号码")%>'/></td>
-        
+            <tr>
+                <td>
+                    <td>
+                        <asp:Button runat="server" ID="btn" CommandName="add" Text="分配门票" />
+                    </td>
+                    <td>
+                        <%#DataBinder.Eval(Container, "DataItem.景区名称")%>
+                    </td>
+                    c
+                    <td>
+                        <asp:Label runat="server" ID="lblName" Text='<%#DataBinder.Eval(Container, "DataItem.姓名")%>' />
+                    </td>
+                    <td>
+                        <asp:Label runat="server" ID="lblIdCardNo" Text='<%#DataBinder.Eval(Container, "DataItem.身份证号码")%>' />
+                    </td>
+                    <td>
+                        <asp:Label runat="server" ID="lblProductCode" Text='<%#DataBinder.Eval(Container, "DataItem.ticketcode")%>' />
+                    </td>
+                    <td>
+                        <asp:Label runat="server" ID="lblPhone" Text='<%#DataBinder.Eval(Container, "DataItem.手机号码")%>' />
+                    </td>
             </tr>
         </ItemTemplate>
         <FooterTemplate>
-        </table>
+            </table>
         </FooterTemplate>
     </asp:Repeater>
-    <div>
-        <%--  <asp:Button ID="btnInput" Text="导入" runat="server" OnClick="btnInput_Click" />--%>
-    </div>
     </form>
 </body>
 </html>

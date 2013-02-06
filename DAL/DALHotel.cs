@@ -15,7 +15,7 @@ namespace DAL
 
             try
             {
-                string sql = "select top 20 h.*,img.url_3 from nbapisdk_Hotel h,nbapisdk_Image img where city=:city and img.hotelId=h.hotelId and img.imgType=5";
+                string sql = "select top 20 h.*,img.url_1,img.url_2,img.url_3 from nbapisdk_Hotel h,nbapisdk_Image img where city=:city and img.hotelId=h.hotelId and img.imgType=5";
                 var query = session.CreateSQLQuery(sql)
                     .SetParameter("city", searchHotelListRequestCondition.CityId);
                 var result = query.List<object[]>();
@@ -56,7 +56,9 @@ namespace DAL
                         lowestPrice = item[30] == null ? "" : item[30].ToString(),
                         lastOrderedTime = item[31] == null ? "" : item[31].ToString(),
                         invStatusCode = int.Parse(item[32].ToString()),
-                        url_3 = item[33].ToString()
+                        url_1 = item[33].ToString(),
+                        url_2 = item[34].ToString(),
+                        url_3 = item[35].ToString()
                     });
                 }
             }
@@ -481,6 +483,56 @@ namespace DAL
                 ho.contacterfax = item[29].ToString();
             }
             return ho;
+        }
+        public IList<nbapisdk_HotelOrder> GetOrderList(string memid)
+        {
+            if (string.IsNullOrWhiteSpace(memid)) return null;
+            IList<nbapisdk_HotelOrder> holist = new List<nbapisdk_HotelOrder>();
+            nbapisdk_HotelOrder ho = new nbapisdk_HotelOrder();
+            string sql = "select [orderId],[statusCode],[hotelId],[roomTypeId],[ratePlanId],[checkInDate]," +//6
+                "[checkOutDate],[elongCardNo],[guestTypeCode],[roomAmount],[guestAmount],[paymentTypeCode]," +//6
+                "[arrivalEarlyTime],[arrivalLateTime],[currencyCode],[totalPrice],[guaranteeCurrencyCode],[guaranteeMoney]," +//6
+                "[confirmTypeCode],[confirmLanguageCode],[noteToHotel],[noteToElong],[_default_],[guestsName]," +//6
+                "[contacterName],[contacterGender],[contacterEmail],[contacterMobile],[contacterPhone],[contacterFax] " +//6
+                "from [nbapisdk_HotelOrder] where _default_=:memid ";
+            var query = session.CreateSQLQuery(sql).SetParameter("memid", memid);
+            var result = query.List<object[]>();
+            foreach (var item in result)
+            {
+                ho = new nbapisdk_HotelOrder();
+                ho.orderid = item[0].ToString();
+                ho.statuscode = item[1].ToString();
+                ho.hotelid = item[2].ToString();
+                ho.roomtypeid = item[3].ToString();
+                ho.rateplanid = int.Parse(item[4].ToString());
+                ho.checkindate = DateTime.Parse(item[5].ToString());
+                ho.checkoutdate = DateTime.Parse(item[6].ToString());
+                ho.elongcardno = item[7].ToString();
+                ho.guesttypecode = int.Parse(item[8].ToString());
+                ho.roomamount = int.Parse(item[9].ToString());
+                ho.guestamount = int.Parse(item[10].ToString());
+                ho.paymenttypecode = int.Parse(item[11].ToString());
+                ho.arrivalearlytime = DateTime.Parse(item[12].ToString());
+                ho.arrivallatetime = DateTime.Parse(item[13].ToString());
+                ho.currencycode = item[14].ToString();
+                ho.totalprice = decimal.Parse(item[15].ToString());
+                ho.guaranteecurrencycode = item[16].ToString();
+                ho.guaranteemoney = decimal.Parse(item[17].ToString());
+                ho.confirmtypecode = item[18].ToString();
+                ho.confirmlanguagecode = item[19].ToString();
+                ho.notetohotel = item[20].ToString();
+                ho.notetoelong = item[21].ToString();
+                ho._default_ = item[22].ToString();
+                ho.guestsname = item[23].ToString();
+                ho.contactername = item[24].ToString();
+                ho.contactergender = int.Parse(item[25].ToString());
+                ho.contacteremail = item[26].ToString();
+                ho.contactermobile = item[27].ToString();
+                ho.contacterphone = item[28].ToString();
+                ho.contacterfax = item[29].ToString();
+                holist.Add(ho);
+            }
+            return holist;
         }
     }
 }

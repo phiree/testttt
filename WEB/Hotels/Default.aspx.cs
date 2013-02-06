@@ -35,7 +35,7 @@ public partial class Hotels_Default : System.Web.UI.Page
 
     private void BindHotels()
     {
-        CityID = Request["area"]==null ? "1272":Request["area"];
+        CityID = Request["area"] == null ? "1272" : Request["area"];
         checkInDate = Request["cin"] == null ? null : Request["cin"];
         checkOutDate = Request["cout"] == null ? null : Request["cout"];
 
@@ -92,8 +92,6 @@ public partial class Hotels_Default : System.Web.UI.Page
 
     private void BindArea()
     {
-        //rptAreas.DataSource = bllarea.GetSubArea("330000");
-        //rptAreas.DataBind();
     }
 
     protected void rptArea_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -107,7 +105,10 @@ public partial class Hotels_Default : System.Web.UI.Page
 
     protected void rpthotel_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        { 
+            
+        }
     }
 
     protected void rptCounty_ItemDataBound(object sender, RepeaterItemEventArgs e)

@@ -111,15 +111,40 @@ namespace HotelModel.HotelDB
         /// 不用字段
         /// </summary>
         public string removationDate { get; set; }
+        /// <summary>
+        /// 上线销售时间
+        /// </summary>
         public string addTime { get; set; }
+        /// <summary>
+        /// 此酒店最后一次修改时间
+        /// </summary>
         public string modifyTime { get; set; }
+        /// <summary>
+        /// 是否经济型酒店
+        /// </summary>
         public bool isEconomic { get; set; }
+        /// <summary>
+        /// 是否酒店式公寓
+        /// </summary>
         public bool isApartment { get; set; }
+        /// <summary>
+        /// 最低价格
+        /// </summary>
         public string lowestPrice { get; set; }
+        /// <summary>
+        /// 未知字段
+        /// </summary>
         public string lastOrderedTime { get; set; }
+        /// <summary>
+        /// 未知字段
+        /// </summary>
         public int invStatusCode { get; set; }
 
+
+
         //附加属性，
+        public string url_1 { get; set; }
+        public string url_2 { get; set; }
         public string url_3 { get; set; }
     }
 

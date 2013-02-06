@@ -148,7 +148,8 @@ namespace BLL
             bllOrder.CreateOrder(PartnerCode, member.Id, ticket, CardNumber, RealName, Number,PriceType.PreOrder, out createOrderErrMsg);
             if (!string.IsNullOrEmpty(createOrderErrMsg))
             {
-                returnMsg = "F|创建订单失败,请联系客服";
+                returnMsg = "F|创建订单失败,请联系客服:";
+                returnMsg += createOrderErrMsg;
                 goto LblReturn;
             }
 

@@ -62,20 +62,19 @@
     您预订的是：<asp:Label ID="lblhotelname1" Text="text" runat="server" />
     <hr />
     预订详情：房型信息<br />
-    <div class="hotel_info" style="float: left;width:230px;">
-        <div class="l">
+    <div class="hotel_info">
+        <div  style="float:left;margin-right:20px;">
             <asp:Image ID="imghotel" ImageUrl="" runat="server" /></div>
-        <div class="r">
+        <div>
             <a title="" href="" target="_blank" runat="server">
                 <asp:Label Text="text" runat="server" ID="lblhotelname2" /></a><br>
             <p class="dizhi">
                 <asp:Label ID="lblhoteladdress" Text="text" runat="server" />
             </p>
         </div>
-        <div class="clear">
+        <div>
         </div>
-        <!--促销信息-->
-        <div class="rm_type">
+        <div>
             <ul>
                 <li><span>房&nbsp;&nbsp;&nbsp;型：</span><asp:Label Text="text" runat="server" ID="lblroomtype"/></li>
                 <li><span>床&nbsp;&nbsp;&nbsp;型：</span><asp:Label Text="text" runat="server" ID="lblbedtype"/></li>
@@ -83,10 +82,9 @@
                 <li><span>宽&nbsp;&nbsp;&nbsp;带：</span><asp:Label Text="text" runat="server" ID="lblnet"/></li>
             </ul>
         </div>
-        <!--促销信息 end-->
     </div>
     <div>
-        <table border="1" cellpadding="1" cellspacing="1">
+        <table border="1" cellpadding="1" cellspacing="1" style="clear:left">
             <tr>
                 <td>
                     房型数量：
