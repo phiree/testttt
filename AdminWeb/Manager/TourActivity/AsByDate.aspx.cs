@@ -36,16 +36,28 @@ public partial class Manager_TourActivity_AsByDate : System.Web.UI.Page
         DateTime dt=DateTime.Parse(Request.QueryString["dt"]);
         if (e.Item.ItemType == ListItemType.Header)
         {
-            Literal laPartnerName = e.Item.FindControl("laPartnerName") as Literal;
-            foreach (var partner in ta.Partners)
+            if (ddlType.SelectedValue == "出售数量")
             {
-                countSolidList.Add(0);
-                string tdpartner = "<td>";
-                tdpartner += partner.Name;
-                tdpartner += "</td>";
-                laPartnerName.Text += tdpartner;
+                Literal laPartnerName = e.Item.FindControl("laPartnerName") as Literal;
+                foreach (var partner in ta.Partners)
+                {
+                    countSolidList.Add(0);
+                    string tdpartner = "<td>";
+                    tdpartner += partner.Name;
+                    tdpartner += "</td>";
+                    laPartnerName.Text += tdpartner;
+                }
+                laPartnerName.Text += "<td>总计</td>";
             }
-            laPartnerName.Text += "<td>总计</td>";
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    countSolidList.Add(0);
+                }
+                Literal laPartnerName = e.Item.FindControl("laPartnerName") as Literal;
+                laPartnerName.Text = "<td>身份证读卡器</td><td>人工</td><td>手机</td><td>总计</td>";
+            }
             
         }
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
@@ -70,35 +82,46 @@ public partial class Manager_TourActivity_AsByDate : System.Web.UI.Page
             else
             {
                 //List<OrderDetail> listOd = bllOd.GetUsedOrderDetailForIdcardInActivity(ta.ActivityCode).ToList();
-                //int checkAmount = 0;
-                //foreach (var orderdetail in listOd)
-                //{
-                //    foreach (var ticketAssign in orderdetail.TicketAssignList)
-                //    {
-                //        foreach (var partner in ta.Partners)
-                //        {
-                //            if (DateTime.Parse(ticketAssign.UsedTime.ToString()).Date == dt.Date && ticketAssign.OrderDetail.TicketPrice.Ticket.Id == t.Id)
-                //            {
-                //                checkAmount++;
-                //            }
-                //        }
-                        
-                //    }
-                //}
-                //Literal laCheckAmount = e.Item.FindControl("laCheckAmount") as Literal;
+                Literal laCheckAmount = e.Item.FindControl("laCountName") as Literal;
+                int checkAmount = 0;
+                List<TicketAssign> listTa=bllOd.GetTaForIdCardInActivity(ta.ActivityCode,dt).ToList();
+                string[] str=new string[3]{"身份证读卡器","人工","手工"};
+                temp = 0;
+                foreach (var s in str)
+	            {
+                    checkAmount = listTa.Where(x => x.OrderDetail.TicketPrice.Ticket.Id == t.Id).Where(x => x.checkType == s).Count();
+                    laCheckAmount.Text += "<td>" + checkAmount.ToString() + "</td>";
+                    countSolidList[temp++]+= checkAmount;
+	            }
+                laCheckAmount.Text += "<td>" + listTa.Where(x => x.OrderDetail.TicketPrice.Ticket.Id == t.Id).Count().ToString() + "</td>";
+                countSolidList[temp++]+=listTa.Where(x => x.OrderDetail.TicketPrice.Ticket.Id == t.Id).Count();
+               
+                
                 //laCheckAmount.Text = checkAmount.ToString();
             }
         }
         if (e.Item.ItemType == ListItemType.Footer)
         {
-            Literal laTotal = e.Item.FindControl("laTotal") as Literal;
-            int tt=0;
-            foreach (int solid in countSolidList)
+            if (ddlType.SelectedValue == "出售数量")
             {
-                tt+=solid;
-                laTotal.Text += "<td>" + solid.ToString() + "</td>";
+                Literal laTotal = e.Item.FindControl("laTotal") as Literal;
+                int tt = 0;
+                foreach (int solid in countSolidList)
+                {
+                    tt += solid;
+                    laTotal.Text += "<td>" + solid.ToString() + "</td>";
+                }
+                laTotal.Text += "<td>" + tt.ToString() + "</td>";
             }
-            laTotal.Text += "<td>" + tt.ToString() + "</td>";
+            else
+            {
+                Literal laTotal = e.Item.FindControl("laTotal") as Literal;
+
+                foreach (var countSolid in countSolidList)
+                {
+                    laTotal.Text += "<td>" + countSolid.ToString() + "</td>";
+                }
+            }
         }
     }
     protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)

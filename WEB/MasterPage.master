@@ -88,7 +88,11 @@
         <asp:ContentPlaceHolder ID="cphmain" runat="server">
         </asp:ContentPlaceHolder>
     </div>
+    
     <div id="footer">
+        <div class="show_div" >
+            <span class="show_4" style="margin:0px auto"></span>
+        </div>
         <div class="footer_main">
             <asp:Button ID="btnScLogin" runat="server" Text="" CssClass="btnScLogin" OnClick="btnScLogin_Click" />
             <div class="about">

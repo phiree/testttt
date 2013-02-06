@@ -384,8 +384,6 @@ public partial class DiscountTicket_DiscountTicket : basepage
             if (rptItems.Items.Count == 0)
             {
                 Label lblNoResult = e.Item.FindControl("lblNoResult") as Label;
-                HtmlContainerControl sp = e.Item.FindControl("sp") as HtmlContainerControl;
-                sp.Visible = true;
                 lblNoResult.Visible = true;
             }
         }

@@ -23,7 +23,7 @@ public partial class Manager_TourActivity_ActivityStatistic : System.Web.UI.Page
     {
         switch (RadioButtonList1.SelectedIndex)
         {
-            case 0: rptTime.Visible = true; break;
+            case 0: bindData(); break;
         }
 
     }
@@ -97,4 +97,9 @@ public partial class Manager_TourActivity_ActivityStatistic : System.Web.UI.Page
             laBfb.Text = (totalCheckAmount * 100.0 / totalSolidAmount).ToString("f2")+"%";
         }
     }
+
+
+
+
+
 }
