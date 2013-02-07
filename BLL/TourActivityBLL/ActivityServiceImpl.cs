@@ -34,7 +34,7 @@ namespace BLL
         /// <param name="Number"></param>
         /// <returns></returns>
         public string buyProduct(bool needValidation, string activityCode, TourMembership member
-            , string PartnerCode, string CardNumber, string RealName, string Phone, string ticketCode, int Number)
+            , string PartnerCode, string CardNumber, string RealName, string Phone, string ticketCode, int Number,DateTime buyTime)
         {
 
            
@@ -89,7 +89,7 @@ namespace BLL
             
             
 
-            bllOrder.CreateOrder( PartnerCode, member, ticket, CardNumber, RealName, Number,PriceType.PreOrder, out createOrderErrMsg);
+            bllOrder.CreateOrder( PartnerCode, member, ticket, CardNumber, RealName, Number,PriceType.PreOrder,buyTime, out createOrderErrMsg);
             if (!string.IsNullOrEmpty(createOrderErrMsg))
             {
                 returnMsg = "F|"+createOrderErrMsg;
@@ -112,7 +112,7 @@ namespace BLL
                , string PartnerCode, string CardNumber, string RealName, string Phone, string ticketCode, int Number)
         {
           return  buyProduct(true, activityCode, member, PartnerCode,
-                CardNumber, RealName, Phone, ticketCode, Number);
+                CardNumber, RealName, Phone, ticketCode, Number,DateTime.Now.Date);
         }
    
        

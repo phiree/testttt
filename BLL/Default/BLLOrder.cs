@@ -195,7 +195,7 @@ namespace BLL
         /// <param name="assignName"></param>
         /// <param name="amount"></param>
         /// <param name="errMsg"></param>
-        public Order CreateOrder(bool needValidate, string partnerCode, TourMembership member, IList<Ticket> ticketlist, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+        public Order CreateOrder(bool needValidate, string partnerCode, TourMembership member, IList<Ticket> ticketlist, string idcardno, string assignName, int amount, PriceType priceType,DateTime buyTime, out string errMsg)
         {
 
             errMsg = string.Empty;
@@ -250,8 +250,9 @@ namespace BLL
                 TourActivity activity = t.TourActivity;
                 if (activity != null)
                 {
+                    
                     ActivityTicketAssign ata = activity
-                                .GetActivityAssignForPartnerTicketDate(partnerCode, t.ProductCode, DateTime.Now.Date);
+                                .GetActivityAssignForPartnerTicketDate(partnerCode, t.ProductCode, buyTime.Date);
                     ata.SoldAmount += amount;
                     bllActivityTa.SaveOrUpdate(ata);
                 }
@@ -267,17 +268,24 @@ namespace BLL
             , string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
         {
 
-            return CreateOrder(true, partnerCode, member, ticket, idcardno, assignName, amount, priceType, out errMsg);
+            return CreateOrder(true, partnerCode, member, ticket, idcardno, assignName, amount, priceType, DateTime.Now.Date, out errMsg);
+        }
+
+        public Order CreateOrder(string partnerCode, TourMembership member, Ticket ticket
+          , string idcardno, string assignName, int amount, PriceType priceType,DateTime buyTime, out string errMsg)
+        {
+
+            return CreateOrder(true, partnerCode, member, ticket, idcardno, assignName, amount, priceType,buyTime, out errMsg);
         }
         public Order CreateOrder(bool needValidation,string partnerCode, TourMembership member
-            , Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+            , Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType,DateTime buyTime, out string errMsg)
         {
 
             List<Ticket> ticketList = new List<Ticket>();
 
             ticketList.Add(ticket);
 
-            return CreateOrder(needValidation, partnerCode, member, ticketList, idcardno, assignName, amount, priceType, out errMsg);
+            return CreateOrder(needValidation, partnerCode, member, ticketList, idcardno, assignName, amount, priceType, buyTime, out errMsg);
         }
     }
 }

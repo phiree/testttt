@@ -1,0 +1,161 @@
+﻿#paymain
+{
+    width:960px;
+    margin:15px auto;
+    background-color:White;
+}
+.ddinfo
+{
+    font-size:14px;
+    margin:15px 0px 0px 35px;
+}
+#paylist
+{
+    width:900px;
+    margin:15px auto;
+    height:27px;
+    background-color:#E9E5DC;
+    border-top:1px solid #CE8100;
+}
+#paylist span,#payinfo span
+{
+    font-size:16px;
+    line-height:27px;
+    width:150px;
+    text-align:center;
+    display:inline-block;
+}
+.areaname
+{
+    margin:0px 0px 0px 60px;
+}
+.yuanjia
+{
+    margin:0px 0px 0px 0px;
+}
+#payinfo
+{
+    margin:10px auto;
+    width:900px;
+}
+.areaname2
+{
+    display:inline-block;
+    width:200px;
+    margin-left:60px;
+    text-align:center;
+}
+.btnjian2
+{
+    background:url("/Img/btnjian2.jpg");
+    width:18px;
+    height:18px;
+    border:0px none White;
+    outline:none;
+    position:relative;
+    left:4px;
+}
+.count
+{
+    outline:none;
+    height:18px;
+    width:60px;
+    text-align:center;
+    border:1px solid #BFBAD8;
+    line-height:18px;
+    font-size:13px;
+    margin-right:0px;
+    padding-right:0px;
+    position:relative;
+    top:1px;
+}
+.btnadd2
+{
+    background:url("/Img/btnadd2.jpg");
+    width:18px;
+    height:18px;
+    border:0px none White;
+    padding-left:0px;
+    margin-left:0px;
+    outline:none;
+    position:relative;
+    left:-4px;
+}
+
+hr
+{
+    width:800px;
+    margin:10px auto;
+    border:1px #EC6841 dotted;
+    color:#EC6841;
+}
+#totalnum
+{
+    width:900px;
+    margin:10px auto;
+}
+#totalnum p
+{
+    margin-left:750px;
+    font-size:16px;
+}
+#totalpay
+{
+    font-size:20px;
+    text-align:center;
+    margin-top:200px;
+}
+#btnpay
+{
+    text-align:center;
+}
+.btngopay
+{
+    background-color:#EC6841;
+    width:159px;
+    height:39px;
+    color:White;
+    font-size:20px;
+    border:1px solid #444;
+    cursor:pointer;
+}
+
+
+
+.idcarddiv
+{
+    margin:0px auto 20px auto;
+    width:960px;
+    text-align:center;
+}
+.UserName
+{
+    border:1px solid #EEEEEE;
+    height:25px;
+    width:100px;
+    line-height:24px;
+    margin-right:5px;
+    padding-left:15px;
+    font-size:14px;
+    letter-spacing:2px;
+    outline:none;
+}
+.idcard
+{
+    border:1px solid #EEEEEE;
+    height:25px;
+    width:200px;
+    line-height:24px;
+    font-size:14px;
+    letter-spacing:2px;
+    padding-left:15px;
+    outline:none;
+}
+.spanname
+{
+    margin-left:-45px;
+}
+.spanidcard
+{
+    margin-left:100px;
+}

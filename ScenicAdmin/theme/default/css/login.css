@@ -1,0 +1,132 @@
+﻿#logincontainer
+{
+    /*
+    font-size: 15px;
+    margin: 0 20px 10px 20px;
+    width: 920px;
+    float: left;
+    padding-top: 50px;
+    background-color: #DEF4D0;
+    padding-bottom:50px;*/
+}
+#loginbox
+{ 
+  display:inherit;
+    margin: 0 auto;
+  
+    padding: 25px 30px;
+    width: 500px;
+  
+    background-color: #fff;
+}
+#loginbox table td
+{
+     padding:10px 0;
+    }
+
+.lb
+{
+    display: block;
+    width: 60px;
+    margin-bottom: 5px;
+}
+
+.tbx
+{
+    width: 250px;
+   line-height: 31px;
+   height:31px;
+}
+
+.loginbtn
+{
+    
+     width:100px;
+     height:30px;
+     text-align:center;
+    cursor:pointer;
+    background-color:#55A930;
+    border:0px none;
+    color:White;
+    font-weight:bold;
+    }
+ #lg3rd
+ {
+      margin-top:10px;
+     }   
+     .cbremember label
+     {
+          font-weight:normal !important;
+         }
+#error
+{
+   
+    margin: 10px;
+  
+    color: Red;
+    padding: 20px;
+}
+
+/*新版本*/
+#loginmain
+{
+    width:100%;
+}
+.loginmainleft
+{
+    float:left;
+    width:50%;
+    display:block;
+    height:500px;
+}
+.lmbg
+{
+    background-image:url("/theme/default/image/newversion/loginbg.png");
+    width:258px;
+    height:165px;
+    display:block;
+    margin-left:120px;
+    margin-top:120px;
+    display:inline-block;
+}
+.loginmainright
+{
+    float:left;
+    width:50%;
+    display:block;
+    height:500px;
+    
+}
+.lmbg span
+{
+    display:block;
+    color:#4B4B4B;
+    margin-top:100px;
+    margin-left:65px;
+}
+.lmbg a
+{
+    font-weight:bold;
+    color:White;
+    margin-left:150px;
+    position:relative;
+    top:-18px;
+}
+.logindiv
+{
+    border:1px solid #DFEDD5;
+    display:block;
+    height:350px;
+    width:400px;
+    margin-top:100px;
+    padding:0px;
+}
+table
+{
+    width:100%;
+}
+hr
+{
+    border:0px none;
+    border-bottom:1px solid #DFEDD5;
+}

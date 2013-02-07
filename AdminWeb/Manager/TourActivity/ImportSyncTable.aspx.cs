@@ -51,7 +51,7 @@ public partial class Manager_TourActivity_ImportSyncTable : System.Web.UI.Page
                 log += string.Format("记录:[ {0},{1},{2},{3},{4},{5},{6},{7} ]", id, idcardno, buyTime, typeid, ticketCode, partnerCode, syncstate, phone);
                 string realName = "活动参与者";
                 string activitycode = typeid == 1 ? "quzhouspring" : "suichang2013";
-                string result = bllService.buyProduct(false, activitycode, null, partnerCode, idcardno, realName, phone, ticketCode, 1);
+                string result = bllService.buyProduct(false, activitycode, null, partnerCode, idcardno, realName, phone, ticketCode, 1,buyTime);
                 log = result + log;
                 if (result == "T")
                 {

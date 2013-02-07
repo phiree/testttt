@@ -34,11 +34,12 @@ public class ImportDataHander : IHttpHandler {
                 string result = string.Empty ;
                 try
                 {
-                     result = bllService.buyProduct(false, activitycode, null, partnerCode, idcardno, realName, phone, ticketCode, 1);
+                     result = bllService.buyProduct(false, activitycode, null, partnerCode, idcardno, realName, phone, ticketCode, 1,buyTime);
                 }
                 catch (Exception ex)
                 {
                     result = ex.Message;
+                    HttpContext.Current.Server.ClearError();
                 }
                 if (result == "T")
                 {
@@ -50,8 +51,8 @@ public class ImportDataHander : IHttpHandler {
                     DAL.ado.NativeSqlUtiliity nativsql = new NativeSqlUtiliity(connectionstringforSync);
                     nativsql.ExecuteNonResult("update userticket set syncstate=3 where id= " + id);
                 }
-                log = result + log;
-                CommonLibrary.IOHelper.WriteContentToFile("d:\\importData\\AjaxResult.txt", log+Environment.NewLine);
+                log = result+"_" + log;
+                CommonLibrary.IOHelper.WriteContentToFile("d:\\importData\\AjaxResult"+DateTime.Now.ToString("yyyyMMddHH")+".txt", log+Environment.NewLine);
                 context.Response.Write(result);
               
     }
