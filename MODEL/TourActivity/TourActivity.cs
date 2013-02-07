@@ -156,7 +156,7 @@ namespace Model
             {
                 if (DateTime.Now.AddDays(1).Date <= EndDate)
                 {
-                    errMsg = "当天门票已售完,欢迎明天" + BeginHour + "点再来!";
+                    errMsg = "今天的门票已售完,欢迎明天再来";
                 }
                 else
                 {
