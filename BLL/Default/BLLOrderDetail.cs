@@ -121,6 +121,10 @@ namespace BLL
         {
             return IOrderDetail.GetTaForIdCardInActivity(activityCode, dt);
         }
+        public IList<TicketAssign> GetTaForIdCardInActivity(string activityCode, int ticketId)
+        {
+            return IOrderDetail.GetTaForIdCardInActivity(activityCode,ticketId);
+        }
     }
     }
 

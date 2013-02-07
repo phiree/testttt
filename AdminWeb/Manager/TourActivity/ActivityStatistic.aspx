@@ -65,5 +65,102 @@
             </table>
         </FooterTemplate>
     </asp:Repeater>
+    <asp:Repeater runat="server" ID="rptPartner" 
+        onitemdatabound="rptPartner_ItemDataBound">
+        <HeaderTemplate>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        供应商名称
+                    </td>
+                    <td>
+                        售出总数
+                    </td>
+                    <td>
+                        详细情况
+                    </td>
+                </tr>
+        </HeaderTemplate>
+        <ItemTemplate>
+            <tr>
+                <td>
+                    <%# Eval("Name") %>
+                </td>
+                <td>
+                    <asp:Literal ID="laCount" runat="server"></asp:Literal>
+                </td>
+                <td>
+                    <a href="">详细情况</a>
+                </td>
+            </tr>
+        </ItemTemplate>
+        <FooterTemplate>
+            <tr>
+                <td>
+                    总计
+                </td>
+                <td>
+                    <asp:Literal ID="laTotalCount" runat="server"></asp:Literal>
+                </td>
+            </tr>
+        </FooterTemplate>
+    </asp:Repeater>
+
+    <asp:Repeater runat="server" ID="rptTickets" 
+        onitemdatabound="rptTickets_ItemDataBound">
+        <HeaderTemplate>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        景区名称
+                    </td>
+                    <td>
+                        门票名称
+                    </td>
+                    <td>
+                        售出数量
+                    </td>
+                    <td>
+                        验票数量
+                    </td>
+                    <td>
+                        详细情况
+                    </td>
+                </tr>
+        </HeaderTemplate>
+        <ItemTemplate>
+            <tr>
+                <td>
+                    <%# Eval("Scenic.Name") %>
+                </td>
+                <td>
+                    <%# Eval("Name") %>
+                </td>
+                <td>
+                    <asp:Literal ID="laSolidAmount" runat="server"></asp:Literal>
+                </td>
+                <td>
+                    <asp:Literal ID="laCheckAmount" runat="server"></asp:Literal>
+                </td>
+                <td>
+                    <a href=''>详细情况</a>
+                </td>
+            </tr>
+        </ItemTemplate>
+        <FooterTemplate>
+            <tr>
+                <td>
+                    总计
+                </td>
+                <td></td>
+                <td>
+                    <asp:Literal ID="laSolidTotalAmount" runat="server"></asp:Literal>
+                </td>
+                <td>
+                    <asp:Literal ID="laCheckTotalAmount" runat="server"></asp:Literal>
+                </td>
+            </tr>
+        </FooterTemplate>
+    </asp:Repeater>
 </asp:Content>
 
