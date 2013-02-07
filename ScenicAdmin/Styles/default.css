@@ -1,0 +1,196 @@
+﻿/******首页*****/
+/*推荐景区*/
+.mainimg img
+{
+    height: 290px;
+    width: 460px;
+}
+
+#dvMainImg
+{
+    width: 460px;
+    float: left;
+    position: relative;
+}
+#dvMainImg span
+{
+
+    top: 261px;
+  
+    width: 450px;
+}
+.transparentBar
+{
+    font-size: 14px;
+    font-weight: 600;
+    backfilterground-color: #fff;
+    : alpha(opacity=80);
+    opacity: 0.7;
+    position: absolute;
+    left: 0;
+   
+    padding: 5px 0 5px 10px;
+   
+    }
+#topimg
+{
+    background-color: White;
+    width: 942px;
+    float: left;
+    padding: 8px;
+    border: solid 1px #ddd;
+}
+.smallimg
+{
+    margin-top: 12px;
+    background-color: White; /*  padding-left:20px;*/
+}
+.smallimg:first-child
+{
+    margin-top: 0;
+}
+.focusImg
+{
+    display: block;
+    padding-left: 20px;
+}
+.focusImg:hover
+{
+    background: url("/img/arrow.png") top left no-repeat;
+}
+.smallimg img
+{
+    width: 144px;
+    height: 63px;
+}
+.midimg
+{
+    float: left; /*       padding-left: 20px;     background: url("/img/imgarrow.png") top left no-repeat;  */
+}
+.rightimg
+{
+    position: relative;
+    float:right;
+}
+.rightimg img
+{
+    width: 300px;
+    height: 290px;
+    float: left;
+    margin-left: 5px;
+}
+.rightimg span
+{
+  
+    left: 0;
+    top: 261px;
+    width: 300px;
+}
+/*筛选条件*/
+.mark
+{
+    color: #E25F33;
+    margin: 0 5px;
+}
+#daohangarea
+{
+    width: 958px;
+    border: solid 1px #ddd;
+}
+#level a, #area a
+{
+    margin: 5px;
+    padding: 5px;
+}
+.highlightSelected
+{
+    background-color: #FEDA3B;
+    color: #E25E2D !important;
+}
+
+#area
+{
+    font-size: 12px;
+    margin: 20px 0px 0px 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #E5E5E5;
+}
+#level
+{
+    font-size: 12px;
+    margin: 20px 0px 20px 10px;
+}
+
+/*门票列表*/
+
+#mainscenic
+{
+    min-height: 380px;
+}
+
+
+.scenicdesc
+{
+    margin: 10px 0 0 10px;
+    padding: 5px;
+    border: solid 1px #ddd;
+    width: 297px;
+    float: left;
+    display: inline;
+    position: relative;
+}
+.scenicdescimg
+{
+    width: 284px;
+    height: 225px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    border: solid 2px #ccc;
+    display: block;
+}
+.dvprice, .divOrder
+{
+    float: left;
+    padding-left: 5px;
+    width: 290px;
+}
+.dvprice a
+{
+}
+.dvprice span
+{
+}
+.dvprice em
+{
+    margin: 0 4px;
+}
+.dvprice .normalpr em
+{
+    text-decoration: line-through;
+    color: #888;
+}
+.dvprice .onlinepr em
+{
+    font-size: 16pt;
+    color: red;
+}
+.areaname
+{
+   
+    left: 12px;
+    top: 201px;
+    width: 276px;
+}
+.areaname a
+{
+    position: relative;
+}
+.dvOrder
+{
+    padding-top: 5px;
+    text-align: right;
+    margin-right: 5px;
+}
+
+
+

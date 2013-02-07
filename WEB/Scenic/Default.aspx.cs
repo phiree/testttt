@@ -197,10 +197,17 @@ public partial class Scenic_Default : basepage
             if (listTicket.Count() > 0)
             {
                 hfProductCode.Value = listTicket[0].ProductCode;
+                //判断门票是否已经过期
+                TourActivity act = listTicket[0].TourActivity;
+                if (DateTime.Now.Date>=act.BeginDate&&  DateTime.Now.Date<= act.EndDate)
+                { 
+                
+               
                var ticketAsign = listTicket[0].TourActivity
                     .GetActivityAssignForPartnerTicketDate(SiteConfig.PartnerCodeOfTourOL, listTicket[0].ProductCode,DateTime.Now.Date);
 
                hfSyCount.Value = (ticketAsign.AssignedAmount - ticketAsign.SoldAmount).ToString();
+                }
             }
             else
             {

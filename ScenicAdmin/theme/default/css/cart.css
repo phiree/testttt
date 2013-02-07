@@ -1,0 +1,240 @@
+﻿.qtyBtn
+{
+    display: block;
+    height: 16px;
+    width: 13px;
+    float: left;
+    border: 1px solid #ccc;
+    padding: 2px;
+    padding-left:3px;
+    padding-right:3px;
+    cursor: pointer;
+    margin-left: 5px;
+    line-height:16px;
+}
+.qtyBtn:hover
+{
+    background-color: Yellow;
+}
+.qtyModify
+{
+    float: left;
+    margin: 0 !important;
+    margin-left: 5px !important;
+    vertical-align:middle;
+    margin-top:2px !important;
+    width: 40px;
+    text-align:center;
+    height:15px;
+    _height:12px;
+}
+.delete
+{
+    cursor: pointer;
+}
+#itemlist
+{
+}
+.orderlist
+{
+    width:98%;
+    margin:15px auto 15px auto;
+    border-bottom:1px solid #D4CEC8;
+}
+
+.orderlist tr
+{
+    height: 35px;
+}
+.orderlist td
+{
+    margin:0px;
+    padding:0px;
+    text-align:center;
+    padding-top:5px;
+    padding-bottom:5px;
+    height:30px !important;
+}
+.orderlist thead tr
+{
+    background-color: #B4B4B4;
+    color: Black;
+    height:30px;
+}
+.carttbtd
+{
+    background-color:#F0F0F0 !important;
+}
+.orderlist thead tr td
+{
+    font-weight:bold;
+    color:White;
+    padding:0px;
+    height:30px;
+    width:200px;
+    margin:0px;
+}
+.orderlist tfoot
+{
+    background-color: #82974C;
+    font-style: normal;
+    color: White;
+}
+.orderlist tfoot tr
+{
+    height: 25px;
+}
+.orderlist tfoot div
+{
+    float: right;
+    margin-right: 30px;
+}
+#payaction
+{
+    float: right;
+    margin-right: 10px;
+    margin-top: 30px;
+    _margin-right:5px;
+}
+#payaction a
+{
+    margin-left: 40px;
+}
+
+
+.cartbread
+{
+    display:block;
+    height:20px;
+    margin-top:15px;
+    margin-left:10px;
+    font-weight:bold;
+    float:left;
+    width:200px;
+}
+.cartbread img
+{
+    vertical-align:middle;
+    margin-right:10px;
+}
+.stateimg
+{
+    float:right;
+    display:block;
+    margin-top:10px;
+    margin-right:10px;
+    background:url("/theme/default/image/20130116/orderState.png");
+    width:385px;
+    height:20px;
+}
+.stateimg2
+{
+    float:right;
+    display:block;
+    margin-top:10px;
+    margin-right:10px;
+    background:url("/theme/default/image/20130116/orderState.png");
+    background-position:0px 23px;
+    width:385px;
+    height:20px;
+}
+.tkcount
+{
+    text-align:right;
+    margin:10px 40px;
+    font-size:14px;
+}
+.tkcount strong
+{
+    margin-left:10px;
+    margin-right:10px;
+}
+.tksum
+{
+    width:98%;
+    height:63px;
+    border:1px solid #CDCDCD;
+    background-color:#F1F1F1;
+    margin:5px auto;
+}
+.tksuminfo
+{
+    display:block;
+    float:left;
+    margin-left:400px;
+    margin-top:15px;
+}
+.tksuminfo2
+{
+    display:block;
+    float:left;
+    margin-left:40px;
+    margin-top:15px;
+}
+.tksuminfo strong,.tksuminfo2 strong
+{
+    font-size:20px;
+    font-weight:bold;
+    color:#EF6782;
+    margin-right:5px;
+}
+.cartbtnok:link,.cartbtnok:active,.cartbtnok:visited
+{
+    display:block;
+    width:80px;
+    height:24px;
+    background:url("/theme/default/image/newversion/cartbtnokbg.gif");
+    background-repeat:repeat;
+    float:left;
+    border:1px solid #E3007A;
+    text-decoration:none;
+    color:White;
+    font-weight:bold;
+    text-align:center;
+    line-height:24px;
+}
+.cartbtnok:hover
+{
+    display:block;
+    width:80px;
+    height:24px;
+    background:url("/theme/default/image/newversion/cartbtnokbg2.gif");
+    background-repeat:repeat;
+    float:left;
+    border:1px solid #E3007A;
+    text-decoration:none;
+    color:White;
+    font-weight:bold;
+    text-align:center;
+    line-height:24px;
+}
+.cartbtngoon:link,.cartbtngoon:active,.cartbtngoon:visited
+{
+    display:block;
+    width:80px;
+    height:24px;
+    background:url("/theme/default/image/newversion/goonshop1.gif");
+    background-repeat:repeat;
+    float:left;
+    border:1px solid #AF5D9C;
+    text-decoration:none;
+    color:White;
+    font-weight:bold;
+    text-align:center;
+    line-height:24px;
+}
+.cartbtngoon:hover
+{
+    display:block;
+    width:80px;
+    height:24px;
+    background:url("/theme/default/image/newversion/goonshop2.gif");
+    background-repeat:repeat;
+    float:left;
+    border:1px solid #AF5D9C;
+    text-decoration:none;
+    color:White;
+    font-weight:bold;
+    text-align:center;
+    line-height:24px;
+}

@@ -1,0 +1,781 @@
+﻿/*个人中心*/
+#dtop
+{
+    height:42px;
+    width:700px;
+    background:url("/theme/default/image/vtopbg.png");
+    background-repeat:repeat-x;
+    margin:0px auto;
+    font-weight:700;
+    font-size:15px;
+    padding-left:15px;
+    line-height:42px;
+    border-left:1px solid #DBD4CC;
+    border-right:1px solid #DBD4CC;
+}
+#dinfo
+{
+    width:715px;
+    display:block;
+    height:500px;
+    background-color:#F9F8F6;
+    margin:0px auto;
+}
+.dorder:link,.dorder:active,.dorder:hover,.dorder:visited
+{
+    display:block;
+    padding:40px 0px 0px 80px;
+    font-size:14px;
+    font-weight:900;
+    color:#7D7A76;
+    text-decoration:none;
+    outline:none;
+}
+.dorderinfo
+{
+    display:block;
+    background-color:White;
+    width:200px;
+    height:30px;
+    margin:15px 0px 0px  70px;
+    line-height:30px;
+}
+.ddpcount:link,.ddpcount:active,.ddpcount:hover,.ddpcount:visited
+{
+    margin:0px 0px 0px 10px;
+}
+.dgpcount:link,.dgpcount:active,.dgpcount:hover,.dgpcount:visited
+{
+    margin:0px 0px 0px 10px;
+    color:#F5942D;
+}
+/*游玩记录*/
+#vtop
+{
+    height:42px;
+    width:700px;
+    background:url("/theme/default/image/vtopbg.png");
+    background-repeat:repeat-x;
+    margin:0px auto;
+    font-weight:700;
+    font-size:15px;
+    padding-left:15px;
+    line-height:42px;
+    border-left:1px solid #DBD4CC;
+    border-right:1px solid #DBD4CC;
+}
+#vdetail
+{
+    width:98%;
+    margin:10px 5px 0px 5px;
+    min-height:173px;
+}
+.vtitlename
+{
+    background-color:#E3DED3;
+    height:30px;
+    
+}
+.vtitlename span
+{
+    display:inline-block;
+    line-height:30px;
+    color:#807940;
+}
+.vtfirst
+{
+    width:75px;
+    margin-left:30px;
+    text-align:center;
+}
+.vtsecond
+{
+    width:150px;
+    margin-left:10px;
+    text-align:center;
+}
+.vtthird
+{
+    width:70px;
+    margin-left:10px;
+    text-align:center;
+}
+.vtfour
+{
+    width:50px;
+    margin-left:10px;
+    text-align:center;
+}
+.vtfifth
+{
+    width:30px;
+    margin-left:30px;
+    text-align:center;
+}
+.vtsix
+{
+    width:60px;
+    margin-left:30px;
+    text-align:center;
+}
+.vinfo
+{
+    height:35px;
+}
+.vinfo span,.valinfo span
+{
+    display:inline-block;
+    line-height:35px;
+}
+.valinfo
+{
+    height:35px;
+    background-color:#FEFADF;
+}
+.vtotal
+{
+    height:50px;
+    width:95%;
+    margin:20px auto;
+    border-top:1px solid #CDCDCD;
+}
+.vtotal span
+{
+    margin-left:10px;
+    color:#807940;
+    line-height:50px;
+    margin-left:10px;
+    margin-right:10px;
+}
+.strongnum
+{
+    font-size:20px;
+    font-weight:bold;
+}
+/*修改密码*/
+#ptop
+{
+    height:42px;
+    width:700px;
+    background:url("/theme/default/image/vtopbg.png");
+    background-repeat:repeat-x;
+    margin:0px auto;
+    font-weight:700;
+    font-size:15px;
+    padding-left:15px;
+    line-height:42px;
+    border-left:1px solid #DBD4CC;
+    border-right:1px solid #DBD4CC;
+}
+#pinfo
+{
+    width:715px;
+    display:block;
+    height:250px;
+    margin:0px auto;
+}
+#pinfo table
+{
+    width:400px;
+    margin:0px auto;
+    padding-top:10px;
+}
+#pinfo table tr
+{
+    background-color:inherit;
+}
+#pinfo table tr td
+{
+    background-color:inherit !important;
+}
+.pchangepwd
+{
+    width:86px;
+    height:26px !important;
+    background:url("/theme/default/image/newversion/ucbtnokbg.png");
+    background-repeat:repeat-x;
+    border:1px solid #BFB130;
+    cursor:pointer;
+    color:White;
+    font-weight:bold;
+    text-align:center;
+    line-height:24px !important;
+    font-size:12px;
+    margin-top:20px;
+}
+.pchangepwd:hover
+{
+    background-image:url("/theme/default/image/newversion/ucbtnokbg2.png");
+}
+
+/*个人信息*/
+#atop
+{
+    height:42px;
+    width:700px;
+    background:url("/theme/default/image/vtopbg.png");
+    background-repeat:repeat-x;
+    margin:0px auto;
+    font-weight:700;
+    font-size:15px;
+    padding-left:15px;
+    line-height:42px;
+    border-left:1px solid #DBD4CC;
+    border-right:1px solid #DBD4CC;
+}
+#ainfo
+{
+    width:715px;
+    display:block;
+    height:350px;
+    margin:0px 0px 0px 0px;
+    display:inline-block;
+}
+#ainfo table
+{
+    margin:30px auto;
+    width:400px;
+}
+#ainfo table tr
+{
+    background-color:inherit;
+}
+#ainfo table tr td
+{
+    background-color:inherit !important;
+    color:#807940;
+}
+.atxt
+{
+    width:150px;
+    height:22px;
+    line-height:22px;
+    font-size:13px;
+}
+.achangebtn
+{
+    width:86px;
+    height:26px !important;
+    background:url("/theme/default/image/newversion/ucbtnokbg.png");
+    background-repeat:repeat-x;
+    border:1px solid #BFB130;
+    cursor:pointer;
+    color:White;
+    font-weight:bold;
+    text-align:center;
+    line-height:24px !important;
+    font-size:12px;
+    margin-top:20px;
+}
+.achangebtn:hover
+{
+    background-image:url("/theme/default/image/newversion/ucbtnokbg2.png");
+}
+/*订单记录*/
+#otop
+{
+    height:42px;
+    width:700px;
+    background:url("/theme/default/image/vtopbg.png");
+    background-repeat:repeat-x;
+    margin:0px auto;
+    font-weight:700;
+    font-size:15px;
+    padding-left:15px;
+    line-height:42px;
+    border-left:1px solid #DBD4CC;
+    border-right:1px solid #DBD4CC;
+}
+#odetail
+{
+    width:700px;
+    margin:15px auto;
+    min-height:173px;
+}
+.osper
+{
+    border:none !important;
+    border-bottom:1px dashed #CDCDCD !important;
+    margin:5px 0px 5px 0px;
+    width:100%;
+    display:block;
+    background:none;
+}
+.otitlename
+{
+    background-color:#E3DED3;
+    height:30px;
+    line-height:30px;
+    color:White;
+    margin-bottom:10px;
+}
+.otitlename span
+{
+    display:inline-block;
+    text-align:center;
+    padding-top:1px;
+    padding-bottom:1px;
+    color:#807940;
+}
+.ofirst
+{
+    margin-left:10px;
+    width:60px;
+}
+.osecond
+{
+    margin-left:15px;
+    width:360px;
+}
+.odname
+{
+    width:350px;
+    margin-right:10px;
+    display:inline-block;
+    text-align:left !important;
+}
+.odname a
+{
+    display:block;
+    float:left;
+    width:150px;
+}
+.odname span
+{
+    display:block;
+    width:200px !important;
+    float:left;
+    text-align:left !important;
+}
+.othird
+{
+    margin-left:10px;
+    width:80px;
+}
+.ofour
+{
+    margin-left:0px;
+    width:120px;
+}
+.ofifth
+{
+    margin-left:10px;
+    width:80px;
+}
+.osix
+{
+    margin-left:10px;
+    width:40px;
+}
+
+.oinfo
+{
+    min-height:35px;
+    color:#807940;
+}
+.tttt
+{
+    color:#DBD7CC;
+}
+.oinfo span,.oainfo span
+{
+    display:inline-block;
+    line-height:35px;
+    text-align:center;
+    vertical-align:middle;
+}
+.oainfo
+{
+    min-height:35px;
+    background-color:#FEFADF;
+}
+.onowpay,.onowpay:link,.onowpay:active,.onowpay:hover,.onowpay:visited
+{
+    color:#EC6B9E;
+    cursor:pointer;
+}
+
+
+/*订单详情*/
+#oscdpinfo
+{
+    width:715px;
+    margin:0px auto;
+}
+.oscdptop
+{
+    display:block;
+    /*background-color:#82974C;*/
+    height:30px;
+    line-height:30px;
+    padding-left:20px;
+}
+.oscdptitle
+{
+    background-color:#E3DED3;
+    height:32px;
+    margin-left:10px;
+    margin-right:10px;
+    color:White;
+}
+.oscdptitle span
+{
+    line-height:32px;
+    display:inline-block;
+    text-align:center;
+    color:#807940;
+}
+.osczero
+{
+    margin-left:20px;
+    width:120px;
+   
+}
+.oscfirst
+{
+    margin-left:20px;
+    width:100px;
+}
+.oscsecond,.oscsix,.oscseven
+{
+    margin-left:0px;
+    width:60px;
+}
+.oscthird,.oscfour,.oscfifth
+{
+    margin-left:10px;
+    width:50px;
+}
+.oscdpdetail
+{
+    min-height:35px;
+    margin:5px 10px 5px 10px;
+    vertical-align:middle;
+}
+.oscdpdetail span
+{
+    line-height:35px;
+    display:inline-block;
+    text-align:center;
+    color:#807940;
+    vertical-align:middle;
+}
+.oscticketcount
+{
+    margin-left:5px;
+    margin-right:5px;
+    font-size:20px;
+    font-weight:bold;
+    color:#807940;
+}
+.dscdptotal
+{
+    height:50px;
+    border-top:1px dashed #CDCDCD;
+    color:#807940;
+    line-height:50px;
+    padding-left:60px;
+}
+#oscupdateinfo
+{
+    border-top:1px solid #DBD4CC;
+    width:715px;
+    margin:5px auto;
+    color:#807940;
+}
+.oscupdatetop
+{
+    /*background-color:#F0832E;*/
+    height:35px;
+    line-height:35px;
+    padding-left:15px;
+    /*color:White;*/
+}
+.oscupdatesearch
+{
+}
+.oscsearchnav
+{
+    padding:5px 0px 0px 10px;
+    display:block;
+    min-height:10px;
+}
+.oscseardiv
+{
+    display:inline-block;
+    height:20px;
+    width:150px;
+    border:1px solid #DBD4CC;
+    float:left;
+    background-color:White;
+}
+.oscsearchbtn
+{
+    display:block;
+    border:0px solid White;
+    width:20px;
+    height:20px;
+    background:url("/theme/default/image/oscsearchbtn.png");
+    cursor:pointer;
+    margin:0px;
+    padding:0px;
+    float:left;
+}
+.oscsearchname
+{
+    display:block;
+    height:20px;
+    float:left;
+    border:0px none White;
+    width:100px;
+    margin:0px;
+    padding:0px;
+}
+.oscnamelist
+{
+    background-color:White;
+    margin:20px auto;
+    width:700px;
+    min-height:20px;
+    padding-top:5px;
+    padding-bottom:5px;
+    
+}
+.oscname
+{
+    display:block;
+    width:50px;
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:5px;
+    float:left;
+    margin-bottom:5px;
+    cursor:pointer;
+}
+.oscdetailname
+{
+    width:700px;
+    min-height:30px;
+    margin:0px auto;
+    display:inline-block;
+}
+.oscbtnsave
+{
+    width:700px;
+    text-align:center;
+    padding-bottom:10px;
+    margin-top:40px;
+}
+.oscbtnupdate
+{
+    width:86px;
+    height:26px;
+    background-image:url("/theme/default/image/newversion/ucbtnokbg.png");
+    background-repeat:repeat-x;
+    border:1px solid #BFB130;
+    cursor:pointer;
+    text-align:center;
+    line-height:22px;
+    *padding:0px;
+    margin:0px;
+    font-weight:bold;
+    color:White;
+    font-size:12px;
+    
+}
+.oscbtnupdate:hover
+{
+    background-image:url("/theme/default/image/newversion/ucbtnokbg2.png");
+}
+.state2
+{
+    width:90%;
+    margin:0px auto;
+    border-top:1px dashed #CDCDCD;
+    padding-left:30px;
+    padding-bottom:20px;
+    padding-top:10px;
+    color:#807940;
+}
+.jstitle
+{
+    color:#82974C;
+}
+.payonline,.payonline:link,.payonline:hover,.payonline:visited,.payonline:active,.payonline:visited
+{
+    color:#EC6B9E;
+    vertical-align:middle;
+    font-weight:bold;
+    cursor:pointer;
+    margin-left:10px;
+}
+.payonline2
+{
+    border:none;
+    background-color:White;
+    vertical-align:middle;
+    line-height:20px;
+    color:#EC6B9E;
+    font-weight:bold;
+    cursor:pointer;
+}
+.payonline2:hover
+{
+    text-decoration:underline;
+}
+.state3
+{
+    padding-left:30px;
+    padding-bottom:20px;
+    padding-top:10px;
+}
+.btnyd
+{
+    border:none;
+    background-color:White;
+    vertical-align:middle;
+    line-height:20px;
+    color:#EC6B9E;
+    font-weight:bold;
+    cursor:pointer;
+}
+.btnyd:hover
+{
+    text-decoration:underline;
+}
+/*常用联系人管理*/
+#cutop
+{
+    height:42px;
+    width:700px;
+    background:url("/theme/default/image/vtopbg.png");
+    background-repeat:repeat-x;
+    margin:0px auto;
+    font-weight:700;
+    font-size:15px;
+    padding-left:15px;
+    line-height:42px;
+    border-left:1px solid #DBD4CC;
+    border-right:1px solid #DBD4CC;
+}
+#cuinfo
+{
+    width:715px;
+    display:inline-block;
+    min-height:250px;
+    margin-left: 0px;
+}
+
+.culist table
+{
+    width:98%;
+    margin:10px 5px;
+}
+.culist table td
+{
+    text-align:center;
+}
+.lkbtnxg
+{
+    background:url("/theme/default/image/xgicon.png");
+    width:17px;
+    height:17px;
+    display:block;
+    float:left;
+    margin-left:25px;
+    margin-right:20px;
+    _margin-left:12px;
+}
+.axg:link,.axg:active,.axg:visited
+{
+    text-decoration:none;
+    cursor:pointer;
+    display:block;
+    float:left;
+    width:30px;
+}
+.axg:hover
+{
+    text-decoration:underline;
+    cursor:pointer;
+    display:block;
+    float:left;
+    width:30px;
+}
+.xzan
+{
+    margin:15px 0px 20px 30px;
+}
+.btnaddcu,.btndeletecu
+{
+    width:86px;
+    height:26px;
+    background-image:url("/theme/default/image/newversion/ucbtnokbg.png");
+    background-repeat:repeat-x;
+    border:1px solid #BFB130;
+    cursor:pointer;
+    text-align:center;
+    line-height:22px;
+    *padding:0px;
+    margin:0px;
+    font-weight:bold;
+    color:White;
+    font-size:12px;
+}
+.btnaddcu:hover,.btndeletecu:hover
+{
+    background-image:url("/theme/default/image/newversion/ucbtnokbg2.png");
+}
+/*常用联系人设置*/
+#cuutop
+{
+    height:42px;
+    width:700px;
+    background:url("/theme/default/image/vtopbg.png");
+    background-repeat:repeat-x;
+    margin:0px auto;
+    font-weight:700;
+    font-size:15px;
+    padding-left:15px;
+    line-height:42px;
+    border-left:1px solid #DBD4CC;
+    border-right:1px solid #DBD4CC;
+}
+
+#cuuinfo
+{
+    width:715px;
+    display:inline-block;
+    height:250px;
+}
+#cuuinfo table
+{
+    width:400px;
+    margin:50px auto;
+}
+#cuuinfo table tr td
+{
+    background-color:inherit !important;
+    color:#807940;
+}
+.btnsave
+{
+    width:86px;
+    height:26px;
+    background-image:url("/theme/default/image/newversion/ucbtnokbg.png");
+    background-repeat:repeat-x;
+    border:1px solid #BFB130;
+    cursor:pointer;
+    text-align:center;
+    line-height:22px;
+    *padding:0px;
+    margin:0px;
+    font-weight:bold;
+    color:White;
+    font-size:12px;
+    margin-top:20px;
+}
+.btnsave:hover
+{
+    background-image:url("/theme/default/image/newversion/ucbtnokbg2.png");
+}

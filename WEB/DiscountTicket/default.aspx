@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.master" AutoEventWireup="true"
-    CodeFile="default.aspx.cs" Inherits="DiscountTicket_DiscountTicket" %>
+    CodeFile="default.aspx.cs"  Trace="true" Inherits="DiscountTicket_DiscountTicket" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
    <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />

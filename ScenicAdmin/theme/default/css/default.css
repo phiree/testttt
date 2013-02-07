@@ -1,0 +1,622 @@
+﻿/*首页*/
+#nav
+{
+    background: url(../image/navbg.png) top right repeat-y;
+}
+#navtop
+{
+    font-size: 14px;
+    padding-top: 31px;
+    height: 31px;
+    background: url(../image/navtopbg.png) top right no-repeat;
+    background-color: #fff;
+    _background-image: none;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/theme/default/image/navtopbg.png,sizingMethod='scale');
+}
+#navtop span
+{
+    line-height: 29px;
+    margin: 4px 0 0 20px;
+    font-weight: 600;
+    color: #5a5c5b;
+}
+#navlevel
+{
+    padding: 20px 0 20px 10px;
+}
+#navlevel a
+{
+    margin: 0 3px;
+}
+#ptAreaAll
+{
+    float: left;
+    margin: 8px 0 0 10px;
+}
+.dvareaitem
+{
+}
+.areaname a
+{
+    display: block;
+    height: 23px; /*  background: url(areanamebg.gif) top right no-repeat; */
+    color: #5a5c5b;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 0 5px 45px;
+}
+
+.ulitemlist
+{
+    margin-top: 6px;
+    list-style-type: none;
+}
+
+
+
+
+
+#toprecomm
+{
+    display:inline-block;
+    height:345px;
+    width:950px;
+    background:url("/theme/default/image/newversion/toperbg.png");
+}
+/*
+div:246
+  img:236
+*/
+
+#items
+{
+    width: 760px;
+    position: relative;
+    left: -1px;
+    top: -5px;
+    padding-top: 17px;
+    background: url(../image/scenicstopbg.png) top left no-repeat;
+    z-index: 101;
+}
+#itemstop
+{
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+#itemstopcontainer
+{
+    margin-left: 11px;
+    margin-right: 11px;
+    height: 39px;
+    background: url(../image/itemstopbg.png) top left repeat-x;
+    border: 1px solid #ccc;
+}
+#itemstop span
+{
+    line-height: 39px;
+    width: 750px;
+    margin-left: 5px;
+    padding-left: 15px;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #5A5C5B;
+    font-size: 1.2em;
+}
+#itemsbody
+{
+    border-left: 1px solid #dfdfdf;
+    border-right: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom: 10px;
+    width: 758px;
+    /*float: left;*/
+}
+.noresult
+{
+    margin: 30px 0 0 60px;
+    display: inline-block;
+}
+.scenicdesc
+{
+    margin:0px 0px 20px 13px;
+    border: 0px none;
+    width: 230px;
+    float: left;
+    display: inline;
+    padding-bottom:20px;
+    border-bottom:1px dashed #DEDEDE;
+}
+.scenicimgdivbg
+{
+    width:230px;
+    height:177px;
+    display:inline-block;
+    background:url("/theme/default/image/newversion/scinfobg.png");
+}
+.scenicdescimg
+{
+    width: 218px;
+    height: 158px;
+    margin: 6px;
+    display: block;
+}
+.dvprice, .divOrder
+{
+       height:31px;
+    float: left;
+    padding-left: 0px;
+    width: 230px;
+}
+
+.dvprice em
+{
+    margin: 0 2px;
+    font-style:normal;
+}
+.dvprice .normalpr 
+{
+    color: #888;
+}
+.dvprice .onlinepr em
+{
+    font-size: 16pt;
+    color: #E8360F;
+    font-style: normal;
+}
+.onlinepr
+{
+    color:#E8360F;
+    margin-left:0px;
+}
+.scenicname
+{
+    width: 213px;
+    line-height: 30px;
+    font-size:14px;
+    padding-left:5px;
+}
+.scenicname a
+{
+    position: relative;
+}
+.dvOrder
+{
+    padding-top: 5px;
+    text-align: right;
+    margin-right: 5px;
+}
+.transparentBar
+{
+    font-size: 14px;
+    background-color: #fff;
+    filter: alpha(opacity=80);
+    opacity: 0.7;
+    position: absolute;
+    left: 0;
+}
+.linkorder
+{
+    float: right;
+    margin-right: 5px;
+    margin-top:5px;
+    background:url("/theme/default/image/20130116/btnQuickBookBg.jpg");
+    background:url("/theme/default/image/20130116/btnQuickBookBg_hover.jpg");
+    color:White !important;
+    text-align:center;
+    line-height:22px;
+    letter-spacing:4px;
+    text-decoration:none;
+}
+.linkorder,.linkorder:link,.linkorder:active,.linkorder:visited
+{
+    display:block;
+    width:60px;
+    height:20px;
+    background:url("/theme/default/image/20130116/btnQuickBookBg.jpg");
+    background-repeat:repeat;
+    border:1px solid #E83608;
+}
+.linkorder:hover
+{
+    display:block;
+    width:60px;
+    height:20px;
+    background:url("/theme/default/image/20130116/btnQuickBookBg_hover.jpg");
+    background-repeat:repeat;
+    border:1px solid #E83608;
+    text-decoration:none;
+}
+
+/*
+ 图片切换
+*/
+#imgPlay
+{
+    position: relative;
+    width: 950px;
+    height: 338px;
+    overflow: hidden;
+    z-index: 100;
+}
+#imgPlay ul
+{
+    margin: 0;
+    padding: 0;
+}
+#imgPlay .imgs li
+{
+    float: left;
+    position: relative;
+    list-style-type: none;
+}
+#imgPlay .imgs img
+{
+    width: 950px; /* padding: 1px;             border: 1px solid #DBDBDB;*/
+}
+#imgPlay .num
+{
+    position: absolute;
+    display: inline;
+    top: 300px;
+    left: 400px;
+    height: 19px;
+}
+#imgPlay .num .lc, #imgPlay .num .mc, #imgPlay .num .rc
+{
+    float: left;
+    width: 13px;
+    height: 16px;
+    padding: 3px 0 0 0;
+    background: url(/theme/default/image/lc.png) no-repeat;
+}
+
+#imgPlay .num .lc, #imgPlay .num .mc, #imgPlay .num .rc
+{
+    float: left;
+    width: 13px;
+    height: 16px;
+    padding: 3px 0 0 0;
+    background: url(/theme/default/image/lc.png) no-repeat;
+}
+#imgPlay .num .mc
+{
+    background: url(/theme/default/image/mc.png) repeat-x;
+}
+#imgPlay .num .rc
+{
+    background: url(/theme/default/image/rc.png) no-repeat;
+}
+
+#imgPlay .prev, #imgPlay .next
+{
+    position: absolute;
+    top: 91px;
+    left: 1px;
+    width: 46px;
+    height: 81px;
+    background: url(/theme/default/image/imgPlayer.png) 0 0 no-repeat;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+#imgPlay .next
+{
+    left: auto;
+    right: 1px;
+    background-position: right 0;
+}
+#imgPlay .num span
+{
+    display: inline-block;
+    width: 14px;
+    height: 13px;
+    margin: 0 2px 0;
+    background: url(/theme/default/image/imgPlayer.png) -19px -83px no-repeat;
+    cursor: pointer;
+    overflow: hidden;
+    line-height: 0;
+}
+#imgPlay #numInner
+{
+    position: absolute;
+    top: 300px;
+    background: none;
+    padding: 3px 0 0 0;
+    text-align: center;
+}
+#imgPlay .num span.on
+{
+    background-position: 1px -83px;
+}
+
+/*新版首页*/
+#maindefault
+{
+    background-color:White;
+    width:950px;
+    margin:0px auto;
+}
+.defaultleft
+{
+    width:200px;
+    float:left;
+    overflow:hidden;
+}
+.defaultright
+{
+    width:750px;
+    float:left;
+    overflow:hidden;
+}
+.bookprocess
+{
+    background-color:#DFEDD5;
+    display:block;
+    height:300px;
+    width:190px;
+    margin-top:20px;
+}
+.bookprocess p
+{
+    font-weight:bold;
+    padding-left:30px;
+    letter-spacing:10px;
+    padding-top:10px;
+    padding-bottom:0px;
+    margin:0px;
+}
+.processdiv
+{
+    background-color:White;
+    margin:5px auto;
+    width:160px;
+    margin-bottom:2px;
+    padding-left:20px;
+    padding-top:20px;
+    line-height:25px;
+    height:240px;
+}
+.Recscenic
+{
+    background-color:#DFEDD5;
+    display:block;
+    height:305px;
+    margin-top:20px;
+    width:190px;
+}
+.Recscenic table tr td
+{
+    margin:0px;
+    padding:0px;
+    padding:5px;
+    padding-bottom:2px;
+}
+.Recscenic p
+{
+    font-weight:bold;
+    padding-left:30px;
+    letter-spacing:10px;
+    padding-top:10px;
+    padding-bottom:0px;
+    margin:0px;
+}
+.recscdiv
+{
+    background-color:White;
+    margin:5px auto;
+    width:170px;
+    padding-bottom:30px;
+    padding-top:10px;
+    padding-left:10px;
+}
+.postcarddesc
+{
+    display:block;
+    background:url("/theme/default/image/newversion/postcardimg.png");
+    width:190px;
+    height:233px;
+    margin-top:20px;
+}
+.visitedscenic
+{
+    background-color:#DFEDD5;
+    display:block;
+    margin-top:20px;
+    width:190px;
+    padding-bottom:2px;
+}
+.visitedscenic p
+{
+     font-weight:bold;
+    padding-left:30px;
+    letter-spacing:2px;
+    padding-top:10px;
+    padding-bottom:0px;
+    margin:0px;
+}
+.visitedscdiv 
+{
+    display:block;
+    background-color:White;
+    width:180px;
+    margin:5px auto;
+    padding-top:5px;
+}
+.visitedscdiv table tr td
+{
+    padding:5px;
+    margin:0px;
+    padding-bottom:2px;
+    
+}
+#selectdiv
+{
+    display:block;
+    border:1px solid #DEDEDE;
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:2px;
+}
+.selectarea
+{
+    margin-top:10px;
+    margin-bottom:0px;
+}
+.selectarea a,.selectarea a:link,.selectarea a:active,.selectarea a:visited,.selectarea a:active
+{
+    font-weight:600;
+    color:#004B18;
+    margin-left:5px;
+    margin-right:5px;
+}
+#sceniclist
+{
+    display:inline-block;
+    min-height:500px;
+    overflow:hidden;
+    width:729px;
+}
+.webscenic
+{
+    background-color:#DFEDD5;
+    display:block;
+    height:250px;
+    width:190px;
+    overflow:hidden;
+}
+.webscenicdiv
+{
+    display:block;
+    background-color:White;
+    width:160px;
+    margin:5px auto;
+    padding-top:5px;
+    padding-left:20px;
+    padding-bottom:20px;
+    overflow:hidden;
+}
+.webscenicdiv img
+{
+    position:relative;
+    top:5px;
+}
+.webscenic p
+{
+    text-align:center;
+    margin-top:20px;
+    color:#007520;
+    letter-spacing:2px;
+}
+.leveldiv
+{
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:5px;
+    border:0px none White;
+    border-top:1px dashed #C1C1C1;
+    padding-top:15px;
+    display:inline-block;
+    width:708px;
+    padding-bottom:15px;
+}
+.leveldiv span,.themedivspan
+{
+    font-weight:bold;
+    margin-right:10px;
+}
+.leveldiv a,.leveldiv a:link,.leveldiv a:active,.leveldiv a:visited,.leveldiv a:hover
+{
+    margin-right:10px;
+}
+
+ .areadivspan
+{
+    font-weight:bold;
+    margin-right:10px;
+}
+.xx
+{
+    
+    margin-left:10px;
+    width:96%;
+    margin-top:10px;
+    margin-bottom:0px;
+    padding:0px;
+    display:inline-block;
+}
+.themediv,.countydiv
+{
+    margin-left:10px;
+    margin-right:10px;
+    margin-bottom:10px;
+    border:0px none White;
+    border-top:1px dashed #C1C1C1;
+    padding-top:15px;
+    display:inline-block;
+    width:708px;
+}
+.areadiv
+{
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:15px;
+    border:0px none White;
+    margin-bottom:15px;
+    display:block !important;
+    padding-bottom:15px;
+}
+.countydiv
+{
+    border-top:none;
+    padding-top:5px;
+}
+.searchbody
+{
+    display:inline-block;
+    margin-top:15px;
+    overflow:hidden;
+    min-height:450px;
+}
+.sceniccount
+{
+    margin:10px 0px 0px 15px;
+}
+.nosearch
+{
+    display:inline-block;
+    margin-top:15px;
+    overflow:hidden;
+    min-height:450px;
+    border:1px solid #F1F1F1;
+    width:96%;
+    margin-left:15px;
+    margin-right:15px;
+}
+.nosceniccount
+{
+    margin:10px 0px 0px 15px;
+    font-weight:bold;
+}
+.nstitle
+{
+    width:100%;
+    height:30px;
+    background-color:#FBFBEA;
+    color:#EC6B9E;
+    padding-left:20px;
+    line-height:30px;
+}
+.nsinfo
+{
+    width:630px;
+    margin:10px auto;
+}
+.nsinfo p
+{
+    font-weight:bold;
+}
+.nsinfosc
+{
+    display:block;
+    float:left;
+    width:315px;
+    margin-top:10px;
+}

@@ -52,32 +52,29 @@ namespace Model
         #region Irule implention
 
 
-        public virtual bool CheckBeforeOrder(ActivityPartner partner, string ticketCode, int requiredAmount, out string summaryErrMsg)
+        public virtual bool CheckBeforeOrder(ActivityPartner partner, string ticketCode, int requiredAmount, out string errMsg)
         {
             
-               bool result = true;
-            summaryErrMsg = string.Empty;
-            string errMsg = string.Empty;
+             
+        
+             errMsg = string.Empty;
             //时间检查 
             if (!CheckBuyHour(partner, out errMsg))
             {
-                summaryErrMsg += errMsg + ",";
-                result = false;
+                return false;
             }
             //日期检查
             if (!CheckBuyTime(out errMsg))
             {
-                summaryErrMsg += errMsg + ",";
-                result = false;
+                return false; ;
             }
             if (!this.CheckAmountPartnerTicketDate(ticketCode, partner, DateTime.Now.Date, requiredAmount, out errMsg))
             {
-                summaryErrMsg += errMsg + ",";
-                result = false;
+                return false;
             }
 
-           
-            return result;
+
+            return true;
           
 
         }
@@ -92,7 +89,7 @@ namespace Model
                 summaryErrMsg += errMsg + ",";
                 result = false;
             }
-           
+           //数量判断
             if (!this.CheckAmountIdcard(detailOfIdcard, idcardNo, ticketCode, requiredAmount, out errMsg))
             {
                 summaryErrMsg += errMsg + ",";
@@ -125,7 +122,7 @@ namespace Model
             }
             else
             {
-                ActivityTicketAssign thisAss = null;
+               
                 IList<ActivityTicketAssign> assigns = ActivityTicketAssign.Where(x => x.DateAssign == date && x.Partner.PartnerCode.ToLower() == partner.PartnerCode.ToLower()
                                                && x.Ticket.ProductCode.ToLower() == ticketCode.ToLower()).ToList();
                 //foreach (ActivityTicketAssign ass in ActivityTicketAssign)
@@ -231,7 +228,7 @@ namespace Model
             }
         }
 
-        //身份证购得数检测
+        //身份证购得某门票的总数检测
         private  bool CheckAmountIdcard(IList<OrderDetail> detailOfIdcard
             , string idcardNo, string ticketCode, int requiredAmount, out string errMsg)
         {
@@ -240,11 +237,25 @@ namespace Model
             int amountOfIdcardOfTicket = (int)detailOfIdcard.Where(x => x.TicketPrice.Ticket.ProductCode == ticketCode)
                             .Sum(x => x.Quantity);
             int amountOfIdcardAll = (int)detailOfIdcard.Sum(x => x.Quantity);
+             //身份证购得某门票的总数检测
+
+            //使用原生sql方法
+            
+
             if (amountOfIdcardOfTicket + requiredAmount > this.AmountPerIdcardTicket)
             {
-                result = false;
-                errMsg = "您的身份证号码已购买过本次活动的派送门票,欢迎下次参与.";
+               
+                errMsg = "您的身份证号码已购买本活动门票,不能继续抢票,欢迎下次参与.";
+                return false;
             }
+             //每个身份证能购买的总数限制
+             int amountOfIdcardOfTActivity = (int)detailOfIdcard.Where(x => x.TicketPrice.Ticket.TourActivity.ActivityCode == ActivityCode)
+                            .Sum(x => x.Quantity);
+             if (amountOfIdcardOfTActivity + requiredAmount > this.AmountPerIdcardInActivity)
+             {
+                 errMsg = "该身份证号已经抢到该活动规定的最大票数,无法继续抢票";
+                 return false;
+             }
            
             return result;
         }

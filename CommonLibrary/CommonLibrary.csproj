@@ -73,6 +73,7 @@
     <Compile Include="HttpPostHelp.cs" />
     <Compile Include="IdcardDict.cs" />
     <Compile Include="IdCardInfo.cs" />
+    <Compile Include="IOHelper.cs" />
     <Compile Include="JosnHelper.cs" />
     <Compile Include="ListHelper.cs" />
     <Compile Include="MakeAccount.cs" />

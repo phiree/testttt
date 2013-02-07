@@ -52,6 +52,8 @@
                         <ul class="nav">
                             <li><span>活动专题</span></li>
                             <li><a href="/Manager/TourActivity/Default.aspx">活动列表</a></li>
+                            <li><a href="/Manager/TourActivity/ImportSyncTable.aspx">数据同步</a></li>
+                           
                              <li><span>门票管理</span></li>
                                 <li><a href="/Manager/ScenicManage/TicketManage/">门票搜索</a></li>
                                 <li><a href="/Manager/ScenicManage/TicketManage/TicketEdit2.aspx">增加门票</a></li>
