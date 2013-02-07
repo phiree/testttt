@@ -20,7 +20,7 @@ namespace Model.Mapping.Order
             References<OrderDetail>(x => x.OrderDetail);
             References<ScenicAdmin>(x => x.ScenicAdmin);
             Map(x => x.saName);
-            
+            Map(x => x.checkType);
         }
     }
 }

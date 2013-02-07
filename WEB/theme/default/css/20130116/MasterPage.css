@@ -247,10 +247,22 @@ background-color:#fff !important;
     height: 80px;
     text-align: center;
     width: 100%;
-    height:324px;
-    margin-top:10px;
+    height:477px;
+    margin-top:0px;
     background:url("/theme/default/image/20130116/footerBg.jpg");
-    background-repeat:repeat;
+    background-position:bottom;
+    background-repeat:repeat-x;
+}
+.show_div
+{
+    background:url("/theme/default/image/20130116/webBg.jpg");
+}
+.show_4
+{
+    width:951px;
+    height:157px;
+    background:url("/theme/default/image/20130203/showEwm.gif");
+    display:block;
 }
 .footer_main
 {

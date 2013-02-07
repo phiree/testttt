@@ -84,5 +84,23 @@ namespace DAL
       //.Where(x => x.TicketAssignList.ToLookup(y => y.IdCard == idcardNo).Count > 0);
     
         }
+        public IList<OrderDetail> GetUsedOrderDetailForIdcardInActivity(string activityCode)
+        {
+               string sql = string.Format(@"select detail from OrderDetail detail
+                        inner join detail.TicketAssignList  assign
+                       with assign.IsUsed=1 " +
+                            "where detail.TicketPrice.Ticket.TourActivity.ActivityCode='{0}'"
+                                , activityCode);
+           
+            return session.CreateQuery(sql).Future<OrderDetail>().ToList();
+        }
+
+        public IList<TicketAssign> GetTaForIdCardInActivity(string activityCode,DateTime dt)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IsUsed=1 and ta.OrderDetail.OrderDetailForUnionTicket.Id is null"
+                + " and ta.UsedTime>='" + dt.ToString() + "' and ta.UsedTime<='" + dt.AddDays(1).ToString() + "'" +
+                " and ta.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode='" + activityCode + "'";
+            return session.CreateQuery(sql).Future<TicketAssign>().ToList();
+        }
     }
 }
