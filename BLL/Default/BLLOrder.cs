@@ -185,7 +185,7 @@ namespace BLL
             return dal.GetDaysScenicOrderTotal(scenicname);
         }
         /// <summary>
-        /// 创建订单
+        /// 创建订单 基方法,三个因素做重载: 单一门票/是否需要验证(
         /// </summary>
         /// <param name="activityName"></param>
         /// <param name="partnerCode"></param>
@@ -195,19 +195,18 @@ namespace BLL
         /// <param name="assignName"></param>
         /// <param name="amount"></param>
         /// <param name="errMsg"></param>
-        public Order CreateOrder(bool needValidate, string partnerCode, TourMembership member, IList<Ticket> ticketlist, string idcardno, string assignName, int amount, PriceType priceType, DateTime buyTime, out string errMsg)
+        public Order CreateOrder(string partnerCode, TourMembership member, IList<Ticket> ticketlist, string idcardno, string assignName, int amount, PriceType priceType, DateTime buyTime, out string errMsg)
         {
 
             errMsg = string.Empty;
             DateTime recordBuyDate = buyTime.Date;
-           
-            if (needValidate)
-            { 
+
+
             #region 验证订单是否符合规则 需要移至 活动类处理,且应该放到该类之外处理
             ///对购物车内多张门票创建订单
             errMsg = string.Empty;
             List<Ticket> ChildTicketList = new List<Ticket>();
-           
+
             foreach (Ticket t in ticketlist)
             {
                 TourActivity activity = t.TourActivity;
@@ -225,8 +224,8 @@ namespace BLL
 
                     ActivityPartner partner = bllPartner.GetByPartnerCode(activity.ActivityCode, partnerCode);
                     IList<OrderDetail> detailOfIdcard = bllOrderDetail.GetOrderDetailForIdcard(activity.ActivityCode, idcardno);
-                   
-                    bool result = activity.CheckProcessOrder(detailOfIdcard, t.ProductCode, amount,idcardno, out errMsg);
+
+                    bool result = activity.CheckProcessOrder(detailOfIdcard, t.ProductCode, amount, idcardno, out errMsg);
 
                     if (!result)
                     {
@@ -235,22 +234,22 @@ namespace BLL
                 }
             }
             #endregion
-            }
+
             #region 创建订单
-             Order order = new Order(member, partnerCode);
-             order.BuyTime = recordBuyDate;
+            Order order = new Order(member, partnerCode);
+            order.BuyTime = recordBuyDate;
             IList<OrderDetail> details = new List<OrderDetail>();
-            
+
             foreach (Ticket t in ticketlist)
             {
-                
-                details= bllOrderDetail.CreateDetail(t, priceType, assignName, idcardno, amount, "");
+
+                details = bllOrderDetail.CreateDetail(t, priceType, assignName, idcardno, amount, "");
                 foreach (OrderDetail d in details)
                 {
-                    
+
                     d.Order = order;
                 }
-            }            order.OrderDetail = details;
+            } order.OrderDetail = details;
             Save(order);
             #endregion
 
@@ -261,7 +260,7 @@ namespace BLL
                 TourActivity activity = t.TourActivity;
                 if (activity != null)
                 {
-                   
+
                     ActivityTicketAssign ata = activity
                                 .GetActivityAssignForPartnerTicketDate(partnerCode, t.ProductCode, recordBuyDate);
                     ata.SoldAmount += amount;
@@ -275,28 +274,32 @@ namespace BLL
         }
 
         BLLOrderDetail bllOrderDetail = new BLLOrderDetail();
-        public Order CreateOrder(string partnerCode, TourMembership member, Ticket ticket
-            , string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+        //重载 门票列表,时间为now
+        public Order CreateOrder(string partnerCode, TourMembership member, IList<Ticket> ticketList, string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
         {
 
-            return CreateOrder(true, partnerCode, member, ticket, idcardno, assignName, amount, priceType, DateTime.Now.Date, out errMsg);
+            return CreateOrder(partnerCode, member, ticketList, idcardno, assignName, amount, priceType, DateTime.Now, out errMsg);
         }
 
-        public Order CreateOrder(string partnerCode, TourMembership member, Ticket ticket
-          , string idcardno, string assignName, int amount, PriceType priceType, DateTime buyTime, out string errMsg)
-        {
-
-            return CreateOrder(true, partnerCode, member, ticket, idcardno, assignName, amount, priceType, buyTime, out errMsg);
-        }
-        public Order CreateOrder(bool needValidation, string partnerCode, TourMembership member
-            , Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType, DateTime buyTime, out string errMsg)
+        //重载:单一门票
+        public Order CreateOrder(string partnerCode, TourMembership member
+           , Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType, DateTime buyTime, out string errMsg)
         {
 
             List<Ticket> ticketList = new List<Ticket>();
 
             ticketList.Add(ticket);
 
-            return CreateOrder(needValidation, partnerCode, member, ticketList, idcardno, assignName, amount, priceType, buyTime, out errMsg);
+            return CreateOrder(partnerCode, member, ticketList, idcardno, assignName, amount, priceType, buyTime, out errMsg);
         }
+
+        public Order CreateOrder(string partnerCode, TourMembership member, Ticket ticket
+            , string idcardno, string assignName, int amount, PriceType priceType, out string errMsg)
+        {
+
+            return CreateOrder(partnerCode, member, ticket, idcardno, assignName, amount, priceType, DateTime.Now, out errMsg);
+        }
+
+
     }
 }

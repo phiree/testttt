@@ -167,6 +167,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ScenicAdmin", "ScenicAdmin\
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPerfermanceTest", "WebPerfermanceTest\WebPerfermanceTest.csproj", "{563DB78C-7F96-4CD6-B771-0CCED24DB517}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TourOnline.vsmdi
@@ -378,6 +380,21 @@ Global
 		{B627F67D-BAB9-499D-BE74-BE8898DFCF31}.tr|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{B627F67D-BAB9-499D-BE74-BE8898DFCF31}.tr|Mixed Platforms.Build.0 = Debug|Any CPU
 		{B627F67D-BAB9-499D-BE74-BE8898DFCF31}.tr|x86.ActiveCfg = Debug|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.Release|x86.ActiveCfg = Release|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.tr|Any CPU.ActiveCfg = Release|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.tr|Any CPU.Build.0 = Release|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.tr|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.tr|Mixed Platforms.Build.0 = Release|Any CPU
+		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.tr|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

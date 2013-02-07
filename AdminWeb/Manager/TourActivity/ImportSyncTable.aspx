@@ -52,10 +52,9 @@
 </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
-<div>抢票数据导入</div>
-<asp:Button runat="server" ID="btnImport" OnClick="btnImport_Click"   Text="导入"/>
+<div>信息中心订票数据导入</div>
 
-总条数:<%=TotalRecords%><br />
+需要处理的总条数:<%=TotalRecords%><br />
 <input type="button"  onclick="Import()" value="测试"/>
 正在处理第<span id="spCurrentIndex"></span>条
 <div id="log"></div>
