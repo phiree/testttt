@@ -195,25 +195,34 @@ namespace BLL
         /// <param name="assignName"></param>
         /// <param name="amount"></param>
         /// <param name="errMsg"></param>
-        public Order CreateOrder(bool needValidate, string partnerCode, TourMembership member, IList<Ticket> ticketlist, string idcardno, string assignName, int amount, PriceType priceType,DateTime buyTime, out string errMsg)
+        public Order CreateOrder(bool needValidate, string partnerCode, TourMembership member, IList<Ticket> ticketlist, string idcardno, string assignName, int amount, PriceType priceType, DateTime buyTime, out string errMsg)
         {
 
             errMsg = string.Empty;
+            DateTime recordBuyDate = buyTime.Date;
+           
             if (needValidate)
             { 
             #region 验证订单是否符合规则 需要移至 活动类处理,且应该放到该类之外处理
             ///对购物车内多张门票创建订单
             errMsg = string.Empty;
             List<Ticket> ChildTicketList = new List<Ticket>();
-
+           
             foreach (Ticket t in ticketlist)
             {
                 TourActivity activity = t.TourActivity;
                 //对参加活动的门票做特殊验证
                 if (activity != null)
                 {
+                    //导入数据时的购买时间可能超过活动日期
+                    if (recordBuyDate > activity.EndDate)
+                    {
+                        TourLog.DebugLog.Debug("购买时间超过活动时间");
+                        recordBuyDate = activity.EndDate;
+                    }
                     //为每张门票验证规则
                     //该身份证号码已经购买的数量
+
                     ActivityPartner partner = bllPartner.GetByPartnerCode(activity.ActivityCode, partnerCode);
                     IList<OrderDetail> detailOfIdcard = bllOrderDetail.GetOrderDetailForIdcard(activity.ActivityCode, idcardno);
                    
@@ -229,7 +238,9 @@ namespace BLL
             }
             #region 创建订单
              Order order = new Order(member, partnerCode);
+             order.BuyTime = recordBuyDate;
             IList<OrderDetail> details = new List<OrderDetail>();
+            
             foreach (Ticket t in ticketlist)
             {
                 
@@ -250,9 +261,9 @@ namespace BLL
                 TourActivity activity = t.TourActivity;
                 if (activity != null)
                 {
-                    
+                   
                     ActivityTicketAssign ata = activity
-                                .GetActivityAssignForPartnerTicketDate(partnerCode, t.ProductCode, buyTime.Date);
+                                .GetActivityAssignForPartnerTicketDate(partnerCode, t.ProductCode, recordBuyDate);
                     ata.SoldAmount += amount;
                     bllActivityTa.SaveOrUpdate(ata);
                 }
@@ -272,13 +283,13 @@ namespace BLL
         }
 
         public Order CreateOrder(string partnerCode, TourMembership member, Ticket ticket
-          , string idcardno, string assignName, int amount, PriceType priceType,DateTime buyTime, out string errMsg)
+          , string idcardno, string assignName, int amount, PriceType priceType, DateTime buyTime, out string errMsg)
         {
 
-            return CreateOrder(true, partnerCode, member, ticket, idcardno, assignName, amount, priceType,buyTime, out errMsg);
+            return CreateOrder(true, partnerCode, member, ticket, idcardno, assignName, amount, priceType, buyTime, out errMsg);
         }
-        public Order CreateOrder(bool needValidation,string partnerCode, TourMembership member
-            , Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType,DateTime buyTime, out string errMsg)
+        public Order CreateOrder(bool needValidation, string partnerCode, TourMembership member
+            , Ticket ticket, string idcardno, string assignName, int amount, PriceType priceType, DateTime buyTime, out string errMsg)
         {
 
             List<Ticket> ticketList = new List<Ticket>();

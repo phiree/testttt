@@ -44,7 +44,7 @@ $(document).ready(function () {
         {
             source:
             function (request, response) {
-                $.get("/ScenicManager/CheckTicketHandler.ashx?term=" + request.term + "&sid=" + $("[id$='hfscid']").val(),
+                $.get("/CheckTicketHandler.ashx?term=" + request.term + "&sid=" + $("[id$='hfscid']").val(),
                          function (data) {
                              response($.map(data, function (item) {
                                  var d = '123';
