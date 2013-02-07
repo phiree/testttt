@@ -256,6 +256,27 @@ namespace Model
 
 
 
+        /// <summary>
+        /// 某门票的所有情况
+        /// </summary>
+        /// <param name="ticketCode"></param>
+        /// <returns></returns>
+        public virtual IList<ActivityTicketAssign> GetActivityAssignForTicket(string ticketCode)
+        {
+            return ActivityTicketAssign.Where(x => x.Ticket.ProductCode == ticketCode).ToList();
+        }
+
+
+
+        /// <summary>
+        /// 某合作商所有的门票情况
+        /// </summary>
+        /// <param name="partnerCode"></param>
+        /// <returns></returns>
+        public virtual IList<ActivityTicketAssign> GetActivityAssignForPartner(string partnerCode)
+        {
+            return ActivityTicketAssign.Where(x => x.Partner.PartnerCode == partnerCode).ToList();
+        }
 
         /// <summary>
         /// 某天所有门票的情况

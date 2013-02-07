@@ -23,7 +23,9 @@ public partial class Manager_TourActivity_ActivityStatistic : System.Web.UI.Page
     {
         switch (RadioButtonList1.SelectedIndex)
         {
-            case 0: bindData(); break;
+            case 0: bindData(); rptTime.Visible = true; rptPartner.Visible = false; rptTickets.Visible = false; break;
+            case 1: bindData2(); rptTime.Visible = false; rptPartner.Visible = true; rptTickets.Visible = false; break;
+            case 2: bindData3(); rptTime.Visible = false; rptPartner.Visible = false; rptTickets.Visible = true; break;
         }
 
     }
@@ -98,8 +100,81 @@ public partial class Manager_TourActivity_ActivityStatistic : System.Web.UI.Page
         }
     }
 
+    private void bindData2()
+    {
+        Guid actId = Guid.Parse(Request.QueryString["actId"]);
+        TourActivity ta = bllTourActivity.GetOne(actId);
+        rptPartner.DataSource = ta.Partners;
+        rptPartner.DataBind();
+    }
 
 
+    int totalAmount = 0;
+    protected void rptPartner_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Literal laCount = e.Item.FindControl("laCount") as Literal;
+            ActivityPartner ap=e.Item.DataItem as ActivityPartner;
+            Guid actId = Guid.Parse(Request.QueryString["actId"]);
+            TourActivity ta = bllTourActivity.GetOne(actId);
+            IList<ActivityTicketAssign> listAp= ta.GetActivityAssignForPartner(ap.PartnerCode);
+            int Amount = 0;
+            foreach (var ata in listAp)
+            {
+                Amount += ata.SoldAmount;
+            }
+            laCount.Text = Amount.ToString();
+            totalAmount += Amount;
+        }
+        if (e.Item.ItemType == ListItemType.Footer)
+        {
+            Literal laTotalCount = e.Item.FindControl("laTotalCount") as Literal;
+            laTotalCount.Text = totalAmount.ToString();
+        }
+    }
 
+    protected void bindData3()
+    {
+        Guid actId = Guid.Parse(Request.QueryString["actId"]);
+        TourActivity ta = bllTourActivity.GetOne(actId);
+        rptTickets.DataSource = ta.Tickets;
+        rptTickets.DataBind();
+    }
+    int ticketSolidTotal = 0, ticketCheckTotal = 0;
+    protected void rptTickets_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+        {
+            Guid actId = Guid.Parse(Request.QueryString["actId"]);
+            TourActivity ta = bllTourActivity.GetOne(actId);
+            Ticket ticket = e.Item.DataItem as Ticket;
+            IList<ActivityTicketAssign> listTa = ta.GetActivityAssignForTicket(ticket.ProductCode).ToList();
+            int Amount = 0;
+            foreach (var ata in listTa)
+            {
+                Amount += ata.SoldAmount;
+            }
+            ticketSolidTotal += Amount;
+            Literal laSolidAmount = e.Item.FindControl("laSolidAmount") as Literal;
+            laSolidAmount.Text = Amount.ToString();
 
+            Literal laCheckAmount = e.Item.FindControl("laCheckAmount") as Literal;
+            int checkAmount = 0;
+            IList<TicketAssign> listTicketAssign= bllOd.GetTaForIdCardInActivity(ta.ActivityCode,ticket.Id);
+            foreach (var item in listTicketAssign)
+            {
+                checkAmount++;
+            }
+            ticketCheckTotal += checkAmount;
+            laCheckAmount.Text = checkAmount.ToString();
+        }
+        if (e.Item.ItemType == ListItemType.Footer)
+        {
+            Literal laSolidTotalAmount = e.Item.FindControl("laSolidTotalAmount") as Literal;
+            Literal laCheckTotalAmount = e.Item.FindControl("laCheckTotalAmount") as Literal;
+            laSolidTotalAmount.Text = ticketSolidTotal.ToString();
+            laCheckTotalAmount.Text = ticketCheckTotal.ToString();
+        }
+    }
 }

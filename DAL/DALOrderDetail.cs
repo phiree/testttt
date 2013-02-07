@@ -101,5 +101,13 @@ namespace DAL
                 " and ta.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode='" + activityCode + "'";
             return session.CreateQuery(sql).Future<TicketAssign>().ToList();
         }
+
+        public IList<TicketAssign> GetTaForIdCardInActivity(string activityCode,int ticketId)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IsUsed=1 and ta.OrderDetail.OrderDetailForUnionTicket.Id is null" +
+                " and ta.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode='" + activityCode + "'" +
+                " and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticketId + "";
+            return session.CreateQuery(sql).Future<TicketAssign>().ToList();
+        }
     }
 }
