@@ -9,7 +9,8 @@ public class ImportDataHander : IHttpHandler {
     
     BLLActivityServiceImpl bllService = new BLLActivityServiceImpl();
     string connectionstringforSync = "Server=60.191.70.234,98;database=TourzjWeiboManage;uid=sa;pwd=zmmisateacher";
-  
+    BLLTourActivity bllAct = new BLLTourActivity();
+    BLLActivityPartner bllPartner = new BLLActivityPartner();
     public void ProcessRequest (HttpContext context) {
 
             
@@ -26,15 +27,59 @@ public class ImportDataHander : IHttpHandler {
                     partnerCode = "tourol.cn";
                 }
         
-           string log = "Begin" + DateTime.Now;
-                log += string.Format("记录:[ {0},{1},{2},{3},{4},{5},{6},{7} ]", id, idcardno, buyTime, typeid, ticketCode, partnerCode, syncstate, phone);
-              
+        
+         
          string realName = "活动参与者";
                 string activitycode = typeid == 1 ? "quzhouspring" : "suichang2013";
+                string activityId = bllAct.GetOneByActivityCode(activitycode).Id.ToString();
+                string partnerId = bllPartner.GetByPartnerCode(activitycode, partnerCode).Id.ToString();
+                string log = Environment.NewLine + Environment.NewLine + "Begin" + DateTime.Now;
+                log += string.Format(@"记录:[ userticketid:{0},身份证号:{1},购买时间:{2},
+                                            活动类型:{3},活动ID:{4},合作商ID:{5},
+                                            门票代码:{6},同步状态:{7},电话号码:{8} ]", id, idcardno, buyTime, typeid,activityId,partnerId, ticketCode, syncstate, phone)
+                    + Environment.NewLine;
+              
                 string result = string.Empty ;
                 try
                 {
-                     result = bllService.buyProduct(false, activitycode, null, partnerCode, idcardno, realName, phone, ticketCode, 1,buyTime);
+                    //调用存储过程
+                    /*
+                     [usp_TicketRequest]
+(
+  @IDCard Varchar(50),		--身份证
+  @RealName VarChar(50),	--姓名
+  @Phone Varchar(50),		--电话
+  @ActivityID uniqueidentifier,--活动代码
+  @PartnerID  uniqueidentifier, --合作商代码
+  @ProductCode VarChar(100),    --门票代码
+  @ReqAmount int,				--请求门票的数量
+  @Remark VarChar(255)			--备注(订单详情)
+                     */
+                  
+                    if (SiteConfig.ImportUsingProc)
+                    {
+                        DateTime beginProc = DateTime.Now;
+                        log += "存储过程执行开始:" + beginProc.ToString("MMdd hh-mm-ss fff") + Environment.NewLine;
+                        DAL.ado.NativeSqlUtiliity nativeSql = new NativeSqlUtiliity
+                            (System.Configuration.ConfigurationManager.ConnectionStrings["TourOnlineConn"].ConnectionString);
+                        nativeSql.ExecuteDataSetProc("usp_TicketRequest", new string[] { 
+                    idcardno,realName,phone,activityId,partnerId,ticketCode,"1",""
+                    }, out result);
+                        DateTime endProc = DateTime.Now;
+                        log += "存储过程执行结束:" + endProc.ToString("MMdd hh-mm-ss fff") + Environment.NewLine;
+                        log += "存储过程执行耗时:" + (endProc - beginProc).TotalMilliseconds + Environment.NewLine;
+                    }
+                    else
+                    {
+                        DateTime beginBLL = DateTime.Now;
+                        log += "业务逻辑执行开始:" + beginBLL.ToString("MMdd hh-mm-ss fff") + Environment.NewLine;
+
+                        result = bllService.buyProduct(false, activitycode, null, partnerCode, idcardno, realName, phone, ticketCode, 1, buyTime);
+                        DateTime endBLL = DateTime.Now;
+                        log += "业务逻辑执行结束:" + endBLL.ToString("MMdd hh-mm-ss fff") + Environment.NewLine;
+                        log += "业务逻辑执行耗时:" + (endBLL - beginBLL).TotalMilliseconds + Environment.NewLine;
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -44,12 +89,12 @@ public class ImportDataHander : IHttpHandler {
                 if (result == "T")
                 {
                     DAL.ado.NativeSqlUtiliity nativsql = new NativeSqlUtiliity(connectionstringforSync);
-                    nativsql.ExecuteNonResult("update userticket set syncstate=2 where id= " + id);
+                    nativsql.ExecuteNonResult("update "+SiteConfig.SyncTableName+" set syncstate=1 where id= " + id);
                 }
                 else
                 {
                     DAL.ado.NativeSqlUtiliity nativsql = new NativeSqlUtiliity(connectionstringforSync);
-                    nativsql.ExecuteNonResult("update userticket set syncstate=3 where id= " + id);
+                    nativsql.ExecuteNonResult("update " + SiteConfig.SyncTableName + " set syncstate=3 where id= " + id);
                 }
                 log = result+"_" + log;
                 CommonLibrary.IOHelper.WriteContentToFile("d:\\importData\\AjaxResult"+DateTime.Now.ToString("yyyyMMddHH")+".txt", log+Environment.NewLine);

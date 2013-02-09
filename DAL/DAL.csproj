@@ -98,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ado\NativeSqlUtiliity.cs" />
-    <Compile Include="ado\MySQL.cs" />
     <Compile Include="DALArea.cs" />
     <Compile Include="DALBackManager.cs" />
     <Compile Include="DalBase.cs" />

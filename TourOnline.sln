@@ -76,6 +76,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E2661A43-C
 		docs\2.账户初始化.sql = docs\2.账户初始化.sql
 		docs\3.topic.sql = docs\3.topic.sql
 		docs\4.为测试准备的脚本.sql = docs\4.为测试准备的脚本.sql
+		SqlQuery_1.sql = SqlQuery_1.sql
 		docs\升级脚本.sql = docs\升级脚本.sql
 	EndProjectSection
 EndProject

@@ -6,16 +6,16 @@ using DAL.ado;
 using BLL;
 using System.Data;
 public class ImportDataHander : IHttpHandler {
-    string connectionstringforSync = "Server=60.191.70.234,98;database=TourzjWeiboManage;uid=sa;pwd=zmmisateacher";
-    BLLActivityServiceImpl bllService = new BLLActivityServiceImpl();
+     BLLActivityServiceImpl bllService = new BLLActivityServiceImpl();
    
     public void ProcessRequest (HttpContext context) {
-
-            DAL.ado.NativeSqlUtiliity nativsql = new NativeSqlUtiliity(connectionstringforSync);
-            DataSet ds = nativsql.ExecuteDateSet("select top 1 * from UserTicket where syncstate=0");
+        
+            DAL.ado.NativeSqlUtiliity nativsql = new NativeSqlUtiliity(SiteConfig.SyncServerConnection);
+            DataSet ds = nativsql.ExecuteDateSet(@"select top 1 * from "+SiteConfig.SyncTableName+"  where syncstate=0");
             if (ds.Tables[0].Rows.Count == 0)
             {
                 context.Response.Write("finished");
+                return;
             }
           DataRow row=ds.Tables[0].Rows[0];
             

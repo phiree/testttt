@@ -27,9 +27,9 @@ namespace DAL.ado
         {
             SqlCommand comm = new SqlCommand(sql, conn);
             OpenConn();
-          comm.ExecuteNonQuery();
+            comm.ExecuteNonQuery();
             conn.Close();
-            
+
         }
 
         public DataSet ExecuteDateSet(string sql)
@@ -41,6 +41,62 @@ namespace DAL.ado
             adapter.Fill(ds);
             conn.Close();
             return ds;
+        }
+        public DataSet ExecuteDataSetProc(string StoreProcName, string[] aParamList, out string returnMsg)
+        {
+            returnMsg = string.Empty;
+
+            DataSet Result = new DataSet();
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand(StoreProcName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                SqlCommandBuilder.DeriveParameters(cmd);
+                int ParamCount = aParamList.Length + 1;
+
+                if (cmd.Parameters.Count != ParamCount)
+                {
+                    returnMsg = "输入的参数和存储过程的参数数目不符合";
+
+                }
+                else
+                {
+                    for (int i = 0; i < aParamList.Length; i++)
+                    {
+                        cmd.Parameters[i + 1].DbType = DbType.String;
+                        if (aParamList[i] == null)
+                            cmd.Parameters[i + 1].Value = DBNull.Value;
+                        else
+                            cmd.Parameters[i + 1].Value = aParamList[i];
+                    }
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(Result);
+
+                    if (Result.Tables.Count > 0 && Result.Tables[Result.Tables.Count - 1].Rows.Count > 0)
+                    {
+                        if (Result.Tables[Result.Tables.Count - 1].Rows[0][0].ToString() == "F")
+                        {
+                            //r = false;
+                            if (Result.Tables[Result.Tables.Count - 1].Columns.Count > 1)
+                                returnMsg = Result.Tables[Result.Tables.Count - 1].Rows[0][1].ToString();
+                        }
+                        else
+                        {
+                            returnMsg = "T";
+                        }
+                    }
+
+                }
+            }
+
+            catch (Exception ee)
+            {
+                returnMsg = ee.Message;
+            }
+            return Result;
         }
 
         private void OpenConn()
