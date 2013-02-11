@@ -124,7 +124,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         string name = hfdata.Value.Split('/')[0];
         string idcard = hfdata.Value.Split('/')[1];
         int flag = 0;
-        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname(name, idcard, CurrentScenic,false).Where(x => x.Name == name))
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname(name, idcard, CurrentScenic,true).Where(x => x.Name == name))
         {
             if (item.IdCard == idcard)
             {
@@ -161,7 +161,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         string name = hfselectname.Value;
         string idcard = hfselectidcard.Value;
         int flag = 0;
-        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname(name, idcard, CurrentScenic,false).Where(x => x.Name == name))
+        foreach (TicketAssign item in new BLLTicketAssign().GetIdcardandname(name, idcard, CurrentScenic,true).Where(x => x.Name == name))
         {
             if (item.IdCard == idcard)
             {
