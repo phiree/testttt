@@ -4,6 +4,17 @@
 <body>
 <form runat="server">
 口令:<asp:TextBox runat="server" ID="tbxCode"></asp:TextBox><br />
+<div>遂昌</div>
+<asp:Button ID="Button21" runat=server  Text=遂昌金矿-scjk  OnClick=btn_Click /> <br/>
+
+<asp:Button ID="Button22" runat=server  Text=南尖岩-scnjy  OnClick=btn_Click /> <br/>
+<asp:Button ID="Button23" runat=server  Text=汤沐园温泉-tmywx  OnClick=btn_Click /> <br/>
+<asp:Button ID="Button24" runat=server  Text=神龙谷-scslg  OnClick=btn_Click /> <br/>
+<asp:Button ID="Button25" runat=server  Text=千佛山-scxfs  OnClick=btn_Click /> <br/>
+
+<asp:Button ID="Button26" runat=server  Text=红心平-hxpwx  OnClick=btn_Click /> <br/>
+
+<div>衢州</div>
 <asp:Button ID="Button1" runat=server  Text=江郎山风景名胜区-qzjls  OnClick=btn_Click /> <br/>
 
 <asp:Button ID="Button2" runat=server  Text=江郎山风景名胜区-qzjls01  OnClick=btn_Click /> <br/>
