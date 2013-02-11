@@ -16,17 +16,35 @@ namespace CommonLibrary
 
     public class Notification
     {
-        public static void Show(Page page, string title, string content, NotificationType type, string returnUrl)
+
+        public Notification()
+        { 
+         
+        }
+        public static void Show(Page page, string title, string content, string returnUrl)
         {
-            string injectedScript = BuildInjectScript(title, content,type, returnUrl, 3);
+            Show(page, title, content, NotificationType.success, returnUrl,true,3);
+
+        }
+        public static void Show(Page page, string title, string content, string returnUrl, bool autoClose, int autoCloseDuration)
+        {
+            Show(page, title, content, NotificationType.success, returnUrl,autoClose, autoCloseDuration);
+
+        }
+        public static void Show(Page page, string title, string content, NotificationType type
+            , string returnUrl
+            ,bool autoClose
+            , int autoCloseDuaratio)
+        {
+            string injectedScript = BuildInjectScript(title, content,type, returnUrl,autoClose,autoCloseDuaratio);
             page.ClientScript.RegisterClientScriptBlock(page.GetType(), "_nf", injectedScript, true);
         }
-        public static void Show(Page page, string title, string content,string returnUrl)
-        {
-            Show(page, title, content, NotificationType.success, returnUrl);
-           
-        }
-        private static string BuildInjectScript(string title, string content,NotificationType type, string returnUrl,int autocloseduration)
+        
+        private static string BuildInjectScript(string title, string content,
+            NotificationType type, string returnUrl
+            , bool autoClose
+            ,int autocloseduration
+            )
         {
             string notificationStyle = string.Empty;
             switch (type)
@@ -37,7 +55,7 @@ namespace CommonLibrary
                     break;
             }
             string injectedScript = @"
-$(function(){PopMsg('_title_','<div class=""_notificationStyle_"">_content_</div>','_returnUrl_',true);});
+$(function(){PopMsg('_title_','<div class=""_notificationStyle_"">_content_</div>','_returnUrl_',_autoclose_);});
 
 function PopMsg(title,content, redirecturl,autoClose) {
             
@@ -80,9 +98,11 @@ modal:true,
                 }
             }
         }";
-            injectedScript = injectedScript.Replace("_title_", title).Replace("_content_", content).Replace("_returnUrl_",returnUrl)
-                .Replace("_autocloseduration_",autocloseduration.ToString())
-                .Replace("_notificationStyle_",notificationStyle);
+            injectedScript = injectedScript.Replace("_title_", title).Replace("_content_", content).Replace("_returnUrl_", returnUrl)
+                .Replace("_autocloseduration_", autocloseduration.ToString())
+                .Replace("_notificationStyle_", notificationStyle)
+                .Replace("_autoclose_",autoClose?"true":"false")
+                ;
             return injectedScript;
         }
         

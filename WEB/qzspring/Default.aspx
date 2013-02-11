@@ -37,10 +37,10 @@
                     });
                 }
             });
-//            $("#quzhouticket").animate({ bottom: "0px" }, 1500);
-//            $("#closeWin").click(function () {
-//                $("#quzhouticket").animate({ bottom: "-201px" }, 1500);
-//            });
+            //            $("#quzhouticket").animate({ bottom: "0px" }, 1500);
+            //            $("#closeWin").click(function () {
+            //                $("#quzhouticket").animate({ bottom: "-201px" }, 1500);
+            //            });
         });
         function startscrolltime() {
             scrollimg();
@@ -49,13 +49,13 @@
 
         function scrollimg() {
             var imgtop = $(".adcolum img").css("top");
-            imgtop=imgtop.replace("px", "");
+            imgtop = imgtop.replace("px", "");
             if (imgtop >= 0) {
                 $(".adcolum img").css("top", "-160px");
             }
             else {
                 imgtop = parseInt(imgtop) + parseInt(1);
-                $(".adcolum img").css("top", imgtop+"px");
+                $(".adcolum img").css("top", imgtop + "px");
             }
         }
         
@@ -94,7 +94,7 @@
                 下一张</div>
         </div>
     </div>--%>
-    <div id="qz" style="margin-top:10px">
+  <!--  <div id="qz" style="margin-top:10px">
         <a href="/Tickets/quzhou"></a>
         <div id="hdgz">
             <ul>
@@ -126,8 +126,9 @@
         </div>
 
 
-    </div>
-
+    </div>-->
+   <a href="/tickets/quzhou/"><img src="/img/quzhouspringjieshu.jpg" alt='衢州春节门票大派送活动结束' /></a>
+ 
    <%-- <div class="adcolum">
         <img src="/Img/农行.jpg" alt="农行优惠" />
     </div>--%>

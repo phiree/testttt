@@ -29,6 +29,9 @@
     <script type="text/javascript" language="javascript">
         var totalRecords = 0;
         var currentRecord = 1;
+        var executeTimes = 1;
+        //两次同步的时间间隔(毫秒
+        var excuteSpan = 1000*60*30;
         function Import() {
             if (currentRecord == 1) {
                 document.getElementById("spBeginTime").innerHTML = new Date();
@@ -39,8 +42,12 @@
             //data:获取到的需要处理的数据$_$分隔
             var arrdata = data.split("$_$");
             if (data == "finished") {
-                importLog("处理完毕");
+
+                importLog("第" + executeTimes + "次处理完毕");
+                executeTimes++;
+                setTimeout(Import, excuteSpan);
                 document.getElementById("spEndTime").innerHTML = new Date();
+                setTimeout(Import, excuteSpan);
                 //     $("#spEndTime").html(new Date().toString());
                 return;
             }
