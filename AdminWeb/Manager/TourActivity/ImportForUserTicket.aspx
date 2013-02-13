@@ -16,7 +16,7 @@
         </div>
     </div>
     <div>
-        <asp:FileUpload runat="server" ID="fuExcel"   />
+    excel文件:    <asp:FileUpload runat="server" ID="fuExcel"   />
         <asp:Label runat="server" ID="lblSelectedFileName"></asp:Label>
         <asp:Button Text="查看" ID="btnViewExcel"
             runat="server" OnClick="btnViewExcel_Click" />

@@ -20,7 +20,8 @@
         信息中心订票数据导入</div>
     需要处理的总条数:<%=TotalRecords%><br />
     <input type="button" onclick="Import()" value="开始导入" />
-    正在处理第<span id="spCurrentIndex"></span>条 开始时间<div id="spBeginTime">
+    正在处理第<span id="spCurrentIndex"></span>条 
+    开始时间<div id="spBeginTime">
     </div>
     结束时间<div id="spEndTime">
     </div>
@@ -31,7 +32,8 @@
         var currentRecord = 1;
         var executeTimes = 1;
         //两次同步的时间间隔(毫秒
-        var excuteSpan = 1000*60*30;
+        var excuteSpanMinute = 10;
+        var excuteSpan = 1000*60*excuteSpanMinute;
         function Import() {
             if (currentRecord == 1) {
                 document.getElementById("spBeginTime").innerHTML = new Date();
@@ -43,7 +45,8 @@
             var arrdata = data.split("$_$");
             if (data == "finished") {
 
-                importLog("第" + executeTimes + "次处理完毕");
+                var nowtime = new Date();
+                importLog("第" + executeTimes + "次处理完毕,下一次导入将在" + excuteSpanMinute + "分钟后开始");
                 executeTimes++;
                 setTimeout(Import, excuteSpan);
                 document.getElementById("spEndTime").innerHTML = new Date();

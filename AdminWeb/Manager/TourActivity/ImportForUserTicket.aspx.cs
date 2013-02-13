@@ -35,15 +35,17 @@ public partial class Manager_TourActivity_ImportForUserTicket : System.Web.UI.Pa
             return null;
         }
         lblSelectedFileName.Text = fuExcel.FileName;
-        HSSFWorkbook excelbook = new HSSFWorkbook(fuExcel.FileContent);
+        IWorkbook excelbook = new HSSFWorkbook(fuExcel.FileContent);
         List<UserTicketTable> users = Convert(excelbook);
         return users;
     }
 
-    private List<UserTicketTable> Convert(HSSFWorkbook excelbook)
+    private List<UserTicketTable> Convert(IWorkbook excelbook)
     { 
      List<UserTicketTable> usertickets = new List<UserTicketTable>();
         System.Collections.IEnumerator rowEnumerator = excelbook.GetSheetAt(0).GetRowEnumerator();
+        var sht = excelbook.GetSheetAt(0);
+        int rowCount = sht.PhysicalNumberOfRows;
         int currentIndex = 0;
         while (rowEnumerator.MoveNext())
         {
@@ -60,11 +62,15 @@ public partial class Manager_TourActivity_ImportForUserTicket : System.Web.UI.Pa
               throw new Exception("没有参加活动的门票:" +productCode );
           }
           userticket.gid = productCode;
-            userticket.mobile = row.GetCell(4).RichStringCellValue.ToString();
-            userticket.orderfrom = tbxPartnerCode.Text;
-            userticket.postcode = row.Cells[3].StringCellValue;
+          string mobile = string.Empty;
+            if(row.GetCell(4)!=null)
+            {
+                userticket.mobile = row.GetCell(4).ToString().Trim();
+            }
+            userticket.orderfrom = tbxPartnerCode.Text.Trim();
+            userticket.postcode = row.Cells[3].StringCellValue.Trim();
             userticket.syncState = 0;
-            userticket.truename = row.Cells[2].StringCellValue;
+            userticket.truename = row.Cells[2].StringCellValue.Trim();
             userticket.type =tbxActivityCode.Text.Trim()=="suichang2013"? 2:tbxActivityCode.Text.Trim()=="quzhouspring"?1:0;
 
             usertickets.Add(userticket);

@@ -88,16 +88,17 @@ public class ImportDataHander : IHttpHandler {
                 }
                 if (result == "T")
                 {
-                    DAL.ado.NativeSqlUtiliity nativsql = new NativeSqlUtiliity(connectionstringforSync);
+                    DAL.ado.NativeSqlUtiliity nativsql = new NativeSqlUtiliity(SiteConfig.SyncServerConnection);
                     nativsql.ExecuteNonResult("update "+SiteConfig.SyncTableName+" set syncstate=1 where id= " + id);
                 }
                 else
                 {
-                    DAL.ado.NativeSqlUtiliity nativsql = new NativeSqlUtiliity(connectionstringforSync);
+                    DAL.ado.NativeSqlUtiliity nativsql = new NativeSqlUtiliity(SiteConfig.SyncServerConnection);
                     nativsql.ExecuteNonResult("update " + SiteConfig.SyncTableName + " set syncstate=3 where id= " + id);
                 }
                 log = result+"_" + log;
-                CommonLibrary.IOHelper.WriteContentToFile("d:\\importData\\AjaxResult"+DateTime.Now.ToString("yyyyMMddHH")+".txt", log+Environment.NewLine);
+                CommonLibrary.IOHelper.WriteContentToFile(
+                    context.Server.MapPath(@"/tourolAdminLog/importData/AjaxResult"+DateTime.Now.ToString("yyyyMMddHH")+".txt"), log+Environment.NewLine);
                 context.Response.Write(result);
               
     }
