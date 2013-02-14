@@ -8,9 +8,9 @@ using BLL;
 
 public partial class Manager_BillCheck : basepage
 {
-    DAL.DALArea dalarea = new DAL.DALArea();
+    BLL.BLLArea bllArea = new BLLArea();
     BLLOrder bllOrder = new BLLOrder();
-    IDAL.IScenic dalscenic = new DAL.DALScenic();
+    BLLScenic bllScenic = new BLLScenic();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -28,7 +28,7 @@ public partial class Manager_BillCheck : basepage
     }
     protected void ddlProvince_TextChanged(object sender, EventArgs e)
     {
-        IList<Model.Area> areaList = dalarea.GetSubArea(ddlProvince.SelectedValue);
+        IList<Model.Area> areaList = bllArea.GetSubArea(ddlProvince.SelectedValue);
         BindCity(areaList);
     }
 
@@ -44,7 +44,7 @@ public partial class Manager_BillCheck : basepage
 
     private void BindProvince()
     {
-        IList<Model.Area> areaList = dalarea.GetAreaProvince();
+        IList<Model.Area> areaList = bllArea.GetAreaProvince();
         ddlProvince.DataSource = areaList;
         ddlProvince.DataTextField = "Name";
         ddlProvince.DataValueField = "Code";
@@ -62,7 +62,7 @@ public partial class Manager_BillCheck : basepage
     }
     private void BindScenicList(string cityAreaCode)
     {
-        IList<Model.Scenic> scenicList = dalscenic.GetScenicByAreacode(cityAreaCode);
+        IList<Model.Scenic> scenicList = bllScenic.GetScenicByAreacode(cityAreaCode);
         ddlScenics.DataSource = scenicList;
         ddlScenics.DataTextField = "Name";
         ddlScenics.DataValueField = "Id";

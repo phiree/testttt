@@ -50,7 +50,7 @@ public partial class Manager_ScenicManage_TicketManage_UnionTicketEdit : System.
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         int total;
-      IList<Scenic> scenics=  bllTicket.Search(tbxKeyword.Text.Trim(), 0, 99, out total);
+      IList<Scenic> scenics=  bllEnt.Search(tbxKeyword.Text.Trim(), 0, 99, out total);
       rptSearchScenics.DataSource = scenics;
       rptSearchScenics.DataBind();
     }

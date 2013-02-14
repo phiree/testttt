@@ -6,9 +6,9 @@ using NHibernate;
 
 namespace DAL
 {
-    public class DALMembership : IDAL.IMembership
+    public class DALMembership : DalBase<Model.TourMembership>
     {
-        ISession session = new HybridSessionBuilder().GetSession();
+      //  ISession session = new HybridSessionBuilder().GetSession();
 
         public int CreateUser(Model.TourMembership user)
         {
@@ -26,24 +26,34 @@ namespace DAL
         {
             //  User user = session.QueryOver<User>(x=>x.User);
             bool result = false;
+              int matchLength;
+            using (var t = session.BeginTransaction())
+            { 
             IQuery query = session.CreateQuery("select u from TourMembership as u where u.Name='" + username + "' and u.Password='" + password + "'");
-            int matchLength = query.Future<Model.TourMembership>().ToArray().Length;
-
+            matchLength = query.Future<Model.TourMembership>().ToArray().Length;
+            t.Commit();
+  }
             if (matchLength == 1) { result = true; }
             if (matchLength > 1) {
                 throw new Exception("账户重名,拒绝登录");
             }
-
+              
             return result;
         }
 
         public Model.TourMembership GetMemberByName(string username)
         {
             if (string.IsNullOrEmpty(username)) return null;
-            IQuery query = session.CreateQuery("select m from  TourMembership as m where Name='" + username + "'");
-            var temp = query.FutureValue<Model.TourMembership>();
-            var user=temp.Value;
-            return user;
+            using (var t = session.BeginTransaction())
+            {
+              
+                IQuery query = session.CreateQuery("select m from  TourMembership as m where Name='" + username + "'");
+                var temp = query.FutureValue<Model.TourMembership>();
+              
+                var user = temp.Value;
+                t.Commit();
+                return user;
+            }
         }
 
         public Model.TourMembership GetMemberByOpenid(string openid, Model.Opentype opentype)
@@ -55,6 +65,7 @@ namespace DAL
 
         public Model.TourMembership GetMemberById(Guid memberId)
         {
+            return GetOne(memberId);
             IQuery query = session.CreateQuery("select m from  TourMembership as m where Id='" + memberId + "'");
             Model.TourMembership member = query.FutureValue<Model.TourMembership>().Value;
             return member;

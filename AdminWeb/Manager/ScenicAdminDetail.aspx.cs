@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using BLL;
 public partial class Manager_ScenicAdminDetail : System.Web.UI.Page
 {
-    DAL.DALArea dalarea = new DAL.DALArea();
-    IDAL.IScenic dalscenic = new DAL.DALScenic();
+    BLL.BLLArea bllArea = new BLLArea();
+    BLLOrder bllOrder = new BLLOrder();
+    BLLScenic bllScenic = new BLLScenic();
     BLL.BLLMembership bllMembership = new BLL.BLLMembership();
     public Model.TourMembership User;
 
@@ -42,7 +43,7 @@ public partial class Manager_ScenicAdminDetail : System.Web.UI.Page
 
     private void BindProvince()
     {
-        IList<Model.Area> areaList = dalarea.GetAreaProvince();
+        IList<Model.Area> areaList = bllArea.GetAreaProvince();
         ddlProvince.DataSource = areaList;
         ddlProvince.DataTextField = "Name";
         ddlProvince.DataValueField = "Code";
@@ -50,7 +51,7 @@ public partial class Manager_ScenicAdminDetail : System.Web.UI.Page
     }
     protected void ddlProvince_TextChanged(object sender, EventArgs e)
     {
-        IList<Model.Area> areaList = dalarea.GetSubArea(ddlProvince.SelectedValue);
+        IList<Model.Area> areaList = bllArea.GetSubArea(ddlProvince.SelectedValue);
         BindCity(areaList);
 
         ddlCity_TextChanged(null, null);
@@ -76,7 +77,7 @@ public partial class Manager_ScenicAdminDetail : System.Web.UI.Page
     }
     private void BindScenicList(string cityAreaCode)
     {
-        IList<Model.Scenic> scenicList = dalscenic.GetScenicByAreacode(cityAreaCode);
+        IList<Model.Scenic> scenicList = bllScenic.GetScenicByAreacode(cityAreaCode);
         cblSceniclist.DataSource = scenicList;
         cblSceniclist.DataTextField = "Name";
         cblSceniclist.DataValueField = "Id";

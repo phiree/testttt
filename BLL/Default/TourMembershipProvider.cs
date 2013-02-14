@@ -11,8 +11,8 @@ namespace BLL
     public class TourMembershipProvider : MembershipProvider
     {
 
-        IMembership imem;
-        public IMembership Imem
+        DALMembership imem;
+        public DALMembership Imem
         {
             get
             {

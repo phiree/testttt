@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using BLL;
 public partial class Manager_BillAll : System.Web.UI.Page
 {
-    DAL.DALArea dalarea = new DAL.DALArea();
-    BLL.BLLOrder bllOrder = new BLL.BLLOrder();
-    IDAL.IScenic dalscenic = new DAL.DALScenic();
+    BLL.BLLArea bllArea = new BLLArea();
+    BLLOrder bllOrder = new BLLOrder();
+    BLLScenic bllScenic = new BLLScenic();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -40,7 +40,7 @@ public partial class Manager_BillAll : System.Web.UI.Page
 
     private void BindCity()
     {
-        IList<Model.Area> areaList = dalarea.GetSubArea("330000");
+        IList<Model.Area> areaList = bllArea.GetSubArea("330000");
         ddlCity.DataSource = areaList;
         ddlCity.DataTextField = "Name";
         ddlCity.DataValueField = "Code";
@@ -49,7 +49,7 @@ public partial class Manager_BillAll : System.Web.UI.Page
     }
     private void BindScenicList(string cityAreaCode)
     {
-        IList<Model.Scenic> scenicList = dalscenic.GetScenicByAreacode(cityAreaCode);
+        IList<Model.Scenic> scenicList = bllScenic.GetScenicByAreacode(cityAreaCode);
         ddlScenics.DataSource = scenicList;
         ddlScenics.DataTextField = "Name";
         ddlScenics.DataValueField = "Id";

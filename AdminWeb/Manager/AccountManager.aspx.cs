@@ -13,7 +13,7 @@ using Model;
 /// </summary>
 public partial class Manager_AccountManager : System.Web.UI.Page
 {
-    IDAL.IMembership dalMember = new DAL.DALMembership();
+   BLL.BLLMembership bllMember = new  BLL.BLLMembership();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -27,7 +27,7 @@ public partial class Manager_AccountManager : System.Web.UI.Page
     {
         int pageIndex = currentPage;
         long totalRecord;
-        IList<Model.TourMembership> users = dalMember.GetAllUsers(pageIndex-1,pager.PageSize,out totalRecord);
+        IList<Model.TourMembership> users = bllMember.GetAllUsers(pageIndex-1,pager.PageSize,out totalRecord);
         pager.RecordCount = (int)totalRecord;
         rpt.DataSource = users;
         rpt.DataBind();

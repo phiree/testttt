@@ -36,6 +36,8 @@ namespace DAL
 
         public Model.Area GetAreaBySeoName(string seoName)
         {
+            return GetOneByQuery("select a from Area a where a.SeoName='" + seoName + "'");
+        
             IQuery query = session.CreateQuery("select a from Area a where a.SeoName='" + seoName + "'");
             return query.FutureValue<Model.Area>().Value;
         }
@@ -72,6 +74,8 @@ namespace DAL
                     + "00'";
             }
             if (string.IsNullOrEmpty(sql)) return null;
+
+            return GetList(sql);
             IQuery query = session.CreateQuery(sql);
             return query.Future<Model.Area>().ToList<Model.Area>();
         }
@@ -114,6 +118,7 @@ namespace DAL
 
         public Model.Area GetAreaByCode(string code)
         {
+            return GetOneByQuery("select a from Area a where a.Code='" + code + "'");
             string sql = "select a from Area a where a.Code='" + code + "'";
             IQuery query = session.CreateQuery(sql);
             return query.FutureValue<Model.Area>().Value;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BLL
 {
-    public class BLLBase<T>
+    public class BLLBase<T> where T:class
     {
         //todo: bll factory using cache.
         DAL.DalBase<T> dalBase;

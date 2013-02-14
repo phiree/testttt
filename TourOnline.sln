@@ -29,7 +29,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB\", "{61ADBB5F-2F
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "26497"
+		VWDPort = "43549"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -164,7 +164,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ScenicAdmin", "ScenicAdmin\
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "25871"
+		VWDPort = "43552"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject

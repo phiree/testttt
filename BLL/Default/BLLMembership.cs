@@ -9,7 +9,7 @@ namespace BLL
 {
     public class BLLMembership : DAL.DalBase
     {
-        IDAL.IMembership dal = new DAL.DALMembership();
+        DAL.DALMembership dal = new DAL.DALMembership();
 
         /// <summary>
         /// 创建普通用户
@@ -131,6 +131,10 @@ namespace BLL
         public IList<TourMembership> GetAllUsers()
         {
             return dal.GetAllUsers();
+        }
+        public IList<Model.TourMembership> GetAllUsers(int pageIndex, int pageSize, out long totalRecord)
+        {
+            return dal.GetAllUsers(pageIndex, pageSize, out totalRecord);
         }
         TourRoleProvider trp = new TourRoleProvider();
         string[] roles = { "ScenicAdmin" };

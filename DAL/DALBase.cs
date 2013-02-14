@@ -24,12 +24,16 @@ namespace DAL
         }
         public void Update(object o)
         {
-            session.SaveOrUpdate(o);
-            session.Flush();
+            using (var t = session.BeginTransaction())
+            {
+                session.SaveOrUpdate(o);
+                t.Commit();
+                //   session.Flush();
+            }
         }
 
     }
-    public class DalBase<T>
+    public class DalBase<T> where T : class
     {
 
         protected ISession session = new HybridSessionBuilder().GetSession();
@@ -60,7 +64,14 @@ namespace DAL
         }
         public T GetOne(object id)
         {
-            return session.Get<T>(id);
+            T instance;
+            using (var t = session.BeginTransaction())
+            {
+                 instance = session.Get<T>(id);
+
+                t.Commit();
+
+            } return instance;
         }
         protected T GetOneByQuery(string where)
         {
@@ -91,7 +102,8 @@ namespace DAL
         public IList<T> GetList(string where)
         {
             int totalRecords;
-            return GetList(where, 0, 99999, out totalRecords);
+
+            return GetList(where, 0, 9999, out totalRecords);
         }
         protected IList<T> GetList(IQueryOver<T, T> queryOver)
         {
@@ -100,11 +112,19 @@ namespace DAL
 
         public IList<T> GetList(string query, int pageIndex, int pageSize, out int totalRecords)
         {
-            IQuery qry = session.CreateQuery(query);
-            var itemList = qry.Future<T>().ToList();
-            totalRecords = itemList.Count;
-            var returnList = itemList.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            return returnList;
+            IList<T> listT;
+            using (var t = session.BeginTransaction())
+            {
+                totalRecords = session.CreateQuery(query).List<T>().Count;
+
+                IQuery qry = session.CreateQuery(query).SetFirstResult((pageIndex - 1) * pageSize).SetMaxResults(pageSize);
+                listT = qry.Future<T>().ToList();
+               // totalRecords = itemList.Count;
+              //  listT = itemList.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                t.Commit();
+
+            }
+            return listT;
         }
 
 

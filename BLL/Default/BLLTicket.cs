@@ -55,10 +55,10 @@ namespace BLL
         {
             return Iticket.GetTicketByAreaId(areaid);
         }
-        public IList<Model.Scenic> GetTicketByAreaIdAndLevel(Area area, int level, string topic, int pageIndex, int pageSize, out int totalRecord)
-        {
-            return Iticket.GetTicketByAreaIdAndLevel(area, level, topic, pageIndex - 1, pageSize, out totalRecord);
-        }
+        //public IList<Model.Scenic> GetTicketByAreaIdAndLevel(Area area, int level, string topic, int pageIndex, int pageSize, out int totalRecord)
+        //{
+        //    return Iticket.GetTicketByAreaIdAndLevel(area, level, topic, pageIndex - 1, pageSize, out totalRecord);
+        //}
 
         public IList<Model.Ticket> GetTicketByscId(int scid)
         {
@@ -138,10 +138,10 @@ namespace BLL
             }
         }
 
-        public IList<Scenic> Search(string paramKey, int pageIndex, int pageSize, out int totalRecord)
-        {
-            return Iticket.Search(paramKey, pageIndex - 1, pageSize, out totalRecord);
-        }
+        //public IList<Scenic> Search(string paramKey, int pageIndex, int pageSize, out int totalRecord)
+        //{
+        //    return Iticket.Search(paramKey, pageIndex - 1, pageSize, out totalRecord);
+        //}
         /// <summary>
         /// 购物车内的门票
         /// </summary>
