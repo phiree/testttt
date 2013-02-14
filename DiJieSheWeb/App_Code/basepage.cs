@@ -38,7 +38,7 @@ public class basepage : System.Web.UI.Page
     }
     protected void ShowNotification(string title, string content, CommonLibrary.NotificationType nt, string redirectUrl)
     {
-        CommonLibrary.Notification.Show(this, title, content,nt, redirectUrl);
+        CommonLibrary.Notification.Show(this, title, content,nt, redirectUrl,true,5);
     }
     protected void ShowNotification(string title,string content,string redirectUrl)
     {
