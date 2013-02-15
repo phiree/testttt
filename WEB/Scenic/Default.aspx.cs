@@ -42,7 +42,7 @@ public partial class Scenic_Default : basepage
 
         if (!string.IsNullOrEmpty(paramSname))
         {
-            s = new BLLScenic().GetScenicBySeoName(paramSname);
+            s = new BLLScenic().GetScenicBySeoName(paramSname) as Scenic;
             if (s == null)
             {
                 ErrHandler.Redirect(ErrType.UnknownError,"从seoname获取景区失败");
@@ -169,7 +169,7 @@ public partial class Scenic_Default : basepage
 
 
 
-        IList<Scenic> list = bllscenic.GetScenic();
+        IList<DJ_TourEnterprise> list = bllscenic.GetScenic();
         Dictionary<Scenic, double> places = new Dictionary<Scenic, double>();
         List<double> listdistance = new List<double>();
         if (!string.IsNullOrEmpty(scenic.Position))

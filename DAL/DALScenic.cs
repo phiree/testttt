@@ -245,60 +245,6 @@ namespace DAL
         #endregion
 
 
-        public Scenic GetScenicBySeoName(string aseoname, string sseoname)
-        {
-            string sql = "select s from Scenic s where s.SeoName='" + sseoname + "' and s.Area.SeoName='" + aseoname + "'";
-            IQuery query = session.CreateQuery(sql);
-            return query.FutureValue<Scenic>().Value;
-        }
-
-        public IList<Model.DJ_TourEnterprise> GetTicketByAreaIdAndLevel(Model.Area area, int level, string topic, int pageIndex, int pageSize, out int totalRecord)
-        {
-            string where = " where IsHide<>true ";
-            if (area != null)
-            {
-                if (area.Code.Substring(4, 2) == "00")
-                    where += " and  s.Area.Code like '%" + area.Code.Substring(0, 4) + "%'";
-                else
-                    where += " and s.Area.Id=" + area.Id;
-            }
-            else
-            {
-                where += " and s.Area.Code like '33%' ";
-            }
-            if (level > 0)
-            {
-                where += " and s.Level='" + level + "A'";
-            }
-            string order = " order by s.ScenicOrder asc";
-
-
-            string fromwhere = " from Scenic s " + where;
-            string strQuery = "select s " + fromwhere + order;
-            string strQueryCount = "select count(*) " + fromwhere;
-            if (topic == null)
-            {
-
-               //return Search(strQuery, strQueryCount, pageIndex, pageSize, out totalRecord);
-            }
-            else
-            {
-                string topicsql = "select st from ScenicTopic st where st.Topic.seoname='" + topic + "'";
-
-                strQuery += " and s.Id in (select st.Scenic.Id from ScenicTopic st where st.Topic.seoname='" + topic + "')";
-
-                //IQuery query = session.CreateQuery(topicsql);
-                //List<Model.ScenicTopic> listtopic = query.Future<Model.ScenicTopic>().ToList<Model.ScenicTopic>();
-                //query = session.CreateQuery(strQuery);
-                //List<Model.Scenic> list = query.Future<Model.Scenic>().ToList<Model.Scenic>();
-                //var result = from t in listtopic join l in list on t.Scenic.Id equals l.Id select l;
-                //totalRecord = result.ToList<Model.Scenic>().Count;
-                //return result.ToList<Model.Scenic>().Skip(pageIndex * pageSize).Take(pageSize).ToList();
-            }
-            return GetList(strQuery, pageIndex, pageSize, out totalRecord);
-             
-        }
-      
       
        
     }

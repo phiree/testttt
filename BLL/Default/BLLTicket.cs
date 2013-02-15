@@ -55,10 +55,7 @@ namespace BLL
         {
             return Iticket.GetTicketByAreaId(areaid);
         }
-        //public IList<Model.Scenic> GetTicketByAreaIdAndLevel(Area area, int level, string topic, int pageIndex, int pageSize, out int totalRecord)
-        //{
-        //    return Iticket.GetTicketByAreaIdAndLevel(area, level, topic, pageIndex - 1, pageSize, out totalRecord);
-        //}
+      
 
         public IList<Model.Ticket> GetTicketByscId(int scid)
         {
@@ -199,7 +196,7 @@ namespace BLL
         /// </summary>
         /// <param name="source"></param>
         /// <param name="target"></param>
-        public void Move(Scenic source, Scenic target)
+        public void Move(DJ_TourEnterprise source, DJ_TourEnterprise target)
         {
 
             //删除目标景区下的所有门票先!
@@ -228,8 +225,8 @@ namespace BLL
         public void Move(int mipangId, string targetScenicSEOName,out string err)
         {
             err = string.Empty;
-            Scenic source=   bllScenic.GetByMipangId(mipangId);
-            Scenic target = bllScenic.GetScenicBySeoName(targetScenicSEOName);
+            DJ_TourEnterprise source = bllScenic.GetByMipangId(mipangId);
+            DJ_TourEnterprise target = bllScenic.GetScenicBySeoName(targetScenicSEOName);
 
             bool isOk = true;
             if (source == null )

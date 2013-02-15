@@ -7,7 +7,7 @@ using NHibernate;
 using System.Web.Script.Serialization;
 namespace BLL
 {
-    public class BLLDJEnterprise
+    public class BLLDJEnterprise:BLLBase<DJ_TourEnterprise>
     {
         public DAL.DALDJEnterprise dalEnt = new DAL.DALDJEnterprise();
         BLLArea bllArea = new BLLArea();
@@ -493,6 +493,20 @@ namespace BLL
         public IList<DJ_TourEnterprise> GetListByNameLike(string nameLike)
         {
             return dalEnt.GetListByNameLike(nameLike);
+        }
+
+        /*Move from dalticket*/
+        public IList<Model.DJ_TourEnterprise> GetTicketByAreaIdAndLevel(Area area, int level, string topic, int pageIndex, int pageSize, out int totalRecord)
+        {
+            return dalEnt.GetTicketByAreaIdAndLevel(area, level, topic, pageIndex - 1, pageSize, out totalRecord);
+        }
+        public DJ_TourEnterprise GetScenicBySeoName(string aseoname, string sseoname)
+        {
+            return dalEnt.GetScenicBySeoName(aseoname, sseoname);
+        }
+        public IList<Model.DJ_TourEnterprise> Search(string q, int pageIndex, int pageSize, out int totalRecord)
+        {
+            return dalEnt.SearchByName(q, pageIndex, pageSize, out totalRecord);
         }
     }
 }

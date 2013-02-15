@@ -15,7 +15,7 @@ using System.Text.RegularExpressions;
 public partial class DiscountTicket_DiscountTicket : basepage
 {
     #region 页面参数初始化
-    BLLScenic bllscenic = new BLLScenic();
+    BLLDJEnterprise bllEnt = new BLLDJEnterprise();
     BLLTicket bllTicket = new BLLTicket();
     BLLMembership bllMember = new BLLMembership();
     BLLTopic blltopic = new BLLTopic();
@@ -222,11 +222,11 @@ public partial class DiscountTicket_DiscountTicket : basepage
         {
             level = int.Parse(levelname.Substring(0, 1));
         }
-        IList<Model.Scenic> ticketList;
+        IList<Model.DJ_TourEnterprise> ticketList;
         if (countyname == null)
-            ticketList = bllTicket.GetTicketByAreaIdAndLevel(area, level, topicname, pageIndex, pageSize, out totalRecord);
+            ticketList = bllEnt.GetTicketByAreaIdAndLevel(area, level, topicname, pageIndex, pageSize, out totalRecord);
         else
-            ticketList = bllTicket.GetTicketByAreaIdAndLevel(areacounty, level, topicname, pageIndex, pageSize, out totalRecord);
+            ticketList = bllEnt.GetTicketByAreaIdAndLevel(areacounty, level, topicname, pageIndex, pageSize, out totalRecord);
 
         rptItems.DataSource = ticketList;
         rptItems.DataBind();

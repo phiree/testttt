@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 public partial class Layout : System.Web.UI.MasterPage
 {
     BLLScenicImg bllscenicimg = new BLLScenicImg();
-    BLLScenic bllscenic = new BLLScenic();
+    BLLDJEnterprise bllscenic = new BLLDJEnterprise();
     Scenic scenic = new Scenic();
     BLLTopic blltopic = new BLLTopic();
     BLLArea bllArea = new BLLArea();
@@ -43,20 +43,20 @@ public partial class Layout : System.Web.UI.MasterPage
         if (key1.Split('_').Length > 1)
             key1 = key1.Split('_')[1];
         string key2 = keys[keys.Length - 1].Split('.')[0];
-        scenic= bllscenic.GetScenicBySeoName(key1, key2);
+        scenic= bllscenic.GetScenicBySeoName(key1, key2) as Scenic;
     }
 
 
     //绑定最近浏览过的景区
     private void BindVisited()
     {
-        List<Scenic> listsc = new List<Scenic>();
+        List<DJ_TourEnterprise> listsc = new List<DJ_TourEnterprise>();
         if (Request.Cookies["visitedscenic"] != null)
         {
             string[] allkeys = Request.Cookies["visitedscenic"].Value.Split(',');
             foreach (string item in allkeys)
             {
-                Scenic sss = bllscenic.GetScenicById(int.Parse(item));
+                DJ_TourEnterprise sss = bllscenic.GetOne(int.Parse(item));
                 listsc.Add(sss);
             }
             rptvisited.DataSource = listsc;
@@ -107,7 +107,7 @@ public partial class Layout : System.Web.UI.MasterPage
     {
         if (scenic != null && !string.IsNullOrEmpty(scenic.Position) && scenic.Position != "null" && scenic.Position != "undefined")
         {
-            IList<Scenic> list = bllscenic.GetScenic();
+            IList<DJ_TourEnterprise> list = bllscenic.GetAll<DJ_TourEnterprise>();
             bindimg(list, scenic);
             rptzbsc.DataSource = scdiction.Keys;
             rptzbsc.DataBind();
@@ -118,7 +118,7 @@ public partial class Layout : System.Web.UI.MasterPage
 
     List<ScenicImg> sclist = new List<ScenicImg>();    //绑定周边景区
     Dictionary<Scenic, double> scdiction = new Dictionary<Scenic, double>();
-    private void bindimg(IList<Scenic> list, Scenic scenic)
+    private void bindimg(IList<DJ_TourEnterprise> list, Scenic scenic)
     {
         foreach (Scenic item in list)
         {
@@ -190,7 +190,7 @@ public partial class Layout : System.Web.UI.MasterPage
                 break;
             if (item.Key != scenic.Id)
             {
-                listresult.Add(bllscenic.GetScenicById(item.Key));
+                listresult.Add(bllscenic.GetOne(item.Key) as Scenic);
             }
         }
         return listresult;

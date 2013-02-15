@@ -67,7 +67,7 @@ public partial class Manager_ScenicManage_AddTicket : System.Web.UI.Page
         string strScenic = tbxTargetScenic.Text.Trim();
         if (!string.IsNullOrEmpty(strScenic))
         {
-            Scenic targetScenic;
+            DJ_TourEnterprise targetScenic;
             int targetScenicId;
             if (int.TryParse(strScenic, out targetScenicId))
             {

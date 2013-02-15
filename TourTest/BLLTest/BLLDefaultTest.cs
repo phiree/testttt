@@ -32,8 +32,8 @@ namespace TourTest.BLLTest
         [Test]
         public void ImemTest()
         {
-            IMembership expected =new DAL.DALMembership(); // TODO: 初始化为适当的值
-            IMembership actual;
+            DAL.DALMembership expected = new DAL.DALMembership(); // TODO: 初始化为适当的值
+            DAL.DALMembership actual;
             target.Imem = expected;
             actual = target.Imem;
             Assert.AreEqual(expected, actual);

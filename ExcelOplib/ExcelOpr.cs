@@ -65,18 +65,19 @@ namespace ExcelOplib
             var topics2 = topics1.Distinct().ToList<string>();
             //blltopic.SaveTopic(topicc2, topics2);
 
-            var orgslist = bllscenic.GetScenic().ToList<Model.Scenic>();
+            var orgslist = bllscenic.GetScenic().ToList<Model.DJ_TourEnterprise>();
             bllscenic.DeleteScenicimg();
             //循环景区
             foreach (Entity.ScenicEntity item in newslist)
             {
                 if (string.IsNullOrWhiteSpace(item.name)) break;
                 //组装scenic
-                List<Model.Scenic> ss = orgslist.Where<Model.Scenic>(x => x.Name == item.name).ToList();
+                List<Model.DJ_TourEnterprise> ss = orgslist.Where<Model.DJ_TourEnterprise>(x => x.Name == item.name).ToList();
                 Model.Scenic s;
                 if (ss.Count == 1)//已经存在该景区
                 {
-                    s = ss.First();
+                 
+                    s = ss.First() as Model.Scenic;
                     s.Address = item.address;
                     s.Level = item.level;
                     s.SeoName = string.IsNullOrEmpty(s.SeoName) ? item.seoname : s.SeoName;

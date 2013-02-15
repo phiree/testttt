@@ -16,7 +16,7 @@ public partial class Manager_ScenicManage_TicketManage_UnionTicketEdit : System.
     int ticketId;
     public TicketUnion CurrentTicket;
     BLLTicket bllTicket = new BLLTicket();
-   
+    BLLScenic bllScenic = new BLLScenic();
     BLLDJEnterprise bllEnt = new BLLDJEnterprise();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -50,7 +50,7 @@ public partial class Manager_ScenicManage_TicketManage_UnionTicketEdit : System.
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         int total;
-      IList<Scenic> scenics=  bllEnt.Search(tbxKeyword.Text.Trim(), 0, 99, out total);
+      IList<DJ_TourEnterprise> scenics=  bllEnt.GetListByNameLike(tbxKeyword.Text.Trim());
       rptSearchScenics.DataSource = scenics;
       rptSearchScenics.DataBind();
     }

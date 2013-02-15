@@ -15,6 +15,7 @@ public partial class search_Default : System.Web.UI.Page
     BLLTicket bllTicket = new BLLTicket();
     BLLArea bllArea = new BLLArea();
     BLLScenicImg bllSI = new BLLScenicImg();
+    BLLDJEnterprise bllEnt = new BLLDJEnterprise();
     public string q;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,7 +28,7 @@ public partial class search_Default : System.Web.UI.Page
         int pageSize = pagerGot.PageSize;
         int totalRecord;
 
-        IList<Model.Scenic> ticketList = bllTicket.Search(q, pageIndex, pageSize, out totalRecord);
+        IList<Model.DJ_TourEnterprise> ticketList = bllEnt.Search(q, pageIndex, pageSize, out totalRecord);
         if (ticketList.Count > 0)
         {
             rptItems.DataSource = ticketList;

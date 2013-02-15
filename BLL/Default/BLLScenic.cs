@@ -59,11 +59,11 @@ namespace BLL
         }
        BLLArea bllArea = new BLLArea();
 
-        public IList<Model.Scenic> GetScenic()
+        public IList<Model.DJ_TourEnterprise> GetScenic()
         {
-            return IScenic.GetScenic();
+            return IScenic.GetAll<DJ_TourEnterprise>();
         }
-        public Scenic GetScenicBySeoName(string seoName)
+        public DJ_TourEnterprise GetScenicBySeoName(string seoName)
         {
             return IScenic.GetScenicBySeoName(seoName);
         }
@@ -199,10 +199,7 @@ namespace BLL
             }
         }
 
-        public Scenic GetScenicBySeoName(string aseoname, string sseoname)
-        {
-            return IScenic.GetScenicBySeoName(aseoname, sseoname);
-        }
+     
         public IList<Scenic> GetList_Mipang()
         {
             string where = " s.MipangId>0";

@@ -16,7 +16,7 @@ public class UpdatePosition : IHttpHandler {
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
         BLLScenic bllscenic = new BLLScenic();
-        IList<Scenic> list = bllscenic.GetScenic();
+        IList<DJ_TourEnterprise> list = bllscenic.GetScenic();
         List<ScenicMap> list2 = new List<ScenicMap>();
         foreach (Scenic item in list)
         {
