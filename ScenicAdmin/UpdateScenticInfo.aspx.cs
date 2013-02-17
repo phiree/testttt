@@ -67,6 +67,6 @@ public partial class ScenticManager_UpdateScenticInfo :basepage
 
     protected void btnupdatescpic_Click(object sender, EventArgs e)
     {
-        Response.Redirect("/ScenicManager/ScenicPictureShow.aspx");
+        Response.Redirect("/ScenicPictureShow.aspx");
     }
 }

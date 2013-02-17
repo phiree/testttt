@@ -71,7 +71,7 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
                     else
                         saveimg = time.Split('.')[0] + "_s" + System.IO.Path.GetExtension(hfimgurl.Value).ToLower().Trim();
                     //string[] files = Directory.GetFiles();
-                    File.Copy(Server.MapPath(string.Format("~/ScenicManager/Upload")) + "\\" + hfimgurl.Value, strPath + "\\" + saveimg);
+                    File.Copy(Server.MapPath(string.Format("~/Upload")) + "\\" + hfimgurl.Value, strPath + "\\" + saveimg);
                     ss = time;
                     si.Name = ss;
                 }
@@ -103,7 +103,7 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
                     else
                         saveimg = time.Split('.')[0] + "_s" + System.IO.Path.GetExtension(hfimgurl.Value).ToLower().Trim();
                     //string[] files = Directory.GetFiles();
-                    File.Copy(Server.MapPath(string.Format("~/ScenicManager/Upload")) + "\\" + hfimgurl.Value, strPath + "\\" + saveimg);
+                    File.Copy(Server.MapPath(string.Format("~/Upload")) + "\\" + hfimgurl.Value, strPath + "\\" + saveimg);
                     ss = time;
                     si.Name = ss;
                 }
@@ -123,7 +123,7 @@ public partial class ScenicManager_UpdateScenicImg : System.Web.UI.Page
             sc.Photo = bllsenicimg.GetSiByType(Master.Scenic, 1)[0].Name;
             new BLLScenic().UpdateScenicInfo(sc);
         }
-        Response.Redirect("/scenicmanager/ScenicPictureShow.aspx");
+        Response.Redirect("/ScenicPictureShow.aspx");
     }
 
     private void bind()

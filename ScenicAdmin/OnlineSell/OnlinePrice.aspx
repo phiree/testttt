@@ -76,7 +76,7 @@
     <hr />
     <div id="updateprice">
         <div class="paystate">
-        <a href="/scenicmanager/onlinesell/OnlinePrice.aspx" class="nowstate">填写景区价格</a>><a>打印价格表</a>><a>上传盖章后价格表</a>><a>申请</a>
+        <a href="/onlinesell/OnlinePrice.aspx" class="nowstate">填写景区价格</a>><a>打印价格表</a>><a>上传盖章后价格表</a>><a>申请</a>
         </div>
         <div class="priceintroduction">
             门票价格介绍
@@ -133,7 +133,7 @@
                 </asp:Repeater>
             </tbody>
         </table>
-        <input type="button" name="name" class="btnokprice" onclick="calc()" style="margin-left:30px; vertical-align:middle;" /><a href="/scenicmanager/onlinesell/PrintScenicPrice.aspx" style=" vertical-align:middle;margin-left:430px">进入下一步</a>
+        <input type="button" name="name" class="btnokprice" onclick="calc()" style="margin-left:30px; vertical-align:middle;" /><a href="/onlinesell/PrintScenicPrice.aspx" style=" vertical-align:middle;margin-left:430px">进入下一步</a>
         <input type="hidden" id="hidden_scid" runat="server" />
     </div>
 </asp:Content>

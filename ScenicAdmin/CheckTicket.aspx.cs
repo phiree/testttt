@@ -751,7 +751,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             if (record != null)
                 routeids += hfrouteId.Value + ",";
         }
-        BtnPrint.HRef = "/ScenicManager/PrintCer.aspx?routeids=" + routeids;
+        BtnPrint.HRef = "/PrintCer.aspx?routeids=" + routeids;
     }
     #endregion
 }

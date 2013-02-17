@@ -17,9 +17,9 @@ public class Upload : IHttpHandler {
                 {
                     HttpPostedFile file = context.Request.Files["FileData"];
                     string uploadpath = context.Server.MapPath(context.Request["folder"] + "\\");
-                    string[] files = Directory.GetFiles(context.Server.MapPath(string.Format("~/ScenicManager/Upload")));
+                    string[] files = Directory.GetFiles(context.Server.MapPath(string.Format("~/Upload")));
                     string path = files[0].Split('\\')[files[0].Split('\\').Length - 1];
-                    File.Delete(context.Server.MapPath(string.Format("~/ScenicManager/Upload/{0}", path)));
+                    File.Delete(context.Server.MapPath(string.Format("~/Upload/{0}", path)));
                     string time = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString()
                + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
                     string new_Name = time;

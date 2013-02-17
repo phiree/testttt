@@ -42,7 +42,7 @@ public partial class ScenicManager_UploadAdminInfo : basepage
                     {
                         tm.Password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(txtnewpwd1.Text.Trim(), "MD5");
                         bllmem.updateinfo(tm);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功');window.location='/ScenicManager/'", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('修改成功');window.location='/'", true);
                     }
                 }
                 else

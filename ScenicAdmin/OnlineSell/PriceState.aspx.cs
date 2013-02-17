@@ -29,11 +29,11 @@ public partial class ScenicManager_OnlineSell_PriceState : bpScenicManager
         }
         if (scp.CheckStatus == CheckStatus.NotApplied || scp.CheckStatus == CheckStatus.Applied_1 || scp.CheckStatus == CheckStatus.Applied_2 || scp.CheckStatus == CheckStatus.Applied_3)
         {
-            Response.Redirect("/ScenicManager/OnlineSell/Pricesetting.aspx");
+            Response.Redirect("/OnlineSell/Pricesetting.aspx");
         }
         else
         {
-            Response.Redirect("/ScenicManager/OnlineSell/TicketApply.aspx");
+            Response.Redirect("/OnlineSell/TicketApply.aspx");
         }
     }
 }

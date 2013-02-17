@@ -19,11 +19,11 @@ public partial class ScenicManager_OnlineSell_PricesettingShow : basepage
         Scenic scenic = Master.Scenic;
         if (scenic.Tickets.Count > 0)
         {
-            Response.Redirect("/ScenicManager/OnlineSell/PriceState.aspx");
+            Response.Redirect("/OnlineSell/PriceState.aspx");
         }
         else
         {
-            Response.Redirect("/ScenicManager/OnlineSell/Pricesetting.aspx");
+            Response.Redirect("/OnlineSell/Pricesetting.aspx");
         }
     }
 }
