@@ -170,6 +170,19 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ScenicAdmin", "ScenicAdmin\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPerfermanceTest", "WebPerfermanceTest\WebPerfermanceTest.csproj", "{563DB78C-7F96-4CD6-B771-0CCED24DB517}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "常用查询", "常用查询", "{BC35DCA5-42DA-44DC-A31D-B9192E64AD12}"
+	ProjectSection(SolutionItems) = preProject
+		docs\常用查询\SQLQuery3.sql = docs\常用查询\SQLQuery3.sql
+		docs\常用查询\删除身份证订票信息.sql = docs\常用查询\删除身份证订票信息.sql
+		docs\常用查询\同一个活动的重复票问题.sql = docs\常用查询\同一个活动的重复票问题.sql
+		docs\常用查询\数据同步脚本.sql = docs\常用查询\数据同步脚本.sql
+		docs\常用查询\现有数据生成UserTicket表.sql = docs\常用查询\现有数据生成UserTicket表.sql
+		docs\常用查询\衢州数据库升级脚本.sql = docs\常用查询\衢州数据库升级脚本.sql
+		docs\常用查询\身份证号码可以查询出来验票没有5.sql = docs\常用查询\身份证号码可以查询出来验票没有5.sql
+		docs\常用查询\身份证号码抢票详情.sql = docs\常用查询\身份证号码抢票详情.sql
+		docs\常用查询\门票列表.sql = docs\常用查询\门票列表.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TourOnline.vsmdi
@@ -403,5 +416,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2EA52185-36B4-4ACB-A149-2C53E918CD9A} = {E2661A43-CFB5-46FC-8513-4EFEB0900776}
 		{D35FB1CE-1F50-4D1C-A78D-EEB28EF2982C} = {E2661A43-CFB5-46FC-8513-4EFEB0900776}
+		{BC35DCA5-42DA-44DC-A31D-B9192E64AD12} = {E2661A43-CFB5-46FC-8513-4EFEB0900776}
 	EndGlobalSection
 EndGlobal
