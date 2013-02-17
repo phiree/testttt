@@ -6,6 +6,7 @@ WEB/config/connectionStrings.config
 WEB/config/app.config
 DiJieSheWeb/config/connectionStrings.config
 AdminWeb/config/connectionStrings.config
+ScenicAdmin/config/connectionStrings.config
 TourTest/app.config
 TourTest/App.config
 *.scc
