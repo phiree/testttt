@@ -55,7 +55,7 @@ public partial class ScenicManager_WorderAdd : bpScenicManager
 
             bllscenicadmin.SaveOrUpdate(sa);
             Page.ClientScript.RegisterStartupScript(this.GetType(), "btnOk", "alert('添加成功')", true);
-            Response.Redirect("/ScenicManager/WorkerList.aspx");
+            Response.Redirect("/WorkerList.aspx");
         }
     }
 }

@@ -22,8 +22,8 @@
         <asp:Repeater ID="rptPicShow1" runat="server">
             <ItemTemplate>
                 <div class="picshowinfo">
-                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/mainimg/{0}") %>' /></a>
-                    <a class="aa" href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><%# Eval("Title") %></a>
+                    <a href='<%# Eval("Id","/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/mainimg/{0}") %>' /></a>
+                    <a class="aa" href='<%# Eval("Id","/UpdateScenicImg.aspx?siid={0}") %>'><%# Eval("Title") %></a>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
@@ -32,8 +32,8 @@
                 onitemdatabound="rptPicShow2_ItemDataBound">
             <ItemTemplate>
                 <div class="picshowinfo">
-                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img runat="server" id="smallimg" src='' /></a>
-                    <a class="aa" href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><%# Eval("Title") %></a>
+                    <a href='<%# Eval("Id","/UpdateScenicImg.aspx?siid={0}") %>'><img runat="server" id="smallimg" src='' /></a>
+                    <a class="aa" href='<%# Eval("Id","/UpdateScenicImg.aspx?siid={0}") %>'><%# Eval("Title") %></a>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
@@ -41,14 +41,14 @@
           <asp:Repeater ID="rptPicShow3" runat="server">
             <ItemTemplate>
                 <div class="picshowinfo">
-                    <a href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/detailimg/{0}") %>' /></a>
-                    <a class="aa" href='<%# Eval("Id","/ScenicManager/UpdateScenicImg.aspx?siid={0}") %>'><%# Eval("Title") %></a>
+                    <a href='<%# Eval("Id","/UpdateScenicImg.aspx?siid={0}") %>'><img src='<%# Eval("Name","/ScenicImg/detailimg/{0}") %>' /></a>
+                    <a class="aa" href='<%# Eval("Id","/UpdateScenicImg.aspx?siid={0}") %>'><%# Eval("Title") %></a>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
         <div class="addscenicimg">
             <input id="Button1" type="button" class="btnaddscenicimg enable" />
-            <%--<input id="Button1" type="button" class="btnaddscenicimg enable" onclick="javascript:window.location='/ScenicManager/UpdateScenicImg.aspx'"/>--%>
+            <%--<input id="Button1" type="button" class="btnaddscenicimg enable" onclick="javascript:window.location='/UpdateScenicImg.aspx'"/>--%>
         </div>
         </div>
     </div>

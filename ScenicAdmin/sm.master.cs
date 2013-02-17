@@ -49,7 +49,7 @@ public partial class ScenicManager_sm : System.Web.UI.MasterPage
                 HttpCookie httpcookie = new HttpCookie("unitposition", "120.159033,30.28376");
                 Response.Cookies.Add(httpcookie);
             }
-            //Response.Redirect("/ScenicManager/UpdateScenticInfo.aspx");
+            //Response.Redirect("/UpdateScenticInfo.aspx");
             switch ((int)scenicAdmin.AdminType)
             {
                 case 1:

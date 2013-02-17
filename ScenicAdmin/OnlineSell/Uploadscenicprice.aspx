@@ -16,7 +16,7 @@
     <hr />
     <div id="uploadscinfo">
         <div class="paystate">
-        <a href="/scenicmanager/onlinesell/OnlinePrice.aspx">填写景区价格</a>><a href="/scenicmanager/onlinesell/PrintScenicPrice.aspx">打印价格表</a>><a href="/scenicmanager/onlinesell/Uploadscenicprice.aspx" class="nowstate">上传盖章后价格表</a>><a onclick="btnchange()" style="cursor:pointer;"" >申请</a>
+        <a href="/onlinesell/OnlinePrice.aspx">填写景区价格</a>><a href="/onlinesell/PrintScenicPrice.aspx">打印价格表</a>><a href="/onlinesell/Uploadscenicprice.aspx" class="nowstate">上传盖章后价格表</a>><a onclick="btnchange()" style="cursor:pointer;"" >申请</a>
         </div>
         <p class="udtitle">
             请把盖好公章的更改价格文件上传至网站，如果已经发传真给我们则可以跳过此步骤</p>

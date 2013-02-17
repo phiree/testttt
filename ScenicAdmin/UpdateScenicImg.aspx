@@ -44,7 +44,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" runat="Server">
     <asp:HiddenField ID="hfimgurl" runat="server" />
     <p class="fuctitle">
-        <a id="listname" runat="server" href="/ScenicManager/ScenicPictureShow.aspx">景区图片管理</a>>&nbsp;<span
+        <a id="listname" runat="server" href="/ScenicPictureShow.aspx">景区图片管理</a>>&nbsp;<span
             id="pictype" runat="server">编辑图片</span></p>
     <hr />
     <div id="picshow">
