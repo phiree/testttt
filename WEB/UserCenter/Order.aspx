@@ -2,8 +2,8 @@
     CodeFile="Order.aspx.cs" Inherits="UserCenter_MyTickets" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
-    <script src="../Scripts/ucdefault.js" type="text/javascript"></script>
+    <link href="/theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/pages/ucdefault.js" type="text/javascript"></script>
     <script type="text/javascript">
         function pay() {
             debugger;

@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <script src="/Scripts/jquery.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
     <link href="/theme/default/css/TCCSS.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />

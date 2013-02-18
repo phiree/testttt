@@ -4,9 +4,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
     <link href="/theme/default/css/checkout.css" rel="stylesheet" type="text/css" />
-    <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
-    <script src="../Scripts/ucdefault.js" type="text/javascript"></script>
+    <script src="/Scripts/pages/ucdefault.js" type="text/javascript"></script>
     <script type="text/javascript">
         function openusedetail(obj) {
             var url = "UseDetail.aspx?odid=" + obj;

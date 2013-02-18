@@ -2,7 +2,7 @@
     CodeFile="Default.aspx.cs" Inherits="qumobile_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphhead" runat="Server">
-    <script src="/Scripts/jquery.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {

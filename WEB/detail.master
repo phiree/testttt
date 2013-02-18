@@ -3,6 +3,7 @@
 
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
     <link href="/theme/default/css/detail.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/pages/detail.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>

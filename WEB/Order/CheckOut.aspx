@@ -10,9 +10,9 @@
     <link href="/theme/default/css/cart.css" rel="stylesheet" type="text/css" />
     <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
-    <script src="/Scripts/json2.js" type="text/javascript"></script>
+    <script src="/Scripts/json2.min.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/Cart.js" type="text/javascript"></script>
+    <script src="/Scripts/pages/Cart.js" type="text/javascript"></script>
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
     <link href="/theme/default/css/cart.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/pages/checkout.js" type="text/javascript"></script>

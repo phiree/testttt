@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/detail.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <link href="/theme/default/css/20130203/Index.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/Index.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">
   <!--  <div class="show_1">
@@ -23,10 +23,10 @@
     </a>
 -->
 <a href="/tickets/quzhou/"><img src="/img/quzhouspringjieshu.jpg" alt='衢州春节门票大派送活动结束' /></a>
-    <a>
+    <%--<a>
         <span class="show_4">
             
         </span>
-    </a>
+    </a>--%>
 </asp:Content>
 

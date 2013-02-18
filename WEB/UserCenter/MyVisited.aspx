@@ -2,8 +2,8 @@
     CodeFile="MyVisited.aspx.cs" Inherits="UserCenter_MyVisited" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
-    <script src="../Scripts/ucdefault.js" type="text/javascript"></script>
+    <link href="/theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/pages/ucdefault.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" runat="Server">
     <div id="vdetail">

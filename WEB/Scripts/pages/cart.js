@@ -1,100 +1,96 @@
-$(function () {
-    //init qty
-    var theCart = new Cart();
-    for (var i in theCart.CartItems) {
-        var item = theCart.CartItems[i];
-        var ticketId = item.TicketId;
-        var qty = item.Qty;
-        $("input.hdId[value='" + ticketId + "']").parent().parent().find("input.qtyModify").val(qty);
+﻿var cartcookiename = "_cart";
+
+var Cart = function () {
+    var items = [];
+    var cartCookie = $.cookie(cartcookiename);
+    if (cartCookie == null || cartCookie == undefined) {
+        cartCookie = $.cookie(cartcookiename, JSON.stringify(items));
     }
-    //modify qty
-    function ModifyQty(that, type) {
-
-        var ticketId = $($(that).parent().parent().children()[0]).children("input:hidden").val();
-        var qtyModify = $(that).parent().children(".qtyModify");
-        var qty = parseInt($(qtyModify).val());
-        var nowQty;
-        if (type == "add")
-        { nowQty = qty + 1; }
-        else if (type == "cut")
-        { nowQty = qty - 1; }
-        else if (type == "modify") {
-            nowQty = qty;
-        }
-        else if (type = "delete") {
-
-
-            theCart.Delete(ticketId);
-            $(that).parent().parent().remove();
-            TicketSum();
-            return;
-
-        }
-        //change the value
-        nowQty = EnsureCartQty(nowQty)
-        $(qtyModify).val(nowQty);
-        theCart.ModifyQty(ticketId, nowQty);
-        TicketSum();
+    else {
+        items = JSON.parse(cartCookie);
     }
-    $(".qtyAdd").click(function () {
-        ModifyQty(this, "add");
-        init();
-    });
-    $(".qtyCut").click(function () {
-        ModifyQty(this, "cut");
-        init();
-    });
-    $(".qtyModify").change(function () {
-        ModifyQty(this, "modify");
-        init();
-    });
-    $(".delete").click(function () {
-        ModifyQty(this, "delete");
-        init();
+    this.CartItems = items;
+    this.Sum();
+  
+}
 
-    });
-    //ticketsSum
-    function TicketSum() {
-        var totalQty = 0;
-        $("input.qtyModify").each(function () {
-            var qty = parseInt($(this).val());
-            totalQty += qty;
+Cart.prototype.Save = function () {
+    var strCartItems = JSON.stringify(this.CartItems);
+    $.cookie(cartcookiename, strCartItems);
+    this.Sum();
+}
+   
 
-        });
-        $("#ticketsSum").text(totalQty);
+
+Cart.prototype.IsInCart = function (ticketId) {
+    for (var i = 0; i < this.CartItems.length; i++) {
+        if (this.CartItems[i].TicketId + "" == ticketId + "") {
+            return this.CartItems[i];
+        }
+    }
+}
+Cart.prototype.AddToCart = function (ticketId, qty) {
+    //quzhou special
+    this.CartItems = [];
+    var item = this.IsInCart(ticketId);
+    qty = EnsureCartQty(qty);
+    if (item) {
+        item.Qty = qty;
+    }
+    else {
+        item = { TicketId: ticketId, Qty: qty };
+        this.CartItems.push(item);
+    }
+    this.Save();
+}
+Cart.prototype.ModifyQty = function (ticketId, qty) {
+    var item = this.IsInCart(ticketId);
+    if (item != null) {
+
+        item.Qty = EnsureCartQty(qty);
+        this.Save();
+    }
+    else {
+        this.AddToCart(ticketId, qty);
+       
+    }
+}
+Cart.prototype.GetQty = function (ticketId) {
+
+    var item = this.IsInCart(ticketId);
+    if (item != null) return item.Qty;
+    else return null;
+}
+Cart.prototype.Delete = function (ticketId) {
+    var item = this.IsInCart(ticketId);
+    this.CartItems.Remove(item);
+    this.Save();
+}
+
+Cart.prototype.Sum = function () {
+    var totalQty = 0;
+    for (var i = 0; i < this.CartItems.length; i++) {
+        var qty = parseInt(this.CartItems[i].Qty);
+        totalQty += qty;
+    }
+    this.TotalQty = totalQty;
+    $("#cartsum").text(totalQty);
+    
+}
+
+
+function EnsureCartQty(qty) {
+    qty = parseInt(qty.toString());
+    if (isNaN(qty)) qty = 1;
+    if (qty <= 0) {
+        qty = 1;
+        alert("数量至少为1");
     };
-    TicketSum();
+    if (qty > 999) {
 
-
-
-
-
-});
-
-function init() {
-    var cart = new Cart();
-    $("#cticketsSum").text(cart.TotalQty);
-    var totalOnlinePrice = 0;
-    var totalPreorderPrice = 0;
-    $(".orderlist tbody tr").each(function () {
-        var that = this;
-        var qty = parseInt($(that).find(".qtyModify").val());
-        var priceorder = parseFloat($(that).find(".priceorder").text());
-        var priceonline = parseFloat($(that).find(".priceonline").text());
-        totalOnlinePrice += qty * priceonline;
-        totalPreorderPrice += qty * priceorder;
-    });
-    $("#totalonline").text(totalOnlinePrice);
-    $("#totalpreorder").text(totalPreorderPrice);
+        qty = 999;
+        alert("同一景区的最大购票数量为999");
+    };
+    return qty;
 }
 
-function carttdon(obj) {
-    $(obj).find("td").attr("class", "carttbtd");
-    $(obj).find("td").first().find("a").css("color", "#EC6B9E");
-    $(obj).find("td").last().find("span").css("color", "#EC6B9E");
-}
-function carttdout(obj) {
-    $(obj).find("td").attr("class", "");
-    $(obj).find("td").first().find("a").css("color", "");
-    $(obj).find("td").last().find("span").css("color", "");
-}
