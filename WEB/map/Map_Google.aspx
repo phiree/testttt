@@ -2,13 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <%--<link href="../Styles/DefaultMapCss.css" rel="stylesheet" type="text/css" />--%>
     <script src="/Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-    <script type="text/javascript"
+    <%--<script type="text/javascript"
     src="https://maps.google.com/maps/api/js?sensor=true">
-</script>
+</script>--%>
+    <%--<script type="text/javascript" src="http://api.go2map.com/maps/js/api_v2.5.1.js"></script>--%>
+    <script charset="utf-8" src="http://api.map.soso.com/v1.0/main.js"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
-    <script src="map_google.js" type="text/javascript"></script>
+    <%--<script src="map_google.js" type="text/javascript"></script>--%>
+    <script src="map_soso.js" type="text/javascript"></script>
     <%--<link href="/Styles/default.css" rel="stylesheet" type="text/css" />--%>
     <link rel="stylesheet" type="text/css" href="../Styles/page.css" />
     <script src="/Scripts/jquery.myPagination.js" type="text/javascript"></script>
