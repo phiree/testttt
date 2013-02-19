@@ -2,8 +2,6 @@
     CodeFile="Cart.aspx.cs" Inherits="Scenic_Cart" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
-    <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/cart.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/json2.min.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/pages/Cart.js" type="text/javascript"></script>

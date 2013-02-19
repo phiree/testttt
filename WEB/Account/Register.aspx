@@ -2,7 +2,7 @@
     CodeFile="Register.aspx.cs" Inherits="Account_Register" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="head">
-    <link href="/theme/default/css/register.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/register.css" rel="stylesheet" type="text/css" />
     <script language="javascript">
         $(function () {
             $("#cbxAgree").change(function () {

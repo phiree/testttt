@@ -2,9 +2,8 @@
     CodeFile="Default.aspx.cs" Inherits="search_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
-    <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/DiscountTicket.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/pager.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/DiscountTicket.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/pager.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContent" runat="Server">
             <div id="sceniccount" runat="server" class="sceniccount">

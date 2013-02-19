@@ -8,7 +8,7 @@
     <script src="/Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="/map/mapnav.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="../Styles/page.css" />
-    <link href="/theme/default/css/map.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/map.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div style="width: 80%; height: 550px; border: 1px solid gray; float: left" id="container">

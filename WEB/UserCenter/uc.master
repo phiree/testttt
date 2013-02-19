@@ -2,7 +2,8 @@
     CodeFile="uc.master.cs" Inherits="UserCenter_uc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <link href="/theme/default/css/ucMasterPage.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/ucMasterPage.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/ucdefault.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jqueryplugin/HighLightLink.js" type="text/javascript"></script>
        <script language="javascript" type="text/javascript">
            $(function () {

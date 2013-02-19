@@ -5,9 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link href="/theme/default/css/12301.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/12301.css" rel="stylesheet" type="text/css" />
 <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
-<script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
     $(function () {

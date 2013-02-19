@@ -5,16 +5,13 @@
     <title>订单结算</title>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-1.8.2.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
-    <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/checkout.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/cart.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/checkout.css" rel="stylesheet" type="text/css" />
     <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
         rel="stylesheet" type="text/css" />
     <script src="/Scripts/json2.min.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/pages/Cart.js" type="text/javascript"></script>
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
-    <link href="/theme/default/css/cart.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/pages/checkout.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
 </asp:Content>

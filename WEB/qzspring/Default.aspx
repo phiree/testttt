@@ -6,9 +6,8 @@
     <script src="/Scripts/slide.js" type="text/javascript"></script>
     <script src="/Scripts/pages/default.js" type="text/javascript"></script>
       <script src="/Scripts/pages/contentReader.js" type="text/javascript"></script>
-    <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/pager.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/Show.css" rel="stylesheet" type="text/css" /> 
+    <link href="/Content/pager.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/Show.css" rel="stylesheet" type="text/css" /> 
     <script type="text/javascript">
         $(function () {
             //startscrolltime();

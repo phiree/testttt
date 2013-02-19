@@ -11,8 +11,8 @@
     <script src="map_google.js" type="text/javascript"></script>
     <%--<link href="/Styles/default.css" rel="stylesheet" type="text/css" />--%>
     <link rel="stylesheet" type="text/css" href="../Styles/page.css" />
-    <script src="../Scripts/jquery.myPagination.js" type="text/javascript"></script>
-    <link href="/theme/default/css/map.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery.myPagination.js" type="text/javascript"></script>
+    <link href="/Content/page/map.css" rel="stylesheet" type="text/css" />
     <script src="mapcommon_google.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphmain" Runat="Server">

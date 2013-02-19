@@ -6,10 +6,8 @@
     <%--<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true">
     </script>--%> 
      <script src="/Scripts/pages/contentReader.js" type="text/javascript"></script>
-    <link href="/theme/default/css/TCCSS.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/scenic.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/pages/scenic.js" type="text/javascript"></script>

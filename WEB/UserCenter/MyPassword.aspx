@@ -2,7 +2,6 @@
     CodeFile="MyPassword.aspx.cs" Inherits="UserCenter_MyPassword" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ucContent" runat="Server">
     <div id="pinfo">
