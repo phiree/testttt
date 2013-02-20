@@ -5,7 +5,7 @@ using System.Text;
 using Elong2 = BLL.NorthBoundAPIService;
 using HotelModel.HotelSDKModel;
 using System.Collections;
-using HotelModel.HotelDB; 
+using HotelModel.HotelDB;
 
 namespace BLL
 {
@@ -416,6 +416,32 @@ namespace BLL
         {
             IList<HotelModel.HotelDB.nbapisdk_Hotel> hotestlist = new List<HotelModel.HotelDB.nbapisdk_Hotel>();
             return DataBaseManager.GetHotels(searchHotelListRequestCondition);
+        }
+
+        /// <summary>
+        /// 根据location获得景区列表
+        /// </summary>
+        /// <param name="searchHotelListRequestCondition">缩小酒店查找范围的条件:zipcode</param>
+        /// <param name="location">经纬度，格式："30.289796710,120.145331025"</param>
+        /// <returns></returns>
+        public IList<HotelModel.HotelDB.nbapisdk_Hotel> GetHotelListNearby(SearchHotelListRequestCondition searchHotelListRequestCondition, string location,int hotelcount)
+        {
+            var hotelist = DataBaseManager.GetHotels(searchHotelListRequestCondition);
+            CommonLibrary.NearbyCalc nearbyCalc = new CommonLibrary.NearbyCalc();
+            Dictionary<object, string> hotelsdic = new Dictionary<object, string>();
+            foreach (var item in hotelist)
+            {
+                hotelsdic.Add(item.hotelId, item.longitude + "," + item.latitude);
+            }
+            var hotels_queue = nearbyCalc.CalcNearby(location, hotelsdic, hotelcount);
+            IList<HotelModel.HotelDB.nbapisdk_Hotel> hotel_result = new List<HotelModel.HotelDB.nbapisdk_Hotel>();
+            var hotel_result_count = hotels_queue.Count;
+            while(hotels_queue.Count>0)
+            {
+                hotel_result.Add(hotelist.FirstOrDefault(x => x.hotelId == hotels_queue.Peek().ToString()));
+                hotels_queue.Dequeue();
+            }
+            return hotel_result;
         }
 
         //酒店商区图片

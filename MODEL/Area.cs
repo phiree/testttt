@@ -13,6 +13,7 @@ namespace Model
         public virtual string Code { get; set; }
         public virtual int AreaOrder { get; set; }
         public virtual string MetaDescription { get; set; }
+        public virtual string Zipcode { get; set; }
 
         /// <summary>
         ///行政级别:省,市,区

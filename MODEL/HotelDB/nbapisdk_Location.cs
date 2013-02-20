@@ -188,6 +188,9 @@ namespace HotelModel.HotelDB
         public string contactermobile { get; set; }
         public string contacterphone { get; set; }
         public string contacterfax { get; set; }
+
+        public DateTime bookDate { get; set; }
+        public nbapisdk_Hotel Hotel { get; set; }
     }
 
     public class nbapisdk_HotelDetail

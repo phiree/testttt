@@ -139,6 +139,6 @@ namespace HotelModel.HotelSDKModel
         /// </summary>
         public int MaxRows { get; set; }
 
-
+        public string zipCode { get; set; }
     }
 }

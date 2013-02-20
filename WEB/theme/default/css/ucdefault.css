@@ -367,6 +367,36 @@
     margin-left:10px;
     width:40px;
 }
+.hotel10{width:10%;}
+.hotel10a{width:10%;display: inline-block;
+line-height: 35px;
+text-align: center;
+vertical-align: middle;}
+.hotel5a{width:4%;display: inline-block;
+line-height: 35px;
+text-align: center;
+vertical-align: middle;}
+.hotel12{width:12%;}
+.hotel13{width:13%;}
+.hotel13a{width:13%;display: inline-block;
+line-height: 35px;
+text-align: center;
+vertical-align: middle;}
+.hotel15{width:15%;}
+.hotel20{width:20%;}
+.hotel25{width:25%;}
+.hotel25a{width:25%;display: inline-block;
+line-height: 35px;
+text-align: center;
+vertical-align: middle;color:#807940;}
+.hotel30{width:30%;}
+.oinfo a{color:#807940;}
+        .oinfo a:hover
+        {
+            color: #F60;
+            text-decoration: underline;
+            cursor: pointer;
+        }
 
 .oinfo
 {

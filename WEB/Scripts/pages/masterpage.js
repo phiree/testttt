@@ -47,7 +47,7 @@ $(function () {
         $(this).css("background-color", "#4FA600");
         var pleft = $(".chartdiv").position().left;
         var ptop = $(".chartdiv").position().top;
-        $("#popcart").css({ left: pleft + 410 + "px", top: ptop + 30 + "px", display: "block" });
+        $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px", display: "block" });
         if ($.browser.msie && (jQuery.browser.version == "6.0") && !$.support.style) {
             $("#popcart").css({ left: pleft + 335 + "px", top: ptop + 30 + "px", display: "block" });
         }
@@ -127,7 +127,7 @@ window.onresize = function () {
     findDimensions();
     var pleft = $(".chartdiv").position().left;
     var ptop = $(".chartdiv").position().top;
-    $("#popcart").css({ left: pleft + 410 + "px", top: ptop + 30 + "px" });
+    $("#popcart").css({ left: pleft + 320 + "px", top: ptop + 30 + "px" });
     var ileft = $(".logoleft").position().left;
     var itop = $(".logoleft").position().top;
     $(".mainarea").css({ left: ileft + 370 + "px", top: itop + 60 + "px" });

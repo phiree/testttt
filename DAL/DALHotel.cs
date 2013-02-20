@@ -15,9 +15,9 @@ namespace DAL
 
             try
             {
-                string sql = "select top 20 h.*,img.url_1,img.url_2,img.url_3 from nbapisdk_Hotel h,nbapisdk_Image img where city=:city and img.hotelId=h.hotelId and img.imgType=5";
+                string sql = "select top 20 h.*,img.url_1,img.url_2,img.url_3 from nbapisdk_Hotel h,nbapisdk_Image img where zipCode=:zipCode and img.hotelId=h.hotelId and img.imgType=5";
                 var query = session.CreateSQLQuery(sql)
-                    .SetParameter("city", searchHotelListRequestCondition.CityId);
+                    .SetParameter("zipCode", searchHotelListRequestCondition.zipCode);
                 var result = query.List<object[]>();
                 foreach (var item in result)
                 {
@@ -441,12 +441,14 @@ namespace DAL
         public nbapisdk_HotelOrder GetOrderdetail(string orderid)
         {
             nbapisdk_HotelOrder ho = new nbapisdk_HotelOrder();
-            string sql = "select top 1 [orderId],[statusCode],[hotelId],[roomTypeId],[ratePlanId],[checkInDate]," +//6
+            string sql = "select top 1 [orderId],[statusCode],ho.hotelId,[roomTypeId],[ratePlanId],[checkInDate]," +//6
                 "[checkOutDate],[elongCardNo],[guestTypeCode],[roomAmount],[guestAmount],[paymentTypeCode]," +//6
                 "[arrivalEarlyTime],[arrivalLateTime],[currencyCode],[totalPrice],[guaranteeCurrencyCode],[guaranteeMoney]," +//6
                 "[confirmTypeCode],[confirmLanguageCode],[noteToHotel],[noteToElong],[_default_],[guestsName]," +//6
-                "[contacterName],[contacterGender],[contacterEmail],[contacterMobile],[contacterPhone],[contacterFax] " +//6
-                "from [nbapisdk_HotelOrder] where orderId=:orderId";
+                "[contacterName],[contacterGender],[contacterEmail],[contacterMobile],[contacterPhone],[contacterFax], " +//6
+                "h.hotelName,ho.bookDate,h.address,h.star,h.zipCode,h.category,h.typology,h.roomNumer,h.availPolicy,h.descNote," +//6
+                "h.usersRating,h.latitude,h.longitude,h.province,h.city,h.businessZone,h.distict,h.brandId,h.phone,h.fax " +//6
+                "from [nbapisdk_HotelOrder] ho,[nbapisdk_Hotel] h where h.hotelId=ho.hotelId and orderId=:orderId";
             var query = session.CreateSQLQuery(sql).SetParameter("orderId", orderid);
             var result = query.List<object[]>();
             foreach (var item in result)
@@ -481,21 +483,50 @@ namespace DAL
                 ho.contactermobile = item[27].ToString();
                 ho.contacterphone = item[28].ToString();
                 ho.contacterfax = item[29].ToString();
+                ho.bookDate = DateTime.Parse(item[31].ToString());
+                ho.Hotel = new nbapisdk_Hotel()
+                {
+                    hotelName = item[30] == null ? "" : item[30].ToString(),
+                    address = item[32] == null ? "" : item[32].ToString(),
+                    star = int.Parse(item[33] == null ? "0" : item[33].ToString()),
+                    zipCode = item[34] == null ? "" : item[34].ToString(),
+                    category = int.Parse(item[35] == null ? "0" : item[35].ToString()),
+                    typology = item[36] == null ? "" : item[36].ToString(),
+                    roomNumer = int.Parse(item[37] == null ? "0" : item[37].ToString()),
+                    availPolicy = item[38] == null ? "" : item[38].ToString(),
+                    descNote = item[39] == null ? "" : item[39].ToString(),
+                    usersRating = int.Parse(item[40] == null ? "0" : item[40].ToString()),
+                    latitude = item[41] == null ? "" : item[41].ToString(),
+                    longitude = item[42] == null ? "" : item[42].ToString(),
+                    province = item[43] == null ? "" : item[43].ToString(),
+                    city = item[44] == null ? "" : item[44].ToString(),
+                    businessZone = item[45] == null ? "" : item[45].ToString(),
+                    distict = item[46] == null ? "" : item[46].ToString(),
+                    brandId = item[47] == null ? "" : item[47].ToString(),
+                    phone = item[48] == null ? "" : item[48].ToString(),
+                    fax = item[49] == null ? "" : item[49].ToString()
+                };
             }
             return ho;
         }
+
         public IList<nbapisdk_HotelOrder> GetOrderList(string memid)
         {
             if (string.IsNullOrWhiteSpace(memid)) return null;
+            string datetime = DateTime.Now.AddMonths(-6).ToShortDateString();
             IList<nbapisdk_HotelOrder> holist = new List<nbapisdk_HotelOrder>();
             nbapisdk_HotelOrder ho = new nbapisdk_HotelOrder();
-            string sql = "select [orderId],[statusCode],[hotelId],[roomTypeId],[ratePlanId],[checkInDate]," +//6
+            string sql = "select [orderId],[statusCode],ho.hotelId,[roomTypeId],[ratePlanId],[checkInDate]," +//6
                 "[checkOutDate],[elongCardNo],[guestTypeCode],[roomAmount],[guestAmount],[paymentTypeCode]," +//6
                 "[arrivalEarlyTime],[arrivalLateTime],[currencyCode],[totalPrice],[guaranteeCurrencyCode],[guaranteeMoney]," +//6
                 "[confirmTypeCode],[confirmLanguageCode],[noteToHotel],[noteToElong],[_default_],[guestsName]," +//6
-                "[contacterName],[contacterGender],[contacterEmail],[contacterMobile],[contacterPhone],[contacterFax] " +//6
-                "from [nbapisdk_HotelOrder] where _default_=:memid ";
-            var query = session.CreateSQLQuery(sql).SetParameter("memid", memid);
+                "[contacterName],[contacterGender],[contacterEmail],[contacterMobile],[contacterPhone],[contacterFax], " +//6
+                "h.hotelName,ho.bookDate,h.address,h.star,h.zipCode,h.category,h.typology,h.roomNumer,h.availPolicy,h.descNote," +//6
+                "h.usersRating,h.latitude,h.longitude,h.province,h.city,h.businessZone,h.distict,h.brandId,h.phone,h.fax " +//6
+                "from [nbapisdk_HotelOrder] ho,[nbapisdk_Hotel] h where h.hotelId=ho.hotelId and memid=:memid and ho.bookDate>:bookDate";
+            var query = session.CreateSQLQuery(sql)
+                .SetParameter("memid", memid)
+                .SetParameter("bookDate", datetime);
             var result = query.List<object[]>();
             foreach (var item in result)
             {
@@ -530,6 +561,30 @@ namespace DAL
                 ho.contactermobile = item[27].ToString();
                 ho.contacterphone = item[28].ToString();
                 ho.contacterfax = item[29].ToString();
+
+                ho.bookDate = DateTime.Parse(item[31].ToString());
+                ho.Hotel = new nbapisdk_Hotel()
+                {
+                    hotelName = item[30] == null ? "" : item[30].ToString(),
+                    address = item[32] == null ? "" : item[32].ToString(),
+                    star = int.Parse(item[33] == null ? "0" : item[33].ToString()),
+                    zipCode = item[34] == null ? "" : item[34].ToString(),
+                    category = int.Parse(item[35] == null ? "0" : item[35].ToString()),
+                    typology = item[36] == null ? "" : item[36].ToString(),
+                    roomNumer = int.Parse(item[37] == null ? "0" : item[37].ToString()),
+                    availPolicy = item[38] == null ? "" : item[38].ToString(),
+                    descNote = item[39] == null ? "" : item[39].ToString(),
+                    usersRating = int.Parse(item[40] == null ? "0" : item[40].ToString()),
+                    latitude = item[41] == null ? "" : item[41].ToString(),
+                    longitude = item[42] == null ? "" : item[42].ToString(),
+                    province = item[43] == null ? "" : item[43].ToString(),
+                    city = item[44] == null ? "" : item[44].ToString(),
+                    businessZone = item[45] == null ? "" : item[45].ToString(),
+                    distict = item[46] == null ? "" : item[46].ToString(),
+                    brandId = item[47] == null ? "" : item[47].ToString(),
+                    phone = item[48] == null ? "" : item[48].ToString(),
+                    fax = item[49] == null ? "" : item[49].ToString()
+                };
                 holist.Add(ho);
             }
             return holist;

@@ -26,18 +26,24 @@ public partial class Hotels_OrderDetail : System.Web.UI.Page
         if (orderdetail != null)
         {
             lblorderid.Text = orderdetail.orderid;
-            lblorderid2.Text = orderdetail.orderid;
-            lblname.Text = orderdetail.contactername;
             lblorderstatus.Text = orderdetail.statuscode;
             lblcindate.Text = orderdetail.checkindate.ToShortDateString();
-            lblcoutdate.Text = orderdetail.checkoutdate.ToShortDateString();
-            lblarrive.Text = orderdetail.arrivalearlytime.ToShortDateString() + "-" + orderdetail.arrivallatetime.ToShortDateString();
-            hotelname.Text = orderdetail.hotelid;
-            lblroomtype.Text = orderdetail.roomtypeid;
-            lblroomnum.Text = orderdetail.roomamount.ToString();
-            lblfeetotal.Text = orderdetail.totalprice.ToString();
-            lblelongorderid.Text = orderdetail.orderid;
+            lbltotalprice.Text = orderdetail.totalprice.ToString("F2");
+            lblbookdate.Text = orderdetail.bookDate.ToLongDateString();
             lbladdress.Text = orderdetail.hotelid;
+            ahotelname.HRef = "/Hotels/Details.aspx?hotelid=" + orderdetail.hotelid;
+            lblhotelname.Text = orderdetail.Hotel.hotelName;
+            lbladdress.Text = orderdetail.Hotel.address;
+            lblphone.Text = orderdetail.Hotel.phone;
+            lblcin.Text = orderdetail.checkindate.ToShortDateString();
+            lblcout.Text = orderdetail.checkoutdate.ToShortDateString();
+            lblarrivalearlytime.Text = orderdetail.arrivalearlytime.ToShortDateString();
+            lblarrivallatetime.Text = orderdetail.arrivallatetime.ToShortDateString();
+            lblroomnum.Text = orderdetail.roomamount.ToString();
+            lblroomtype.Text = orderdetail.roomtypeid;
+            lblconname.Text = orderdetail.contactername;
+            lblconphone.Text = orderdetail.contactermobile;
+            lblguestname.Text = orderdetail.guestsname;
         }
     }
 }
