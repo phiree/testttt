@@ -412,7 +412,7 @@ namespace DAL
             string order = " order by s.ScenicOrder asc";
 
 
-            string fromwhere = " from Scenic s " + where;
+            string fromwhere = " from Scenic s left join fetch s.Tickets ts " + where;
             string strQuery = "select s " + fromwhere + order;
             string strQueryCount = "select count(*) " + fromwhere;
             if (topic == null)

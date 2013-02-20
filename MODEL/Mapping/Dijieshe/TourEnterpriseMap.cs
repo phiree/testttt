@@ -13,22 +13,22 @@ namespace Model
        public DJ_TourEnterpriseMap()
        {
            Id(x => x.Id);
-           References<Area>(x => x.Area).UniqueKey("UniqueNameInSameArea");
-           Map(x => x.Name).UniqueKey("UniqueNameInSameArea") ;
-           Map(x => x.Address);
-           Map(x => x.ChargePersonName);
-           Map(x => x.ChargePersonPhone);
-           Map(x => x.Phone);
+           References<Area>(x => x.Area).UniqueKey("UniqueNameInSameArea").Not.Nullable();
+           Map(x => x.Name).UniqueKey("UniqueNameInSameArea").Not.Nullable();
+           Map(x => x.Address).Not.Nullable();
+           Map(x => x.ChargePersonName).Nullable();
+           Map(x => x.ChargePersonPhone).Nullable();
+           Map(x => x.Phone).Nullable();
            //Map(x => x.IsVeryfied);
            Map(x => x.ProvinceVeryfyState).CustomType<int>();
            Map(x => x.CityVeryfyState).CustomType<int>();
            Map(x => x.CountryVeryfyState).CustomType<int>();
            Map(x => x.Type).CustomType<int>().UniqueKey("UniqueNameInSameArea");
            Map(x => x.SeoName);
-           Map(x => x.Buslicense);
-           Map(x => x.Email);
-           Map(x => x.Fax);
-           Map(x => x.Url);
+           Map(x => x.Buslicense).Nullable();
+           Map(x => x.Email).Nullable();
+           Map(x => x.Fax).Nullable();
+           Map(x => x.Url).Nullable();
            Map(x => x.Level);
            Map(x => x.LastUpdateTime);
        }

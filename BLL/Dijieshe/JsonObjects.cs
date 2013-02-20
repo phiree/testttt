@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 ///sigmagrid xhr请求对象
 /// </summary>
 namespace BLL
-{
+{/*
     public class SigmaGridRequestObject : DalBase
     {
         public JObject JO { get; set; }
@@ -138,8 +138,9 @@ namespace BLL
                     }
                     foreach (var item in group.Routes.Where(x => x.DayNo == routes[0].DayNo))
                     {
-                        session.Delete(item);
-                        session.Flush();
+                        throw new NotImplementedException();
+                     //   session.Delete(item);
+                       // session.Flush();
                     }
                 }
             }
@@ -247,6 +248,6 @@ namespace BLL
     }
 
 
-
+*/
 
 }

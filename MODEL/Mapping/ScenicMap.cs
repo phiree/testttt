@@ -16,14 +16,14 @@ namespace Model.Mapping
            
             Map(x => x.Address);
             Map(x => x.ScenicOrder);
-            Map(x => x.MipangId);
+            Map(x => x.MipangId).Nullable();
         
-            Map(x => x.Photo);
+            Map(x => x.Photo).Nullable();
             //Map(x => x.ActiveTime);
             Map(x => x.Trafficintro).CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(x => x.ScenicDetail).CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(x => x.Desec);
-            Map(x => x.Position);
+            Map(x => x.Position).Nullable();
        
             Map(x => x.BookNote).CustomType("StringClob").CustomSqlType("nvarchar(max)");
            

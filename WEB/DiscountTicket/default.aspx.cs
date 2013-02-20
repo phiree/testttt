@@ -152,6 +152,8 @@ public partial class DiscountTicket_DiscountTicket : basepage
             BindCounty();
             BindBread();
             BindLevelLinks();
+            //no:该查询的 transation执行完之后,会自动触发 update操作.
+            //http://zvolkov.com/clog/2009/07/09?s=Why+NHibernate+updates+DB+on+commit+of+read+only+transaction
             BindTicketList();
             SetSeo();
             BindTopic();
@@ -335,6 +337,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             Model.Scenic t = e.Item.DataItem as Model.Scenic;
+            //no: N+1
             foreach (Ticket item in t.Tickets.Where(x => x.IsMain == true))
             {
                 decimal priceNormal = item.GetPrice(Model.PriceType.Normal);

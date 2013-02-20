@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using IDAL;
 using DAL;
-using NHibernate;
 namespace BLL
 {
-   public class BLLDJMgrDpt:DalBase
+   public class BLLDJMgrDpt:BLLBase<Model.TourMembership>
     {
        public Model.DJ_GovManageDepartment GetMgrDpt(Guid id)
        {
-         return  session.Get<Model.DJ_GovManageDepartment>(id);
+           return null;
+           //session.Get<Model.DJ_GovManageDepartment>(id);
          
        }
        public void Save(Model.DJ_GovManageDepartment mgrDpt)
        {
-           session.Save(mgrDpt);
-           session.Flush();
+           //session.Save(mgrDpt);
+           //session.Flush();
        }
        public IList<Model.DJ_GovManageDepartment> GetMgrDptList(string dptName,string areaCode)
        {
@@ -31,10 +30,10 @@ namespace BLL
            {
                sql += " and gcr.Name like '%" + dptName + "%'";
            }
-           IQuery query = session.CreateQuery(sql);
-           return query.Future<Model.DJ_GovManageDepartment>().ToList();
+           //IQuery query = session.CreateQuery(sql);
+           //return query.Future<Model.DJ_GovManageDepartment>().ToList();
 
-           //throw new NotImplementedException();
+           throw new NotImplementedException();
        }
     }
 }

@@ -207,21 +207,23 @@ namespace BLL
         }
         private IList<Scenic> GetListByConditions(string where)
         {
-            List<Scenic> scenicList = new List<Scenic>();
+            throw new NotImplementedException();
+            //List<Scenic> scenicList = new List<Scenic>();
 
-            string sql = "select s from Scenic s where "+where;
-            var query = session.CreateQuery(sql);
-             scenicList=  query.Future<Scenic>().ToList();
+            //string sql = "select s from Scenic s where "+where;
+            //var query = session.CreateQuery(sql);
+            // scenicList=  query.Future<Scenic>().ToList();
 
-            return scenicList;
+            //return scenicList;
         }
         public Scenic GetByMipangId(int mipangId)
         {
-            string sql = "select s from Scenic s where s.MipangId=" + mipangId; 
-            var query = session.CreateQuery(sql);
-            NHibernate.IFutureValue<Scenic> fScenic = query.FutureValue<Scenic>();
-            if (fScenic == null) return null;
-            else return fScenic.Value;
+            throw new NotImplementedException();
+            //string sql = "select s from Scenic s where s.MipangId=" + mipangId; 
+            //var query = session.CreateQuery(sql);
+            //NHibernate.IFutureValue<Scenic> fScenic = query.FutureValue<Scenic>();
+            //if (fScenic == null) return null;
+            //else return fScenic.Value;
 
         }
 

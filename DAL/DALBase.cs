@@ -5,7 +5,7 @@ using System.Text;
 using NHibernate;
 using NHibernate.Hql;
 using System.Web.Security;
-
+using CommonLibrary;
 namespace DAL
 {
     public class DalBase
@@ -105,17 +105,19 @@ namespace DAL
 
             return GetList(where, 0, 9999, out totalRecords);
         }
-        protected IList<T> GetList(IQueryOver<T, T> queryOver)
-        {
-            return queryOver.List();
-        }
+        //protected IList<T> GetList(IQueryOver<T, T> queryOver)
+        //{
+        //    return queryOver.List();
+        //}
 
         public IList<T> GetList(string query, int pageIndex, int pageSize, out int totalRecords)
         {
             IList<T> listT;
             using (var t = session.BeginTransaction())
             {
-                totalRecords = session.CreateQuery(query).List<T>().Count;
+                //no:获取总数的时候如何避免 unboundresult警告? 将select * 变成 select count(*)
+                string queryForCount = StringHelper.ConvertQueryToCountQuery(query);
+                totalRecords =(int) session.CreateQuery(queryForCount).UniqueResult<long>();
 
                 IQuery qry = session.CreateQuery(query).SetFirstResult((pageIndex - 1) * pageSize).SetMaxResults(pageSize);
                 listT = qry.Future<T>().ToList();

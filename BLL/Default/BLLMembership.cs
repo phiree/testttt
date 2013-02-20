@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Model;
 using System.Web.Security;
-using NHibernate;
+
 namespace BLL
 {
     public class BLLMembership : DAL.DalBase
@@ -188,10 +188,11 @@ namespace BLL
 
         public TourMembership GetMgrDptAdmin(Guid dptId, int PermissionType)
         {
-            string sqlstr = "select a from DJ_User_Gov a where a.GovDpt.Id = '" + dptId + "' and PermissionType=" + PermissionType + "";
-            IQuery query = session.CreateQuery(sqlstr);
+            throw new Exception("不要直接调用nhyibernatesession");
+            //string sqlstr = "select a from DJ_User_Gov a where a.GovDpt.Id = '" + dptId + "' and PermissionType=" + PermissionType + "";
+            //IQuery query = session.CreateQuery(sqlstr);
 
-            return query.FutureValue<Model.TourMembership>().Value;
+            //return query.FutureValue<Model.TourMembership>().Value;
         }
         public void CreateUpdateDptAdmin(DJ_GovManageDepartment mgrDpt)
         {
