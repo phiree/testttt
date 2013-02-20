@@ -11,7 +11,7 @@ TourTest/app.config
 TourTest/App.config
 *.scc
 /DAL/*.scc
-
+packages/
 WEB/tourolLog
 AdminWeb/tourolAdminLog
 TestResults/
