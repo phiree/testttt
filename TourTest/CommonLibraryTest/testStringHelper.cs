@@ -145,5 +145,14 @@ namespace TourTest.Common
             bool IsSuccess =CommonLibrary.StringHelper.CheckIDCard(idcard, out msg);
             Assert.AreEqual(true, IsSuccess);
         }
+
+        [Test]
+        public void testConvertQueryToCountQuery()
+        {
+            string sql = "select a  from Area a where a.Code='330000' order by ccc";
+            Assert.AreEqual("select count(*)  from Area a where a.Code='330000' ",
+                CommonLibrary.StringHelper.ConvertQueryToCountQuery(sql));
+          
+        }
     }
 }
