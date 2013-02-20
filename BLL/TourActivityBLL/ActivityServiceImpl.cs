@@ -37,15 +37,27 @@ namespace BLL
             , string PartnerCode, string CardNumber, string RealName, string Phone, string ticketCode, int Number,DateTime buyTime)
         {
 
+            
            
             Guid requestGUID = Guid.NewGuid();
             TourLog.ErrorLog.Debug(string.Format("*********Begin********{5}出票请求:{6}_{0}_{1}_{2}_{3}_{4}", PartnerCode, CardNumber, ticketCode, Number, Phone, requestGUID,activityCode));
             string returnMsg = "T";
-
             TourActivity activity = bllActivity.GetOneByActivityCode(activityCode);//get from activitycode
-            //todo
-            ActivityPartner currentPartner = activity.Partners.Where(x => x.PartnerCode == PartnerCode).First() ;//get from partnercode and actrivityCode
+            ActivityPartner currentPartner = activity.Partners.Where(x => x.PartnerCode == PartnerCode).First();//get from partnercode and actrivityCode
           
+            string connString=System.Configuration.ConfigurationManager.ConnectionStrings["TourOnline"].ConnectionString;
+            DAL.ado.NativeSqlUtiliity nativeSql = new DAL.ado.NativeSqlUtiliity(connString);
+
+            if (false)//如果使用存储过程)
+            {
+                nativeSql.ExecuteDataSetProc("usp_TicketRequest", new string[] { 
+                    CardNumber,RealName,Phone,activity.Id.ToString(),  currentPartner.Id.ToString(),ticketCode,"1",""
+                    }, out returnMsg);
+            }
+
+
+           //todo
+         
             // 下单前的验证 与用户无关
             int nowHour = DateTime.Now.Hour;
             string checkErrMsg;
