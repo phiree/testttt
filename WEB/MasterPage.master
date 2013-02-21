@@ -33,19 +33,18 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="Filldiv">
-    </div>
-    <div id="header">
+    
+    <div id="header" class="container">
         <div id="logo">
             <div class="mainarea" style="padding-left: 15px">
               <span>浙江省</span></div>
-            <div class="logoleft">
+            <div class="logoleft left">
                 <a href="/">
                     <img src="/theme/default/image/20130116/tourol.jpg" alt="中国旅游在线" />
                 </a>
             </div>
-            <div class="logoright">
-                <div class="uertool">
+            <div class="logoright left align_left">
+                <div class="uertool align_left">
                     <asp:LoginView runat="server" ID="lv">
                         <AnonymousTemplate>
                             <a href="/account/register.aspx">注册</a>|
@@ -59,9 +58,9 @@
                     |<a href="">帮助</a>
                 </div>
                 <div class="searchdiv">
-                    <asp:TextBox runat="server" ClientIDMode="Static" ID="tbxKeywords">
+                    <asp:TextBox runat="server" CssClass="left " ClientIDMode="Static" ID="tbxKeywords">
                     </asp:TextBox>
-                    <asp:Button runat="server" ID="btnSearch" ClientIDMode="Static" OnClick="btnSearch_Click"
+                    <asp:Button runat="server" ID="btnSearch" CssClass="left button" ClientIDMode="Static" OnClick="btnSearch_Click"
                         Text="" />
                 </div>
             </div>
@@ -100,33 +99,7 @@
             </div>
         </div>
     </div>
-    <div style="display: none">
-        <div id="dasff">
-            <div class="container">
-                <div class="span-24 last" id="fsdfds">
-                    <div id="logotitle" class="span-8 last">
-                        <a href="/">
-                            <img src="/theme/default/image/logo.png" alt="中国旅游在线-"></img>
-                        </a>
-                    </div>
-                    <div id="logoright" class="span-16 last">
-                        <div id="logosearch">
-                            <a href="/map" id="maplink">[去地图版看看]</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="span-24 last strong" id="topbar">
-                    <div id="login">
-                    </div>
-                    <div id="cart">
-                        <div id="mycart">
-                            <img src="/theme/default/image/cart.png" alt="购物车" /><span id="cartsumwrap"><em id="cartsum"></em>
-                            </span><span><a href="/order/cart.aspx">我的购物车</a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="Filldiv">
     </div>
     <div id="popcart" style="display: none">
         <div class="popbg">
@@ -179,7 +152,7 @@
 </script>
 
 <!---->
-<script src="http://s21.cnzz.com/stat.php?id=4987666&web_id=4987666" language="JavaScript"></script>
+<%--<script src="http://s21.cnzz.com/stat.php?id=4987666&web_id=4987666" language="JavaScript"></script>--%>
     </form>
 </body>
 </html>

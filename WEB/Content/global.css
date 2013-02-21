@@ -49,3 +49,16 @@
     background: url(../image/btngrayhover.png) top left repeat-x;
    
     }
+
+/*补充bp中没有的公共css*/
+.align_left
+{
+    text-align:left;
+}
+.button,.button:hover
+{
+    border:none;
+    cursor:pointer;
+    display:block;
+    text-align:center;
+}

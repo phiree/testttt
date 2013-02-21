@@ -2,7 +2,6 @@
 var allCoordinates; //页面目前所查询出来的坐标
 var map; //google地图变量
 var overlayMarker = new Array(); //地图覆盖物
-var numcount; //右侧编码序号
 var infoWindow; //内容页
 /*页面初始*/
 $(function () {
@@ -68,31 +67,9 @@ function getCoordinatesNotScId() {
                     zoomControlOptions: { position: google.maps.ControlPosition.LEFT_CENTER },
                     panControlOptions: { position: google.maps.ControlPosition.LEFT_CENTER }
                 };
-                numcount = 0;
                 map = new google.maps.Map(document.getElementById("container"), myOptions);
 
             }
-            numcount = 0;
-            for (var i = 0; ; i++) {
-                if (allCoordinates[i] == undefined)
-                    break;
-                if (allCoordinates[i].position != null && allCoordinates[i].position != "undefined") {
-                    numcount++;
-                    var point = new google.maps.LatLng(allCoordinates[i].position.split(",")[1], allCoordinates[i].position.split(",")[0]);
-                    var txt = allCoordinates[i].name;
-                    var scenicid = allCoordinates[i].id;
-                    var overlay;
-                    if (numcount <= 15) {
-                        overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: numcount, scid: scenicid });
-                    }
-                    else {
-                        overlay = new customOverlay_Small(map, { latlng: point, id: numcount, scid: scenicid });
-                    }
-                    overlayMarker.push(overlay);
-                }
-            }
-
-            //$("#resultscenic").html(loadstr);
             $.cookie("pageindex", '1');
             btnshowinfo();
             $("#countscenic").html($.cookie("numcount"));
