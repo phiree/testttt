@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Model;
 using BLL;
-
+using System.Data;
 namespace BLL
 {
     public class BLLQZPartnerTicketAsign:BLLBase<QZPartnerTicketAsign>
@@ -49,6 +49,35 @@ namespace BLL
            }
         }
 
+        public DataSet ProductInfoAll(string partnerCode, DateTime date)
+        {
+            IList<Model.QZPartnerTicketAsign> assigns = dalqzPartnerTa.GetAllTicketAssignForPartner(partnerCode, date)
+                .OrderByDescending(x=>x.QZTicketAsign.Amount-x.SoldAmount).ToList();
+
+             DataSet ds = new DataSet();
+         
+            DataTable dt = new DataTable("ticketamounts");
+            string colScenicName="ScenicName";
+            string colProductCode = "ProductCode";
+            string colLastAmount="LastAmount";
+            dt.Columns.Add(colScenicName);
+            dt.Columns.Add(colProductCode);
+            dt.Columns.Add(colLastAmount);
+            foreach (QZPartnerTicketAsign ta in assigns)
+            {
+
+                DataRow dr = dt.NewRow();
+                dr[colScenicName] = ta.QZTicketAsign.Ticket.Scenic.Name;
+              ;
+                dr[colProductCode] = ta.QZTicketAsign.Ticket.ProductCode;
+                dr[colLastAmount]=ta.QZTicketAsign.Amount-ta.SoldAmount;
+                dt.Rows.Add(dr);
+            }
+            
+            ds.Tables.Add(dt);
+
+            return ds;
         
+        }
     }
 }

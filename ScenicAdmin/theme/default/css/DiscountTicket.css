@@ -1,0 +1,256 @@
+﻿#dismain
+{
+    background-color:White;
+    width:950px;
+    margin:0px auto;
+}
+.disleft
+{
+    width:750px;
+    float:left;
+    overflow:hidden;
+}
+.disright
+{
+    width:200px;
+    float:left;
+    overflow:hidden;
+}
+.disright a
+{
+    display:block;
+    margin:40px 5px 0px 0px;
+}
+.tjsc
+{
+    margin-top:15px;
+    margin-bottom:15px;
+    color:#D91706;
+}
+.zjscdiv
+{
+    background:url("/theme/default/image/newversion/zjscbg.png");
+    width:195px;
+    height:80px;
+    display:block;
+    margin:0px 5px 0px 0px;
+}
+.zjscdiv img
+{
+    display:block;
+    float:right;
+    margin:8px 8px 8px 0px;
+}
+.zjscdiv div
+{
+    float:left;
+    margin:8px;
+    display:block;
+}
+.zjscdiv div p
+{
+     color:#0054FF;
+     margin-top:3px;
+     margin-bottom:0px;
+     margin-left:10px;
+     padding:0px;
+}
+.zjscdiv div input
+{
+    background:url("/theme/default/image/newversion/morezjsc.png");
+    width:36px;
+    height:13px;
+    margin:24px 0px 0px 10px;
+    border:0px none;
+    cursor:pointer;
+    padding:0px;
+    float:left;
+    margin-left:1px \9;
+}
+.zjscdiv2
+{
+    background:url("/theme/default/image/newversion/zjscbg2.png");
+    width:195px;
+    height:78px;
+    display:block;
+    margin:15px 5px 0px 0px;
+}
+.zjscdiv2 img
+{
+    display:block;
+    float:left;
+    margin:8px 0px 8px 8px;
+}
+.zjscdiv2 div
+{
+    float:left;
+    margin:8px;
+    display:block;
+}
+.zjscdiv2 div p
+{
+    color:#0054FF;
+     margin-top:3px;
+     margin-bottom:0px;
+     margin-left:10px;
+     padding:0px;
+}
+.zjscdiv2 div input
+{
+    background:url("/theme/default/image/newversion/morezjsc.png");
+    width:36px;
+    height:13px;
+    margin:24px 0px 0px 10px;
+    border:0px none;
+    cursor:pointer;
+    padding:0px;
+    float:left;
+    margin-left:1px \9;
+}
+.visitedsc
+{
+    width:185px;
+    height:30px;
+    background-color:#D0EDC1;
+    line-height:30px;
+    padding-left:10px;
+    margin-top:30px;
+    margin-bottom:0px;
+}
+.tbvisitedsc
+{
+    width:195px;
+    
+    margin:0px;
+    border-top:none;
+    margin-bottom:20px;
+}
+.tbvisitedsc tr,.tbvisitedsc tr td
+{
+    margin:0px;
+    padding:0px;
+}
+.tbvisitedsc tr td
+{
+    padding:5px 0px 5px 5px;
+}
+.tbvisitedsc tr td img
+{
+    margin-left:5px;
+    margin-right:5px;
+    margin-top:2px;
+    display:block;
+    float:left;
+}
+.tbvisitedsc tr td a
+{
+    display:block;
+    float:left;
+    width:150px;
+    margin-bottom:0px;
+    margin-top:-2px;
+    margin-left:5px;
+}
+.tbvisitedsc tr td:hover
+{
+    background-color:#F4FFE9 !important;
+}
+.ticketsellist
+{
+    margin-top:20px;
+    width:100%;
+    padding-left:10px;
+    height:20px;
+    line-height:20px;
+    font-weight:bold;
+}
+.ticketsellist h1
+{
+     font-size:100%;
+     font-weight:600;
+    }
+.ticketsellist img
+{
+    margin-right:5px;
+    vertical-align:text-top;
+}
+.breadNav
+{
+    margin-top:10px;
+    width:100%;
+    padding-left:10px;
+    font-weight:bold;
+   margin:25px 0 10px 0;
+ 
+}
+.breadNav img
+{
+    margin-right:5px;
+    vertical-align:text-top;
+}
+
+
+.hla,.hlv,.hlt,.hla:link,.hla:active,.hla:visited,.hla:hover,.hlv:link,.hlv:active,.hlv:visited,.hlv:hover,.hlt:link,.hlt:active,.hlt:visited,.hlt:hover,.hlc,.hlc:link,.hlc:active,.hlc:hover,.hlc:visited
+{
+    color: #4F8A10;
+    border:1px solid #A4D767;
+    background-color:#CCE5A2;
+    padding:3px 5px 3px 5px;
+    margin-top:-4px;
+    z-index:6;
+}
+.areadiv span,.areadiv a,.themediv span,.themediv a,.leveldiv span,.leveldiv a,.countydiv span,.countydiv a
+{
+     display:block;
+     float:left;
+     margin-bottom:5px;
+}
+.themediv a,.countydiv a
+{
+    border:1px solid White;
+    padding:3px 5px 3px 5px;
+    margin-top:-4px;
+    position:relative;
+    z-index:5;
+    white-space:nowrap;
+}
+.countydiv a
+{
+    border:1px solid #F3F2EE;
+    overflow:hidden !important;
+}
+.nsinfosc_price
+{
+    color:#E3007A;
+    margin-top:-2px;
+}
+.nsinfosc span,.nsinfosc img,.nsinfosc a
+{
+    display:block;
+    float:left;
+}
+.nsinfosc a:link,.nsinfosc a:active,.nsinfosc a:visited,.nsinfosc a:hover
+{
+    color:White;
+    border:1px solid #E3007A;
+    background-color:#EC6B9E;
+    height:20px;
+    text-align:center;
+    line-height:20px;
+    width:45px;
+    margin-left:30px;
+    margin-top:-3px;
+}
+
+.topicon
+{
+    position:absolute;
+    left:12px;
+    top:25px;
+    color:#F3F2EE;
+    display:none !important;
+}
+.hla .topicon
+{
+    display:block !important;
+}

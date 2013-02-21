@@ -86,6 +86,7 @@
       <HintPath>..\lib\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -96,6 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ado\NativeSqlUtiliity.cs" />
     <Compile Include="DALArea.cs" />
     <Compile Include="DALBackManager.cs" />
     <Compile Include="DalBase.cs" />
@@ -139,6 +141,9 @@
     <Compile Include="QuZhouSpring\DALQZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\DALQZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\DALQZTicketAsign.cs" />
+    <Compile Include="TourActivity\DALActivityPartner.cs" />
+    <Compile Include="TourActivity\DALActivityTicketAssign.cs" />
+    <Compile Include="TourActivity\DALTourActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IDAL\IDAL.csproj">

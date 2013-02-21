@@ -4,21 +4,20 @@ using System.Linq;
 using System.Text;
 using Model;
 using System.Data;
-
+using CommonLibrary;
 namespace BLL
 {
     public class BLLTicketAssign:BLLBase<TicketAssign>
     {
+        BLLTourActivity bllTourActivity = new BLLTourActivity();
+        BLLTicket bllTicket = new BLLTicket();
         DAL.DALTicketAssign Iticketassign = new DAL.DALTicketAssign();
 
         /// <summary>
         /// 保存更新
         /// </summary>
         /// <param name="ticketassign"></param>
-        public void SaveOrUpdate(TicketAssign ticketassign)
-        {
-            Iticketassign.SaveOrUpdate(ticketassign);
-        }
+      
 
         /// <summary>
         /// 
@@ -58,11 +57,11 @@ namespace BLL
         {
             Iticketassign.GetTicketInfoByIdCard(idcard, ticket,out ydcount,out usedcount,type);
         }
-        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, Ticket ticket,int type)
+        public IList<TicketAssign> GetNotUsedTicketAssign(string idcard, Ticket ticket, int type)
         {
             return Iticketassign.GetNotUsedTicketAssign(idcard, ticket,type);
         }
-        public TicketAssign GetLasetRecordByidcard(string idcard, Ticket ticket,int type)
+        public TicketAssign GetLasetRecordByidcard(string idcard, Ticket ticket, int type)
         {
             return Iticketassign.GetLasetRecordByidcard(idcard, ticket,type);
         }
@@ -135,12 +134,11 @@ namespace BLL
         /// </summary>
         /// <param name="idCardNo"></param>
         /// <returns></returns>
-        public DataSet GetTicketsHasProductCode(string idCardNo)
+        public DataSet GetTicketsInActivity(string activityCode, string idCardNo)
         {
             DataSet ds = new DataSet();
             IList<TicketAssign> gotTotalTicketsOfThisType=
-                GetTaByIdCard(idCardNo)
-            .Where(x => !string.IsNullOrEmpty(x.OrderDetail.TicketPrice.Ticket.ProductCode))
+                GetListByActivity_Idcard(activityCode, idCardNo)
             .ToList();
             DataTable dt = new DataTable("gotTickets");
             string colScenicName="ScenicName";
@@ -148,12 +146,13 @@ namespace BLL
             string colOrderTime="OrderTime";
             string colIsUsed="IsUsed";
             string colValidPeriod="ValidPeriod";
+            string colUsedTime = "UsedTime";
             dt.Columns.Add(colScenicName);
             dt.Columns.Add(colProductCode);
             dt.Columns.Add(colOrderTime);
             dt.Columns.Add(colIsUsed);
             dt.Columns.Add(colValidPeriod);
-
+            dt.Columns.Add(colUsedTime);
             foreach (TicketAssign ta in gotTotalTicketsOfThisType)
             {
 
@@ -164,6 +163,7 @@ namespace BLL
                 dr[colValidPeriod] = ta.OrderDetail.TicketPrice.Ticket.BeginDate.Date 
                                     + "~" + ta.OrderDetail.TicketPrice.Ticket.EndDate.Date;
                 dr[colProductCode] = ta.OrderDetail.TicketPrice.Ticket.ProductCode;
+                dr[colUsedTime] = ta.UsedTime;
                 dt.Rows.Add(dr);
             
             }
@@ -171,13 +171,14 @@ namespace BLL
             return ds;
         }
 
+
         /// <summary>
         /// 批量修改身份证号码信息--衢州送票活动给信息中西提供的接口
         /// </summary>
         /// <param name="oldNo"></param>
         /// <param name="newNo"></param>
         /// <returns></returns>
-        public string UpdateIdCardNo(string oldNo, string newNo)
+        public string UpdateIdCardNo(string activityCode, string oldNo, string newNo)
         {
            
             //防止sql注入
@@ -194,7 +195,7 @@ namespace BLL
             string result = string.Empty;
             try
             {
-                Iticketassign.UpdateIdCardNo(oldNo, newNo);
+                Iticketassign.UpdateIdCardNo( activityCode, oldNo, newNo);
             }
             catch(Exception ex) {
                 result = ex.Message;
@@ -236,6 +237,132 @@ namespace BLL
         public IList<TicketAssign> GetListByNameIdCardLike(string term, string scid)
         {
             return Iticketassign.GetListByNameIdCardLike(term, scid);
+        }
+
+        
+        public IList<TicketAssign> GetListByTimeAndScenic(DateTime? beginDate, DateTime? endDate, Scenic s)
+        {
+            return Iticketassign.GetListByTimeAndScenic(beginDate, endDate, s);
+        }
+
+        //用户某活动中抢到的某门票的总票数
+        public IList<TicketAssign> GetListByActivity_Idcard_Ticket(string activitycode, string idcard, string ticketCode)
+        {
+            return Iticketassign.GetList(activitycode, idcard, ticketCode);
+        }
+        //用户某活动中抢到的某门票的总票数
+
+        private bool CheckIdCardAmountPerTicket(TourActivity activity, string idcard, string ticketCode, int amount, out string errMsg)
+        {
+
+            IList<TicketAssign> ticketAssigns = GetListByActivity_Idcard_Ticket(activity.ActivityCode,  idcard, ticketCode);
+            errMsg = string.Empty;
+            int taCount = ticketAssigns.Where(x => x.IdCard == idcard && x.TicketCode == ticketCode).Count();
+            int realAmount=0;
+            //是否是套票,如果是,则用户的购票总量 等于 分配总量 除以 套票子票数量
+            Ticket t = bllTicket.GetByProductCode(ticketCode);
+            if ( t.As<Ticket>()  is TicketUnion)
+            {
+                int childTicketAmount = ((TicketUnion)t).TicketList.Count;
+                if (taCount % childTicketAmount != 0)
+                {
+
+                    TourLog.ErrorLog.Debug(string.Format("用户{0}套票数据异常:配票总数{1} 不是 门票{2}的子票数{3}的整数倍",
+                        idcard, taCount, ticketCode, childTicketAmount
+                        ));
+                    realAmount = Convert.ToInt32(Math.Ceiling((decimal)(taCount / childTicketAmount)).ToString());
+
+                }
+                else
+                {
+                    realAmount = taCount / childTicketAmount;
+                }
+            }
+            bool result = realAmount + amount <= activity.AmountPerIdcardTicket;
+            if (!result)
+            {
+                errMsg = string.Format("号码为{0}的身份证已经购买了这个景区的{1}张门票,不能继续购买", "****" + idcard.Remove(0, 12), realAmount);
+            }
+            return result;
+        }
+
+
+        private int GetRealAmountOfUnionTicket(int taAmount,int childAmount) {
+
+            int realAmount = 0;
+            if (taAmount % childAmount != 0)
+            {
+                realAmount = Convert.ToInt32(Math.Ceiling((decimal)(taAmount / childAmount)).ToString());
+            }
+            else
+            {
+                realAmount = taAmount / childAmount;
+            }
+            return realAmount;
+        }
+        private  bool CheckIdCardAmountPerActivity( TourActivity activity, string idcard, int amount, out string errMsg)
+        {
+
+            IList<TicketAssign> ticketAssigns = GetListByActivity_Idcard(activity.ActivityCode, idcard);
+            errMsg = string.Empty;
+            var distinctTicketCode = ticketAssigns.Select(x => x.TicketCode).Distinct();
+            int totalTicketAmount = 0;
+            foreach (string eachTicket in distinctTicketCode)
+            {
+                Ticket t = bllTicket.GetByProductCode(eachTicket);
+                if (t is TicketUnion)
+                {
+                    int thisAmount = ticketAssigns.Where(x => x.TicketCode == t.ProductCode).Count();
+                    totalTicketAmount += thisAmount / ((TicketUnion)t).TicketList.Count;
+                }
+                else
+                {
+                    totalTicketAmount += 1;
+                }
+            }
+         
+
+            int taCount = ticketAssigns.Where(x => x.IdCard == idcard).Count();
+            bool result = taCount + amount <= activity.AmountPerIdcardInActivity;
+            if (!result)
+            {
+                errMsg = string.Format("号码为{0}的身份证已经购买了{1}张门票,不能继续购买", "****" + idcard.Remove(0, 12), taCount);
+
+            }
+            return result;
+        }
+
+
+        public bool CheckIdCardAmount(TourActivity activity, string idcard, string ticketCode, int amount, out string errMsg)
+        {
+            if (!CheckIdCardAmountPerTicket(activity, idcard, ticketCode, amount, out errMsg))
+            {
+                return false;
+            }
+            if (!CheckIdCardAmountPerActivity(activity, idcard, amount, out errMsg))
+            {
+                return false;
+            }
+            return true;
+        }
+        
+        public int GetAmountIdcardActivityTicket(string activitycode, string idcard, string ticketCode)
+        {
+            return GetListByActivity_Idcard_Ticket(activitycode, idcard, ticketCode).Count;
+        }
+       
+        public IList<TicketAssign> GetListByActivity_Idcard(string activitycode, string idcard)
+        {
+            return Iticketassign.GetList(activitycode, idcard,string.Empty);
+        }
+        //用户某活动中抢到的总票数
+        public int GetAmountActivityIdcard(string activitycode, string idcard)
+        {
+            return GetListByActivity_Idcard(activitycode, idcard).Count;
+        }
+        public IList<TicketAssign> GetList(string activityCode,string idcard)
+        {
+            return Iticketassign.GetList(activityCode, idcard, string.Empty);
         }
     }
 }

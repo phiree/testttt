@@ -3,16 +3,17 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <title>订单结算</title>
-    <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/checkout.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/cart.css" rel="stylesheet" type="text/css" />
-    <script src="/Scripts/json2.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
+    <link href="/Content/page/checkout.css" rel="stylesheet" type="text/css" />
+    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+        rel="stylesheet" type="text/css" />
+    <script src="/Scripts/json2.min.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/Cart.js" type="text/javascript"></script>
+    <script src="/Scripts/pages/Cart.js" type="text/javascript"></script>
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
-    <link href="/theme/default/css/cart.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/pages/checkout.js" type="text/javascript"></script>
-  
+    <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphstate" runat="Server">
     <div class="cartbread">
@@ -54,7 +55,7 @@
                         <td>
                             <input type="hidden" class="hdId" value='<%#Eval("Id") %>' />
                             <a runat=server id="hrefScenic" href='<%# "/Tickets/"+Eval("Scenic.Area.SeoName")+"/"+Eval("Scenic.SeoName")+".html"%>'>
-                                <%#Eval("Scenic.Name") %></a>
+                                <%#Eval("DisplayNameOfOwner") %></a>
                         </td>
                         <td>
                             <%# Eval("Name") %>
@@ -132,7 +133,7 @@
             <ItemTemplate>
                 <tr>
                     <td style="padding-left: 20px; width: 25%">
-                        <%#Eval("Scenic.Name") %>
+                        <%#Eval("DisplayNameOfOwner")%>
                         <span class="veriblock"></span>
                     </td>
                     <td style="width: 35%;">
@@ -150,20 +151,20 @@
                 </table></FooterTemplate>
         </asp:Repeater>
     </div>
-    <div style="display:none">
+    <div runat="server" id="divPaymentChoose">
     <div class="tihead" style="margin-top:20px;margin-bottom:10px;">
             选择付款方式</div>
     <div id="payinfo">
         <div id="payonline" pricetype="3" class="priceselection">
             <span class="price">
-                <input type="radio" name="price" checked="checked" />
+                <input type="radio" name="price" />
                 网上订购总价:<em id="bpricepreorder">123</em>元</span><span class="pricedesc">通过支付宝支付,享受网上订购优惠价.</span>
             <div class="clear">
             </div>
         </div>
         <div id="preorder" pricetype="2" class="priceselection" style="border-bottom: 2px solid #AAA;">
             <span class="price">
-                <input type="radio" name="price" />
+                <input type="radio" name="price" checked="checked" />
                 景区现付总价:<em id="bpriceonline">234</em>元</span><span class="pricedesc">预订门票,无需立即支付,鼠标一点,实惠又方便</span>
             <div class="clear">
             </div>

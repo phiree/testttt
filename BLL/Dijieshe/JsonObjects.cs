@@ -39,7 +39,7 @@ namespace BLL
             action = (string)JO["action"];
             if (!Guid.TryParse(paramGroupId, out groupId))
             {
-                BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
+                BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal,"groupid不是guid");
             }
             group = bllGroup.GetOne(groupId);
             if (action == "save")
@@ -80,7 +80,7 @@ namespace BLL
             action = (string)JO["action"];
             if (!Guid.TryParse(paramGroupId, out groupId))
             {
-                BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal);
+                BLL.ErrHandler.Redirect(BLL.ErrType.ParamIllegal,"groupid 非法");
             }
             group = bllGroup.GetOne(groupId);
             if (action == "save")

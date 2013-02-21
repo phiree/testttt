@@ -41,7 +41,7 @@ public partial class UserCenter_MyVisited : basepage
         vtotalprice.InnerHtml = "合计消费:<span class='strongnum'>" + totalprice.ToString() + "</span>元";
         if (totalprice == 0)
         {
-            vtotalexpain.InnerHtml = "<span class='strongnum'>请确认个人信息中是否已填写身份证号码!</span>";
+            vtotalexpain.InnerHtml = "<span class='strongnum'></span>";
         }
     }
     protected void rptVisited_ItemDataBound(object sender, RepeaterItemEventArgs e)

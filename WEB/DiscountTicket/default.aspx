@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Layout.master" AutoEventWireup="true"
-    CodeFile="default.aspx.cs" Inherits="DiscountTicket_DiscountTicket" %>
+    CodeFile="default.aspx.cs"  Trace="true" Inherits="DiscountTicket_DiscountTicket" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
-   
+    <link href="/Content/page/DiscountTicket.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/pager.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphContent" runat="Server">
     <div class="ticketsellist">
@@ -85,9 +86,9 @@
                             <asp:Image ID="Image1" CssClass="scenicdescimg" runat="server" ImageUrl='' /></a>
                     </div>
                     <div class="scenicname">
-                        <a runat="server" id="schref2" title='<%# Eval("Name") %>' style="display: block;font-size:14px;" >
+                        <a runat="server" id="schref2" title='<%# Eval("DisplayName") %>' style="display: block;font-size:14px;" >
                             <!---->
-                            <%# Eval("Name").ToString().Length > 14 ? Eval("Name").ToString().Substring(0,14)+"..." : Eval("Name")%></a>
+                            <%# Eval("DisplayName").ToString().Length > 14 ? Eval("DisplayName").ToString().Substring(0, 14) + "..." : Eval("DisplayName")%></a>
                     </div>
                     <div class="dvprice">
                         <div style="float: left">
@@ -102,13 +103,15 @@
                 </div>
             </ItemTemplate>
             <FooterTemplate>
-                <asp:Label runat="server" CssClass="success noresult" Visible="false" ID="lblNoResult">没有相应的景区</asp:Label>
+                <asp:Label runat="server" CssClass="success noresult" Visible="false" ID="lblNoResult">获得更多景点优惠活动，请注册成为旅游在线会员
+</asp:Label>
+                
             </FooterTemplate>
         </asp:Repeater>
         <div id="pager" class="span-19 last" style="margin-left: 30px; margin-bottom: 40px;">
             <uc:AspNetPager runat="server" EnableUrlRewriting="true" ID="pagerGot" CssClass="paginator"
                 UrlPaging="true" UrlPageIndexName="pgotindex" UrlRewritePattern="/Tickets/%area%_%county%/%level%/page_{0}.html"
-                FirstPageText="首页" LastPageText="尾页" PageSize="20" NextPageText="下一页" CurrentPageButtonClass="cpb"
+                FirstPageText="首页" LastPageText="尾页" PageSize="18" NextPageText="下一页" CurrentPageButtonClass="cpb"
                 PrevPageText="上一页">
             </uc:AspNetPager>
             

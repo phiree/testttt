@@ -23,13 +23,13 @@ public class basepageDJS : basepage
 
                     if (dijieshe == null)
                     {
-                        BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
+                        BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied,"该用户没有对应的地接社"+CurrentMember.Name);
                     }
                     currentDJS = dijieshe;
                 }
                 else
                 {
-                    BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied);
+                    BLL.ErrHandler.Redirect(BLL.ErrType.AccessDenied,"currentnumber为空");
 
                 }
             }

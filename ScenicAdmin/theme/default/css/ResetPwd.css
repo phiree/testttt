@@ -1,0 +1,30 @@
+﻿#Resmain
+{
+    width:600px;
+    padding:80px;
+    padding-left:270px;
+    background-color: #fff;
+    display:block;
+    height:100%;
+}
+#Resmain table td
+{
+    padding: 10px 20px;
+}
+.regBtn
+{
+    height: 30px;
+    cursor:pointer;
+    border:1px none White;
+}
+.tbx
+{
+    width: 250px;
+    line-height: 31px;
+    height: 31px;
+}
+.resettext
+{
+    font-size:large;
+    color:Green;
+}

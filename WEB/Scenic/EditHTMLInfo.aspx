@@ -5,12 +5,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <script src="/Scripts/jquery.js" type="text/javascript"></script>
-    <link href="/theme/default/css/TCCSS.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/default.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/scenic.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/default/css/EditHTML.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link href="/Content/page/TCCSS.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/scenic.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/EditHTML.css" rel="stylesheet" type="text/css" />
     <title></title>
     <script type="text/javascript">
         var parentid;
@@ -38,8 +37,8 @@
                 ['Maximize', '-', 'ShowBlocks'], ['Source']
              ]
             });
-            editor.config['contentsCss'] = ['/theme/default/css/scenic.css', '/theme/default/css/TCCSS.css', '/theme/default/css/global.css', '/theme/default/css/default.css', '/theme/bp/screen.css',
-            '/theme/bp/print.css', '/theme/default/css/MasterPage.css', '/theme/default/css/EditHTML.css'];
+            editor.config['contentsCss'] = ['/Content/page/scenic.css', '/Content/page/TCCSS.css', '/Content/global.css', '/Content/page/default.css', '/Content/blueprint/screen.css',
+            '/Content/blueprint/print.css', '/Content/page/MasterPage.css', '/Content/page/EditHTML.css'];
             parentid = window.location.href.match(/flag.*$/)[0];
             parentid = parentid.substr(5);
             editor.setData($(parentWin).find(parentid).html());

@@ -2,7 +2,7 @@
     CodeFile="Login.aspx.cs" Inherits="Account_Login" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="head">
-    <link href="/theme/default/css/login.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/login.css" rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
         $(function () {
             $("#topbar").empty();

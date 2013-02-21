@@ -83,7 +83,7 @@ TicketPrice(type,price) <ticket_price>60</ticket_price>
 
             foreach (ticket ticket in item.tickets)
             {
-                Ticket t = new Ticket();
+                Ticket t = new TicketNormal();
                 t.IsMain = true;
                 t.Name = ticket.ticket_name;
 

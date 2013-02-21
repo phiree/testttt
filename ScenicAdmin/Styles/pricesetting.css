@@ -1,0 +1,22 @@
+﻿/*景区审核价格*/
+.daohang a:link,.daohang a:visited,.daohang a:active
+{
+    margin:10px 0px 0px 5px;
+    display:block;
+    outline:none;
+}
+.daohang a:hover
+{
+    color:#44AED7;
+    margin:10px 0px 0px 5px;
+    display:block;
+    outline:none;
+}
+.update:link,.update:active,.update:visited
+{
+    color:#44AED7;
+}
+.update:hover
+{
+    color:#F5CE16;
+}

@@ -11,13 +11,14 @@ namespace Model.Mapping
         public OrderMap()
         {
             Id(x => x.Id).GeneratedBy.Custom<OrderIdGenerator>();
-            Map(x => x.MemberId);
-            Map(x => x.TotalNum);
-            Map(x => x.TotalPrice);
+            References<TourMembership>(x => x.TourMembership);
+          // Map(x => x.TotalNum);
+           // Map(x => x.TotalPrice);
             Map(x => x.IsPaid);
             Map(x => x.BuyTime);
             Map(x => x.PayTime);
             Map(x => x.TradeNo);
+            Map(x => x.OrderFrom);
             HasMany<OrderDetail>(x => x.OrderDetail).Cascade.All();
         }
     }

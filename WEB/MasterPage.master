@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage2" %>
+﻿<%@ Master Language="C#"  AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage2" %>
 
 <%@ Register TagPrefix="url" Namespace="Intelligencia.UrlRewriter" Assembly="Intelligencia.UrlRewriter" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -8,18 +8,18 @@
     <meta name="description" content="中国旅游在线官网提供浙江省内各旅游景点门票在线预订服务，是本省最权威的旅游景点门票授权机构，全面塑造“诗画江南，山水浙江”的旅游总体形象，全面推动本省旅游业的发展。" />
     <meta name="keywords" content="景点门票，门票预订，门票价格，旅游景点门票推荐" />
     <title>中国旅游在线_浙江旅游景点门票预订官网</title>
-    <link href="/theme/bp/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
-    <link href="/theme/bp/print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="/Content/blueprint/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
+    <link href="/Content/blueprint/print.css" rel="stylesheet" type="text/css" media="print" />
     <!--[if lt IE 8]><link rel="stylesheet" href="/theme/ie.css" type="text/css" media="screen, projection"/><![endif]-->
-    <link href="/theme/default/css/20130116/MasterPage.css" rel="stylesheet" type="text/css"
+    <link href="/Content/page/MasterPage.css" rel="stylesheet" type="text/css"
         media="screen, projection" />
-    <link href="/theme/default/css/global.css" rel="stylesheet" type="text/css" />
-    <script src="/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
-    <script src="/Scripts/json2.js" type="text/javascript"></script>
+    <link href="/Content/global.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/Content/page/default.css" />
+    <script src="/Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="/Scripts/json2.min.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="/Scripts/Common.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
-    <script src="/Scripts/Cart.js" type="text/javascript"></script>
+    <script src="/Scripts/pages/Cart.js" type="text/javascript"></script>
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/pages/masterpage.js" type="text/javascript"></script>
     <script src="/Scripts/pages/default.js" type="text/javascript"></script>
@@ -88,7 +88,11 @@
         <asp:ContentPlaceHolder ID="cphmain" runat="server">
         </asp:ContentPlaceHolder>
     </div>
+    
     <div id="footer">
+        <div class="show_div" >
+            <span class="show_4" style="margin:0px auto"></span>
+        </div>
         <div class="footer_main">
             <asp:Button ID="btnScLogin" runat="server" Text="" CssClass="btnScLogin" OnClick="btnScLogin_Click" />
             <div class="about">

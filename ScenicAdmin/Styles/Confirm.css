@@ -1,0 +1,29 @@
+﻿#confirmMain
+{
+    width:960px;
+    margin:10px auto;
+    background-color:White;
+}
+.confiminfo
+{
+    width:900px;
+    margin:15px auto;
+    font-size:14px;
+}
+.wenziinfo
+{
+    font-size:15px;
+    width:900px;
+    margin:5px auto;
+}
+.wenziinfo span
+{
+    font-size:24px;
+    font-weight:700;
+    color:#EC6841;
+}
+.btnpay
+{
+    width:80px;
+    height:30px;
+}

@@ -1,8 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UserCenter/uc.master" AutoEventWireup="true" CodeFile="CommonUserInfo.aspx.cs" Inherits="UserCenter_CommonUserInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <link href="/theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
-    <script src="/Scripts/ucdefault.js" type="text/javascript"></script>
+    <script src="/Scripts/pages/ucdefault.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" Runat="Server">
     <div id="cuinfo">
@@ -50,6 +49,9 @@
                 <asp:Button ID="btndelete"
                     runat="server" CssClass="btndeletecu" onclick="btndelete_Click" Text="删除"  />
             </div>
+            <p style="margin-left:35px">
+                希望您能多多邀请您的亲朋好友加入Tourol.cn,我们将带来更多更优惠的打折门票。
+            </p>
         </div>
     </div>
 </asp:Content>

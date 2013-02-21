@@ -8,9 +8,19 @@ namespace BLL
     public class ErrHandler
     {
         const string errorPageUrl = "/err.aspx";
-     
+
         public static void Redirect(ErrType errType)
         {
+            Redirect(errType, string.Empty);
+        }
+        public static void Redirect(ErrType errType,string errMsg)
+        {
+            Uri reffer = System.Web.HttpContext.Current.Request.UrlReferrer;
+            if (reffer != null)
+            {
+                errMsg += "(" + reffer.AbsoluteUri;
+            }
+            TourLog.ErrorLog.Error(errMsg);
             System.Web.HttpContext.Current.Response.Redirect(errorPageUrl + "?err=" + (int)errType,true);
         }
     }

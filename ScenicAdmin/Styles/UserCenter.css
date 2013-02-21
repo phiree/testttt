@@ -1,0 +1,96 @@
+﻿#myorder
+{
+    width:100%;
+    background-color:White;
+    border:1px solid #DEDEDE;
+}
+#orderdetail
+{
+    margin:15px auto;
+    width:97%;
+    background-color:#F9F9F9;
+}
+#rptdetail
+{
+    margin:20px auto;
+    width:90%;
+}
+.total
+{
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+}
+#UserInfo
+{
+    margin:15px auto;
+    width:97%;
+}
+.infotitle
+{
+    margin-top:10px;
+    height:27px;
+    width:100%;
+    background-color:#EEEEEE;
+    font-size:15px;
+    line-height:27px;
+    text-align:center;
+    color:#6A3905;
+}
+.scenicdetail
+{
+    margin:10px 0px 10px 20px;
+    color:#6A3905;
+}
+.scenicdetail span
+{
+    margin-left:30px;
+}
+.idcarddiv
+{
+    margin:0px 0px 20px 0px;
+    padding-left:150px;
+    width:500px;
+}
+.UserName
+{
+    border:1px solid #EEEEEE;
+    height:25px;
+    width:100px;
+    line-height:24px;
+    margin-right:5px;
+    padding-left:15px;
+    font-size:14px;
+    letter-spacing:2px;
+    outline:none;
+}
+.idcard
+{
+    border:1px solid #EEEEEE;
+    height:25px;
+    width:200px;
+    line-height:24px;
+    font-size:14px;
+    letter-spacing:2px;
+    padding-left:15px;
+    outline:none;
+}
+.spanname
+{
+    margin-left:50px;
+}
+.spanidcard
+{
+    margin-left:120px;
+}
+.divhr
+{
+    width:90%;
+    border:1px dashed #EEEEEE; 
+    margin:10px auto;
+}
+#btnbind
+{
+    margin-top:10px;
+    padding-left:370px;
+}

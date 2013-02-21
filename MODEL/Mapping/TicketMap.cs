@@ -13,19 +13,19 @@ namespace Model.Mapping
         {
             Id(x => x.Id);
             Map(x => x.Name);
-            Map(x => x.MipangId);
-            Map(x => x.Lock);
-            Map(x => x.OrderNumber);
-            //References<TicketsType>(x => x.TicketsType);
-            References<Scenic>(x => x.Scenic);
-           // References<TicketPrice>(x => x.TicketPrice);
-            HasMany<TicketPrice>(x => x.TicketPrice).Inverse().Cascade.All();
-            Map(x => x.IsMain);
-            Map(x => x.Amount);
-            Map(x => x.BeginDate).Nullable();
-            Map(x => x.EndDate).Nullable();
             Map(x => x.ProductCode);
+            Map(x => x.Enabled);
+            HasMany<TicketPrice>(x => x.TicketPrice).Cascade.All();
+            References<DJ_TourEnterprise>(x => x.Scenic);
+            Map(x => x.IsMain);
+            Map(x => x.Lock);
+            Map(x => x.BeginDate);
+            Map(x => x.EndDate);
+            References<TicketUnion>(x => x.TicketUnion);
+            //References<TicketsType>(x => x.TicketsType);
+            // References<TicketPrice>(x => x.TicketPrice);
             Map(x => x.Remark);
+            References<TourActivity>(x => x.TourActivity);
         }
     }
 }

@@ -14,7 +14,13 @@ public class CheckoutHandler : IHttpHandler
     BLLTicket bllTickets = new BLLTicket();
     PriceType pt = PriceType.PayOnline;
     MembershipUser mu = Membership.GetUser();
+    BLLTicketAssign bllTa = new BLLTicketAssign();
     BLLMembership bllMembership = new BLLMembership();
+    BLLActivityServiceImpl bllActivityService = new BLLActivityServiceImpl();
+    BLLOrder bllOrder = new BLLOrder();
+    string paramTicketAssign;
+    string orderErrMsg;
+    bool OrderSuccess = false;
     public void ProcessRequest(HttpContext context)
     {
 
@@ -37,7 +43,7 @@ public class CheckoutHandler : IHttpHandler
 
 
         string paramPriceType = req["pricetype"];
-        string paramTicketAssign = req["a"].TrimEnd('_');
+        paramTicketAssign = req["a"].TrimEnd('_');
         /*支付*/
         int intpricetype;
 
@@ -48,60 +54,63 @@ public class CheckoutHandler : IHttpHandler
         pt = (PriceType)intpricetype;
         if (pt != PriceType.PreOrder && pt != PriceType.PayOnline)
         {
-            TourLog.LogInstance.Error("不是有效的支付方式:" + pt);
+            TourLog.ErrorLog.Error("不是有效的支付方式:" + pt);
 
             context.Response.Write("<script>window.location.href='/order/orderErr.aspx';</script>");
             return;
         }
 
-        //如果是衢州抢票 需要调用接口
-        string thisTopic = req["topic"];
         string[] arrTicketAssign = paramTicketAssign.Split('_');
-        if (thisTopic == "quzhou")
+     
+        IList<Ticket> TicketList = new List<Ticket>();
+        int amount=1;
+        foreach (var item in cartitems)
         {
-            BLLQZTicketSeller qzSeller = new BLLQZTicketSeller();
+            Ticket originalTicket = bllTickets.GetTicket(item.TicketId);
+            TicketList.Add(originalTicket);
+            amount = item.Qty;
+            
+        }
+        string assignName=string.Empty, idcardno=string.Empty;
+        if (arrTicketAssign.Length >0)
+        {
+            string[] taValues = arrTicketAssign[0].Split('-');
 
-            if (arrTicketAssign.Length != 1)
+            assignName = taValues[1];
+            idcardno = taValues[2];
+        }
+        ///为活动做了简化处理: 订单内 每个订单详情的数量, 分配的身份证号码和 姓名都是一样的
+        
+        #region  //用户已买门票数量的判断
+        //foreach (Ticket t in TicketList)
+        //{ 
+        //    if(t.TourActivity!=null)
+        //    {
+        //     bool checkResult=   bllTa.CheckIdCardAmountPerTicket(t.TourActivity.ActivityCode, idcardno, t.ProductCode, amount, out orderErrMsg);
+        //     if (checkResult == false)
+        //     {
+        //         context.Response.Write("<script>window.location.href='/order/QuZhouorderFail.aspx?msg=" + context.Server.UrlEncode(orderErrMsg) + "';</script>");
+        //         return;
+        //     }
+        //    }
+         
+        //}
+        
+        
+        #endregion
+
+
+        Model.Order order = bllOrder.CreateOrder(SiteConfig.PartnerCodeOfTourOL, tourMembership, TicketList, idcardno, assignName, amount, pt, out orderErrMsg);
+          //  Model.Order order = docheck();
+
+         if (!string.IsNullOrEmpty(orderErrMsg))
             {
-                TourLog.LogInstance.Error("衢州门票派送活动,每个订单只能分配一个身份证号.现在的分配数量:" + arrTicketAssign.Length);
-                context.Response.Write("<script>window.location.href='/order/orderErr.aspx';</script>");
+                context.Response.Write("<script>window.location.href='/order/QuZhouorderFail.aspx?msg=" + context.Server.UrlEncode(orderErrMsg) + "';</script>");
                 return;
             }
-            string[] taValues = arrTicketAssign[0].Split('-');
-            int ticketId = Convert.ToInt32(taValues[0]);
-                string name = taValues[1];
-                string cardidNo = taValues[2];
-                Ticket t = bllTickets.GetTicket(Convert.ToInt32(ticketId));
-
-             string result=  qzSeller.SellTicket(false,"tourol.cn",tourMembership,name,cardidNo,string.Empty, t.ProductCode, 1);
-             if (result != "T")
-             {
-                 string qzErrmsg = string.Empty;
-                 if (result.Split('|').Length != 2)
-                 {
-                     qzErrmsg = result;
-                 }
-                 else
-                 {
-                     qzErrmsg = result.Split('|')[1];
-                 }
-
-                 qzErrmsg = context.Server.UrlEncode(qzErrmsg);
-                 context.Response.Write("<script>window.location.href='/order/QuZhouorderFail.aspx?msg="+ qzErrmsg+"';</script>");
-             }
-             else
-             {
-                 context.Response.Write("<script>window.location.href='/order/QuZhouorderSuc.aspx';</script>");
-             }
-            //正常购票流程
-        }
-        else
-        {
-            Model.Order order = docheck();
-
+         
             if (pt == PriceType.PayOnline)
             {
-
                 string html = DoPayment(order);
                 context.Response.Write(html);
             }
@@ -109,33 +118,8 @@ public class CheckoutHandler : IHttpHandler
             {
                 context.Response.Write("<script>window.location.href='/order/preordersuc.aspx';</script>");
             }
-
-
             /*end 支付*/
-          
 
-            /*指派游览者*/
-
-            foreach (string ta in arrTicketAssign)
-            {
-                string[] taValues = ta.Split('-');
-                int ticketId = Convert.ToInt32(taValues[0]);
-                string name = taValues[1];
-                string cardidNo = taValues[2];
-
-                OrderDetail detail = order.OrderDetail.Single<OrderDetail>(x => x.TicketPrice.Ticket.Id == ticketId);
-                TicketAssign modelTa = new TicketAssign();
-                modelTa.IdCard = cardidNo;
-                modelTa.IsUsed = false;
-                modelTa.Name = name;
-                modelTa.OrderDetail = detail;
-                new BLLTicketAssign().SaveOrUpdate(modelTa);
-              
-               
-
-            }
-          
-        }
         /*
          清空购物车
          */
@@ -159,28 +143,29 @@ public class CheckoutHandler : IHttpHandler
 
 
     }
-   // private
+    // private
 
-    private Model.Order docheck()
-    {
-        /*已有的数据
-          门票/ 门票类别/
-         *每张门票的数量
-         *购买者
-         *每个景点的游览者姓名 和 身份证号码/
-         */
+    //private Model.Order docheck()
+    //{
+    //    /*已有的数据
+    //      门票/ 门票类别/
+    //     *每张门票的数量
+    //     *购买者
+    //     *每个景点的游览者姓名 和 身份证号码/
+    //     */
 
 
 
-        Checkout checkout = new Checkout();
-        checkout.BuerId = (Guid)mu.ProviderUserKey;
-        checkout.PriceType = pt;
+    //    Checkout checkout = new Checkout();
+    //    checkout.BuerId = (Guid)mu.ProviderUserKey;
+    //    checkout.PriceType = pt;
 
-        checkout.Details = GetDetails();
-        Model.Order order = checkout.MakeOrder();
+    //    checkout.Details = GetDetails();
+    //    Model.Order order = checkout.MakeOrder();
 
-        return order;
-    }
+    //    OrderSuccess = true;
+    //    return order;
+    //}
     private string DoPayment(Model.Order order)
     {
         TourLog.LogPayment("**************准备支付订单:" + order.Id + "***************");
@@ -190,30 +175,74 @@ public class CheckoutHandler : IHttpHandler
         return payment.Pay();
     }
 
-    private List<OrderDetail> GetDetails()
-    {
+    //private List<OrderDetail> GetDetails()
+    //{
 
-        IList<CartItem> cart = bllTickets.GetCartFromCookies();
+    //    IList<CartItem> cart = bllTickets.GetCartFromCookies();
 
 
-        List<OrderDetail> details = new List<OrderDetail>();
+    //    List<OrderDetail> details = new List<OrderDetail>();
 
-        foreach (CartItem item in cart)
-        {
-            OrderDetail od = new OrderDetail();
-            od.Quantity = item.Qty;
+    //    string errMsg;
+    //    ///购物车内的 门票ID 和 数量
+    //    foreach (CartItem item in cart)
+    //    {
 
-            Ticket t = bllTickets.GetTicket(item.TicketId);
-            TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
-            //TicketAssign ta = new TicketAssign();
+    //        Ticket originalTicket = bllTickets.GetTicket(item.TicketId);
+    //        //IList<Ticket> allTickets = new List<Ticket>();
+    //        //if (originalTicket is TicketUnion)
+    //        //{
+    //        //    allTickets = ((TicketUnion)originalTicket).TicketList;
+    //        //}
+    //        //else
+    //        //{
+    //        //    allTickets.Add(originalTicket);
+    //        //}
+    //        ////
+           
+           
+    //            OrderDetail od = new OrderDetail();
+    //            od.Quantity = item.Qty;
 
-            od.TicketPrice = tp;
-            details.Add(od);
+    //            TicketPrice tp = t.TicketPrice.Single<TicketPrice>(x => x.PriceType == pt);
 
-        }
-        return details;
+    //            string[] arrTicketAssign = paramTicketAssign.Split('_');
+    //            foreach (string ta in arrTicketAssign)
+    //            {
+    //                string[] taValues = ta.Split('-');
+    //                int ticketId = Convert.ToInt32(taValues[0]);
+    //                string name = taValues[1];
+    //                string cardidNo = taValues[2];
+    //                //活动规则检查
+    //                TourActivity touractivity = t.TourActivity;
+    //                if (touractivity != null)
+    //                {
 
-    }
+
+    //                    IList<TicketAssign> talist = bllTa.GetTaByIdcardandTicketCode(cardidNo, t.ProductCode);
+    //                    bool checkResult = touractivity.IntergrationCheck(talist, cardidNo, t.ProductCode, 1, out orderErrMsg);
+    //                    if (!checkResult)
+    //                    {
+
+    //                        return null;
+    //                    }
+    //                }
+    //                TicketAssign modelTa = new TicketAssign();
+    //                modelTa.IdCard = cardidNo;
+    //                modelTa.IsUsed = false;
+    //                modelTa.Name = name;
+    //                modelTa.OrderDetail = od;
+    //                // new BLLTicketAssign().SaveOrUpdate(modelTa);
+                
+    //            od.TicketPrice = tp;
+    //            details.Add(od);
+    //        }
+
+
+    //    }
+    //    return details;
+
+    //}
 
     public bool IsReusable
     {

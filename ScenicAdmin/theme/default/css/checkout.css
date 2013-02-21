@@ -1,0 +1,201 @@
+﻿#fbody
+{
+    border: 0;
+}
+#contactlist
+{
+    display: none;
+    position: absolute;
+    z-index: 999;
+    background-color: #fff;
+    border: 2px solid #999;
+    padding: 5px;
+    width: 150px;
+}
+#contactHead
+{
+    margin-bottom: 4px;
+}
+#contactlist #contactBody
+{
+    padding-top: 10px;
+    background: url(../image/contactsheaderbg.png) top left no-repeat;
+}
+.assignitem
+{
+    display: block;
+    float: left;
+    margin: 5px 10px;
+    width:50px;
+    overflow:hidden;
+}
+#itemlist
+{
+    margin-bottom: 1.4em;
+    border: 1px solid #999;
+    margin-top:4px;
+    margin-right:10px;
+    margin-left:7px;
+}
+#ilh
+{
+    padding: 3px 25px;
+    background-color: #82974C;
+    color: White;
+}
+#sceniclist
+{
+    width: 100%;
+    margin: 0;
+    height:100px;
+}
+#tilist
+{
+    width: 100%;
+}
+
+#sceniclist thead
+{
+    background-color: #FEFADF;
+}
+#sceniclist tfoot
+{
+    background-color: #FFF5A0;
+    font-style: normal;
+}
+
+.tihead
+{
+    color: Black;
+    font-weight:bold;
+    margin-left:10px;
+}
+.tihead span
+{
+    margin-left:20px;
+    font-weight:normal;
+    color:#666EB0;
+}
+#tourinfo
+{
+    border: 1px solid #999;
+    margin-bottom: 5px;
+    margin-top:5px;
+    width:97%;
+    margin-left:10px;
+}
+#payinfo
+{
+    border: 1px solid #aaa;
+    margin:0px auto;
+    width:97%;
+}
+
+#payinfo span
+{
+    display: block;
+    float: left;
+}
+.pricedesc
+{
+    padding-left: 30px;
+    line-height: 73px;
+}
+.pricedesc:hover
+{
+}
+#payonline
+{
+    border-bottom: 2px solid #aaa;
+}
+.price
+{
+    width: 200px;
+    padding-left: 30px;
+    line-height: 73px;
+    _padding-top: 30px;
+    background:url("/theme/default/image/pricebg.png");
+    background-position:right;
+}
+.price:hover
+{
+    background-color: #FFFFCC;
+}
+.priceselection
+{
+    cursor: pointer;
+    overflow: hidden;
+}
+.priceselection:hover
+{
+    
+}
+.price em
+{
+    font-size: 1.4em;
+    font-weight: 500;
+    font-style: normal;
+}
+#tourinfo input
+{
+    height: 25px;
+    line-height: 25px;
+}
+.assignIdcard
+{
+    width: 200px;
+}
+#payaction
+{
+    margin: 20px 0;
+    text-align: center;
+    float:none !important;
+}
+.veritext,.veriname,.veriblock
+{
+    padding:0px;
+    margin:0px;
+    width:150px;
+    color:Red;
+    display:block;
+}
+#bpricepreorder
+{
+    margin-left:10px;
+    margin-right:10px;
+    color:#E3007A;
+    font-size:24px;
+}
+#bpriceonline
+{
+    margin-left:10px;
+    margin-right:10px;
+    font-size:24px;
+    color:#EC6B9E;
+}
+.btntkok
+{
+    cursor:pointer;
+    border:1px solid #E83608;
+    background:url("/theme/default/image/20130116/btnOKBg.png");
+    background-repeat:repeat-x;
+    width:120px;
+    height:24px;
+    display:block;
+    color:White;
+    font-weight:bold;
+    line-height:26px;
+    margin:0px auto;
+}
+.btntkok:hover
+{
+    cursor:pointer;
+    border:1px solid #E83608;
+    background:url("/theme/default/image/20130116/btnOKBg_hover.png");
+    width:120px;
+    height:24px;
+    display:block;
+    color:White;
+    font-weight:bold;
+    line-height:26px;
+}

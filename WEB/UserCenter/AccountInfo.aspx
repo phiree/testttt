@@ -2,7 +2,6 @@
     CodeFile="AccountInfo.aspx.cs" Inherits="UserCenter_AccountInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link href="../theme/default/css/ucdefault.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ucContent" runat="Server">
     <div id="ainfo">
@@ -68,6 +67,7 @@
                 </td>
             </tr>
         </table>
+        <p style="margin-left:100px;">请尽量完善您的个人信息,我们Tourol.cn将会第一时间通知您Z最全面，最优惠的打折门票和优惠活动</p>
     </div>
     <div style="display: none">
         <div>

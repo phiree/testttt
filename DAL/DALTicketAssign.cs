@@ -171,7 +171,7 @@ namespace DAL
                 TicketPrice tp = new TicketPrice();
                 tp.PriceType = (PriceType)int.Parse(item[3].ToString());
                 tp.Price = decimal.Parse(item[4].ToString());
-                Ticket t = new Ticket();
+                Ticket t = new TicketNormal();
                 Scenic s = new Scenic();
                 s.Name = item[2].ToString();
                 t.Scenic = s;
@@ -265,7 +265,7 @@ namespace DAL
         }
         public IList<TicketAssign> GetTaByIdcardandTicketCode(string idcard, string ticketCode)
         {
-            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.OrderDetail.TicketPrice.Ticket.ProductCode='" + ticketCode + "'";
+            string sql = "select ta from TicketAssign ta where ta.IdCard='" + idcard + "' and ta.TicketCode='" + ticketCode + "'";
             IQuery query = session.CreateQuery(sql);
 
             return query.Future<TicketAssign>().ToList<TicketAssign>();
@@ -281,17 +281,19 @@ namespace DAL
             List<Ticket> listticket = new List<Ticket>();
             foreach (object[] item in list)
             {
-                Ticket t = new Ticket();
+                Ticket t = new TicketNormal();
                 t.Id = int.Parse(item[0].ToString());
                 t.Name = item[1].ToString();
                 listticket.Add(t);
             }
             return listticket;
         }
-        public void UpdateIdCardNo(string oldNo, string newNo)
+        public void UpdateIdCardNo(string activityCode, string oldNo, string newNo)
         {
-            string sql = string.Format("update TicketAssign as ta  set IdCard='{1}' where IdCard='{0}'"
-                , oldNo, newNo);
+            
+            string sql = string.Format(@"update top(1) TicketAssign as ta  set IdCard='{1}' where IdCard='{0}' 
+                                          and ta.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode='{2}'"
+                , oldNo, newNo,activityCode);
             IQuery query = session.CreateQuery(sql);
             int result = query.ExecuteUpdate();
         }
@@ -336,5 +338,44 @@ namespace DAL
             return query.Future<TicketAssign>().ToList<TicketAssign>();
         }
 
+        public IList<TicketAssign> GetListByTimeAndScenic(DateTime? beginDate, DateTime? endDate, Scenic s)
+        {
+            string sql = "select ta from TicketAssign ta where 1=1";
+            if (beginDate != null)
+            {
+                sql += " and ta.UsedTime>= '" + beginDate + "'";
+            }
+            if (endDate != null)
+            {
+                sql += " and ta.UsedTime<='" + endDate + "'";
+            }
+            sql += " and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + s.Id + "";
+            sql += " and ta.IsUsed=1";
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
+        }
+
+        public IList<TicketAssign> GetList(string activitycode, string idcard, string ticketCode)
+        {
+            string sql = "select ta from TicketAssign ta where 1=1";
+            if (!string.IsNullOrEmpty(activitycode))
+            {
+                sql += " and ta.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode = '" + activitycode + "'";
+            }
+            if (!string.IsNullOrEmpty(idcard))
+            {
+                sql += " and ta.IdCard ='" + idcard + "'";
+            }
+            if (!string.IsNullOrEmpty(ticketCode))
+            {
+                sql += " and ta.TicketCode ='" + ticketCode + "'";
+            }
+          
+            IQuery query = session.CreateQuery(sql);
+            return query.Future<TicketAssign>().ToList<TicketAssign>();
+
+        }
+
+      
     }
 }

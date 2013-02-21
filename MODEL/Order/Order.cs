@@ -7,22 +7,31 @@ namespace Model
 {
     public class Order
     {
+        public Order()
+        {
+            OrderDetail = new List<OrderDetail>();
+        }
+        public Order(TourMembership member,string orderFrom)
+            : this()
+        {
+           this.TourMembership = member;
+           this.BuyTime = DateTime.Now;
+           this.OrderFrom = orderFrom;
+            
+        }
         public virtual int Id { get; set; }
-        public virtual Guid MemberId { get; set; }
+        public virtual TourMembership TourMembership { get; set; }
         /// <summary>
         /// 门票总数
         /// </summary>
         private int totalNum = 0;
-        public Order()
-        {
-            OrderDetail = new List<OrderDetail>();
-         }
+      
         public virtual int TotalNum
         {
             get
             {
                 totalNum = 0;
-                foreach (OrderDetail od in OrderDetail)
+                foreach (OrderDetail od in OrderDetail.Where(x=>!(x.TicketPrice.Ticket.As<Ticket>() is TicketUnion)))
                 {
                     totalNum += od.Quantity;
                 }
@@ -44,7 +53,12 @@ namespace Model
                 totalPrice = 0;
                 foreach (OrderDetail od in OrderDetail)
                 {
-                    totalPrice += od.Quantity * (od.TicketPrice.Price);
+                  
+                    if (od.TicketPrice!= null)
+                    {
+
+                        totalPrice += od.Quantity * (od.TicketPrice.Price);
+                    }
                 }
                 return totalPrice;
             }
@@ -125,6 +139,10 @@ namespace Model
                 return BuyTime.Date.ToString();
             }
         }
+        /// <summary>
+        /// 订单来源:当前用途:记录活动合作伙伴的ProductCode
+        /// </summary>
+        public virtual string OrderFrom { get; set; }
     }
 
     public class MonthOrder

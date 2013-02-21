@@ -8,7 +8,7 @@ using NHibernate.Transform;
 
 namespace DAL
 {
-    public class DALOrderDetail:DalBase,IDAL.IOrderDetail
+    public class DALOrderDetail:DalBase<OrderDetail>
     {
         public int SaveOrUpdateOrderDetail(OrderDetail orderdetail)
         {
@@ -68,6 +68,47 @@ namespace DAL
                 session.SaveOrUpdate(od);
                 x.Commit();
             }
+        }
+       
+        public IList<OrderDetail> GetOrderDetailForIdcardInActivity(string activityCode, string idcardNo)
+        {
+          string sql =string.Format( @"select detail from OrderDetail detail
+                        inner join detail.TicketAssignList  assign
+                       with assign.IdCard='{0}'
+                        where detail.TicketPrice.Ticket.TourActivity.ActivityCode='{1}'
+                            ",idcardNo,activityCode);
+          var iquery = session.CreateQuery(sql).SetCacheMode(CacheMode.Ignore);
+          return iquery.List<OrderDetail>();
+      //  var queryover = session.QueryOver<OrderDetail>()
+      //.Where(x => x.TicketPrice.Ticket.TourActivity != null && x.TicketPrice.Ticket.TourActivity.ActivityCode == activityCode)
+      //.Where(x => x.TicketAssignList.ToLookup(y => y.IdCard == idcardNo).Count > 0);
+    
+        }
+        public IList<OrderDetail> GetUsedOrderDetailForIdcardInActivity(string activityCode)
+        {
+               string sql = string.Format(@"select detail from OrderDetail detail
+                        inner join detail.TicketAssignList  assign
+                       with assign.IsUsed=1 " +
+                            "where detail.TicketPrice.Ticket.TourActivity.ActivityCode='{0}'"
+                                , activityCode);
+           
+            return session.CreateQuery(sql).Future<OrderDetail>().ToList();
+        }
+
+        public IList<TicketAssign> GetTaForIdCardInActivity(string activityCode,DateTime dt)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IsUsed=1 and ta.OrderDetail.OrderDetailForUnionTicket.Id is null"
+                + " and ta.UsedTime>='" + dt.ToString() + "' and ta.UsedTime<='" + dt.AddDays(1).ToString() + "'" +
+                " and ta.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode='" + activityCode + "'";
+            return session.CreateQuery(sql).Future<TicketAssign>().ToList();
+        }
+
+        public IList<TicketAssign> GetTaForIdCardInActivity(string activityCode,int ticketId)
+        {
+            string sql = "select ta from TicketAssign ta where ta.IsUsed=1 and ta.OrderDetail.OrderDetailForUnionTicket.Id is null" +
+                " and ta.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode='" + activityCode + "'" +
+                " and ta.OrderDetail.TicketPrice.Ticket.Id=" + ticketId + "";
+            return session.CreateQuery(sql).Future<TicketAssign>().ToList();
         }
     }
 }

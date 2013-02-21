@@ -11,7 +11,7 @@ namespace DAL
     {
         public IList<Model.Order> GetListForUser(Guid memberId)
         {
-            string sql = "select o from Order o where o.MemberId=:memberId ";
+            string sql = "select o from Order o where o.TourMembership.Id=:memberId ";
             IQuery query = session.CreateQuery(sql)
                 .SetParameter("memberId", memberId);
             return query.Future<Model.Order>().OrderByDescending(x => x.BuyTime).ToList();
@@ -209,11 +209,11 @@ namespace DAL
         }
 
         public IList<object[]> GetDateOrderTotal(string datetime)
-        { 
+        {
             string timeUnit = "100";
             string sql = "select CONVERT(VARCHAR(" + timeUnit + "), od.BuyTime, 102) timeUnit,dj.Name djname,s.ScenicOrder so,COUNT(*) count " +
     "from TicketAssign ta, OrderDetail detail,[Order] od ,DJ_TourEnterprise dj,TicketPrice tp,Ticket t,Scenic s " +
-    "where ta.OrderDetail_id =detail.Id and detail.Order_id=od.Id "+
+    "where ta.OrderDetail_id =detail.Id and detail.Order_id=od.Id " +
     "and detail.TicketPrice_id=tp.Id and tp.Ticket_id=t.Id and t.Scenic_id=dj.Id and s.DJ_TourEnterprise_id=dj.Id " +
     "group by dj.Name,s.ScenicOrder , CONVERT(VARCHAR(" + timeUnit + "), od.BuyTime, 102) " +
     "order by s.ScenicOrder ";
@@ -222,7 +222,7 @@ namespace DAL
                 .AddScalar("djname", NHibernateUtil.String)
                 .AddScalar("so", NHibernateUtil.Int32)
                 .AddScalar("count", NHibernateUtil.Int32);
-            var result1=query.List<object[]>();
+            var result1 = query.List<object[]>();
             IList<object[]> result2 = new List<object[]>();
             foreach (var item in result1)
             {
@@ -259,5 +259,10 @@ namespace DAL
             }
             return result2;
         }
+
+       
+       
+
+
     }
 }

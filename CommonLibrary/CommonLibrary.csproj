@@ -70,10 +70,14 @@
     <Compile Include="EnumHelper.cs" />
     <Compile Include="HTMLInfo.cs" />
     <Compile Include="HttpContextHelper.cs" />
+    <Compile Include="HttpPostHelp.cs" />
     <Compile Include="IdcardDict.cs" />
+    <Compile Include="IdCardInfo.cs" />
+    <Compile Include="IOHelper.cs" />
     <Compile Include="JosnHelper.cs" />
     <Compile Include="ListHelper.cs" />
     <Compile Include="MakeAccount.cs" />
+    <Compile Include="ObjectHelpercs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QweiboSDK\OAuth.cs" />
     <Compile Include="QweiboSDK\OauthKey.cs" />

@@ -85,7 +85,7 @@ public class QuickorderHandler : IHttpHandler
 
         BLL.Checkout checkout = new BLL.Checkout();
         tm = bllMem.GetMember(phone);
-        checkout.BuerId = (Guid)tm.Id;
+        checkout.member = tm;
         checkout.PriceType = pt;
 
         checkout.Details = GetDetails(ticketid);

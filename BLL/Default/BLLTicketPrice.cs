@@ -9,9 +9,9 @@ namespace BLL
 {
     public class BLLTicketPrice
     {
-        IDAL.ITicketPrice iticketprice;
+        DALTicketPrice iticketprice;
 
-        public IDAL.ITicketPrice Iticketprice
+        public DALTicketPrice Iticketprice
         {
             get
             {

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/detail.master" AutoEventWireup="true" CodeFile="ResetPwd.aspx.cs" Inherits="Account_ResetPwd" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <link href="/theme/default/css/ResetPwd.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/ResetPwd.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
             $("#tr2").css("display", "none");

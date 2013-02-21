@@ -1,0 +1,187 @@
+﻿/// <reference path="jquery-1.4.1-vsdoc.js" />
+
+
+function changesumprice(obj) {
+    $(obj).val($(obj).val().replace(/[^0-9]/g, ''));
+    var usecount = $(obj).val();
+    var yddj = $($(obj).parent().find(".num")[2]).html().substring(0, $($(obj).parent().find(".num")[2]).html().length - 1);
+    var tn = $(obj).parent().find("#ticketname").html();
+    if (usecount != "" && usecount!="0") {
+        $(obj).parent().find("#sumprice").html(parseInt(usecount) * parseInt(yddj));
+        var ydcount = parseInt($($(obj).parent().find(".num")[0]).html());
+        var ydusedcount = parseInt($($(obj).parent().find(".num")[1]).html());
+        if (parseInt(usecount) > (ydcount - ydusedcount)) {
+            //原先需要显示超出数的购买情况，现在去掉
+            //$(obj).parent().next().html("原预定&nbsp;<span style='font-weight:bold'>" + tn + "</span>&nbsp;门票&nbsp;<span class='num'>" + (ydcount - ydusedcount) + "</span>&nbsp;张&nbsp;&nbsp;" + "额外添加预定&nbsp;<span class='num'>" + (usecount - ydcount + ydusedcount) + "</span>&nbsp;张");
+            $(obj).parent().next().html("");
+        }
+        else {
+            $(obj).parent().next().html("");
+        }
+    }
+    else {
+        $(obj).parent().find("#sumprice").html(0 + "元");
+        $(obj).parent().next().html("");
+    }
+}
+
+function changeolcount(obj) {
+    $(obj).val($(obj).val().replace(/[^0-9]/g, ''));
+    var olgpcount = parseInt($($(obj).parent().find(".num")[0]).html());
+    var olusedcount = parseInt($($(obj).parent().find(".num")[1]).html());
+    var wtcount = parseInt($(obj).val());
+    if (wtcount > (olgpcount - olusedcount)) {
+        alert("使用数超过已购买数");
+        return false;
+    }
+    return true;
+}
+
+var v = 1;
+$(document).ready(function () {
+
+    $("[id$='txtinfo']").autocomplete(
+        {
+            source:
+            function (request, response) {
+                $.get("/CheckTicketHandler.ashx?term=" + request.term + "&sid=" + $("[id$='hfscid']").val(),
+                         function (data) {
+                             response($.map(data, function (item) {
+                                 var d = '123';
+                                 return {
+                                     label: item.Value,
+                                    value: item.Key
+                                 }
+                             }));
+
+                         }
+                     );
+            }
+            ,
+            select: function (event, ui) {
+                $("[id$='hfdata']").val(ui.item.value); $("[id$='btnbind']").click();
+            },
+            minLength: 3
+
+        });
+
+    //    $.ajax({
+    //        type: "POST",
+    //        contentType: "application/json",
+    //        url: "CheckTicket.aspx/GetAllHints",
+    //        data: "{scid:'" + $("[id$='hfscid']").val() + "'}",
+    //        dataType: "json",
+    //        success: function (msg) {
+    //            var datas = eval('(' + msg.d + ')');
+    //            $("[id$='txtinfo']").autocomplete(
+    //                    datas, { formatItem: function (row, i, max) {
+    //                        return "<table width='200px' cellpadding='0' cellspacing='0'><tr><td align='left' height='10px' style='padding-top:10px;line-height:10px;'>" + row.Value + "</td></tr></table>";
+    //                    },
+    //                        formatMatch: function (row, i, max) {
+    //                            return row.Key;
+    //                        },
+    //                        matchContains: true,
+    //                        max: 10,
+    //                        scrollHeight: 900
+    //                    }).result(function (event, data, formatted) { $("[id$='hfdata']").val(data.Key); $("[id$='btnbind']").click(); });
+    //        }
+    //    });
+
+    $("[id$='txtinfo']").InlineTip({ "tip": "录入身份证号码(至少3位)" });
+    //    $("body").click(function () {
+    //        $("#listname").attr("style", "display:none");
+    //        var list = $("#yklistt");
+    //        $("#listname").css({ left: list.position().left + "px", top: list.position().top + 10 + "px" });
+    //        $("#listyw").attr("style", "display:none");
+    //    });
+    if ($.cookie("idcard") == null)
+        $.cookie("idcard", "");
+    timedCount();
+});
+
+var state = 0;
+function showyklist() {
+    $("#listname").attr("style", "display:block");
+    //var list = $("#yklistt");
+    $("#listname").css({ left: "100px", top: list.position().top + 25 + "px" });
+    state = 1;
+}
+
+function querenpay() {
+    var usecount = $("[id$='txtUseCount']").val();
+    var sumprice = $("#sumprice").html();
+    return confirm("本次使用" + usecount + "张,共需支付金额" + sumprice + ",是否确认付款?");
+}
+function querenyuding() {
+    var ydcount = $("[id$='txtyudingcount']").val();
+    return confirm("本次预定" + ydcount + "张,是否确认预定?");
+}
+function querenuse() {
+    var usecount = $("[id$='txtolusecount']").val();
+    return confirm("本次使用" + usecount + "张,是否确认使用?");
+}
+function btnselectname(obj) {
+    $("[id$='hfselectname']").val($.trim($(obj).parent().find("td").eq(0).find("span").html()));
+    $("[id$='hfselectidcard']").val($.trim($(obj).parent().find("td").eq(1).find("input").val().toString()));
+    $.cookie("idcard", $("[id$='hfselectidcard']").val());
+    $("[id$='btnselect']").click();
+}
+var state2 = 0;
+function showywrecord() {
+    $("#listyw").attr("style", "display:block");
+    var ywspan = $("#ywspan");
+    $("#listyw").css({ left: ywspan.position().left + "px", top: ywspan.position().top + 10 + "px" });
+    state2 = 1;
+}
+
+var t;
+function timedCount() {
+    if ($.browser.msie) {
+        show();
+        t = setTimeout("timedCount()", 1000);
+    } 
+}
+function show() {
+    var CVR_IDCard = document.getElementById('CVR_IDCard');
+    var strReadResult = CVR_IDCard.ReadCard();
+    if (strReadResult=="0") {
+        if ($.cookie("idcard") != CVR_IDCard.CardNo) {
+            $("[id$='txtinfo']").val(CVR_IDCard.CardNo);
+            $.cookie("idcard", CVR_IDCard.CardNo);
+            autobtn();
+        }
+        else {
+            
+        }
+    }
+}
+
+function autobtn() {
+    $("[id$='hfautoidcard']").val($("[id$='txtinfo']").val());
+    $("[id$='btnauto']").click();
+}
+function hidescreen(obj) {
+    $(obj).css("display", "none");
+}
+function cgbg(obj) {
+    $(obj).find("td").css("background-color", "#E9E9E9");
+}
+function cgbg2(obj) {
+    $(obj).find("td").css("background-color", "#F7F7F7");
+}
+
+function printTicket(info) {
+    if (confirm(info)) {
+        //$("[id$='btnPrint']").click(function () {
+        window.open($("[id$='BtnPrint']").attr("href"), $("[id$='BtnPrint']").attr("target"));
+        //});
+        //$("[id$='btnPrint']").click();
+        }
+}
+
+function noBorderWin(fileName,w,h) {
+  nbw=window.open(fileName,'','fullscreen=yes');
+  //nbw.resizeTo(w,h);
+  //nbw.moveTo((screen.width-w)/2,(screen.height-h)/2);
+  
+}

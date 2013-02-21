@@ -1,0 +1,33 @@
+﻿#regcontainer
+{
+    margin: 0 auto;
+    padding: 25px 30px;
+    width: 400px;
+    background-color: #fff;
+}
+#regcontainer table td
+{
+    padding: 10px 0;
+}
+.tbx
+{
+    width: 250px;
+    line-height: 31px;
+    height: 31px;
+}
+.regBtn
+{
+    height: 30px;
+}
+.lp
+{
+    padding-left: 63px !important;
+}
+.ar label
+{
+    font-weight: normal !important;
+}
+.ar label a, .ar label a:link, .ar label a:visited, .ar label a:hover
+{
+    color: Blue;
+}

@@ -84,10 +84,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.mocks, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\nunit.mocks.dll</HintPath>
-    </Reference>
     <Reference Include="Remotion.Data.Linq">
       <HintPath>..\lib\Remotion.Data.Linq.dll</HintPath>
     </Reference>
@@ -146,6 +142,7 @@
     <Compile Include="BLLTest\DJS\RouteTest.cs" />
     <Compile Include="CommonLibraryTest\AppSettingsManagerTest.cs" />
     <Compile Include="CommonLibraryTest\ContentReader.cs" />
+    <Compile Include="CommonLibraryTest\IOHelperTest.cs" />
     <Compile Include="CommonLibraryTest\testStringHelper.cs" />
     <Compile Include="CommonLibraryTest\UrlParamHelperTest.cs" />
     <Compile Include="CommonLibraryTest\JsonHelperTest.cs" />
@@ -156,6 +153,7 @@
     <Compile Include="ModelTest\AreaTest.cs" />
     <Compile Include="ModelTest\TourGroupMemberTest.cs" />
     <Compile Include="ModelTest\RouteTest.cs" />
+    <Compile Include="NhibernateTest\MappintTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -167,10 +165,10 @@
     <Compile Include="CommonLibraryTest\JsonTest.cs" />
     <Compile Include="DALTest\TestDALBase.cs" />
     <Compile Include="DALTest\VoteTest.cs" />
+    <Compile Include="TourActivityTest\TourActivityTest.cs" />
     <Compile Include="webtest\pageobjects\default.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

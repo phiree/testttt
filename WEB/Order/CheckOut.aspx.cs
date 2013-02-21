@@ -15,21 +15,33 @@ public partial class Scenic_CheckOut : AuthPage
     BLLOrder bllOrder = new BLLOrder();
     BLLCommonUser bllCu = new BLLCommonUser();
     IList<Ticket> tickets = new List<Ticket>();
+    BLLTicketAssign bllTicketAssign = new BLLTicketAssign();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         //为抢票设定时间
-        if(DateTime.Now.Hour<10)
-        {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('今日抢票未开始,请在10点之后进行抢票!');window.location='/'", true);
-            return;
-        }
+        //if(DateTime.Now.Hour<10)
+        //{
+        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", "alert('今日抢票未开始,请在10点之后进行抢票!');window.location='/'", true);
+        //    return;
+        //}
 
         tickets = bllTicket.GetTicketsFromCart();
         if (tickets.Count == 0)
         {
             Server.Transfer("/order/cart.aspx");
         }
+
+        //如果只有一张票,而且价格等于0,则隐藏付款方式
+        if (tickets.Count == 1)
+        {
+            Ticket t = tickets[0];
+            if (t.GetPrice(PriceType.PreOrder) == 0 && t.GetPrice(PriceType.PayOnline) == 0)
+            {
+                divPaymentChoose.Style.Add(HtmlTextWriterStyle.Display, "none");
+            }
+        }
+
         BindTickets();
         BindContacts();
         BindAssign();
@@ -53,7 +65,7 @@ public partial class Scenic_CheckOut : AuthPage
         if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             Ticket t = e.Item.DataItem as Ticket;
-            Literal liPriceOrder = e.Item.FindControl("liPriceOrder") as Literal;
+             Literal liPriceOrder = e.Item.FindControl("liPriceOrder") as Literal;
             Literal liPriceOnline = e.Item.FindControl("liPriceOnline") as Literal;
             liPriceOrder.Text = t.GetPrice(PriceType.PreOrder).ToString("0");
             liPriceOnline.Text = t.GetPrice(PriceType.PayOnline).ToString("0");

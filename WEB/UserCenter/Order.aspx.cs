@@ -32,7 +32,7 @@ public partial class UserCenter_MyTickets : basepage
         //获取该用户的Order
         object objId = CurrentUser.ProviderUserKey;
         Guid memberId = new Guid(objId.ToString());
-        IList<Order> orderList = bllOrder.GetListForUser(memberId);
+        IList<Order> orderList = bllOrder.GetListForUser(memberId);//.Where(x=>x.OrderDetail.Where(y=>y.OrderDetailForUnionTicket==null).Count()==0).ToList();
         rptOrder.DataSource = orderList;
         rptOrder.DataBind();
     }
@@ -68,7 +68,7 @@ public partial class UserCenter_MyTickets : basepage
             string odid = (e.Item.FindControl("hfodid") as HiddenField).Value;
             Repeater r = e.Item.FindControl("rptod") as Repeater;
             r.ItemDataBound+=new RepeaterItemEventHandler(r_ItemDataBound);
-            r.DataSource = bllOrder.GetOrderByOrderid(int.Parse(odid)).OrderDetail;
+            r.DataSource = bllOrder.GetOrderByOrderid(int.Parse(odid)).OrderDetail.Where(x=>x.OrderDetailForUnionTicket==null);
             r.DataBind();
         }
         if (e.Item.FindControl("paystate") != null)
@@ -76,6 +76,7 @@ public partial class UserCenter_MyTickets : basepage
             string odid = (e.Item.FindControl("hfodid") as HiddenField).Value;
             ViewState["odid"] = odid;
             Order order = bllOrder.GetOrderByOrderid(int.Parse(odid));
+            if (order.OrderDetail.Count == 0) return;
             HtmlAnchor ha = e.Item.FindControl("usedetail") as HtmlAnchor;
             if (order.IsPaid == true && order.OrderDetail[0].TicketPrice.PriceType == PriceType.PayOnline)
             {

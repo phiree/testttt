@@ -125,7 +125,6 @@
     <Compile Include="Dijieshe\BLLTourGroupMember.cs" />
     <Compile Include="Dijieshe\BLLWorker.cs" />
     <Compile Include="Dijieshe\JsonObjects.cs" />
-    <Compile Include="IdCardInfo.cs" />
     <Compile Include="QuZhouSpring\BLLQZPartnerTicketAsign.cs" />
     <Compile Include="QuZhouSpring\BLLQZSpringPartner.cs" />
     <Compile Include="QuZhouSpring\BLLQZTicketAsign.cs" />
@@ -141,7 +140,12 @@
     <Compile Include="Default\BLLFormatSerialNo.cs" />
     <Compile Include="Default\BLLRefund.cs" />
     <Compile Include="Default\BLLScenicTicket.cs" />
+    <Compile Include="TourActivityBLL\ActivityServiceImpl.cs" />
+    <Compile Include="TourActivityBLL\BLLActivityPartner.cs" />
+    <Compile Include="TourActivityBLL\BLLActivityTicketAssign.cs" />
+    <Compile Include="TourActivityBLL\BLLTourActivity.cs" />
     <Compile Include="TourolReport\IdcardNoReport.cs" />
+    <Compile Include="UserService\BLLUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj">

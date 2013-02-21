@@ -26,7 +26,7 @@ namespace BLL
             }
             set { iticket = value; }
         }
-
+        /*未找到对该方法的引用.
         /// <summary>
         /// 如果不存在该景区门票 则自动创建
         /// </summary>
@@ -36,7 +36,7 @@ namespace BLL
             Model.Ticket ticket = null;
             if (tickets.Count == 0)
             {
-                ticket = new Ticket();
+                ticket = new TicketNormal();
                 ticket.Scenic = bllScenic.GetScenicById(scid);
                 SaveOrUpdateTicket(ticket);
             }
@@ -45,7 +45,7 @@ namespace BLL
                 ticket = tickets[0];
             }
             return ticket;
-        }
+        }*/
         /// <summary>
         /// 首页展示的是 门票 而不是景区.
         /// </summary>
@@ -69,7 +69,7 @@ namespace BLL
             //IList<Model.Ticket> tickets = Iticket.GetTicketByscId(scid);
             //if (tickets.Count == 0)
             //{
-            //    Model.Ticket newTicket = new Ticket();
+            //    Model.Ticket newTicket = new TicketNormal();
             //    newTicket.Scenic = bllScenic.GetScenicById(scid);
             //    SaveOrUpdateTicket(newTicket);
             //    tickets.Add(newTicket);
@@ -107,7 +107,7 @@ namespace BLL
             }
             else
             {
-                ticket = new Ticket();
+                ticket = new TicketNormal();
                 ticket.Name = ticketname;
                 ticket.Scenic = bllScenic.GetScenicById(int.Parse(scid));
                 ticket.Lock = true;
@@ -281,6 +281,12 @@ namespace BLL
         public Ticket GetByProductCode(string productCode)
         {
             return Iticket.GetByProductCode(productCode);
+        }
+        
+
+        public IList<Ticket> GetListByMultitTicketCode(IList<string> ticketCodes)
+        { 
+          return Iticket.GetListByMultitTicketCode(ticketCodes);
         }
 
     }

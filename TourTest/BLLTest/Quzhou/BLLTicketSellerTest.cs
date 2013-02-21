@@ -23,7 +23,7 @@ namespace TourTest.BLLTest.Quzhou
             TourMembership member = new TourMembership();
             member.IdCard = "idcard";
             
-            Ticket currentTicket = new Ticket();
+            Ticket currentTicket = new TicketNormal();
             TicketPrice tp = new TicketPrice();
             tp.Price = 1;
             tp.PriceType = PriceType.PreOrder;

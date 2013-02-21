@@ -296,24 +296,30 @@ public partial class qumobile_CheckTicket : basepage
                         return;
                     }
 
+                    //原来是想让它预定大于已预定的数量时的操作，现在取消此功能
+                    //if (wtusecount > ttcount - usedydcount)
+                    //{
+                    //    int jxydcount = wtusecount - ttcount + usedydcount;
+                    //    TicketAssign ta = bllticketassign.GetLasetRecordByidcard(ViewState["idcard"].ToString(), ticket, 2);
+                    //    OrderDetail od = ta.OrderDetail;
+                    //    od.Quantity = od.Quantity + jxydcount;
+                    //    od.Remark = "在景区预定" + jxydcount + "张门票";
+                    //    bllorderdetail.saveorupdate(od);
+                    //    for (int i = 0; i < jxydcount; i++)
+                    //    {
+                    //        TicketAssign ticketassign = new TicketAssign();
+                    //        ticketassign.IdCard = ViewState["idcard"].ToString();
+                    //        ticketassign.IsUsed = false;
+                    //        ticketassign.Name = ta.Name;
+                    //        ticketassign.OrderDetail = od;
+                    //        ticketassign.UsedTime = DateTime.Now;
+                    //        bllticketassign.SaveOrUpdate(ticketassign);
+                    //    }
+                    //}
                     if (wtusecount > ttcount - usedydcount)
                     {
-                        int jxydcount = wtusecount - ttcount + usedydcount;
-                        TicketAssign ta = bllticketassign.GetLasetRecordByidcard(ViewState["idcard"].ToString(), ticket, 2);
-                        OrderDetail od = ta.OrderDetail;
-                        od.Quantity = od.Quantity + jxydcount;
-                        od.Remark = "在景区预定" + jxydcount + "张门票";
-                        bllorderdetail.saveorupdate(od);
-                        for (int i = 0; i < jxydcount; i++)
-                        {
-                            TicketAssign ticketassign = new TicketAssign();
-                            ticketassign.IdCard = ViewState["idcard"].ToString();
-                            ticketassign.IsUsed = false;
-                            ticketassign.Name = ta.Name;
-                            ticketassign.OrderDetail = od;
-                            ticketassign.UsedTime = DateTime.Now;
-                            bllticketassign.SaveOrUpdate(ticketassign);
-                        }
+                        Msg.InnerText = "超出预定张数，请检查预定数量";
+                        return;
                     }
                     for (int i = 0; i < wtusecount; i++)
                     {
@@ -324,6 +330,8 @@ public partial class qumobile_CheckTicket : basepage
                         //添加验票员信息
                         ta.ScenicAdmin = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
                         ta.saName = CurrentUser.UserName;
+                        //添加验票方式
+                        ta.checkType = "手机";
                         bllticketassign.SaveOrUpdate(ta);
                         //查询订单中所有的detail是否都已付完款
                         List<TicketAssign> listticketassign = bllticketassign.GetTaByIdCard(ViewState["idcard"].ToString()).ToList();
@@ -399,6 +407,7 @@ public partial class qumobile_CheckTicket : basepage
                             //添加验票员信息
                             ta.ScenicAdmin = bllMember.GetScenicAdmin((Guid)CurrentUser.ProviderUserKey);
                             ta.saName = CurrentUser.UserName;
+                            ta.checkType = "手机";
                             bllticketassign.SaveOrUpdate(ta);
                         }
                     }

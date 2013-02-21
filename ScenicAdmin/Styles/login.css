@@ -1,0 +1,90 @@
+﻿#logincontainer
+{
+    font-size: 15px;
+    margin: 0 20px 10px 20px;
+    width: 920px;
+    float: left;
+    padding-top: 50px;
+    background-color: #DEF4D0;
+    padding-bottom:50px;
+}
+#loginbox
+{ 
+  display:inherit;
+    margin: 0 auto;
+    border: solid 4px #96CE69;
+    padding: 25px 30px;
+    width: 720px;
+  
+    background-color: #fff;
+}
+#left, #right
+{
+    width: 360px;
+    float: left;
+}
+#left div
+{
+    margin-bottom: 20px;
+}
+#logintop
+{
+    line-height: 60px;
+    text-align: center;
+    background: url("/img/login-bg.png") top left no-repeat;
+}
+#logintop span,#regtop  a
+{
+    position:relative;
+    top:-10px;
+     font-size:14px;
+     color:#fff;
+    }
+#left .lb
+{
+    display: block;
+    width: 60px;
+    margin-bottom: 5px;
+}
+#regtop
+{
+    line-height: 60px;
+    text-align: center;
+    background: url("/img/register-bg.png") top left no-repeat;
+}
+#left .tbx
+{
+    width: 310px;
+    height: 31px;
+}
+
+#halfbottom
+{
+ 
+    border-top: dotted 2px #ddd;
+    padding-top:20px;
+}
+#halfbottom span
+{
+     display:block;
+     float:left;
+     margin:5px 20px
+    }
+.loginbtn
+{
+     width:300px;
+     height:40px;
+     text-align:center;
+     background-color:#ddd;
+     float:left;
+    }
+#error
+{
+   
+    margin: 10px;
+  
+    color: Red;
+    padding: 20px;
+}
+
+

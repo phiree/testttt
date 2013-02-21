@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FluentNHibernate.Mapping;
+using FluentNHibernate.Conventions;
+using FluentNHibernate.Conventions.Instances;
 
 namespace Model.Mapping
 {
-    public class OrderDetailMap:ClassMap<OrderDetail>
+    public class OrderDetailMap : ClassMap<OrderDetail>
     {
         public OrderDetailMap()
         {
@@ -16,6 +18,19 @@ namespace Model.Mapping
             References<Model.Order>(x => x.Order);
             Map(x => x.Remark);
             HasMany<TicketAssign>(x => x.TicketAssignList).Cascade.All();
+            References<OrderDetail>(x => x.OrderDetailForUnionTicket);
+            /*   HasMany<OrderDetail>(x => x.ChildTicketDetail).KeyColumn("pid").Cascade.AllDeleteOrphan()
+                   .Where(x => x.OrderDetailForUnionTicket.Id == x.Id);
+   */
+        }
+        public class ReferenceColumnConvention : IReferenceConvention
+        {
+            public void Apply(IManyToOneInstance instance)
+            {
+                // uncomment if needed
+                //if (instance.EntityType == instance.Property.PropertyType)
+                instance.Column(instance.Name + "id");
+            }
         }
     }
 }

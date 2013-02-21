@@ -5,84 +5,72 @@ using System.Text;
 
 namespace Model
 {
-    /// <summary>
-    /// 景区的门票定义
-    /// 有多个价格:门市价 预订价 优惠价 
-    /// </summary>
-    public class Ticket
+    ///门票的基类, 统一 单一门票 和 套票
+    public abstract class Ticket
     {
-        public Ticket()
-        {
-            TicketPrice = new List<TicketPrice>();
-            BeginDate = new DateTime(2013,1,1);
-            EndDate = DateTime.MaxValue;
-        }
-        public virtual int Id { get; set; }
-        /// <summary>
-        /// 米胖的门票
-        /// </summary>
-        public virtual string MipangId { get; set; }
-        public virtual string Name { get; set; }
-        //public virtual TicketsType TicketsType { get; set; }
-        public virtual Scenic Scenic { get; set; }
-        public virtual bool Lock { get; set; }
-        public virtual bool IsMain { get; set; }
-        /// <summary>
-        /// 序号,用来控制门票的排序
-        /// </summary>
-        public virtual int OrderNumber { get; set; }
-        public virtual IList<TicketPrice> TicketPrice { get; set; }
+        
 
-        
+        public virtual int Id { get; set; }
+      
+        public virtual string DisplayNameOfOwner
+        {
+            get {
+                if (As<Ticket>() is TicketUnion)
+                {
+                    return Name;
+                }
+                else
+                {
+                    return Scenic.Name;
+                }
+            }
+           
+        }
         /// <summary>
-        /// 起始有效期
+        /// 该门票的拥有者
         /// </summary>
-        
+        public virtual DJ_TourEnterprise Scenic { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string ProductCode { get; set; }
+       
+        public virtual bool IsMain { get; set; }
+        public virtual bool Lock { get; set; }
         public virtual DateTime BeginDate { get; set; }
+        public virtual decimal OrderNumber { get; set; }
         /// <summary>
-        /// 截止有效期
+        /// 有效期
         /// </summary>
         public virtual DateTime EndDate { get; set; }
         /// <summary>
         /// 备注
         /// </summary>
-        public virtual string  Remark { get; set; }
-
+        public virtual string Remark { get; set; }
         /// <summary>
-        /// 总数量，默认不限制
+        /// 是否启用(页面显示,后台判断)
         /// </summary>
-        public virtual int Amount { get; set; }
+        public virtual bool Enabled { get; set; }
+        //价格列表(每种价格的每种列表)
+        public virtual IList<TicketPrice> TicketPrice { get; set; }
+        //参与的活动
+        public virtual TourActivity TourActivity { get; set; }
+        //属于那张套票
+        public virtual TicketUnion TicketUnion { get; set; }
+        public abstract bool IsBelongTo(Scenic s);
+        public abstract decimal GetPrice(PriceType priceType);
         /// <summary>
-        /// 门票编码
-        /// </summary>
-        public virtual string ProductCode { get; set; }
-        /// <summary>
-        /// 获得某个类型的票价
+        /// 获取这个票价
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public virtual decimal GetPrice(PriceType type)
-        {
-            var tp = TicketPrice.Where<TicketPrice>(x => x.PriceType == type).FirstOrDefault();
-            if (tp == null) return 0 ;
-            return tp.Price;
-        }
         public virtual TicketPrice GetTicketPrice(PriceType type)
         {
-             var tp = TicketPrice.Where<TicketPrice>(x => x.PriceType == type).FirstOrDefault();
-               if (tp == null) return null;
-               else return tp;
+            var tp = TicketPrice.Where<TicketPrice>(x => x.PriceType == type).FirstOrDefault();
+            if (tp == null) return null;
+            else return tp;
         }
-        /// <summary>
-        /// 本门票对应的景区,联票需要重写此方法
-        /// </summary>
-        /// <returns></returns>
-        public virtual IList<Scenic> GetScenics()
+        public virtual T As<T>() where T : Ticket
         {
-            IList<Scenic> ss = new List<Scenic>();
-            ss.Add(Scenic);
-            return ss;
+            return this as T;
         }
-
     }
 }

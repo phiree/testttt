@@ -78,7 +78,7 @@
             </td>
             <td>
                 <div id="login">
-                    <asp:Login runat="server" ID="lg">
+                    <asp:Login runat="server" ID="lg" OnLoggedIn="lg_LoggedIn">
                         <LayoutTemplate>
                             <table cellspacing="0" cellpadding="0" class="tblogin">
                                 <tr >
