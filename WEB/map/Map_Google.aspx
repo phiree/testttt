@@ -11,7 +11,7 @@
     <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
     <script src="map_baidu.js" type="text/javascript"></script>
     <%--<link href="/Styles/default.css" rel="stylesheet" type="text/css" />--%>
-    <link rel="stylesheet" type="text/css" href="../Styles/page.css" />
+    <link rel="stylesheet" type="text/css" href="/Styles/page.css" />
     <script src="/Scripts/jquery.myPagination.js" type="text/javascript"></script>
     <link href="/Content/page/map.css" rel="stylesheet" type="text/css" />
     <script src="mapcommon_google.js" type="text/javascript"></script>

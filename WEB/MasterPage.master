@@ -36,7 +36,7 @@
     
     <div id="header" class="container">
         <div id="logo">
-            <div class="mainarea" style="padding-left: 15px">
+            <div class="mainarea">
               <span>浙江省</span></div>
             <div class="logoleft left">
                 <a href="/">
@@ -66,13 +66,10 @@
             </div>
         </div>
         <div class="NavList">
-            <div class="navlistnb">
+            <div class="span-24 navlistnb">
                 <a class="navhight" href="/">首页</a><div class="navsper">
                 </div>
                 <a href="/Tickets/">景区门票</a>
-               <%-- <div class="navsper">
-                </div>
-                <a href="#">旅游明信片</a>--%>
                 <div class="navsper">
                 </div>
                 <a href="/map/Map_Google.aspx">地图版</a>
@@ -90,10 +87,10 @@
     
     <div id="footer">
         <div class="show_div" >
-            <span class="show_4" style="margin:0px auto"></span>
+            <span class="show_4"></span>
         </div>
         <div class="footer_main">
-            <asp:Button ID="btnScLogin" runat="server" Text="" CssClass="btnScLogin" OnClick="btnScLogin_Click" />
+            <asp:Button ID="btnScLogin" runat="server" Text="" CssClass="btnScLogin button" OnClick="btnScLogin_Click" />
             <div class="about">
                 <a href="/About/Default.aspx">关于旅游在线</a>|<a href="/About/Link.aspx">联系我们</a>
             </div>
@@ -108,7 +105,7 @@
             <p class="poptitle">
                 我的购物车</p>
             <div id="cartsumhead">
-                <span style="margin-left: 20px;">共有<span id="scenicSum"></span>个景区<span id="ticketsSum"></span>张门票</span></div>
+                共有<span id="scenicSum"></span>个景区<span id="ticketsSum"></span>张门票</div>
             <asp:Repeater runat="server" ID="rptPopCart" OnItemDataBound="rptPopCart_ItemDataBound">
                 <HeaderTemplate>
                     <table class="poptable">
@@ -121,7 +118,7 @@
                                 <%#Eval("Scenic.Name")%>-<%#Eval("Name")%></a>
                         </td>
                         <td style="width: 40px;">
-                            <span style="margin: 0px; padding: 0px;" class="cartdelete" tid='<%#Eval("Id")%>'>删除</span>
+                            <span class="cartdelete" tid='<%#Eval("Id")%>'>删除</span>
                         </td>
                     </tr>
                 </ItemTemplate>

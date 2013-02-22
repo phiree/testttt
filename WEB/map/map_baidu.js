@@ -62,7 +62,7 @@ function getCoordinatesNotScId() {
             else {
                 var latlng = new BMap.Point(118.860, 28.981);
                 map = new BMap.Map("container");
-                map.centerAndZoom(latlng, 8);
+                map.centerAndZoom(latlng, 9);
                 map.addControl(new BMap.ScaleControl());
                 map.addControl(new BMap.OverviewMapControl());
                 map.addControl(new BMap.NavigationControl({ offset: new BMap.Size(10, 50) }));
