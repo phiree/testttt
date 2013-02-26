@@ -1,0 +1,266 @@
+﻿body {
+}
+table,table tr,table tr td
+{
+    margin:0px;
+    padding:0px;
+    width:900px;
+}
+table
+{
+    margin:0px auto;
+}
+table img
+{
+    margin:0px;
+    padding:0px;
+}
+.login_bottom
+{
+    margin:0px;
+    padding:0px;
+    background-color:#E6E8E8;
+    height:28px;
+    line-height:28px;
+}
+#login
+{
+    width:498px;
+    height:100%;
+    display:block;
+    border:10px solid #488891;
+    overflow:hidden;
+}
+#login table,#login table tr,#login table tr td
+{
+    padding:0px;
+    margin:0px;
+}
+#login table
+{
+    width:100%;
+    background:url("/theme/default/image/login_bg.gif");
+    overflow:hidden;
+}
+.LoginTilte
+{
+    text-align:center;
+    font-size:24px;
+    font-family:黑体;
+    color:#416561;
+    line-height:30px;
+    font-weight:900;
+    margin-top:15px;
+    padding:0px;
+    margin-bottom:0px;
+}
+.LalUserName
+{
+    margin-right:10px;
+    color:#416561;
+}
+.tblogin,.tblogin tr,.tblogin tr td
+{
+    margin:0px;
+    padding:0px;
+}
+.btn_login
+{
+    width:64px;
+    height:19px;
+    background:url("/Content/image/button_bg.gif");
+    font-weight:bold;
+    color:#2C84AC;
+    text-align:center;
+    line-height:19px;
+    border:none;
+    cursor:pointer;
+    margin-bottom:45px;
+}
+/*地接社登录界面*/
+#LTA_main
+{
+    width:900px;
+    height:590px;
+    margin:0px auto;
+}
+.top_border
+{
+    height:18px;
+    background-color:#BCE0DF;
+}
+.LTA_mainbody
+{
+    width:100%;
+    height:520px;
+}
+.LTA_left
+{
+    float:left;
+    width:250px;
+}
+.LTA_left img
+{
+    margin-left:125px;
+    margin-top:10px;
+}
+.LTA_left p
+{
+    font-family:黑体;
+    font-size:24px;
+    color:#396159;
+    font-weight:700;
+    margin-left:20px;
+    text-align:center;
+    margin-bottom:0px;
+    margin-top:10px;
+}
+.LTA_login
+{
+    width:258px;
+    height:305px;
+    margin-top:20px;
+    display:block;
+    border:1px solid #44A3A9;
+    position:relative;
+    left:30px;
+    background-color:White;
+    z-index:9999;
+}
+.LTA_login hr
+{
+    display:block;
+    width:220px;
+    margin:40px auto;
+    border-top:none 0px !important;
+    border-bottom:1px dashed #CDCDCD  !important;
+    background:none;
+    margin-bottom:0px;
+}
+.btn_register
+{
+    width:78px;
+    height:25px;
+    cursor:pointer;
+    background:url("/theme/default/image/LTAlogin_btn.gif");
+    border:none;
+    margin:15px 0px 0px 75px;
+}
+.LTA_login table
+{
+    width:250px;
+    margin-top:20px;
+}
+.LTA_right
+{
+    float:left;
+    width:650px;
+}
+.LTA_right img
+{
+    float:right;
+}
+.LTA_Login_Sepert
+{
+    display:block;
+    width:820px;
+    margin:40px auto;
+    padding-top:10px;
+    border-top:none 0px !important;
+    border-bottom:1px dashed #CDCDCD  !important;
+    background:none;
+    margin-bottom:0px;
+}
+.LTA_about
+{
+    text-align:center;
+    color:#016A6D;
+    margin-top:5px;
+}
+/*地接社申请页面*/
+.LTA_mainTop
+{
+    
+}
+.LTA_mainTop h3
+{
+    color:#396159;
+    font-size:28px ;
+    width:400px;
+    line-height:80px;
+    font-weight:bold;
+    font-family:黑体;
+    float:left;
+}
+.fwtel
+{
+    float:right;
+    font-size:14px;
+    text-align:right;
+    height:40px;
+   display:block;
+   margin-top:40px;
+}
+.fwtel p
+{
+    color:#EC6941;
+    font-weight:bold;
+}
+.LTA_mainInfo
+{
+    clear:both;
+    padding:20px;
+    border:1px solid #278162;
+    background:url("/theme/default/image/registerBg.gif");
+    display:block;
+    height:720px;
+}
+.LTA_mainInfo h2
+{
+    font-weight:bold;
+    font-family:黑体;
+}
+.LTA_mainInfo h2 span
+{
+    font-weight:normal;
+    font-family:黑体;
+}
+.LTA_mainInfo table
+{
+    margin:10px 0px 0px 105px;
+    width:500px;
+}
+.LTA_mainInfo table tr td
+{
+    font-size:14px;
+    padding:5px;
+}
+.XY
+{
+    overflow-y:scroll;
+    width:100%;
+    height:300px;
+    background-color:White;
+}
+.XY p
+{
+    text-align:center;
+    font-size:16px;
+    line-height:30px;
+    font-weight:bold;
+}
+.ltaloginbtn
+{
+    margin-top:20px; background-color:#016A6D; color:White;font-weight:bold; text-align:center; width:75px;height:25px; line-height:22px;border:none; cursor:pointer;
+}
+.ltaloginbtn:hover
+{
+    background:url("/theme/default/image/login_hover.png");
+    border:none;
+    cursor:pointer;
+    margin-top:20px;
+    width:75px;height:25px;
+    color:#00837E;
+    font-weight:normal;
+    font-size:0px;
+}

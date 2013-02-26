@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{9FD4644B-034E-4D19-BF9E-E77FDFD4A080}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB\", "{61ADBB5F-2F02-4E98-A926-2451F5F75638}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB", "{61ADBB5F-2F02-4E98-A926-2451F5F75638}"
 	ProjectSection(WebsiteProperties) = preProject
 		SccProjectName = ""
 		SccAuxPath = ""
@@ -29,7 +29,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WEB", "WEB\", "{61ADBB5F-2F
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "43793"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -93,7 +92,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebTest", "WebTest", "{2EA5
 		docs\WebTest\ScenicWebTest.html = docs\WebTest\ScenicWebTest.html
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DiJieSheWeb", "DiJieSheWeb\", "{11A77A92-29B8-41A4-8787-FEFE328EF8A1}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DiJieSheWeb", "DiJieSheWeb", "{11A77A92-29B8-41A4-8787-FEFE328EF8A1}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		ProjectReferences = "{9FD4644B-034E-4D19-BF9E-E77FDFD4A080}|BLL.dll;{F6166241-9344-49CC-8787-36FA08000B34}|CommonLibrary.dll;{81A65767-666A-4C51-A374-EE9AC1A1E4C3}|DAL.dll;{D1050179-E4D5-4DF8-AFC4-305A93F90EE6}|IDAL.dll;{9D0253F0-B0A7-4D66-BE57-7C32C4953340}|Model.dll;{86A9D97C-AB59-4C06-93B5-7724675CD97A}|ExcelOplib.dll;"
@@ -125,7 +124,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AdminWeb", "AdminWeb\", "{08ED506B-3C07-4197-BA89-5419F998A55F}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AdminWeb", "AdminWeb", "{08ED506B-3C07-4197-BA89-5419F998A55F}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		ProjectReferences = "{9FD4644B-034E-4D19-BF9E-E77FDFD4A080}|BLL.dll;{F6166241-9344-49CC-8787-36FA08000B34}|CommonLibrary.dll;{81A65767-666A-4C51-A374-EE9AC1A1E4C3}|DAL.dll;{D1050179-E4D5-4DF8-AFC4-305A93F90EE6}|IDAL.dll;{9D0253F0-B0A7-4D66-BE57-7C32C4953340}|Model.dll;{86A9D97C-AB59-4C06-93B5-7724675CD97A}|ExcelOplib.dll;"
@@ -143,10 +142,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AdminWeb", "AdminWeb\", "{0
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "63164"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ScenicAdmin", "ScenicAdmin\", "{B627F67D-BAB9-499D-BE74-BE8898DFCF31}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ScenicAdmin", "ScenicAdmin", "{B627F67D-BAB9-499D-BE74-BE8898DFCF31}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		ProjectReferences = "{9FD4644B-034E-4D19-BF9E-E77FDFD4A080}|BLL.dll;{F6166241-9344-49CC-8787-36FA08000B34}|CommonLibrary.dll;{81A65767-666A-4C51-A374-EE9AC1A1E4C3}|DAL.dll;{D1050179-E4D5-4DF8-AFC4-305A93F90EE6}|IDAL.dll;{9D0253F0-B0A7-4D66-BE57-7C32C4953340}|Model.dll;"
@@ -164,7 +164,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ScenicAdmin", "ScenicAdmin\
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "43796"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -181,6 +180,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "常用查询", "常用查�
 		docs\常用查询\身份证号码可以查询出来验票没有5.sql = docs\常用查询\身份证号码可以查询出来验票没有5.sql
 		docs\常用查询\身份证号码抢票详情.sql = docs\常用查询\身份证号码抢票详情.sql
 		docs\常用查询\门票列表.sql = docs\常用查询\门票列表.sql
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "NewAdminWeb", "NewAdminWeb", "{8487747F-AF4B-4057-85B3-2FB789DDAAEC}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{9FD4644B-034E-4D19-BF9E-E77FDFD4A080}|BLL.dll;{F6166241-9344-49CC-8787-36FA08000B34}|CommonLibrary.dll;{81A65767-666A-4C51-A374-EE9AC1A1E4C3}|DAL.dll;{D1050179-E4D5-4DF8-AFC4-305A93F90EE6}|IDAL.dll;{9D0253F0-B0A7-4D66-BE57-7C32C4953340}|Model.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/NewAdminWeb"
+		Debug.AspNetCompiler.PhysicalPath = "NewAdminWeb\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\NewAdminWeb\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/NewAdminWeb"
+		Release.AspNetCompiler.PhysicalPath = "NewAdminWeb\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\NewAdminWeb\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
 Global
@@ -409,6 +429,21 @@ Global
 		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.tr|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.tr|Mixed Platforms.Build.0 = Release|Any CPU
 		{563DB78C-7F96-4CD6-B771-0CCED24DB517}.tr|x86.ActiveCfg = Release|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.Release|x86.ActiveCfg = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.tr|Any CPU.ActiveCfg = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.tr|Any CPU.Build.0 = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.tr|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.tr|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8487747F-AF4B-4057-85B3-2FB789DDAAEC}.tr|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

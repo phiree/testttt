@@ -1,0 +1,104 @@
+﻿body
+{
+    font-size:12px;
+}
+
+.header .title
+{
+    background-image: url(/Content/image/tourol.png);
+    background-position: left 2px;
+    background-repeat: no-repeat;
+    padding-left: 150px;
+    padding-top:5px;
+    margin-top: 15px;
+    margin-left: 5px;
+    display:block;
+    width:30%;
+    margin-right:0px;
+    float:left;
+    height:50px;
+}
+.header .title a
+{
+    color:#4CB25B;
+    font-size: 20px;
+    text-decoration: none;
+    font-family:幼圆;
+    font-weight:900;
+    line-height:63px;
+    margin-left:50px;
+}
+.header .logininfo
+{
+    display:block;
+    float:left;
+    width:55%;
+    color:Black;
+   line-height:30px;
+   font-size:12px;
+}
+.default_left
+{
+    width:60%;
+    float:left;
+    display:block;
+}
+.default_left p
+{
+    font-size:14px;
+    margin:10px 0px 10px 10px;
+    font-family:黑体;
+    font-weight:600;
+}
+.default_left h3
+{
+     font-size:12px;
+    margin:20px 0px 10px 10px;
+    font-family:黑体;
+}
+.default_left .intro_info
+{
+    display:block;
+    margin:10px 20px 10px 10px;
+    line-height:30px;
+    font-size:12px;
+}
+.default_right
+{
+     width:40%;
+    float:left;
+    display:block;
+}
+.introbd
+{
+    border:1px solid #CDCDCD;
+    margin:10px;
+    height:240px;
+}
+.introbd p
+{
+    border-bottom:1px solid #CDCDCD;
+    padding:5px 5px 5px 15px;
+    font-weight:bold;
+    font-size:12px;
+}
+.introbd ul 
+{
+    list-style-type:circle;
+    margin:15px 0px 0px 20px;
+}
+.introbd ul li
+{
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size:12px;
+}
+.introbd_div
+{
+    margin:10px 0px 0px 20px;
+    overflow-y:scroll;
+    line-height:30px;
+    height:200px;
+    font-size:12px;
+    
+}

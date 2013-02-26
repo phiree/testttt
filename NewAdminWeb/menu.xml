@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Tree>
+    <TreeNode Text="食材管理" SingleClickExpand="true">
+        <TreeNode Text="食材上架" NavigateUrl="/Dish/Dish.aspx">
+        </TreeNode>
+    </TreeNode>
+    <TreeNode Text="会员管理" SingleClickExpand="true">
+        <TreeNode Text="会员信息" NavigateUrl="/Dish/Dish.aspx">
+        </TreeNode>
+    </TreeNode>
+    <TreeNode Text="账单管理" SingleClickExpand="true">
+        <TreeNode Text="账单信息" NavigateUrl="/Dish/Dish.aspx">
+        </TreeNode>
+    </TreeNode>
+    <TreeNode Text="标签管理" SingleClickExpand="true">
+        <TreeNode Text="标签信息" NavigateUrl="/Dish/Dish.aspx">
+        </TreeNode>
+    </TreeNode>
+    <TreeNode Text="广告管理" SingleClickExpand="true">
+        <TreeNode Text="广告信息" NavigateUrl="/Dish/Dish.aspx">
+        </TreeNode>
+    </TreeNode>
+</Tree>
