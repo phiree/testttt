@@ -88,7 +88,7 @@
                     <div class="scenicname">
                         <a runat="server" id="schref2" title='<%# Eval("DisplayName") %>' style="display: block;font-size:14px;" >
                             <!---->
-                            <%# Eval("DisplayName").ToString().Length > 14 ? Eval("DisplayName").ToString().Substring(0, 14) + "..." : Eval("DisplayName")%></a>
+                            <%# Eval("DisplayName").ToString().Length > 13 ? Eval("DisplayName").ToString().Substring(0, 13) + "..." : Eval("DisplayName")%></a>
                     </div>
                     <div class="dvprice">
                         <div style="float: left">

@@ -2,7 +2,7 @@
     CodeFile="Layout.master.cs" Inherits="Layout" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    
+    <link href="/Content/page/DiscountTicket.css" rel="stylesheet" type="text/css" />
     <link href="/Content/page/Layout.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="cphmain" runat="server">
     </asp:ContentPlaceHolder>

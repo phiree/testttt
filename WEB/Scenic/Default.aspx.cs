@@ -45,18 +45,18 @@ public partial class Scenic_Default : basepage
             s = new BLLScenic().GetScenicBySeoName(paramSname);
             if (s == null)
             {
-                ErrHandler.Redirect(ErrType.UnknownError,"从seoname获取景区失败");
+                ErrHandler.Redirect(ErrType.UnknownError, "从seoname获取景区失败");
             }
             bind(s);
             if (IsPackageScenic(s))
             {
                 bindpackage(s);
             }
-            
+
         }
         else
         {
-            ErrHandler.Redirect(ErrType.ParamIllegal,"传入参数是空");
+            ErrHandler.Redirect(ErrType.ParamIllegal, "传入参数是空");
         }
         var ticket = s.Tickets.FirstOrDefault(x => x.IsMain == true);
         decimal onlineprice = ticket == null ? 0 : ticket.GetPrice(PriceType.PayOnline);
@@ -76,12 +76,12 @@ public partial class Scenic_Default : basepage
     {
 
         maintitlett.InnerHtml = scenic.Name;
-        
+
         hfposition.Value = scenic.Position;
         scbindname = scenic.Name;
         hfscname.Value = scenic.Name;
         scid = scenic.Id;
-        Area parentarea = new BLLArea().GetAreaByCode(scenic.Area.Code.Substring(0,4)+"00");
+        Area parentarea = new BLLArea().GetAreaByCode(scenic.Area.Code.Substring(0, 4) + "00");
         Area childarea = scenic.Area;
         areaname.HRef = "/Tickets/" + parentarea.SeoName;
         areaname.InnerHtml = parentarea.Name.Substring(3, parentarea.Name.Length - 3) + "&nbsp;>";
@@ -91,7 +91,7 @@ public partial class Scenic_Default : basepage
             string childname = childarea.Name.Substring(3);
             if (childname.Length >= 6)
                 childname = childname.Substring(3);
-            county.InnerHtml = childname+ "&nbsp;>";
+            county.InnerHtml = childname + "&nbsp;>";
             county.HRef = "/Tickets/" + parentarea.SeoName + "_" + childarea.SeoName;
         }
         else
@@ -108,9 +108,9 @@ public partial class Scenic_Default : basepage
                 owerName = t.DisplayNameOfOwner;
                 break;
             }
-           
+
         }
-        scenicname.HRef = "/Tickets/" +parentarea.SeoName +"_"+ scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
+        scenicname.HRef = "/Tickets/" + parentarea.SeoName + "_" + scenic.Area.SeoName + "/" + scenic.SeoName + ".html";
         scenicname.InnerHtml = owerName;
         scaddress = scenic.Address;
         booknote = scenic.BookNote;
@@ -155,7 +155,7 @@ public partial class Scenic_Default : basepage
         else
         {
             Ticket t = new TicketNormal();
-            t.Scenic=scenic;
+            t.Scenic = scenic;
             List<Ticket> listTicket = new List<Ticket>();
             listTicket.Add(t);
             rptBookNote.DataSource = listTicket;
@@ -199,14 +199,14 @@ public partial class Scenic_Default : basepage
                 hfProductCode.Value = listTicket[0].ProductCode;
                 //判断门票是否已经过期
                 TourActivity act = listTicket[0].TourActivity;
-                if (DateTime.Now.Date>=act.BeginDate&&  DateTime.Now.Date<= act.EndDate)
-                { 
-                
-               
-               var ticketAsign = listTicket[0].TourActivity
-                    .GetActivityAssignForPartnerTicketDate(SiteConfig.PartnerCodeOfTourOL, listTicket[0].ProductCode,DateTime.Now.Date);
+                if (DateTime.Now.Date >= act.BeginDate && DateTime.Now.Date <= act.EndDate)
+                {
 
-               hfSyCount.Value = (ticketAsign.AssignedAmount - ticketAsign.SoldAmount).ToString();
+
+                    var ticketAsign = listTicket[0].TourActivity
+                         .GetActivityAssignForPartnerTicketDate(SiteConfig.PartnerCodeOfTourOL, listTicket[0].ProductCode, DateTime.Now.Date);
+
+                    hfSyCount.Value = (ticketAsign.AssignedAmount - ticketAsign.SoldAmount).ToString();
                 }
             }
             else
@@ -221,7 +221,7 @@ public partial class Scenic_Default : basepage
 
 
 
-            rpttp.DataSource = listticket.Where(x => x.Enabled).ToList();
+        rpttp.DataSource = listticket.Where(x => x.Enabled).ToList();
         rpttp.DataBind();
         //编辑
         EditRole();
@@ -294,7 +294,7 @@ public partial class Scenic_Default : basepage
                 ContentReader sc_jtzn = item.FindControl("sc_jtzn") as ContentReader;
                 sc_jtzn.CanEdit = true;
             }
-            
+
         }
     }
     #endregion
@@ -303,7 +303,7 @@ public partial class Scenic_Default : basepage
     public bool IsPackageScenic(Scenic s)
     {
         BLLScenicTicket bllscenicticket = new BLLScenicTicket();
-        if (s.Tickets.Count>0&&bllscenicticket.GetScenicByTicket(s.Tickets[0].Id).Count > 0)
+        if (s.Tickets.Count > 0 && bllscenicticket.GetScenicByTicket(s.Tickets[0].Id).Count > 0)
             return true;
         return false;
     }
@@ -312,7 +312,7 @@ public partial class Scenic_Default : basepage
     public void bindpackage(Scenic s)
     {
         List<Scenic> list = new BLLScenicTicket().GetScenicByTicket(s.Tickets[0].Id).ToList();
-        bindimglist="";
+        bindimglist = "";
         for (int i = 0; i < list.Count; i++)
         {
             if (i == 0)
@@ -321,10 +321,10 @@ public partial class Scenic_Default : basepage
                 scmapname = list[0].Name;
             }
             else
-                bindimglist += list[i].Position+"," +list[i].Name+ ":";
+                bindimglist += list[i].Position + "," + list[i].Name + ":";
         }
-       // bindimglist.Substring(0, bindimglist.Length - 1);
-        imgcount=list.Count-1;
+        // bindimglist.Substring(0, bindimglist.Length - 1);
+        imgcount = list.Count - 1;
         introordertk.Visible = false;
     }
     protected void rpttp_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -367,7 +367,7 @@ public partial class Scenic_Default : basepage
 
     protected void rptJt_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType  == ListItemType.Item)
+        if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
         {
             Ticket t = e.Item.DataItem as Ticket;
             ContentReader cr = e.Item.FindControl("sc_jtzn") as ContentReader;

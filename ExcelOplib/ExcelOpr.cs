@@ -92,7 +92,7 @@ namespace ExcelOplib
                     //组装tickets
                     var newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
                     var tickets = bllticket.GetTicketByscId(s.Id);
-                    Model.Ticket t;
+                    Model.TicketNormal t;
                     foreach (var te in newtlist)
                     {
                         var tmp = tickets.Where(x => x.Name == te.ticketname);
@@ -107,22 +107,27 @@ namespace ExcelOplib
                                 t.TicketPrice.First(x => x.PriceType == Model.PriceType.Normal).Price = decimal.Parse(te.orgprice);
                             var tpol = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PayOnline);
                             if (tpol.Any())
-                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.PayOnline).Price = decimal.Parse(te.olprice);
+                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.PayOnline).Price = decimal.Parse(te.orgprice);
                             var tppre = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PreOrder);
                             if (tppre.Any())
-                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.PreOrder).Price = decimal.Parse(te.orgprice) * (decimal)0.95;
+                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.PreOrder).Price = decimal.Parse(te.orgprice);
                         }
                         else//不存在该票
                         {
                             t = new Model.TicketNormal { Name = te.ticketname, Scenic = s, IsMain = true };
                             t.TicketPrice = new List<Model.TicketPrice>() { 
                             new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}};
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.PreOrder,Ticket=t}};
                             tickets.Add(t);
                         }
                     }
-                    s.Tickets = tickets;
+                    var temp = new List<Model.Ticket>();
+                    foreach (var ticket in tickets)
+                    {
+                        temp.Add(ticket);
+                    }
+                    s.Tickets = temp;
                     s.Photo = item.mainpic;
                     bllscenic.UpdateScenicInfo(s);
                     var silist = CopyFile(s);
@@ -158,8 +163,8 @@ namespace ExcelOplib
                         t.IsMain = true;
                         t.TicketPrice = new List<Model.TicketPrice>() { 
                             new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.PreOrder,Ticket=t}
                         };
                         tickets.Add(t);
                     }

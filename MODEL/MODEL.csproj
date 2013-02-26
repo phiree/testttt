@@ -173,7 +173,6 @@
     <Folder Include="Check\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <Compile Include="Dijieshe\IProductSubServer.cs" />
     <Compile Include="Mapping\TourActivity\ActivityTicketAssignMap.cs" />
     <Compile Include="Mapping\TourActivity\TourActivityMap.cs" />
