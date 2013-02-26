@@ -102,9 +102,6 @@
                             <td>
                                 <%# Eval("TicketPrice[1].Price", "{0:0}")%>
                             </td>
-                           <%-- <td style="color: #EC6B9E; font-weight: bold">
-                                0
-                            </td>--%>
                              <td>
                                 <%# Eval("TicketPrice[2].Price", "{0:0}")%>
                             </td>

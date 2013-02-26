@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/order.master" AutoEventWireup="true"
-    CodeFile="CheckOut.aspx.cs" Inherits="Scenic_CheckOut" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/order.master" AutoEventWireup="true" CodeFile="CheckOut.aspx.cs"
+    Inherits="Scenic_CheckOut" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <title>订单结算</title>
@@ -14,11 +14,13 @@
     <script src="/Scripts/VeriIdCard.js" type="text/javascript"></script>
     <script src="/Scripts/pages/checkout.js" type="text/javascript"></script>
     <script src="/Scripts/jqueryplugin/InlineTip.js" type="text/javascript"></script>
+    <script type="text/javascript">javascript: window.history.forward(1);</script>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphstate" runat="Server">
     <div class="cartbread">
         您选择的门票列表</div>
-    <div class="stateimg"></div>
+    <div class="stateimg">
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" runat="Server">
     <div id="itemlist">
@@ -54,7 +56,7 @@
                     <tr>
                         <td>
                             <input type="hidden" class="hdId" value='<%#Eval("Id") %>' />
-                            <a runat=server id="hrefScenic" href='<%# "/Tickets/"+Eval("Scenic.Area.SeoName")+"/"+Eval("Scenic.SeoName")+".html"%>'>
+                            <a runat="server" id="hrefScenic" href='<%# "/Tickets/"+Eval("Scenic.Area.SeoName")+"/"+Eval("Scenic.SeoName")+".html"%>'>
                                 <%#Eval("DisplayNameOfOwner") %></a>
                         </td>
                         <td>
@@ -85,16 +87,18 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="6" style="text-align:right;color:Black;padding-right:50px;">
-                                订<strong style="font-size: 20px;margin-left:15px;margin-right:15px; color:#E8360F; vertical-align:text-bottom; font-size:20px; line-height:18px;" id="cticketsSum"></strong>张门票
+                            <td colspan="6" style="text-align: right; color: Black; padding-right: 50px;">
+                                订<strong style="font-size: 20px; margin-left: 15px; margin-right: 15px; color: #E8360F;
+                                    vertical-align: text-bottom; font-size: 20px; line-height: 18px;" id="cticketsSum"></strong>张门票
                             </td>
                         </tr>
                         <tr>
                             <td colspan="6" style="border-top: 1px solid #CDCDCD">
-                                <div style="color:Black">
-                                    <span style="margin-right:50px;">景区现付价合计:<strong
-                                        style="font-size: 20px; margin-left:10px;margin-right:10px;color:#E8360F" id="totalonline"></strong>元&nbsp; </span><span>在线支付合计:<strong
-                                            style="font-size: 20px;margin-left:10px;margin-right:10px;color:#E8360F" id="totalpreorder"></strong> </span>元
+                                <div style="color: Black">
+                                    <span style="margin-right: 50px;">景区现付价合计:<strong style="font-size: 20px; margin-left: 10px;
+                                        margin-right: 10px; color: #E8360F" id="totalonline"></strong>元&nbsp; </span>
+                                    <span>在线支付合计:<strong style="font-size: 20px; margin-left: 10px; margin-right: 10px;
+                                        color: #E8360F" id="totalpreorder"></strong> </span>元
                                 </div>
                             </td>
                         </tr>
@@ -105,7 +109,7 @@
         </div>
     </div>
     <div id="tihead" class="tihead">
-            填写游客信息<span>景区根据游客信息确认在线支付或者预订的情况，请准确填写。</span></div>
+        填写游客信息<span>景区根据游客信息确认在线支付或者预订的情况，请准确填写。</span></div>
     <div id="tourinfo">
         <div id="contactlist">
             <asp:Repeater runat="server" ID="rptContacts">
@@ -152,38 +156,40 @@
         </asp:Repeater>
     </div>
     <div runat="server" id="divPaymentChoose">
-    <div class="tihead" style="margin-top:20px;margin-bottom:10px;">
+        <div class="tihead" style="margin-top: 20px; margin-bottom: 10px;">
             选择付款方式</div>
-    <div id="payinfo">
-        <div id="payonline" pricetype="3" class="priceselection">
-            <span class="price">
-                <input type="radio" name="price" />
-                网上订购总价:<em id="bpricepreorder">123</em>元</span><span class="pricedesc">通过支付宝支付,享受网上订购优惠价.</span>
-            <div class="clear">
+        <div id="payinfo">
+            <div id="payonline" pricetype="3" class="priceselection">
+                <span class="price">
+                    <input type="radio" name="price" />
+                    网上订购总价:<em id="bpricepreorder">123</em>元</span><span class="pricedesc">通过支付宝支付,享受网上订购优惠价.</span>
+                <div class="clear">
+                </div>
+            </div>
+            <div id="preorder" pricetype="2" class="priceselection" style="border-bottom: 2px solid #AAA;">
+                <span class="price">
+                    <input type="radio" name="price" checked="checked" />
+                    景区现付总价:<em id="bpriceonline">234</em>元</span><span class="pricedesc">预订门票,无需立即支付,鼠标一点,实惠又方便</span>
+                <div class="clear">
+                </div>
+            </div>
+            <div id="nhorder" pricetype="2" class="priceselection" style="border-bottom: 2px solid #AAA;">
+                <span class="price">
+                    <input type="radio" name="price" />
+                    农行在线支付价:<em style="margin-left: 10px; margin-right: 10px; font-size: 24px; color: #EC6B9E;">50</em>元</span><span
+                        class="pricedesc">在线使用农行卡支付,享受农行在线支付价</span>
+                <div class="clear">
+                </div>
+            </div>
+            <div id="nhpreorder" pricetype="2" class="priceselection">
+                <span class="price">
+                    <input type="radio" name="price" />
+                    农行网上预定价:<em style="margin-left: 10px; margin-right: 10px; font-size: 24px; color: #EC6B9E;">52</em>元</span><span
+                        class="pricedesc">预订门票，使用农行卡到景区现付，享受农行网上预定价</span>
+                <div class="clear">
+                </div>
             </div>
         </div>
-        <div id="preorder" pricetype="2" class="priceselection" style="border-bottom: 2px solid #AAA;">
-            <span class="price">
-                <input type="radio" name="price" checked="checked" />
-                景区现付总价:<em id="bpriceonline">234</em>元</span><span class="pricedesc">预订门票,无需立即支付,鼠标一点,实惠又方便</span>
-            <div class="clear">
-            </div>
-        </div>
-        <div id="nhorder" pricetype="2" class="priceselection" style="border-bottom: 2px solid #AAA;">
-            <span class="price">
-                <input type="radio" name="price"  />
-                农行在线支付价:<em style="margin-left: 10px;margin-right: 10px;font-size: 24px;color: #EC6B9E;">50</em>元</span><span class="pricedesc">在线使用农行卡支付,享受农行在线支付价</span>
-            <div class="clear">
-            </div>
-        </div>
-        <div id="nhpreorder" pricetype="2" class="priceselection">
-            <span class="price">
-                <input type="radio" name="price"  />
-                农行网上预定价:<em style="margin-left: 10px;margin-right: 10px;font-size: 24px;color: #EC6B9E;">52</em>元</span><span class="pricedesc">预订门票，使用农行卡到景区现付，享受农行网上预定价</span>
-            <div class="clear">
-            </div>
-        </div>
-    </div>
     </div>
     <div id="payaction">
         <span class="btntkok" id="btnCheckout">确认订单</span>

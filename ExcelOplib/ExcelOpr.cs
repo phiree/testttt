@@ -92,7 +92,7 @@ namespace ExcelOplib
                     //组装tickets
                     var newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
                     var tickets = bllticket.GetTicketByscId(s.Id);
-                    Model.Ticket t;
+                    Model.TicketNormal t;
                     foreach (var te in newtlist)
                     {
                         var tmp = tickets.Where(x => x.Name == te.ticketname);
@@ -107,22 +107,27 @@ namespace ExcelOplib
                                 t.TicketPrice.First(x => x.PriceType == Model.PriceType.Normal).Price = decimal.Parse(te.orgprice);
                             var tpol = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PayOnline);
                             if (tpol.Any())
-                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.PayOnline).Price = decimal.Parse(te.olprice);
+                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.PayOnline).Price = decimal.Parse(te.orgprice);
                             var tppre = t.TicketPrice.Where(x => x.PriceType == Model.PriceType.PreOrder);
                             if (tppre.Any())
-                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.PreOrder).Price = decimal.Parse(te.orgprice) * (decimal)0.95;
+                                t.TicketPrice.First(x => x.PriceType == Model.PriceType.PreOrder).Price = decimal.Parse(te.orgprice);
                         }
                         else//不存在该票
                         {
                             t = new Model.TicketNormal { Name = te.ticketname, Scenic = s, IsMain = true };
                             t.TicketPrice = new List<Model.TicketPrice>() { 
                             new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}};
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.PreOrder,Ticket=t}};
                             tickets.Add(t);
                         }
                     }
-                    s.Tickets = tickets;
+                    var temp = new List<Model.Ticket>();
+                    foreach (var ticket in tickets)
+                    {
+                        temp.Add(ticket);
+                    }
+                    s.Tickets = temp;
                     s.Photo = item.mainpic;
                     bllscenic.UpdateScenicInfo(s);
                     var silist = CopyFile(s);
@@ -158,8 +163,8 @@ namespace ExcelOplib
                         t.IsMain = true;
                         t.TicketPrice = new List<Model.TicketPrice>() { 
                             new Model.TicketPrice() { Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.Normal,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.olprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
-                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice)*(decimal)0.95,PriceType=Model.PriceType.PreOrder,Ticket=t}
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.PayOnline,Ticket=t},
+                            new Model.TicketPrice(){Price=decimal.Parse(te.orgprice),PriceType=Model.PriceType.PreOrder,Ticket=t}
                         };
                         tickets.Add(t);
                     }
@@ -197,7 +202,7 @@ namespace ExcelOplib
                 #endregion
                 #region 03
 
-                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + mappath + "/衢州景区表格式.xls;Extended Properties=Excel 8.0";
+                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + mappath + "/浙江景区表格式.xls;Extended Properties=Excel 8.0";
                 const string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介,主图 from [Sheet1$]";
                 var cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                 var ad = new OleDbDataAdapter(cmd);
@@ -263,7 +268,7 @@ namespace ExcelOplib
                 #region 03
                 if (dt.Rows.Count == 0)
                 {
-                    var conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + mappath + "/衢州价格表格式.xls;Extended Properties=Excel 8.0";
+                    var conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + mappath + "/浙江价格表格式.xls;Extended Properties=Excel 8.0";
                     const string sql = "select 景区名称,门票名称,原价,在线支付价 from [Sheet1$]";
                     var cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                     var ad = new OleDbDataAdapter(cmd);

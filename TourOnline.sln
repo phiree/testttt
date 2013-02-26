@@ -71,7 +71,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourControls", "TourControl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E2661A43-CFB5-46FC-8513-4EFEB0900776}"
 	ProjectSection(SolutionItems) = preProject
-		docs\1.区域初始化.sql = docs\1.区域初始化.sql
 		docs\2.账户初始化.sql = docs\2.账户初始化.sql
 		docs\3.topic.sql = docs\3.topic.sql
 		docs\4.为测试准备的脚本.sql = docs\4.为测试准备的脚本.sql

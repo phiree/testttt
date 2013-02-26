@@ -60,7 +60,7 @@ namespace BLL
             return Iticket.GetTicketByAreaIdAndLevel(area, level, topic, pageIndex - 1, pageSize, out totalRecord);
         }
 
-        public IList<Model.Ticket> GetTicketByscId(int scid)
+        public IList<Model.TicketNormal> GetTicketByscId(int scid)
         {
             //EnsureTicket(scid);  删除，与下文重复
 
