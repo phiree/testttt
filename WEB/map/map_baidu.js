@@ -1,8 +1,7 @@
 ﻿/*变量申明*/
 var allCoordinates; //页面目前所查询出来的坐标
-var map; //soso地图变量
+var map; //baidu地图变量
 var overlayMarker = new Array(); //地图覆盖物
-var numcount; //右侧编码序号
 var infoWindow; //内容页
 /*页面初始*/
 $(function () {
@@ -36,6 +35,7 @@ function getCoordinatesNotScId() {
         $.cookie("scname", "");
     else
         $.cookie("scname", $("[id$='txtSearch']").val());
+
     $.get(
         url,
         function (coordinates) {
@@ -60,57 +60,21 @@ function getCoordinatesNotScId() {
                 clearOverlays();
             }
             else {
-                var latlng = new soso.maps.LatLng(28.981, 118.860);
-                var navControl = new soso.maps.NavigationControl({
-                    align: soso.maps.ALIGN.TOP_LEFT,
-                    margin: new soso.maps.Size(15, 35),
-                    map: map
-                });
-                var myOptions = {
-                    zoom: 8,
-                    center: latlng,
-                    mapTypeId: soso.maps.MapTypeId.ROADMAP
-                };
-                numcount = 0;
-                map = new soso.maps.Map(document.getElementById("container"), myOptions);
-                navControl.setMap(map);
+                var latlng = new BMap.Point(118.860, 28.981);
+                map = new BMap.Map("container");
+                map.centerAndZoom(latlng, 9);
+                map.addControl(new BMap.ScaleControl());
+                map.addControl(new BMap.OverviewMapControl());
+                map.addControl(new BMap.NavigationControl({ offset: new BMap.Size(10, 50) }));
+                map.enableScrollWheelZoom();
             }
-            numcount = 0;
-            for (var i = 0; ; i++) {
-                if (allCoordinates[i] == undefined)
-                    break;
-//                if (allCoordinates[i].position != null && allCoordinates[i].position != "undefined") {
-//                    numcount++;
-//                    var point = new soso.maps.LatLng(28.955209, 118.882595);
-//                    var txt = allCoordinates[i].name;
-//                    var scenicid = allCoordinates[i].id;
-//                    if (numcount == 1) {
-//                        var overlay = function (opts) {
-//                            soso.maps.Overlay.call(this, opts);
-//                        };
-//                        overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: numcount, scid: scenicid });
-//                    }
-//                    else {
-//                        //overlay = new customOverlay_Small(map, { latlng: point, id: numcount, scid: scenicid });
-//                    }
-//                    overlayMarker.push(overlay);
-
-//                }
-            }
-
-            //$("#resultscenic").html(loadstr);
             $.cookie("pageindex", '1');
             btnshowinfo();
             $("#countscenic").html($.cookie("numcount"));
-            //加载完关闭加载图片
-            $(".loaddiv").css("display", "none");
             //添加一个地图加载完毕的事件监听
-            soso.maps.Event.addListener(map, "tilesloaded", function () {
+            map.addEventListener("tilesloaded", function () {
                 //加载完关闭加载图片
                 $(".loaddiv").css("display", "none");
-                //为了兼容crome和ff的不兼容，不添加讲无法点击图标，具体原因不详
-                var condiv = $(".divicon").parent().parent();
-                $(condiv).css("z-index", "202");
             });
         }
     );
@@ -119,40 +83,36 @@ function getCoordinatesNotScId() {
 /*辅助方法*/
 /*去除地图上的所有覆盖物*/
 function clearOverlays() {
-    for (var i = 0; i < overlayMarker.length; i++) {
-       // overlayMarker[i].setMap(null);
-    }
+    map.clearOverlays();
     overlayMarker.length = 0;
 
 }
 /*关闭所有的窗口*/
 function closeWinInfo() {
-    if (infoWindow != undefined && infoWindow != null) {
-        infoWindow.close();
-    }
+    map.closeInfoWindow();
 }
-/*创建soso自定义覆盖物*/
-function customOverlay_Large(map, options) {
+/*创建baidu自定义覆盖物*/
+function customOverlay_Large(options) {
     //初始化参数
     this._latlng = options.latlng; //设置图标位置
     this._text = options.text;
     this._id = options.id;
     this._scid = options.scid;
-    this._map = map;
-    this._div = null;
-    this.setMap(map);
 }
-customOverlay_Large.prototype = new soso.maps.Overlay();
+customOverlay_Large.prototype = new BMap.Overlay();
 //初始化图标
-customOverlay_Large.prototype.construct = function () {
-    var that = this;
-    var div = document.createElement("div"); //创建存放文字的div
+customOverlay_Large.prototype.initialize = function () {
+    this._map = map;
+    var div = this._div = document.createElement("div");
     div.style.position = "absolute";
-    div.style.zIndex = '1';
+    div.style.zIndex = BMap.Overlay.getZIndex(this._latlng.lat);
     div.className = "divicon";
     div.style.MozUserSelect = "none";
     div.style.fontSize = "12px";
-    var span = document.createElement("span"); //创建序号span
+    div.id = this._div;
+    div.name = this._name;
+
+    var span = this._span = document.createElement("span");
     div.appendChild(span);
     span.style.height = "15px";
     div.style.cursor = "pointer";
@@ -160,7 +120,9 @@ customOverlay_Large.prototype.construct = function () {
     span.style.color = "Black";
     span.style.margin = "0px 5px 2px 3px";
     span.appendChild(document.createTextNode(this._id));
-    var spanscenic = document.createElement("span"); //创建文字标题
+    var that = this;
+
+    var spanscenic = this._span = document.createElement("span");
     div.appendChild(spanscenic);
     spanscenic.height = "15px";
     spanscenic.style.position = "relative";
@@ -168,8 +130,10 @@ customOverlay_Large.prototype.construct = function () {
     spanscenic.style.display = "inline-block";
     spanscenic.style.lineHeight = "15px";
     spanscenic.style.color = "White";
-    spanscenic.appendChild(document.createTextNode(this._text));
-    var arrow = document.createElement("div"); //三角形图标
+    spanscenic.appendChild(document.createTextNode(this._text))
+
+
+    var arrow = this._arrow = document.createElement("div");
     arrow.style.background = "url('/Img/yuansu/largeicon3.gif') no-repeat";
     arrow.style.position = "absolute";
     arrow.style.width = "15px";
@@ -178,59 +142,42 @@ customOverlay_Large.prototype.construct = function () {
     arrow.style.left = "10px";
     arrow.style.overflow = "hidden";
     div.appendChild(arrow);
-    //注册div点击事件
-    $(div).click(function () {
-        closeWinInfo();
-        var randomParam = new Date().toString();
-        $.get(
-            '/map/mapscenic.ashx?t=' + randomParam + '&scid=' + that._scid,
-            function (detail_scenic) {
-                var ds = eval("(" + detail_scenic + ")");
-                infoWindow = new soso.maps.InfoWindow({
-                    content: InfoWindowContent(ds),
-                    position: that._latlng
-                });
-                infoWindow.open(map);
-            }
-        )
-    });
-    this._div = div;
-    var panes = this.getPanes();
-    panes.overlayLayer.appendChild(div);
+        //注册div点击事件
+        $(div).click(function () {
+            closeWinInfo();
+            var randomParam = new Date().toString();
+            $.get(
+                '/map/mapscenic.ashx?t=' + randomParam + '&scid=' + that._scid,
+                function (detail_scenic) {
+                    var ds = eval("(" + detail_scenic + ")");
+                    infoWindow = new BMap.InfoWindow(InfoWindowContent(ds));
+                    map.openInfoWindow(infoWindow, that._latlng);
+                }
+            )
+        });
+    map.getPanes().labelPane.appendChild(div);
+    return div;
 }
 //绘制图标，主要用于控制图标的位置
 customOverlay_Large.prototype.draw = function () {
-    var pixel = this.getProjection().fromLatLngToDivPixel(this._latlng);
-    this._div.style.left = pixel.getX() + 'px';
-    this._div.style.top = pixel.getY() + 'px';
-    
-//    var overlayProjection = this.getProjection();
-//    var position = overlayProjection.fromLatLngToDivPixel(this._latlng); //将地图坐标转换成屏幕坐标
-//    var div = this._div;
-//    div.style.left = position.x - 5 + 'px';
-//    div.style.top = position.y - 5 + 'px';
+    var map = this._map;
+    var pixel = map.pointToOverlayPixel(this._latlng);
+    this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+    this._div.style.top = pixel.y - 30 + "px";
 }
-//增加一个删除图标属性
-customOverlay_Large.prototype.destroy = function () {
-    this._div.parentNode.removeChild(this._div);
-    this._div = null;
-}
-function customOverlay_Small(map, options) {
+function customOverlay_Small(options) {
     //初始化参数
     this._latlng = options.latlng; //设置图标位置
-    this._map = map;
-    this._div = null;
     this._id = options.id;
     this._scid = options.scid;
-    this.setMap(map);
 }
-customOverlay_Small.prototype = new soso.maps.Overlay();
+customOverlay_Small.prototype = new BMap.Overlay();
 //初始化图标
-customOverlay_Small.prototype.onAdd = function () {
-    var that = this;
-    var div = document.createElement("div"); //创建存放文字的div
+customOverlay_Small.prototype.initialize = function () {
+    this._map = map;
+    var div = this._div = document.createElement("div");
     div.style.position = "absolute";
-    div.style.zIndex = '1';
+    div.style.zIndex = BMap.Overlay.getZIndex(this._latlng.lat);
     div.style.background = "url('/Img/yuansu/smallicon7.gif') no-repeat";
     div.style.color = "white";
     div.style.height = "13px";
@@ -241,6 +188,7 @@ customOverlay_Small.prototype.onAdd = function () {
     div.style.cursor = "pointer";
     div.style.whiteSpace = "nowrap";
     div.style.MozUserSelect = "none";
+    var that = this;
     //注册div点击事件
     $(div).click(function () {
         closeWinInfo();
@@ -249,31 +197,22 @@ customOverlay_Small.prototype.onAdd = function () {
             '/map/mapscenic.ashx?t=' + randomParam + '&scid=' + that._scid,
             function (detail_scenic) {
                 var ds = eval("(" + detail_scenic + ")");
-                infoWindow = new soso.maps.InfoWindow({
-                    content: InfoWindowContent(ds),
-                    position: that._latlng
-                });
-                infoWindow.open(map);
+                infoWindow = new BMap.InfoWindow(InfoWindowContent(ds));
+                map.openInfoWindow(infoWindow, that._latlng);
             }
         )
     });
-    this._div = div;
-    var panes = this.getPanes();
-    panes.overlayLayer.appendChild(div);
+    map.getPanes().labelPane.appendChild(div);
+    return div;
 }
 //绘制图标，主要用于控制图标的位置
 customOverlay_Small.prototype.draw = function () {
-    var overlayProjection = this.getProjection();
-    var position = overlayProjection.fromLatLngToDivPixel(this._latlng); //将地图坐标转换成屏幕坐标
-//    var div = this._div;
-//    div.style.left = position.x - 5 + 'px';
-//    div.style.top = position.y - 5 + 'px';
+    var map = this._map;
+    var pixel = map.pointToOverlayPixel(this._latlng);
+    this._div.style.left = pixel.x - 3 + "px";
+    this._div.style.top = pixel.y - 16 + "px";
 }
-//增加一个删除图标属性
-customOverlay_Small.prototype.onRemove = function () {
-    this._div.parentNode.removeChild(this._div);
-    this._div = null;
-}
+
 /*返回信息框中的内容*/
 function InfoWindowContent(point) {
     var sContent =
@@ -308,25 +247,17 @@ function btnshowinfo() {
             break;
         if (allCoordinates[k].position != null && allCoordinates[k].position != "undefined") {
             numCount++;
-            var point = new soso.maps.LatLng(allCoordinates[k].position.split(",")[1], allCoordinates[k].position.split(",")[0]);
+            var point = new BMap.Point(allCoordinates[k].position.split(",")[0], allCoordinates[k].position.split(",")[1]);
             var txt = allCoordinates[k].name;
             var scenicid = allCoordinates[k].id;
             var overlay;
-
-
-
-
             if (numCount <= begin || numCount > begin + 15) {
-                var overlay = function (opts) {
-                    soso.maps.Overlay.call(this, opts);
-                };
-                //overlay = new customOverlay_Small(map, { latlng: point, id: numCount, scid: scenicid });
+                overlay = new customOverlay_Small({ latlng: point, id: numCount, scid: scenicid });
+                map.addOverlay(overlay);
             }
             else {
-                var overlay = function (opts) {
-                    soso.maps.Overlay.call(this, opts);
-                };
-                overlay = new customOverlay_Large(map, { latlng: point, text: txt, id: numCount, scid: scenicid });
+                overlay = new customOverlay_Large({ latlng: point, text: txt, id: numCount, scid: scenicid });
+                map.addOverlay(overlay);
             }
             overlayMarker.push(overlay);
         }
@@ -347,19 +278,16 @@ function btnshowinfo() {
     $("#resultscenic").html(loadstr);
 }
 /*打开指定信息窗口*/
-function mapscenic(iwId,lat,lng) {
-    var point = new soso.maps.LatLng(lng, lat);
+function mapscenic(iwId, lat, lng) {
+    var point = new BMap.Point(lat, lng);
     closeWinInfo();
     var randomParam = new Date().toString();
     $.get(
             '/map/mapscenic.ashx?t=' + randomParam + '&scid=' + iwId,
             function (detail_scenic) {
                 var ds = eval("(" + detail_scenic + ")");
-                infoWindow = new soso.maps.InfoWindow({
-                    content: InfoWindowContent(ds),
-                    position: point
-                });
-                infoWindow.open(map);
+                infoWindow = new BMap.InfoWindow(InfoWindowContent(ds));
+                map.openInfoWindow(infoWindow, point);
             }
         )
 }

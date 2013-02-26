@@ -57,6 +57,54 @@ background-color:#fff !important;
     height: 116px;
     margin: 0 auto;
 }
+.mainarea
+{
+    position: absolute;
+    z-index: 9999;
+    display: block;
+    width: 83px;
+    height: 30px;
+    border: none;
+    border-left:1px solid #CDCDCD;
+    cursor:pointer;
+    text-align: left;
+    background:url("/theme/default/image/20130116/proseldbg.png") top right no-repeat;
+    color:#777777;
+    line-height:30px;
+    padding-left: 15px
+}
+.logoleft
+{
+    background: url("/theme/default/image/newversion/Logo2.png");
+    width: 356px;
+    height: 115px;
+}
+.logoleft img
+{
+    margin:30px 0px 0px 0px;
+}
+.logoright
+{
+    background: url("/theme/default/image/newversion/logobg2.png") repeat-x;
+    width: 599px;
+    height: 115px;
+}
+
+.uertool
+{
+    width: 340px;
+    margin-top: 7px;
+    text-align: left;
+}
+.uertool a
+{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+
+
 #logotitle
 {
     font-size: 3em;
@@ -71,10 +119,7 @@ background-color:#fff !important;
     color: #CE5135;
 }
 
-#logoright
-{
-    margin-top: 50px;
-}
+
 #maplink
 {
     padding-top: 10px;
@@ -111,6 +156,48 @@ background-color:#fff !important;
     margin-left: 4px;
     background: url(../image/searchbtn.png);
 }
+/*导航条*/
+.NavList
+{
+    background-color: #4F8B11;
+    border-top: 1px solid #1A9F47;
+    border-bottom: 1px solid #86C637;
+    height: 30px;
+}
+.navlistnb
+{
+    margin: 0px auto;
+    float:none;
+    padding-left: 5px;
+    _overflow:hidden;
+    _color:white !important;
+    
+}
+.navlistnb a
+{
+    _color:white !important;
+}
+.navlistnb a, .navlistnb span
+{
+    display: block;
+    float: left;
+    width: 85px;
+    height: 25px;
+    margin-right: 0px;
+    color: White;
+    text-align: center;
+    padding-top: 6px;
+    margin-top: -1px;
+}
+.navlistnb a:hover
+{
+    background-color: #4FA600;
+}
+
+
+
+
+
 
 #topbar
 {
@@ -259,7 +346,8 @@ background-color:#fff !important;
 }
 .show_4
 {
-    width:951px;
+    margin:0px auto;
+    width:950px;
     height:157px;
     background:url("/theme/default/image/20130203/showEwm.gif");
     display:block;
@@ -276,8 +364,7 @@ background-color:#fff !important;
     margin:145px 0px 0px 120px;
     width:109px;
     height:32px;
-    border:none;
-    cursor:pointer;
+    display:inline !important;
     background:url("/theme/default/image/20130116/scloginBg.jpg") no-repeat;
 }
 .btnScLogin:hover
@@ -335,60 +422,12 @@ background-color:#fff !important;
     height: 146px;
 }
 /*新版样式*/
-.logoleft
-{
-    background: url("/theme/default/image/newversion/Logo2.png");
-    width: 356px;
-    height: 115px;
-    float: left;
-}
-.logoleft img
-{
-    margin:30px 0px 0px 0px;
-}
-.logoright
-{
-    float: left;
-    background: url("/theme/default/image/newversion/logobg2.png");
-    width: 599px;
-    height: 115px;
-    background-repeat: repeat-x;
-    text-align: left;
-}
-.NavList
-{
-    /*background:url("/theme/default/image/newversion/navbg.png");*/
-    background-color: #4F8B11;
-    background-repeat: repeat-x;
-    border-top: 1px solid #1A9F47;
-    border-bottom: 1px solid #86C637;
-    height: 30px;
-    width: 100%;
-}
-.navlistnb
-{
-    margin: 0px auto;
-    width: 955px;
-    padding-left: 5px;
-    _overflow:hidden;
-    _color:white !important;
-    
-}
-.navlistnb a
-{
-    _color:white !important;
-} 
-.uertool
-{
-    width: 340px;
-    margin-top: 7px;
-    text-align: left;
-}
-.uertool a
-{
-    margin-left: 5px;
-    margin-right: 5px;
-}
+
+
+
+
+ 
+
 .searchdiv
 {
     margin-top: 35px;
@@ -396,10 +435,9 @@ background-color:#fff !important;
 }
 .searchdiv #tbxKeywords
 {
-    float: left;
     border-style: none;
     padding:8px 0;
-    margin: 0;
+    margin:0;
     width: 347px; /*    *padding-top:9px;       *height:22px;     */
     padding-left: 15px;
     background: url("/theme/default/image/20130116/keywordbg.png") repeat-x;
@@ -408,51 +446,23 @@ background-color:#fff !important;
 
 .searchdiv #btnSearch
 {
-    cursor: pointer;
     width: 104px;
     height: 32px;
-    float: left;
     margin-left: 4px;
     background: url("/theme/default/image/20130116/btnSearch.jpg");
     color: White;
     font-weight: 700;
-    border: none;
     position:relative;
     top:-1px;
 }
 
 #btnSearch:hover
 {
-    cursor: pointer;
-    width: 104px;
-    height: 32px;
-    float: left;
-    margin-left: 4px;
-    color: White;
-    font-weight: 700;
     background: url("/theme/default/image/20130116/btnSearch_hover.jpg");
-    border: none;
-    position:relative;
-    top:-1px;
 }
 
 
-.navlistnb a, .navlistnb span
-{
-    display: block;
-    float: left;
-    width: 85px;
-    height: 25px;
-    margin-right: 0px;
-    color: White;
-    text-align: center;
-    padding-top: 6px;
-    margin-top: -1px;
-}
-.navlistnb a:hover
-{
-    background-color: #4FA600;
-}
+
 .navsper
 {
     border-left: 1px solid #078632;
@@ -506,27 +516,8 @@ background-color:#fff !important;
     font-weight: 600;
     _color:white !important;
 }
-.mainarea
-{
-    position: absolute;
-    z-index: 9999;
-    display: block;
-    width: 83px;
-    height: 30px;
-    border: none;
-    border-left:1px solid #CDCDCD;
-    cursor:pointer;
-    text-align: left;
-    background:url("/theme/default/image/20130116/proseldbg.png") top right no-repeat;
-    color:#777777;
-    
-    line-height:30px;
-}
-.mainarea span
-{
 
-   
-}
+
 
 .poptitle
 {
@@ -538,8 +529,8 @@ background-color:#fff !important;
     display: block;
     height: 25px;
     line-height: 25px;
-    width: 100%;
     background-color: #E6E6E6;
+    padding-left:20px;
 }
 .poptable
 {
@@ -548,8 +539,7 @@ background-color:#fff !important;
 }
 .poptable tr td
 {
-    margin: 0px;
-    padding: 0px;
+    
     padding-top: 3px;
     padding-bottom: 3px;
     border-bottom:1px dashed #DDDDDD;
@@ -560,9 +550,8 @@ background-color:#fff !important;
     border:1px solid #E8360F;
     font-weight:bold;
     color:White;
-    background:url("/theme/default/image/20130116/btnOKBg.png");
+    background:url("/theme/default/image/20130116/btnOKBg.png") repeat-x;
     height:24px !important;
-    background-repeat:repeat-x;
     width:90px;
     line-height:24px;
     text-align:center;

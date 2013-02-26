@@ -5,9 +5,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphmain" runat="Server">
     <%--<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true">
     </script>--%> 
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
      <script src="/Scripts/pages/contentReader.js" type="text/javascript"></script>
     <link href="/Content/global.css" rel="stylesheet" type="text/css" />
     <link href="/Content/page/scenic.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/page/map.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
     <script src="/Scripts/pages/Brower.js" type="text/javascript"></script>
     <script src="/Scripts/pages/scenic.js" type="text/javascript"></script>

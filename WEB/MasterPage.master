@@ -33,19 +33,18 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="Filldiv">
-    </div>
-    <div id="header">
+    
+    <div id="header" class="container">
         <div id="logo">
-            <div class="mainarea" style="padding-left: 15px">
+            <div class="mainarea">
               <span>浙江省</span></div>
-            <div class="logoleft">
+            <div class="logoleft left">
                 <a href="/">
                     <img src="/theme/default/image/20130116/tourol.jpg" alt="中国旅游在线" />
                 </a>
             </div>
-            <div class="logoright">
-                <div class="uertool">
+            <div class="logoright left align_left">
+                <div class="uertool align_left">
                     <asp:LoginView runat="server" ID="lv">
                         <AnonymousTemplate>
                             <a href="/account/register.aspx">注册</a>|
@@ -59,21 +58,18 @@
                     |<a href="">帮助</a>
                 </div>
                 <div class="searchdiv">
-                    <asp:TextBox runat="server" ClientIDMode="Static" ID="tbxKeywords">
+                    <asp:TextBox runat="server" CssClass="left " ClientIDMode="Static" ID="tbxKeywords">
                     </asp:TextBox>
-                    <asp:Button runat="server" ID="btnSearch" ClientIDMode="Static" OnClick="btnSearch_Click"
+                    <asp:Button runat="server" ID="btnSearch" CssClass="left button" ClientIDMode="Static" OnClick="btnSearch_Click"
                         Text="" />
                 </div>
             </div>
         </div>
         <div class="NavList">
-            <div class="navlistnb">
+            <div class="span-24 navlistnb">
                 <a class="navhight" href="/">首页</a><div class="navsper">
                 </div>
                 <a href="/Tickets/">景区门票</a>
-               <%-- <div class="navsper">
-                </div>
-                <a href="#">旅游明信片</a>--%>
                 <div class="navsper">
                 </div>
                 <a href="/map/Map_Google.aspx">地图版</a>
@@ -91,42 +87,16 @@
     
     <div id="footer">
         <div class="show_div" >
-            <span class="show_4" style="margin:0px auto"></span>
+            <span class="show_4"></span>
         </div>
         <div class="footer_main">
-            <asp:Button ID="btnScLogin" runat="server" Text="" CssClass="btnScLogin" OnClick="btnScLogin_Click" />
+            <asp:Button ID="btnScLogin" runat="server" Text="" CssClass="btnScLogin button" OnClick="btnScLogin_Click" />
             <div class="about">
                 <a href="/About/Default.aspx">关于旅游在线</a>|<a href="/About/Link.aspx">联系我们</a>
             </div>
         </div>
     </div>
-    <div style="display: none">
-        <div id="dasff">
-            <div class="container">
-                <div class="span-24 last" id="fsdfds">
-                    <div id="logotitle" class="span-8 last">
-                        <a href="/">
-                            <img src="/theme/default/image/logo.png" alt="中国旅游在线-"></img>
-                        </a>
-                    </div>
-                    <div id="logoright" class="span-16 last">
-                        <div id="logosearch">
-                            <a href="/map" id="maplink">[去地图版看看]</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="span-24 last strong" id="topbar">
-                    <div id="login">
-                    </div>
-                    <div id="cart">
-                        <div id="mycart">
-                            <img src="/theme/default/image/cart.png" alt="购物车" /><span id="cartsumwrap"><em id="cartsum"></em>
-                            </span><span><a href="/order/cart.aspx">我的购物车</a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="Filldiv">
     </div>
     <div id="popcart" style="display: none">
         <div class="popbg">
@@ -135,7 +105,7 @@
             <p class="poptitle">
                 我的购物车</p>
             <div id="cartsumhead">
-                <span style="margin-left: 20px;">共有<span id="scenicSum"></span>个景区<span id="ticketsSum"></span>张门票</span></div>
+                共有<span id="scenicSum"></span>个景区<span id="ticketsSum"></span>张门票</div>
             <asp:Repeater runat="server" ID="rptPopCart" OnItemDataBound="rptPopCart_ItemDataBound">
                 <HeaderTemplate>
                     <table class="poptable">
@@ -148,7 +118,7 @@
                                 <%#Eval("Scenic.Name")%>-<%#Eval("Name")%></a>
                         </td>
                         <td style="width: 40px;">
-                            <span style="margin: 0px; padding: 0px;" class="cartdelete" tid='<%#Eval("Id")%>'>删除</span>
+                            <span class="cartdelete" tid='<%#Eval("Id")%>'>删除</span>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -179,7 +149,7 @@
 </script>
 
 <!---->
-<script src="http://s21.cnzz.com/stat.php?id=4987666&web_id=4987666" language="JavaScript"></script>
+<%--<script src="http://s21.cnzz.com/stat.php?id=4987666&web_id=4987666" language="JavaScript"></script>--%>
     </form>
 </body>
 </html>
