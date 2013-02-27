@@ -1,23 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Tree>
-    <TreeNode Text="食材管理" SingleClickExpand="true">
-        <TreeNode Text="食材上架" NavigateUrl="/Dish/Dish.aspx">
-        </TreeNode>
+    <TreeNode Text="活动管理" SingleClickExpand="true">
+        <TreeNode Text="新增门票" NavigateUrl="/TicketManager/TicketEdit.aspx"></TreeNode>
+        <TreeNode Text="新增活动" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="活动列表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
     </TreeNode>
-    <TreeNode Text="会员管理" SingleClickExpand="true">
-        <TreeNode Text="会员信息" NavigateUrl="/Dish/Dish.aspx">
-        </TreeNode>
+    <TreeNode Text="门票管理" SingleClickExpand="true">
+        <TreeNode Text="新增门票" NavigateUrl="/TicketManager/TicketEdit.aspx"></TreeNode>
+        <TreeNode Text="门票列表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
     </TreeNode>
-    <TreeNode Text="账单管理" SingleClickExpand="true">
-        <TreeNode Text="账单信息" NavigateUrl="/Dish/Dish.aspx">
-        </TreeNode>
+    <TreeNode Text="景区管理" SingleClickExpand="true">
+        <TreeNode Text="新增景区" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="景区列表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="景区账号管理" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="景区主题管理" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="景区SEO管理" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="景区主题SEO管理" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
     </TreeNode>
-    <TreeNode Text="标签管理" SingleClickExpand="true">
-        <TreeNode Text="标签信息" NavigateUrl="/Dish/Dish.aspx">
-        </TreeNode>
+    <TreeNode Text="系统管理" SingleClickExpand="true">
+        <TreeNode Text="EXCEL导入" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="景区坐标初始化" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="米胖门票导入" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="数据同步" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="UserTicket数据导入" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="景区报表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
     </TreeNode>
-    <TreeNode Text="广告管理" SingleClickExpand="true">
-        <TreeNode Text="广告信息" NavigateUrl="/Dish/Dish.aspx">
-        </TreeNode>
-    </TreeNode>
+    
 </Tree>

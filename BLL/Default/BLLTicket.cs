@@ -9,7 +9,7 @@ using System.Web;
 using Newtonsoft;
 namespace BLL
 {
-    public class BLLTicket
+    public class BLLTicket:BLLBase<Ticket>
     {
         DALTicket iticket;
         BLLScenic bllScenic = new BLLScenic();
