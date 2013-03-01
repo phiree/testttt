@@ -4,8 +4,28 @@
 <%@ MasterType VirtualPath="~/sm.master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="smHeader" runat="Server">
     <link href="/theme/default/css/smdefault.css" rel="stylesheet" type="text/css" />
+    <link href="/Scripts/jqueryplugin/jqueryui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css"
+        rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-datepicker-zh.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryplugin/jqueryui/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
     <script type="text/javascript">
+        $(function () {
+            $(".sxjsj").datepicker();
 
+            //添加行
+            $("#addrow").click(function () {
+                var tbody = $(this).parent().parent().parent().next();
+                var a = $("<tr><td><input type='text' style='width:100px' /></td><td><input type='text' style='width: 60px' /></td><td><input type='text' style='width: 60px' />" +
+                                                "</td><td><input type='text' style='width: 60px' /></td><td><input class='sxjsj' type='text' style='width: 70px' name='name' value=' ' /></td>" +
+                                                "<td><input class='sxjsj' type='text' style='width: 70px' name='name' value=' ' /></td><td><input type='hidden' /><input type='hidden' />" +
+                                                "<a onclick='delrow(this)'>删除</a></td></tr>");
+                a.appendTo(tbody);
+                calldatepicker();
+            });
+        });
+        function calldatepicker() {
+            $(".sxjsj").datepicker();
+        }
         function Pricepd() {
             var price = $("[id$='tbxPrice']").val();
             var orderprice = $("[id$='tbxPreOrder']").val();
@@ -28,9 +48,13 @@
                 var yuanjia = $(this).children().next().children().val();
                 var xianfujia = $(this).children().next().next().children().val();
                 var zaixianjia = $(this).children().next().next().next().children().val();
-                var ticketid = $(this).children().next().next().next().next().children().val();
+                var update = $(this).children().next().next().next().next().children().val();
+                var downdate = $(this).children().next().next().next().next().next().children().val();
+                var ticketid = $(this).children().next().next().next().next().next().next().children().val();
                 var scid = $("input[id*=hidden_scid]").val();
-                datas += '{' + ticketname + ',' + yuanjia + ',' + xianfujia + ',' + zaixianjia + ',' + ticketid + ',' + scid;
+//                alert('名称:' + ticketname + ' 价格：' + yuanjia + '-' + xianfujia + '-' + zaixianjia
+//                    + ' ticketid:' + ticketid + ' scid:' + scid+ '上下架时间：' + update + '--' + downdate);
+                datas += '{' + ticketname + ',' + yuanjia + ',' + xianfujia + ',' + zaixianjia + ',' + ticketid + ',' + scid + ',' + update + ',' + downdate;
             });
             $.ajax({
                 type: "Post",
@@ -38,6 +62,7 @@
                 dataType: "json",
                 data: datas,
                 success: function (data, status) {
+                    result = status == "success";
                 }
             });
             if (result)
@@ -52,15 +77,9 @@
             $(obj).parent().parent().remove();
         }
 
-        //添加行
-        $(function () {
-            $("#addrow").click(function () {
-                var tbody = $(this).parent().parent().parent().next();
-                tbody.append("<tr><td><input type='text' style='width:150px' /></td><td><input type='text' /></td><td><input type='text' />" +
-                "</td><td><input type='text' /></td><td><input type='hidden' /><input type='hidden' />" +
-                "<input onclick='delrow(this)' class='delrow' type='button' style='width: 25px;' value='-' /></td></tr>");
-            });
-        });
+        function btnchange() {
+            $("[id$='btnchange22']").click();
+        }
     </script>
     <style type="text/css">
         td input
@@ -76,7 +95,7 @@
     <hr />
     <div id="updateprice">
         <div class="paystate">
-        <a href="/onlinesell/OnlinePrice.aspx" class="nowstate">填写景区价格</a>><a>打印价格表</a>><a>上传盖章后价格表</a>><a>申请</a>
+            <a href="/onlinesell/OnlinePrice.aspx" class="nowstate">填写景区价格</a>><a>打印价格表</a>><a>上传盖章后价格表</a>><a>申请</a>
         </div>
         <div class="priceintroduction">
             门票价格介绍
@@ -103,7 +122,13 @@
                         在线支付价
                     </td>
                     <td>
-                        <input id="addrow" type="button" style="width: 25px;" value="+" />
+                        上架时间
+                    </td>
+                    <td>
+                        下架时间
+                    </td>
+                    <td>
+                        <a id="addrow">添加</a>
                     </td>
                 </tr>
             </thead>
@@ -112,28 +137,40 @@
                     <ItemTemplate>
                         <tr>
                             <td>
-                                <input type="text" value='<%# Eval("Name") %>' style="width:150px" />
+                                <input type="text" value='<%# Eval("Name") %>' style="width: 100px" />
                             </td>
                             <td>
-                                <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.Normal).First().Price.ToString("0") %>' />
+                                <input type="text" style="width: 60px" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.Normal).First().Price.ToString("0") %>' />
                             </td>
                             <td>
-                                <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price.ToString("0") %>' />
+                                <input type="text" style="width: 60px" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PreOrder).First().Price.ToString("0") %>' />
                             </td>
                             <td>
-                                <input type="text" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PayOnline).First().Price.ToString("0") %>' />
+                                <input type="text" style="width: 60px" value='<%# ((IList<Model.TicketPrice>)Eval("TicketPrice")).Where(x => x.PriceType == Model.PriceType.PayOnline).First().Price.ToString("0") %>' />
+                            </td>
+                            <td>
+                                <input class="sxjsj" type="text" style="width: 70px" name="name" value='<%# DateTime.Parse(Eval("BeginDate").ToString()).ToString("yyyy-MM-dd") %>'  id="txtbegin" />
+                            </td>
+                            <td>
+                                <input class="sxjsj" type="text" style="width: 70px" name="name" value='<%# DateTime.Parse(Eval("EndDate").ToString()).ToString("yyyy-MM-dd") %>'  id="txtend" />
                             </td>
                             <td>
                                 <input type="hidden" value='<%# Eval("Id") %>' />
                                 <input type="hidden" value='<%# Eval("Scenic.Id") %>' />
-                                <input type="button" style="width: 25px;" value="-" onclick="delrow(this)" />
+                                <a onclick='delrow(this)'>删除</a>
                             </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
         </table>
-        <input type="button" name="name" class="btnokprice" onclick="calc()" style="margin-left:30px; vertical-align:middle;" /><a href="/onlinesell/PrintScenicPrice.aspx" style=" vertical-align:middle;margin-left:430px">进入下一步</a>
+        <input type="button" name="name" class="btnokprice" onclick="calc()" style="margin-left: 30px;
+            vertical-align: middle;" /><a style="vertical-align: middle;
+                margin-left: 430px" onclick="btnchange()">进入下一步</a>
         <input type="hidden" id="hidden_scid" runat="server" />
+    </div>
+    <div style="display:none">
+        <asp:Button ID="btnchange22" runat="server" Text="Button" 
+            onclick="btnchange_Click" />
     </div>
 </asp:Content>

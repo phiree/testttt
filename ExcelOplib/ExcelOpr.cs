@@ -91,7 +91,7 @@ namespace ExcelOplib
                     s.Type = Model.EnterpriseType.景点;
                     //组装tickets
                     var newtlist = getTicketslist().Where(x => x.scenicname == s.Name).ToList<Entity.TicketEntity>();
-                    var tickets = bllticket.GetTicketByscId(s.Id);
+                    var tickets = bllticket.GetMainTicketByscId(s.Id);
                     Model.TicketNormal t;
                     foreach (var te in newtlist)
                     {
