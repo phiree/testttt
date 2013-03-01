@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpmain" runat="Server">
     <ext:Panel ID="PanelForm" runat="server" EnableBackgroundColor="true" Layout="Fit"
-        ShowBorder="false" ShowHeader="false" Title="Panel">
+        ShowBorder="false" ShowHeader="false" Title="Panel" AutoScroll="true">
         <Items>
             <ext:TabStrip ID="TicketTabStrip" EnableTabCloseMenu="true" AutoPostBack="false"
                 ShowBorder="false" runat="server" EnableFrame="true">
@@ -52,7 +52,7 @@
                                     </ext:FormRow>
                                     <ext:FormRow ID="FormRow6" runat="server">
                                         <Items>
-                                            <ext:CheckBox ID="cbxLock" runat="server" Label="是否锁住" ShowLabel="true">
+                                            <ext:CheckBox ID="cbxLock" runat="server" Label="是否启用" ShowLabel="true">
                                             </ext:CheckBox>
                                         </Items>
                                     </ext:FormRow>
@@ -116,15 +116,17 @@
                         </Items>
                     </ext:Tab>
                     <ext:Tab ID="Tab2" Title="联票门票管理" Layout="VBox" Icon="None" runat="server" EnableBackgroundColor="true"
-                        BoxConfigChildMargin="20 0 0 20" Visible="false">
+                        BoxConfigChildMargin="0 0 0 20" Visible="false">
                         <Items>
                             <ext:ContentPanel ID="ContentPanel2" runat="server" EnableBackgroundColor="true"
                                 ShowBorder="false" ShowHeader="false">
                                 <ext:Grid ID="gridTicketList" runat="server" ShowBorder="true" EnableCheckBoxSelect="True"
                                     ShowHeader="true" Title="该联票已经绑定的门票" Width="600px" EnableRowNumber="true" ForceFitAllTime="true"
-                                    OnRowCommand="gridTicketList_RowCommand" DataKeyNames="Id" EnableAjax="false">
+                                    OnRowCommand="gridTicketList_RowCommand" DataKeyNames="Id" Height="130px" PageSize="5" AllowPaging="true"
+                                     OnPageIndexChange="gridTicketList_PageIndexChange">
                                     <Columns>
-                                        <ext:BoundField DataField="Name" HeaderText="门票名称" Width="450px" />
+                                        <ext:BoundField DataField="Scenic.Name" HeaderText="景区名称" Width="200px" />
+                                        <ext:BoundField DataField="Name" HeaderText="门票名称" Width="250px" />
                                         <ext:LinkButtonField HeaderText="删除" CommandName="delete" Text="删除" ConfirmText="是否确认删除"
                                             ConfirmTarget="Top" />
                                     </Columns>

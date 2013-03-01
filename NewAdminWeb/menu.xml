@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Tree>
-    <TreeNode Text="活动管理" SingleClickExpand="true">
-        <TreeNode Text="新增门票" NavigateUrl="/TicketManager/TicketEdit.aspx"></TreeNode>
-        <TreeNode Text="新增活动" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
-        <TreeNode Text="活动列表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
-    </TreeNode>
-    <TreeNode Text="门票管理" SingleClickExpand="true">
-        <TreeNode Text="新增门票" NavigateUrl="/TicketManager/TicketEdit.aspx"></TreeNode>
-        <TreeNode Text="门票列表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
-    </TreeNode>
     <TreeNode Text="景区管理" SingleClickExpand="true">
         <TreeNode Text="新增景区" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
         <TreeNode Text="景区列表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
@@ -17,6 +8,16 @@
         <TreeNode Text="景区SEO管理" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
         <TreeNode Text="景区主题SEO管理" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
     </TreeNode>
+    <TreeNode Text="门票管理" SingleClickExpand="true">
+        <TreeNode Text="新增门票" NavigateUrl="/TicketManager/TicketEdit.aspx"></TreeNode>
+        <TreeNode Text="门票列表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+    </TreeNode>
+    <TreeNode Text="活动管理" SingleClickExpand="true">
+        <TreeNode Text="活动门票" NavigateUrl="/TicketManager/TicketEdit.aspx?id=44"></TreeNode>
+        <TreeNode Text="新增活动" NavigateUrl="/ActivityManager/ActivityEdit.aspx?actId=25eb9489-e2e8-43c3-9083-a15a0122e506"></TreeNode>
+        <TreeNode Text="活动列表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+    </TreeNode>
+    
     <TreeNode Text="系统管理" SingleClickExpand="true">
         <TreeNode Text="EXCEL导入" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
         <TreeNode Text="景区坐标初始化" NavigateUrl="/Dish/Dish.aspx"></TreeNode>

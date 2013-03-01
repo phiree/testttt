@@ -33,7 +33,7 @@ public partial class TicketManager_TicketEdit : System.Web.UI.Page
             }
 
         }
-
+        winScenic.OnClientCloseButtonClick = winScenic.GetHidePostBackReference();
         if (!IsPostBack)
         {
             if (!IsNew)
@@ -53,11 +53,11 @@ public partial class TicketManager_TicketEdit : System.Web.UI.Page
         tbxName.Text = CurrentTicket.Name;
         //tbxOrder.Text = CurrentTicket.OrderNumber.ToString();
         tbxOwner.Text = CurrentTicket.Scenic.Name;
-        tbxPriceNormal.Text = CurrentTicket.GetPrice(PriceType.Normal).ToString("0");
-        tbxPricePayOnline.Text = CurrentTicket.GetPrice(PriceType.PayOnline).ToString("0");
-        tbxPricePreOrder.Text = CurrentTicket.GetPrice(PriceType.PreOrder).ToString("0");
+        tbxPriceNormal.Text = CurrentTicket.GetTicketPrice(PriceType.Normal).Price.ToString("0");
+        tbxPricePayOnline.Text = CurrentTicket.GetTicketPrice(PriceType.PayOnline).Price.ToString("0");
+        tbxPricePreOrder.Text = CurrentTicket.GetTicketPrice(PriceType.PreOrder).Price.ToString("0");
         cbxIsMain.Checked = CurrentTicket.IsMain;
-        cbxLock.Checked = CurrentTicket.Lock;
+        cbxLock.Checked = CurrentTicket.Enabled;
         tbxProductCode.Text = CurrentTicket.ProductCode;
         //tbxRemark.Text = CurrentTicket.Remark;
         if (CurrentTicket.TourActivity != null)
@@ -94,7 +94,7 @@ public partial class TicketManager_TicketEdit : System.Web.UI.Page
         ticket.IsMain = cbxIsMain.Checked;
         ticket.BeginDate = Convert.ToDateTime(tbxBeginDate.Text);
         ticket.EndDate = Convert.ToDateTime(tbxEndDate.Text);
-        ticket.Lock = cbxLock.Checked;
+        ticket.Enabled = cbxLock.Checked;
         ticket.Name = tbxName.Text;
         //ticket.OrderNumber = Convert.ToDecimal(tbxOrder.Text);
         ticket.ProductCode = tbxProductCode.Text;
@@ -193,6 +193,7 @@ public partial class TicketManager_TicketEdit : System.Web.UI.Page
     {
         gridTicketList.DataSource = (CurrentTicket as TicketUnion).TicketList;
         gridTicketList.DataBind();
+        gridTicketList.AutoScroll = false;
     }
 
     private void bindAllTicket()
@@ -248,5 +249,9 @@ public partial class TicketManager_TicketEdit : System.Web.UI.Page
     protected void winScenic_Close(object sender, EventArgs e)
     {
         tbxOwner.Text = Session["OwnerScenic"].ToString();
+    }
+    protected void gridTicketList_PageIndexChange(object sender, FineUI.GridPageEventArgs e)
+    {
+        gridTicketList.PageIndex = e.NewPageIndex;
     }
 }
