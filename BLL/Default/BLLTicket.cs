@@ -60,11 +60,11 @@ namespace BLL
             return Iticket.GetTicketByAreaIdAndLevel(area, level, topic, pageIndex - 1, pageSize, out totalRecord);
         }
 
-        public IList<Model.TicketNormal> GetTicketByscId(int scid)
+        public IList<Model.TicketNormal> GetMainTicketByscId(int scid)
         {
             //EnsureTicket(scid);  删除，与下文重复
 
-            return Iticket.GetTicketByscId(scid);
+            return Iticket.GetMainTicketByscId(scid);
             //注释: 7行   SST.aug.8
             //IList<Model.Ticket> tickets = Iticket.GetTicketByscId(scid);
             //if (tickets.Count == 0)
@@ -82,6 +82,12 @@ namespace BLL
             //}
             //return tickets;
         }
+
+        public IList<Model.TicketNormal> GetTicketByscId(int scid)
+        {
+            return Iticket.GetTicketByscId(scid);
+        }
+
         public Ticket GetTicket(int ticketId)
         {
             return Iticket.Get(ticketId);
@@ -93,7 +99,7 @@ namespace BLL
         }
 
         BLLTicketPrice bllTp = new BLLTicketPrice();
-        public void SaveOrUpdateTicket(string ticketname, string yuan, string xf, string zx, string ticketid, string scid)
+        public void SaveOrUpdateTicket(string ticketname, string yuan, string xf, string zx, string ticketid, string scid,string begindate,string enddate)
         {
             Model.Ticket ticket;
             if (!string.IsNullOrEmpty(ticketid))
@@ -104,6 +110,8 @@ namespace BLL
                 ticket.TicketPrice.Where(x => x.PriceType == PriceType.PayOnline).First().Price = decimal.Parse(zx);
                 ticket.Name = ticketname;
                 ticket.Lock = true;
+                ticket.BeginDate = DateTime.Parse(begindate);
+                ticket.EndDate = DateTime.Parse(enddate);
             }
             else
             {
@@ -116,6 +124,8 @@ namespace BLL
                         new TicketPrice(){PriceType=PriceType.PreOrder,Price=decimal.Parse(xf),Ticket=ticket},
                         new TicketPrice(){PriceType=PriceType.PayOnline,Price=decimal.Parse(zx),Ticket=ticket}
                     };
+                ticket.BeginDate = DateTime.Parse(begindate);
+                ticket.EndDate = DateTime.Parse(enddate);
             }
             SaveOrUpdateTicket(ticket);
         }

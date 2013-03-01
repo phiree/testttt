@@ -49,9 +49,26 @@ namespace DAL
 
         public Topic GetTopicBySeoname(string seoname)
         {
-            string sql = "select t from Topic t where t.seoname='" + seoname + "'";
-            IQuery query = session.CreateQuery(sql);
-            return query.FutureValue<Topic>().Value;
+            //string sql = "select t from Topic t where t.seoname='" + seoname + "'";
+            //IQuery query = session.CreateQuery(sql);
+            //return query.FutureValue<Topic>().Value;
+            string sql = "select top 1 id,name,seoname from Topic t where t.seoname=:seoname";
+            IQuery query = session.CreateSQLQuery(sql)
+                .SetParameter("seoname", seoname);
+            var result=query.UniqueResult<object[]>();
+            if (result != null)
+            {
+                return new Topic()
+                {
+                    Id = Guid.Parse(result[0].ToString()),
+                    Name = result[1].ToString(),
+                    seoname = result[2].ToString()
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void SaveScenictopic(IList<string> topicname, Scenic scenic)
@@ -91,7 +108,7 @@ namespace DAL
         }
 
 
-        public void SaveTopic(string topicname,string topicseo)
+        public void SaveTopic(string topicname, string topicseo)
         {
             Topic t;
             if (string.IsNullOrWhiteSpace(topicseo))
@@ -115,7 +132,7 @@ namespace DAL
             {
                 if (GetTopicByName(item) == null)
                 {
-                    SaveTopic(item,null);
+                    SaveTopic(item, null);
                 }
             }
         }

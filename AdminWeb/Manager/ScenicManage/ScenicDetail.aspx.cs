@@ -45,7 +45,7 @@ public partial class Manager_ScenicDetail : basepage
 
     private void BindPrice()
     {
-        IList<Model.TicketNormal> temp = bllticket.GetTicketByscId(scenic.Id);
+        IList<Model.TicketNormal> temp = bllticket.GetMainTicketByscId(scenic.Id);
         var tickets = new List<Model.Ticket>();
         foreach (var item in temp)
         {
@@ -77,7 +77,7 @@ public partial class Manager_ScenicDetail : basepage
         checkprogress = bllScenic.GetStatus(scenic.Id, ScenicModule.SellOnLine);
         LoadOnLineCheck();
         //更改该景区票的状态为释放
-        Ticket ticket = new BLLTicket().GetTicketByscId(scenic.Id)[0];
+        Ticket ticket = new BLLTicket().GetMainTicketByscId(scenic.Id)[0];
         ticket.Lock = false;
         new BLLTicket().SaveOrUpdateTicket(ticket);
         //Response.Redirect("ScenicPrice.aspx?id=" + Request["id"] + "");

@@ -12,7 +12,14 @@ namespace DAL.ado
 
         public NativeSqlUtiliity(string connectionString)
         {
-            this.conn = new SqlConnection(connectionString);
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                this.conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TourOnline"].ConnectionString);
+            }
+            else
+            {
+                this.conn = new SqlConnection(connectionString);
+            }
         }
         private SqlConnection conn;
         public int ExecuteScalarInt(string sql)

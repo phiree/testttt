@@ -18,11 +18,18 @@ namespace DAL
         }
 
 
-        public IList<Model.TicketNormal> GetTicketByscId(int scid)
+        public IList<Model.TicketNormal> GetMainTicketByscId(int scid)
         {
             var ticketList = session.QueryOver<Model.TicketNormal>().Where(x => x.Scenic.Id == scid && x.IsMain == true).List();
             //string sql = "select t from Ticket t where t.Scenic.Id="+scid+"";
             //IQuery query = session.CreateQuery(sql);
+            return ticketList;
+        }
+
+
+        public IList<Model.TicketNormal> GetTicketByscId(int scid)
+        {
+            var ticketList = session.QueryOver<Model.TicketNormal>().Where(x => x.Scenic.Id == scid).List();
             return ticketList;
         }
 

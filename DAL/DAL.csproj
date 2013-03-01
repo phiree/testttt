@@ -97,6 +97,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adodal\AdoArea.cs" />
+    <Compile Include="Adodal\AdoTicket.cs" />
+    <Compile Include="Adodal\AdoTopic.cs" />
+    <Compile Include="ado\DBHelper.cs" />
     <Compile Include="ado\NativeSqlUtiliity.cs" />
     <Compile Include="DALArea.cs" />
     <Compile Include="DALBackManager.cs" />

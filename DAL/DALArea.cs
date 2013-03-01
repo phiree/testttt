@@ -36,8 +36,27 @@ namespace DAL
 
         public Model.Area GetAreaBySeoName(string seoName)
         {
-            IQuery query = session.CreateQuery("select a from Area a where a.SeoName='" + seoName + "'");
-            return query.FutureValue<Model.Area>().Value;
+            //IQuery query = session.CreateQuery("select a from Area a where a.SeoName='" + seoName + "'");
+            //return query.FutureValue<Model.Area>().Value;
+            string sql = "select top 1 Id,Name,SeoName,Code,AreaOrder,MetaDescription from Area a where a.seoname=:seoname";
+            IQuery query = session.CreateSQLQuery(sql)
+                .SetParameter("seoname", seoName);
+            var result = query.UniqueResult<object[]>();
+            if (result != null)
+            {
+                return new Model.Area(){
+                    Id = int.Parse(result[0].ToString()),
+                    Name = result[0].ToString(),
+                    SeoName = result[0].ToString(),
+                    Code = result[0].ToString(),
+                    AreaOrder = int.Parse(result[0].ToString()),
+                    MetaDescription = result[0].ToString()
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -92,7 +111,7 @@ namespace DAL
             IList<Model.Area> Areas = GetSubArea(areacode);
             if (Areas == null)
             {
-               
+
                 return ids;
             }
             ids += ",";

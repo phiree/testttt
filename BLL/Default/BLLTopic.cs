@@ -22,6 +22,8 @@ namespace BLL
             set { itopic = value; }
         }
 
+        public DAL.DALTopic daltopic { get; set; }
+
         public void SaveTopic(string topicname, string topicseo)
         {
             Iticket.SaveTopic(topicname, topicseo);
@@ -65,7 +67,8 @@ namespace BLL
 
         public Topic GetTopicBySeoname(string seoname)
         {
-            return Iticket.GetTopicBySeoname(seoname);
+            //return Iticket.GetTopicBySeoname(seoname);
+            return daltopic.GetTopicBySeoname(seoname);
         }
 
         public IList<Model.Topic> GetTopicByscid(int scid)

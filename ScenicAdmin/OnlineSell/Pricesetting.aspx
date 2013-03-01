@@ -28,8 +28,8 @@
         <hr style="margin-left:0px;" />
         <div class="stepstate">
             <span runat="server" id="step_1" class="stepicon">→</span><a class="step" href="OnlinePrice.aspx" id="astep_1" runat="server">1.&nbsp;填写售票价格:</a><div style="display:block;clear:both"></div>
-            <span runat="server" id="step_2" class="stepicon">→</span><a class="step" href="PrintScenicPrice.aspx" id="astep_2" runat="server">2.&nbsp;打印,盖公章,拍照</a><div style="display:block;clear:both"></div>
-            <span runat="server" id="step_3" class="stepicon">→</span><a class="step" href="Uploadscenicprice.aspx" id="astep_3" runat="server">3.&nbsp;上传更改景区价格文件</a><div style="display:block;clear:both"></div>
+            <%--<span runat="server" id="step_2" class="stepicon">→</span><a class="step" href="PrintScenicPrice.aspx" id="astep_2" runat="server">2.&nbsp;打印,盖公章,拍照</a><div style="display:block;clear:both"></div>
+            <span runat="server" id="step_3" class="stepicon">→</span><a class="step" href="Uploadscenicprice.aspx" id="astep_3" runat="server">3.&nbsp;上传更改景区价格文件</a><div style="display:block;clear:both"></div>--%>
             <span runat="server" id="step_4" class="stepicon">→</span><div style="margin: 0px 0px 20px 0px" id="astep_4" runat="server">
                 <asp:Button ID="btnApply" runat="server" CssClass="btnapply"  onclick="btnApply_Click"  /></div>
         </div>

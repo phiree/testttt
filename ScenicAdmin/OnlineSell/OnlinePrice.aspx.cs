@@ -78,4 +78,12 @@ public partial class ScenticManager_OnlineSell_OnlinePrice : bpScenicManager
         //Page.ClientScript.RegisterStartupScript(this.GetType(), "notice", "alert('操作成功!')", true);
 
     }
+
+    protected void btnchange_Click(object sender, EventArgs e)
+    {
+        ScenicCheckProgress scp = bllscenic.GetCheckProgressByscidandmouid(Master.Scenic.Id, 1);
+        scp.CheckStatus = CheckStatus.Applied_3;
+        bllscenic.UpdateCheckState(scp);
+        Response.Redirect("/OnlineSell/Pricesetting.aspx");
+    }
 }

@@ -19,7 +19,7 @@ namespace TourTest.BLLTest
             IList<Model.TicketNormal> tickets = new List<Model.TicketNormal>();
             Model.TicketNormal ticket = new Model.TicketNormal() { Name = "test" };
             tickets.Add(ticket);
-            iticket.Stub(x => x.GetTicketByscId(scid)).Return(tickets);
+            iticket.Stub(x => x.GetMainTicketByscId(scid)).Return(tickets);
 
             BLL.BLLTicket bllticket = new BLL.BLLTicket();
             bllticket.Iticket = iticket;

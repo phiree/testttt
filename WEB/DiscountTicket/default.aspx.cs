@@ -10,6 +10,7 @@ using BLL.SEO;
 using System.Configuration;
 using System.Web.UI.HtmlControls;
 using System.Text.RegularExpressions;
+using DAL.Adodal;
 
 
 public partial class DiscountTicket_DiscountTicket : basepage
@@ -21,6 +22,8 @@ public partial class DiscountTicket_DiscountTicket : basepage
     BLLTopic blltopic = new BLLTopic();
     BLLArea bllArea = new BLLArea();
     BLLScenicImg bllSI = new BLLScenicImg();
+
+    AdoTopic adotopic = new AdoTopic();
     #endregion
 
     #region seo链接设置
@@ -57,7 +60,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         {
             topicname = topicname.TrimEnd('/');
             topicname = topicname.Substring(2);
-            topic = blltopic.GetTopicBySeoname(topicname);
+            topic = adotopic.GetTopicBySeoname(topicname);
         }
         if (levelname != null)
         {

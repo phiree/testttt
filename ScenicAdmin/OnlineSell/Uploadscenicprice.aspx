@@ -24,7 +24,8 @@
             请选择上传的文件：<asp:FileUpload ID="fuwj" runat="server" />
         </div>
         <div class="udinfo" style="margin-bottom: 20px">
-            <asp:Button ID="btnok" runat="server" OnClick="btnok_Click" CssClass="btnudok" style="vertical-align:middle" /><a runat="server" id="gopay" style="margin-left:400px; vertical-align:middle; cursor:pointer;" onclick="btnchange()">去申请</a>
+            <asp:Button ID="btnok" runat="server" OnClick="btnok_Click" CssClass="btnudok" style="vertical-align:middle" />
+            <a runat="server" id="gopay" style="margin-left:400px; vertical-align:middle; cursor:pointer;" onclick="btnchange()">去申请</a>
         </div>
     </div>
     <div style="display:none">
