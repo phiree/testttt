@@ -86,7 +86,7 @@
                         <Items>
                             <ext:Grid runat="server" ID="gridPartner" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="True"
                                 EnableRowNumber="true" ForceFitAllTime="true" Height="500px" CssStyle="margin-top:-28px"
-                                DataKeyNames="Id"  OnRowCommand="gridPartner_RowCommand">
+                                DataKeyNames="Id" OnRowCommand="gridPartner_RowCommand">
                                 <Toolbars>
                                     <ext:Toolbar runat="server">
                                         <Items>
@@ -99,10 +99,11 @@
                                     <ext:BoundField DataField="Name" HeaderText="供应商名称" Width="300px" />
                                     <ext:BoundField DataField="PartnerCode" HeaderText="编号" Width="300px" />
                                     <ext:WindowField Width="200px" WindowID="winPartner" HeaderText="编辑" Icon="Pencil"
-                                        ToolTip="编辑" DataTextFormatString="{0},{1}" DataIFrameUrlFields="Id,TourActivity.Id" DataIFrameUrlFormatString="Partner_iframe_window.aspx?paId={0}&actId={1}"
-                                        DataWindowTitleField="Name" DataWindowTitleFormatString="编辑 - {0}" />
-                                    <ext:LinkButtonField CommandName="delete" HeaderText="删除" Width="200px"
-                                        ConfirmTarget="Top" ConfirmTitle="警告" ConfirmText="删除供应商会删除该供应商的门票分配！" Icon="Delete" />
+                                        ToolTip="编辑" DataTextFormatString="{0},{1}" DataIFrameUrlFields="Id,TourActivity.Id"
+                                        DataIFrameUrlFormatString="Partner_iframe_window.aspx?paId={0}&actId={1}" DataWindowTitleField="Name"
+                                        DataWindowTitleFormatString="编辑 - {0}" />
+                                    <ext:LinkButtonField CommandName="delete" HeaderText="删除" Width="200px" ConfirmTarget="Top"
+                                        ConfirmTitle="警告" ConfirmText="删除供应商会删除该供应商的门票分配！" Icon="Delete" />
                                 </Columns>
                             </ext:Grid>
                         </Items>
@@ -110,25 +111,39 @@
                     <ext:Tab ID="Tab3" Title="门票列表" Layout="Container" Icon="None" runat="server" EnableBackgroundColor="true">
                         <Items>
                             <ext:Form ID="Form2" runat="server" EnableBackgroundColor="true" ShowHeader="false"
-                                ShowBorder="false" LabelWidth="100px" Title="Form" BodyStyle="padding:20px 20px 20px 20px;" Width="600px">
+                                ShowBorder="false" LabelWidth="100px" Title="Form" BodyStyle="padding:20px 20px 20px 20px;"
+                                >
                                 <Rows>
                                     <ext:FormRow runat="server">
                                         <Items>
                                             <ext:TriggerBox runat="server" ID="txtTicketId" Label="门票名称" ShowLabel="true" TriggerIcon="Search"
-                                                 OnTriggerClick="txtTicketId_TriggerClick">
+                                                OnTriggerClick="txtTicketId_TriggerClick">
                                             </ext:TriggerBox>
                                         </Items>
                                         <Items>
-                                            <ext:Button runat="server" ID="btnAdd" OnClick="btnAdd_Click" Text="添加"></ext:Button>
+                                            <ext:Button runat="server" ID="btnAdd" OnClick="btnAdd_Click" Text="添加">
+                                            </ext:Button>
                                         </Items>
                                     </ext:FormRow>
                                 </Rows>
                             </ext:Form>
-                            <ext:Grid runat="server" ID="gridTicket" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="True"
-                                EnableRowNumber="true" ForceFitAllTime="true" Height="500px" CssStyle="margin-top:-28px"
-                                DataKeyNames="Id"  OnRowCommand="gridPartner_RowCommand">
-                            
-                            </ext:Grid>
+                            <ext:Panel ID="Panel1" runat="server" EnableBackgroundColor="true" Layout="Container"
+                                ShowBorder="false" ShowHeader="false" Title="Panel" AutoScroll="true">
+                                <Items>
+                                    <ext:Grid runat="server" ID="gridTicket" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="True"
+                                        EnableRowNumber="true" ForceFitAllTime="true" Height="450px" AllowPaging="true"
+                                        DataKeyNames="Id" OnRowCommand="gridPartner_RowCommand">
+                                        <Columns>
+                                            <ext:BoundField DataField="Scenic.Name" HeaderText="门票所属单位" />
+                                            <ext:BoundField DataField="Name" HeaderText="门票名称" />
+                                            <ext:BoundField DataField="ProductCode" HeaderText="门票编号" />
+                                            <ext:BoundField DataField="BeginDate"  DataFormatString="{0:yyyy-MM-dd}" HeaderText="门票起始时间" />
+                                            <ext:BoundField DataField="EndDate" DataFormatString="{0:yyyy-MM-dd}" HeaderText="门票结束时间" />
+                                            <ext:LinkButtonField CommandName="edit" Icon="Pencil" HeaderText="操作" />
+                                        </Columns>
+                                    </ext:Grid>
+                                </Items>
+                            </ext:Panel>
                         </Items>
                     </ext:Tab>
                 </Tabs>
@@ -138,5 +153,9 @@
     <ext:Window ID="winPartner" Title="景区单位选择" EnableIFrame="true" runat="server" CloseAction="HidePostBack"
         EnableConfirmOnClose="true" IFrameUrl="about:blank" EnableMaximize="false" EnableResize="true"
         Target="Top" Hidden="true" IsModal="True" Width="450px" Height="160px" OnClose="winPartner_Close">
+    </ext:Window>
+    <ext:Window ID="winTicket" Title="门票选择" EnableIFrame="true" runat="server" CloseAction="HidePostBack"
+        EnableConfirmOnClose="true" IFrameUrl="/ActivityManager/Ticket_iframe_window.aspx" EnableMaximize="false" EnableResize="true"
+        Target="Top" Hidden="true" IsModal="True" Width="560px" Height="416px" OnClose="winTicket_Close">
     </ext:Window>
 </asp:Content>

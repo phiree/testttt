@@ -70,10 +70,11 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
             //ckUseBlackList.Checked = ta.AreasUseBlackList;
             //cbxNeedCheckArea.Checked = ta.NeedCheckArea;
             bindPartnerList();
-
+            bindTicket();
         }
         btnAddPartner.OnClientClick = winPartner.GetShowReference("/ActivityManager/Partner_iframe_window.aspx?actId=" + Request.QueryString["actId"], "新增");
         winPartner.OnClientCloseButtonClick = winPartner.GetHidePostBackReference();
+        winTicket.OnClientCloseButtonClick = winTicket.GetHidePostBackReference();
     }
 
     private void bindPartnerList()
@@ -109,11 +110,23 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
 
     protected void txtTicketId_TriggerClick(object sender, EventArgs e)
     {
-
+        if (Session["OwnerTicket"]==null)
+        Session["OwnerTicket"] = "";
+        winTicket.Hidden = false;
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
 
+    }
+
+    private void bindTicket()
+    {
+        gridTicket.DataSource = ta.Tickets;
+        gridTicket.DataBind();
+    }
+    protected void winTicket_Close(object sender, EventArgs e)
+    {
+        txtTicketId.Text = Session["OwnerTicket"].ToString().Split(',')[2] + "-" + Session["OwnerTicket"].ToString().Split(',')[1];
     }
 }

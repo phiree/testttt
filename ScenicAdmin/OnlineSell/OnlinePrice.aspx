@@ -18,7 +18,7 @@
                 var a = $("<tr><td><input type='text' style='width:100px' /></td><td><input type='text' style='width: 60px' /></td><td><input type='text' style='width: 60px' />" +
                                                 "</td><td><input type='text' style='width: 60px' /></td><td><input class='sxjsj' type='text' style='width: 70px' name='name' value=' ' /></td>" +
                                                 "<td><input class='sxjsj' type='text' style='width: 70px' name='name' value=' ' /></td><td><input type='hidden' /><input type='hidden' />" +
-                                                "<a onclick='delrow(this)'>删除</a></td></tr>");
+                                                "<a onclick='delrow(this)' style='cursor:pointer'>删除</a></td></tr>");
                 a.appendTo(tbody);
                 calldatepicker();
             });
@@ -94,9 +94,9 @@
             景区门票信息</a>&nbsp;>&nbsp;修改景区价格</p>
     <hr />
     <div id="updateprice">
-        <div class="paystate">
+        <%--<div class="paystate">
             <a href="/onlinesell/OnlinePrice.aspx" class="nowstate">填写景区价格</a>><a>打印价格表</a>><a>上传盖章后价格表</a>><a>申请</a>
-        </div>
+        </div>--%>
         <div class="priceintroduction">
             门票价格介绍
             <ul>
@@ -128,7 +128,7 @@
                         下架时间
                     </td>
                     <td>
-                        <a id="addrow">添加</a>
+                        <a id="addrow" style="cursor:pointer">添加</a>
                     </td>
                 </tr>
             </thead>
@@ -157,7 +157,7 @@
                             <td>
                                 <input type="hidden" value='<%# Eval("Id") %>' />
                                 <input type="hidden" value='<%# Eval("Scenic.Id") %>' />
-                                <a onclick='delrow(this)'>删除</a>
+                                <a onclick='delrow(this)' style="cursor:pointer">删除</a>
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -166,7 +166,7 @@
         </table>
         <input type="button" name="name" class="btnokprice" onclick="calc()" style="margin-left: 30px;
             vertical-align: middle;" /><a style="vertical-align: middle;
-                margin-left: 430px" onclick="btnchange()">进入下一步</a>
+                margin-left: 430px; cursor:pointer" onclick="btnchange()">进入下一步</a>
         <input type="hidden" id="hidden_scid" runat="server" />
     </div>
     <div style="display:none">
