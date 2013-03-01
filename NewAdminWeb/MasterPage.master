@@ -10,7 +10,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <ext:PageManager ID="pmMain" runat="server" AutoSizePanelID="PanelForm" />
+        <ext:PageManager ID="pmMain" runat="server" AutoSizePanelID="PanelForm"/>
         <asp:ContentPlaceHolder id="cpmain" runat="server">
         
         </asp:ContentPlaceHolder>

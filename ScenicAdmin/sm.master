@@ -18,10 +18,10 @@
             $(".nav li a").HighLightLink();
             //对class为enable的按钮禁用
             //$(".enable").attr("disabled", "disabled");
-            $(".enable").click(function () {
-                alert("对不起，活动时间内暂时无法使用此功能");
-                return false;
-            });
+//            $(".enable").click(function () {
+//                alert("对不起，活动时间内暂时无法使用此功能");
+//                return false;
+//            });
 
         });
     </script>
@@ -69,11 +69,11 @@
                     <li><a href="/WorderAdd.aspx">增加工作人员</a></li>
                 </div>
                 <div id="accountBlock" runat="server">
-                 <%--   <li><span>账目管理</span></li>
+                    <li><span>账目管理</span></li>
                     <li><a href="/BillUnPaid.aspx">售票查询</a></li>
                     <li><a href="/StatisInfo.aspx">账单管理</a></li>
 
-                    <li><a href="/GroupTestatistics.aspx">团队信息统计</a></li>--%>
+                   <%-- <li><a href="/GroupTestatistics.aspx">团队信息统计</a></li>--%>
                 </div>
                   <div id="dvReport" runat="server">
                  <li><span>报表</span></li>

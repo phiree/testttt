@@ -1,21 +1,17 @@
-2013-02-17 11:16:16,119 [8] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\tourl\ScenicAdmin\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
-
- ---> System.Data.SqlClient.SqlException: 无法打开登录所请求的数据库 "tourol0204"。登录失败。
-用户 'IIS APPPOOL\ScenicAdmin' 登录失败。
-   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
-   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
-   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
-   在 System.Data.SqlClient.SqlConnection.Open()
-   在 NHibernate.Connection.DriverConnectionProvider.GetConnection() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Connection\DriverConnectionProvider.cs:行号 46
-   在 NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SuppliedConnectionProviderConnectionHelper.cs:行号 25
-   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 43
-   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 17
-   在 NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionFactoryImpl.cs:行号 169
-   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1246
-   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
-   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 60
+2013-02-28 15:07:16,653 [5] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\tourl\ScenicAdmin\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> System.Configuration.ConfigurationErrorsException: 无法打开 configSource 文件“config\connectionStrings.config”。 (E:\tourl\ScenicAdmin\web.config line 15)
+   在 System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   在 System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   在 System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   在 System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   在 System.Web.HttpContext.GetSection(String sectionName)
+   在 System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName)
+   在 System.Web.Configuration.HttpConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String configKey)
+   在 System.Configuration.ConfigurationManager.GetSection(String sectionName)
+   在 System.Configuration.ConfigurationManager.get_ConnectionStrings()
+   在 FluentNHibernate.Cfg.Db.ConnectionStringBuilder.FromConnectionStringWithKey(String connectionStringKey) 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\Db\ConnectionStringBuilder.cs:行号 18
+   在 DAL.HybridSessionBuilder.<getSessionFactory>b__0(MsSqlConnectionStringBuilder s) 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 55
+   在 FluentNHibernate.Cfg.Db.PersistenceConfiguration`2.ConnectionString(Action`1 connectionStringExpression) 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\Db\PersistenceConfiguration.cs:行号 265
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 55
    在 DAL.HybridSessionBuilder.GetSession() 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 25
    在 DAL.DALMembership..ctor() 位置 E:\tourl\DAL\DALMembership.cs:行号 11
    在 DAL.DalBase..ctor() 位置 E:\tourl\DAL\DalBase.cs:行号 13
@@ -33,24 +29,20 @@
    在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
    在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-2013-02-17 11:16:16,317 [8] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\tourl\ScenicAdmin\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> FluentNHibernate.Cfg.FluentConfigurationException: An invalid or incomplete configuration was used while creating a SessionFactory. Check PotentialReasons collection, and InnerException for more detail.
-
- ---> System.Data.SqlClient.SqlException: 无法打开登录所请求的数据库 "tourol0204"。登录失败。
-用户 'IIS APPPOOL\ScenicAdmin' 登录失败。
-   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
-   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
-   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
-   在 System.Data.SqlClient.SqlConnection.Open()
-   在 NHibernate.Connection.DriverConnectionProvider.GetConnection() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Connection\DriverConnectionProvider.cs:行号 46
-   在 NHibernate.Tool.hbm2ddl.SuppliedConnectionProviderConnectionHelper.Prepare() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SuppliedConnectionProviderConnectionHelper.cs:行号 25
-   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.GetReservedWords(Dialect dialect, IConnectionHelper connectionHelper) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 43
-   在 NHibernate.Tool.hbm2ddl.SchemaMetadataUpdater.Update(ISessionFactory sessionFactory) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Tool\hbm2ddl\SchemaMetadataUpdater.cs:行号 17
-   在 NHibernate.Impl.SessionFactoryImpl..ctor(Configuration cfg, IMapping mapping, Settings settings, EventListeners listeners) 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionFactoryImpl.cs:行号 169
-   在 NHibernate.Cfg.Configuration.BuildSessionFactory() 位置 d:\CSharp\NH\NH\nhibernate\src\NHibernate\Cfg\Configuration.cs:行号 1246
-   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 227
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 FluentNHibernate.Cfg.FluentConfiguration.BuildSessionFactory() 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\FluentConfiguration.cs:行号 232
-   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 60
+2013-02-28 15:07:17,030 [5] ERROR ErrorLogger [(null)] - System.Configuration.ConfigurationErrorsException: 调用的目标发生了异常。 (E:\tourl\ScenicAdmin\config\roleManager.config line 6) ---> System.Reflection.TargetInvocationException: 调用的目标发生了异常。 ---> System.Configuration.ConfigurationErrorsException: 无法打开 configSource 文件“config\connectionStrings.config”。 (E:\tourl\ScenicAdmin\web.config line 15)
+   在 System.Configuration.BaseConfigurationRecord.EvaluateOne(String[] keys, SectionInput input, Boolean isTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult)
+   在 System.Configuration.BaseConfigurationRecord.Evaluate(FactoryRecord factoryRecord, SectionRecord sectionRecord, Object parentResult, Boolean getLkg, Boolean getRuntimeObject, Object& result, Object& resultRuntimeObject)
+   在 System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object& result, Object& resultRuntimeObject)
+   在 System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   在 System.Web.HttpContext.GetSection(String sectionName)
+   在 System.Web.Configuration.HttpConfigurationSystem.GetSection(String sectionName)
+   在 System.Web.Configuration.HttpConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String configKey)
+   在 System.Configuration.ConfigurationManager.GetSection(String sectionName)
+   在 System.Configuration.ConfigurationManager.get_ConnectionStrings()
+   在 FluentNHibernate.Cfg.Db.ConnectionStringBuilder.FromConnectionStringWithKey(String connectionStringKey) 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\Db\ConnectionStringBuilder.cs:行号 18
+   在 DAL.HybridSessionBuilder.<getSessionFactory>b__0(MsSqlConnectionStringBuilder s) 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 55
+   在 FluentNHibernate.Cfg.Db.PersistenceConfiguration`2.ConnectionString(Action`1 connectionStringExpression) 位置 d:\Builds\FluentNH-v1.x-nh3\src\FluentNHibernate\Cfg\Db\PersistenceConfiguration.cs:行号 265
+   在 DAL.HybridSessionBuilder.getSessionFactory() 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 55
    在 DAL.HybridSessionBuilder.GetSession() 位置 E:\tourl\DAL\HybridSessionBuilder.cs:行号 25
    在 DAL.DALMembership..ctor() 位置 E:\tourl\DAL\DALMembership.cs:行号 11
    在 DAL.DalBase..ctor() 位置 E:\tourl\DAL\DalBase.cs:行号 13
@@ -67,4 +59,64 @@
    在 System.Web.Security.Roles.Initialize()
    在 System.Web.Security.RoleManagerModule.OnEnter(Object source, EventArgs eventArgs)
    在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-02-28 15:33:52,346 [18] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.IO.DirectoryNotFoundException: 未能找到路径“E:\tourl\ScenicAdmin\ScenicImg\mainimg\724e6718-0c8b-4871-b85c-9585d9828ed8.jpg”的一部分。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite)
+   在 System.IO.File.Copy(String sourceFileName, String destFileName)
+   在 ScenicManager_UpdateScenicImg.btnok_Click(Object sender, EventArgs e) 位置 e:\tourl\ScenicAdmin\UpdateScenicImg.aspx.cs:行号 106
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.updatescenicimg_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\2d7b3c8d\3ad7a5c8\App_Web_5qvhr34a.14.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-02-28 15:51:37,622 [11] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.IO.DirectoryNotFoundException: 未能找到路径“E:\tourl\ScenicAdmin\ScenicImg\mainimg\52aa0720-ec08-4316-a4c8-10749ae281e6.jpg”的一部分。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite)
+   在 System.IO.File.Copy(String sourceFileName, String destFileName)
+   在 ScenicManager_UpdateScenicImg.btnok_Click(Object sender, EventArgs e) 位置 e:\tourl\ScenicAdmin\UpdateScenicImg.aspx.cs:行号 106
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.updatescenicimg_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\2d7b3c8d\3ad7a5c8\App_Web_5qvhr34a.14.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2013-02-28 15:57:47,444 [5] ERROR ErrorLogger [(null)] - System.Web.HttpUnhandledException (0x80004005): 引发类型为“System.Web.HttpUnhandledException”的异常。 ---> System.IO.DirectoryNotFoundException: 未能找到路径“E:\tourl\AdminWeb\Manager\d\scenicImg\mainimg\35909bd0-6307-4cd7-83e5-e6f9678203c8.jpg”的一部分。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite)
+   在 System.IO.File.Copy(String sourceFileName, String destFileName)
+   在 ScenicManager_UpdateScenicImg.btnok_Click(Object sender, EventArgs e) 位置 e:\tourl\ScenicAdmin\UpdateScenicImg.aspx.cs:行号 106
+   在 System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   在 System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   在 System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.HandleError(Exception e)
+   在 System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   在 System.Web.UI.Page.ProcessRequest()
+   在 System.Web.UI.Page.ProcessRequestWithNoAssert(HttpContext context)
+   在 System.Web.UI.Page.ProcessRequest(HttpContext context)
+   在 ASP.updatescenicimg_aspx.ProcessRequest(HttpContext context) 位置 c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\2d7b3c8d\3ad7a5c8\App_Web_5qvhr34a.14.cs:行号 0
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
