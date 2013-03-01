@@ -13,7 +13,7 @@ public partial class _Site : System.Web.UI.MasterPage
     public string dptId_dptdetai = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
-       // bind();
+        //bind();
     }
 
     private void bind()

@@ -1,0 +1,19 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Tourol.cn后台管理系统</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <ext:PageManager ID="pmMain" runat="server" AutoSizePanelID="PanelForm" />
+        <asp:ContentPlaceHolder id="cpmain" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
