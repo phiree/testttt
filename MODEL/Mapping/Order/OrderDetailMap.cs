@@ -17,6 +17,7 @@ namespace Model.Mapping
             References<TicketPrice>(x => x.TicketPrice);
             References<Model.Order>(x => x.Order);
             Map(x => x.Remark);
+            Map(x => x.Price);
             HasMany<TicketAssign>(x => x.TicketAssignList).Cascade.All();
             References<OrderDetail>(x => x.OrderDetailForUnionTicket);
             /*   HasMany<OrderDetail>(x => x.ChildTicketDetail).KeyColumn("pid").Cascade.AllDeleteOrphan()

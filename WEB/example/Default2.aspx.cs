@@ -8,6 +8,7 @@ using CommonLibrary;
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
+using BLL;
 
 public partial class example_Default2 : System.Web.UI.Page
 {
@@ -28,4 +29,9 @@ public partial class example_Default2 : System.Web.UI.Page
 
 
 
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        BLLTicket bllticket = new BLLTicket();
+        Label1.Text= bllticket.BuyTicket(null, 1, "微博送票参与者", txtIdcard.Text, "", 1);
+    }
 }

@@ -299,6 +299,54 @@ namespace BLL
           return Iticket.GetListByMultitTicketCode(ticketCodes);
         }
 
+        /// <summary>
+        /// 买普通票流程
+        /// </summary>
+        /// <param name="member"></param>
+        /// <param name="TicketId"></param>
+        /// <param name="idcardno"></param>
+        /// <param name="phone"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public string BuyTicket(TourMembership member, int TicketPriceId,string realName, string idcardno, string phone, int amount)
+        {
+            BLLMembership bllMembership = new BLLMembership();
+            string returnMsg = "T";
+            //身份证号码验证
+            string checkIdCardNoErrMsg;
+            bool idcardnoValid = CommonLibrary.StringHelper.CheckIDCard(idcardno, out checkIdCardNoErrMsg);
+            if (!idcardnoValid)
+            {
+                return "F|" + checkIdCardNoErrMsg;
+            }
+            if (member == null)
+            {
+                member = bllMembership.GetMember(idcardno);
+
+                if (member == null)
+                {
+                    //创建用户
+                    member = bllMembership.CreateUser2(realName, phone, string.Empty, idcardno, idcardno, "123456", string.Empty);
+                }
+            }
+            //生成order
+            Order order = new Order();
+            order.BuyTime = DateTime.Now;
+            order.IsPaid = false;
+            order.TourMembership = member;
+            new BLLOrder().Save(order);
+            //生成orderdetail
+            TicketPrice tp= new BLLTicketPrice().GetOne(TicketPriceId);
+            OrderDetail od = new OrderDetail(1, tp, "");
+            od.Price = tp.Price;
+            od.Order = order;
+            new BLLOrderDetail().Save(od);
+            //生成ticketAssign
+            TicketAssign ta = new TicketAssign(realName, idcardno, od, amount);
+            new BLLTicketAssign().Save(ta);
+            return returnMsg;
+        }
+
     }
 
     public class CartItem
