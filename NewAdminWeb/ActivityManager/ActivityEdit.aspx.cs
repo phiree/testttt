@@ -13,7 +13,9 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
     BLLTourActivity bllTourActivity = new BLLTourActivity();
     BLLActivityPartner bllAp = new BLLActivityPartner();
     BLLActivityTicketAssign BLLAta = new BLLActivityTicketAssign();
+    BLLTicket bllTicket = new BLLTicket();
     TourActivity ta;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         
@@ -28,7 +30,7 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
-            bindDate();
+            bindData();
         }
     }
 
@@ -51,7 +53,7 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
         Alert.ShowInTop("编辑成功", "信息", "window.location='" + returnUrl + "'");
     }
 
-    private void bindDate()
+    private void bindData()
     {
         if (Request.QueryString["actId"] != null)
         {
@@ -71,10 +73,12 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
             //cbxNeedCheckArea.Checked = ta.NeedCheckArea;
             bindPartnerList();
             bindTicket();
+            bindTaDate();
         }
         btnAddPartner.OnClientClick = winPartner.GetShowReference("/ActivityManager/Partner_iframe_window.aspx?actId=" + Request.QueryString["actId"], "新增");
         winPartner.OnClientCloseButtonClick = winPartner.GetHidePostBackReference();
         winTicket.OnClientCloseButtonClick = winTicket.GetHidePostBackReference();
+        winTicketEdit.OnClientCloseButtonClick = winTicketEdit.GetHidePostBackReference();
     }
 
     private void bindPartnerList()
@@ -110,14 +114,32 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
 
     protected void txtTicketId_TriggerClick(object sender, EventArgs e)
     {
-        if (Session["OwnerTicket"]==null)
+        //if (Session["OwnerTicket"]==null)
         Session["OwnerTicket"] = "";
         winTicket.Hidden = false;
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-
+        if (txtTicketId.Text == "" || Session["OwnerTicket"] == "" || Session["OwnerTicket"] == null)
+        {
+            Alert.ShowInTop("请选择一个门票");
+        }
+        else
+        {
+            int ticketId = int.Parse(Session["OwnerTicket"].ToString().Split(',')[0]);
+            if (ta.Tickets.Where(x => x.Id == ticketId).Count() > 0)
+            {
+                Alert.ShowInTop("该门票已经在该活动之内！", MessageBoxIcon.Information);
+            }
+            else
+            {
+                Ticket t = bllTicket.GetTicket(ticketId);
+                t.TourActivity = ta;
+                bllTicket.SaveOrUpdateTicket(t);
+                bindTicket();
+            }
+        }
     }
 
     private void bindTicket()
@@ -125,8 +147,46 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
         gridTicket.DataSource = ta.Tickets;
         gridTicket.DataBind();
     }
+    private void bindTaDate()
+    {
+        DateTime beginDate = ta.BeginDate;
+        DateTime endDate = ta.EndDate;
+        List<DateTime> listDate = new List<DateTime>();
+        for (int i = 0; beginDate.AddDays(i) <= endDate; i++)
+        {
+            listDate.Add(beginDate.AddDays(i));
+        }
+        gridDate.DataSource = listDate;
+        gridDate.DataBind();
+    }
+    protected void gridDate_RowClick(object sender, FineUI.GridRowClickEventArgs e)
+    {
+        
+    }
     protected void winTicket_Close(object sender, EventArgs e)
     {
-        txtTicketId.Text = Session["OwnerTicket"].ToString().Split(',')[2] + "-" + Session["OwnerTicket"].ToString().Split(',')[1];
+        if (Session["OwnerTicket"]!="")
+            txtTicketId.Text = Session["OwnerTicket"].ToString().Split(',')[2] + "-" + Session["OwnerTicket"].ToString().Split(',')[1];
+    }
+    protected void winTicketEdit_Close(object sender, EventArgs e)
+    {
+        bindTicket();
+    }
+
+    protected void gridTicket_RowCommand(object sender, FineUI.GridCommandEventArgs e)
+    {
+        if (e.CommandName == "delete")
+        {
+            int tickedId = int.Parse(gridTicket.DataKeys[e.RowIndex][0].ToString());
+            List<ActivityTicketAssign> listAta = ta.ActivityTicketAssign.Where(x => x.Ticket.Id == tickedId).ToList();
+            foreach (var item in listAta)
+            {
+                BLLAta.Delete(item);
+            }
+            Ticket t=bllTicket.GetOne(tickedId);
+            t.TourActivity = null;
+            bllTicket.SaveOrUpdate(t);
+            bindTicket();
+        }
     }
 }

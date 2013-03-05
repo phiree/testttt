@@ -7,7 +7,7 @@ using IDAL;
 
 namespace BLL
 {
-    public class BLLTicketPrice
+    public class BLLTicketPrice:BLLBase<Model.TicketPrice>
     {
         DALTicketPrice iticketprice;
 

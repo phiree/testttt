@@ -20,7 +20,6 @@ namespace Model
             this.TicketCode = detail.TicketPrice.Ticket.ProductCode;
         }
         public virtual Guid Id { get; set; }
-        //用户姓名
         public virtual string Name { get; set; }
         public virtual string IdCard { get; set; }
         public virtual OrderDetail OrderDetail { get; set; }

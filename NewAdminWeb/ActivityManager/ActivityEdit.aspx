@@ -85,8 +85,8 @@
                     <ext:Tab ID="Tab2" Title="合作商列表" Layout="Container" Icon="None" runat="server" EnableBackgroundColor="true">
                         <Items>
                             <ext:Grid runat="server" ID="gridPartner" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="True"
-                                EnableRowNumber="true" ForceFitAllTime="true" Height="500px" CssStyle="margin-top:-28px"
-                                DataKeyNames="Id" OnRowCommand="gridPartner_RowCommand">
+                                EnableRowNumber="true" ForceFitAllTime="true" CssStyle="height:500px" DataKeyNames="Id"
+                                OnRowCommand="gridPartner_RowCommand">
                                 <Toolbars>
                                     <ext:Toolbar runat="server">
                                         <Items>
@@ -111,8 +111,7 @@
                     <ext:Tab ID="Tab3" Title="门票列表" Layout="Container" Icon="None" runat="server" EnableBackgroundColor="true">
                         <Items>
                             <ext:Form ID="Form2" runat="server" EnableBackgroundColor="true" ShowHeader="false"
-                                ShowBorder="false" LabelWidth="100px" Title="Form" BodyStyle="padding:20px 20px 20px 20px;"
-                                >
+                                ShowBorder="false" LabelWidth="100px" Title="Form" BodyStyle="padding:20px 20px 20px 20px;">
                                 <Rows>
                                     <ext:FormRow runat="server">
                                         <Items>
@@ -132,18 +131,47 @@
                                 <Items>
                                     <ext:Grid runat="server" ID="gridTicket" ShowBorder="true" ShowHeader="false" EnableCheckBoxSelect="True"
                                         EnableRowNumber="true" ForceFitAllTime="true" Height="450px" AllowPaging="true"
-                                        DataKeyNames="Id" OnRowCommand="gridPartner_RowCommand">
+                                        PageSize="9999" DataKeyNames="Id" OnRowCommand="gridTicket_RowCommand">
                                         <Columns>
                                             <ext:BoundField DataField="Scenic.Name" HeaderText="门票所属单位" />
                                             <ext:BoundField DataField="Name" HeaderText="门票名称" />
                                             <ext:BoundField DataField="ProductCode" HeaderText="门票编号" />
-                                            <ext:BoundField DataField="BeginDate"  DataFormatString="{0:yyyy-MM-dd}" HeaderText="门票起始时间" />
+                                            <ext:BoundField DataField="BeginDate" DataFormatString="{0:yyyy-MM-dd}" HeaderText="门票起始时间" />
                                             <ext:BoundField DataField="EndDate" DataFormatString="{0:yyyy-MM-dd}" HeaderText="门票结束时间" />
-                                            <ext:LinkButtonField CommandName="edit" Icon="Pencil" HeaderText="操作" />
+                                            <ext:WindowField WindowID="winTicketEdit" HeaderText="编辑" Icon="Pencil" ToolTip="编辑"
+                                                DataTextFormatString="{0}" DataIFrameUrlFields="Id" DataIFrameUrlFormatString="TicketEdit_iframe_window.aspx?Id={0}"
+                                                DataWindowTitleField="Name" DataWindowTitleFormatString="编辑 - {0}" />
+                                            <ext:LinkButtonField CommandName="delete" HeaderText="删除" ConfirmTarget="Top" ConfirmTitle="警告"
+                                                ConfirmText="删除门票会删除该门票的门票分配！" Icon="Delete" />
                                         </Columns>
                                     </ext:Grid>
                                 </Items>
                             </ext:Panel>
+                        </Items>
+                    </ext:Tab>
+                    <ext:Tab ID="Tab4" Title="门票分配列表" Layout="Fit" Icon="None" runat="server" EnableBackgroundColor="true">
+                        <Items>
+                            <ext:RegionPanel ID="RegionPanel1" runat="server" ShowBorder="false" AutoScroll="true">
+                                <Regions>
+                                    <ext:Region ID="Region1" runat="server" Position="Left" ShowHeader="true" Split="true" Layout="Form"
+                                        EnableCollapse="true" EnableSplitTip="true" CollapseMode="Mini" Title="活动日期"  Height="450px" AutoScroll="true"
+                                        Width="150px" EnableBackgroundColor="true">
+                                        <Items>
+                                            <ext:Grid ID="gridDate" runat="server" EnableCheckBoxSelect="false" EnableRowNumber="true"
+                                                ShowHeader="false" ForceFitAllTime="true" EnableRowClick="true"
+                                                Title="Grid" ClearSelectedRowsAfterPaging="false" OnRowClick="gridDate_RowClick">
+                                                <Columns>
+                                                    <ext:TemplateField HeaderText="时间">
+                                                        <ItemTemplate>
+                                                            <span><%# DateTime.Parse((Container.DataItem).ToString()).ToString("yyyy-MM-dd") %></span>
+                                                        </ItemTemplate>
+                                                    </ext:TemplateField>
+                                                </Columns>
+                                            </ext:Grid>
+                                        </Items>
+                                    </ext:Region>
+                                </Regions>
+                            </ext:RegionPanel>
                         </Items>
                     </ext:Tab>
                 </Tabs>
@@ -155,7 +183,12 @@
         Target="Top" Hidden="true" IsModal="True" Width="450px" Height="160px" OnClose="winPartner_Close">
     </ext:Window>
     <ext:Window ID="winTicket" Title="门票选择" EnableIFrame="true" runat="server" CloseAction="HidePostBack"
-        EnableConfirmOnClose="true" IFrameUrl="/ActivityManager/Ticket_iframe_window.aspx" EnableMaximize="false" EnableResize="true"
-        Target="Top" Hidden="true" IsModal="True" Width="560px" Height="416px" OnClose="winTicket_Close">
+        EnableConfirmOnClose="true" IFrameUrl="/ActivityManager/Ticket_iframe_window.aspx"
+        EnableMaximize="false" EnableResize="true" Target="Top" Hidden="true" IsModal="True"
+        Width="560px" Height="416px" OnClose="winTicket_Close">
+    </ext:Window>
+    <ext:Window ID="winTicketEdit" Title="门票编辑" EnableIFrame="true" runat="server" CloseAction="HidePostBack"
+        EnableConfirmOnClose="true" IFrameUrl="about:blank" EnableMaximize="false" EnableResize="true"
+        Target="Top" Hidden="true" IsModal="True" Width="450px" Height="240px" OnClose="winTicketEdit_Close">
     </ext:Window>
 </asp:Content>
