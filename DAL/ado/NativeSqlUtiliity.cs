@@ -14,7 +14,7 @@ namespace DAL.ado
         {
             if (string.IsNullOrEmpty(connectionString))
             {
-                this.conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TourOnline"].ConnectionString);
+                this.conn = new SqlConnection("Server=.\\sql2008;database=ttt;uid=sa;pwd=aa123");
             }
             else
             {
