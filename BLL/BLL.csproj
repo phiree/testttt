@@ -146,6 +146,8 @@
     <Compile Include="TourActivityBLL\BLLTourActivity.cs" />
     <Compile Include="TourolReport\IdcardNoReport.cs" />
     <Compile Include="UserService\BLLUserService.cs" />
+    <Compile Include="Web\BWLArea.cs" />
+    <Compile Include="Web\BWLTicket.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj">

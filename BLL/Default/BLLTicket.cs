@@ -332,7 +332,7 @@ namespace BLL
             //生成order
             Order order = new Order();
             order.BuyTime = DateTime.Now;
-            order.IsPaid = false;
+            order.IsPaid = true;
             order.TourMembership = member;
             new BLLOrder().Save(order);
             //生成orderdetail

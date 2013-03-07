@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Web.UI.HtmlControls;
 using System.Text.RegularExpressions;
 using DAL.Adodal;
+using BLL.Web;
 
 
 public partial class DiscountTicket_DiscountTicket : basepage
@@ -22,6 +23,8 @@ public partial class DiscountTicket_DiscountTicket : basepage
     BLLTopic blltopic = new BLLTopic();
     BLLArea bllArea = new BLLArea();
     BLLScenicImg bllSI = new BLLScenicImg();
+
+    BWLArea bwlarea = new BWLArea();
 
     AdoTopic adotopic = new AdoTopic();
     #endregion
@@ -78,10 +81,9 @@ public partial class DiscountTicket_DiscountTicket : basepage
     }
     private void GetAreaId()
     {
-        area = bllArea.GetAreaBySeoName(areaSeoName);
+        area = bwlarea.GetAreaBySeoName(areaSeoName);
         if (area != null)
         {
-
             areaId = area.Id;
         }
         else
@@ -90,7 +92,7 @@ public partial class DiscountTicket_DiscountTicket : basepage
         }
         if (countyname != null)
         {
-            areacounty = bllArea.GetAreaBySeoName(countyname);
+            areacounty = bwlarea.GetAreaBySeoName(countyname);
             areaId = areacounty.Id;
         }
     }
