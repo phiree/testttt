@@ -46,11 +46,11 @@ namespace DAL
             {
                 return new Model.Area(){
                     Id = int.Parse(result[0].ToString()),
-                    Name = result[0].ToString(),
-                    SeoName = result[0].ToString(),
-                    Code = result[0].ToString(),
-                    AreaOrder = int.Parse(result[0].ToString()),
-                    MetaDescription = result[0].ToString()
+                    Name = result[1].ToString(),
+                    SeoName = result[2].ToString(),
+                    Code = result[3].ToString(),
+                    AreaOrder = int.Parse(result[4].ToString()),
+                    MetaDescription = result[5].ToString()
                 };
             }
             else
