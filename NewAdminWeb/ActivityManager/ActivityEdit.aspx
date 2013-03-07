@@ -2,6 +2,16 @@
     CodeFile="ActivityEdit.aspx.cs" Inherits="ActivityManager_ActivityEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function updateAssign(obj) {
+              var id = $(obj).attr("commanArgument");
+              var ataCount = $(obj).parent().prev().children().val();
+              $.get("Assign.ashx?id=" + id + "&ataCount=" + ataCount + "", function () {
+                  Ext.Msg.alert("提示","更新成功");
+              });
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpmain" runat="Server">
     <ext:Panel ID="PanelForm" runat="server" EnableBackgroundColor="true" Layout="Fit"
@@ -153,20 +163,67 @@
                         <Items>
                             <ext:RegionPanel ID="RegionPanel1" runat="server" ShowBorder="false" AutoScroll="true">
                                 <Regions>
-                                    <ext:Region ID="Region1" runat="server" Position="Left" ShowHeader="true" Split="true" Layout="Form"
-                                        EnableCollapse="true" EnableSplitTip="true" CollapseMode="Mini" Title="活动日期"  Height="450px" AutoScroll="true"
-                                        Width="150px" EnableBackgroundColor="true">
+                                    <ext:Region ID="Region1" runat="server" Position="Left" ShowHeader="true" Split="true"
+                                        Layout="Form" EnableCollapse="true" EnableSplitTip="true" CollapseMode="Mini"
+                                        Title="活动日期" AutoScroll="true" Width="150px" EnableBackgroundColor="true">
                                         <Items>
                                             <ext:Grid ID="gridDate" runat="server" EnableCheckBoxSelect="false" EnableRowNumber="true"
-                                                ShowHeader="false" ForceFitAllTime="true" EnableRowClick="true"
-                                                Title="Grid" ClearSelectedRowsAfterPaging="false" OnRowClick="gridDate_RowClick">
+                                                ShowHeader="false" ForceFitAllTime="true" EnableRowClick="true" Title="Grid" EnableAjax="false"
+                                                  OnRowClick="gridDate_RowClick">
                                                 <Columns>
                                                     <ext:TemplateField HeaderText="时间">
                                                         <ItemTemplate>
-                                                            <span><%# DateTime.Parse((Container.DataItem).ToString()).ToString("yyyy-MM-dd") %></span>
+                                                            <span>
+                                                                <%# DateTime.Parse((Container.DataItem).ToString()).ToString("yyyy-MM-dd") %></span>
                                                         </ItemTemplate>
                                                     </ext:TemplateField>
                                                 </Columns>
+                                            </ext:Grid>
+                                        </Items>
+                                    </ext:Region>
+                                    <ext:Region ID="Region2" runat="server" Position="Center" ShowHeader="true" Title="具体分配情况"
+                                        EnableBackgroundColor="true" Layout="Form" AutoScroll="true">
+                                        <Items>
+                                            <ext:Grid ID="gridAssign" ShowBorder="true" ShowHeader="false" Height="470px"
+                                               runat="server" DataKeyNames="Id" ExpandAllRowExpanders="true"  EnableCheckBoxSelect="false" EnableRowNumber="true"
+                                                OnRowDataBound="gridAssign_RowDataBound">
+                                                <Columns>
+                                                    <ext:TemplateField RenderAsRowExpander="true" Width="550px">
+                                                        <ItemTemplate>
+                                                            <asp:Repeater runat="server" ID="rptAssign">
+                                                                <HeaderTemplate>
+                                                                    <table border="0" cellpadding="5" cellspacing="5" width="500px" style="margin-left:50px">
+                                                                        <tr>
+                                                                            <td>
+                                                                                供应商名称
+                                                                            </td>
+                                                                            <td>
+                                                                                分配票数
+                                                                            </td>
+                                                                        </tr>
+                                                                </HeaderTemplate>
+                                                                <ItemTemplate>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <%# Eval("Partner.Name")%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <asp:TextBox runat="server" ID="txtAssignCount" Text='<%# Eval("AssignedAmount") %>' />
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="button" name="name" value="更新" commanArgument='<%# Eval("Id") %>' onclick="updateAssign(this)" />
+                                                                        </td>
+                                                                    </tr>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    </table>
+                                                                </FooterTemplate>
+                                                            </asp:Repeater>
+                                                        </ItemTemplate>
+                                                    </ext:TemplateField>
+                                                    <ext:BoundField DataField="Ticket.Scenic.Name" HeaderText="景区" Width="500px" />
+                                                    <ext:BoundField DataField="Name" HeaderText="门票名称" Width="200px" />
+                                                </Columns>   
                                             </ext:Grid>
                                         </Items>
                                     </ext:Region>
@@ -175,6 +232,13 @@
                         </Items>
                     </ext:Tab>
                 </Tabs>
+                <Toolbars>
+                    <ext:Toolbar runat="server" Position="Footer" ID="toolFoot" >
+                        <Items>
+                            <ext:Button runat="server" Text="返回活动列表" ID="btnReturnList" Icon="HouseConnect" OnClick="btnReturnList_Click"></ext:Button>
+                        </Items>
+                    </ext:Toolbar>
+                </Toolbars>
             </ext:TabStrip>
         </Items>
     </ext:Panel>

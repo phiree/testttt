@@ -13,9 +13,9 @@
         <TreeNode Text="门票列表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
     </TreeNode>
     <TreeNode Text="活动管理" SingleClickExpand="true">
-        <TreeNode Text="活动门票" NavigateUrl="/TicketManager/TicketEdit.aspx?id=44"></TreeNode>
-        <TreeNode Text="新增活动" NavigateUrl="/ActivityManager/ActivityEdit.aspx?actId=25eb9489-e2e8-43c3-9083-a15a0122e506"></TreeNode>
-        <TreeNode Text="活动列表" NavigateUrl="/Dish/Dish.aspx"></TreeNode>
+        <TreeNode Text="活动门票" NavigateUrl="/TicketManager/TicketEdit.aspx"></TreeNode>
+        <TreeNode Text="新增活动" NavigateUrl="/ActivityManager/ActivityEdit.aspx"></TreeNode>
+        <TreeNode Text="活动列表" NavigateUrl="/ActivityManager/ActivityList.aspx"></TreeNode>
     </TreeNode>
     
     <TreeNode Text="系统管理" SingleClickExpand="true">

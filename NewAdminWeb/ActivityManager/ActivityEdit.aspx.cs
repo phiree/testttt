@@ -74,11 +74,22 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
             bindPartnerList();
             bindTicket();
             bindTaDate();
+            btnAddPartner.OnClientClick = winPartner.GetShowReference("/ActivityManager/Partner_iframe_window.aspx?actId=" + Request.QueryString["actId"], "新增");
+            winPartner.OnClientCloseButtonClick = winPartner.GetHidePostBackReference();
+            winTicket.OnClientCloseButtonClick = winTicket.GetHidePostBackReference();
+            winTicketEdit.OnClientCloseButtonClick = winTicketEdit.GetHidePostBackReference();
+            ActivityTabStrip.Tabs[1].Visible = true;
+            ActivityTabStrip.Tabs[2].Visible = true;
+            ActivityTabStrip.Tabs[3].Visible = true;
+            toolFoot.Hidden=false;
         }
-        btnAddPartner.OnClientClick = winPartner.GetShowReference("/ActivityManager/Partner_iframe_window.aspx?actId=" + Request.QueryString["actId"], "新增");
-        winPartner.OnClientCloseButtonClick = winPartner.GetHidePostBackReference();
-        winTicket.OnClientCloseButtonClick = winTicket.GetHidePostBackReference();
-        winTicketEdit.OnClientCloseButtonClick = winTicketEdit.GetHidePostBackReference();
+        else
+        {
+            ActivityTabStrip.Tabs[1].Visible = false;
+            ActivityTabStrip.Tabs[2].Visible = false;
+            ActivityTabStrip.Tabs[3].Visible = false;
+            toolFoot.Hidden=true;
+        }
     }
 
     private void bindPartnerList()
@@ -101,6 +112,11 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
     {
         if (e.CommandName == "delete")
         {
+            if (DateTime.Now >= ta.BeginDate)
+            {
+                Alert.ShowInTop("活动已经开始，不能删除该供应商");
+                return;
+            }
             Guid paId = Guid.Parse(gridPartner.DataKeys[e.RowIndex][0].ToString());
             List<ActivityTicketAssign> listAta= ta.ActivityTicketAssign.Where(x => x.Partner.Id == paId).ToList();
             foreach (var item in listAta)
@@ -137,7 +153,8 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
                 Ticket t = bllTicket.GetTicket(ticketId);
                 t.TourActivity = ta;
                 bllTicket.SaveOrUpdateTicket(t);
-                bindTicket();
+                ta.Tickets.Add(t);
+                bindTicket(); 
             }
         }
     }
@@ -156,12 +173,48 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
         {
             listDate.Add(beginDate.AddDays(i));
         }
+        SaveTicket(beginDate);
         gridDate.DataSource = listDate;
         gridDate.DataBind();
+        gridAssign.DataSource = ta.Tickets;
+        gridAssign.DataBind();
+        
     }
     protected void gridDate_RowClick(object sender, FineUI.GridRowClickEventArgs e)
     {
-        
+        DateTime beginDate = ta.BeginDate;
+        DateTime endDate = ta.EndDate;
+        List<DateTime> listDate = new List<DateTime>();
+        for (int i = 0; beginDate.AddDays(i) <= endDate; i++)
+        {
+            listDate.Add(beginDate.AddDays(i));
+        }
+        DateTime dt = listDate[e.RowIndex];
+        Region2.Title = dt.ToString("yyyy-MM-dd") + "分配情况";
+        SaveTicket(dt);
+        gridAssign.DataSource = ta.Tickets;
+        gridAssign.DataBind();
+
+    }
+
+    private void SaveTicket(DateTime dt)
+    {
+        foreach (var ticket in ta.Tickets)
+        {
+            foreach (var pa in ta.Partners)
+            {
+                if (ta.GetActivityAssignForPartnerTicketDate(pa.PartnerCode, ticket.ProductCode, dt) == null)
+                {
+                    ActivityTicketAssign ata = new ActivityTicketAssign();
+                    ata.DateAssign = dt;
+                    ata.Partner = pa;
+                    ata.Ticket = ticket;
+                    ata.TourActivity = ta;
+                    BLLAta.Save(ata);
+                    ta.ActivityTicketAssign.Add(ata);
+                }
+            }
+        }
     }
     protected void winTicket_Close(object sender, EventArgs e)
     {
@@ -177,6 +230,11 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
     {
         if (e.CommandName == "delete")
         {
+            if (DateTime.Now >= ta.BeginDate)
+            {
+                Alert.ShowInTop("活动已经开始，不能删除该门票");
+                return;
+            }
             int tickedId = int.Parse(gridTicket.DataKeys[e.RowIndex][0].ToString());
             List<ActivityTicketAssign> listAta = ta.ActivityTicketAssign.Where(x => x.Ticket.Id == tickedId).ToList();
             foreach (var item in listAta)
@@ -188,5 +246,29 @@ public partial class ActivityManager_ActivityEdit : System.Web.UI.Page
             bllTicket.SaveOrUpdate(t);
             bindTicket();
         }
+    }
+
+    protected void gridAssign_RowDataBound(object sender, FineUI.GridRowEventArgs e)
+    {
+        Ticket t = e.DataItem as Ticket;
+        if (t != null)
+        {
+            Repeater rptAssign = gridAssign.Rows[e.RowIndex].FindControl("rptAssign") as Repeater;
+            DateTime dt;
+            if (gridDate.SelectedRowIndex < 0)
+            {
+                dt = DateTime.Parse(gridDate.Rows[0].DataItem.ToString());
+                Region2.Title = dt.ToString("yyyy-MM-dd") + "分配情况";
+            }
+            else
+                dt = ta.BeginDate.AddDays(gridDate.SelectedRowIndex);
+            rptAssign.DataSource = ta.GetActivityAssignForTicketDate(t.ProductCode, dt);
+            rptAssign.DataBind();
+        }
+    }
+
+    protected void btnReturnList_Click(object sender,EventArgs e)
+    {
+        Response.Redirect("/ActivityManager/ActivityList.aspx");
     }
 }

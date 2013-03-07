@@ -216,13 +216,13 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     int usedydcount = Convert.ToInt32((yditem.FindControl("ydmpusedcount") as HtmlContainerControl).InnerHtml);
                     //判断此票是否过期，当前版本的做法为判断ticket的起始状态，将来需要对ticketAssign做起始状态的冗余字段，来验证
                     Ticket ticket = bllTicket.GetTicket(int.Parse((yditem.FindControl("hfticketid") as HiddenField).Value));
-                    if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
-                    {
-                        string message = "alert('该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
-                        message += "请在规定的时间内使用该门票！')";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "s", message, true);
-                        return;
-                    }
+                    //if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
+                    //{
+                    //    string message = "alert('该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
+                    //    message += "请在规定的时间内使用该门票！')";
+                    //    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", message, true);
+                    //    return;
+                    //}
                     //原来是想让它预定大于已预定的数量时的操作，现在取消此功能
                     //if (wtusecount > ttcount - usedydcount)
                     //{
@@ -315,13 +315,13 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
                     {
                         //判断此票是否过期，当前版本的做法为判断ticket的起始状态，将来需要对ticketAssign做起始状态的冗余字段，来验证
                         Ticket ticket = bllTicket.GetTicket(int.Parse((repitem.FindControl("hfticketid") as HiddenField).Value));
-                        if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
-                        {
-                            string message = "alert('该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
-                            message += "请在规定的时间内使用该门票！')";
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "s", message, true);
-                            return;
-                        }
+                        //if (DateTime.Now > ticket.EndDate || DateTime.Now < ticket.BeginDate)
+                        //{
+                        //    string message = "alert('该票的使用期限为" + ticket.BeginDate.ToString("yyyy-MM-dd") + "至" + ticket.EndDate.ToString("yyyy-MM-dd");
+                        //    message += "请在规定的时间内使用该门票！')";
+                        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "s", message, true);
+                        //    return;
+                        //}
 
                         for (int i = 0; i < oluse; i++)
                         {
@@ -429,7 +429,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             Model.Ticket t = e.Item.DataItem as Model.Ticket;
-            if (IsCurrentScenicTicket(t) || IsCurrentScenicTp(t))
+            if ((IsCurrentScenicTicket(t) || IsCurrentScenicTp(t))&&(!IsDateOut(t)))
             {
                 int ttolcount = 0;
                 int uscount = 0;
@@ -458,7 +458,7 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             Model.Ticket t = e.Item.DataItem as Model.Ticket;
-            if (IsCurrentScenicTicket(t) || IsCurrentScenicTp(t))
+            if ((IsCurrentScenicTicket(t) || IsCurrentScenicTp(t)) && (!IsDateOut(t)))
             {
                 int ttolcount = 0;
                 int uscount = 0;
@@ -516,6 +516,16 @@ public partial class ScenicManager_CheckTicket : bpScenicManager
             {
                 return true;
             }
+        }
+        return false;
+    }
+    #endregion
+    #region 判断该票是否过期
+    public bool IsDateOut(Ticket t)
+    {
+        if (DateTime.Now<t.BeginDate|| DateTime.Now > t.EndDate)
+        {
+            return true;
         }
         return false;
     }

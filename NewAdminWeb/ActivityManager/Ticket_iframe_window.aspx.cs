@@ -23,7 +23,7 @@ public partial class ActivityManager_Ticket_iframe_window : System.Web.UI.Page
     private void InitData()
     {
         bindOwner();
-        if (Session["OwnerTicket"]!="")
+        if (Session["OwnerTicket"] != "" && Session["OwnerTicket"]!=null)
             lblOwnerScenic.Text = Session["OwnerTicket"].ToString().Split(',')[2] + "-" + Session["OwnerTicket"].ToString().Split(',')[1];
         btnClose.OnClientClick = ActiveWindow.GetHidePostBackReference();
     }
