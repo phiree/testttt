@@ -115,9 +115,9 @@ namespace BLL
 
             return Iticketassign.GetTaByIdcardandTicketCode(idcard, ticketCode);
         }
-        public IList<Ticket> GetTicketTypeByIdCard(string idcard)
+        public IList<Ticket> GetTicketTypeByIdCard(string idcard,Scenic s)
         {
-            return Iticketassign.GetTicketTypeByIdCard(idcard);
+            return Iticketassign.GetTicketTypeByIdCard(idcard,s);
         }
         /// <summary>
         /// 衢州抢票接口

@@ -1,4 +1,0 @@
-2013-03-07 10:41:14,273 [10] INFO  ErrorLogger [(null)] - 1
-2013-03-07 10:41:15,059 [10] INFO  ErrorLogger [(null)] - 1
-2013-03-07 10:41:16,495 [8] INFO  ErrorLogger [(null)] - 1
-2013-03-07 10:41:17,079 [8] INFO  ErrorLogger [(null)] - 1

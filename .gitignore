@@ -15,4 +15,5 @@ packages/
 WEB/tourolLog
 AdminWeb/tourolAdminLog
 TestResults/
+AdminWeb/tourolLog/error.txt
 

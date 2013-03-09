@@ -5,6 +5,7 @@ using System.Text;
 using NHibernate;
 using Model;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace DAL
 {
@@ -68,7 +69,19 @@ namespace DAL
 
         public List<TicketAssign> GetIdcardandname(string name, string idcard, Scenic scenic, bool IsAll)
         {
-            string sql = "select ta.Name,ta.IdCard from TicketAssign ta where (ta.Name like '%" + name + "%' or ta.IdCard like '%" + idcard + "%') and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=0  group by ta.Name,ta.IdCard";
+            string sql = string.Empty;
+            if (idcard.Length == 18)
+            {
+                sql = "select ta.Name,ta.IdCard from TicketAssign ta where ( ta.IdCard='" + idcard + "') and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=0  group by ta.Name,ta.IdCard";
+            }
+            else if(Regex.IsMatch(idcard,@"\d",RegexOptions.None)==true)
+            {
+                sql = "select ta.Name,ta.IdCard from TicketAssign ta where (ta.IdCard like '%" + idcard + "%') and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=0  group by ta.Name,ta.IdCard";
+            }
+            else
+            { 
+                sql = "select ta.Name,ta.IdCard from TicketAssign ta where (ta.Name like '%" + name + "%' or ta.IdCard like '%" + idcard + "%') and ta.OrderDetail.TicketPrice.Ticket.Scenic.Id=" + scenic.Id + " and ta.IsUsed=0  group by ta.Name,ta.IdCard"; 
+            }
             IQuery query = session.CreateQuery(sql);
             if (!IsAll)
             {
@@ -244,7 +257,7 @@ namespace DAL
             string sql = "select t.ProductCode,od.Order_id  " +
 "from TicketAssign ta,OrderDetail od,TicketPrice tp,Ticket t " +
 "where ta.OrderDetail_id=od.Id and tp.Ticket_id=t.Id and od.TicketPrice_id=tp.Id  " +
-"and t.ProductCode is not null and ta.IdCard='"+idcard+"'";
+"and t.ProductCode is not null and ta.IdCard='" + idcard + "'";
             IQuery query = session.CreateSQLQuery(sql);
             return query.List<object[]>();
         }
@@ -271,10 +284,10 @@ namespace DAL
             return query.Future<TicketAssign>().ToList<TicketAssign>();
         }
 
-        public IList<Ticket> GetTicketTypeByIdCard(string idcard)
+        public IList<Ticket> GetTicketTypeByIdCard(string idcard,Scenic s)
         {
-            string sql = "select ta.OrderDetail.TicketPrice.Ticket.Id,ta.OrderDetail.TicketPrice.Ticket.Name from TicketAssign ta";
-            sql += " where ta.IdCard='" + idcard + "' group by ta.OrderDetail.TicketPrice.Ticket.Id,ta.OrderDetail.TicketPrice.Ticket.Name";
+            string sql = "select ta.OrderDetail.TicketPrice.Ticket.Id,ta.OrderDetail.TicketPrice.Ticket.Name,ta.OrderDetail.TicketPrice.Ticket.BeginDate,ta.OrderDetail.TicketPrice.Ticket.EndDate from TicketAssign ta";
+            sql += " where ta.OrderDetail.TicketPrice.Ticket.Scenic.Id="+s.Id+" and  ta.IdCard='" + idcard + "' group by ta.OrderDetail.TicketPrice.Ticket.Id,ta.OrderDetail.TicketPrice.Ticket.Name,ta.OrderDetail.TicketPrice.Ticket.BeginDate,ta.OrderDetail.TicketPrice.Ticket.EndDate";
             IQuery query = session.CreateQuery(sql.ToString());
             IList<Object[]> list;
             list = query.List<object[]>();
@@ -284,16 +297,18 @@ namespace DAL
                 Ticket t = new TicketNormal();
                 t.Id = int.Parse(item[0].ToString());
                 t.Name = item[1].ToString();
+                t.BeginDate = DateTime.Parse(item[2].ToString());
+                t.EndDate = DateTime.Parse(item[3].ToString());
                 listticket.Add(t);
             }
             return listticket;
         }
         public void UpdateIdCardNo(string activityCode, string oldNo, string newNo)
         {
-            
+
             string sql = string.Format(@"update top(1) TicketAssign as ta  set IdCard='{1}' where IdCard='{0}' 
                                           and ta.OrderDetail.TicketPrice.Ticket.TourActivity.ActivityCode='{2}'"
-                , oldNo, newNo,activityCode);
+                , oldNo, newNo, activityCode);
             IQuery query = session.CreateQuery(sql);
             int result = query.ExecuteUpdate();
         }
@@ -370,12 +385,12 @@ namespace DAL
             {
                 sql += " and ta.TicketCode ='" + ticketCode + "'";
             }
-          
+
             IQuery query = session.CreateQuery(sql);
             return query.Future<TicketAssign>().ToList<TicketAssign>();
 
         }
 
-      
+
     }
 }
