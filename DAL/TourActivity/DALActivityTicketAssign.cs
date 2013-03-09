@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Model;
+using System.Data;
+using System.Data.SqlClient;
 namespace DAL
 {
     public class DALActivityTicketAssign : DalBase<Model.ActivityTicketAssign>
@@ -48,6 +50,21 @@ namespace DAL
             //   );
             return GetList(sql);
         }
-        
+
+        public DataTable GetDTbyLvTicket(Guid actId)
+        {
+            SqlParameter[] param=new SqlParameter[]{
+                new SqlParameter("@taId",actId.ToString())
+            };
+            return DB.Helper.DBHelper.RunProcedure("proc_LvTicket", param, "").Tables[0];
+        }
+
+        public DataTable GetDtBycheckTicket(Guid actId)
+        {
+            SqlParameter[] param = new SqlParameter[]{
+                new SqlParameter("@actId",actId.ToString())
+            };
+            return DB.Helper.DBHelper.RunProcedure("proc_checkTicket", param, "").Tables[0];
+        }
     }
 }

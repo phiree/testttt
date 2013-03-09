@@ -11,7 +11,7 @@
                 <Rows>
                     <ext:FormRow runat="server">
                         <Items>
-                            <ext:RadioButtonList runat="server" ID="rblType" Label="" ShowLabel="true" Width="400px">
+                            <ext:RadioButtonList runat="server" ID="rblType" Label="" ShowLabel="true" Width="400px" OnSelectedIndexChanged="rblType_SelectedIndexChanged" AutoPostBack="true">
                                 <ext:RadioItem Selected="true" Text="出售数量" Value="出售数量" />
                                 <ext:RadioItem Text="验票数量" Value="验票数量" />
                             </ext:RadioButtonList>
@@ -21,7 +21,9 @@
             </ext:Form>
             <ext:Grid runat="server" ID="gridTimeStatistic" ShowBorder="false" ShowHeader="false"
                  EnableCheckBoxSelect="true" EnableRowNumber="true" ForceFitAllTime="true" Height="420px">
-                 
+            </ext:Grid>
+            <ext:Grid runat="server" ID="gridCheckTicketStatistic" ShowBorder="false" ShowHeader="false"
+                 EnableCheckBoxSelect="true" EnableRowNumber="true" ForceFitAllTime="true" Height="420px">
             </ext:Grid>
         </Items>
     </ext:Panel>
