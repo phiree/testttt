@@ -18,7 +18,7 @@ namespace DB.Helper
         static DBHelper()
         {
             string connStr;
-            connStr = ConfigurationManager.ConnectionStrings["touronline"].ToString();
+            connStr = ConfigurationManager.ConnectionStrings["touronlineconn"].ToString();
             connectionString = connStr;
             Connection = new SqlConnection(connectionString);
         }

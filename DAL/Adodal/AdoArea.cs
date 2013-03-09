@@ -14,7 +14,7 @@ namespace DAL.Adodal
 
         public Area GetAreaBySeoName(string seoName)
         {
-            string sql = "select top 1 Id,Name,SeoName,Code,AreaOrder,MetaDescription from Area a where a.seoname=:seoname";
+            string sql = "select top 1 Id,Name,SeoName,Code,AreaOrder,MetaDescription from Area a where a.seoname='" + seoName+"'";
             var ds = DBHelper.ReturnDataSet(sql);
             if (ds.Tables.Count > 0 || ds.Tables[0].Rows.Count < 1) return null;
             var dt = ds.Tables[0];

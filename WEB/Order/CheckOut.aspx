@@ -173,7 +173,7 @@
                 <div class="clear">
                 </div>
             </div>
-            <div id="nhorder" pricetype="2" class="priceselection" style="border-bottom: 2px solid #AAA;">
+            <%--<div id="nhorder" pricetype="2" class="priceselection" style="border-bottom: 2px solid #AAA;">
                 <span class="price">
                     <input type="radio" name="price" />
                     农行在线支付价:<em style="margin-left: 10px; margin-right: 10px; font-size: 24px; color: #EC6B9E;">50</em>元</span><span
@@ -188,7 +188,7 @@
                         class="pricedesc">预订门票，使用农行卡到景区现付，享受农行网上预定价</span>
                 <div class="clear">
                 </div>
-            </div>
+            </div>--%>
         </div>
     </div>
     <div id="payaction">
