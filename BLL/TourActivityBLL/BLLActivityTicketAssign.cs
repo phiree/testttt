@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Model;
 using DAL;
+using System.Data;
 
 namespace BLL
 {
@@ -43,6 +44,15 @@ namespace BLL
             date = date.Date;
             IList<ActivityTicketAssign> assignList = DALActivityTicketAssign.GetList(activityCode, partnerCode, date);
             return assignList;
+        }
+
+        public DataTable GetDTbyLvTicket(Guid actId)
+        {
+            return DALActivityTicketAssign.GetDTbyLvTicket(actId);
+        }
+        public DataTable GetDtBycheckTicket(Guid actId)
+        {
+            return DALActivityTicketAssign.GetDtBycheckTicket(actId);
         }
     }
 }
