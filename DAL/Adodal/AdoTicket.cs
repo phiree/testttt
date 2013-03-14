@@ -12,6 +12,7 @@ namespace DAL.Adodal
         {
             totalRecord = 1;
             return null;
+            
             //string where = " where IsHide<>true ";
             //if (area != null)
             //{
